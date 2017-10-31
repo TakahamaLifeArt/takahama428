@@ -1,0 +1,157 @@
+@charset "UTF-8";
+/**
+* Home page
+*
+*/
+
+/* carousel */
+.carousel {
+	margin: 0 auto;
+	padding-top: 56px;
+	max-width: 1500px;
+}
+
+.carousel-control-next, .carousel-control-prev {
+	top: 41px;
+}
+
+
+/* Slider */
+.stage {
+	position: relative;
+	overflow: hidden;
+	margin: 0;
+	background: #eceae8;
+}
+
+.slide-pane {
+	padding-top: calc(20% + .5rem);
+}
+
+.photos {
+	position: absolute;
+	width: 100%;
+	left: 1%;
+	padding: .5rem 0;
+	/*transition: left 1s ease;*/
+	animation: transtoright 20s linear infinite;
+	animation-delay: .2s;
+}
+
+@keyframes transtoright {
+	0%    { left:1%; }
+	/*
+	10%   { left:1%; }
+	12.5% { left:-19% }
+	22.5% { left:-19% }
+	25%   { left:-39% }
+	35%   { left:-39% }
+	37.5% { left:-59% }
+	47.5% { left:-59% }
+	50%   { left:-79% }
+	60%   { left:-79% }
+	62.5% { left:-99% }
+	72.5% { left:-99% }
+	75%   { left:-119% }
+	85%   { left:-119% }
+	87.5% { left:-139% }
+	97.5% { left:-139% }
+	*/
+	99.9999% { left:-159% }
+	100%  { left:1%; }
+}
+
+.pic {
+	width: 20%;
+	position: absolute;
+}
+
+.pic img { width:94%; }
+
+/* ID of each photo */
+.photos .photo1 { left:0%; }
+.photos .photo2 { left:20%; }
+.photos .photo3 { left:40%; }
+.photos .photo4 { left:60%; }
+.photos .photo5 { left:80%; }
+.photos .photo6 { left:100%; }
+.photos .photo7 { left:120%; }
+.photos .photo8 { left:140%; }
+.photos .photo9 { left:160%; }
+.photos .photo10 { left:180%; }
+.photos .photo11 { left:200%; }
+.photos .photo12 { left:220%; }
+.photos .photo13 { left:240%; }
+.photos .photo14 { left:260%; }
+.photos .photo15 { left:280%; }
+.photos .photo16 { left:300%; }
+.photos .photo17 { left:320%; }
+.photos .photo18 { left:340%; }
+.photos .photo19 { left:360%; }
+.photos .photo20 { left:380%; }
+
+
+/* button row */
+.btn-row > div {
+	text-align: center;
+	padding: 2%;
+	margin-bottom: 0;
+}
+.btn-row > div > .btn {
+	margin: 0;
+	padding: 0;
+}
+
+
+/* service */
+.row.service > div:nth-child(2) .row:nth-child(2) > div {
+	padding-top: 1%;
+	padding-bottom: 1%;
+}
+
+.row.service > div:last-child .row:nth-child(2) > div {
+	padding-top: 3%;
+	padding-bottom: 3%;
+}
+
+
+/* brand */
+@media (max-width: 767px) {
+	.pb-sm-down {
+		padding-bottom: 1.5rem;
+	}
+}
+
+
+/* news list */
+.list-group-wrap {
+	height: 10rem;
+	overflow-y: scroll;
+}
+.list-group-wrap .list-group {
+	box-shadow: none;
+}
+.list-group-wrap .list-group-item {
+	border-left: 0;
+	border-right: 0;
+}
+.list-group-wrap .list-group-item .row {
+	width: 100%;
+	padding: .75rem .25rem;
+}
+
+@media (min-width: 992px) {
+	.list-group-wrap .list-group-item .row .col-lg-3 {
+		-webkit-box-flex: 0;
+		-webkit-flex: 0 0 8rem;
+		-ms-flex: 0 0 8rem;
+		flex: 0 0 8rem;
+		max-width: 8rem;
+	}
+}
+
+
+/* card group */
+.card-group .card {
+	margin: .5rem .5rem 1.5rem;
+}

@@ -1,0 +1,699 @@
+@charset "EUC-JP";
+
+/*------------------------------------------------------------
+
+	File_name    : creator.css
+	Description  : design creator stylesheet
+	Version      : 0.1
+	Log          : 2009.07.01 created
+	
+-------------------------------------------------------------- */
+
+
+
+
+/*		コンテンツ　ラッパー
+===============================================================*/
+#content_wrapper{
+	width: 100%;
+	overflow: hidden;
+	padding: 40px 0px 20px;
+}
+
+#left_side {
+	width: 410px;
+	float: left;
+}
+
+#right_side {
+	width: 305px;
+	float: right;
+}
+
+
+/*---  ポップアップ画面  ---*/
+div#helppane{
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 460px;
+	overflow: hidden;
+	border: 1px solid #e42100;
+	background: #000000;
+	z-index: 101;
+}
+
+
+
+
+
+
+/*		デザイン　ビュー
+===============================================================*/
+#item_label_wrapper{
+	height: 26px;
+	margin-top: 4px;
+	border-bottom: 1px solid #666;
+	background: url(../img/item_title.png) top left no-repeat;
+}
+#item_label{
+	width: 300px;
+	padding-left: 90px;
+	line-height: 26px;
+	font-size: 125%;
+	font-weight: normal;
+	color: #8c8484;
+	float: left;
+}
+#item_label_wrapper p{
+	width: 85px;
+	margin-right: 5px;
+	line-height: 26px;
+	text-align: right;
+	font-size: 90%;
+	color: #8c8484;
+	float: right;
+}
+#item_label_option{
+	font-size: 100%;
+	color: #8c8484;
+}
+#view_area{
+	clear: both;
+	width: 400px;
+	margin: 0px auto 30px;
+}
+.image_wrapper{
+	position: relative;
+	width: 400px;
+	overflow: hidden;
+}
+img.progress_bar{
+	display: none;
+	position: absolute;
+	top: 150px;
+	left: 50px;
+	z-index: 999;
+}
+#imgloader{
+	position: relative;
+	width: 400px;
+	height: 400px;
+	margin-top: 30px;
+	overflow: hidden;
+}
+
+#drag_cont {
+	position: absolute;
+	top: 32px;
+	left: 60px;
+	width: 180px;
+	height: 230px;
+	overflow: hidden;
+}
+/*
+#drag_cont {
+	position: absolute;
+	top: 50px;
+	left: 90px;
+	width: 120px;
+	height: 154px;
+	overflow: hidden;
+}
+#drag_cont_back {
+	position: absolute;
+	top: 50px;
+	left: 90px;
+	width: 120px;
+	height: 154px;
+	overflow: hidden;
+	display: none;
+}
+#dragarea_wrapper{
+	position: absolute;
+	top: 50px;
+	left: 50px;
+	width: 300px;
+	height: 300px;
+	background: transparent url(../img/creator/edgeline.png) 89px 49px no-repeat;
+}
+*/
+#dragarea_wrapper{
+	position: absolute;
+	top: 50px;
+	left: 50px;
+	width: 300px;
+	height: 300px;
+	background: transparent url(../img/creator/edgeline2.png) 59px 31px no-repeat;
+}
+
+.drgElement {
+ 	position: absolute;
+ 	top: 0px;
+	left: 0px;
+	display: none;
+	overflow: hidden;
+	
+	filter: alpha(opacity=85);
+	-moz-opacity:.85;
+	opacity:.85;
+}
+.drgHandle {
+	cursor: move;
+	border: 1px solid transparent;
+}
+
+/*---  アイテムとデザインの表示切替とダウンロードボタン  ---*/
+/*
+.toggleview_area{
+	margin-bottom: 5px;
+}
+.toggleview_area p{
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+}
+.toggleview_area p span{
+	margin: 0px;
+	padding: 5px 15px;
+	font-size: 90%;
+	color: #8c8484;
+	border-right: 1px solid #a9a9a9;
+	cursor: pointer;
+}
+.toggleview_area p span:first-child{
+	border-left: 1px solid #a9a9a9;
+}
+.toggleview_area p span:hover{
+	color: #ff6631;
+}
+*/
+
+
+/*---  デザインだけの表示エリア  ---*/
+#designloader{
+	display: none;
+	position: relative;
+	width: 308px;
+	height: 398px;
+	margin: 29px 46px 0px;
+	overflow: hidden;
+	border: 1px dashed #cccccc;
+}
+#designloader img#display_design{
+	position: absolute;
+	width: 310px;
+	filter: alpha(opacity=80);
+	-moz-opacity:.80;
+	opacity:.80;
+}
+#designloader img#back_design{
+	margin: -250px 0px 0px -350px;
+}
+
+/*---  表と裏の切り替え  ---*/
+.reverse_button{
+	position: absolute;
+	top: 0px;
+	padding: 0px 10px;
+	text-align: center;
+	font-size: 90%;
+	color: #8c8484;
+	border-style: solid;
+	border-color: #666;
+	border-width: 0px 1px 1px 1px;
+	cursor: pointer;
+	z-index: 100; 
+	-moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px;
+	-moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px;
+}
+.reverse_button:hover{
+	color: #ff6631;
+	background: #eee;
+}
+#front_side{
+	left: 0px;
+	width: 80px;
+	height: 25px;
+	line-height: 25px;
+}
+#back_side{
+	left: 102px;
+	width: 60px;
+	height: 19px;
+	line-height: 19px;
+}
+
+
+/*---  Tシャツについてとプリントについてのポップアップ  ---*/
+#help_item,
+#help_print {
+	width: 140px;
+	height: 25px;
+	margin: 3px 10px;
+	padding-left: 20px;
+	line-height: 25px;
+	font-size: 110%;
+	color: #003f75;
+	background: url(../img/bullet_info.png) 0px 2px no-repeat;
+	cursor: pointer;
+}
+#help_item:hover,
+#help_print:hover{
+	color: #003fff;
+	text-decoration: underline;
+}
+
+
+
+
+/*		コントロール　エリア
+===============================================================*/
+#control_area{
+	width: 300px;
+	padding-top: 30px;
+}
+.step_label {
+	margin-bottom: 5px;
+	white-space: nowrap;
+	font-size: 125%;
+	color: #00265b;
+}
+.step_label span.step {
+	margin-right: 10px;
+	padding: 0px 10px 0px 5px;
+	font-size: 100%;
+	color: #e42100;
+	/*
+	border-left: 5px solid #00395f;
+	background: url(../img/bg_main.png) repeat-x left center;
+	*/
+}
+
+.ctrl_content{
+	position: relative; 
+	width: 100%;
+	margin-bottom: 20px;
+}
+#colorpalette{ 
+	position: absolute; 
+	width: 100%; 
+	height: 0px; 
+	text-align: center; 
+	overflow: hidden; 
+	background: #ffffff;
+	z-index: 100; 
+}
+#fontpalette{ 
+	position: absolute; 
+	width: 100%; 
+	height: 0px; 
+	text-align: left; 
+	overflow-x: hidden; 
+	overflow-y: auto; 
+	background: #ffffff;
+	z-index: 100; 
+}
+
+.command_line:after {
+	content: ".";
+	display: block;
+	height: 0;
+	visibility:hidden;
+	line-height: 0;
+	font-size: 0;
+	clear: both;
+}
+.command_line {
+	display: inline-block;
+	width: 100%;
+	margin-bottom: 15px;
+}
+/* Hides from IE-mac \*/
+* html .command_line {height: 1%;}
+.command_line {display: block;}
+/* End hide from IE-mac */
+
+.command_line div {
+	float: left;
+	width: 149px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	letter-spacing: 0.3em;
+	font-size: 110%;
+	color: #04c;	/*#565656;*/
+	cursor: pointer;
+}
+.command_line div.r_edge {
+	width: 10px;
+	background: url(../img/button_bg.png) top right no-repeat;
+}
+.command_line div:hover {
+	color:#ff6631;
+}
+
+
+/*----------　画像と文字の貼り付け　----------*/
+#add_image {
+	border-right: 1px splid #d8d8d8;
+	background: url(../img/button_bg.png) no-repeat;
+}
+#add_text {
+	border-left: 1px solid #d8d8d8;
+	background: url(../img/button_bg.png) top right no-repeat;
+}
+
+
+/*----------　デザインとTシャツ全体の表示切替　----------*/
+#show_item {
+	margin-bottom: 10px;
+	border-right: 1px splid #d8d8d8;
+	background: url(../img/button_bg.png) no-repeat;
+}
+#show_design {
+	margin-bottom: 10px;
+	border-left: 1px solid #d8d8d8;
+	background: url(../img/button_bg.png) top right no-repeat;
+}
+
+
+/*----------　デザイン画像のダウンロード　----------*/
+#download_design {
+	width: 290px;
+	height: 30px;
+	padding-left: 10px;
+	background: url(../img/button_bg.png) left center no-repeat;
+	cursor: pointer;
+}
+#download_design p {
+	line-height: 30px;
+	text-align: center;
+	background: #fffdfc url(../img/button_bg.png) right center no-repeat;
+}
+#download_design:hover {
+	color: #ff6631;
+}
+
+
+/*----------　操作説明　----------*/
+#help_message_wrapper{
+	position: absolute;
+	top: 60px;
+	left: 18px;
+	width: 350px;
+	height: 150px;
+	padding: 50px 10px 25px;
+	color:#e42100;
+	background: transparent url(../img/arrow_top_panel.png) no-repeat;
+}
+#help_message_wrapper ul{
+	margin-left: 45px;
+}
+#help_message_wrapper ul li{
+	padding: 2px 0px;
+	list-style-type: decimal;
+}
+#help_message_wrapper ul li p{
+	margin: 5px 25px 0px 0px;
+	line-height: 1.6;
+	color: #565656;
+}
+#help_message_wrapper ul li p strong{
+	color: #333;
+}
+
+
+
+
+/*		コントローラーのトッグルパーツ
+===============================================================*/
+.close_btn{
+	float: right;
+	width: 60px;
+	height: 25px;
+	padding-left: 5px;
+	line-height: 25px;
+	font-size: 90%;
+	border-left: 1px solid #d0d0d0;
+	background: url(../img/cross.png) 36px 0px no-repeat;
+	cursor: pointer;
+	filter: alpha(opacity=70);
+  	-moz-opacity:.70;
+  	opacity:.70;
+}
+.close_btn:hover{
+	filter: alpha(opacity=100);
+  	-moz-opacity: 1;
+  	opacity: 1;
+}
+
+
+#accordion_wrap{
+	 position: relative;
+	 width: 300px;
+	 margin-bottom: 0px;
+	 padding-bottom: 10px;
+	 overflow: hidden;
+}
+#accordion_wrap_back{
+	 position: relative;
+	 width: 375px;
+	 height: 300px;
+	 margin: 0 15px 15px;
+	 overflow: auto;
+	 display: none;
+}
+
+#accordion_wrap img, #accordion_wrap_back img{
+	cursor: pointer;
+}
+.toggle_header{
+	position: relative;
+	width: 320px; 
+	height: 25px; 
+	line-height: 25px;
+	border: 1px solid #ffcc80;
+	border-top: 1px solid #fff8ea;
+	border-left: 1px solid #fff8ea;
+	background: url(../img/toggle_header_bg.png) 0px -25px repeat-x; 
+	cursor: pointer;
+}
+.toggle_header:hover{
+	background-position: 0px 0px;
+}
+.toggle_active{
+	background: url(../img/toggle_header_bg.png) 0px 0px repeat-x; 
+}
+.toggle_header p {
+	position: absolute;
+	height: 21px;
+	margin: 4px 0px 0px 10px;
+	padding-left: 30px; 
+	line-height: 21px;
+	font-size: 100%;
+	background: url('../img/creator/arrow-square.gif') 0px -56px no-repeat;
+}
+.toggle_header p.arrow_active{
+	background: url('../img/creator/arrow-square.gif') 0px 0px no-repeat;
+}
+.toggle_header p img{
+	margin-top:-3px;
+	border:1px solid #d0d0d0";
+}
+.toggle_inner{
+	width: 320px; 
+	height: 220px; 
+	overflow: hidden; 
+	border-bottom: 1px solid #fff8ea;
+}
+
+
+
+
+/*		カートに入れる
+===============================================================*/
+#navi li p {
+	color: #606060;
+	border-bottom: none;
+	cursor: pointer;
+}
+#navi li p:hover {
+	color:#ff6631;
+}
+
+#addcart_form {
+	margin-top: 40px;
+}
+.addcart_area{
+	margin-left: 10px;
+	font-size: 120%;
+}
+.addcart_area #order_price, .addcart_area #order_amount, .addcart_area #order_size{
+	width: 30px;
+	margin: 0px 5px 5px 15px;
+	text-align: right;
+	vertical-align: bottom;
+	font-size: 120%;
+	border: 1px solid;
+	border-color: #fff #fff #ddd #fff;
+	cursor: pointer;
+}
+.addcart_area #order_size{
+	width: 80px;
+	margin-left: 0px;
+	text-align: left;
+}
+.addcart_area #order_price{
+	width: 80px;
+	font-size: 130%;
+	font-weight: bold;
+	color: #003f75;
+	cursor: default;
+}
+.addcart_button {
+	float: right;
+	width: 150px;
+	height: 35px;
+	margin: 10px;
+	/*
+	background-image: url(../img/addcart.png);
+	background-repeat: no-repeat;
+	*/
+	cursor: pointer;
+}
+/*
+.addcart_button:hover {
+	background-image: url(../img/addcart_hover.png);
+
+}
+*/
+p#help_size{
+	width: 100px;
+	height: 25px;
+	margin: 3px 10px;
+	padding-left: 20px;
+	line-height: 25px;
+	font-size: 110%;
+	color: #003f75;
+	background: url(../img/bullet_info.png) 0px 2px no-repeat;
+	cursor: pointer;
+}
+p#help_size:hover{
+	color: #003fff;
+	text-decoration: underline;
+}
+
+
+
+
+/*		ダウンロード
+===============================================================*/
+.form_wrapper{
+	width: 375px;
+	margin: 20px 15px;
+}
+.form_wrapper p{
+	padding-left: 5px;
+	line-height: 1.5;
+	font-size: 120%;
+}
+.form_wrapper p.download_title{
+	width: 244px;
+	height: 26px;
+	margin-bottom: 5px;
+	border-bottom: 1px solid #c0c0c0;
+	background: url(../img/download_title.png) top left no-repeat;
+}
+#download_button{
+	float: right;
+	display: block;
+	width: 150px;
+	height: 35px;
+	background: transparent url(../img/download_button.png) no-repeat;
+	cursor: pointer;
+}
+#download_button:hover{
+	background: url(../img/download_button_hover.png) no-repeat;
+}
+
+
+
+
+/*		progress bar
+===============================================================*/
+#loading_inner{
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 400px;
+	margin: -30px 0px 0px -200px;
+	z-index: 999;
+}
+#loading_inner p.message{
+	height: 20px;
+	line-height: 20px;
+	margin-bottom: 5px;
+	padding-left: 20px;
+	color: #ffffff;
+	background: transparent url(../img/bullet_info.png) 0px 2px no-repeat;
+}
+
+
+
+
+/*		Tシャツの作り方
+===============================================================*/
+.comment_area h2 {
+	margin-bottom: 10px;
+	padding-left: 10px;
+	font-size: 110%;
+	font-weight: bold;
+	color: #8c8484;
+	border-bottom: 2px solid #d0d0d0;
+	border-left: 5px solid #d0d0d0;
+}
+.comment_area p{
+	color: #666;
+}
+
+
+
+
+/*		banner
+===============================================================*/
+.banner_wrapper {
+	margin: 60px 0px 30px;
+	border-top: 1px solid #d8d8d8;
+	border-bottom: 1px solid #d8d8d8;
+	background: #f8f8f8;
+}
+.banner_wrapper .inner {
+	width: 570px;
+	margin: 5px auto;
+}
+.banner_wrapper a {
+	display: block;
+	float: right;
+	width: 160px;
+	height: 31px;
+	margin-left: 10px;
+	padding: 2px;
+	border: 1px solid #ffa015;
+	background: #fff url(../img/bg_pale.png) repeat-x left top;
+}
+.banner_wrapper a:hover {
+	background-position: left bottom;
+}
+.banner_wrapper p {
+	width: 370px;
+	padding-right: 20px;
+	line-height: 37px;
+	background: url(../img/arrow_right_16.png) no-repeat right center;
+}
+.banner_wrapper p strong {
+	line-height: 37px;
+	color: #e42100;
+}

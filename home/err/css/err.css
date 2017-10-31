@@ -1,0 +1,93 @@
+@charset "utf-8";
+
+/*------------------------------------------------------------
+
+File_name	: style.css
+log			: 2013-07-26	created
+
+-------------------------------------------------------------- */
+
+#container {
+	width: 100%;
+	margin-top: 180px;
+}
+
+.contents {
+	width: 100%;
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 10px;
+}
+
+.heading1_wrapper {
+	width: 100%;
+	padding-bottom: 30px;
+	overflow: hidden;
+}
+
+.heading1_wrapper h1 {
+	font-size: 40px;
+	font-weight: bold;
+	color: #333;
+}
+
+.heading1_wrapper p.sub {
+	margin: 0em 0px 10px 1em;
+	color: #803300;
+	white-space: nowrap;
+}
+
+h2.heading {
+	font-size: 1.5rem;
+	padding-bottom: 3px;
+	background: url(/common/img/dotted.png) repeat-x left bottom;
+	margin: 10px 0px 15px;
+}
+
+input[type="text"] {
+	width: 	auto;
+	padding: 1px 5px;
+	border: 1px solid #237bc3;
+	background: #f6fbfd;
+}
+
+input[type="submit"] {
+	margin-left: 1rem;
+	cursor: pointer;
+	-webkit-appearance: push-button;
+}
+
+.errmsg {
+	margin-bottom: 30px;
+}
+
+.wrap {
+	margin: 50px 0px;
+}
+
+.wrap div {
+	clear: both;
+	position: relative;
+	margin: 40px 0 20px;
+	padding: 10px 0;
+	color: #003f75;
+	background: none repeat scroll 0 0 #fafafa;
+	border-bottom: 1px solid #dedede;
+	border-top: 1px solid #dedede;
+}
+
+.wrap div a {
+	display: block;
+	width: 211px;
+	height: 25px;
+	margin: 0px auto;
+	line-height: 25px;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	background: url(/common/img/detail_blue_btn_l.png) no-repeat left top;
+}
+
+.wrap div a:hover {
+	background-position: 0px -25px;
+}

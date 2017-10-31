@@ -1,0 +1,57 @@
+@charset "utf-8";
+
+/*------------------------------------------------------------
+
+2012 takahama web css
+
+	File_name    : finish.css
+	Description  : resend password
+	Version      : 1.0
+	
+	log
+	2011.08.25	 : created
+	
+--------------------------------------------------------------*/
+
+
+
+
+/*		thanks page
+===============================================================*/
+.inner {
+	margin: 30px 0px 5px;
+}
+.inner h3 {
+	font-size: 125%;
+	font-weight: normal;
+	color: #003f75;
+}
+.inner p {
+	margin-left: 1em;
+	color: #666;
+}
+.remarks {
+	margin: 15px;
+	padding: 2em 2em 1em;
+	background: #fff url(../img/alert.png) no-repeat 30px 30px;
+	border: 3px solid #e1630e;
+	border-radius: 3px;
+	
+}
+.remarks p {
+	margin: 0 0 1em 0;
+	text-align: center;
+	color: #333;
+}
+.remarks strong {
+	margin-bottom: 1em; 
+	font-size: 150%;
+	color: #4e2210;
+}
+hr {
+	margin: 1em 0;
+}
+.gohome {
+	margin-top: 1.5em;
+}
+

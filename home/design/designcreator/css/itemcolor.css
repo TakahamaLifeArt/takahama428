@@ -1,0 +1,186 @@
+@charset "EUC-JP";
+
+/*------------------------------------------------------------
+
+	File_name    : itemcolor.css
+	Description  : itemcolor stylesheet 085-cvt
+	Version      : 0.1
+	Log          : 2009.07.01 created
+				 : 2010.06.22 アイテムカラー追加
+	
+-------------------------------------------------------------- */
+
+
+
+
+/*		item color(085-cvt)
+===============================================================*/
+.item_001{ background-color: #ffffff; }
+.item_003{ background-color: #c8c5c9; }
+.item_005{ background-color: #221815; }
+.item_010{ background-color: #db030e; }
+.item_011{ background-color: #f4b1c9; }
+.item_014{ background-color: #5f317d; }
+.item_015{ background-color: #ee7300; }
+.item_019{ background-color: #c783ac; }
+.item_020{ background-color: #fff20b; }
+.item_021{ background-color: #f5d04c; }
+.item_024{ background-color: #cadc5b; }
+.item_025{ background-color: #00924c; }
+.item_031{ background-color: #2c2f47; }
+.item_032{ background-color: #3b5fa8; }
+.item_034{ background-color: #00acda; }
+.item_044{ background-color: #dee0e0; }
+.item_077{ background-color: #f29300; }
+.item_095{ background-color: #62bbbd; }
+.item_106{ background-color: #fbf3de; }
+.item_109{ background-color: #323f4b; }
+.item_112{ background-color: #6b2527; }
+.item_128{ background-color: #4c653f; }
+.item_129{ background-color: #5c5356; }
+.item_131{ background-color: #071916; }
+.item_132{ background-color: #f0d2d6; }
+.item_133{ background-color: #cfeaf5; }
+.item_134{ background-color: #fff8a0; }
+.item_136{ background-color: #886844; }
+.item_137{ background-color: #7f5237; }
+.item_146{ background-color: #d80d6f; }
+.item_153{ background-color: #b9bcb6; }
+.item_154{ background-color: #b79761; }
+.item_155{ background-color: #a2c335; }
+.item_165{ background-color: #fbcf0b; }
+.item_166{ background-color: #316f9c; }
+.item_167{ background-color: #062648; }
+.item_168{ background-color: #453028; }
+.item_169{ background-color: #e62721; }
+.item_170{ background-color: #ee7a1e; }
+.item_171{ background-color: #08368f; }
+.item_188{ background-color: #baa0c1; }
+.item_189{ background-color: #f0ab60; }
+.item_190{ background-color: #f08b6d; }
+.item_191{ background-color: #fbcae0; }
+.item_192{ background-color: #eb4d32; }
+.item_193{ background-color: #006547; }
+.item_194{ background-color: #2aab5b; }
+.item_195{ background-color: #aedacc; }
+.item_196{ background-color: #77cad0; }
+.item_197{ background-color: #00a48f; }
+.item_198{ background-color: #0064b0; }
+.item_199{ background-color: #00aedb; }
+.item_200{ background-color: #3c2c5b; }
+.item_442{ background-color: #004d4f; }
+
+
+
+
+/*		item color(137-rss)
+===============================================================*/
+.item_705{ background-color: #221815; }		/* ブラック */
+.item_710{ background-color: #db030e; }		/* レッド */
+.item_730{ background-color: #f29300; }		/* ゴールドイエロー */
+.item_731{ background-color: #2c2f47; }		/* ネイビー */
+.item_732{ background-color: #3b5fa8; }		/* ロイヤルブルー */
+.item_734{ background-color: #5f317d; }		/* パープル */
+.item_738{ background-color: #00924c; }		/* グリーン */
+.item_768{ background-color: #453028; }		/* チョコレート */
+.item_770{ background-color: #ee7300; }		/* オレンジ */
+.item_796{ background-color: #f4b1c9; }		/* ピンク */
+.item_805{ background-color: #221815; }		/* 杢グレー(#c8c5c9)・ブラック */
+.item_821{ background-color: #00acda; }		/* ターコイズ */
+.item_831{ background-color: #2c2f47; }		/* 杢グレー(#c8c5c9)・ネイビー */
+
+
+
+
+
+
+
+
+/*		item color
+===============================================================*/
+.item_lightgray{ background-color: #afafbA; }
+.item_natural{ background-color: #fbf3de; }
+
+.item_yellow{ background-color: #fff20b; }
+.item_gold{ background-color: #F6a900; }
+.item_mintgreen{ background-color: #85c9ba; }
+.item_green{ background-color: #00924c; }
+.item_citygreen{ background-color: #534d21; }
+.item_limegreen{ background-color: #cddf6f; }
+.item_melon{ background-color: #cde5c3; }
+
+.item_darkbrown{ background-color: #573d2e; }
+.item_lightbeige{ background-color: #dcc9af; }
+.item_orange{ background-color: #ee7300; }
+.item_pink{ background-color: #f4b1c9; }
+.item_burgundy{ background-color: #6b2527; }
+.item_lavender{ background-color: #c783ac; }
+
+.item_matpurple{ background-color: #603762; }
+.item_sax{ background-color: #84b3d6; }
+.item_aquablue{ background-color: #72c8df; }
+.item_cobaltblue{  background-color: #173994;}
+.item_royalblue{ background-color: #3b5fa8; }
+.item_navy{ background-color: #2c2f47; }
+.item_indigo{ background-color: #132e52; }
+
+.item_slate{ background-color: #073e56; }
+.item_banana{ background-color: #fbcc5B; }
+.item_lightyellow{ background-color: #fff8a0; }
+.item_lightblue{ background-color: #cfeaf5; }
+.item_ivygreen{ background-color: #12453a; }
+.item_californiaorange{ background-color: #e9450a; }
+.item_tropicalpink{ background-color: #d30076; }
+
+.item_sandkhaki{ background-color: #a79b73; }
+.item_turquoiseblue{ background-color: #009cb7; }
+.item_violetpurple{ background-color: #68468b; }
+.item_apricot{ background-color: #f7bfa0; }
+.item_babypink{ background-color: #fbe1e1; }
+.item_mauve{ background-color: #d3b3bc; }
+.item_lightgreen{ background-color: #cadc5b; }
+
+.item_darkgray{ background-color: #56575a; }
+.item_lightpurple{ background-color: #baa0c1; }
+.item_lightorange{ background-color: #f0ab60; }
+.item_lime{ background-color: #a2c335; }
+.item_mixash{ background-color: #989ba6; }
+.item_goldyellow{ background-color: #f29300; }
+
+.item_olv{ background-color: #4c653f; }
+.item_lightpink{ background-color: #f0d2d6; }
+.item_chocolate{ background-color: #453028; }
+.item_mustard{ background-color: #f5d04c; }
+.item_turquoise{ background-color: #00acda; }
+.item_aqua{ background-color: #62bbbd; }
+.item_denim{ background-color: #323f4b; }
+
+.item_forest{ background-color: #071916; }
+.item_safari{ background-color: #886844; }
+.item_espresso{ background-color: #7f5237; }
+.item_hotpink{ background-color: #d80d6f; }
+.item_silvergray{ background-color: #b9bcb6; }
+.item_camel{ background-color: #b79761; }
+.item_daisy{ background-color: #fbcf0b; }
+
+.item_stoneblue{ background-color: #316f9c; }
+.item_metroblue{ background-color: #062648; }
+.item_italianred{ background-color: #e62721; }
+.item_coralorange{ background-color: #ee7a1e; }
+.item_japanblue{ background-color: #08368f; }
+.item_lightpurple{ background-color: #baa0c1; }
+.item_lightorange{ background-color: #f0ab60; }
+
+.item_lightsalmon{ background-color: #f08b6d; }
+.item_peach{ background-color: #fbcae0; }
+.item_deeporange{ background-color: #eb4d32; }
+.item_deepgreen{ background-color: #006547; }
+.item_brightgreen{ background-color: #2aab5b; }
+.item_icegreen{ background-color: #aedacc; }
+.item_mint{ background-color: #77cad0; }
+
+.item_peacockgreen{ background-color: #00a48f; }
+.item_samuraiblue{ background-color: #0064b0; }
+.item_seablue{ background-color: #00aedb; }
+.item_deeppurple{ background-color: #3c2c5b; }
+.item_emerald{ background-color: #004d4f; }

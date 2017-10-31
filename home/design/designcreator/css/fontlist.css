@@ -1,0 +1,48 @@
+@charset "EUC-JP";
+
+/*------------------------------------------------------------
+
+	File_name    : fontlist.css
+	Description  : font family list stylesheet
+	Version      : 0.1
+	Log          : 2009.07.01 created
+	
+-------------------------------------------------------------- */
+
+
+
+
+#fontlist_wrapper{
+/*
+	margin-top:4px;
+*/
+}
+#fontlist_title{
+	height: 26px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #666666;
+}
+#fontlist_title h2{ text-align: center; }
+#fontlist_wrapper div.list{
+	padding-left: 10px; 
+	cursor: pointer;
+	border-bottom: 1px dotted #f0f0f0;
+}
+#fontlist_wrapper div.list:hover{
+	border-bottom: 1px dotted #237bc3;
+	background-color: #f1f8fe;
+}
+
+#close_palette{ 
+	width: 16px; height: 16px; float: right; background: url(../img/cross_mini.png);
+	margin-right: 20px;
+	filter: alpha(opacity=70);
+	-moz-opacity:.70;
+	opacity:.70; 
+}
+#close_palette:hover{
+	filter: alpha(opacity=100);
+  	-moz-opacity: 1;
+  	opacity: 1;
+  	cursor: pointer;
+}

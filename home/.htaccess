@@ -1,0 +1,114 @@
+Options -Indexes
+AddType application/x-httpd-php .php .htm .html
+DirectoryIndex index.php
+order deny,allow
+
+php_value max_execution_time 200
+php_value max_input_time 200
+php_value memory_limit 256M
+php_value post_max_size 150M
+php_value upload_max_filesize 100M
+php_value mbstring.internal_encoding UTF-8
+php_value mbstring.detect_order UTF-8,EUC-JP,SJIS,JIS,ASCII
+php_flag mbstring.encoding_translation off
+php_value session.gc_maxlifetime 3600
+php_value default_charset "UTF-8"
+
+# Not found
+<IfModule mod_rewrite.c>
+ErrorDocument 404 /err/
+</IfModule>
+
+<Files ~ "^.(htaccess|htpasswd)$">
+deny from all
+</Files>
+
+# Enable RewriteEngine.
+RewriteEngine on
+
+# Normalization
+#RewriteCond %{HTTP_HOST} ^takahama428.com
+#RewriteRule ^(.*)$ https://www.takahama428.com/$1 [R=301,L]
+RewriteCond %{REQUEST_URI} ^.*/index.(html|php)
+RewriteRule ^(.*)index.(php|html)$ /$1 [R=301]
+
+# Redirect
+RewriteRule ^items/t-shirts/$ /items/?cat=1 [R=302]
+RewriteRule ^items/polo-shirts/$ /items/?cat=3 [R=302]
+RewriteRule ^items/towel/$ /items/?cat=8 [R=302]
+RewriteRule ^items/sweat/$ /items/?cat=2 [R=302]
+RewriteRule ^items/outer/$ /items/?cat=6 [R=302]
+RewriteRule ^items/tote-bag/$ /items/?cat=9 [R=302]
+RewriteRule ^items/apron/$ /items/?cat=10 [R=302]
+RewriteRule ^items/overall/$ /items/?cat=16 [R=302]
+RewriteRule ^items/sportswear/$ /items/?tag=73 [R=302]
+RewriteRule ^items/long-shirts/$ /items/?cat=13 [R=302]
+RewriteRule ^items/ladys/$ /items/?cat=5 [R=302]
+RewriteRule ^items/baby/$ /items/?cat=14 [R=302]
+RewriteRule ^items/goods/$ /items/?cat=12 [R=302]
+RewriteRule ^items/cap/$ /items/?cat=7 [R=302]
+
+RewriteRule ^items/printstar/$ /items/?tag=58 [R=302]
+RewriteRule ^items/unitedathle/$ /items/?tag=59 [R=302]
+RewriteRule ^items/glimmer/$ /items/?tag=60 [R=302]
+RewriteRule ^items/champion/$ /items/?tag=43 [R=302]
+RewriteRule ^items/gildan/$ /items/?tag=108 [R=302]
+
+RewriteCond %{QUERY_STRING} (^|&)id=([^&]+)($|&)
+RewriteRule ^items/.+/item.html /items/item.php?code=%2 [R=302]
+
+RewriteRule ^order/reorder.html /order/reorder.php [R=302]
+RewriteRule ^guide/orderflow.html /guide/orderflow.php [R=302]
+RewriteRule ^guide/bring.html /guide/bring.php [R=302]
+RewriteRule ^guide/faq.html /guide/faq.php [R=302]
+RewriteRule ^guide/information_001.html /guide/information.php [R=302]
+RewriteRule ^price/estimate.html /price/estimate.php [R=302]
+
+RewriteRule ^design/printing.html /design/printing.php [R=302]
+RewriteRule ^design/printsize.html /design/printsize.php [R=302]
+RewriteRule ^design/designposition.html /design/position.php  [R=302]
+RewriteRule ^design/designguide.html /design/designguide.php [R=302]
+RewriteRule ^design/designguide_illust.html /design/designguide_illust.php [R=302]
+RewriteRule ^design/designguide_image.html /design/designguide_image.php [R=302]
+RewriteRule ^design/designguide_freehand.html /design/designguide_freehand.php [R=302]
+RewriteRule ^design/template_illust.html /design/template_illust.php [R=302]
+RewriteRule ^design/designtemp.html /design/designtemp.php [R=302]
+RewriteRule ^design/fontcolor.html /design/fontcolor.php [R=302]
+RewriteRule ^design/gallery.html /design/gallery.php [R=302]
+RewriteRule ^design/support/ /design/support.php [R=302]
+RewriteRule ^design/emb.html /design/emb.php  [R=302]
+RewriteRule ^design/layout/(.*)\.html /design/layout/$1.php [R=302]
+RewriteRule ^design/parts/(.*)\.html /design/parts/$1.php [R=302]
+
+RewriteRule ^sameday/ /order/express/ [R=302]
+RewriteRule ^contact/request.html /contact/request.php [R=302]
+RewriteRule ^reason/ /reason/speed.php [R=302]
+RewriteRule ^reason/speed.html /reason/speed.php [R=302]
+RewriteRule ^corporate/overview.html /corporate/overview.php [R=302]
+RewriteRule ^corporate/commercial_trans.html /corporate/transactions.php [R=302]
+
+# Cache
+<ifModule mod_expires.c>
+ExpiresActive On
+ExpiresDefault "access plus 1 seconds"
+ExpiresByType text/html "access plus 1 seconds"
+ExpiresByType image/gif "access plus 1 month"
+ExpiresByType image/jpeg "access plus 1 month"
+ExpiresByType image/png "access plus 1 month"
+ExpiresByType image/x-icon "access plus 1 month"
+ExpiresByType text/css "access plus 1 days"
+ExpiresByType text/javascript "access plus 7 days"
+ExpiresByType application/javascript "access plus 7 days"
+ExpiresByType application/x-javascript "access plus 7 days"
+</ifModule>
+
+# Compress
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript

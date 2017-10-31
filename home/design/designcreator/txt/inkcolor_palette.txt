@@ -1,0 +1,79 @@
+﻿<div id="inkcolor_wrapper">
+	<table id="inkcolor_table" cellpadding="0" cellspacing="1" >
+		<tr>
+			<th colspan="5">
+				<img alt="インクカラー" src="./designcreator/img/inkcolor_title.png" />
+			</th>
+		</tr>
+		<tr>
+			<td><div id="ink_white" onclick="inkcolor.change(this)"><span id="c21">ホワイト</span></div></td>
+			<td><div id="ink_black" onclick="inkcolor.change(this)"><span id="c22">ブラック</span></div></td>
+			<td><div id="ink_darkgray" onclick="inkcolor.change(this)"><span id="c23">ダークグレー</span></div></td>
+			<td><div id="ink_lightgrey" onclick="inkcolor.change(this)"><span id="c24">ライトグレー</span></div></td>
+			<td><div id="ink_radish" onclick="inkcolor.change(this)"><span id="c25">ラディッシュ</span></div></td>
+		</tr>
+		<tr>
+			<td><div id="ink_red" onclick="inkcolor.change(this)"><span id="c26">レッド</span></div></td>
+			<td><div id="ink_hotpink" onclick="inkcolor.change(this)"><span id="c27">ホットピンク</span></div></td>
+			<td><div id="ink_lightpink" onclick="inkcolor.change(this)"><span id="c28">ライトピンク</span></div></td>
+			<td><div id="ink_orange" onclick="inkcolor.change(this)"><span id="c29">オレンジ</span></div></td>
+			<td><div id="ink_sunflower" onclick="inkcolor.change(this)"><span id="c30">サンフラワー</span></div></td>
+		</tr>
+		<tr>
+			<td><div id="ink_yellow" onclick="inkcolor.change(this)"><span id="c31">イエロー</span></div></td>
+			<td><div id="ink_darkgreen" onclick="inkcolor.change(this)"><span id="c32">ダークグリーン</span></div></td>
+			<td><div id="ink_green" onclick="inkcolor.change(this)"><span id="c33">グリーン</span></div></td>
+			<td><div id="ink_yellowgreen" onclick="inkcolor.change(this)"><span id="c34">イエローグリーン</span></div></td>
+			<td><div id="ink_navy" onclick="inkcolor.change(this)"><span id="c35">ネイビー</span></div></td>
+		</tr>
+		<tr>
+			<td><div id="ink_blue" onclick="inkcolor.change(this)"><span id="c36">ブルー</span></div></td>
+			<td><div id="ink_sax" onclick="inkcolor.change(this)"><span id="c37">サックス</span></div></td>
+			<td><div id="ink_purple" onclick="inkcolor.change(this)"><span id="c38">パープル</span></div></td>
+			<td><div id="ink_darkbrown" onclick="inkcolor.change(this)"><span id="c39">ダークブラウン</span></div></td>
+			<td><div id="ink_lightbrown" onclick="inkcolor.change(this)"><span id="c40">ライトブラウン</span></div></td>
+		</tr>
+		<tr>
+			<td><div id="ink_silver" onclick="inkcolor.change(this)"><span id="c41">シルバー</span></div></td>
+			<td><div id="ink_gold" onclick="inkcolor.change(this)"><span id="c42">ゴールド</span></div></td>
+			<td><div id="ink_cream" onclick="inkcolor.change(this)"><span id="c43">クリーム</span></div></td>
+			<td><div id="ink_reflexblue" onclick="inkcolor.change(this)"><span id="c44">リフレックスブルー</span></div></td>
+			<td><div id="ink_neonyellow" onclick="inkcolor.change(this)"><span id="c45">蛍光イエロー</span></div></td>
+		</tr>
+		<tr>
+			<td><div id="ink_neonorange" onclick="inkcolor.change(this)"><span id="c46">蛍光オレンジ</span></div></td>
+			<td><div id="ink_neonpink" onclick="inkcolor.change(this)"><span id="c47">蛍光ピンク</span></div></td>
+			<td><div id="ink_neongreen" onclick="inkcolor.change(this)"><span id="c49">蛍光グリーン</span></div></td>
+			<td><div id="ink_goldyellow" onclick="inkcolor.change(this)"><span id="c50">ゴールドイエロー</span></div></td>
+			<td><div id="ink_winered" onclick="inkcolor.change(this)"><span id="c51">ワインレッド</span></div></td>
+		</tr>
+		<tr>
+			<td><div id="ink_violet" onclick="inkcolor.change(this)"><span id="c52">バイオレット</span></div></td>
+			<td><div id="ink_ocean" onclick="inkcolor.change(this)"><span id="c53">オーシャン</span></div></td>
+			<td><div id="ink_olive" onclick="inkcolor.change(this)"><span id="c54">オリーブ</span></div></td>
+			<td><div id="ink_apricot" onclick="inkcolor.change(this)"><span id="c55">アプリコット</span></div></td>
+			<td><div id="ink_lavender" onclick="inkcolor.change(this)"><span id="c56">ラベンダー</span></div></td>
+		</tr>
+		<tr>
+			<td><div id="ink_emeraldgreen" onclick="inkcolor.change(this)"><span id="c57">エメラルドグリーン</span></div></td>
+			<td><div id="ink_glassgreen" onclick="inkcolor.change(this)"><span id="c58">グラスグリーン</span></div></td>
+			<td><div id="ink_lime" onclick="inkcolor.change(this)"><span id="c59">ライム</span></div></td>
+			<td><div id="ink_pastelyellow" onclick="inkcolor.change(this)"><span id="c60">パステルイエロー</span></div></td>
+			<td><div id="ink_freshness" onclick="inkcolor.change(this)"><span id="c61">フレッシュ</span></div></td>
+		</tr>
+		<tr>
+			<td><div id="ink_lilac" onclick="inkcolor.change(this)"><span id="c62">ライラック</span></div></td>
+			<td><div id="ink_mintgreen" onclick="inkcolor.change(this)"><span id="c63">ミントグリーン</span></div></td>
+			<td><div id="ink_pergreen" onclick="inkcolor.change(this)"><span id="c64">ペールグリーン</span></div></td>
+			<td><div id="ink_beige" onclick="inkcolor.change(this)"><span id="c65">ベージュ</span></div></td>
+			<td><div id="ink_straw" onclick="inkcolor.change(this)"><span id="c66">ストロー</span></div></td>
+		</tr>
+		<tr>
+			<td><div id="ink_salmonpink" onclick="inkcolor.change(this)"><span id="c67">サーモンピンク</span></div></td>
+			<td><div id="ink_rosepink" onclick="inkcolor.change(this)"><span id="c68">ピンク</span></div></td>
+			<td><div id="ink_lavendergray" onclick="inkcolor.change(this)"><span id="c69">ラベンダーグレー</span></div></td>
+			<td><div id="ink_greentea" onclick="inkcolor.change(this)"><span id="c70">グリーンティ</span></div></td>
+			<td><div id="ink_shockingpink" onclick="inkcolor.change(this)"><span id="c71">ショッキングピンク</span></div></td>
+		</tr>
+	</table>
+</div>

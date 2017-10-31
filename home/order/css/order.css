@@ -1,0 +1,290 @@
+@charset "utf-8";
+
+/*------------------------------------------------------------
+
+
+File_name   : order.css
+Description : A multi steps order form.
+
+log
+2017-10-21	: created
+
+--------------------------------------------------------------*/
+
+
+/*		main
+===============================================================*/
+.container {
+	position: relative;
+	width: 100%;
+	margin: 0px auto;
+	z-index: 0;
+	display: block;
+	max-width: 1000px;
+	margin-top: 140px;
+}
+
+.contents {
+	width: 100%;
+	margin-top: 20px;
+	overflow: hidden;
+	position: relative;
+}
+
+.step {
+	padding-bottom: 2rem;
+}
+
+.step h2 {
+	font-weight: normal;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #d8d8d8;
+}
+
+.step h2 ins {
+	padding-right: 5px;
+	font-size: 1.2em;
+	font-weight: bold;
+	text-decoration: none;
+	color: #ff7043;
+	;
+}
+
+.transition_wrap .step_prev {
+	padding: .85rem 2.13rem;
+	border-bottom: 1px solid #ddd;
+	cursor: pointer;
+}
+
+.fa-chevron-left {
+	margin: 0 0 0 -1rem;
+	padding-right: .5rem;
+}
+
+.btn .fa-chevron-right {
+	margin: 0 -1rem 0 0;
+	padding-left: .5rem;
+	color: #4285f4;
+}
+
+.smooth-scroll-btn {
+	text-align: right;
+}
+
+.hoverable {
+	cursor: pointer;
+}
+
+
+/*		steps indicator
+===============================================================*/
+ol, ul {
+	list-style: none;
+}
+
+em {
+	font: inherit;
+}
+
+/* the multi-steps indicator */
+.cd-multi-steps {
+	max-width: 768px;
+	margin: 1em auto;
+	padding: 0;
+	text-align: center;
+	/*	background-color: #edeff0;*/
+	/*	border-radius: .25em;*/
+	background-color: transparent;
+	
+}
+
+.cd-multi-steps li {
+	position: relative;
+	display: inline-block;
+	float: none;
+	margin: 0.4em 0.8em 0.4em 0;
+}
+
+.cd-multi-steps.count li {
+	counter-increment: steps;
+}
+
+.cd-multi-steps.text-top li,
+.cd-multi-steps.text-bottom li {
+	width: 20%;
+	text-align: center;
+}
+
+.cd-multi-steps li > *,
+.cd-multi-steps li.current > * {
+	position: relative;
+	display: inline-block;
+	font-size: 1rem;
+	color: #2c3f4c;
+}
+
+.cd-multi-steps li.visited > * {
+	color: #96c03d;
+}
+
+.cd-multi-steps.text-top.count li > * {
+	padding-bottom: 38px;
+}
+
+.cd-multi-steps.text-bottom.count li > * {
+	padding-top: 40px;
+}
+
+/* Step counter */
+.cd-multi-steps.text-top li > *:before,
+.cd-multi-steps.text-bottom li > *:before {
+	content: '';
+	position: absolute;
+	z-index: 1;
+	left: 50%;
+	right: auto;
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-o-transform: translateX(-50%);
+	transform: translateX(-50%);
+	height: 12px;
+	width: 12px;
+	border-radius: 50%;
+	background-color: #edeff0;
+}
+
+.cd-multi-steps.text-top li > *:before {
+	bottom: 0;
+}
+
+.cd-multi-steps.text-bottom li > *:before {
+	top: 0;
+}
+
+.cd-multi-steps.text-top.count li > *:before,
+.cd-multi-steps.text-bottom.count li > *:before {
+	content: counter(steps);
+	height: 36px;
+	width: 36px;
+	line-height: 36px;
+	font-size: 1.4rem;
+	color: #fff;
+}
+
+.cd-multi-steps.text-top li.visited > *:before,
+.cd-multi-steps.text-bottom li.visited > *:before {
+	background-color: #96c03d;
+}
+
+.cd-multi-steps.text-top li.current > *:before,
+.cd-multi-steps.text-bottom li.current > *:before {
+	line-height: 30px;
+	font-weight: bold;
+	border: 4px solid #96c03d;
+	
+}
+
+/*
+.cd-multi-steps.text-top.count li:not(.current) em:before,
+.cd-multi-steps.text-bottom.count li:not(.current) em::before,
+*/
+.cd-multi-steps.text-top.count li em:before,
+.cd-multi-steps.text-bottom.count li em::before {
+	color: #2c3f4c;
+}
+
+/* this is the line connecting 2 adjacent items */
+.cd-multi-steps li:after {
+	position: absolute;
+	content: '';
+	height: 4px;
+	background: #edeff0;
+	margin: 0;
+}
+
+.cd-multi-steps.text-top li:after,
+.cd-multi-steps.text-bottom li:after {
+	position: absolute;
+	left: 50%;
+	width: calc(100% + 32px);
+}
+
+.cd-multi-steps.text-top.count li:after {
+	bottom: 16px;
+}
+
+.cd-multi-steps.text-bottom.count li:after {
+	top: 16px;
+}
+
+.cd-multi-steps li.visited:after {
+	background-color: #96c03d;
+}
+
+.cd-multi-steps li:last-of-type::after {
+	/* hide separator after the last item */
+	display: none;
+}
+
+
+/*		Step1
+===============================================================*/
+
+.step .orderflow {
+	margin: 2rem;
+}
+
+.step .orderflow .card-body {
+	padding: 1rem;
+}
+
+.step .orderflow .card-body .btn {
+	float: right;
+}
+
+
+/*		cart
+===============================================================*/
+nav .phase p {
+	flex: 0 1 30%;
+	text-align: center;
+	font-size: 1.2rem;
+	line-height: 2.5rem;
+	color: #aaa;
+	border-bottom: 4px solid #ddd;
+}
+
+nav .phase p.visited,
+nav .phase p.current {
+	color: #2c3f4c;
+	border-bottom: 4px solid #2c3f4c;
+}
+
+
+/*		gallery
+===============================================================*/
+
+.step_inner {
+	border: 1px solid #f08837;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+.step_inner .bdr_block {
+	border: 10px solid #dae1d1;
+	width: 100%;
+}
+
+#step1,
+#step2,
+#step3,
+#step4,
+#step5,
+#step6 {
+	/*	float: left;*/
+	/*	width: 730px;*/
+	display: none;
+	width: 100%;
+	margin-right: 20px;
+}

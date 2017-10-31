@@ -1,0 +1,172 @@
+@charset "utf-8";
+
+/*------------------------------------------------------------
+
+2009 takahama web css
+
+	File_name    : style.css
+	Description  : Style Sheet for The Customer Center
+	
+	log
+	2013.07.19	 : created
+	
+-------------------------------------------------------------- */
+
+/*		Customer center
+===============================================================*/
+
+.heading1_wrapper {
+	background: url(/common/img/dotted.png) repeat-x bottom;
+}
+
+h2 {
+	margin: 1em 0;
+	color: #777;
+	padding-left: 7px;
+	border-left: 3px solid #f1930f;
+}
+
+
+
+
+/*		form
+===============================================================*/
+
+.form_table {
+	width: 100%;
+	border: 1px solid #e0e0e0;
+}
+
+.form_table {
+	margin: 30px auto 50px;
+}
+
+.form_table th,
+.form_table td {
+	padding: 15px;
+	border-bottom: 1px solid #e0e0e0;
+	box-shadow: 0 2px #fff;
+}
+
+.form_table tbody th {
+	text-align: left;
+	font-weight: bold;
+}
+
+.form_table tbody th ins {
+	font-weight: bold;
+	color: #c33;
+}
+
+.form_table input[type="text"],
+.form_table input[type="email"],
+.form_table input[type="number"],
+.form_table input[type="tel"],
+.form_table input[type="date"],
+.form_table input[type="password"],
+textarea {
+	padding: 5px 0;
+}
+
+textarea {
+	width: 290px;
+	height: 5em;
+	scroll: auto;
+}
+
+/* テキストフィールドのフォーカスの背景色 */
+
+.form_table input[type="text"]:focus,
+.form_table input[type="email"]:focus,
+.form_table input[type="number"]:focus,
+.form_table input[type="tel"]:focus,
+.form_table input[type="date"]:focus,
+.form_table input[type="password"]:focus,
+.form_table textarea:focus,
+.active {
+	background: #e5f6fd;
+}
+
+/* 入力項目の幅 */
+
+.form_table .wide {
+	width: 290px;
+}
+
+.form_table .normal {
+	width: 200px;
+}
+
+.form_table .half {
+	width: 135px;
+}
+
+.forZip {
+	width: 70px;
+	text-align: center;
+}
+
+.form_wrap {
+	width: 650px;
+	margin: 0 auto;
+	padding: 30px 0;
+}
+
+.form_wrap form {
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+
+
+
+.form_table.me {
+	border: none;
+}
+
+.form_table.me tbody th {
+	width: 150px;
+}
+
+.form_table.me tbody label {
+	display: block;
+	font-weight: bold;
+	color: #777;
+}
+
+.form_table.me tbody input {
+	width: 300px;
+	font-size: 18px;
+}
+
+.form_table.me input[type="file"] {
+	font-size: 14px;
+}
+
+.form_table.me tbody a {
+
+	font-size: 12px;
+
+	text-decoration: underline;
+
+}
+
+input[type="checkbox"] {
+	cursor: pointer;
+}
+
+.view {
+	height: 40px;
+	line-height: 40px;
+}
+
+.edit {
+	display: none;
+	height: 40px;
+}
+
+
+/* error */
+.err {
+	color: #c33;
+}

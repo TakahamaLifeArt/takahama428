@@ -1,0 +1,370 @@
+@charset "utf-8";
+
+/*------------------------------------------------------------
+
+2012 takahama web css
+
+	File_name    : mailform.css
+	Description  : contacts us and request brochure 
+	Version      : 1.0
+	
+	log
+	2012.02.08	 : created
+	2012.08.08	 : お問合せ項目を追加
+				 : よく有るご質問を追加
+	
+--------------------------------------------------------------*/
+
+
+/*		custom
+===============================================================*/
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+input,
+button,
+textarea,
+select,
+p,
+blockquote,
+th,
+td {
+	margin: 0;
+	padding: 0;
+}
+
+#container {
+	width: 100%;
+}
+
+.contents {
+	width: 100%;
+	float: none;
+	margin-top: 20px;
+	overflow: hidden;
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 0 10px;
+	margin-top: 180px;
+}
+
+.round_corner_wrapper02 {
+	width: 100%;
+}
+
+ul.pan {
+	height: auto;
+	margin: 0 5px 20px 5px;
+	font-size: 0.8em;
+}
+
+ul.pan li {
+	display: inline;
+	padding-right: 4px;
+	line-height: 2em;
+}
+
+ul.pan li a,
+ul.pan li span {
+	vertical-align: middle;
+	text-decoration: none;
+}
+
+ul.pan li:first-child:before {
+	content: "";
+	padding-right: 0;
+}
+
+h1 {
+	font-size: 40px;
+	line-height: 1.8;
+	color: #383838;
+	font-weight: bold;
+}
+
+h2 {
+	font-size: 150%;
+	font-weight: normal;
+}
+
+img {
+	vertical-align: bottom;
+	border: 0;
+}
+
+table {
+	font-size: inherit;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+table {
+	background-color: transparent;
+}
+
+table {
+	margin-bottom: 1em;
+}
+
+th,
+td {
+	padding: 2px 5px;
+	vertical-align: middle;
+}
+
+.point {
+	margin: 5px;
+	text-align: right;
+	color: #dc0000;
+}
+
+textarea,
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"] {
+	padding: 1px 5px;
+	/*	border: 1px solid #237bc3;*/
+	background: #f6fbfd;
+}
+
+.heading1_wrapper .comment {
+	float: left;
+	margin: 1em 10px;
+	font-size: 85%;
+	white-space: nowrap;
+}
+
+select,
+input,
+textarea,
+button {
+	font-size: 99%;
+}
+
+address,
+button,
+caption,
+cite,
+code,
+dfn,
+em,
+input,
+optgroup,
+option,
+select,
+textarea,
+th,
+var {
+	font: inherit;
+}
+
+dl.list {
+	margin-top: 20px;
+}
+
+dl.list dd {
+	padding-left: 7em;
+	margin-bottom: 1em;
+	color: #333;
+	border-bottom: 1px dotted #d8d8d8;
+}
+
+dl.list dt {
+	clear: left;
+	float: left;
+	width: 7em;
+	font-weight: bold;
+}
+
+a {
+	color: #1055e0;
+	text-decoration: none;
+}
+
+.btn {
+/*
+	display: inline-block;
+	padding: 0px 10px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 0.9;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 2px;
+	color: #000;
+	margin: 0 auto;
+	margin-bottom: 10px;
+*/
+}
+.QA{
+	margin-top: 30px;
+}
+#sendmail {
+/*
+	background-image: url(/contact/quickcontact/img/next_btn.png); 
+	background-position: top; 
+	background-repeat: no-repeat; 
+	width: 192px; 
+	height: 43px; 
+	display: block; 
+	font-size: 20px;
+	line-height: 40px; 
+	color: #fff; 
+	text-align: center; 
+	margin: 20px auto 10px; 
+*/
+}
+
+#sendmail:hover {
+/*
+	filter: alpha(opacity=80);
+	opacity: 0.8;
+*/
+	cursor: pointer;
+}
+
+.red {
+	color: #ff0000;
+}
+
+#table_left,
+#table_right {
+	float: left;
+}
+
+#table_left {
+	width: 25%;
+}
+
+.comment {
+	font-weight: bold;
+}
+
+.tor_phone {
+	display: none;
+}
+
+
+/*----------------------------
+
+	768px以下（携帯）
+
+----------------------------*/
+
+@media screen and (max-width: 768px) {
+	.contents {
+		width: 100%;
+		margin-top: 180px;
+		overflow: hidden;
+	}
+	h1 {
+		font-weight: bold;
+		font-size: 28px;
+		line-height: 1.8;
+		color: #383838;
+		font-weight: bold;
+	}
+	.heading1_wrapper .comment {
+		float: left;
+		margin: 1em 10px;
+		font-size: 12px;
+		white-space: nowrap;
+	}
+	.round_corner_wrapper, .round_corner_wrapper02 {
+		position: relative;
+		margin: 0px;
+		background: #fff;
+		clear: both;
+	}
+	p .comment {
+		font-weight: bold;
+		font-size: 150%;
+	}
+	div.comment {
+		width: 88%;
+	}
+	.bg img {
+		display: none;
+	}
+	#table_left,
+	#table_right {
+		float: none;
+	}
+	#table_left {
+		width: 100%;
+	}
+	#enq_table {
+		width: 100%;
+	}
+	#enq_table input[type=text] {
+		width: 80%;
+		height: 35px;
+	}
+	#enq_table input[type=checkbox],
+	#enq_table input[type=radio] {
+		height: 20px;
+		width: 20px;
+	}
+	#enq_table tbody th {
+		width: 76px;
+		white-space: nowrap;
+		font-size: 14px;
+	}
+	#enq_table tbody td {
+		font-size: 14px;
+		height: 40px;
+	}
+	#enq_table span {
+		margin: 10px 0px;
+		font-size: 14px;
+	}
+	.round_inner table th,
+	.round_inner table td {
+		padding: 10px 0px;
+	}
+	.QA {
+		margin-top: 40px;
+	}
+	/*
+.QA.list{
+	font-size: 14px;
+}
+*/
+	dl.list {
+		font-size: 14px;
+	}
+	.tor_pc {
+		display: none;
+	}
+	.tor_phone {
+		display: block;
+		font-size: 14px;
+	}
+}

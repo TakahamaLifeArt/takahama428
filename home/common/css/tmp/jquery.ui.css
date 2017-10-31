@@ -1,0 +1,59 @@
+@charset 'UTF-8';
+
+/**
+* jQuery UI
+*
+*/
+
+
+/*		Datepicker
+===============================================================*/
+
+#ui-datepicker-div {  font-size: .9em; }
+.ui-datepicker select.ui-datepicker-year { width: 45%; }
+.ui-datepicker th { padding: .7em .3em; text-align: center; font-weight: bold; border: 0; font-size: 1em; }
+.ui-datepicker td { border: 0; padding: 1px; font-size: .9em; }
+
+
+/*--------------------------
+休日のスタイルを追加
+----------------------------*/
+.days_red,
+.ui-datepicker-calendar .days_red a {
+	color: #000;
+	background-image: none;
+	background-color: #dc000075;
+}
+.days_blue,
+.ui-datepicker-calendar .days_blue a {
+	color: #fff;
+	background-image: none;
+	background-color: #005dff8c;
+}
+.days_black {
+	background-image: none;
+	background-color: black;
+}
+a {
+	color: #1055e0;
+	text-decoration: none;
+}
+
+
+/*		tabs
+===============================================================*/
+.ui-tabs .ui-tabs-nav li a { float: left; padding: .5em 1em; text-decoration: none; font-size: 80%;}
+.ui-tabs .ui-tabs-panel { display: block; border-width: 0; padding: 1em 0em; background: none; }
+
+
+/*		Autocomplete
+===============================================================*/
+.ui-autocomplete {
+	font-size: 14px;
+	max-height: 100px;
+	overflow-y: auto;
+	/* prevent horizontal scrollbar */
+	overflow-x: hidden;
+	/* add padding to account for vertical scrollbar */
+	padding-right: 20px;
+}

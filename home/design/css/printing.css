@@ -1,0 +1,548 @@
+@charset "euc-jp";
+
+/*------------------------------------------------------------
+
+2009 takahama web css
+
+File_name	: printing.css
+Description	: print method
+
+log
+2012.03.15	: created
+2012.05.17	: add navigation
+2015-03-23	: インクジェットの説明を更新
+
+-------------------------------------------------------------- */
+
+
+/*		style
+===============================================================*/
+
+.wrap1 p,
+.wrap2 p {
+	margin-bottom: 0.5em;
+}
+
+.heading1_wrapper {
+	width: 100%;
+	padding-bottom: 30px;
+	overflow: hidden;
+}
+
+.heading1_wrapper h1 {
+	font-size: 40px;
+	line-height: 1.8;
+	color: #383838;
+	font-weight: bold;
+}
+
+h2 span {
+	padding-left: 2em;
+	font-size: 66%;
+	color: #666;
+}
+
+#container {
+	width: 100%;
+	margin: 0px auto;
+	margin-top: 125px;
+}
+
+.contents {
+	width: 100%;
+	float: none;
+	margin-top: 20px;
+	overflow: hidden;
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 10px;
+}
+
+ul.pan {
+	height: auto;
+	margin: 20px 5px 20px 5px;
+	font-size: 0.8em;
+}
+
+ul.pan li {
+	display: inline;
+	padding-right: 4px;
+	line-height: 2em;
+}
+
+ul.pan li:first-child:before {
+	content: "";
+	padding-right: 0;
+}
+
+ul.pan li:before {
+	content: ">";
+	padding-right: 10px;
+	vertical-align: middle;
+}
+
+ul.pan li a,
+ul.pan li span {
+	vertical-align: middle;
+	text-decoration: none;
+}
+
+.contents h3 {
+	margin-bottom: 10px;
+	padding: 0 13px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #333;
+	border-left: 7px solid #F60;
+}
+
+.contents h4 {
+	/*	height: 20px;
+margin-bottom: 2px;
+line-height: 20px;
+text-indent: 1.5em;
+font-weight: normal;
+color: #fff;*/
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 2em;
+	color: #666;
+	padding-bottom: 5px;
+	/*	background: url(/common/img/ribbon_point.png) no-repeat;*/
+}
+
+.contents h4.grybd {
+	border-bottom: 3px solid #666;
+}
+
+.contents h4.good,
+.contents h4.bad {
+	font-size: 14px;
+	text-indent: 24px;
+}
+
+.contents h4.good {
+	background: url(../../common/img/good_icon.png) no-repeat;
+}
+
+.contents h4.bad {
+	background: url(../../common/img/bad_icon.png) no-repeat;
+}
+
+
+/* 画像 */
+
+.leftside,
+.rightside {
+	padding: 3px;
+	border: 1px solid #ddd;
+	background: #f6f6f6 url(/common/js/ui/flick/images/ui-bg_highlight-soft_100_f6f6f6_1x100.png) left top repeat-x;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.leftside {
+	float: left;
+	margin-right: 20px;
+}
+
+.rightside {
+	float: right;
+	margin-left: 20px;
+}
+
+.img_wrap {
+	width: 670px;
+	margin: 0 auto;
+}
+
+.fl {
+	float: none;
+	width: 100%;
+	margin: 5%;
+}
+
+.fr {
+	float: none;
+	width: 100%;
+	margin: 5%;
+}
+
+
+/* シルクのラバーインク */
+
+.rubber_mihon {
+	width: 100%;
+	height: 100%;
+	background: url(../img/printing/rubber_mihon.jpg) no-repeat center top;
+	cursor: pointer;
+}
+
+.rubber_mihon:hover {
+	width: 100%;
+	height: 100%;
+}
+
+
+/* シルクの染み込みインク */
+
+.stain_mihon {
+	width: 100%;
+	height: 100%;
+	background: url(../img/printing/stain_mihon.jpg) no-repeat center top;
+	cursor: pointer;
+}
+
+.stain_mihon:hover {
+	width: 100%;
+	height: 100%;
+}
+
+
+/* デジタルコピー転写 */
+
+.digitalcenter {
+	text-align: center;
+	padding-bottom: 1Opx;
+}
+
+
+/* メリット、デメリット */
+
+.goodbad {
+	border: 1px solid #ddd;
+	padding: 10px 15px 5px;
+	margin: 15px 0;
+	font-size: 90%;
+}
+
+.inner_left,
+.inner_right {
+	/* padding: 40px 0px; */
+	width: 50%;
+	padding: 0 7px;
+}
+
+.inner_left {
+	float: left;
+	border-right: 1px solid #ddd;
+}
+
+.inner_right {
+	float: right;
+}
+
+ol {
+	margin-left: 2em;
+}
+
+ol li {
+	list-style-type: decimal;
+	padding-bottom: 1em;
+}
+
+
+/* オススメのプリント */
+
+.wrap2 {
+	clear: both;
+	padding-bottom: 80px;
+	overflow: hidden;
+}
+
+.recommend {
+	margin-top: 20px;
+}
+
+.wrap2 .inner_right {
+	float: right;
+	width: auto;
+	padding: 0;
+}
+
+.wrap2 .inner_right .heading3 {
+	margin-top: 0px;
+}
+
+dl.list dt {
+	width: 10em;
+}
+
+dl.list dd {
+	padding-left: 10em;
+}
+
+
+/* ふちについて */
+
+.wrap2 ul {
+	margin-top: 20px;
+	padding: 0;
+	display: flex;
+	list-style-type: none;
+}
+
+.wrap2 li {
+	float: none;
+	width: 30%;
+	margin: 0px 20px;
+}
+
+.wrap2 li p {
+	margin: 5px 0px 0px 5px;
+	color: #666;
+}
+
+.fuchi {
+	margin-top: 40px;
+}
+
+.fuchi>p {
+	margin: 0 0 2em 1em;
+}
+
+
+/* インクジェット */
+
+.sub_title {
+	padding: 0 6px;
+	font-weight: bold;
+	color: #333;
+	border-left: 4px solid #F60;
+}
+
+.tbl_design_sample {
+	width: auto;
+	margin: 2em 0;
+	margin: 0 auto;
+}
+
+.tbl_design_sample td {
+	text-align: center;
+	padding-bottom: 2em;
+}
+
+.tbl_design_sample td img {
+	cursor: pointer;
+}
+
+
+/*		navigation
+===============================================================*/
+
+#navi1,
+#navi2,
+#navi3,
+#navi4,
+#navi5 {
+	clear: both;
+	width: auto;
+	height: 20px;
+	margin-bottom: 10px;
+	margin-top: -100px;
+	padding-top: 100px;
+}
+
+#navi2,
+#navi3,
+#navi4,
+#navi5 {
+	margin-top: 40px;
+}
+
+.navi {
+	width: auto;
+	text-align: center;
+	overflow: hidden;
+	font-size: 85%;
+	margin: 0 auto;
+	display: flex;
+	padding: 0;
+	list-style-type: none;
+}
+
+.navi li {
+	float: left;
+	width: 195px;
+	height: 30px;
+	padding-bottom: 15px;
+	line-height: 40px;
+	background-color: #fff;
+}
+
+.navi li.act {
+	background: #fff url(../img/designguide/arrow_down2.png) no-repeat 90px 30px;
+}
+
+.navi li a {
+	display: block;
+	cursor: pointer;
+}
+
+.navi li a,
+.navi li p {
+	height: 28px;
+	line-height: 28px;
+	border-width: 0px 0px 5px 0px;
+	border-style: solid;
+	border-color: #D0C6B3;
+	color: #726A5D;
+}
+
+.navi li p,
+.navi li a:hover {
+	background: url(../img/designguide/bg_dsubmenu_r.png) repeat-x;
+	text-decoration: none;
+	border-width: 0px 0px 5px 0px;
+	border-style: solid;
+	border-color: #FFCFA6;
+}
+
+.dsubmenu {
+	text-align: center;
+	background: url(../img/designguide/bg_dsubmenu.png)no-repeat;
+	border-width: 0px 0px 5px 0px;
+	border-style: solid;
+	border-color: #FFCFA6;
+	margin-bottom: 40px;
+	color: #803300;
+	font-size: 28px;
+	padding: 5px;
+	letter-spacing: 5px;
+	padding-top: 50px;
+}
+
+.addsp {
+	margin-bottom: 30px;
+}
+
+.caution {
+	margin: 0 auto;
+	margin: 15px 5px 120px 5px;
+	border: 3px #ff0000 solid;
+	padding: 0 0 30px;
+}
+
+.caution .ca1 {
+	background-color: #ff0000;
+	height: 30px;
+	padding-top: 5px;
+}
+
+.caution .ca1 h4 {
+	color: #ffffff;
+	margin: 0px;
+}
+
+.caution p {
+	margin: 30px;
+}
+
+.caution p.bd {
+	font-weight: bold;
+}
+
+.caution .ca {
+	margin-left: 35px;
+	margin-bottom: 20px;
+}
+
+.caution .dry {
+	margin-bottom: 0px;
+	margin-top: 15px;
+}
+
+.wrap1_clearfix {
+	display: block;
+	margin: 20px 5%;
+	width: auto;
+	clear: both;
+	padding: 5px;
+}
+
+.clearfix {
+	display: flex;
+	margin: 20px 10%;
+	width: auto;
+	clear: both;
+	padding: 0;
+}
+
+.clearfix .arrow {
+	display: block;
+	width: 50px;
+}
+
+span.anchorlink {
+	position: relative;
+	top: -26px;
+	display: block;
+}
+
+@media screen and (max-width: 840px) {
+	.clearfix {
+		display: flex;
+		margin: 0;
+		width: auto;
+		clear: both;
+		padding: 0;
+	}
+}
+
+@media screen and (max-width: 760px) {
+	.heading1_wrapper h1 {
+		font-size: 27px;
+		line-height: 1.8;
+		color: #383838;
+		font-weight: bold;
+	}
+}
+
+@media screen and (max-width: 690px) {
+	.inner_left,
+	.inner_right {
+		width: 100%;
+		padding: 0 7px;
+	}
+	.inner_left {
+		float: left;
+		border-bottom: 1px solid #ddd;
+		border-right: none;
+	}
+	.inner_right {
+		float: right;
+		padding-top: 15px;
+	}
+	.fl {
+		float: none;
+		width: 100%;
+		margin: 2%;
+	}
+	.fr {
+		float: none;
+		width: 100%;
+		margin: 2%;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.wrap2 li {
+		float: none;
+		width: 30%;
+		margin: 0px 10px;
+	}
+	.wrap2 {
+		clear: both;
+		padding-bottom: 40px;
+		overflow: hidden;
+	}
+	.wrap1_clearfix {
+		display: block;
+		margin: 20px 5%;
+		width: auto;
+		clear: both;
+		padding: 5px;
+	}
+}

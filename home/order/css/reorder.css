@@ -1,0 +1,1025 @@
+@charset "UTF-8";
+ /*------------------------------------------------------------
+reorder
+------------------------------------------------------------*/
+ 
+ body,
+ div,
+ dl,
+ dt,
+ dd,
+ ul,
+ ol,
+ li,
+ h1,
+ h2,
+ h3,
+ h4,
+ h5,
+ h6,
+ pre,
+ code,
+ form,
+ input,
+ button,
+ textarea,
+ select,
+ p,
+ blockquote,
+ th,
+ td {
+ 	margin: 0;
+ 	padding: 0;
+ }
+ 
+#container {
+	width: 100%;
+	margin: 0px auto;
+	margin-top: 125px;
+}
+ 
+ .contents {
+ 	width: 100%;
+ 	float: none;
+ 	margin-top: 20px;
+ 	overflow: hidden;
+ 	max-width: 1000px;
+ 	margin: 0 auto;
+ 	padding: 10px;
+ }
+ 
+ul.pan {
+	height: auto;
+	margin: 20px 5px 20px 5px;
+	font-size: 0.8em;
+}
+ul.pan li {
+	display: inline;
+	padding-right: 4px;
+	line-height: 2em;
+}
+ul.pan li:first-child:before {
+	content: "";
+	padding-right: 0;
+}
+ul.pan li:before {
+	content: ">";
+	padding-right: 10px;
+	vertical-align: middle;
+}
+ul.pan li a, ul.pan li span {
+	vertical-align: middle;
+	text-decoration: none;
+}
+ 
+.flow_1_butt {
+	padding: 3%;
+	text-align: center;
+}
+.button1 {
+	position: relative;
+	display: block;
+	padding: 20px 0px;
+	background: #cbb39e;
+	border: 2px solid #cbb39e;
+	color: #7d4210;
+	text-align: center;
+	text-decoration: none;
+	transition: all .3s;
+	border-radius: 2px;
+	width: 245px;
+	margin: 0 auto;
+	box-shadow: 1px 1px 1px #898989;
+	font-size: 14px;
+	text-indent: -.5em;
+	padding-left: 38px;
+	font-weight: bold;
+	background-image: url(/common/img/sp_mail_off.png);
+	background-repeat: no-repeat;
+	background-position: left;
+	background-size: 25px;
+	background-position-x: 27px;
+	background-position-y: center;
+}
+.button1:hover {
+	text-decoration: none;
+	color: #fff;
+	background: #8b5529;
+	border: 2px solid #8b5529;
+	background-image: url(/common/img/sp_mail_on.png);
+	background-repeat: no-repeat;
+	background-position: left;
+	background-size: 25px;
+	background-position-x: 27px;
+	background-position-y: center;
+}
+.login_btn_2 a {
+	color: #7d410d;
+	text-decoration: none;
+	display: block;
+}
+.login_btn_2 a:hover {
+	color: #7d410d;
+	text-decoration: none;
+}
+.login_btn_2 img{
+	width: 8%;
+	vertical-align: middle;
+	margin-right: 10px;
+}
+ 
+ a:hover {
+ 	color: white;
+ 	text-decoration: none;
+ }
+ 
+ .bluepas {
+ 	color: #1055e0;
+ 	text-decoration: none;
+ 	font-size: 12px;
+ }
+ 
+ .red_txt {
+ 	color: #dc0000;
+ }
+.red_txt_2{
+	color: #dc0000;
+	font-size: 40px;
+	font-weight: bold;
+}
+ 
+ .clearfix {
+ 	display: block;
+ 	clear: both;
+ }
+ 
+ .clearfix:after {
+ 	content: ".";
+ 	display: block;
+ 	height: 0;
+ 	visibility: hidden;
+ 	line-height: 0;
+ 	font-size: 0;
+ 	clear: both;
+ }
+ 
+h1 {
+	font-size: 40px;
+	font-weight: bold;
+	color: #333;
+	padding-top: 10px;
+}
+ 
+ #main {
+ 	width: 100%;
+ 	position: relative;
+ 	overflow: hidden;
+ 	margin-top: 5px;
+ }
+ 
+ img {
+ 	vertical-align: bottom;
+ 	border: 0;
+ }
+ 
+ .heading1_wrapper {
+ 	width: 100%;
+ 	padding-bottom: 30px;
+ 	overflow: hidden;
+ }
+ 
+ li {
+ 	list-style: none;
+ }
+ 
+ div.dotted {
+ 	background: url(/common/img/dotted.png) repeat-x bottom;
+ 	height: 12px;
+ 	margin-bottom: 5px;
+ }
+ 
+ #bene_1 h2 {
+ 	font-size: 35px;
+ 	font-weight: bold;
+ 	background-image: url(/price/img/tsuika/privilege.png);
+ 	background-repeat: no-repeat;
+ 	background-size: 41px;
+ 	padding: 7px 0px 5px 50px;
+ }
+ 
+ #bene_2 h2 {
+ 	font-size: 35px;
+ 	font-weight: bold;
+ 	background-image: url(/price/img/tsuika/privilege.png);
+ 	background-repeat: no-repeat;
+ 	background-size: 42px;
+ 	padding: 7px 0px 5px 50px;
+ }
+ 
+.min_ttl {
+	color: #EB5C02;
+	font-weight: bold;
+	font-size: 20px;
+	margin-left: 0;
+}
+ 
+.circle {
+	width: 50px;
+	height: 50px;
+	padding: 4px 10px;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	background-color: #000;
+	color: white;
+	margin-right: 10px;
+}
+ 
+ .triangle {
+ 	height: 0;
+ 	width: 15px;
+ 	display: inline-block;
+ 	position: relative;
+ 	margin: 0 10px;
+ }
+ 
+ .triangle:before {
+ 	content: '';
+ 	height: 0;
+ 	width: 0;
+ 	display: block;
+ 	border: 10px transparent solid;
+ 	border-right-width: 0;
+ 	border-left-color: #727171;
+ 	position: absolute;
+ 	top: -16px;
+ 	left: 4px;
+ }
+ 
+ .flow .sp {
+ 	display: none;
+ }
+ 
+ .flow .pc {
+ 	display: block;
+ 	margin: 10px 0 40px 0;
+ 	font-size: 18px;
+ }
+ 
+ .flow_2 .sp {
+ 	display: none;
+ }
+ 
+ .flow_2 .pc {
+ 	display: block;
+ 	margin: 10px 0 40px 0;
+ 	font-size: 18px;
+ }
+ 
+ .flow .pc li {
+ 	display: inline-block;
+ }
+ 
+ .flow_2 .pc li {
+ 	display: inline-block;
+ }
+ 
+.comment2 {
+	display: block;
+	border: 2px solid #eb5c02;
+	padding: 15px;
+	text-align: center;
+	margin: 45px auto;
+	color: #eb5c02;
+	font-size: 1.2em;
+	width: 80%;
+}
+ 
+/*
+.button1 {
+	position: relative;
+	display: block;
+	padding: 1.5% 0;
+	background: #c97329;
+	color: #333;
+	color: #fff;
+	text-align: center;
+	text-decoration: none;
+	transition: all .3s;
+	border-radius: 2px;
+	text-indent: -.5em;
+	width: 31%;
+	margin: 0 auto;
+	box-shadow: 1px 1px 1px #898989;
+}
+.button1:hover {
+	background: #b26624;
+	color: #fff;
+}
+.button1 img {
+	width: 8%;
+	vertical-align: middle;
+	margin-right: 10px;
+}
+.button1 a {
+	display: block;
+	color: white;
+}
+*/
+.discount {
+	width: 45%;
+	margin-bottom: 30px;
+	padding-left: 20px;
+}
+.discount_2 {
+	clear: both;
+	margin-left: 20px;
+}
+.repeat {
+	float: left;
+	width: 45%;
+	margin-bottom: 20px;
+	margin-left: 0;
+}
+ 
+ .vip {
+ 	float: left;
+ 	width: 45%;
+ 	margin-left: 40px;
+ }
+ 
+.flow_2 {
+	clear: both;
+	margin-left: 20px;
+	margin-top: 10px;
+	margin-bottom: 60px;
+}
+ 
+ .mail {
+ 	background-image: url(/price/img/tsuika/email_address.png);
+ 	background-repeat: no-repeat;
+ 	background-size: 70px;
+ 	font-size: 18px;
+ 	font-weight: bold;
+ 	padding: 43px 0 0 87px;
+ }
+ 
+ .example {
+ 	padding: 20px 40px;
+ }
+ 
+ .asan {
+ 	width: 34%;
+ 	float: left;
+ 	margin: 0;
+ }
+ 
+ .bsan {
+ 	width: 35%;
+ 	float: left;
+ 	margin: 0 20px;
+ }
+ 
+.mail_change {
+	display: flex;
+	margin-bottom: 50px;
+}
+ 
+.step {
+	margin-top: 4%;
+}
+.step_2{
+font-size: 15px;
+}
+ .login {
+ 	clear: both;
+ }
+ 
+ .user {
+ 	display: block;
+ 	border: 2px solid #eb5c02;
+ 	padding: 10px 0 10px 30px;
+ 	margin: 10px 5px;
+ 	font-size: 1.2em;
+ }
+ 
+ .ora {
+ 	color: #EB5C02;
+ }
+}
+.mypage_in {
+	width: 900px;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+.log_txt {
+	font-size: 18px;
+	font-weight: bold;
+	background-image: url(/price/img/tsuika/pointing.png);
+	background-repeat: no-repeat;
+	background-size: 51px;
+	padding: 24px 0 0 55px;
+}
+.login_btn_2 {
+	display: block;
+	padding: 1% 0%;
+	margin: 0;
+	/* cursor: pointer; */
+	background: #cbb39e;
+	border-radius: 2px;
+	/* letter-spacing: 0.6px; */
+	/* height: 25px; */
+	/* font-size: 15px; */
+	margin: 0 auto;
+	width: 31%;
+	box-shadow: 1px 1px 1px #898989;
+	text-align: center;
+	border: 2px solid #cbb39e;
+	transition: all .3s;
+}
+.login_btn_2:hover {
+	background: #fff;
+	border: 2px solid #cbb39e;
+}
+.log_box {
+	margin: 10px 262px;
+	width: 100%;
+	display: block;
+}
+.log_txt_2 {
+	text-align: center;
+	color: #3B76F9;
+}
+.phone_txt {
+	width: 60%;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 20px;
+}
+.phone_txt .timetx {
+	font-size: 1.5em;
+}
+.phone_txt .red {
+	margin: 0 auto;
+	text-align: center;
+	color: #ff0000;
+	font-size: 2.5em;
+	font-weight: bold;
+}
+.arrow_box {
+	position: relative;
+	background: #ffffff;
+	border: 2px solid #969696;
+	padding: 11px 15px;
+	border-radius: 20px;
+	font-size: 16px;
+	width: 286px;
+	margin: 0px 40px;
+}
+.arrow_box:after,
+.arrow_box:before {
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+.arrow_box:after {
+	border-color: rgba(255, 255, 255, 0);
+	border-top-color: #ffffff;
+	border-width: 15px;
+	margin-left: -99px;
+}
+.arrow_box:before {
+	border-color: rgba(150, 150, 150, 0);
+	border-top-color: #969696;
+	border-width: 18px;
+	margin-left: -102px;
+}
+.example_1 {
+	width: 80%;
+	margin: 20px 0 0 40px;
+}
+.arrow {
+	height: 40px;
+	width: 40px;
+	display: block;
+	position: relative;
+	float: left;
+	top: 61px;
+	left: 17px;
+}
+.arrow:before {
+	content: '';
+	height: 0;
+	width: 0;
+	display: block;
+	border: 15px transparent solid;
+	border-right-width: 0;
+	border-left-color: #727171;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+.arrow:after {
+	content: '';
+	height: 10px;
+	width: 25px;
+	display: block;
+	background: #727171;
+	position: absolute;
+	top: 10px;
+	left: 0px;
+}
+.mail_change_l {
+	float: left;
+	padding: 20px 40px;
+}
+.next_txt {
+	clear: both;
+	text-align: center;
+}
+.ab_txt {
+	text-align: center;
+	font-size: 17px;
+}
+.ab_mail {
+	font-size: 17px;
+	text-align: center;
+}
+.sp {
+	display: none;
+}
+.pc {
+	display: block;
+}
+.fuki_sp {
+	display: none;
+}
+.log_box_sp {
+	display: none;
+}
+.flow_txt {
+	font-size: 16px;
+}
+.red_b {
+	color: #E50012;
+	font-weight: bold;
+}
+.mp {
+	font-size: 28px;
+	font-weight: bold;
+}
+.user_2 {
+	display: none;
+}
+.ab_list {
+	width: 100%;
+}
+.asan img {
+	margin: 0 20%;
+	width: 60%;
+}
+.bsan img {
+	margin: 0 20px;
+	width: 59%;
+}
+.flow {
+	padding-left: 20px;
+	margin-bottom: 60px;
+}
+.banner {
+	display: block;
+}
+.banner_sp {
+	display: none;
+}
+
+/*===============================================
+画面の横幅が768pxまで
+===============================================*/
+@media screen and (max-width: 768px) {
+	.sp {
+		display: block;
+		font-size: 15px;
+	}
+	
+	.pc {
+		display: none;
+	}
+	
+	#bene_1 h2 {
+		font-size: 26px;
+		font-weight: bold;
+		background-image: url(/price/img/tsuika/privilege.png);
+		background-repeat: no-repeat;
+		background-size: 33px;
+		padding: 0px 0px 0px 38px;
+		margin-left: 0;
+		margin-top: 10px;
+		line-height: 1.4;
+		margin-bottom: 10px;
+	}
+	
+	#bene_2 h2 {
+		font-size: 26px;
+		font-weight: bold;
+		background-image: url(/price/img/tsuika/privilege.png);
+		background-repeat: no-repeat;
+		background-size: 33px;
+		padding: 0px 0px 0px 38px;
+		margin-top: 10px;
+		margin-left: 0px;
+		line-height: 1.4;
+		margin-bottom: 10px;
+	}
+	
+	.discount {
+		width: 95%;
+		margin: 15px 0;
+		padding: 0;
+	}
+	.discount_2{
+		width: 95%;
+		margin: 15px 0;
+		padding: 0;
+	}
+	.dotted {
+		display: none;
+	}
+	
+	.flow_txt {
+		font-size: 14px;
+	}
+	
+	.repeat {
+		width: 95%;
+		margin: 0;
+		margin-bottom: 20px;
+		clear: both;
+		float: none;
+	}
+	
+	.vip {
+		width: 95%;
+		margin: 0;
+		margin-bottom: 20px;
+		float: none;
+	}
+	
+	.fuki_sp {
+		display: block;
+	}
+	
+	.flow {
+		margin-bottom: 40px;
+		padding: 0;
+		margin: 20px 0px;
+	}
+	
+	.mail {
+		background-image: url(/price/img/tsuika/email_address.png);
+		background-repeat: no-repeat;
+		background-size: 62px;
+		font-size: 18px;
+		font-weight: bold;
+		padding: 33px 0 0 74px;
+		color: black;
+	}
+	
+	.example {
+		padding: 10px 23px;
+		color: black;
+		font-size: 17px;
+	}
+	
+	.arrow_box {
+		position: block;
+		background: #ffffff;
+		border: 2px solid #969696;
+		padding: 9px 15px;
+		border-radius: 20px;
+		font-size: 18px;
+		width: 270px;
+		height: auto;
+		margin: 0px 11%;
+		color: black;
+	}
+
+	reorder.css:401
+
+	
+	.button1 {
+		display: block;
+		padding: .9em 2em;
+		background: linear-gradient(to bottom, #ffa161 0%, #ff9d5a 71%, #fc7e35 100%);
+		color: #333;
+		border: 2px solid #ddd;
+		color: #fff;
+		text-align: center;
+		text-decoration: none;
+		transition: all .3s;
+		border-radius: 10px;
+		text-indent: -.5em;
+		width: 180px;
+		margin: 0 auto;
+	}
+	
+	.login_btn_2 {
+		display: block;
+		padding: 2% 0%;
+		margin: 0;
+		/* cursor: pointer; */
+		background: #cbb39e;
+		border-radius: 2px;
+		/* letter-spacing: 0.6px; */
+		/* height: 25px; */
+		/* font-size: 15px; */
+		margin: 0 auto;
+		width: 60%;
+		box-shadow: 1px 1px 1px #898989;
+		text-align: center;
+		border: 2px solid #cbb39e;
+		transition: all .3s;
+	}
+/*
+	.button1 {
+		position: relative;
+		display: block;
+		padding: 2.5% 0;
+		background: #c97329;
+		color: #333;
+		color: #fff;
+		text-align: center;
+		text-decoration: none;
+		transition: all .3s;
+		border-radius: 2px;
+		text-indent: -.5em;
+		width: 60%;
+		margin: 0 auto;
+		box-shadow: 1px 1px 1px #898989;
+	}
+*/
+	
+	.log_box {
+		display: none;
+	}
+	
+	.log_txt {
+		font-size: 18px;
+		display: block;
+		font-weight: bold;
+		background-image: url(/price/img/tsuika/pointing.png);
+		background-repeat: no-repeat;
+		background-size: 51px;
+		padding: 0;
+		margin: 0;
+		color: black;
+	}
+	
+	.log_box_sp {
+		display: block;
+		width: 100%;
+		margin-bottom: 10px;
+		text-align: center;
+	}
+	
+	.mail_change {
+		float: none;
+		margin-bottom: 30px;
+		width: 100%;
+	}
+	
+	.step {
+		float: none;
+		width: 100%;
+		margin-top: 4%;
+		clear: both;
+	}
+	
+	.triangle {
+		height: 0px;
+		width: 35px;
+		display: inline-block;
+		position: relative;
+	}
+	
+	.triangle:before {
+		content: '';
+		height: 0;
+		width: 0;
+		display: block;
+		border: 14px transparent solid;
+		border-right-width: 0;
+		border-left-color: #333;
+		position: absolute;
+		top: -20px;
+		left: 8px;
+	}
+	
+	.flow .pc {
+		display: none;
+	}
+	
+	.flow .sp {
+		display: block;
+		font-size: 22px;
+		margin: 5% 10% 12% 10%;
+		width: 80%;
+	}
+	
+	.flow_2 .pc {
+		display: none;
+	}
+	
+	.flow_2 .sp {
+		display: block;
+		font-size: 22px;
+		margin: 5% 10% 12% 10%;
+		width: 80%;
+	}
+	
+	.circle {
+		width: 50px;
+		height: 50px;
+		padding: 2px 8px;
+		-moz-padding: 4px 8px;
+		-webkit-padding: 4px 8px;
+		-o-padding: 4px 8px;
+		-ms-padding: 4px 8px;
+		-moz-border-radius: 50%;
+		border-radius: 50%;
+		background-color: #000;
+		color: white;
+	}
+	
+	.triangle_b {
+		height: 26px;
+		width: 15px;
+		display: block;
+		position: relative;
+	}
+	
+	.triangle_b:before {
+		content: '';
+		height: 0;
+		width: 0;
+		display: block;
+		border: 12px transparent solid;
+		border-bottom-width: 0;
+		border-top-color: #727171;
+		position: absolute;
+		top: 9px;
+		left: 72px;
+	}
+	
+	.mp {
+		font-size: 22px;
+		font-weight: bold;
+	}
+	
+	.arrow {
+		height: 40px;
+		width: 40px;
+		display: block;
+		position: relative;
+		float: left;
+		top: 66px;
+		left: 3px;
+	}
+	
+	.asan {
+		width: 33%;
+		float: left;
+		margin: 0;
+	}
+	
+	.bsan {
+		width: 33%;
+		float: left;
+		margin: 0;
+	}
+	
+	.next_txt {
+		display: none;
+	}
+	
+	.user_2 {
+		display: block;
+		border: 2px solid #eb5c02;
+		padding: 15px;
+		text-align: center;
+		margin: 10px 5px;
+		color: #eb5c02;
+		font-size: 1.1em;
+		clear: both;
+		font-size: 16px;
+	}
+	
+	.comment2 {
+		display: block;
+		border: 2px solid #eb5c02;
+		padding: 15px;
+		text-align: center;
+		margin: 10% auto;
+		color: #eb5c02;
+		font-size: 16px;
+		width: 88%;
+		font-size: 14px;
+	}
+	
+	.step {
+		display: none;
+	}
+	
+	.mail_change_l {
+		float: left;
+		margin-bottom: 40px;
+		width: 100%;
+		padding: 0;
+	}
+	
+	.phone_txt {
+		width: 100%;
+		margin: 0 auto;
+		text-align: center;
+	}
+	
+	.phone_txt .red {
+		margin: 0 auto;
+		text-align: center;
+		color: #ff0000;
+		font-size: 2em;
+		font-weight: bold;
+		margin-bottom: 20px;
+	}
+	
+	.phone_txt .timetx {
+		font-size: 1.2em;
+	}
+	
+	.lf {
+		position: relative;
+		right: 34px;
+	}
+	
+	.example_1 {
+		width: 100%;
+		margin: 5% 10%;
+	}
+	
+	.bsan img {
+		margin: 0 24%;
+		width: 50%;
+	}
+	
+	.banner {
+		display: none;
+	}
+	
+	.banner_sp {
+		display: block;
+	}
+	
+	.min_ttl {
+		color: #EB5C02;
+		font-weight: bold;
+		font-size: 20px;
+		margin-left: 10px;
+	}
+	
+	.flow_2 {
+		clear: both;
+		margin: 0;
+	}
+	.asan img {
+		margin: 0 24%;
+		width: 50%;
+	}
+	.contents {
+		width: 100%;
+		float: none;
+		margin-top: 20px;
+		overflow: hidden;
+		max-width: 1000px;
+		margin: 0 auto;
+		padding: 10px;
+		margin-top: 80px;
+	}
+	h1 {
+		font-size: 28px;
+		font-weight: bold;
+		color: #333;
+	}
+	.pan{
+		display: none;
+	}
+}
+@media screen and (max-width: 950px) {
+	.step {
+		margin-top: 4%;
+		padding: 20px 0px;
+	}
+}

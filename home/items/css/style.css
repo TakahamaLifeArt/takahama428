@@ -1,0 +1,10 @@
+@charset "UTF-8";
+/**
+* item page
+*
+*/
+
+/* side navigation */
+main section nav.col {
+	max-width: 210px;
+}
