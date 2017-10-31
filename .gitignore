@@ -1,0 +1,17 @@
+# ignore 
+.DS_Store
+*.log
+*.png
+*.jpg
+*.gif
+*.ai
+*.pdf
+*.ttf
+*.eot
+*.woff
+*.woff2
+*.svg
+*.crt
+robots.txt
+cgi-bin/sesstmp/*
+home/user/documents/MPDF_6_0/
