@@ -209,7 +209,7 @@ class Mailer{
 				$msg .= "いただいた原稿は、弊社で確認後、下記ブログにアップさせていただきます。\n\n";
 				
 				$msg .= "「お客様の声」\n";
-				$msg .= "http://www.takahama428.com/blog/thanks_blog/\n\n";
+				$msg .= "//www.takahama428.com/app/WP/thanks-blog/\n\n";
 				
 				$msg .= "お客様のお声が聞けるのが、私たちの何よりの喜びです。\n\n";
 				
