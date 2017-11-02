@@ -772,7 +772,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							<div class="blog_txt">
 								<p class="blog_ttl">お客様ブログ</p>
 								<p class="blog_com">タカハマの制作実績を紹介！ <br>掲載OKのお客様は<br>ブログ割引3％OFF！ <br>デザインの参考にどうぞ！</p>
-								<a href="/preparation/">
+								<a href="//www.takahama428.com/app/WP/thanks-blog">
 									<div class="method_button_blog">制作実績を見る</div>
 								</a>
 							</div>
@@ -782,7 +782,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							<div class="blog_txt">
 								<p class="blog_ttl">スタッフブログ</p>
 								<p class="blog_com_2">タカハマのスタッフの<br>様子を楽しく週1回更新<br>お得な情報も掲載中！</p>
-								<a href="/preparation/">
+								<a href="//www.takahama428.com/app/WP">
 									<div class="method_button_blog">タカハマの日常を見る</div>
 								</a>
 							</div>
@@ -799,7 +799,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							<div class="blog_txt">
 								<p class="blog_ttl">お客様ブログ</p>
 								<p class="blog_com">タカハマの制作実績を紹介！ <br>掲載OKのお客様は<br>ブログ割引3％OFF！ <br>デザインの参考にどうぞ！</p>
-								<a href="/preparation/">
+								<a href="//www.takahama428.com/app/WP/thanks-blog">
 									<div class="method_button_blog">制作実績を見る</div>
 								</a>
 							</div>
@@ -809,7 +809,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							<div class="blog_txt">
 								<p class="blog_ttl">スタッフブログ</p>
 								<p class="blog_com_2">タカハマのスタッフの<br>様子を楽しく週1回更新<br>お得な情報も掲載中！</p>
-								<a href="/preparation/">
+								<a href="//www.takahama428.com/app/WP">
 									<div class="method_button_blog">タカハマの日常を見る</div>
 								</a>
 							</div>
