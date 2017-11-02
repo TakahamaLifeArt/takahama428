@@ -78,7 +78,7 @@
 				<a href="//ja-jp.facebook.com/takahamalifeart" class="btn-floating btn-large btn-fb"><i class="fa fa-facebook"></i></a>
 				<a href="//twitter.com/takahamalifeart" class="btn-floating btn-large btn-tw"><i class="fa fa-twitter"></i></a>
 				<a href="/contact/line/" class="btn-floating btn-large btn-line">
-					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="33px" height="57px" style="margin-left: 12px;" viewBox="0 0 315 300">
+					<svg xmlns="//www.w3.org/2000/svg" xmlns:xlink="//www.w3.org/1999/xlink" width="33px" height="57px" style="margin-left: 12px;" viewBox="0 0 315 300">
 						<defs>
 							<style>
 								.fill_1 {fill: #ffffff;}
@@ -161,7 +161,7 @@
 				<a href="#//ja-jp.facebook.com/takahamalifeart" class="btn-floating btn-large btn-fb"><i class="fa fa-facebook"></i></a>
 				<a href="//twitter.com/takahamalifeart" class="btn-floating btn-large btn-tw"><i class="fa fa-twitter"></i></a>
 				<a href="/contact/line/" class="btn-floating btn-large btn-line">
-					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="33px" height="57px" style="margin-left: 12px;" viewBox="0 0 315 300">
+					<svg xmlns="//www.w3.org/2000/svg" xmlns:xlink="//www.w3.org/1999/xlink" width="33px" height="57px" style="margin-left: 12px;" viewBox="0 0 315 300">
 						<defs>
 							<style>
 								.fill_1 {fill: #ffffff;}
