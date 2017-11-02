@@ -2542,7 +2542,6 @@ p.scroll_top {
 		margin-bottom: 10px;
 	}
 	#step2 .size_table input[type=number] {
-		width: 100%;
 		padding: 2px 5px;
 		text-align: right;
 		font-size: 1.2em;
