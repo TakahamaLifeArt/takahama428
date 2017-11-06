@@ -67,6 +67,7 @@ h1, h2 {
 	font-weight: bold;
 	white-space: normal!important;
 	border: 2px solid #00a7e1;
+	cursor: pointer;
 }
 .order_btn:hover {
 	background: #fff;
@@ -202,6 +203,7 @@ nav .list-group .list-group-item a {
 
 .navbar-nav .nav-item .nav-link {
 	padding-bottom: 0;
+	cursor: pointer;
 }
 
 .navbar-nav .nav-item .nav-link span {
@@ -239,7 +241,7 @@ nav .list-group .list-group-item a {
 .header_language {
 	position: absolute;
 	top: 100%;
-	left: 4px;
+	left: -85px;
 	z-index: 1000;
 	display: none;
 	float: left;
@@ -258,7 +260,7 @@ nav .list-group .list-group-item a {
 }
 
 .drop_img {
-	max-width: 25%;
+	max-width: 16%;
 	display: inline-block;
 	margin-right: 5%;
 	vertical-align: middle;
@@ -272,11 +274,23 @@ nav .list-group .list-group-item a {
 	margin-bottom: 4%;
 }
 
+.cart_a p {
+	margin-bottom: 0;
+}
+
+
 .dropdown_mypage {
 	background: #e2710a;
 	width: 90%;
 	margin: 0 auto;
 	border-radius: 2px;
+}
+
+.mypage_a p {
+	margin-bottom: 0;
+}
+.dropdown-menu p{
+	margin-bottom: 0;
 }
 
 .dropdown_exit {
@@ -354,6 +368,11 @@ nav .list-group .list-group-item a {
 	background-size: 25px;
 	background-position-x: 27px;
 	background-position-y: center;
+}
+.cart_a_t_box {
+	padding: 3px;
+	border: 1px solid #e5e5e5;
+	margin: 0 0 10px;
 }
 
 @media (min-width: 1200px) {
@@ -524,8 +543,8 @@ section,
 
 #date p {
 	color: #e2710a;
-	padding: 4%;
-	font-size: 48px;
+	padding: 3%;
+	font-size: 4em;
 	font-weight: bold;
 }
 .min_txt {
@@ -706,7 +725,37 @@ nav.btn-group .btn {
 	border-right: 1px solid #ccc;
 	border-left: 1px solid #ccc;
 }
-
+.carousel-indicators {
+	position: absolute;
+	right: 0;
+	bottom: 10px;
+	left: 0;
+	z-index: 15;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	padding-left: 0;
+	margin-right: 15%;
+	margin-left: 15%;
+	list-style: none;
+	margin-bottom: 0;
+}
+.carousel-caption {
+	position: absolute;
+	right: 15%;
+	bottom: 5px;
+	left: 15%;
+	z-index: 10;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	color: #fff;
+	text-align: center;
+}
 
 /* dropdown in the global menu */
 
@@ -1261,6 +1310,14 @@ footer.page-footer ul li .fa {
 		display: block;
 	}
 }
+@media screen and (max-width: 910px) {
+	#date p {
+		color: #e2710a;
+		padding: 2% 0;
+		font-size: 4em;
+		font-weight: bold;
+	}
+}
 
 @media screen and (max-width: 768px) {
 	.blog_txt {
@@ -1283,6 +1340,29 @@ footer.page-footer ul li .fa {
 		float: none;
 		width: 100%;
 	}
+	#date p {
+		color: #e2710a;
+		padding: 2% 0;
+		font-size: 2em;
+		font-weight: bold;
+	}
+	.top_3_wrap{
+		padding-bottom: 0;
+	}
+	.review_wrap{
+		width: 90%;
+		margin: 0 auto;
+		margin-bottom: 2em;
+	}
+	.top3_txt {
+		color: #00a7e1;
+		font-size: 12px;
+	}
+	.footer_item {
+		display: flex;
+		margin-left: 0;
+		font-size: 14px;
+	}
 }
 
 @media screen and (max-width: 670px) {
@@ -1296,8 +1376,9 @@ footer.page-footer ul li .fa {
 		background: #fff;
 		color: #333;
 		padding: 4% 9%;
-		width: 98%;
+		width: 90%;
 		text-align: center;
+		margin: 0 auto;
 	}
 	.top_3_img {
 		padding: 0%;
@@ -1306,7 +1387,41 @@ footer.page-footer ul li .fa {
 	.top3_bu_txt {
 		margin: 3%;
 	}
+	.top3_txt img {
+		width: 4%;
+		box-shadow: none;
+		margin: 2% 2% 3%;
+	}
+	#date{
+		padding: 0%;
+		width: 55%;
+	}
+	#date p {
+		color: #e2710a;
+		padding: 2% 0;
+		font-size: 4em;
+		font-weight: bold;
+		margin-bottom: 0;
+	}
+	.big_font {
+		font-size: 22px;
+		font-weight: bold;
+	}
+	.top3_bu_txt {
+		font-size: 19px;
+		color: #000;
+	}
 
+}
+@media screen and (max-width: 630px) {
+	#date p {
+		color: #e2710a;
+		padding: 2% 0;
+		font-size: 3em;
+		font-weight: bold;
+		margin-bottom: 0;
+		margin-top: 10px;
+	}
 }
 
 @media screen and (max-width: 610px) {
@@ -1428,5 +1543,13 @@ footer.page-footer ul li .fa {
 		/* border: 1px solid; */
 		margin: 0 auto;
 		margin-bottom: 20px;
+	}
+	#date p {
+		color: #e2710a;
+		padding: 2% 0;
+		font-size: 2.5em;
+		font-weight: bold;
+		margin-bottom: 0;
+		margin-top: 7px;
 	}
 }

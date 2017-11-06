@@ -1,0 +1,502 @@
+@charset "euc-jp";
+
+/*------------------------------------------------------------
+
+2009 takahama web css
+
+	File_name	: guidance.css
+	Description	: usage guidance
+	
+	log
+	2012.01.18	: created
+	2014.12.19	: キャンセル料の説明を追加
+	
+-------------------------------------------------------------- */
+
+
+/*		common
+===============================================================*/
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+input,
+button,
+textarea,
+select,
+p,
+blockquote,
+th,
+td {
+	margin: 0;
+	padding: 0;
+}
+p {
+	margin: 0 0 10px;
+	font-size: 16px;
+}
+ul.pan {
+	height: auto;
+	margin: 20px 5px 20px 5px;
+	font-size: 0.8em;
+}
+ul.pan li {
+	display: inline;
+	padding-right: 4px;
+	line-height: 2em;
+}
+ul.pan li:first-child:before {
+	content: "";
+	padding-right: 0;
+}
+ul.pan li:before {
+	content: ">";
+	padding-right: 10px;
+	vertical-align: middle;
+}
+ul.pan li a, ul.pan li span {
+	vertical-align: middle;
+	text-decoration: none;
+}
+#guide_top,
+#payment,
+#discount,
+#express {
+	margin-bottom: 50px;
+}
+#container {
+	display: block;
+	width: 100%;
+	margin-top: 125px;
+}
+
+.contents {
+	width: 100%;
+	margin-top: 20px;
+	overflow: hidden;
+	max-width: 1000px;
+	float: none;
+	margin: 0 auto;
+	padding: 0 10px;
+}
+
+.heading1_wrapper {
+	width: 100%;
+	padding-bottom: 15px;
+	overflow: hidden;
+	padding-top: 10px;
+}
+
+.heading1_wrapper h1 {
+	margin-bottom: 0;
+	color: #333;
+	font-weight: bold;
+	font-size: 40px;
+	line-height: 1.8;
+	border-bottom: none;
+	text-align: left;
+	padding-top: 10px;
+}
+
+h2.heading {
+	padding-bottom: 3px;
+	background: url(/common/img/dotted.png) repeat-x left bottom;
+	margin: 10px 0px 15px;
+	font-size: 28px;
+}
+
+h3.heading3 {
+	margin: 0 0 0.5em;
+	padding: 0;
+	font-size: 18px;
+	font-weight: bold;
+	color: black;
+	/* border-left: 7px solid #F60; */
+}
+
+h3.heading3 ins {
+	padding-left: 1.5em;
+	font-size: 85%;
+	font-weight: normal;
+	color: #ff0019;
+}
+
+h4 {
+	margin: 20px 0px 15px 20px;
+	font-weight: bold;
+	color: #666;
+	font-size: 16px;
+}
+
+.contents .inner {
+	clear: both;
+	overflow: hidden;
+	padding: 10px 10px 40px 20px;
+	position: relative;
+}
+
+.contents .inner .note {
+	margin-top: 0.5em;
+}
+
+.contents .inner p span {
+	color: #dc0000;
+}
+dl.list dt {
+	clear: left;
+	float: left;
+	width: 7em;
+	font-weight: bold;
+}
+dd, dt {
+	line-height: 1.42857143;
+}
+dl.list {
+	margin: 0 10px 20px 20px;
+}
+dl.list dd {
+	padding-left: 7em;
+	margin-bottom: 1em;
+	color: #333;
+	border-bottom: 1px dotted #d8d8d8;
+}
+dl.list dt {
+	clear: left;
+	float: left;
+	width: 7em;
+	font-weight: bold;
+}
+table {
+	background-color: transparent;
+	border-spacing: 0;
+	border-collapse: collapse;
+	margin-bottom: 1em;
+	font-size: inherit;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+thead th {
+	text-align: center;
+}
+td, th {
+	padding: 0;
+}
+th, td {
+	padding: 2px 5px;
+	vertical-align: middle;
+}
+caption, th {
+	text-align: left;
+	font-weight: normal;
+}
+address, button, caption, cite, code, dfn, em, input, optgroup, option, select, textarea, th, var {
+	font: inherit;
+}
+
+/* サブメニュー（横並び） */
+
+ul.sub_menu {
+	clear: both;
+	margin: 10px 0px;
+}
+
+ul.sub_menu li {
+	display: inline;
+	padding: 0 0.5em 0 0.2em;
+	white-space: nowrap;
+	border-right: 1px solid #d8d8d8;
+}
+
+ul.sub_menu li:first-child {
+	padding-left: 0.5em;
+	border-left: 1px solid #d8d8d8;
+}
+
+
+/*		ご利用案内トップ
+===============================================================*/
+
+.heading2_wrapper {
+	margin-bottom: 30px;
+	padding: 1em 1em 1.5em;
+	background: #fff;
+	border: 1px solid #eae7d2;
+	border-radius: 3px;
+}
+
+.heading2_wrapper h2.heading {
+	color: #4e2210;
+}
+
+.heading2_wrapper h2 span {
+	padding-left: 2em;
+	font-size: 66%;
+	color: #666;
+}
+
+.heading2_wrapper .comment {
+	position: relative;
+	margin: 5px 0 10px 20px;
+	color: #666;
+}
+
+.heading2_wrapper .comment ins {
+	font-size: 125%;
+}
+
+.heading2_wrapper .comment a {
+	position: absolute;
+	display: block;
+	top: 0px;
+	right: 20px;
+	width: 114px;
+	height: 26px;
+	overflow: hidden;
+}
+
+.heading2_wrapper .comment a img:hover {
+	margin-top: -26px;
+}
+
+
+/*		割引
+===============================================================*/
+
+.comment {
+	margin: 10px 20px;
+}
+
+.desc dl.list dd {
+	padding-left: 2em;
+}
+
+.comment ins {
+	color: #ff0019;
+}
+
+.ratio_image {
+	float: left;
+	margin-right: 20px;
+}
+
+.desc {
+	float: left;
+	width: 480px;
+}
+
+.desc dl.list dt {
+	width: 2em;
+}
+
+.desc dl.list dd {
+	margin-bottom: 0.3em;
+	padding-left: 2em;
+}
+
+.desc dl.list dd span {
+	color: #ff0019;
+}
+
+#discount .inner p {
+	padding-bottom: 1em;
+}
+
+#discount .inner p.note {
+	padding-bottom: 0;
+}
+
+#additional div {
+	margin-bottom: 2em;
+}
+
+
+/*		特急割増
+===============================================================*/
+
+.plan_wrapper {
+	clear: both;
+	margin-top: 50px;
+	padding-bottom: 10px;
+}
+
+.plan_list {
+	margin: 10px 0px 10px 40px;
+	padding: 5px 10px;
+}
+
+.plan_list li {
+	list-style-type: decimal;
+	color: #444;
+}
+
+.plan_wrapper p {
+	margin-left: 15px;
+}
+
+
+/*		2日仕上げ、翌日仕上げのスケジュール
+===============================================================*/
+
+.notice_wrapper {
+	position: relative;
+	height: 180px;
+	margin: 30px 0px;
+	padding: 0px;
+	overflow: hidden;
+}
+
+.notice_wrapper .banner {
+	float: left;
+}
+
+.notice_wrapper .schedule {
+	float: right;
+	margin-right: 50px;
+}
+
+
+/*----------------------------------
+    通常・特急製作のラベル
+----------------------------------*/
+
+.notice_wrapper .txt_01,
+.notice_wrapper .txt_02,
+.notice_wrapper .txt_03 {
+	position: absolute;
+	left: 335px;
+	color: #fff;
+	font-size: 150%;
+	font-weight: bold;
+}
+
+.notice_wrapper .txt_01 {
+	top: 15px;
+}
+
+.notice_wrapper .txt_02,
+.notice_wrapper .txt_03 {
+	top: 85px;
+}
+
+
+/*----------------------------------
+    受付からお届けまでのスケジュール図
+----------------------------------*/
+
+.notice_wrapper .ol_01 {
+	position: absolute;
+	top: 37px;
+	left: 408px;
+	font-size: 12px;
+}
+
+.notice_wrapper .ol_01 li {
+	float: left;
+	width: 64px;
+	text-align: center;
+	color: #fff;
+}
+
+.notice_wrapper .ol_02 {
+	position: absolute;
+	top: 111px;
+	left: 408px;
+	font-size: 12px;
+}
+
+.notice_wrapper .ol_02 li {
+	float: left;
+	width: 64px;
+	text-align: center;
+	color: #fff;
+}
+
+.notice_wrapper .ol_02 li.half {
+	width: 32px;
+}
+
+
+/*----------------------------------
+    注意点
+----------------------------------*/
+
+.notice_wrapper .notice {
+	position: absolute;
+	left: 9px;
+	bottom: 7px;
+	width: 305px;
+}
+
+.notice_wrapper .notice li {
+	margin-left: 15px;
+	list-style-type: disc;
+}
+
+.notice_wrapper .notice li span {
+	padding: 0px 0.2em;
+	font-size: 125%;
+	color: #ff0019;
+}
+
+.note span:first-child {
+	color: #dc0000;
+}
+.note {
+	padding-left: 1em;
+	text-indent: -1em;
+	color: #666;
+	font-size: 12px;
+}
+
+
+/*		キャンセル料
+===============================================================*/
+
+.plan_wrapper table {
+	width: 100%;
+	border: 1px solid #999;
+}
+
+.plan_wrapper table th,
+.plan_wrapper table td {
+	border: 1px solid #999;
+}
+
+@media screen and (max-width: 768px) {
+	.heading1_wrapper h1 {
+		margin-bottom: 0;
+		color: #383838;
+		font-weight: bold;
+		font-size: 28px;
+		line-height: 1.8;
+		border-bottom: none;
+		text-align: left;
+	}
+	h2.heading {
+		padding-bottom: 3px;
+		background: url(/common/img/dotted.png) repeat-x left bottom;
+		margin: 10px 0px 15px;
+		font-size: 20px;
+	}
+	p {
+	margin: 0 0 10px;
+	font-size: 14px;
+}
+	
+}

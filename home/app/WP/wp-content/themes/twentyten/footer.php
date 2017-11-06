@@ -11,7 +11,8 @@
  */
 ?>
 	</div><!-- #main -->
-	
+</div><!-- #wrapper -->
+
 <footer class="page-footer">
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
 </footer>
@@ -55,7 +56,7 @@
 	</div>
 -->
 
-</div><!-- #wrapper -->
+
 
 <?php
 	/*
