@@ -24,9 +24,12 @@
 		#lightbox-container-image-box {
 			position: relative;
 			background-color: #000000;
-			width: 100%;
-			height: 100%;
+			width: 90%!important;
+			height: auto!important;
 			margin: 0 auto;
+		}
+		#lightbox-container-image-data-box {
+			width: 90%!important;
 		}
 
 	</style>

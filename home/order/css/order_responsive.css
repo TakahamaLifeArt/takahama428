@@ -933,18 +933,18 @@ p.thumb_h .notes_color {
 #step2 .size_table {
 	margin-bottom: 2em;
 	border: none;
+	width: 100%;
 }
-
 #step2 .size_table th {
-	padding-top: 10px;
+	padding-top: 0px;
 	padding-right: 20px;
 	text-align: right;
 	border-bottom: 1px solid #eae7d2;
 }
 
 #step2 .size_table tr.heading th {
-	padding: 2px 5px;
-	text-align: center;
+	padding: 15px 0px 0px;
+	text-align: left;
 	border-bottom: 0px;
 }
 
@@ -954,11 +954,10 @@ p.thumb_h .notes_color {
 }
 
 #step2 .size_table input[type=number] {
-	width: 3em;
+	width: 5em;
 	padding: 2px 5px;
 	text-align: right;
 }
-
 
 /*
 #step2 .size_table input.forNum {
@@ -2556,6 +2555,77 @@ p.scroll_top {
 	ul.color_thumb li img {
 		width: 100%;
 	}
+	#step2 .size_table table #step2 .size_table td,.size_table th{
+		display: block;
+	}
+	#step2 .size_table {
+		margin-bottom: 2em;
+		border: none;
+		width: 95%;
+	}
+	.size_table .heading {
+		float: left;
+		width: auto;
+		display: block;
+		position: relative;
+		left: 30px;
+		top: 4px;
+	}
+	.size_table .heading:nth-child(2) {
+		clear: both;
+		width: auto;
+		display: block;
+	}
+	.size_table .heading:nth-child(3) {
+		clear: both;
+		width: auto;
+		display: block;
+	}
+	.size_table .heading:nth-child(4) {
+		clear: both;
+		width: auto;
+		display: block;
+	}
+	.size_table .heading:nth-child(5) {
+		clear: both;
+		width: auto;
+		display: block;
+	}
+	#step2 .size_table tr.heading th {
+		padding: 15px 0px 6px;
+		text-align: left;
+		border-bottom: 0px;
+		font-size: 1em;
+	}
+	.size_table tr {
+		width: 90%;
+		float: left;
+		text-align: right;
+	}
+	#step2 .size_table th {
+		padding-top: 10px;
+		padding-right: 0px;
+		font-size: 1em;
+	}
+	#step2 .size_table td {
+		display: block;
+		padding-bottom: 2px;
+		border-bottom: 1px solid #eae7d2;
+		font-size: .8em;
+	}
+	#step2 .size_table input[type=number] {
+		width: 10em;
+		padding: 2px 0 0 0px;
+		text-align: right;
+		font-size: 1.1em;
+	}
+	#step2 .size_table input[type=number] {
+		width: 10em;
+		padding: 2px 0 0 0px;
+		text-align: right;
+		font-size: 1.1em;
+	}
+	
 	/*--------------step 3--------------*/
 	.posimg {
 		position: relative;
@@ -2890,12 +2960,14 @@ p.scroll_top {
 }
 
 @media screen and (max-width: 480px) {
+/*
 	#step2 .size_table input[type=number] {
 		width: 2.9em;
 		padding: 2px 0 0 0px;
 		text-align: right;
 		font-size: 1.1em;
 	}
+*/
 	#step2 .size_table th {
 		padding-top: 10px;
 		padding-right: 0px;

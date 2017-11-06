@@ -50,7 +50,7 @@ $_version = time();
 				<ul class="msg">
 <!--					<li>注文カタログ（注文書、FAX用注文シート付き）※返却不要</li>-->
 					<li>メーカーの商品小冊子 ※返却不要</li>
-					<li>商品サンプル3点まで（ご希望のお客様のみ）<span class="fontred">※必ず到着後10日以内に返却</span></li>
+					<li>商品サンプル3点まで（ご希望のお客様のみ）<br><span class="fontred">※必ず到着後10日以内に返却</span></li>
 				</ul>
 				<p class="note"><span>※</span> 商品サンプルをご希望の場合は、フォーム内の「サンプル」でチェックをしてください。
 					<br /> ご指定の商品がありましたらメッセージ欄にご記入下さい。
@@ -66,15 +66,15 @@ $_version = time();
 								<tbody>
 									<tr>
 										<th>お名前<span class="point">※</span></th>
-										<td><input name="customername" type="text" placeholder="文字数は全角16文字、半角32文字です" maxlength="32" class="restrict" /></td>
+										<td><input name="customername" type="text" maxlength="32" class="restrict" /></td>
 									</tr>
 									<tr>
 										<th>ご住所<span class="point">※</span></th>
 										<td>
 											<p>〒<input name="zipcode" id="zipcode" class="forZip" type="text" onkeyup="AjaxZip3.zip2addr(this,'','addr0','addr1');" /></p>
 											<p><input name="addr0" id="addr0" type="text" placeholder="都道府県" maxlength="4" /></p>
-											<p><input name="addr1" id="addr1" type="text" placeholder="文字数は全角28文字、半角56文字です" maxlength="56" class="restrict" /></p>
-											<p><input name="addr2" id="addr2" type="text" placeholder="文字数は全角16文字、半角32文字です" maxlength="32" class="restrict" /></p>
+											<p><input name="addr1" id="addr1" type="text"  maxlength="56" class="restrict" /></p>
+											<p><input name="addr2" id="addr2" type="text"  maxlength="32" class="restrict" /></p>
 										</td>
 									</tr>
 									<tr>

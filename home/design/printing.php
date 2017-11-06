@@ -16,6 +16,7 @@
 		<title>4種類のプリント方法について ｜ オリジナルTシャツ作成が早い、タカハマライフアート</title>
 		<link rel="shortcut icon" href="/icon/favicon.ico">
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
+		<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/flick/jquery-ui.css">
 		<link rel="stylesheet" type="text/css" href="/common/js/lightbox/jquery.lightbox-0.5.css" media="all" />
 		<link rel="stylesheet" type="text/css" href="/design/css/printing.css" media="screen" />
 	</head>
@@ -97,21 +98,21 @@
 							<a href="img/printing/rubber_sample-up.jpg" ><img src="img/printing/rubber_sample-up_s.jpg" width="100%"></a>
 						</div>
 						<div class="fr">
-							<a href="img/printing/rubber_1.jpg" >
+							<a href="img/printing/rubber_1.jpg" rel="lightbox[stain]" >
 								<p class="rubber_mihon"></p>
 							</a>
 						</div>
 						<div style="display:none;">
-							<a href="img/printing/rubber_2.jpg" >
+							<a href="img/printing/rubber_2.jpg" rel="lightbox[stain]" >
 								<p></p>
 							</a>
-							<a href="img/printing/rubber_3.jpg" >
+							<a href="img/printing/rubber_3.jpg" rel="lightbox[stain]" >
 								<p></p>
 							</a>
-							<a href="img/printing/rubber_4.jpg" >
+							<a href="img/printing/rubber_4.jpg" rel="lightbox[stain]" >
 								<p></p>
 							</a>
-							<a href="img/printing/rubber_5.jpg" >
+							<a href="img/printing/rubber_5.jpg" rel="lightbox[stain]" >
 								<p></p>
 							</a>
 						</div>
@@ -456,7 +457,7 @@
 						<div class="wrap1_clearfix">
 							<h3>クリーニングサービスの注意点</h3>
 							<p>
-								クリーニングにより１?・２cm伸び縮みする場合がありますので予めご了承ください。
+								クリーニングにより１&#126;２cm伸び縮みする場合がありますので予めご了承ください。
 							</p>
 						</div>
 					</div>

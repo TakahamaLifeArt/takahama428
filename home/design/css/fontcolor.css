@@ -1024,4 +1024,11 @@ dl.list dd {
 		padding: 15px 10px;
 		overflow: hidden;
 	}
+	.navi {
+		width: 100%;
+		text-align: center;
+		overflow: hidden;
+		font-size: 62%;
+		padding: 0;
+	}
 }
