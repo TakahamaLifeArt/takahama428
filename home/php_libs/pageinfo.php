@@ -57,8 +57,8 @@ class PageInfo extends Conndb {
 			41=>array('tag'=>93,'label'=>'綿素材')
 		),
 		array(
-			18=>array('tag'=>6,'label'=>'薄い生地'),
-			23=>array('tag'=>5,'label'=>'厚い生地')
+			18=>array('tag'=>97,'label'=>'薄い生地'),
+			23=>array('tag'=>98,'label'=>'厚い生地')
 		),
 		array(
 			25=>array('tag'=>107,'label'=>'キャップ'),
@@ -398,7 +398,7 @@ if(isset($_REQUEST['act'])){
 						<li class="item_image_s">';
 			
 			if($i<3){
-				$itemlist_data .= '<img class="rankno" src="../img/index/no'.($i+1).'.png" width="60" height="55" alt="No'.($i+1).'">';
+				$itemlist_data .= '<img class="rankno" src="../img/index/no'.($i+1).'.png" width="60" height="34" alt="No'.($i+1).'">';
 			}
 			
 			$itemlist_data .= '
@@ -727,9 +727,9 @@ if(isset($_REQUEST['act'])){
 					<li class="item_image_s">';
 		
 		if($item_count<3){
-			$itemlist_data .= '<img class="rankno" src="../img/index/no'.($item_count+1).'.png" width="60" height="55" alt="No'.($item_count+1).'">';
-			$itemname_data .= '<img class="today" src="../img/index/today'.($item_count+1).'.png" width="60" height="55" alt="No'.($item_count+1).'">';
-			$itemname_data .= '<img class="today" src="../img/index/today'.($item_count+1).'.png" width="60" height="55" alt="No'.($item_count+1).'">';
+			$itemlist_data .= '<img class="rankno" src="../img/index/no'.($item_count+1).'.png" width="60" height="34" alt="No'.($item_count+1).'">';
+			$itemname_data .= '<img class="today" src="../img/index/today'.($item_count+1).'.png" width="60" height="34" alt="No'.($item_count+1).'">';
+			$itemname_data .= '<img class="today" src="../img/index/today'.($item_count+1).'.png" width="60" height="34" alt="No'.($item_count+1).'">';
 		}
 		
 		$itemlist_data .= '

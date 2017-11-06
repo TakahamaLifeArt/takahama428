@@ -2891,9 +2891,14 @@ p.scroll_top {
 
 @media screen and (max-width: 480px) {
 	#step2 .size_table input[type=number] {
-    	    width: 2.2em;
-	    padding: 2px 4px;
-	    text-align: right;
-	    font-size: 1.1em;
+		width: 2.9em;
+		padding: 2px 0 0 0px;
+		text-align: right;
+		font-size: 1.1em;
+	}
+	#step2 .size_table th {
+		padding-top: 10px;
+		padding-right: 0px;
+		font-size: .8em;
 	}
 }
