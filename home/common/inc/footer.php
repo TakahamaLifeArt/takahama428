@@ -43,8 +43,8 @@
 			<div class="footer_com">
 			<ul>
 				<li><a href="/corporate/overview.php">会社概要</a></li>
-				<li><a href="#!">お客様ブログ</a></li>
-				<li><a href="#!">スタッフブログ</a></li>
+				<li><a href="/app/WP/thanks-blog">お客様ブログ</a></li>
+				<li><a href="/app/WP">スタッフブログ</a></li>
 				<li><a href="/reason/speed.php">早い理由</a></li>
 				<li><a href="/corporate/transactions.php">特定商取引法</a></li>
 				<li><a href="/preparation/">サイトマップ</a></li>

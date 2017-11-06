@@ -161,7 +161,7 @@
 					<div class="desc">
 						<dl class="list">
 							<dt>◎</dt>
-							<dd><a href="//www.takahama428.com/app/WP/thanks-blog">弊社ブログ</a>にお写真とコメントを掲載</dd>
+							<dd><a href="/app/WP/thanks-blog">弊社ブログ</a>にお写真とコメントを掲載</dd>
 							<dt>※</dt>
 							<dd>お写真＝製作Ｔシャツ着用で！</dd>
 							<dt>※</dt>
