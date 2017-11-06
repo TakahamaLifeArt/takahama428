@@ -79,7 +79,7 @@ if( empty($_SESSION['me']) ){
 		<li class="nav-item dropdown">
 			<div class="nav-link dropdown-toggle pr-0" id="navbarDropdownLanguageMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<img class="img-fluid" alt="Language" src="/common/img/header/sp_language.jpg" width="90%">
-				<span>Japan</span>
+				<span>言語</span>
 			</div>
 			<div class="dropdown-menu header_language" aria-labelledby="navbarDropdownLanguageMenu">
 				<div class="dropdown-item" id="google_translate_element"></div>

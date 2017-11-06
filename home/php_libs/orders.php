@@ -1004,7 +1004,11 @@ class Orders extends Conndb {
 					foreach ($v2['design'] as $base => $a2) {
 						for ($i=0; $i<count($a2); $i++) {
 							$key = $a2[$i]['posname'].'-'.$a2[$i]['areasize'].'-'.$a2[$i]['ink'];
-							$_SESSION['orders']['items'][$catid]['item'][$itemid]['design'][$base][$i]['printing'] = key($res['printing'][$key]);
+							if (empty($res['printing'][$key])) {
+								$_SESSION['orders']['items'][$catid]['item'][$itemid]['design'][$base][$i]['printing'] = '';
+							} else {
+								$_SESSION['orders']['items'][$catid]['item'][$itemid]['design'][$base][$i]['printing'] = key($res['printing'][$key]);
+							}
 						}
 					}
 					unset($a2);

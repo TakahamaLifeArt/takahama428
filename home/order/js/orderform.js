@@ -660,7 +660,7 @@ $(function () {
 		postData[key] = val;
 		$.ajax({
 			url: '/php_libs/orders.php',
-			async: true,
+			async: false,
 			type: 'POST',
 			dataType: 'text',
 			timeout: 5000,
@@ -829,7 +829,7 @@ $(function () {
 		postData[key] = val;
 		$.ajax({
 			url: '/php_libs/orders.php',
-			async: true,
+			async: false,
 			type: 'POST',
 			dataType: 'text',
 			timeout: 5000,
@@ -2320,7 +2320,7 @@ $(function () {
 		},
 		updateEstimation: function (r) {
 			$('#estimation_wrap .itemsum').text(r.itemprice.toLocaleString('ja-JP'));
-			$('#estimation_wrap .totamount').text(r.amount.toLocaleString('ja-JP'));
+			$('#estimation_wrap .totamount, #cart_amount').text(r.amount.toLocaleString('ja-JP'));
 			$('#estimation_wrap .printfee').text(r.printprice.toLocaleString('ja-JP'));
 			//			var sizeName = ['大', '中', '小'];
 			var printName = {
@@ -2410,7 +2410,6 @@ $(function () {
 			}
 
 			$('#cart_total').text(total.toLocaleString('ja-JP'));
-			$('#cart_amount').text(r.options.amount.toLocaleString('ja-JP'));
 
 			// お見積りBOX
 			//			$.digits( $('tr.total td span', '#floatingbox'), total);

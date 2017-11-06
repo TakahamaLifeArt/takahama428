@@ -675,7 +675,7 @@ li.firstlist {
 	background: url(/order/img/color.png) no-repeat;
 }
 
-.size {
+.item_info .size {
 	background: url(/order/img/size.png) no-repeat;
 }
 
@@ -2542,9 +2542,9 @@ p.scroll_top {
 		margin-bottom: 10px;
 	}
 	#step2 .size_table input[type=number] {
-	    padding: 2px 5px;
-	    text-align: right;
-	    font-size: 1.2em;
+		padding: 2px 5px;
+		text-align: right;
+		font-size: 1.2em;
 	}
 	ul.color_thumb {
 		width: 100%;
@@ -2886,19 +2886,5 @@ p.scroll_top {
 	}
 	#step6 table {
 		width: 100%;
-	}
-}
-
-@media screen and (max-width: 480px) {
-	#step2 .size_table input[type=number] {
-		width: 2.9em;
-		padding: 2px 0 0 0px;
-		text-align: right;
-		font-size: 1.1em;
-	}
-	#step2 .size_table th {
-		padding-top: 10px;
-		padding-right: 0px;
-		font-size: .8em;
 	}
 }

@@ -57,7 +57,7 @@
 <style>
 
 	#main {
-		padding: 0px;
+		padding-top: 130px;
 	}
 	#access {
 		margin-bottom: 30px;
@@ -67,6 +67,11 @@
 </head>
 
 <body <?php body_class(); ?>>
+
+	<header>
+		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
+	</header>
+	
 <div id="wrapper" class="hfeed">
 <!--
 	<div id="header">
@@ -81,11 +86,6 @@
 	</div>
 	
 -->
-	<header>
-		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
-	</header>
-
-
 
 	<div id="main">
 		<div id="access" role="navigation">
