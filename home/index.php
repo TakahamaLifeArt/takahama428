@@ -25,7 +25,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 	<head prefix="og://ogp.me/ns# fb://ogp.me/ns/fb#  website: //ogp.me/ns/website#">
 		<meta charset="UTF-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<meta name="google-site-verification" content="PfzRZawLwE2znVhB5M7mPaNOKFoRepB2GO83P73fe5M">
 		<meta name="Description" content="オリジナルTシャツ作成が早い！即納可能の業界最速！クラスTシャツの文字入れも最短即日で短納期プリント。1枚からでも安い・お急ぎ製作・印刷は東京都内のタカハマライフアート！10秒で簡単・早いオリジナルTシャツ比較お見積もりも承ります。">
 		<meta property="og:title" content="世界最速！？オリジナルTシャツを当日仕上げ！！">
@@ -799,7 +799,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							<div class="blog_txt">
 								<p class="blog_ttl">お客様ブログ</p>
 								<p class="blog_com">タカハマの制作実績を紹介！ <br>掲載OKのお客様は<br>ブログ割引3％OFF！ <br>デザインの参考にどうぞ！</p>
-								<a href="/app/WP/thanks-blog">
+								<a href="/preparation/">
 									<div class="method_button_blog">制作実績を見る</div>
 								</a>
 							</div>
@@ -809,7 +809,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							<div class="blog_txt">
 								<p class="blog_ttl">スタッフブログ</p>
 								<p class="blog_com_2">タカハマのスタッフの<br>様子を楽しく週1回更新<br>お得な情報も掲載中！</p>
-								<a href="/app/WP">
+								<a href="/preparation/">
 									<div class="method_button_blog">タカハマの日常を見る</div>
 								</a>
 							</div>
