@@ -1568,3 +1568,8 @@ footer.page-footer ul li .fa {
 		margin-top: 7px;
 	}
 }
+
+/* Google translate */
+body > div.skiptranslate {
+	display: none;
+}
