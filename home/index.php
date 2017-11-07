@@ -61,7 +61,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 						<img class="img-fluid" id="sp_slide" src="/common/img/home/main/sp_top_slide_speed.jpg" alt="First slide" width="100%">
 						<div class="carousel-caption">
 							<h3></h3>
-							<a href="/order/"><button type="button" class="order_btn"><img src="/common/img/home/main/sp_go_icon.png" width="40px" style="padding-right: 12px;padding-bottom: 2px;">つくってみる</button></a>
+							<a href="/order/"><button type="button" class="order_btn"><img src="/common/img/home/main/sp_go_icon.png" width="40px" style="padding-right: 12px;padding-bottom: 5px;">お申し込み</button></a>
 						</div>
 					</div>
 
@@ -70,7 +70,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 					<img class="img-fluid" id="sp_slide" src="/common/img/home/main/sp_top_slide_record.jpg" alt="First slide" width="100%">
 					<div class="carousel-caption">
 						<h3></h3>
-						<a href="/order/"><button type="button" class="order_btn"><img src="/common/img/home/main/sp_go_icon.png" width="40px" style="padding-right: 12px;padding-bottom: 2px;">つくってみる</button></a>
+						<a href="/order/"><button type="button" class="order_btn"><img src="/common/img/home/main/sp_go_icon.png" width="40px" style="padding-right: 12px;padding-bottom: 5px;">お申し込み</button></a>
 					</div>
 				</div>
 <!--

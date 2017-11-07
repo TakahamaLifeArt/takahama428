@@ -46,6 +46,12 @@ img {
 	vertical-align: bottom;
 	border: 0;
 }
+.order_btn img {
+	vertical-align: bottom;
+	border: 0;
+	width: 27px;
+	padding-right: 2px;
+}
 a {
 	color: #1055e0;
 	text-decoration: none;

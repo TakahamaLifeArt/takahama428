@@ -14,7 +14,6 @@ for($cnt=1,$idx=0; $cnt<5; $cnt++,$idx++){
 		<meta charset="UTF-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="google-site-verification" content="PfzRZawLwE2znVhB5M7mPaNOKFoRepB2GO83P73fe5M">
 		<meta name="Description" content="「早い」作成で業界No.1最速のオリジナルTシャツプリントのタカハマライフアートの「お届け日（納期）を調べる」ページです。納期や注文確定の条件などがWeb上で簡単にわかります。1枚からでも安い・お急ぎ製作・印刷は東京都内のタカハマライフアート！10秒で簡単・早いオリジナルTシャツ比較お見積もりも承ります。" />
 		<meta name="keywords" content="オリジナル,Tシャツ,プリント,お届け日,納期" />
 		<meta property="og:title" content="世界最速！？オリジナルTシャツを当日仕上げ！！" />
@@ -25,7 +24,6 @@ for($cnt=1,$idx=0; $cnt<5; $cnt++,$idx++){
 		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
 		<meta property="fb:app_id" content="1605142019732010" />
 		<title>お届け日がすぐに分かる! ｜ オリジナルTシャツ作成が早い、タカハマライフアート</title>
-		<link rel=canonical href="https://www.takahama428.com/">
 		<link rel="shortcut icon" href="/icon/favicon.ico">
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 		<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/flick/jquery-ui.css">
@@ -37,9 +35,6 @@ for($cnt=1,$idx=0; $cnt<5; $cnt++,$idx++){
 		<header>
 			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
 		</header>
-
-		<div class="container-fluid">
-		</div>
 
 		<div id="container">
 			<div class="contents">
@@ -159,7 +154,7 @@ for($cnt=1,$idx=0; $cnt<5; $cnt++,$idx++){
 						<div class="order_img"><img src="/delivery/img/deli/go_pattern.jpg"></div>
 					</div>
 					<div class="order_bubble">
-						<a href="/order/" class="order_btn"><img src="/delivery/img/deli/sp_go_icon.png">作ってみる</a>
+						<a href="/order/" class="order_btn"><img src="/delivery/img/deli/sp_go_icon.png">お申し込み</a>
 						<img class="bubble_img" src="/delivery/img/deli/sp_go_min.png">
 					</div>
 				</div>
@@ -304,7 +299,7 @@ for($cnt=1,$idx=0; $cnt<5; $cnt++,$idx++){
 						<div class="order_img"><img src="/delivery/img/deli/go_pattern.jpg"></div>
 					</div>
 					<div class="order_bubble">
-						<a href="/order/" class="order_btn"><img src="/delivery/img/deli/sp_go_icon.png">作ってみる</a>
+						<a href="/order/" class="order_btn"><img src="/delivery/img/deli/sp_go_icon.png">お申し込み</a>
 						<img class="bubble_img" src="/delivery/img/deli/sp_go_min.png">
 					</div>
 				</div>

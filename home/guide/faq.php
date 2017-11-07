@@ -477,7 +477,7 @@
 
 
 					<div>
-						<a class="order_btn" href="/order/"><img src="/common/img/home/main/sp_go_icon.png" width="40px" style="padding-right: 12px;padding-bottom: 2px;"> 作ってみる
+						<a class="order_btn" href="/order/"><img src="/common/img/home/main/sp_go_icon.png" width="30px" style="padding-right: 1px;padding-bottom: 4px;"> お申し込み
 						</a>
 					</div>
 
