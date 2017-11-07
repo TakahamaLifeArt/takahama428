@@ -21,15 +21,14 @@ if ( isset($_SESSION['orders'], $_POST['ticket']) ) {
 	}
 	
 ?>
-	<!DOCTYPE html>
-	<html lang="ja">
+<!DOCTYPE html>
+<html lang="ja">
 
-	<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#  website: http://ogp.me/ns/website#">
+	<head prefix="og://ogp.me/ns# fb://ogp.me/ns/fb#  website: //ogp.me/ns/website#">
 		<meta charset="UTF-8">
 		<meta name="Description" content="WebでカンタンにオリジナルTシャツのお申し込みができます。簡単入力で瞬時に料金の目安がわかります！トレーナー・ポロシャツ・オリジナルTシャツの作成・プリントは、東京都葛飾区のタカハマライフアートにお任せ下さい！" />
 		<meta name="keywords" content="注文,お申し込み,オリジナル,Tシャツ,早い,東京" />
 		<meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1" />
-		<meta name="google-site-verification" content="PfzRZawLwE2znVhB5M7mPaNOKFoRepB2GO83P73fe5M" />
 		<title>お申し込みメールの送信完了　|　オリジナルTシャツ屋タカハマライフアート</title>
 		<link rel="shortcut icon" href="/icon/favicon.ico" />
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
@@ -38,33 +37,11 @@ if ( isset($_SESSION['orders'], $_POST['ticket']) ) {
 
 	<body>
 
-		<!-- Google Tag Manager -->
-		<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-T5NQFM"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-		<script>
-			(function(w, d, s, l, i) {
-				w[l] = w[l] || [];
-				w[l].push({
-					'gtm.start': new Date().getTime(),
-					event: 'gtm.js'
-				});
-				var f = d.getElementsByTagName(s)[0],
-					j = d.createElement(s),
-					dl = l != 'dataLayer' ? '&l=' + l : '';
-				j.async = true;
-				j.src =
-					'//www.googletagmanager.com/gtm.js?id=' + i + dl;
-				f.parentNode.insertBefore(j, f);
-			})(window, document, 'script', 'dataLayer', 'GTM-T5NQFM');
-
-		</script>
-		<!-- End Google Tag Manager -->
-
+		<header>
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
-
+		</header>
 
 		<div id="container">
-			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/globalnavi.php"; ?>
 			<div class="contents">
 				<?php
 				$cst = 'cst';
@@ -155,8 +132,7 @@ DOC;
 		</footer>
 
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
-		<script type="text/javascript" src="/common/js/jquery.js"></script>
-		<script type="text/javascript" src="/common/js/tlalib.js"></script>
+
 	</body>
 
-	</html>
+</html>

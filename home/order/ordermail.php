@@ -18,6 +18,7 @@
 				  2017-05-25 プリント代計算の仕様変更によるプリント情報の更新
 				  2017-06-16 デザインサイズの指定を廃止して「大」で固定
 				  2017-09-12 デザインファイルのメール添付を廃止
+				  2017-11-07 注文データの登録処理を更新
 
 -------------------------------------------------------------- */
 require_once dirname(__FILE__).'/../php_libs/http.php';
@@ -334,6 +335,11 @@ class Ordermail extends Conndb{
 					$fname = rawurldecode(basename($uploadfilename[$a]));
 					$order_info_user .= "◇ファイル名：　".$fname."\n";
 				}
+				if (empty($order_id)) {
+					$order_info_admin .= "\n===  Error  ===\n";
+					$order_info_admin .= "\n◇ 注文データの送信中にエラーが発生しています。\n";
+					$order_info_admin .= "\n===\n\n";
+				}
 				$order_info_admin .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
 				$order_info_user .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
 			}
@@ -509,7 +515,7 @@ class Ordermail extends Conndb{
 	 * @return {int} OrderID
 	 */
 	public function insertOrderToDB($uploadpath){
-		$httpObj = new HTTP(_ORDER_INFO);
+//		$httpObj = new HTTP(_ORDER_INFO);
 		$items = $_SESSION['orders']['items'];
 		$user = $_SESSION['orders']['customer'];
 		$opts = $_SESSION['orders']['options'];
@@ -519,19 +525,26 @@ class Ordermail extends Conndb{
 		$customer_id = "";
 		//新規顧客の場合
 		if(empty($user['member'])){
-			$field1 = array("number","cstprefix","customer_id","customerruby","companyruby","customername","company","tel","mobile","fax","email","password","mobmail","bill","cutofday","cyclebilling","paymentday","remittancecharge","zipcode","addr0","addr1","addr2","addr3","addr4","reg_site");
-			$data1 = array("","k","",$user['customerruby'],"",$user['customername'],"",$user['tel'],"","",$user['email'],$user['pass'],"","1","20","1","31","1",$user['zipcode'],$user['addr0'],$user['addr1'],$user['addr2'],"","",_SITE);
+			$data1 = array(
+				"number"=>"","cstprefix"=>"k","customer_id"=>"",
+				"customerruby"=>$user['customerruby'],"companyruby"=>"","customername"=>$user['customername'],"company"=>"",
+				"tel"=>$user['tel'],"mobile"=>"","fax"=>"","email"=>$user['email'],"password"=>$user['pass'],"mobmail"=>"",
+				"bill"=>"1","cutofday"=>"20","cyclebilling"=>"1","paymentday"=>"31","remittancecharge"=>"1",
+				"zipcode"=>$user['zipcode'],"addr0"=>$user['addr0'],"addr1"=>$user['addr1'],"addr2"=>$user['addr2'],"addr3"=>"","addr4"=>"","reg_site"=>_SITE
+			);
 		} else {
 			//ログインした顧客の場合
 			$customer_id = $user['member'];
-			//$field1 = "";
-			$field1 = array("customer_id","customerruby","customername","tel","email","zipcode","addr0","addr1","addr2","reg_site");
-			$data1 = array($customer_id,$user['customerruby'],$user['customername'],$user['tel'],$user['email'],$user['zipcode'],$user['addr0'],$user['addr1'],$user['addr2'],_SITE);
+			$data1 = array(
+				"customer_id"=>$customer_id,
+				"customerruby"=>$user['customerruby'],"customername"=>$user['customername'],
+				"tel"=>$user['tel'],"email"=>$user['email'],
+				"zipcode"=>$user['zipcode'],"addr0"=>$user['addr0'],"addr1"=>$user['addr1'],"addr2"=>$user['addr2'],"reg_site"=>_SITE
+			);
 		}
 
 		// お届け先情報
-		$field2 = array("customer_id", "delivery_customer");
-		$data2 = array($customer_id, $user['delivery_customer']);
+		$data2 = array("customer_id"=>$customer_id, "delivery_customer"=>$user['delivery_customer']);
 
 		// 受注情報
 
@@ -732,14 +745,1358 @@ class Ordermail extends Conndb{
 		}
 
 		//管理システムにpost
-		$res = $httpObj->request('POST', array('act'=>'insert', 'mode'=>'order', 'field1'=>$field1, 'data1'=>$data1, 'field2'=>$field2, 'data2'=>$data2,
-				'field3'=>$field3, 'data3'=>$data3, 'field4'=>$field4, 'data4'=>$data4, 'field5'=>$field5, 'data5'=>$data5,
-				'field6'=>$field6, 'data6'=>$orderprint, 'field7'=>$field7, 'data7'=>$orderarea,
-				'field8'=>$field8, 'data8'=>$orderselectivearea, 'field9'=>$field9, 'data9'=>$orderink,
-				'field10'=>$field10, 'data10'=>$exchink, 'field12'=>$field12, 'data12'=>$data12, 'file'=>$file, 'name'=>$filename,'site'=>_SITE));
-		$response = explode(',', $res);
+//		$res = $httpObj->request('POST', array('act'=>'insert', 'mode'=>'order', 'field1'=>$field1, 'data1'=>$data1, 'field2'=>$field2, 'data2'=>$data2,
+//				'field3'=>$field3, 'data3'=>$data3, 'field4'=>$field4, 'data4'=>$data4, 'field5'=>$field5, 'data5'=>$data5,
+//				'field6'=>$field6, 'data6'=>$orderprint, 'field7'=>$field7, 'data7'=>$orderarea,
+//				'field8'=>$field8, 'data8'=>$orderselectivearea, 'field9'=>$field9, 'data9'=>$orderink,
+//				'field10'=>$field10, 'data10'=>$exchink, 'field12'=>$field12, 'data12'=>$data12, 'file'=>$file, 'name'=>$filename,'site'=>_SITE));
+//		$response = explode(',', $res);
 
+		// hash 1
+//		$data1 = OrdersInfo::hash1($field1, $data1);
+//		$data2 = OrdersInfo::hash1($field2, $data2);
+		
+		$data3 = $this->hash1($field3, $data3);
+		$data12 = $this->hash1($field12, $data12);
+
+		// hash 2
+		$data4 = $this->hash2($field4, $data4);
+		$data5 = $this->hash2($field5, $data5);
+		$data6 = $this->hash2($field6, $orderprint);
+		$data7 = $this->hash2($field7, $orderarea);
+		$data8 = $this->hash2($field8, $orderselectivearea);
+		$data9 = $this->hash2($field9, $orderink);
+		$data10 = $this->hash2($field10, $exchink);
+
+		$name = $filename;
+		$site = _SITE;
+		
+		$orders = new WebOrder();
+		$data = array($data1,$data2,$data3,$data4,$data5,$data6,$data7,$data8,$data9,$data10,$data12,$file,$name,$site);
+		
+		$res = $orders->db('insert', 'order', $data);
+		$response = explode(',', $res);
+		
 		return $response[0];
 	}
+	
+	/**
+	 * POSTされたデータから配列を生成
+	 *	@fld		フィールド名
+	 *	@dat		データ
+	 *
+	 *	return		フィールド名をキーにしたハッシュ
+	 */
+	public function hash1($fld, $dat){
+		for($i=0; $i<count($fld); $i++){
+			if(empty($fld[$i]) || !isset($dat[$i])) continue;
+			$hash[$fld[$i]] = $dat[$i];
+		}
+		return $hash;
+	}
+
+	/**
+	 * 複数のレコードに対応
+	 *  @fld		フィールド名
+	 *	@dat		データ [data|data|... , ]
+	 *
+	 *	return		フィールド名をキーにしたハッシュ
+	 */
+	public function hash2($fld, $dat){
+		for($i=0; $i<count($dat); $i++){
+			if(empty($dat[$i])) continue;
+			$tmp = explode("|", $dat[$i]);
+			for($c=0; $c<count($fld); $c++){
+				$hash[$i][$fld[$c]] = $tmp[$c];
+			}
+		}
+		return $hash;
+	}
 }
+
+
+class Design {
+
+	/*****************************************************
+	* saveDesFile
+	*	フロントエンドからの注文デザイン画像ファイル保存
+	*	$order_id ,$file ,$name ,$site
+	*
+	* @return {int} アップロードファイルの数
+	*/
+	public function saveDesFile($order_id, $file, $name, $site){
+//		$path = $_SERVER['DOCUMENT_ROOT']."/system/attatchfile/".$order_id;
+		$path = $_SERVER['DOCUMENT_ROOT'].'/../../dev_original-sweat.com/home/system/attatchfile/'.$order_id;
+		if(!is_dir($path)) {
+			mkdir($path);
+		}
+
+		$root = $_SERVER['DOCUMENT_ROOT']."/../../";
+		$fileCount = count($file);
+		$up = 0;
+		for($i=0;$i<$fileCount;$i++){
+			if(!$file[$i]){
+				break;
+			}
+			$fileName = basename($file[$i]);
+
+			// 同じファイル名の場合
+			//				while($this->checkFileName($order_id,$fileName)) {
+			//					$fileName = str_replace(".", "_next_.", $fileName);
+			//				}
+			$fileName = $path."/".$fileName;
+
+			// ファイルを移動
+			rename($root.$file[$i], $fileName);
+			$up++;
+		}
+
+		if ($up>0 && $up==$fileCount) {
+			$tmpPath = dirname($root.$file[0]);
+			$this->removeDirectory($tmpPath);
+		}
+
+		return $up;
+	}
+
+
+	/*****************************************************
+	* removeDirectory
+	*	ディレクトリとファイルを再帰的に全削除
+	*	$dir
+	*/
+	public function removeDirectory($dir) {
+		if ($handle = opendir("$dir")) {
+			while (false !== ($item = readdir($handle))) {
+				if ($item != "." && $item != "..") {
+					if (is_dir("$dir/$item")) {
+						$this->removeDirectory("$dir/$item");
+					} else {
+						unlink("$dir/$item");
+					}
+				}
+			}
+			closedir($handle);
+			rmdir($dir);
+		}
+	}
+
+
+	/*****************************************************
+	* checkFileName
+	*	デザイン画像ファイル名前の有無チェック
+	*	$order_id, $name, $folder
+	*/
+	public function checkFileName($order_id, $name, $folder){
+		$path =  $_SERVER['DOCUMENT_ROOT'].'/system/'.$folder.'/'.$order_id;
+		$res = file_exists($path."/".$name);
+		return $res;
+	}
+
+}
+
+
+class WebOrder {
+	private $print_codename = array(
+		'silk'=>array('name'=>'シルク','abbr'=>'S','index'=>0),
+		'inkjet'=>array('name'=>'IJ','abbr'=>'I','index'=>1),
+		'digit'=>array('name'=>'デジ','abbr'=>'D','index'=>2),
+		'trans'=>array('name'=>'TS','abbr'=>'T','index'=>3),
+		'cutting'=>array('name'=>'CS','abbr'=>'C','index'=>4),
+		'noprint'=>array('name'=>'商品のみ','abbr'=>'N','index'=>5),
+		'embroidery'=>array('name'=>'刺繍','abbr'=>'E','index'=>6),
+	);
+
+	/**
+	 *	パスワードの暗号化
+	 *	return		暗号化したバイナリーデータ
+	 */
+	public function getSha1Pass($s) {
+		if (empty($s)) return;
+		return sha1(_PASSWORD_SALT.$s);
+	}
+
+
+	/**
+	 * データベース接続
+	 */
+	private function db_connect(){
+		$dbUser = "tlauser";
+		$dbPass = "crystal428";
+		$dbHost = "localhost";
+		$dbName = "tladata1";
+		$dbType = "mysql";
+
+		/*
+		$conn = mysql_connect("$dbHost", "$dbUser", "$dbPass", true, 65536)
+			or die("MESSAGE : cannot connect!<BR>");
+		 */ 
+		$conn = mysqli_connect("$dbHost", "$dbUser", "$dbPass", "$dbName", true) 
+			or die("MESSAGE : cannot connect!". mysqli_error());
+		$conn->set_charset('utf8');
+		return $conn;
+	}
+
+
+	/**
+	 * エスケープ処理
+	 */
+	private function quote_smart($conn, $value){
+		if (!is_numeric($value)) {
+			if(get_magic_quotes_gpc()) $value = stripslashes($value);
+			$value = mysqli_real_escape_string($conn, $value);
+		}
+		return $value;
+	}
+
+
+	/**
+	 * SQLの発行
+	 */
+	private function exe_sql($conn, $sql){
+		$result = mysqli_query($conn, $sql)
+			or die ('Invalid query: '.$sql.' -->> '.mysqli_error());
+		return $result;
+	}
+	
+	
+	/***************************************************************************************************************
+	*		注文伝票データベースの操作
+	*		@func		処理内容
+	*		@table		テーブル名
+	*		@param		引数の配列
+	*
+	*		return		返り値
+	*/
+	public function db($func, $table, $param){
+		try{
+			$conn = $this->db_connect();
+
+			switch($func){
+				case 'insert':
+					mysqli_query($conn, 'BEGIN');
+					$result = $this->insert($conn, $table, $param);
+					if(!is_null($result)) mysqli_query($conn, 'COMMIT');
+					break;
+				case 'update':
+					mysqli_query($conn, 'BEGIN');
+					$result = $this->update($conn, $table, $param);
+					if(!is_null($result)) mysqli_query($conn, 'COMMIT');
+					break;
+//				case 'delete':
+//					mysqli_query($conn, 'BEGIN');
+//					$result = $this->delete($conn, $table, $param);
+//					if(!is_null($result)) mysqli_query($conn, 'COMMIT');
+//					break;
+				case 'search':
+					$result = $this->search($conn, $table, $param);
+					break;
+			}
+		}catch(Exception $e){
+			$result = null;
+		}
+
+		mysqli_close($conn);
+
+		return $result;
+	}
+
+
+	/***************************************************************************************************************
+	*	レコードの新規追加
+	*	@table		テーブル名
+	*	@data		追加データの配列、若しくは注文伝票ID
+	*
+	*	return		ID
+	*/
+	private function insert($conn, $table, $data){
+		try{
+			switch($table){
+				case 'order':
+				/**
+				 *	data1	顧客
+				 *	data2	お届け先
+				 *	data3	受注伝票
+				 *	data4	注文商品
+				 *	data5	業者の時の見積追加行
+				 *	data6	プリント情報（orderprint）
+				 *	data7	プリント位置（orderarea）
+				 *	data8	プリントポジション（orderselectivearea）
+				 *	data9	インク（orderink）
+				 *	data10	インク色替え（exchink）
+				 *	data12	発送元
+				 *	-----2016-12-07-------
+				 *  file		添付ファイルデータ
+			 	 *  name 		添付ファイル名
+			 	 *  site 		注文サイト
+				 *	return	受注ID, 顧客ID, 顧客Number | プリント位置ID,, | インクID,, | インク色替えID,, | 見積追加行ID,,
+				 */
+					list($data1, $data2, $data3, $data4, $data5, $data6, $data7, $data8, $data9, $data10, $data12, $file, $name, $site) = $data;
+					$customer_id = 0;
+					$deli_id = 0;
+					$ship_id=0;
+
+					if(isset($data1)){
+						if($data1["customer_id"] == "" || $data1["customer_id"] == "0"){
+							list($customer_id, $number) = $this->insert($conn, 'customer', $data1);
+							if(empty($customer_id)){
+								mysqli_query($conn, 'ROLLBACK');
+								return null;
+							}
+						}else{
+							$rs = $this->update($conn, 'customer', $data1);
+						}
+					}
+
+					if(isset($data2)){
+						if(empty($data2['delivery_id'])){
+							$newdata2 = $data2;
+							if(isset($data1)){
+								if($data1 != ""){
+									$newdata2 = array_merge($data1, $data2);
+								}
+							}
+							$deli_id = $this->insert($conn, 'delivery', $newdata2);
+						}else{
+							$deli_id = $this->update($conn, 'delivery', $data2);
+						}
+						if(empty($deli_id)){
+							mysqli_query($conn, 'ROLLBACK');
+							return null;
+						}
+					}
+					$delivery_id = empty($data2['delivery_id'])? $deli_id: $data2['delivery_id'];
+
+					if(isset($data12)){
+						$ship_id = $this->insert($conn, 'shipfrom', $data12);
+						if(empty($ship_id)){
+							mysqli_query($conn, 'ROLLBACK');
+							return null;
+						}
+					}
+
+					foreach($data3 as $key=>$val){
+						$info3[$key] = $this->quote_smart($conn, $val);
+					}
+
+					// Web注文の場合に箱数を算出
+					if (isset($site)) {
+						$package = $data3["package_yes"]==1? 'yes': 'no';
+						$param = array(
+							array('curdate'=>'', 'package'=>$package),
+							$data4,
+						);
+						$info3["boxnumber"] = $this->search($conn, 'numberOfBox', $param);
+					}
+
+					if(empty($info3["customer_id"]) || $customer_id!=0) $info3["customer_id"] = $customer_id;
+					$info3["delivery_id"] = $delivery_id;
+					$info3["shipfrom_id"] = $ship_id;
+					$info3['created'] = date("Y-m-d");
+					$info3['lastmodified'] = date("Y-m-d");
+					$sql = sprintf("INSERT INTO orders(reception, ordertype, applyto, maintitle, schedule1, schedule2, schedule3, schedule4, destination, arrival,
+					carriage, check_amount, noprint, design, manuscript, discount1, discount2, reduction, reductionname, handover, 
+					freeshipping, payment, order_comment, invoicenote, billnote, phase, budget, customer_id, delivery_id, created, 
+					lastmodified, estimated, order_amount, paymentdate, exchink_count, exchthread_count, deliver, deliverytime, manuscriptdate, purpose, 
+					purpose_text, job, designcharge, repeater, reuse, free_discount, free_printfee, completionimage, contact_number, additionalname, 
+					additionalfee, extradiscountname, extradiscount, shipfrom_id, package_yes, package_no, package_nopack, pack_yes_volume, pack_nopack_volume, boxnumber, 
+					factory, destcount, repeatdesign, allrepeat, staffdiscount)
+								VALUES(%d,'%s',%d,'%s','%s','%s','%s','%s',%d,'%s',
+								'%s',%d,%d,'%s','%s','%s','%s',%d,'%s','%s',
+								%d,'%s','%s','%s','%s','%s',%d,%d,%d,'%s',
+								'%s',%d,%d,'%s',%d,%d,%d,%d,'%s','%s',
+								'%s','%s',%d,%d,%d,%d,%d,%d,'%s','%s',
+								%d,'%s',%d,%d,%d,%d,%d,%d,%d,%d,
+								%d,%d,%d,%d,%d)",
+								   $info3["reception"],
+								   $info3["ordertype"],
+								   $info3["applyto"],
+								   $info3["maintitle"],
+								   $info3["schedule1"],
+								   $info3["schedule2"],
+								   $info3["schedule3"],
+								   $info3["schedule4"],
+								   $info3["destination"],
+								   $info3["arrival"],
+								   $info3["carriage"],
+								   $info3["check_amount"],
+								   $info3["noprint"],
+								   $info3["design"],
+								   $info3["manuscript"],
+								   $info3["discount1"],
+								   $info3["discount2"],
+								   $info3["reduction"],
+								   $info3["reductionname"],
+								   $info3['handover'],
+								   $info3["freeshipping"],
+								   $info3["payment"],
+								   $info3["order_comment"],
+								   $info3["invoicenote"],
+								   $info3["billnote"],
+								   $info3["phase"],
+								   $info3["budget"],
+								   $info3["customer_id"],
+								   $info3["delivery_id"],
+								   $info3["created"],
+								   $info3["lastmodified"],
+								   $info3["estimated"],
+								   $info3["order_amount"],
+								   $info3["paymentdate"],
+								   $info3["exchink_count"],
+								   $info3["exchthread_count"],
+								   $info3["deliver"],
+								   $info3["deliverytime"],
+								   $info3["manuscriptdate"],
+								   $info3["purpose"],
+								   $info3["purpose_text"],
+								   $info3["job"],
+								   $info3["designcharge"],
+								   $info3["repeater"],
+								   $info3["reuse"],
+								   $info3["free_discount"],
+								   $info3["free_printfee"],
+								   $info3["completionimage"],
+								   $info3["contact_number"],
+								   $info3["additionalname"],
+								   $info3["additionalfee"],
+								   $info3["extradiscountname"],
+								   $info3["extradiscount"],
+								   $info3["shipfrom_id"],
+								   $info3["package_yes"],
+								   $info3["package_no"],
+								   $info3["package_nopack"],
+								   $info3["pack_yes_volume"],
+								   $info3["pack_nopack_volume"],
+								   $info3["boxnumber"],
+								   $info3["factory"],
+								   $info3["destcount"],
+								   $info3["repeatdesign"],
+								   $info3["allrepeat"],
+								   $info3["staffdiscount"]
+
+								  );
+
+					if($this->exe_sql($conn, $sql)){
+						$rs = mysqli_insert_id($conn);
+						$orders_id = $rs;
+
+						/* reuse 2014-12-10 仕様変更、版元のreuseへの255の設定を廃止
+					if($info3['repeater']!=0){
+						$sql= sprintf("UPDATE orders SET reuse=%d WHERE id=%d", 255, $info3["repeater"]);
+						if(!$this->exe_sql($conn, $sql)){
+							mysqli_query($conn, 'ROLLBACK');
+							return null;
+						}
+					}
+					*/
+
+						// orderprint
+						$orderareaid = array();
+						$orderinkid = array();
+						$exchinkid = array();
+						for($i=0; $i<count($data6); $i++){
+							$sql = sprintf("INSERT INTO orderprint(orders_id,category_id,printposition_id,subprice) VALUES(%d,%d,'%s',%d)",
+										   $orders_id,
+										   $data6[$i]['category_id'],
+										   $data6[$i]['printposition_id'],
+										   $data6[$i]['subprice']);
+							if($this->exe_sql($conn, $sql)){
+								$orderprint_id = mysqli_insert_id($conn);
+							}else{
+								mysqli_query($conn, 'ROLLBACK');
+								return null;
+							}
+
+							// orderarea
+							for($t=0; $t<count($data7); $t++){
+								if($data7[$t]['print_id']!=$i) continue;
+								$sql = sprintf("INSERT INTO orderarea(orderprint_id,area_path,area_name,origin,ink_count,print_type,
+								areasize_from,areasize_to,areasize_id,print_option,jumbo_plate,design_plate,design_type,design_size,repeat_check,silkmethod)
+								VALUES(%d,'%s','%s',%d,%d,'%s',%d,%d,%d,%d,%d,%d,'%s','%s',%d,%d)",
+											   $orderprint_id,
+											   'txt/'.$data7[$t]['area_path'].'/'.$data7[$t]['area_name'].'.txt',
+											   $data7[$t]['area_name'],
+											   $data7[$t]['origin'],
+											   $data7[$t]['ink_count'],
+											   $data7[$t]['print_type'],
+											   $data7[$t]['areasize_from'],
+											   $data7[$t]['areasize_to'],
+											   $data7[$t]['areasize_id'],
+											   $data7[$t]['print_option'],
+											   $data7[$t]['jumbo_plate'],
+											   $data7[$t]['design_plate'],
+											   $data7[$t]['design_type'],
+											   $data7[$t]['design_size'],
+											   $data7[$t]['repeat_check'],
+											   $data7[$t]['silkmethod']
+											  );
+								if($this->exe_sql($conn, $sql)){
+									$orderarea_id = mysqli_insert_id($conn);
+									$orderareaid[$t] = $orderarea_id;
+								}else{
+									mysqli_query($conn, 'ROLLBACK');
+									return null;
+								}
+
+								// orderselectivearea
+								for($s=0; $s<count($data8); $s++){
+									if($data8[$s]['area_id']==$t){
+										$sql = sprintf("INSERT INTO orderselectivearea(orderarea_id,selective_key,selective_name) VALUES(%d,'%s','%s')",
+													   $orderarea_id,
+													   $data8[$s]['selective_key'],
+													   $data8[$s]['selective_name']);
+										if(!$this->exe_sql($conn, $sql)){
+											mysqli_query($conn, 'ROLLBACK');
+											return null;
+										}
+										break;
+									}
+								}
+
+								// orderink
+								for($s=0; $s<count($data9); $s++){
+									if($data9[$s]['area_id']!=$t) continue;
+									$sql = sprintf("INSERT INTO orderink(orderarea_id,ink_name,ink_code,ink_position) VALUES(%d,'%s','%s','%s')",
+												   $orderarea_id, $data9[$s]['ink_name'], $data9[$s]['ink_code'], $data9[$s]['ink_position']);
+									if($this->exe_sql($conn, $sql)){
+										$orderink_id = mysqli_insert_id($conn);
+										$orderinkid[$s] = mysqli_insert_id($conn);
+									}else{
+										mysqli_query($conn, 'ROLLBACK');
+										return null;
+									}
+
+									// exchange ink
+									/*
+								for($a=0; $a<count($data10); $a++){
+									if($data10[$a]['ink_id']!=$s) continue;
+									$sql = sprintf("INSERT INTO exchink(orderink_id,exchink_name,exchink_code,exchink_volume) VALUES(%d,'%s','%s',%d)",
+									$orderink_id, $data10[$a]['exchink_name'], $data10[$a]['exchink_code'], $data10[$a]['exchink_volume']);
+									if($this->exe_sql($conn, $sql)){
+										$exchinkid[$a] = mysqli_insert_id($conn);
+									}else{
+										mysqli_query($conn, 'ROLLBACK');
+										return null;
+									}
+								}
+								*/
+
+								}
+							}
+						}
+
+						if(!empty($info3['media'])){
+							$tmp = explode(',', $info3['media']);
+							for($i=0; $i<count($tmp); $i++){
+								$media = explode('|', $tmp[$i]);
+								if($media[0]=='mediacheck02'){
+									$mediacheck02 = $media[1];
+								}
+							}
+						}
+						$sql = sprintf("INSERT INTO contactchecker(orders_id,firstcontactdate,staff_id,medianame,attr) VALUES(%d,'%s',%d,'%s','%s')",
+									   $orders_id, date("Y-m-d"), $info3["reception"], $mediacheck02, $info3["purpose"]);
+						if(!$this->exe_sql($conn, $sql)){
+							mysqli_query($conn, 'ROLLBACK');
+							return null;
+						}
+
+						$result = $this->insert($conn, 'orderitem', array($orders_id, $info3["ordertype"], $data4));
+						if(empty($result)){
+							mysqli_query($conn, 'ROLLBACK');
+							return null;
+						}
+
+						// 進捗ID  Web注文: 90、注文システム: 1
+						if(isset($site)){
+							$sql = sprintf("INSERT INTO acceptstatus(orders_id,progress_id) VALUES(%d, 90)", $orders_id);
+						} else {
+							$sql = sprintf("INSERT INTO acceptstatus(orders_id,progress_id) VALUES(%d, 1)", $orders_id);
+						}
+						if(!$this->exe_sql($conn, $sql)){
+							mysqli_query($conn, 'ROLLBACK');
+							return null;
+						}
+
+						$sql = sprintf("INSERT INTO progressstatus(orders_id,rakuhan) VALUES(%d,%d)", $orders_id, $info3['rakuhan']);
+						if(!$this->exe_sql($conn, $sql)){
+							mysqli_query($conn, 'ROLLBACK');
+							return null;
+						}
+
+						$sql = sprintf("select print_type from 
+						 (orderprint inner join orderarea on orderprint.id=orderarea.orderprint_id)
+						 right join orderselectivearea on orderarea.areaid=orderselectivearea.orderarea_id
+						 where orders_id=%d group by orders_id, print_type", $orders_id);
+						$result = $this->exe_sql($conn, $sql);
+						$f = $info3['factory'];
+						if(mysqli_num_rows($result)>0){
+							if($info3['repeater']==0){
+								$sql = "INSERT INTO printstatus(orders_id,printtype_key,factory_2,factory_3,factory_4,factory_5,factory_6,factory_7) VALUES";
+								while($res = mysqli_fetch_assoc($result)){
+									$sql .= "(".$orders_id.",'".$res['print_type']."',".$f.",".$f.",".$f.",".$f.",".$f.",".$f."),";
+								}
+								if($info3['noprint']==1){
+									$sql .= "(".$orders_id.",'noprint',".$f.",".$f.",".$f.",".$f.",".$f.",".$f."),";
+								}
+							}else{
+								$sql = "INSERT INTO printstatus(orders_id,printtype_key,state_1,state_2,factory_2,factory_3,factory_4,factory_5,factory_6,factory_7) VALUES";
+								while($res = mysqli_fetch_assoc($result)){
+									if($res['print_type']=='silk' || $res['print_type']=='digit'){
+										$sql .= "(".$orders_id.",'".$res['print_type']."',28,28,".$f.",".$f.",".$f.",".$f.",".$f.",".$f."),";
+									}else{
+										$sql .= "(".$orders_id.",'".$res['print_type']."',43,0,".$f.",".$f.",".$f.",".$f.",".$f.",".$f."),";
+									}
+								}
+								if($info3['noprint']==1){
+									$sql .= "(".$orders_id.",'noprint',28,28,".$f.",".$f.",".$f.",".$f.",".$f.",".$f."),";
+								}
+							}
+
+							$sql = substr($sql, 0, -1);
+							if(!$this->exe_sql($conn, $sql)){
+								mysqli_query($conn, 'ROLLBACK');
+								return null;
+							}
+						}else if($info3['noprint']==1){
+							$sql = "INSERT INTO printstatus(orders_id,printtype_key,factory_2,factory_3,factory_4,factory_5,factory_6,factory_7) VALUES";
+							$sql .= "(".$orders_id.",'noprint',".$f.",".$f.",".$f.",".$f.",".$f.",".$f.")";
+							if(!$this->exe_sql($conn, $sql)){
+								mysqli_query($conn, 'ROLLBACK');
+								return null;
+							}
+						}
+
+						// シルク作業予定レコードを新規追加
+						$sql = sprintf("select * from printstatus where orders_id=%d and printtype_key='silk'", $orders_id);
+						$result = $this->exe_sql($conn, $sql);
+						if(mysqli_num_rows($result)>0){
+							$res = mysqli_fetch_assoc($result);
+							$sql = "INSERT INTO workplan(orders_id, prnstatus_id, wp_printkey, quota) VALUES";
+							$sql .= "(".$orders_id.", ".$res['prnstatusid'].", 'silk', 100)";
+							if(!$this->exe_sql($conn, $sql)){
+								mysqli_query($conn, 'ROLLBACK');
+								return null;
+							}
+						}
+
+						if(!empty($info3["discount"])){
+							$result = $this->insert($conn, 'discount', array("orders_id"=>$orders_id, "discount"=>$info3["discount"]));
+							if(is_null($result)){
+								mysqli_query($conn, 'ROLLBACK');
+								return null;
+							}
+						}
+
+						if(!empty($info3['media']) || !empty($info3['media_other'])){
+							$result = $this->insert($conn, 'media', array("orders_id"=>$orders_id, "media"=>array($info3["media"], $info3['media_other'])));
+							if(is_null($result)){
+								mysqli_query($conn, 'ROLLBACK');
+								return null;
+							}
+						}
+
+						if($info3['ordertype']=='general'){
+							$sql = sprintf("INSERT INTO estimatedetails(productfee,printfee,
+								silkprintfee,colorprintfee,digitprintfee,inkjetprintfee,cuttingprintfee,embroideryprintfee,
+								exchinkfee,packfee,expressfee,discountfee,reductionfee,carriagefee,
+								extracarryfee,designfee,codfee,conbifee,basefee,salestax,creditfee,orders_id)
+							   VALUES(%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d)",
+										   $info3["productfee"],
+										   $info3["printfee"],
+										   $info3["silkprintfee"],
+										   $info3["colorprintfee"],
+										   $info3["digitprintfee"],
+										   $info3["inkjetprintfee"],
+										   $info3["cuttingprintfee"],
+										   $info3["embroideryprintfee"],
+										   $info3["exchinkfee"],
+										   $info3["packfee"],
+										   $info3["expressfee"],
+										   $info3["discountfee"],
+										   $info3["reductionfee"],
+										   $info3["carriagefee"],
+										   $info3["extracarryfee"],
+										   $info3["designfee"],
+										   $info3["codfee"],
+										   $info3["conbifee"],
+										   $info3["basefee"],
+										   $info3["salestax"],
+										   $info3["creditfee"],
+										   $orders_id);
+							if(!$this->exe_sql($conn, $sql)){
+								mysqli_query($conn, 'ROLLBACK');
+								return null;
+							}
+
+						}else{
+							if(!empty($data5)){
+								$addestid = array();	// 見積追加行のIDを代入
+								$sql = "INSERT INTO additionalestimate(addsummary,addamount,addcost,addprice,orders_id) VALUES";
+								for($i=0; $i<count($data5); $i++){
+									$sql .= "('".$this->quote_smart($conn, $data5[$i]['addsummary'])."'";
+									$sql .= ",".$this->quote_smart($conn, $data5[$i]['addamount']);
+									$sql .= ",".$this->quote_smart($conn, $data5[$i]['addcost']);
+									$sql .= ",".$this->quote_smart($conn, $data5[$i]['addprice']);
+									$sql .= ",".$orders_id."),";
+								}
+								$sql = substr($sql, 0, -1);
+								if(!$this->exe_sql($conn, $sql)){
+									mysqli_query($conn, 'ROLLBACK');
+									return null;
+								}
+
+								// 登録したIDを取得
+								$sql = sprintf("select addestid from additionalestimate where orders_id=%d", $orders_id);
+								$res = $this->exe_sql($conn, $sql);
+								if(!$res){
+									mysqli_query($conn, 'ROLLBACK');
+									return null;
+								}
+								while($rec = mysqli_fetch_assoc($res)){
+									$addestid[] = $rec['addestid'];
+								}
+							}
+						}
+
+					}else{
+						mysqli_query($conn, 'ROLLBACK');
+						return null;
+					}
+
+					//attatchfileにフォルダを新規、添付ファイルを伝送
+					if($file != ""){
+						$des = new Design();
+						$res0 = $des->saveDesFile($orders_id, $file, $name, $site);
+					}
+					// SESSIONに受注No.を登録
+					$_SESSION['edited'][$orders_id] = time();
+
+					$area_ids = '|';
+					if(!empty($orderareaid)){
+						$area_ids .= implode(',', $orderareaid);
+					}
+					$ink_ids = '|';
+					if(!empty($orderinkid)){
+						$ink_ids .= implode(',', $orderinkid);
+					}
+					$exch_ids = '|';
+					if(!empty($exchinkid)){
+						$exch_ids .= implode(',', $exchinkid);
+					}
+					$addest_ids = '|';
+					if(!empty($addestid)){
+						$addest_ids .= implode(',', $addestid);
+					}
+					return $orders_id.','.$customer_id.','.$delivery_id.','.$number.$area_ids.$ink_ids.$exch_ids.$addest_ids;
+					break;
+
+				case 'orderitem':
+					list($orders_id, $ordertype, $data2) = $data;
+					if(empty($data2)) return $orders_id;
+					if($ordertype=='general'){	// general
+						for($c=0; $c<count($data2); $c++){
+							$val = $data2[$c];
+							if(empty($val['choice'])) continue;
+							if( preg_match('/^mst/',$val['master_id']) ){
+								$prm = explode('_', $val['master_id']);
+								$val['item_name'] = $prm[2];
+								$val['item_color'] = $prm[3];
+								$ppID = $prm[1].'_'.$prm[2];
+
+								$item_id = $prm[1]==0? 0: 100000;
+
+								// orderprintのIDを取得
+								$sql = sprintf("select orderprint.id as print_id from orderprint where orders_id=%d and printposition_id='%s' and category_id=%d limit 1", 
+											   $orders_id, $ppID, $prm[1]);
+								$result = $this->exe_sql($conn, $sql);
+								if(!mysqli_num_rows($result)){
+									mysqli_query($conn, 'ROLLBACK');
+									return null;
+								}
+								$res = mysqli_fetch_assoc($result);
+
+								$sql = sprintf("INSERT INTO orderitem(master_id,size_id,amount,plateis,orders_id,print_id,item_cost,item_printfee,item_printone) VALUES(0,0,%d,%d,%d,%d,%d,%d,%d)",
+											   $val['amount'], $val['plateis'], $orders_id, $res['print_id'],$val['item_cost'],$val['item_printfee'],$val['item_printone']);
+								if(!$this->exe_sql($conn, $sql)){
+									mysqli_query($conn, 'ROLLBACK');
+									return null;
+								}
+								$latest = mysqli_insert_id($conn);
+								$sql = sprintf("INSERT INTO orderitemext(item_id,item_name,stock_number,maker,size_name,item_color,price,orderitem_id)
+							VALUES(%d,'%s','%s','%s','%s','%s','%s',%d)",
+											   $item_id,
+											   $val['item_name'],
+											   $val['stock_number'],
+											   $val['maker'],
+											   $val['size_name'],
+											   $val['item_color'],
+											   $val['price'],
+											   $latest);
+								$rs = $this->exe_sql($conn, $sql);
+								if(!$rs){
+									mysqli_query($conn, 'ROLLBACK');
+									return null;
+								}
+
+							}else{
+
+								// orderprintのIDを取得
+								$sql = sprintf("select orderprint.id as print_id from (orderprint inner join catalog
+									 on orderprint.category_id=catalog.category_id)
+									 inner join item on orderprint.printposition_id=item.printposition_id
+									 where catalog.item_id=item.id and orders_id=%d and catalog.id=%d",
+											   $orders_id, $val['master_id']);
+
+								$result = $this->exe_sql($conn, $sql);
+								if(!mysqli_num_rows($result)){
+									mysqli_query($conn, 'ROLLBACK');
+									return null;
+								}
+								$res = mysqli_fetch_assoc($result);
+
+								$sql2 = sprintf("INSERT INTO orderitem(master_id,size_id,amount,plateis,orders_id,print_id,item_cost,item_printfee,item_printone) VALUES(%d,%d,%d,%d,%d,%d,%d,%d,%d)", 
+												$val['master_id'],$val['size_id'],$val['amount'],$val['plateis'],$orders_id,$res['print_id'],$val['item_cost'],$val['item_printfee'],$val['item_printone']);
+								$rs = $this->exe_sql($conn, $sql2);
+								if(!$rs){
+									mysqli_query($conn, 'ROLLBACK');
+									return null;
+								}
+							}
+						}
+
+					}else{	// industry
+						for($i=0; $i<count($data2); $i++){
+							foreach($data2[$i] as $key=>$val){
+								$info[$key]	= $this->quote_smart($conn, $val);
+							}
+
+							// orderprintのIDを取得
+							if(strpos($info['position_id'], '_')!==false){	// その他商品または持込
+								$tmp = explode('_', $info['position_id']);
+								$sql = sprintf("select orderprint.id as print_id from orderprint where orders_id=%d and printposition_id='%s' and category_id=%d limit 1",
+											   $orders_id, $info['position_id'], $tmp[0]);
+							}else if($info['item_id']=='99999'){	// 転写シート
+								$sql = sprintf("select orderprint.id as print_id from orderprint where orders_id=%d and category_id=99 limit 1",
+											   $orders_id);
+							}else{
+								$sql = sprintf("select orderprint.id as print_id from item inner join orderprint
+								 on item.printposition_id=orderprint.printposition_id where orders_id=%d and item.id=%d limit 1",
+											   $orders_id, $info['item_id']);
+							}
+							$result = $this->exe_sql($conn, $sql);
+							if(!mysqli_num_rows($result)){
+								mysqli_query($conn, 'ROLLBACK');
+								return null;
+							}
+							$res = mysqli_fetch_assoc($result);
+
+							$sql = sprintf("INSERT INTO orderitem(master_id,size_id,amount,plateis,orders_id,print_id) VALUES(%d,%d,%d,%d,%d,%d)",
+										   $info['master_id'], $info['size_id'], $info['amount'], $info['plateis'], $orders_id, $res['print_id']);
+							$rs = $this->exe_sql($conn, $sql);
+							if(!$rs){
+								mysqli_query($conn, 'ROLLBACK');
+								return null;
+							}
+							$latest = mysqli_insert_id($conn);
+							$sql = sprintf("INSERT INTO orderitemext(item_id,item_name,stock_number,maker,size_name,item_color,price,orderitem_id)
+						VALUES(%d,'%s','%s','%s','%s','%s','%s',%d)",
+										   $info['item_id'],
+										   $info['item_name'],
+										   $info['stock_number'],
+										   $info['maker'],
+										   $info['size_name'],
+										   $info['item_color'],
+										   $info['price'],
+										   $latest);
+							$rs = $this->exe_sql($conn, $sql);
+							if(!$rs){
+								mysqli_query($conn, 'ROLLBACK');
+								return null;
+							}
+						}
+					}
+
+					return $rs;
+					break;
+
+				case 'discount':
+				/**
+				 *	data	"orders_id"=>n, "discount"=>ディスカウント名(カンマ区切り)
+				 */
+					foreach($data as $key=>$val){
+						$info[$key]	= $this->quote_smart($conn, $val);
+					}
+					$tmp = explode(',', $info['discount']);
+
+					$sql = "INSERT INTO discount(discount_name,discount_state,orders_id) VALUES";
+					for($t=0; $t<count($tmp); $t++){
+						$discount_name = substr($tmp[$t], 0, -1);
+						$state         = substr($tmp[$t],-1);
+
+						if($state==1){
+							$sql2 .= "('".$discount_name."',1,".$info["orders_id"]."),";
+						}
+					}
+
+					if(empty($sql2)) return 0;
+					$sql .= substr($sql2, 0, -1);
+
+					break;
+
+				case 'media':
+				/**
+				 * data	"orders_id"=>n,
+				 * 		"media"=>[name値|value値のカンマ区切り, その他のテキスト]
+				 */
+					$orders_id = $this->quote_smart($conn, $data['orders_id']);
+					list($list1, $media_other) = $data['media'];
+					$tmp = explode(',', $list1);
+
+					$sql = 'INSERT INTO media(media_type, media_value, orders_id) VALUES';
+					for($i=0; $i<count($tmp); $i++){
+						$media = explode('|', $tmp[$i]);
+						$sql2 .= '("'.$media[0].'","'.$media[1].'",'.$orders_id.'),';
+					}
+					if(!empty($media_other)){
+						$sql2 .= '("mediacheck03","'.$this->quote_smart($conn, $media_other).'",'.$orders_id.'),';
+					}
+					if(empty($sql2)) return 0;
+					$sql .= substr($sql2, 0, -1);
+
+					break;
+
+				case 'delivery':
+					foreach($data as $key=>$val){
+						$info[$key]	= $this->quote_smart($conn, $val);
+					}
+					//受注システムの場合
+					if(!empty($info[delizipcode]) && $info[delizipcode] != "") {
+						$sql = sprintf("INSERT INTO delivery(organization,agent,team,teacher,delizipcode,deliaddr0,deliaddr1,deliaddr2,deliaddr3,deliaddr4,delitel)
+							   VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
+									   $info["organization"],
+									   $info["agent"],
+									   $info["team"],
+									   $info["teacher"],
+									   $info["delizipcode"],
+									   $info["deliaddr0"],
+									   $info["deliaddr1"],
+									   $info["deliaddr2"],
+									   $info["deliaddr3"],
+									   $info["deliaddr4"],
+									   $info["delitel"]);
+					} else {
+						//Web注文からのデータ
+						//既存顧客の場合
+						if(!empty($info["delivery_customer"])) {
+							//お届き先を選んだ場合
+							if($info["delivery_customer"] != "-1") {
+								$sql = sprintf("INSERT INTO delivery(organization,agent,team,teacher,delizipcode,deliaddr0,deliaddr1,deliaddr2,deliaddr3,deliaddr4,delitel)
+								   SELECT organization,agent,team,teacher,delizipcode,deliaddr0,deliaddr1,deliaddr2,deliaddr3,deliaddr4,delitel FROM delivery_customer where id = %d",
+											   $info["delivery_customer"]);
+							} else {
+								//住所を選んだ場合
+								$sql = sprintf("INSERT INTO delivery(organization, delizipcode,deliaddr0,deliaddr1,deliaddr2,deliaddr3,deliaddr4,delitel)
+									   SELECT customername, zipcode,addr0,addr1,addr2,addr3,addr4,tel from customer where id = %d",
+											   $info["customer_id"]);
+							}
+						} else {
+							//新規顧客の場合、画面で入力した情報を登録
+							$sql = sprintf("INSERT INTO delivery(organization,agent,team,teacher,delizipcode,deliaddr0,deliaddr1,deliaddr2,deliaddr3,deliaddr4,delitel)
+							   VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
+										   $info["customername"],
+										   $info["agent"],
+										   $info["team"],
+										   $info["teacher"],
+										   $info["zipcode"],
+										   $info["addr0"],
+										   $info["addr1"],
+										   $info["addr2"],
+										   $info["addr3"],
+										   $info["addr4"],
+										   $info["tel"]);
+						}
+					}
+					break;
+
+				case 'shipfrom':
+					foreach($data as $key=>$val){
+						$info[$key]	= $this->quote_smart($conn, $val);
+					}
+					$sql = sprintf("INSERT INTO shipfrom(shipfromname,shipfromruby,shipzipcode,shipaddr0,shipaddr1,shipaddr2,shipaddr3,shipaddr4,shiptel,shipfax,shipemail)
+							   VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
+								   $info["shipfromname"],
+								   $info["shipfromruby"],
+								   $info["shipzipcode"],
+								   $info["shipaddr0"],
+								   $info["shipaddr1"],
+								   $info["shipaddr2"],
+								   $info["shipaddr3"],
+								   $info["shipaddr4"],
+								   $info["shiptel"],
+								   $info["shipfax"],
+								   $info["shipemail"]
+								  );
+					break;
+
+				case 'customer':
+					foreach($data as $key=>$val){
+						$info[$key]	= $this->quote_smart($conn, $val);
+					}
+					$sql = sprintf("select number from customer where cstprefix='%s' order by number desc limit 1 for update", $info['cstprefix']);
+					$result = $this->exe_sql($conn, $sql);
+					if(!mysqli_num_rows($result)){
+						$number = 1;
+					}else{
+						$res = mysqli_fetch_assoc($result);
+						$number = $res['number']+1;
+					}
+					$reg_site = $info['reg_site'];
+					if($reg_site == null || $reg_site == "" || ($reg_site != "1" && $reg_site != "5" && $reg_site != "6")) {
+						$reg_site = "1";
+					}
+					$zipcode = str_replace('-', '', $info["zipcode"]);
+					$tel = str_replace('-', '', $info["tel"]);
+					$fax = str_replace('-', '', $info["fax"]);
+					$mobile = str_replace('-', '', $info["mobile"]);
+					$sql = sprintf("INSERT INTO customer(number,cstprefix,customername,customerruby,zipcode,addr0,addr1,addr2,addr3,addr4,tel,fax,email,mobmail,
+				company,companyruby,mobile,job,customernote,bill,remittancecharge,cyclebilling,cutofday,paymentday,consumptiontax,password,reg_site,use_created)
+							   VALUES(%d,'%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s',%d,%d,%d,%d,%d,%d,'%s','%s', now())",
+								   $number,
+								   $info['cstprefix'],
+								   $info["customername"],
+								   $info["customerruby"],
+								   $zipcode,
+								   $info["addr0"],
+								   $info["addr1"],
+								   $info["addr2"],
+								   $info["addr3"],
+								   $info["addr4"],
+								   $tel,
+								   $fax,
+								   $info["email"],
+								   $info["mobmail"],
+								   $info["company"],
+								   $info["companyruby"],
+								   $mobile,
+								   $info["job"],
+								   $info['customernote'],
+								   $info['bill'],
+								   $info['remittancecharge'],
+								   $info['cyclebilling'],
+								   $info['cutofday'],
+								   $info['paymentday'],
+								   2,
+								   $this->getSha1Pass($info['password']),
+								   $reg_site
+								  );
+
+					if($this->exe_sql($conn, $sql)){
+						$newid = mysqli_insert_id($conn);
+						$rs = array($newid, $number);
+					}else{
+						mysqli_query($conn, 'ROLLBACK');
+						return null;
+					}
+
+					return $rs;
+					break;
+
+			}
+
+
+			if($this->exe_sql($conn, $sql)){
+				$rs = mysqli_insert_id($conn);
+			}else{
+				mysqli_query($conn, 'ROLLBACK');
+				return null;
+			}
+
+		}catch(Exception $e){
+			mysqli_query($conn, 'ROLLBACK');
+			$rs = null;
+		}
+
+		return $rs;
+	}
+
+
+	/***************************************************************************************************************
+	*	レコードの修正更新
+	*	@table		テーブル名
+	*	@data		更新データの配列
+	*
+	*	return		成功したら更新されたレコード数
+	*/
+	private function update($conn, $table, $data){
+		try{
+			$flg= true;
+			switch($table){
+				case 'customer':
+					foreach($data as $key=>$val){
+						$data[$key]	= $this->quote_smart($conn, $val);
+					}
+
+					if(isset($data['cancel'])){		// 受注伝票との関連付けを取り消す 2013-11-02 廃止
+						// $sql = sprintf("UPDATE orders SET customer_id='0' WHERE id='%s'", $data["id"]);
+					}else if(!isset($data['from_ordersystem']) && isset($data['reg_site'])){
+						$zipcode = str_replace('-', '', $data["zipcode"]);
+						$tel = str_replace('-', '', $data["tel"]);
+						$sql = sprintf("UPDATE customer
+							   SET customername='%s',customerruby='%s',
+							   zipcode='%s',addr0='%s',addr1='%s',addr2='%s',tel='%s',email='%s' WHERE id=%d",
+									   $data["customername"],
+									   $data["customerruby"],
+									   $zipcode,
+									   $data["addr0"],
+									   $data["addr1"],
+									   $data["addr2"],
+									   $tel,
+									   $data["email"],
+									   $data["customer_id"]);
+					}else{
+						$zipcode = str_replace('-', '', $data["zipcode"]);
+						$tel = str_replace('-', '', $data["tel"]);
+						$fax = str_replace('-', '', $data["fax"]);
+						$mobile = str_replace('-', '', $data["mobile"]);
+						if(isset($data['reg_site'])) {
+							$sql = sprintf("UPDATE customer
+							   SET customername='%s',customerruby='%s',
+							   zipcode='%s',addr0='%s',addr1='%s',addr2='%s',addr3='%s',addr4='%s',tel='%s',fax='%s',email='%s',mobmail='%s',
+							   company='%s',companyruby='%s',mobile='%s',job='%s',customernote='%s',
+							   bill=%d,remittancecharge=%d,cyclebilling=%d,
+							   cutofday=%d,paymentday=%d,consumptiontax=%d, reg_site=%s WHERE id=%d",
+										   $data["customername"],
+										   $data["customerruby"],
+										   $zipcode,
+										   $data["addr0"],
+										   $data["addr1"],
+										   $data["addr2"],
+										   $data["addr3"],
+										   $data["addr4"],
+										   $tel,
+										   $fax,
+										   $data["email"],
+										   $data["mobmail"],
+										   $data["company"],
+										   $data["companyruby"],
+										   $mobile,
+										   $data["job"],
+										   $data["customernote"],
+										   $data["bill"],
+										   $data["remittancecharge"],
+										   $data["cyclebilling"],
+										   $data["cutofday"],
+										   $data["paymentday"],
+										   2,
+										   $data["reg_site"],
+										   $data["customer_id"]);
+						} else {
+							$sql = sprintf("UPDATE customer
+							   SET customername='%s',customerruby='%s',
+							   zipcode='%s',addr0='%s',addr1='%s',addr2='%s',addr3='%s',addr4='%s',tel='%s',fax='%s',email='%s',mobmail='%s',
+							   company='%s',companyruby='%s',mobile='%s',job='%s',customernote='%s',
+							   bill=%d,remittancecharge=%d,cyclebilling=%d,
+							   cutofday=%d,paymentday=%d,consumptiontax=%d WHERE id=%d",
+										   $data["customername"],
+										   $data["customerruby"],
+										   $zipcode,
+										   $data["addr0"],
+										   $data["addr1"],
+										   $data["addr2"],
+										   $data["addr3"],
+										   $data["addr4"],
+										   $tel,
+										   $fax,
+										   $data["email"],
+										   $data["mobmail"],
+										   $data["company"],
+										   $data["companyruby"],
+										   $mobile,
+										   $data["job"],
+										   $data["customernote"],
+										   $data["bill"],
+										   $data["remittancecharge"],
+										   $data["cyclebilling"],
+										   $data["cutofday"],
+										   $data["paymentday"],
+										   2,
+										   $data["customer_id"]);
+						}
+					}
+					$rs = $this->exe_sql($conn, $sql);
+					if(!$rs){
+						mysqli_query($conn, 'ROLLBACK');
+						return null;
+					}
+					$rs = mysqli_affected_rows($conn);
+
+					// 未確定注文の場合に、支払区分が月締めの場合は、入金を済みにし発送可にする
+					if(isset($data['orders_id'])){
+						$sql = sprintf("SELECT * FROM acceptstatus WHERE orders_id=%d", $data['orders_id']);
+						$result = $this->exe_sql($conn, $sql);
+						if(!$result){
+							mysqli_query($conn, 'ROLLBACK');
+							return null;
+						}
+						$res = mysqli_fetch_assoc($result);
+						if($res['progress_id']!=4){
+							if($data["bill"]==2){		// 支払区分（1:都度請求　2:月〆請求）
+								$readytoship=1;	// 発送可
+								$deposit=2;		// 入金済み
+							}else{
+								$sql2 = "select * from orders inner join customer on customer_id=customer.id where orders.id=".$data['orders_id'];
+								$result = $this->exe_sql($conn, $sql2);
+								if($result===false){
+									mysqli_query($conn, 'ROLLBACK');
+									return null;
+								}
+								$rec = mysqli_fetch_assoc($result);
+								$payment = $rec['payment'];
+								if($payment=='cash' || $payment=='cod'){
+									$readytoship=1;	// 発送可
+								}else{
+									$readytoship=0;	// 発送不可
+								}
+								$deposit=1;		// 未入金
+							}
+
+							$sql = sprintf("update progressstatus set readytoship=%d, deposit=%d where orders_id=%d", $readytoship, $deposit, $data['orders_id']);
+							if(!$this->exe_sql($conn, $sql)){
+								mysqli_query($conn, 'ROLLBACK');
+								return null;
+							}
+						}
+					}
+
+					$flg = false;
+					break;
+
+				case 'delivery':
+					if(isset($data['delivery_id'])){
+						$id = $data['delivery_id'];
+					}else{
+						$id = $data['id'];
+					}
+					if(isset($data['modify'])){
+						// delivery_idの付け替え
+						$sql= sprintf("UPDATE orders SET delivery_id=%d WHERE delivery_id=%d", $data["modify"],$id);
+					}else{
+						foreach($data as $key=>$val){
+							$data[$key]	= $this->quote_smart($conn, $val);
+						}
+						$sql= sprintf("UPDATE delivery
+								   SET organization='%s',
+								   agent='%s',
+								   team='%s',
+								   teacher='%s',
+								   delizipcode='%s',
+								   deliaddr0='%s',
+								   deliaddr1='%s',
+								   deliaddr2='%s',
+								   deliaddr3='%s',
+								   deliaddr4='%s',
+								   delitel='%s' WHERE id=%d",
+									  $data["organization"],
+									  $data["agent"],
+									  $data["team"],
+									  $data["teacher"],
+									  $data["delizipcode"],
+									  $data["deliaddr0"],
+									  $data["deliaddr1"],
+									  $data["deliaddr2"],
+									  $data["deliaddr3"],
+									  $data["deliaddr4"],
+									  $data["delitel"],
+									  $id);
+					}
+					break;
+
+			}
+
+			if($flg){
+				$rs = $this->exe_sql($conn, $sql);
+				if(!$rs){
+					mysqli_query($conn, 'ROLLBACK');
+					return null;
+				}
+			}
+
+		}catch(Exception $e){
+			mysqli_query($conn, 'ROLLBACK');
+			$rs = null;
+		}
+		return $rs;
+	}
+
+
+	/***************************************************************************************************************
+	*	レコードの検索
+	*	@table		テーブル名
+	*	@data		検索キーの配列
+	*
+	*	return		健作結果の配列
+	*/
+	private function search($conn, $table, $data){
+		try{
+			if(isset($data) && !is_array($data)){
+				foreach($data as $key=>$val){
+					$data[$key] = $this->quote_smart($conn, $val);
+				}
+			}
+			$rs = array();
+			$flg = true;
+			switch($table){
+				case 'numberOfBox':
+				/**
+				 *	1箱あたりの最大枚数
+				 *	mypage.js で使用
+				 *	$data1	{schedule2,package}
+				 *	$data2	[{アイテムID,サイズID,枚数},{}, ...]
+				 */
+					list($data1, $data2) = $data;
+					if(empty($data1['curdate'])){
+						$data1['curdate'] = date('Y-m-d');
+					}else{
+						$d = explode('-', $data1['curdate']);
+						if(checkdate($d[1], $d[2], $d[0])==false){
+							$data1['curdate'] = date('Y-m-d');
+						}
+					}
+					$box = 0;
+					$rs = 0;
+					for($i=0; $i<count($data2); $i++){
+						$sql = "SELECT * FROM itemsize where itemsizeapply<='%s' and itemsizedate>'%s' and item_id=%d and size_from=%d limit 1";
+						$sql = sprintf($sql, $data1['curdate'],$data1['curdate'],$data2[$i]['item_id'],$data2[$i]['size_id']);
+						$result = $this->exe_sql($conn, $sql);
+						while($rec = mysqli_fetch_assoc($result)){
+							if(empty($rec['numberpack'])) continue;
+							if($data1['package']=='yes'){
+								$box += $data2[$i]['amount']/$rec['numberpack'];
+							}else{
+								$box += $data2[$i]['amount']/$rec['numbernopack'];
+							}
+						}
+					}
+					$rs = ceil($box);
+
+					$flg = false;
+					break;
+			}
+
+			if($flg){
+				$result = $this->exe_sql($conn, $sql);
+				while($res = mysqli_fetch_assoc($result)){
+					$rs[] = $res;
+				}
+			}
+		}catch(Exception $e){
+			$rs = null;
+		}
+
+		return $rs;
+	}
+
+}
+
 ?>
