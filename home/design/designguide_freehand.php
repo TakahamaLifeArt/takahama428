@@ -223,7 +223,7 @@
 									<div>
 										<p class="comment">デザインデータは申し込みの際にご入稿ください。</p>
 										<div class="order_bubble">
-											<a href="/order/index.php" class="order_btn"><img src="/delivery/img/deli/sp_go_icon.png" width="20%;">作ってみる</a>
+											<a href="/order/index.php" class="order_btn"><img src="/delivery/img/deli/sp_go_icon.png" width="20%;">お申し込み</a>
 											<img class="bubble_img" src="/delivery/img/deli/sp_go_min.png" width="100%;"></div>
 									</div>
 									<p class="bold2">申し込み後に入稿、再入稿される方は
@@ -298,7 +298,7 @@
 						<div>
 							<p class="comment">デザインデータは申し込みの際にご入稿ください。</p>
 							<div class="order_bubble">
-								<a href="/order/index.php" class="order_btn"><img src="/delivery/img/deli/sp_go_icon.png" width="20%;"style="box-shadow: none; display: initial;">作ってみる</a>
+								<a href="/order/index.php" class="order_btn"><img src="/delivery/img/deli/sp_go_icon.png" width="20%;"style="box-shadow: none; display: initial;">お申し込み</a>
 								<img class="bubble_img" src="/delivery/img/deli/sp_go_min.png" width="100%;" style="box-shadow: none;"></div>
 						</div>
 						<p class="comment">申し込み後に入稿、再入稿される方は<a href="mailto:info@takahama428.com">info@takahama428.com</a>までお送り下さい。</p>

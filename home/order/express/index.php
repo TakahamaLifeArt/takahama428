@@ -32,7 +32,6 @@ $_SESSION['ticket'] = $ticket;
 		<meta charset="UTF-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="google-site-verification" content="PfzRZawLwE2znVhB5M7mPaNOKFoRepB2GO83P73fe5M">
 		<meta name="Description" content="早い！当日発送！お客様に細かく対応した４つのプランでオリジナルＴシャツを発送致します。何日発送かがすぐにご確認できるので便利！さらにお急ぎの方は電話いただくか、専用フォームでお問い合わせいただけますと、すぐに対応いたします。ご連絡お待ちしております。" />
 		<meta name="keywords" content="オリジナル,tシャツ,早い,当日,即日" />
 		<meta property="og:title" content="世界最速！？オリジナルTシャツを当日仕上げ！！" />
@@ -43,7 +42,6 @@ $_SESSION['ticket'] = $ticket;
 		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
 		<meta property="fb:app_id" content="1605142019732010" />
 		<title>お急ぎの方へ【即日発送】 ｜ オリジナルTシャツが早い、タカハマライフアート</title>
-		<link rel=canonical href="https://www.takahama428.com/">
 		<link rel="shortcut icon" href="/icon/favicon.ico">
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 		<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/flick/jquery-ui.css">
@@ -55,8 +53,6 @@ $_SESSION['ticket'] = $ticket;
 		<header>
 			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
 		</header>
-		<div class="container-fluid">
-		</div>
 
 		<div id="container">
 			<div class="contents">
@@ -315,7 +311,7 @@ $_SESSION['ticket'] = $ticket;
 							<div class="order_img hidden-sm-down"><img src="/delivery/img/deli/go_pattern.jpg" width="100%;"></div>
 						</div>
 						<div class="order_bubble">
-							<a href="/order/" class="order_btn"><img src="/delivery/img/deli/sp_go_icon.png" width="20%;">作ってみる</a>
+							<a href="/order/" class="order_btn"><img src="/delivery/img/deli/sp_go_icon.png" width="20%;">お申し込み</a>
 							<img class="bubble_img" src="/delivery/img/deli/sp_go_min.png" width="100%;"></div>
 					</div>
 					<div id="overtime">

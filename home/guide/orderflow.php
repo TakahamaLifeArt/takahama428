@@ -179,7 +179,7 @@
 
 				<div class="order_content">
 					<div class="order_bubble">
-						<a href="/order/" class="order_btn"><img src="/delivery/img/deli/sp_go_icon.png" width="20%;" style="padding-right: 6px;padding-bottom: 2px;">作ってみる</a>
+						<a href="/order/" class="order_btn"><img src="/delivery/img/deli/sp_go_icon.png" width="20%;" style="padding-right: 6px;padding-bottom: 3px;">お申し込み</a>
 						<img class="bubble_img" src="/delivery/img/deli/sp_go_min.png" width="100%;">
 					</div>
 				</div>
