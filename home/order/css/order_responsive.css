@@ -2598,7 +2598,7 @@ p.scroll_top {
 		font-size: 1em;
 	}
 	.size_table tr {
-		width: 90%;
+		width: 87%;
 		float: left;
 		text-align: right;
 	}
@@ -2611,7 +2611,7 @@ p.scroll_top {
 		display: block;
 		padding-bottom: 2px;
 		border-bottom: 1px solid #eae7d2;
-		font-size: .8em;
+		font-size: 1rem;
 	}
 	#step2 .size_table input[type=number] {
 		width: 10em;
@@ -2620,8 +2620,8 @@ p.scroll_top {
 		font-size: 1.1em;
 	}
 	#step2 .size_table input[type=number] {
-		width: 10em;
-		padding: 2px 0 0 0px;
+		width: 8em;
+		padding: 2px 6px 0 0px;
 		text-align: right;
 		font-size: 1.1em;
 	}
@@ -2971,6 +2971,6 @@ p.scroll_top {
 	#step2 .size_table th {
 		padding-top: 10px;
 		padding-right: 0px;
-		font-size: .8em;
+		font-size: .9em;
 	}
 }
