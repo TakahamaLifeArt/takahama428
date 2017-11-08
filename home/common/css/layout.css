@@ -406,7 +406,6 @@ nav .list-group .list-group-item a {
 	color: #000;
 }
 
-
 /* cart
 .navbar.fixed-top .nav-item .cart {
 	display: block;
@@ -719,7 +718,7 @@ nav.btn-group .btn {
 	-webkit-flex: 1 0;
 	-ms-flex: 1 0;
 	flex: 1 0;
-	padding: .85rem .5rem;
+	padding: .85rem .3rem;
 	color: #333 !important;
 	font-weight: bold;
 	box-shadow: none;
@@ -1301,7 +1300,7 @@ footer.page-footer ul li .fa {
 		border: 1px solid #fff;
 		border-radius: 2px;
 		text-align: center;
-		width: 80%;
+		width: 90%;
 		margin: 0 auto;
 		background: #e2710a;
 		box-shadow: 1px 1px 1px #898989;
