@@ -19,6 +19,7 @@
 				  2017-06-16 デザインサイズの指定を廃止して「大」で固定
 				  2017-09-12 デザインファイルのメール添付を廃止
 				  2017-11-07 注文データの登録処理を更新
+				  2017-11-10 日本語のアップロードファイル名のエスケープ処理を回避
 
 -------------------------------------------------------------- */
 require_once dirname(__FILE__).'/../php_libs/http.php';
@@ -28,8 +29,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/config.php';
 class Ordermail extends Conndb{
 
 	/**
-	 * 注文メール送信
-	 * @param {array} uploadfilename アップロードしたデザインファイルのURI
+	 * 注文メール本文を生成
+	 * @param {array} uploadfilename アップロードしたデザインファイルのパス
 	 * @return {boolean} true:成功
 	 *					 false:失敗
 	 */
@@ -37,17 +38,21 @@ class Ordermail extends Conndb{
 		try {
 			mb_internal_encoding("UTF-8");
 			
-			// db
+			// 受注システムに注文データを登録
 			$uploadURL = array();
 			if (!empty($uploadfilename)) {
-				for($a=0; $a<count($uploadfilename); $a++){
-					$tmpDir = _VHOST_PATH."/home/"._MEMBER_IMAGE_PATH."files/".basename(dirname($uploadfilename[$a], 1))."/";
-					$fname = rawurldecode(basename($uploadfilename[$a]));
-					$uploadURL[] = $tmpDir.$fname;
-				}
+//				for($a=0; $a<count($uploadfilename); $a++){
+//					$tmpDir = _MEMBER_IMAGE_PATH."files/".basename(dirname($uploadfilename[$a], 1))."/";
+//					$fname = rawurldecode(basename($uploadfilename[$a]));
+//					$uploadURL[] = $tmpDir.$fname;
+//				}
+				$uploadDir = _MEMBER_IMAGE_PATH."files/".basename(dirname($uploadfilename[0], 1));
 			}
-			$order_id = $this->insertOrderToDB($uploadURL);
+			$hash = $this->insertOrderToDB($uploadDir);
+			$order_id = $hash['orderid'];
 			
+			
+			// 本文生成
 			$items = $_SESSION['orders']['items'];
 			$attach = null;
 			$user = $_SESSION['orders']['customer'];
@@ -330,12 +335,15 @@ class Ordermail extends Conndb{
 				$order_info_admin = "";
 				$order_info_user = "";
 			} else {
-				for($a=0; $a<count($uploadfilename); $a++){
-					$order_info_admin .= "◇ファイル名：　"._ORDER_DOMAIN."/system/attatchfile/".$order_id."/".basename($uploadfilename[$a])."\n\n";
-					$fname = rawurldecode(basename($uploadfilename[$a]));
+				for ($a=0; $a<count(hash['designfile']); $a++) {
+					$order_info_admin .= "◇ファイル名：　"._ORDER_DOMAIN."/system/attatchfile/".$order_id."/".$hash['designfile'][$a]."\n\n";
+				}
+				setlocale(LC_ALL, 'ja_JP.UTF-8');
+				for ($b=0; $b<count($uploadfilename); $b++) {
+					$fname = rawurldecode(basename($uploadfilename[$b]));
 					$order_info_user .= "◇ファイル名：　".$fname."\n";
 				}
-				if (empty($order_id)) {
+				if (empty($order_id) || $a!=$b) {
 					$order_info_admin .= "\n===  Error  ===\n";
 					$order_info_admin .= "\n◇ 注文データの送信中にエラーが発生しています。\n";
 					$order_info_admin .= "\n===\n\n";
@@ -387,14 +395,14 @@ class Ordermail extends Conndb{
 
 	
 	/**
-	*	メール送信
-	*	@mail_text		顧客情報と注文内容
-	*	@name			お客様の名前
-	*	@to				返信先のメールアドレス
-	*	@attach			添付ファイル情報
-	*	@addition		本文への追加[注文メール, 顧客への返信]
-	*	返り値			true:送信成功 , false:送信失敗
-	*/
+	 * メール送信
+	 * @param {string} mail_text	顧客情報と注文内容
+	 * @param {string} name			お客様の名前
+	 * @param {string} to			返信先のメールアドレス
+	 * @param {array} attach		添付ファイル情報
+	 * @param {array} addition		本文への追加[注文メール, 顧客への返信]
+	 * @return {boolean} true:送信成功 , false:送信失敗
+	 */
 	protected function send_mail($mail_text, $name, $to, $attach, $addition){
 		mb_language("japanese");
 		mb_internal_encoding("UTF-8");
@@ -511,11 +519,10 @@ class Ordermail extends Conndb{
 
 	/**
 	 * 受注システムに登録
-	 * @param {array} uploadpath 
-	 * @return {int} OrderID
+	 * @param {string} アップロードしたデザインファイルのディレクトリのパス
+	 * @return {array} {orderid=>受注No. , designfile=>デザインファイル名の配列}
 	 */
-	public function insertOrderToDB($uploadpath){
-//		$httpObj = new HTTP(_ORDER_INFO);
+	private function insertOrderToDB($uploadpath){
 		$items = $_SESSION['orders']['items'];
 		$user = $_SESSION['orders']['customer'];
 		$opts = $_SESSION['orders']['options'];
@@ -744,18 +751,7 @@ class Ordermail extends Conndb{
 			$file = $uploadpath;
 		}
 
-		//管理システムにpost
-//		$res = $httpObj->request('POST', array('act'=>'insert', 'mode'=>'order', 'field1'=>$field1, 'data1'=>$data1, 'field2'=>$field2, 'data2'=>$data2,
-//				'field3'=>$field3, 'data3'=>$data3, 'field4'=>$field4, 'data4'=>$data4, 'field5'=>$field5, 'data5'=>$data5,
-//				'field6'=>$field6, 'data6'=>$orderprint, 'field7'=>$field7, 'data7'=>$orderarea,
-//				'field8'=>$field8, 'data8'=>$orderselectivearea, 'field9'=>$field9, 'data9'=>$orderink,
-//				'field10'=>$field10, 'data10'=>$exchink, 'field12'=>$field12, 'data12'=>$data12, 'file'=>$file, 'name'=>$filename,'site'=>_SITE));
-//		$response = explode(',', $res);
-
 		// hash 1
-//		$data1 = OrdersInfo::hash1($field1, $data1);
-//		$data2 = OrdersInfo::hash1($field2, $data2);
-		
 		$data3 = $this->hash1($field3, $data3);
 		$data12 = $this->hash1($field12, $data12);
 
@@ -768,24 +764,20 @@ class Ordermail extends Conndb{
 		$data9 = $this->hash2($field9, $orderink);
 		$data10 = $this->hash2($field10, $exchink);
 
-		$name = $filename;
-		$site = _SITE;
+		$data = array($data1,$data2,$data3,$data4,$data5,$data6,$data7,$data8,$data9,$data10,$data12,$file,_SITE);
 		
+		// 受注システムに登録
 		$orders = new WebOrder();
-		$data = array($data1,$data2,$data3,$data4,$data5,$data6,$data7,$data8,$data9,$data10,$data12,$file,$name,$site);
-		
 		$res = $orders->db('insert', 'order', $data);
-		$response = explode(',', $res);
 		
-		return $response[0];
+		return $res;
 	}
 	
 	/**
 	 * POSTされたデータから配列を生成
-	 *	@fld		フィールド名
-	 *	@dat		データ
-	 *
-	 *	return		フィールド名をキーにしたハッシュ
+	 * @param {array} fld フィールド名
+	 * @param {array} dat データ
+	 * @return {array} フィールド名をキーにしたハッシュ
 	 */
 	public function hash1($fld, $dat){
 		for($i=0; $i<count($fld); $i++){
@@ -797,10 +789,9 @@ class Ordermail extends Conndb{
 
 	/**
 	 * 複数のレコードに対応
-	 *  @fld		フィールド名
-	 *	@dat		データ [data|data|... , ]
-	 *
-	 *	return		フィールド名をキーにしたハッシュ
+	 * @param {array} fld フィールド名
+	 * @param {string} dat データ [data|data|... , ]
+	 * @return {array} フィールド名をキーにしたハッシュ
 	 */
 	public function hash2($fld, $dat){
 		for($i=0; $i<count($dat); $i++){
@@ -817,55 +808,67 @@ class Ordermail extends Conndb{
 
 class Design {
 
-	/*****************************************************
-	* saveDesFile
-	*	フロントエンドからの注文デザイン画像ファイル保存
-	*	$order_id ,$file ,$name ,$site
-	*
-	* @return {int} アップロードファイルの数
-	*/
-	public function saveDesFile($order_id, $file, $name, $site){
-//		$path = $_SERVER['DOCUMENT_ROOT']."/system/attatchfile/".$order_id;
-		$path = $_SERVER['DOCUMENT_ROOT'].'/../../dev_original-sweat.com/home/system/attatchfile/'.$order_id;
+	/**
+	 * フロントエンドから注文のデザイン画像ファイルを受注システムに転送
+	 * @oaram {int} order_id 受注No.
+	 * @param {string} filedir アップロードされたファイルのあるディレクトリのパス
+	 * @return {array} 転送後のアップロードファイル名
+	 */
+	public function saveDesFile($order_id, $filedir){
+		$path = $_SERVER['DOCUMENT_ROOT'].'/../../'._ORDER_VHOST.'/home/system/attatchfile/'.$order_id;
 		if(!is_dir($path)) {
 			mkdir($path);
 		}
 
-		$root = $_SERVER['DOCUMENT_ROOT']."/../../";
-		$fileCount = count($file);
 		$up = 0;
-		for($i=0;$i<$fileCount;$i++){
-			if(!$file[$i]){
-				break;
+		$fileCount = 0;
+		$fileName = array();
+		$today = date('Y-m-d');
+		$root = $_SERVER['DOCUMENT_ROOT']."/";
+		if ($handle = opendir($root.$filedir)) {
+			setlocale(LC_ALL, 'ja_JP.UTF-8');
+			while (false !== ($f = readdir($handle))) {
+				if (is_dir($root.$filedir.'/'.$f)==false && $f != "." && $f != "..") {
+					$fileCount++;
+					$extension = pathinfo($f, PATHINFO_EXTENSION);
+					$fileName[] = 'design_'.$order_id.'_'.$today.'_'.$up.'.'.$extension;
+					if (rename($root.$filedir.'/'.$f, $path.'/'.$fileName[$up])) {
+						$up++;
+					}
+				}
 			}
-			$fileName = basename($file[$i]);
+			closedir($handle);
+		}
+		
+		
+//		$root = $_SERVER['DOCUMENT_ROOT'];
+//		$fileCount = count($filedir);
+//		$up = 0;
+//		for ($i=0; $i<$fileCount; $i++) {
+//			if (!$filedir[$i]) {
+//				break;
+//			}
+//			$fileName = basename($file[$i]);
+//
+//			$fileName = $path."/".$fileName;
+//
+//			rename($root.$filedir[$i], $fileName);
+//			$up++;
+//		}
 
-			// 同じファイル名の場合
-			//				while($this->checkFileName($order_id,$fileName)) {
-			//					$fileName = str_replace(".", "_next_.", $fileName);
-			//				}
-			$fileName = $path."/".$fileName;
-
-			// ファイルを移動
-			rename($root.$file[$i], $fileName);
-			$up++;
+		if ($up>0 && $fileCount==$up) {
+			$this->removeDirectory($root.$filedir);
 		}
 
-		if ($up>0 && $up==$fileCount) {
-			$tmpPath = dirname($root.$file[0]);
-			$this->removeDirectory($tmpPath);
-		}
-
-		return $up;
+		return $fileName;
 	}
 
 
-	/*****************************************************
-	* removeDirectory
-	*	ディレクトリとファイルを再帰的に全削除
-	*	$dir
-	*/
-	public function removeDirectory($dir) {
+	/**
+	 * ディレクトリとファイルを再帰的に全削除
+	 * @param {string} dir 削除するディレクトリ
+	 */
+	private function removeDirectory($dir) {
 		if ($handle = opendir("$dir")) {
 			while (false !== ($item = readdir($handle))) {
 				if ($item != "." && $item != "..") {
@@ -879,18 +882,6 @@ class Design {
 			closedir($handle);
 			rmdir($dir);
 		}
-	}
-
-
-	/*****************************************************
-	* checkFileName
-	*	デザイン画像ファイル名前の有無チェック
-	*	$order_id, $name, $folder
-	*/
-	public function checkFileName($order_id, $name, $folder){
-		$path =  $_SERVER['DOCUMENT_ROOT'].'/system/'.$folder.'/'.$order_id;
-		$res = file_exists($path."/".$name);
-		return $res;
 	}
 
 }
@@ -908,8 +899,8 @@ class WebOrder {
 	);
 
 	/**
-	 *	パスワードの暗号化
-	 *	return		暗号化したバイナリーデータ
+	 * パスワードの暗号化
+	 * @return {string} 暗号化したバイナリーデータ
 	 */
 	public function getSha1Pass($s) {
 		if (empty($s)) return;
@@ -921,17 +912,7 @@ class WebOrder {
 	 * データベース接続
 	 */
 	private function db_connect(){
-		$dbUser = "tlauser";
-		$dbPass = "crystal428";
-		$dbHost = "localhost";
-		$dbName = "tladata1";
-		$dbType = "mysql";
-
-		/*
-		$conn = mysql_connect("$dbHost", "$dbUser", "$dbPass", true, 65536)
-			or die("MESSAGE : cannot connect!<BR>");
-		 */ 
-		$conn = mysqli_connect("$dbHost", "$dbUser", "$dbPass", "$dbName", true) 
+		$conn = mysqli_connect(_DB_HOST, _DB_USER, _DB_PASS, _DB_NAME, true) 
 			or die("MESSAGE : cannot connect!". mysqli_error());
 		$conn->set_charset('utf8');
 		return $conn;
@@ -960,14 +941,14 @@ class WebOrder {
 	}
 	
 	
-	/***************************************************************************************************************
-	*		注文伝票データベースの操作
-	*		@func		処理内容
-	*		@table		テーブル名
-	*		@param		引数の配列
-	*
-	*		return		返り値
-	*/
+	/**
+	 * 注文伝票データベースの操作
+	 * @param {string} func 処理内容
+	 * @param {string} table テーブル名
+	 * @param {array} param 引数の配列
+	 *
+	 * @return 各処理内容の返り値
+	 */
 	public function db($func, $table, $param){
 		try{
 			$conn = $this->db_connect();
@@ -1002,13 +983,13 @@ class WebOrder {
 	}
 
 
-	/***************************************************************************************************************
-	*	レコードの新規追加
-	*	@table		テーブル名
-	*	@data		追加データの配列、若しくは注文伝票ID
-	*
-	*	return		ID
-	*/
+	/**
+	 * レコードの新規追加
+	 * @param {string} table テーブル名
+	 * @param {array} data 追加データの配列、若しくは注文伝票ID
+	 *
+	 * @return {array} {orderid=>受注No. , designfile=>デザインファイル名の配列}
+	 */
 	private function insert($conn, $table, $data){
 		try{
 			switch($table){
@@ -1026,12 +1007,12 @@ class WebOrder {
 				 *	data10	インク色替え（exchink）
 				 *	data12	発送元
 				 *	-----2016-12-07-------
-				 *  file		添付ファイルデータ
-			 	 *  name 		添付ファイル名
-			 	 *  site 		注文サイト
+				 *	2017-11-09 添付ファイルの廃止に伴い引数を変更
+				 *  file	アップロードされたファイルのあるディレクトリまでのパス
+				 *  site 	注文サイト
 				 *	return	受注ID, 顧客ID, 顧客Number | プリント位置ID,, | インクID,, | インク色替えID,, | 見積追加行ID,,
 				 */
-					list($data1, $data2, $data3, $data4, $data5, $data6, $data7, $data8, $data9, $data10, $data12, $file, $name, $site) = $data;
+					list($data1, $data2, $data3, $data4, $data5, $data6, $data7, $data8, $data9, $data10, $data12, $file, $site) = $data;
 					$customer_id = 0;
 					$deli_id = 0;
 					$ship_id=0;
@@ -1464,31 +1445,13 @@ class WebOrder {
 						return null;
 					}
 
-					//attatchfileにフォルダを新規、添付ファイルを伝送
+					// アップロードされたデザインファイルを伝送
 					if($file != ""){
 						$des = new Design();
-						$res0 = $des->saveDesFile($orders_id, $file, $name, $site);
+						$designFilename = $des->saveDesFile($orders_id, $file);
 					}
-					// SESSIONに受注No.を登録
-					$_SESSION['edited'][$orders_id] = time();
-
-					$area_ids = '|';
-					if(!empty($orderareaid)){
-						$area_ids .= implode(',', $orderareaid);
-					}
-					$ink_ids = '|';
-					if(!empty($orderinkid)){
-						$ink_ids .= implode(',', $orderinkid);
-					}
-					$exch_ids = '|';
-					if(!empty($exchinkid)){
-						$exch_ids .= implode(',', $exchinkid);
-					}
-					$addest_ids = '|';
-					if(!empty($addestid)){
-						$addest_ids .= implode(',', $addestid);
-					}
-					return $orders_id.','.$customer_id.','.$delivery_id.','.$number.$area_ids.$ink_ids.$exch_ids.$addest_ids;
+					
+					return array('orderid'=>$orders_id, 'designfile'=>$designFilename);
 					break;
 
 				case 'orderitem':
@@ -1821,13 +1784,13 @@ class WebOrder {
 	}
 
 
-	/***************************************************************************************************************
-	*	レコードの修正更新
-	*	@table		テーブル名
-	*	@data		更新データの配列
-	*
-	*	return		成功したら更新されたレコード数
-	*/
+	/**
+	 * レコードの修正更新
+	 * @param {string} table テーブル名
+	 * @param {array} data 更新データの配列
+	 *
+	 * @return 更新されたレコード数
+	 */
 	private function update($conn, $table, $data){
 		try{
 			$flg= true;
@@ -2030,13 +1993,13 @@ class WebOrder {
 	}
 
 
-	/***************************************************************************************************************
-	*	レコードの検索
-	*	@table		テーブル名
-	*	@data		検索キーの配列
-	*
-	*	return		健作結果の配列
-	*/
+	/**
+	 * レコードの検索
+	 * @param {string} table テーブル名
+	 * @param {array} data 検索キーの配列
+	 *
+	 * @return 検索結果の配列
+	 */
 	private function search($conn, $table, $data){
 		try{
 			if(isset($data) && !is_array($data)){
