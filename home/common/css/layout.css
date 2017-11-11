@@ -208,11 +208,14 @@ nav .list-group .list-group-item a {
 
 .navbar-nav .nav-item .nav-link span {
 	display: block;
-	font-size: .7rem;
+	font-size: .5rem;
 	text-align: center;
 	color: rgb(119, 63, 15);
 }
-
+.navbar-toggleable-xl .navbar-nav .nav-link {
+	padding-right: .2rem;
+	padding-left: .2rem;
+}
 .header_login {
 	position: absolute;
 	top: 100%;
