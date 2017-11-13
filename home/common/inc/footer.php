@@ -11,16 +11,16 @@
 				<li><a href="/items/?cat=8">タオル</a></li>
 				<li><a href="/items/?tag=73">スポーツウェア</a></li>
 				<li><a href="/items/?cat=2">パーカー</a></li>
-				<li><a href="/items/?cat=14">ベイビー</a></li>
-				<li><a href="/items/?cat=12">グッズ</a></li>
+				<li><a href="/items/?cat=14">ベビー</a></li>
+				<li><a href="/items/?cat=12">記念品</a></li>
 			</ul>
 			<ul class="item_ul">
 				<li><a href="/items/?cat=6">ブルゾン</a></li>
 				<li><a href="/items/?cat=7">キャップ</a></li>
-				<li><a href="/items/?cat=13">ロンT</a></li>
+				<li><a href="/items/?cat=13">長袖Tシャツ</a></li>
 				<li><a href="/items/?cat=9">トートバッグ</a></li>
 				<li><a href="/items/?cat=5">レディース</a></li>
-				<li><a href="/items/?cat=16">オーバーオール</a></li>
+				<li><a href="/items/?cat=16">つなぎ</a></li>
 				<li><a href="/items/?cat=10">エプロン</a></li>
 			</ul>
 		</div>
