@@ -82,7 +82,7 @@ $_version = time();
 										<td><input name="email" type="text" class="email" /></td>
 									</tr>
 									<tr>
-										<th>電話番号</th>
+										<th>電話番号<span class="point">※</span></th>
 										<td><input name="tel" type="text" class="forPhone" /></td>
 									</tr>
 									<tr>
