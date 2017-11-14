@@ -93,6 +93,26 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 
 			</div>
 		</div>
+		
+		<?php
+		if (!empty(_EXTRA_NOTICE)) {
+			$extNotice = (_EXTRA_NOTICE);
+			$txt = explode(PHP_EOL, $extNotice);
+			echo '<div id="option">';
+			echo '<h3 id="Line005"><a href="/guide/information.php">'.$txt[0].'</a></h3>';
+			$message = str_replace($txt[0].PHP_EOL, '', $extNotice);
+			echo '<p>'.nl2br($message).'</p></div>';
+		}
+		if (!empty(_NOTICE_HOLIDAY)) {
+			$notice = (_NOTICE_HOLIDAY);
+			$txt = explode(PHP_EOL, $notice);
+			echo '<div id="option">';
+			echo '<h3 id="Line005"><a href="/guide/information.php">'.$txt[0].'</a></h3>';
+			$message = str_replace($txt[0].PHP_EOL, '', $notice);
+			echo '<p>'.nl2br($message).'</p></div>';
+		}
+		?>
+		
 		<main class="container">
 			<div class="row outer top_3_wrap">
 				<div class="col">
@@ -576,6 +596,18 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 						<h2 class="mid_ttl">お知らせ</h2>
 						<div class="list-group-wrap px-2">
 							<ul class="list-group">
+								<li class="list-group-item">
+									<div class="row">
+										<div class="col-12 col-lg-3 news_date">
+											2017.11.22
+										</div>
+										<a href="/guide/information.php">
+											<div class="col-12 col-lg news_ttl">
+												【アイテム価格改定のお知らせ】
+											</div>
+										</a>
+									</div>
+								</li>
 								<li class="list-group-item">
 									<div class="row">
 										<div class="col-12 col-lg-3 news_date">
