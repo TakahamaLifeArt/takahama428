@@ -43,7 +43,7 @@
 
 			<div class="content-lv2">
 				<div id="fragment">
-					<ul class="pc ui-tabs-nav">
+					<ul class="ui-tabs-nav">
 						<li class="first"><a href="#fragment-1"><span>シルク</span></a></li>
 						<li class="first"><a href="#fragment-2"><span>転写</span></a></li>
 						<li class="first"><a href="#fragment-3"><span>インクジェット</span></a></li>
@@ -669,15 +669,15 @@
 											</tr>
 											<tr>
 												<th class="gr_3">1枚</th>
-												<td>&yen;3,200</td>
-												<td>&yen;3,100</td>
-												<td>&yen;3,000</td>
+												<td>&yen;2,300</td>
+												<td>&yen;2,200</td>
+												<td>&yen;2,100</td>
 											</tr>
 											<tr>
 												<th>2&sim;4枚</th>
-												<td>&yen;2,200</td>
-												<td>&yen;2,100</td>
 												<td>&yen;2,000</td>
+												<td>&yen;1,900</td>
+												<td>&yen;1,800</td>
 											</tr>
 											<tr>
 												<th class="gr_3">5&sim;9枚</th>
@@ -693,27 +693,27 @@
 											</tr>
 											<tr>
 												<th class="gr_3">20&sim;49枚</th>
-												<td>&yen;1,300</td>
 												<td>&yen;1,200</td>
 												<td>&yen;1,100</td>
+												<td>&yen;1,000</td>
 											</tr>
 											<tr>
 												<th>50&sim;99枚</th>
-												<td>&yen;1,200</td>
 												<td>&yen;1,100</td>
 												<td>&yen;1,000</td>
+												<td>&yen;900</td>
 											</tr>
 											<tr>
 												<th class="gr_3">100&sim;299枚</th>
-												<td>&yen;1,100</td>
-												<td>&yen;1,000</td>
-												<td>&yen;900</td>
-											</tr>
-											<tr>
-												<th>300枚&sim;</th>
 												<td>&yen;1,000</td>
 												<td>&yen;900</td>
 												<td>&yen;800</td>
+											</tr>
+											<tr>
+												<th>300枚&sim;</th>
+												<td>&yen;900</td>
+												<td>&yen;800</td>
+												<td>&yen;700</td>
 											</tr>
 											<tr class="table_1_ttl">
 												<th colspan="4" style="text-align: center;">
@@ -739,9 +739,9 @@
 											</tr>
 											<tr>
 												<th class="gr_3">1枚</th>
-												<td>&yen;4,700</td>
-												<td>&yen;4,600</td>
-												<td>&yen;4,500</td>
+												<td>&yen;3,300</td>
+												<td>&yen;3,200</td>
+												<td>&yen;3,100</td>
 											</tr>
 											<tr>
 												<th>2&sim;4枚</th>
@@ -814,15 +814,15 @@
 											</tr>
 											<tr>
 												<th class="gr_3">1枚</th>
-												<td>&yen;3,200</td>
-												<td>&yen;3,100</td>
-												<td>&yen;3,000</td>
+												<td>&yen;2,300</td>
+												<td>&yen;2,200</td>
+												<td>&yen;2,100</td>
 											</tr>
 											<tr>
 												<th>2&sim;4枚</th>
-												<td>&yen;2,200</td>
-												<td>&yen;2,100</td>
 												<td>&yen;2,000</td>
+												<td>&yen;1,900</td>
+												<td>&yen;1,800</td>
 											</tr>
 											<tr>
 												<th class="gr_3">5&sim;9枚</th>
@@ -838,27 +838,27 @@
 											</tr>
 											<tr>
 												<th class="gr_3">20&sim;49枚</th>
-												<td>&yen;1,300</td>
 												<td>&yen;1,200</td>
 												<td>&yen;1,100</td>
+												<td>&yen;1,000</td>
 											</tr>
 											<tr>
 												<th>50&sim;99枚</th>
-												<td>&yen;1,200</td>
 												<td>&yen;1,100</td>
 												<td>&yen;1,000</td>
+												<td>&yen;900</td>
 											</tr>
 											<tr>
 												<th class="gr_3">100&sim;299枚</th>
-												<td>&yen;1,100</td>
-												<td>&yen;1,000</td>
-												<td>&yen;900</td>
-											</tr>
-											<tr>
-												<th>300枚&sim;</th>
 												<td>&yen;1,000</td>
 												<td>&yen;900</td>
 												<td>&yen;800</td>
+											</tr>
+											<tr>
+												<th>300枚&sim;</th>
+												<td>&yen;900</td>
+												<td>&yen;800</td>
+												<td>&yen;700</td>
 											</tr>
 											<tr class="table_1_ttl">
 												<th colspan="4" style="text-align: center;">
@@ -880,9 +880,9 @@
 											</tr>
 											<tr>
 												<th class="gr_3">1枚</th>
-												<td>&yen;4,700</td>
-												<td>&yen;4,600</td>
-												<td>&yen;4,500</td>
+												<td>&yen;3,300</td>
+												<td>&yen;3,200</td>
+												<td>&yen;3,100</td>
 											</tr>
 											<tr>
 												<th>2&sim;4枚</th>
