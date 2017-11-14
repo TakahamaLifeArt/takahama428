@@ -335,10 +335,9 @@ class Ordermail extends Conndb{
 				$order_info_admin = "";
 				$order_info_user = "";
 			} else {
-				for ($a=0; $a<count(hash['designfile']); $a++) {
+				for ($a=0; $a<count($hash['designfile']); $a++) {
 					$order_info_admin .= "◇ファイル名：　"._ORDER_DOMAIN."/system/attatchfile/".$order_id."/".$hash['designfile'][$a]."\n\n";
 				}
-				setlocale(LC_ALL, 'ja_JP.UTF-8');
 				for ($b=0; $b<count($uploadfilename); $b++) {
 					$fname = rawurldecode(basename($uploadfilename[$b]));
 					$order_info_user .= "◇ファイル名：　".$fname."\n";
@@ -346,6 +345,10 @@ class Ordermail extends Conndb{
 				if (empty($order_id) || $a!=$b) {
 					$order_info_admin .= "\n===  Error  ===\n";
 					$order_info_admin .= "\n◇ 注文データの送信中にエラーが発生しています。\n";
+					$order_info_admin .= "\n===\n\n";
+				} else if ($a!=$b) {
+					$order_info_admin .= "\n===  Error  ===\n";
+					$order_info_admin .= "\n◇ 転送できなかったデザインファイルがあります。\n";
 					$order_info_admin .= "\n===\n\n";
 				}
 				$order_info_admin .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
