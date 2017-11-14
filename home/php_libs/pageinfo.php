@@ -291,7 +291,7 @@ if(isset($_REQUEST['act'])){
 			$res .= '<tr>';
 			for($i=0; $i<count($files); $i++){
 				$imgfile = file_get_contents($files[$i]['filename']);
-				$f = preg_replace('/.\/img\//', _IMG_PSS, $imgfile);
+				$f = preg_replace('/\.\/img\//', _IMG_PSS, $imgfile);
 				$res .= '<td><div class="pos_'.$i.'">'.$f.'</div></td>';
 				$ink .= '<td id="inktarget'.$i.'" class="'.$files[$i]['base_name'].'">';
 				$ink .= '</td>';
@@ -309,7 +309,7 @@ if(isset($_REQUEST['act'])){
 			$posdiv = "";
 			for($i=0; $i<count($files); $i++){
 				$imgfile = file_get_contents($files[$i]['filename']);
-				$f = preg_replace('/.\/img\//', _IMG_PSS, $imgfile);
+				$f = preg_replace('/\.\/img\//', _IMG_PSS, $imgfile);
 				$posname = '<div class="posname_'.$i.'"></div>';
 				$ink = '<div><select class="ink_'.$i.'"><option value="0" selected="selected">選択してください</option>';
 				$ink .= '<option value="1">1色</option><option value="2">2色</option><option value="3">3色</option>';
@@ -350,7 +350,7 @@ if(isset($_REQUEST['act'])){
 		foreach($ids[$_POST['category_id']] as $id=>$lbl){
 			$files = $pageinfo->positionFor($id, 'pos');
 			$imgfile = file_get_contents($files[0]['filename']);
-			$f = preg_replace('/.\/img\//', _IMG_PSS, $imgfile);
+			$f = preg_replace('/\.\/img\//', _IMG_PSS, $imgfile);
 			preg_match('/<img (.*?)>/', $f, $match);
 			$box .= '<div class="box">';
 				$box .= '<div class="body_type"><img '.$match[1].'></div>';
@@ -453,7 +453,7 @@ if(isset($_REQUEST['act'])){
 	$posdiv = "";
 	for($i=0; $i<count($files); $i++){
 		$imgfile = file_get_contents($files[$i]['filename']);
-		$f = preg_replace('/.\/img\//', _IMG_PSS, $imgfile);
+		$f = preg_replace('/\.\/img\//', _IMG_PSS, $imgfile);
 //			$ink = '<div id="inktarget'.$i.'" class="'.$files[$i]['base_name'].'">';
 //			$ink .= '</div>';
 		$posname = '<div class="posname_'.$i.'"></div>';
@@ -553,7 +553,7 @@ if(isset($_REQUEST['act'])){
 	$pos .= '<tr>';
 	for($i=0; $i<count($files); $i++){
 		$imgfile = file_get_contents($files[$i]['filename']);
-		$f = preg_replace('/.\/img\//', _IMG_PSS, $imgfile);
+		$f = preg_replace('/\.\/img\//', _IMG_PSS, $imgfile);
 		$pos .= '<td><div class="pos_'.$i.'">'.$f.'</div></td>';
 		$ink .= '<td id="inktarget'.$i.'" class="'.$files[$i]['base_name'].'">';
 		$ink .= '</td>';
@@ -1346,7 +1346,7 @@ if(isset($_REQUEST['act'])){
 	$posdiv = "";
 	for($i=0; $i<count($files); $i++){
 		$imgfile = file_get_contents($files[$i]['filename']);
-		$f = preg_replace('/.\/img\//', _IMG_PSS, $imgfile);
+		$f = preg_replace('/\.\/img\//', _IMG_PSS, $imgfile);
 //		$ink .= '<td id="inktarget'.$i.'" class="'.$files[$i]['base_name'].'">';
 //		$ink .= '</td>';
 			$ink = '<div id="inktarget'.$i.'" class="'.$files[$i]['base_name'].'">';
@@ -1365,7 +1365,7 @@ if(isset($_REQUEST['act'])){
 	$pos .= '<tr>';
 	for($i=0; $i<count($files); $i++){
 		$imgfile = file_get_contents($files[$i]['filename']);
-		$f = preg_replace('/.\/img\//', _IMG_PSS, $imgfile);
+		$f = preg_replace('/\.\/img\//', _IMG_PSS, $imgfile);
 		$pos .= '<td><div class="pos_'.$i.'">'.$f.'</div></td>';
 		$ink .= '<td id="inktarget'.$i.'" class="'.$files[$i]['base_name'].'">';
 		$ink .= '</td>';
