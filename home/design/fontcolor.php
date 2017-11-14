@@ -96,7 +96,6 @@ foreach($hash as $key=>$val){
 	<meta charset="UTF-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="google-site-verification" content="PfzRZawLwE2znVhB5M7mPaNOKFoRepB2GO83P73fe5M">
 	<meta name="Description" content="インクカラーとフォントはこちらでご確認ください。オリジナルTシャツをデザインするときにお好きなインクカラーとフォントを選べます。ご自分のオリジナルデザインに合うインクの色とフォントを、サンプルからお探しください。" />
 	<meta name="keywords" content="インク,フォント,プリントカラー,オリジナル,Tシャツ,東京" />
 
@@ -108,7 +107,6 @@ foreach($hash as $key=>$val){
 	<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png">
 	<meta property="fb:app_id" content="1605142019732010">
 	<title>インクカラーとフォント　|　オリジナルTシャツ屋タカハマライフアート</title>
-	<link rel=canonical href="https://www.takahama428.com/">
 	<link rel="shortcut icon" href="/icon/favicon.ico">
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 
@@ -621,7 +619,7 @@ foreach($hash as $key=>$val){
 			</div>
 
 			<div class="wrap">
-				<h2 class="heading">カッティングシートカラーの見本31色です。</h2>
+				<h2 class="heading">カッティングシートカラーの見本16色です。</h2>
 				<p class="note"><span>※</span> 画面の都合上、多少色味が異なる場合がございます。</p>
 				<!--  <?php echo $cuttingsheet_table; ?>  -->
 
@@ -703,6 +701,7 @@ foreach($hash as $key=>$val){
 									<br>オレンジ</span></p>
 						</div>
 					</div>
+<!--
 					<div class="span4">
 						<div class="thumbnail">
 							<img alt="アプリコット" src="./designcreator/img/cuttingsheet/457-apricot.png" width="124" />
@@ -710,6 +709,7 @@ foreach($hash as $key=>$val){
 									<br>アプリコット</span></p>
 						</div>
 					</div>
+-->
 					<div class="span4">
 						<div class="thumbnail">
 							<img alt="パステルオレンジ" src="./designcreator/img/cuttingsheet/440-pastel-orange.png" width="124" />
@@ -717,6 +717,7 @@ foreach($hash as $key=>$val){
 									<br>パステルオレンジ</span></p>
 						</div>
 					</div>
+<!--
 					<div class="span4">
 						<div class="thumbnail">
 							<img alt="ゴールデンイエロー" src="./designcreator/img/cuttingsheet/404-golden-yellow.png" width="124" />
@@ -724,6 +725,7 @@ foreach($hash as $key=>$val){
 									<br>ゴールデンイエロー</span></p>
 						</div>
 					</div>
+-->
 					<div class="span4">
 						<div class="thumbnail">
 							<img alt="レモンイエロー" src="./designcreator/img/cuttingsheet/413-lemon-yellow.png" width="124" />
@@ -738,6 +740,7 @@ foreach($hash as $key=>$val){
 									<br>プラム</span></p>
 						</div>
 					</div>
+<!--
 					<div class="span4">
 						<div class="thumbnail">
 							<img alt="フーシャ" src="./designcreator/img/cuttingsheet/451-fushia.png" width="124" />
@@ -745,6 +748,8 @@ foreach($hash as $key=>$val){
 									<br>フーシャ</span></p>
 						</div>
 					</div>
+-->
+<!--
 					<div class="span4">
 						<div class="thumbnail">
 							<img alt="ライラック" src="./designcreator/img/cuttingsheet/470-lilac.png" width="124" />
@@ -752,6 +757,7 @@ foreach($hash as $key=>$val){
 									<br>ライラック</span></p>
 						</div>
 					</div>
+-->
 					<div class="span4">
 						<div class="thumbnail">
 							<img alt="ピンク" src="./designcreator/img/cuttingsheet/428-pink.png" width="124" />
@@ -759,6 +765,7 @@ foreach($hash as $key=>$val){
 									<br>ピンク</span></p>
 						</div>
 					</div>
+<!--
 					<div class="span4">
 						<div class="thumbnail">
 							<img alt="パステルピンク" src="./designcreator/img/cuttingsheet/444-pastel-pink.png" width="124" />
@@ -766,6 +773,7 @@ foreach($hash as $key=>$val){
 									<br>パステルピンク</span></p>
 						</div>
 					</div>
+-->
 					<div class="span4">
 						<div class="thumbnail">
 							<img alt="蛍光ピンク" src="./designcreator/img/cuttingsheet/432-fluo-pink.png" width="124" />

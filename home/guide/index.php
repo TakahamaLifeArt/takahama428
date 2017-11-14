@@ -168,7 +168,7 @@
 							</tr>
 						</tbody>
 					</table>
-					<p class="note"><span>※1</span> アイテム返品手数料として</p>
+					<p class="note"><span>※1</span> アイテム返品手数料として。なお、すでに製版が済んでいる場合、版代をいただきます。</p>
 					<p class="note"><span>※2</span> プリント作業の進捗により</p>
 				</div>
 
