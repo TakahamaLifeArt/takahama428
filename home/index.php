@@ -19,8 +19,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/orders.php';
 $order = new Orders();
 $fin = $order->getDelidate(null, 1, 4, 'simple');
 ?>
-	<!DOCTYPE html>
-	<html lang="ja">
+<!DOCTYPE html>
+<html lang="ja">
 
 	<head prefix="og://ogp.me/ns# fb://ogp.me/ns/fb#  website: //ogp.me/ns/website#">
 		<meta charset="UTF-8">
@@ -48,51 +48,51 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 		</header>
 		<div class="container-fluid">
 			<div id="mainCarouselIndicators" class="carousel slide" data-ride="carousel">
-				
+
 				<ol class="carousel-indicators">
 					<li data-target="#mainCarouselIndicators" data-slide-to="0" class="active"></li>
 					<li data-target="#mainCarouselIndicators" data-slide-to="1"></li>
-<!--					<li data-target="#mainCarouselIndicators" data-slide-to="2"></li>-->
+<!--				<li data-target="#mainCarouselIndicators" data-slide-to="2"></li>-->
 				</ol>
 
 				<div class="carousel-inner justify-content-center" role="listbox">
 					<div class="carousel-item active">
 						<img class="img-fluid" id="pc_slide" src="/common/img/home/main/top_slide_speed.jpg" alt="First slide" width="100%">
 						<img class="img-fluid" id="sp_slide" src="/common/img/home/main/sp_top_slide_speed.jpg" alt="First slide" width="100%">
-						<div class="carousel-caption_2">
-							<h1>オリジナルTシャツのプリント作成</h1>
-						</div>
 						<div class="carousel-caption">
 							<a href="/order/"><button type="button" class="order_btn"><img src="/common/img/home/main/sp_go_icon.png" width="40px" style="padding-right: 12px;padding-bottom: 5px;">お申し込み</button></a>
 						</div>
 					</div>
 
-				<div class="carousel-item">
-					<img class="img-fluid" id="pc_slide" src="/common/img/home/main/top_slide_record.jpg" alt="First slide" width="100%">
-					<img class="img-fluid" id="sp_slide" src="/common/img/home/main/sp_top_slide_record.jpg" alt="First slide" width="100%">
-					<div class="carousel-caption">
-						<h3></h3>
-						<a href="/order/"><button type="button" class="order_btn"><img src="/common/img/home/main/sp_go_icon.png" width="40px" style="padding-right: 12px;padding-bottom: 5px;">お申し込み</button></a>
+					<div class="carousel-item">
+						<img class="img-fluid" id="pc_slide" src="/common/img/home/main/top_slide_record.jpg" alt="First slide" width="100%">
+						<img class="img-fluid" id="sp_slide" src="/common/img/home/main/sp_top_slide_record.jpg" alt="First slide" width="100%">
+						<div class="carousel-caption">
+							<h3></h3>
+							<a href="/order/"><button type="button" class="order_btn"><img src="/common/img/home/main/sp_go_icon.png" width="40px" style="padding-right: 12px;padding-bottom: 5px;">お申し込み</button></a>
+						</div>
 					</div>
-				</div>
 <!--
-				<div class="carousel-item">
-					<img class="d-block img-fluid" src="//placehold.jp/eeeeee/3d4070/1500x450.png?text=Third slide" alt="Third slide">
-				</div>
+					<div class="carousel-item">
+						<img class="d-block img-fluid" src="//placehold.jp/eeeeee/3d4070/1500x450.png?text=Third slide" alt="Third slide">
+					</div>
 -->
 				</div>
 				<a class="carousel-control-prev" href="#mainCarouselIndicators" role="button" data-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="sr-only">Previous</span>
-			</a>
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
 				<a class="carousel-control-next" href="#mainCarouselIndicators" role="button" data-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="sr-only">Next</span>
-			</a>
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
 
 			</div>
 		</div>
 		<main class="container">
+
+			<h1>オリジナルTシャツのプリント作成</h1>
+
 			<div class="row outer top_3_wrap">
 				<div class="col">
 					<a href="/delivery/">
@@ -830,4 +830,4 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
 	</body>
 
-	</html>
+</html>
