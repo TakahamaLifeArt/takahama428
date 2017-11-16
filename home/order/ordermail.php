@@ -342,13 +342,18 @@ class Ordermail extends Conndb{
 					$fname = rawurldecode(basename($uploadfilename[$b]));
 					$order_info_user .= "◇ファイル名：　".$fname."\n";
 				}
-				if (empty($order_id) || $a!=$b) {
+				if (empty($order_id)) {
 					$order_info_admin .= "\n===  Error  ===\n";
 					$order_info_admin .= "\n◇ 注文データの送信中にエラーが発生しています。\n";
 					$order_info_admin .= "\n===\n\n";
 				} else if ($a!=$b) {
 					$order_info_admin .= "\n===  Error  ===\n";
 					$order_info_admin .= "\n◇ 転送できなかったデザインファイルがあります。\n";
+					$order_info_admin .= "\n-- 元ファイル（".$b."個）\n";
+					for ($b=0; $b<count($uploadfilename); $b++) {
+						$fname = rawurldecode(basename($uploadfilename[$b]));
+						$order_info_admin .= "◇ファイル名：　".$fname."\n";
+					}
 					$order_info_admin .= "\n===\n\n";
 				}
 				$order_info_admin .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
