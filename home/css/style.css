@@ -294,6 +294,25 @@
 	width: 100%;
 	padding: .75rem .25rem;
 }
+h1 {
+	/* padding-left: .5rem; */
+	font-size: 24px;
+	font-weight: bold;
+	position: relative;
+	text-shadow: 1px 1px 1px #5c5c5c;
+}
+
+.carousel-caption_2 {
+	position: absolute;
+	right: 15%;
+	top: 11%;
+	left: 15%;
+	z-index: 10;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	color: #fff;
+	text-align: center;
+}
 
 @media (min-width: 992px) {
 	.list-group-wrap .list-group-item .row .col-lg-3 {
@@ -303,9 +322,57 @@
 		flex: 0 0 8rem;
 		max-width: 8rem;
 	}
+
+}
+@media (max-width: 920px) {
+.carousel-caption_2 {
+	position: absolute;
+	right: 15%;
+	top: 7%;
+	left: 15%;
+	z-index: 10;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	color: #fff;
+	text-align: center;
+}
+	h1 {
+		/* padding-left: .5rem; */
+		font-size: 21px;
+		font-weight: bold;
+		position: relative;
+		text-shadow: 1px 1px 1px #5c5c5c;
+	}
 }
 
-
+@media (max-width: 640px) {
+	h1 {
+		/* padding-left: .5rem; */
+		font-size: 18px;
+		font-weight: bold;
+		position: relative;
+		text-shadow: 1px 1px 1px #5c5c5c;
+	}
+}
+@media (max-width: 459px) {
+	h1 {
+		/* padding-left: .5rem; */
+		font-size: 16px;
+		font-weight: bold;
+		position: relative;
+		text-shadow: 1px 1px 1px #5c5c5c;
+	}
+	.carousel-caption_2 {
+		position: absolute;
+		right: 15%;
+		top: 6%;
+		left: 15%;
+		z-index: 10;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		color: #fff;
+		text-align: center;
+	}
 /* card group */
 
 .card-group .card {

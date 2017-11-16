@@ -35,7 +35,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート">
 		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png">
 		<meta property="fb:app_id" content="1605142019732010">
-		<title>オリジナルTシャツ作成が早い【当日発送】 ｜ タカハマライフアート</title>
+		<title>オリジナルTシャツのプリント作成 ｜ タカハマライフアート</title>
 		<link rel=canonical href="https://www.takahama428.com/">
 		<link rel="shortcut icon" href="/icon/favicon.ico">
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
@@ -59,8 +59,10 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 					<div class="carousel-item active">
 						<img class="img-fluid" id="pc_slide" src="/common/img/home/main/top_slide_speed.jpg" alt="First slide" width="100%">
 						<img class="img-fluid" id="sp_slide" src="/common/img/home/main/sp_top_slide_speed.jpg" alt="First slide" width="100%">
+						<div class="carousel-caption_2">
+							<h1>オリジナルTシャツのプリント作成</h1>
+						</div>
 						<div class="carousel-caption">
-							<h3></h3>
 							<a href="/order/"><button type="button" class="order_btn"><img src="/common/img/home/main/sp_go_icon.png" width="40px" style="padding-right: 12px;padding-bottom: 5px;">お申し込み</button></a>
 						</div>
 					</div>
@@ -78,10 +80,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 					<img class="d-block img-fluid" src="//placehold.jp/eeeeee/3d4070/1500x450.png?text=Third slide" alt="Third slide">
 				</div>
 -->
-
-
 				</div>
-				
 				<a class="carousel-control-prev" href="#mainCarouselIndicators" role="button" data-slide="prev">
 				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 				<span class="sr-only">Previous</span>
@@ -93,26 +92,6 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 
 			</div>
 		</div>
-		
-		<?php
-		if (!empty(_EXTRA_NOTICE)) {
-			$extNotice = (_EXTRA_NOTICE);
-			$txt = explode(PHP_EOL, $extNotice);
-			echo '<div id="option">';
-			echo '<h3 id="Line005"><a href="/guide/information.php">'.$txt[0].'</a></h3>';
-			$message = str_replace($txt[0].PHP_EOL, '', $extNotice);
-			echo '<p>'.nl2br($message).'</p></div>';
-		}
-		if (!empty(_NOTICE_HOLIDAY)) {
-			$notice = (_NOTICE_HOLIDAY);
-			$txt = explode(PHP_EOL, $notice);
-			echo '<div id="option">';
-			echo '<h3 id="Line005"><a href="/guide/information.php">'.$txt[0].'</a></h3>';
-			$message = str_replace($txt[0].PHP_EOL, '', $notice);
-			echo '<p>'.nl2br($message).'</p></div>';
-		}
-		?>
-		
 		<main class="container">
 			<div class="row outer top_3_wrap">
 				<div class="col">
@@ -596,18 +575,6 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 						<h2 class="mid_ttl">お知らせ</h2>
 						<div class="list-group-wrap px-2">
 							<ul class="list-group">
-								<li class="list-group-item">
-									<div class="row">
-										<div class="col-12 col-lg-3 news_date">
-											2017.11.22
-										</div>
-										<a href="/guide/information.php">
-											<div class="col-12 col-lg news_ttl">
-												【アイテム価格改定のお知らせ】
-											</div>
-										</a>
-									</div>
-								</li>
 								<li class="list-group-item">
 									<div class="row">
 										<div class="col-12 col-lg-3 news_date">
