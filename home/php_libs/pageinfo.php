@@ -1231,7 +1231,7 @@ if(isset($_REQUEST['act'])){
 	$printMethod .= $itemDetail['i_digit']? "<span>デジタル転写</span>": "<span class='none'></span>";
 	$printMethod .= $itemDetail['i_inkjet']? "<span>インクジェット</span>": "<span class='none'></span>";
 	$printMethod .= $itemDetail['i_cutting']? "<span>カッティング</span>": "<span class='none'></span>";
-	$printMethod = $printMethod;
+	$printMethod .= $itemDetail['i_embroidery']? "<span>刺繍</span>": "<span class='none'></span>";
 	
 	// 脚注
 	$footNote .= $itemDetail["i_note_label"]? "<h3>".$itemDetail["i_note_label"]."</h3>": "";
