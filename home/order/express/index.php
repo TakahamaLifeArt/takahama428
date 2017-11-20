@@ -26,7 +26,7 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 		<title>お急ぎの方へ【即日発送】 ｜ オリジナルTシャツが早い、タカハマライフアート</title>
 		<link rel="shortcut icon" href="/icon/favicon.ico">
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
-		<link rel="stylesheet" type="text/css" href="/common/css/printposition.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="/common/css/printposition_responsive.css" media="screen" />
 		<link rel="stylesheet" type="text/css" href="./css/express.css" media="screen">
 	</head>
 
