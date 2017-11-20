@@ -62,4 +62,5 @@ session_set_cookie_params(0);
 
 session_start();
 
-session_regenerate_id(true);
+// upload処理でsission_id を使用するため書き換え禁止
+//session_regenerate_id(true);
