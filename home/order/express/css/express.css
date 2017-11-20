@@ -1,15 +1,15 @@
-@charset "euc-jp";
+@charset "utf-8";
 
 /*------------------------------------------------------------
 
 2014 takahama web css
 
 	File_name	: express.css
-	Description	: §™µﬁ§Æ§Œ ˝§ÿ•⁄°º•∏
+	Description	: „ÅäÊÄ•„Åé„ÅÆÊñπ„Å∏„Éö„Éº„Ç∏
 	
 	log
-	2014.09.04	: •≠•„•Û•⁄°º•Û•–• °º
-	2014.11.12	: 2¬Á•≠•„•Û•⁄°º•Û•–• °º
+	2014.09.04	: „Ç≠„É£„É≥„Éö„Éº„É≥„Éê„Éä„Éº
+	2014.11.12	: 2Â§ß„Ç≠„É£„É≥„Éö„Éº„É≥„Éê„Éä„Éº
 	
 -------------------------------------------------------------- */
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, input, button, textarea, select, p, blockquote, th, td {
@@ -216,7 +216,7 @@ ul.pan li a, ul.pan li span {
 .btnarea{
 	margin: 50px auto;
 }
-/*§™∆œ§±∆¸*/
+/*„ÅäÂ±ä„ÅëÊó•*/
 
 
 #delivery_date_wrapper .txt1{
@@ -458,7 +458,7 @@ ul.pan li a, ul.pan li span {
 	visibility:hidden;
 }
 
-/*ƒÃæÔ«º¥¸*/
+/*ÈÄöÂ∏∏Á¥çÊúü*/
 #normalcus{
 	font-weight:bold;
 	padding:30px 10px;
@@ -486,7 +486,7 @@ ul.pan li a, ul.pan li span {
 	background-position:bottom;
 }
 
-/*•¢•§•∆•‡∞ÏÕ˜*/
+/*„Ç¢„Ç§„ÉÜ„É†‰∏ÄË¶ß*/
 #items{
 	padding:10px;
 }
@@ -528,11 +528,13 @@ ul.pan li a, ul.pan li span {
 	visibility:hidden;
 }
 
-/*ª˛¥÷≥∞•’•©°º•‡*/
+/*ÊôÇÈñìÂ§ñ„Éï„Ç©„Éº„É†*/
 #overtime {
+/*
 	margin-bottom: 30px;
 	margin-top: -100px;
 	padding-top: 135px;
+*/
 }
 *+html #overtime{
 	padding-top:80px;
@@ -613,7 +615,7 @@ a.info_icon {
 }
 
 
-/*•’•©°º•‡*/
+/*„Éï„Ç©„Éº„É†*/
 
 #express_table th, td {
 	padding: 10px 0;
@@ -711,7 +713,7 @@ input.number{
 
 
 
-/*Ã‰πÁ§ª*/
+/*ÂïèÂêà„Åõ*/
 #infoll{
 	margin:60px 0;
 	background:url(/common/img/info_ll.png) no-repeat;
@@ -746,7 +748,7 @@ input.number{
 }
 
 
-/*øß§€§´*/
+/*Ëâ≤„Åª„Åã*/
 .red_new {
 	color: #dc0000;
 }
@@ -758,7 +760,7 @@ input.number{
 }
 
 
-/*		•–• °º
+/*		„Éê„Éä„Éº
 ===============================================================*/
 
 .bigbanner {
@@ -776,7 +778,7 @@ input.number{
 }
 
 
-/* 2¬Á•≠•„•Û•⁄°º•Û */
+/* 2Â§ß„Ç≠„É£„É≥„Éö„Éº„É≥ */
 #nidai_campaign_banner {
 	width: 729px;
 	height: 200px;
@@ -789,7 +791,7 @@ input.number{
 }
 
 
-/* «º¥¸°°*/
+/* Á¥çÊúü„ÄÄ*/
 
 .blocktxt .round1 {
 	margin: 10px auto;
@@ -974,7 +976,7 @@ p.textb{
 }
 .order_content {
 	width: 100%;
-	margin: 7% 0px;
+	margin: 7% 0px 10%;
 }
 .order_txt {
 	display: flex;
@@ -1062,13 +1064,474 @@ p.scroll_top {
 	}
 }
 
+/*		„ÅäÂïèÂêà„Åõ
+===============================================================*/
+#enq_table,
+#size_table {
+	width: 660px;
+	margin: 0 auto 30px;
+}
+#size_table caption {
+	font-size: 100%;
+}
+.contents .title_confirmation {
+	display: none;
+	margin-bottom: 5px;
+	padding: 0 0 0 10px;
+	color: #4e2210;
+	border-left: 5px solid #e1630e;
+}
+.heading3 {
+	margin-top: 1em;
+}
+.bdrline {
+	border: 1px solid;
+}
+
+/* override */
+dl.list dt {
+	width: 3em;
+}
+dl.list dt.que {
+	color: #c33;
+}
+dl.list dt.que + dd {
+	color: #e33;
+}
+dl.list dt.ans {
+	color: #33c;
+}
+dl.list dd {
+	padding-left: 3em;
+}
+dl.list dd.mb {
+	margin-bottom: 1.5em;
+}
+
+/* „Çµ„Ç§„Ç∫„Å®„Ç´„É©„Éº */
+#size_table thead th,
+#size_table tbody th {
+	text-align: center;
+	background: #eee;
+}
+#size_table tbody td {
+	text-align: center;
+}
+#size_table input[type="number"] {
+	width: 4em;
+	text-align: right;
+}
+
+
+/*		„É°„Éº„É´„Éï„Ç©„Éº„É†
+===============================================================*/
+form {
+	margin-bottom: 30px;
+}
+.forPhone,
+.forZip,
+.email {
+	ime-mode: disabled;
+}
+#addr0,
+#addr1 {
+	margin-bottom: 5px;
+}
+#addr0 {
+	width: 10em;
+}
+
+.round_inner table th,
+.round_inner table td {
+	padding-top: 10px;
+	border-bottom: 1px solid #ddd;
+}
+.round_inner table tr.last th,
+.round_inner table tr.last td {
+	border: none;
+}
+.round_inner td {
+	line-height: 1.6;
+}
+.round_inner th {
+	text-align: left;
+	vertical-align: middle;
+	font-weight: normal;
+}
+.point {
+	margin: 5px 10px;
+	text-align: left;
+	color: #dc0000;
+}
+
+input[type="file"]{
+	height: 24px;
+}
+input[type="text"] {
+	width: 350px;
+	height: 18px;
+	padding: 3px;
+	border: 1px solid #aaa;
+	background-color: #ffffff;
+}
+input[type="text"].forZip {
+	width: 6em;
+	margin-bottom: 5px;
+	text-align: center;
+}
+input[type="text"]:focus {
+	border: 1px solid #237bc3;
+	background-color: #f1f8fe;
+}
+
+* html input{
+	width: 350px;
+	height: 24px;
+	padding: 3px;
+	border: 1px solid #aaa;
+	background-color: #ffffff;
+}
+* html input.forZip{
+	width: 6em;
+	margin-bottom: 5px;
+	text-align: center;
+}
+* html input:focus{
+	border: 1px solid #237bc3;
+	background-color: #f1f8fe;
+}
+#message,
+.message {
+	width: 450px;
+	height: 200px;
+	padding: 3px;
+	font-size: 100%;
+	border: 1px solid #aaa;
+	background-color: #ffffff;
+}
+#message:focus,
+.message:focus {
+	border: 1px solid #237bc3;
+	background-color: #f1f8fe;
+}
+.lbl {
+	background:#d3d1d0;
+	font-weight: bold;
+	text-align:center;
+	padding:5px;
+}
+.inner h3 {
+	text-align: center;
+	padding: 13px;
+	background-color: #e2710a;
+	color: #fff;
+	font-weight: bold;
+	margin: 1% 0;
+	font-size: 22px;
+}
+.select_cs {
+	margin: 1% 0 1% 1%;
+}
+.ptxt {
+	font-size: 1.8em;
+	font-weight: bold;
+	text-align: center;
+	padding-bottom: 10px;
+}
+.ptxt3 {
+	font-size: 1.2em;
+	font-weight: bold;
+	text-align: center;
+	margin-right: 50px;
+	color: #4173ed;
+}
+.ptxt4 {
+	font-size: 1em;
+	font-weight: bold;
+	text-align: center;
+	margin: 2%;
+}
+
+/* ÈÄÅ‰ø°„Éª„É™„Çª„ÉÉ„Éà */
+#sendmail {
+	width: 154px;
+	height: 60px;
+	margin: 10px auto;
+	background: url(../img/express_Send_btn.png) no-repeat center top;
+	cursor: pointer;
+}
+#sendmail:hover {
+	background-position: center bottom;
+}
+
+.button_area {
+	margin-top: 30px;
+	text-align: center;
+	padding: 5px 0;
+	background: #f9f9f9;
+	border-bottom: 1px solid #ddd;
+}
+.button_area input.btn {
+	margin: 0 10px;
+	padding: 3px 20px;
+	cursor: pointer;
+}
+.button_area .msg {
+	margin-bottom: 10px;
+}
+
+/* checkbox */
+#enq_table td label {
+	padding-right: 1.5em;
+}
+
+/* list */
+dl.list ul {
+	margin: 1em 0 1em 2.5em;
+}
+dl.list ul li {
+	list-style: circle;
+}
+
+/* Ê∑ª‰ªò„Éï„Ç°„Ç§„É´„ÅÆËøΩÂä† */
+.add_attachfile{
+	/*
+	height: 32px;
+	margin: 5px 0px 15px 200px;
+	*/
+	padding-left: 30px;
+	line-height: 32px;
+	color: #0000de;
+	background: url(/contact/img/attachment.png) no-repeat left center;
+	cursor: pointer;
+}
+.add_attachfile:hover{
+	text-decoration: underline;
+	color: #0066ff;
+}
+
+/* Ê∑ª‰ªò„Éï„Ç°„Ç§„É´„ÅÆÂâäÈô§ */
+.abort {
+	padding: 0px 5px;
+	color: #c33;
+	cursor: pointer;
+}
+.abort:hover {
+	color: #ff0019;
+}
+
+/* Ê∑ª‰ªò„Éï„Ç°„Ç§„É´„ÅÆË™¨Êòé */
+table td.comment {
+	padding-top: 3em;
+	font-size: 85%;
+}
+
+/* Á¢∫Ë™çÊôÇ„Å´Ë°®Á§∫„ÇíÂàáÊõø„Åà„ÇãË¶ÅÁ¥†„Å´ÈÅ©Áî® */
+.confirmation,
+form .txt {
+	display: none;
+}
+form .txt.confirmation {
+	display: block;
+	margin-bottom: 5px;
+}
+form p.txt.confirmation {
+	height: 23px;
+}
+.form span.txt.confirmation {
+	display: inline;
+}
+#goback {
+	display: none;
+}
+
+
+
+
+/*
+„Éó„É™„É≥„Éà‰ΩçÁΩÆ„Å®Ëâ≤Êï∞
+===============================================================*/
+.noprint_wrap {
+	margin-left: 1em;
+}
+
+
+#pos_wrap h3 {
+	margin-top: 30px;
+	font-size: 125%;
+}
+#pos_wrap h3 span {
+	padding-left: 10px;
+	font-size: 12px;
+	font-weight: normal;
+	color: #666;
+}
+
+/* clear fix */
+#pos_wrap > div:after {
+	content: ".";
+	display: block;
+	height: 0;
+	visibility:hidden;
+	line-height: 0;
+	font-size: 0;
+	clear: both;
+}
+#pos_wrap > div {
+	clear: both;
+	display: inline-block;
+	width: 98%;
+	margin-bottom: 10px;
+	padding-right: 10px;
+	overflow: hidden;
+	background: #fff;
+	border: 1px solid #eae7d2;
+	border-radius: 3px;
+	margin-left: 5px;
+	margin-top: 25px;
+}
+/* Hides from IE-mac \*/
+* html #pos_wrap > div {height: 1%;}
+#pos_wrap > div {display: block;}
+/* End hide from IE-mac */
+
+.posimg {
+	position: relative;
+	float: left;
+	width: 190px;
+	padding-left: 5px;
+}
+.inkbox {
+	position: relative;
+	float: right;
+	width: 500px;
+	height: 140px;
+	padding: 10px 0px;
+	overflow: auto;
+}
+.inkbox table {
+	width: 500px;
+}
+.inkbox table tfoot {
+	display: none;
+}
+.inkbox table thead th {
+	color: #4e2210;
+	background: #eae7d2;
+	border: 1px solid #fff;
+}
+.inkbox table caption {
+	display: none;
+}
+.inkbox table tbody th {
+	text-align: center;
+	font-weight: normal;
+	padding-left: 1em;
+}
+.inkbox table tbody td {
+	text-align: center;
+	white-space: nowrap;
+}
+
+.inkbox select {
+	width: 150px;
+}
+
+
+#step3 .inner {
+	clear: both;
+	margin: 40px 0px;
+}
+
+
+
+
 
 /*-------------------------------------------------------
-∑»¬”¬–±˛°°≤ËÃÃ…˝768px∞ ≤º
+Êê∫Â∏ØÂØæÂøú„ÄÄÁîªÈù¢ÂπÖ768px‰ª•‰∏ã
 2017.2.20
 --------------------------------------------------------*/
 
 @media screen and (max-width: 768px) {
+	.inner h3 {
+		text-align: center;
+		padding: 13px;
+		background-color: #e2710a;
+		color: #fff;
+		font-weight: bold;
+		margin: 1% 0;
+		font-size: 18px;
+	}
+	.inkbox {
+		position: relative;
+		float: right;
+		width: 97%;
+		padding: 10px 0px;
+		overflow: auto;
+	}
+	.inkbox table {
+		width: 100%;
+	}
+	.inkbox table tbody th {
+		text-align: center;
+		font-weight: normal;
+		padding-left: 3em;
+		padding-right: 3em;
+	}
+	.inkbox table thead th {
+		color: #4e2210;
+		background: #eae7d2;
+		border: 1px solid #fff;
+		padding: 0;
+	}
+	#enq_table, #enq_table tbody, #enq_table thead, #enq_table tfoot, #enq_table tr, #enq_table th, #enq_table td {
+		display: block;
+	}
+	#express_table th, td {
+		padding:  0;
+		vertical-align: middle;
+		/* width: 30px; */
+	}
+	#enq_table, #size_table {
+		width: 365px;
+		margin: 0 auto 30px;
+	}
+	input.customername, input.ruby, input#addr1, input#addr2, input.email {
+		max-width: 300px;
+		width: 350px;
+	}
+	#express_table th, td {
+		padding: 10px 0;
+		vertical-align: middle;
+		width: 100%;
+	}
+	.ptxt {
+		font-size: 1.2em;
+		font-weight: bold;
+		text-align: center;
+		padding-bottom: 10px;
+	}
+	.lbl {
+		background: #d3d1d0;
+		font-weight: bold;
+		text-align: center;
+		padding: 5px;
+		font-size: 13px;
+	}
+	.point {
+		margin: 0 1%;
+		text-align: left;
+		color: #dc0000;
+		padding: 0;
+	}
+	#message, .message {
+		width: 100%;
+		height: 140px;
+		padding: 3px;
+		font-size: 100%;
+		border: 1px solid #aaa;
+		background-color: #ffffff;
+	}
 	.order_p {
 		text-align: center;
 		float: left;
@@ -1271,10 +1734,12 @@ p.scroll_top {
 		left: 15%;
 	}
 */
+/*
 	input.customername, input.ruby, input#addr1, input#addr2, input.email {
 		width: 75%;
 		max-width: 300px;
 	}
+*/
 	textarea.printinfo, textarea.message {
 		width: 75%;
 		max-width: 300px;
@@ -1299,4 +1764,5 @@ p.scroll_top {
 	select, input, textarea, button {
 		font-size: .8rem;
 	}
+
 }

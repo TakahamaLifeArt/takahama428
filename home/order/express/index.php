@@ -1,29 +1,11 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/orders.php';
 $order = new Orders();
-$fin = $order->getDelidate();
-
-//$ua=$_SERVER['HTTP_USER_AGENT'];
-//if((strpos($ua,' iPhone')!==false)||(strpos($ua,' iPod')!==false)||(strpos($ua,' Android')!==false)) {
-//	$txt_SP02 = '<p><a href="tel:0120130428" style="margin-left:0px;font-size:60px;font-weight:bold;">0120-130-428</a></p>';
-//	$txt_SP02 .= '<p class="note" style="margin-left:95px;">受付時間：平日10:00-18:00</p>';
-//}else{
-//	$txt_SP02 = '<img src="img/phoneno.png" width="456" height="104" alt="TEL:0120-130-428 受付時間：平日10:00-18:00"><br>';
-//}
-
-// category selector
-$data = $order->categoryList();
-$category_selector = '<select id="category_selector" name="category">';
-$category_selector .= '<option value="" selected="selected">-</option>';
-for($i=0; $i<count($data); $i++){
-	$categoryName = $data[$i]['name'];
-	$category_selector .= '<option value="'.$data[$i]['code'].'" rel="'.$data[$i]['id'].'"';
-	$category_selector .= '>'.$categoryName.'</option>';
+for ($i=0,$t=1; $i<4; $i++,$t++) {
+	$fin[$i] = $order->getDelidate(null, 1, $t);
 }
-$category_selector .= '</select>';
 
 $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
-$_SESSION['ticket'] = $ticket;
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -44,8 +26,7 @@ $_SESSION['ticket'] = $ticket;
 		<title>お急ぎの方へ【即日発送】 ｜ オリジナルTシャツが早い、タカハマライフアート</title>
 		<link rel="shortcut icon" href="/icon/favicon.ico">
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
-		<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/flick/jquery-ui.css">
-		<link rel="stylesheet" type="text/css" href="/common/css/jquery.ui.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="/common/css/printposition.css" media="screen" />
 		<link rel="stylesheet" type="text/css" href="./css/express.css" media="screen">
 	</head>
 
@@ -83,11 +64,11 @@ $_SESSION['ticket'] = $ticket;
 												<table class="bk_table" style="width:130px">
 													<tr id="result_date4">
 														<td class="dt">
-															<p></p>
+															<p><?php echo $fin[0]['Month'];?></p>
 														</td>
 														<td style="width: 15px">/</td>
 														<td class="dt">
-															<p></p>
+															<p><?php echo $fin[0]['Day'];?></p>
 														</td>
 													</tr>
 												</table>
@@ -108,10 +89,10 @@ $_SESSION['ticket'] = $ticket;
 								<img src="img/sp_hurry_map.jpg" alt="最短お届けエリア" width="100%">
 							</div>
 						</div>
-						
+
 						<div class="blockgrp2_1">
-						<p class="texorg">当日特急プラン対応アイテム！</p>
-						<p class="txt2">厳選した人気アイテムで対応！</p>
+							<p class="texorg">当日特急プラン対応アイテム！</p>
+							<p class="txt2">厳選した人気アイテムで対応！</p>
 						</div>
 						<div class="blockgrp2">
 							<div class="blocktxt2">
@@ -171,11 +152,11 @@ $_SESSION['ticket'] = $ticket;
 												<table class="bk_table">
 													<tr id="result_date3">
 														<td class="dt">
-															<p></p>
+															<p><?php echo $fin[1]['Month'];?></p>
 														</td>
 														<td style="width: 15px">/</td>
 														<td class="dt">
-															<p></p>
+															<p><?php echo $fin[1]['Day'];?></p>
 														</td>
 													</tr>
 												</table>
@@ -194,11 +175,11 @@ $_SESSION['ticket'] = $ticket;
 													<table class="bk_table">
 														<tr id="result_date2">
 															<td class="dt">
-																<p></p>
+																<p><?php echo $fin[2]['Month'];?></p>
 															</td>
 															<td style="width: 15px">/</td>
 															<td class="dt">
-																<p></p>
+																<p><?php echo $fin[2]['Day'];?></p>
 															</td>
 														</tr>
 													</table>
@@ -218,13 +199,13 @@ $_SESSION['ticket'] = $ticket;
 													<tr id="result_date">
 														<td class="dt">
 															<p class="date">
-																<?php echo $fin['Month'];?>
+																<?php echo $fin[3]['Month'];?>
 															</p>
 														</td>
 														<td style="width: 15px">/</td>
 														<td class="dt">
 															<p class="date">
-																<?php echo $fin['Day'];?>
+																<?php echo $fin[3]['Day'];?>
 															</p>
 														</td>
 													</tr>
@@ -314,114 +295,175 @@ $_SESSION['ticket'] = $ticket;
 							<a href="/order/" class="order_btn"><img src="/delivery/img/deli/sp_go_icon.png" width="20%;">お申し込み</a>
 							<img class="bubble_img" src="/delivery/img/deli/sp_go_min.png" width="100%;"></div>
 					</div>
-					<div id="overtime">
-						<h2>お急ぎの方専用フォーム</h2>
-						<div id="overtime_form">
-							<div id="formwrapper">
-								<p><span class="red_new">※は必須入力です。</span><span class="blue_new"><a href="/contact/faxorderform.pdf" target="_blank">FAX注文用紙（PDF）はこちら &#62;</a></span></p>
-								<div id="formcontent">
-									<form name="express_form" method="post" action="/contact/transmit.php?req=express" enctype="multipart/form-data" onsubmit="return false;">
-										<table id="express_table">
-											<tbody>
-												<tr>
-													<th>お名前</th>
-													<td class="red_new">※</td>
-													<td><input name="customername" type="text" value="" class="customername"></td>
-												</tr>
-												<tr>
-													<th>フリガナ</th>
-													<td class="red_new">※</td>
-													<td><input name="ruby" type="text" value="" class="ruby"></td>
-												</tr>
-												<tr>
-													<th>電話番号</th>
-													<td class="red_new">※</td>
-													<td><input name="tel" type="text" class="forPhone" value="" /></td>
-												</tr>
-												<tr>
-													<th>メールアドレス</th>
-													<td class="red_new">※</td>
-													<td><input name="email" type="text" class="email" value="" /></td>
-												</tr>
-												<tr>
-													<th>ご希望納期</th>
-													<td class="red_new">※</td>
-													<td><input id="datepicker" type="text" size="14" name="deliveryday" class="forDate" value="" /></td>
-												</tr>
-												<tr>
-													<th>商品カテゴリー</th>
-													<td class="point">&nbsp;</td>
-													<td>
-														<?php echo $category_selector;?>
-													</td>
-												</tr>
-												<tr>
-													<th>枚数</th>
-													<td class="point">&nbsp;</td>
-													<td><input name="amount" type="text" class="number forNum" value="0" />&nbsp;枚</td>
-												</tr>
-												<tr>
-													<th>ご住所</th>
-													<td class="red_new">※</td>
-													<td>
-														<p>〒<input name="zipcode" id="zipcode" class="forZip" type="text" onkeyup="AjaxZip3.zip2addr(this,'','addr0','addr1');" /></p>
-														<p><input name="addr0" id="addr0" type="text" placeholder="都道府県" maxlength="4" /></p>
-														<p><input name="addr1" id="addr1" type="text" placeholder="文字数は全角28文字、半角56文字です" maxlength="56" class="restrict" /></p>
-														<p><input name="addr2" id="addr2" type="text" placeholder="文字数は全角16文字、半角32文字です" maxlength="32" class="restrict" /></p>
-													</td>
-												</tr>
-												<tr>
-													<th>デザインファイル</th>
-													<td>&nbsp;</td>
-													<td><input type="file" name="attachfile[]" class="file" /></td>
-												</tr>
-												<tr>
-													<th>&nbsp;</th>
-													<td>&nbsp;</td>
-													<td><input type="button" class="add_attachfile" value="別の添付ファイルを追加"></td>
-												</tr>
-												<tr>
-													<th>プリント情報</th>
-													<td class="point">&nbsp;</td>
-													<td>
-														<span class="small">例)前１ヶ所１色、後右袖１ヶ所２色</span>
-														<textarea name="printinfo" class="printinfo" cols="40" rows="5"></textarea>
-													</td>
-												</tr>
-												<tr>
-													<th>メッセージ</th>
-													<td class="point">&nbsp;</td>
-													<td><textarea name="message" class="message" cols="40" rows="5"></textarea></td>
-												</tr>
-											</tbody>
-										</table>
+					
+					<div class="inner">
+						<h3 id="overtime">当日特急専用　お申し込みフォーム</h3>
+						<div class="bdrline">
+							<p class="lbl">■データを添付や詳細を下記にて記載して、お問い合わせ下さい。</p>
+							<p class="point">「※」 は必須です。</p>
+							<form name="express_form" method="post" action="/contact/transmit.php?req=sameday" enctype="multipart/form-data" onsubmit="return false;">
+								<table id="enq_table">
+									<tbody>
+										<tr>
+											<th>お名前</th>
+											<td class="point">※</td>
+											<td>
+												<p class="txt"></p>
+												<input name="customername" type="text" value="">
+											</td>
+										</tr>
+										<tr>
+											<th>フリガナ</th>
+											<td class="point">※</td>
+											<td>
+												<p class="txt"></p>
+												<input name="ruby" type="text" value="">
+											</td>
+										</tr>
+										<tr>
+											<th>ご住所</th>
+											<td class="point">※</td>
+											<td>
+												<p>〒<input name="zipcode" id="zipcode" class="forZip" type="text" onkeyup="AjaxZip3.zip2addr(this,'','addr0','addr1');" /></p>
+												<p><input name="addr0" id="addr0" type="text" placeholder="都道府県" maxlength="4" /></p>
+												<p><input name="addr1" id="addr1" type="text" placeholder="文字数は全角28文字、半角56文字です" maxlength="56" class="restrict" /></p>
+												<p><input name="addr2" id="addr2" type="text" placeholder="文字数は全角16文字、半角32文字です" maxlength="32" class="restrict" /></p>
+											</td>
+										</tr>
+										<tr>
+											<th>メールアドレス</th>
+											<td class="point">※</td>
+											<td>
+												<p class="txt"></p>
+												<input name="email" type="text">
+											</td>
+										</tr>
+										<tr>
+											<th>電話番号</th>
+											<td class="point">※</td>
+											<td>
+												<p class="txt"></p>
+												<input name="tel" type="text" class="forPhone">
+											</td>
+										</tr>
+										<tr>
+											<th>ご希望納期</th>
+											<td class="point">※</td>
+											<td><input type="date" size="14" name="deliveryday" class="forDate" value="" /></td>
+										</tr>
+										<tr>
+											<th>メッセージ</th>
+											<td>&nbsp;</td>
+											<td>
+												<div class="txt"></div>
+												<textarea name="message" id="message" cols="40" rows="7"></textarea>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="3" class="comment">デザインデータなどのファイルを送信される方は、こちらから添付できます。</td>
+										</tr>
+										<tr>
+											<th>添付ファイル</th>
+											<td>&nbsp;</td>
+											<td><input type="file" name="attachfile[]"></td>
+										</tr>
+										<tr class="last">
+											<th></th>
+											<td>&nbsp;</td>
+											<td>
+												<p class="add_attachfile" onClick="$.add_attach('enq_table');">別の添付ファイルを追加</p>
+											</td>
+										</tr>
+									</tbody>
+								</table>
 
-										<input type="hidden" name="ticket" value="<?php echo $ticket; ?>" />
-										<input type="hidden" name="title" value="express" />
+								<p class="lbl">■カラーとサイズ</p>
+								<p class="select_cs">サイズの中に必要な枚数を選択ください(複数可)</p>
 
-										<div id="button_holder">
-											<p id="sendbtn">送&nbsp;&nbsp;信</p>
-										</div>
-									</form>
+								<table id="size_table">
+									<thead>
+										<tr>
+											<th>色</th>
+											<th>S (&yen;480)</th>
+											<th>M (&yen;480)</th>
+											<th>L (&yen;480)</th>
+											<th>XL (&yen;480)</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><img src="<?php echo _IMG_PSS?>/items/list/t-shirts/085-cvt/085-cvt_001.jpg" width="100"></td>
+											<td><input type="number" value="0" min="0" step="1" name="S_001">枚</td>
+											<td><input type="number" value="0" min="0" step="1" name="M_001">枚</td>
+											<td><input type="number" value="0" min="0" step="1" name="L_001">枚</td>
+											<td><input type="number" value="0" min="0" step="1" name="XL_001">枚</td>
+										</tr>
+										<tr>
+											<th>色</th>
+											<th>S (&yen;560)</th>
+											<th>M (&yen;560)</th>
+											<th>L (&yen;560)</th>
+											<th>XL (&yen;560)</th>
+										</tr>
+										<tr>
+											<td><img src="<?php echo _IMG_PSS?>/items/list/t-shirts/085-cvt/085-cvt_005.jpg" width="100"></td>
+											<td><input type="number" value="0" min="0" step="1" name="S_005">枚</td>
+											<td><input type="number" value="0" min="0" step="1" name="M_005">枚</td>
+											<td><input type="number" value="0" min="0" step="1" name="L_005">枚</td>
+											<td><input type="number" value="0" min="0" step="1" name="XL_005">枚</td>
+										</tr>
+										<tr>
+											<th>色</th>
+											<th>Free (&yen;380~)</th>
+											<th colspan="3"></th>
+										</tr>
+										<tr>
+											<td><img src="<?php echo _IMG_PSS?>/items/list/towel/522-ft/522-ft_001.jpg" width="100"></td>
+											<td><input type="number" value="0" min="0" step="1" name="Free_001">枚</td>
+											<td colspan="3"></td>
+										</tr>
+									</tbody>
+								</table>
+
+								<p class="lbl">■プリントする位置とデザインの色数を指定してください</p>
+								<div class="noprint_wrap">
+									<p><label><input type="checkbox" name="noprint" id="noprint" value="1"> プリントなしで購入する</label></p>
+									<p class="note"><span>※</span>プリントなしの場合1割増しになります。</p>
 								</div>
-							</div>
+								<div id="pos_wrap"></div>
+
+								<input type="hidden" name="ticket" value="<?php echo $ticket; ?>">
+								<input type="hidden" name="title" value="expresstoday">
+								<input type="hidden" name="mode" value="send">
+								<div id="pos_info">
+
+								</div>
+								<div class="button_area">
+									<p class="msg">入力内容をご確認の上、よろしければ[ 送信 ]ボタンを押してください。</p>
+									<div id="sendmail" style="width: 154px; height: 60px"></div>
+								</div>
+							</form>
 						</div>
 					</div>
-					<p><img class="bubble_img2" src="img/hurry_tel.jpg" width="300px;"></p>
+					<div>
+						<p class="ptxt4">手書きのイラストや、デザインをプリントアウトしたものなどの場合は、下記の宛先までお送りください。</p>
+						<p class="ptxt3"><a href="/contact/faxorderform.pdf" target="_blank">手書き注文書(PDF)はこちら<img src="./img/img_01.png" width="40px" height="40px"></a></p>
+						<p class="ptxt">FAX: 03-5670-0730 (受付時間：24時間受信)</p>
+						<p class="ptxt4"><span class="kome">※</span>家庭用は画質が低い為、複合機やコンビニからをオススメします。</p>
+					</div>
 				</div>
 			</div>
 		</div>
+
+		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/util.php"; ?>
 		<footer class="page-footer">
 			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
 		</footer>
 
-		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/util.php"; ?>
-
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
-		<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
 		<script src="//ajaxzip3.github.io/ajaxzip3.js" charset="utf-8"></script>
 		<script type="text/javascript" src="./js/express.js"></script>
+
 	</body>
 
-	</html>
+</html>
