@@ -46,7 +46,8 @@ class Ordermail extends Conndb{
 //					$fname = rawurldecode(basename($uploadfilename[$a]));
 //					$uploadURL[] = $tmpDir.$fname;
 //				}
-				$uploadDir = _MEMBER_IMAGE_PATH."files/".basename(dirname($uploadfilename[0], 1));
+//				$uploadDir = _MEMBER_IMAGE_PATH."files/".basename(dirname($uploadfilename[0], 1));
+				$uploadDir = basename(dirname($uploadfilename[0], 1));
 			}
 			$hash = $this->insertOrderToDB($uploadDir);
 			$order_id = $hash['orderid'];
@@ -335,25 +336,27 @@ class Ordermail extends Conndb{
 				$order_info_admin = "";
 				$order_info_user = "";
 			} else {
-				for ($a=0; $a<count($hash['designfile']); $a++) {
-					$order_info_admin .= "◇ファイル名：　"._ORDER_DOMAIN."/system/attatchfile/".$order_id."/".$hash['designfile'][$a]."\n\n";
-				}
+//				for ($a=0; $a<count($hash['designfile']); $a++) {
+//					$order_info_admin .= "◇ファイル名：　"._ORDER_DOMAIN."/system/attachfile/".$order_id."/".$hash['designfile'][$a]."\n\n";
+//				}
 				for ($b=0; $b<count($uploadfilename); $b++) {
-					$fname = rawurldecode(basename($uploadfilename[$b]));
-					$order_info_user .= "◇ファイル名：　".$fname."\n";
+					$fname = basename($uploadfilename[$b]);
+					$order_info_user .= "◇ファイル名：　".rawurldecode($fname)."\n";
+					$order_info_admin .= "◇ファイル名：　"._ORDER_DOMAIN."/system/attachfile/".$order_id."/".$fname."\n\n";
 				}
 				if (empty($order_id)) {
 					$order_info_admin .= "\n===  Error  ===\n";
 					$order_info_admin .= "\n◇ 注文データの送信中にエラーが発生しています。\n";
 					$order_info_admin .= "\n===\n\n";
-				} else if ($a!=$b) {
+				} else if ($hash['designfile']==false) {
 					$order_info_admin .= "\n===  Error  ===\n";
 					$order_info_admin .= "\n◇ 転送できなかったデザインファイルがあります。\n";
 					$order_info_admin .= "\n-- 元ファイル（".$b."個）\n";
-					for ($b=0; $b<count($uploadfilename); $b++) {
-						$fname = rawurldecode(basename($uploadfilename[$b]));
-						$order_info_admin .= "◇ファイル名：　".$fname."\n";
-					}
+					$order_info_admin .= "◇コード：　".basename(dirname($uploadfilename[$b], 1))."\n";
+//					for ($b=0; $b<count($uploadfilename); $b++) {
+//						$fname = rawurldecode(basename($uploadfilename[$b]));
+//						$order_info_admin .= "◇ファイル名：　".$fname."\n";
+//					}
 					$order_info_admin .= "\n===\n\n";
 				}
 				$order_info_admin .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
@@ -527,10 +530,10 @@ class Ordermail extends Conndb{
 
 	/**
 	 * 受注システムに登録
-	 * @param {string} アップロードしたデザインファイルのディレクトリのパス
-	 * @return {array} {orderid=>受注No. , designfile=>デザインファイル名の配列}
+	 * @param {string} uploadDir アップロードしたデザインファイルのディレクトリ
+	 * @return {array} {orderid=>受注No. , designfile=>true|false}
 	 */
-	private function insertOrderToDB($uploadpath){
+	private function insertOrderToDB($uploadDir){
 		$items = $_SESSION['orders']['items'];
 		$user = $_SESSION['orders']['customer'];
 		$opts = $_SESSION['orders']['options'];
@@ -755,8 +758,8 @@ class Ordermail extends Conndb{
 		$data12 = array();
 
 		// アップロードファイル
-		if (!empty($uploadpath)) {
-			$file = $uploadpath;
+		if (!empty($uploadDir)) {
+			$upDir = $uploadDir;
 		}
 
 		// hash 1
@@ -772,7 +775,7 @@ class Ordermail extends Conndb{
 		$data9 = $this->hash2($field9, $orderink);
 		$data10 = $this->hash2($field10, $exchink);
 
-		$data = array($data1,$data2,$data3,$data4,$data5,$data6,$data7,$data8,$data9,$data10,$data12,$file,_SITE);
+		$data = array($data1,$data2,$data3,$data4,$data5,$data6,$data7,$data8,$data9,$data10,$data12,$upDir,_SITE);
 		
 		// 受注システムに登録
 		$orders = new WebOrder();
@@ -814,6 +817,9 @@ class Ordermail extends Conndb{
 }
 
 
+/**
+ * 2017-11-17 未使用
+ */
 class Design {
 
 	/**
@@ -823,7 +829,7 @@ class Design {
 	 * @return {array} 転送後のアップロードファイル名
 	 */
 	public function saveDesFile($order_id, $filedir){
-		$path = $_SERVER['DOCUMENT_ROOT'].'/../../'._ORDER_VHOST.'/home/system/attatchfile/'.$order_id;
+		$path = $_SERVER['DOCUMENT_ROOT'].'/../../'._ORDER_VHOST.'/home/system/attachfile/'.$order_id;
 		if(!is_dir($path)) {
 			mkdir($path);
 		}
@@ -996,7 +1002,7 @@ class WebOrder {
 	 * @param {string} table テーブル名
 	 * @param {array} data 追加データの配列、若しくは注文伝票ID
 	 *
-	 * @return {array} {orderid=>受注No. , designfile=>デザインファイル名の配列}
+	 * @return {array} {orderid=>受注No. , designfile=>true|false}
 	 */
 	private function insert($conn, $table, $data){
 		try{
@@ -1015,12 +1021,13 @@ class WebOrder {
 				 *	data10	インク色替え（exchink）
 				 *	data12	発送元
 				 *	-----2016-12-07-------
-				 *	2017-11-09 添付ファイルの廃止に伴い引数を変更
-				 *  file	アップロードされたファイルのあるディレクトリまでのパス
+				 *	2017-11-09 添付ファイルの廃止に伴い仮引数を変更
+				 *	2017-11-17 アップロード先の変更に伴い仮引数で親ディレクトを指定
+				 *  upDir	アップロードされたファイルのあるディレクトリ
 				 *  site 	注文サイト
 				 *	return	受注ID, 顧客ID, 顧客Number | プリント位置ID,, | インクID,, | インク色替えID,, | 見積追加行ID,,
 				 */
-					list($data1, $data2, $data3, $data4, $data5, $data6, $data7, $data8, $data9, $data10, $data12, $file, $site) = $data;
+					list($data1, $data2, $data3, $data4, $data5, $data6, $data7, $data8, $data9, $data10, $data12, $upDir, $site) = $data;
 					$customer_id = 0;
 					$deli_id = 0;
 					$ship_id=0;
@@ -1453,13 +1460,15 @@ class WebOrder {
 						return null;
 					}
 
-					// アップロードされたデザインファイルを伝送
-					if($file != ""){
-						$des = new Design();
-						$designFilename = $des->saveDesFile($orders_id, $file);
+					// アップロードされた入稿データのディレクトリ名を受注IDに変更
+					$isUpload = true;
+					if($upDir != ""){
+						$oldPath = $_SERVER['DOCUMENT_ROOT'].'/../../'._ORDER_VHOST.'/home/system/attachfile/'.$upDir;
+						$newPath = $_SERVER['DOCUMENT_ROOT'].'/../../'._ORDER_VHOST.'/home/system/attachfile/'.$orders_id;
+						$isUpload = rename($oldPath, $newPath);
 					}
 					
-					return array('orderid'=>$orders_id, 'designfile'=>$designFilename);
+					return array('orderid'=>$orders_id, 'designfile'=>$isUpload);
 					break;
 
 				case 'orderitem':

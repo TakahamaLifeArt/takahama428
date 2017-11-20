@@ -1,12 +1,14 @@
 <?php
 error_reporting(E_ALL | E_STRICT);
+require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/session_my_handler.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/MyUploadHandler.php';
 if(isset($_REQUEST['path_name'])){
 	$pathName = $_REQUEST['path_name'];
 }else{
 //	$prefix = "t_".mt_rand(0, 1000);
 //	$dir = uniqid($prefix)."/";
-	$pathName = '/user/member/data/files/';
+//	$pathName = '/user/member/data/files/';
+	$pathName = session_id().'/';
 }
 $https = !empty($_SERVER['HTTPS']) && strcasecmp($_SERVER['HTTPS'], 'on') === 0 ||
 	!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) &&
@@ -17,9 +19,12 @@ $full_url = ($https ? 'https://' : 'http://').
 															 ($https && $_SERVER['SERVER_PORT'] === 443 ||
 															  $_SERVER['SERVER_PORT'] === 80 ? '' : ':'.$_SERVER['SERVER_PORT'])));
 $upload_handler = new MyUploadHandler(array(
-	'upload_dir' => $_SERVER['DOCUMENT_ROOT'].$pathName,
-	'upload_url' => $full_url.$pathName,
-	'user_dirs' => true,
+//	'upload_dir' => $_SERVER['DOCUMENT_ROOT'].$pathName,
+//	'upload_url' => $full_url.$pathName,
+	
+	'upload_dir' => $_SERVER['DOCUMENT_ROOT'].'/../../dev_original-sweat.com/home/system/attachfile/'.$pathName,
+	'upload_url' => $full_url.'/files/'.$pathName,
+//	'user_dirs' => true,
 	'param_name' => 'files',
 	'accept_file_types' => '/\.(ai|jpe?g|png|psd|pdf|zip)$/i',
 	'over_write' => TRUE
