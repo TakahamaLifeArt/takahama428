@@ -1,0 +1,886 @@
+@charset "euc-jp";
+/*
+* log
+* 2017-01-17 サイズとカラーのテーブル更新
+*/
+
+h1 ins {
+	font-size: 250%;
+	color: #c33;
+}
+
+div.panwrap {
+	height: 20px;
+	margin: 0;
+	padding: 20px 0 0 20px;
+}
+
+.heading {
+	clear: both;
+	margin: 20px 0 15px;
+	padding: 0em 0em .6em;
+	font-weight: bold;
+	background: #2174ed;
+	color: #fff;
+	height: 40px;
+	display: block;
+}
+
+.heading .leftdrop{
+	float:left;
+}
+
+.heading p{
+	margin-left: 450px;
+	padding-top: 3px;
+	font-size: 2em;
+}
+
+.contents {
+	width: 100%;
+	float: none;
+	margin-top: 20px;
+	overflow: hidden;
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 10px;
+}
+#container {
+	width: 100%;
+	margin: 0px auto;
+	padding-top: 125px;
+}
+h1 {
+	font-size: 40px;
+	line-height: 1.8;
+	color: #333;
+	font-weight: bold;
+	margin-bottom: 30px;
+}
+ul.pan {
+	height: auto;
+	margin: 20px 5px 20px 5px;
+	font-size: 0.8em;
+}
+ul.pan li {
+	display: inline;
+	padding-right: 4px;
+	line-height: 2em;
+}
+ul.pan li:first-child:before {
+	content: "";
+	padding-right: 0;
+}
+ul.pan li:before {
+	content: ">";
+	padding-right: 10px;
+	vertical-align: middle;
+}
+ul.pan li a, ul.pan li span {
+	vertical-align: middle;
+	text-decoration: none;
+}
+.cal_red{
+	margin-top:20px;
+}
+
+.cal_red #date_box{
+	width: 55%;
+	margin: 0 auto;
+	font-size: 1.2em;
+	border: 5px #2174ed solid;
+	height: 150px;
+}
+
+.cal_red #date_box .bg_r{
+	float:left;
+	margin:10px;
+}
+
+.cal_red #date_box .blue_txt {
+	font-size: 2.8em;
+	color: #2174ed;
+	width: 100%;
+	text-align: right;
+	margin-left: 20px;
+	font-weight: bold;
+}
+
+.cal_red #date_box .daytext{
+	font-weight: bold;
+	width: 50%;
+	margin: 10px 0 10px 230px;
+}
+
+.cal_red #date_box .red_txt{
+	font-weight:bold;
+	font-size:1.2em;
+	color:#ff0000;
+	text-align:right;
+	width: 50%;
+	margin: 0 0 20px 250px;
+
+}
+
+
+
+.phone_txt{
+	width: 60%;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 20px;
+}
+
+.phone_txt .red_txt{
+	margin: 0 auto;
+	text-align: center;
+	color:#ff0000;
+	font-size: 2.5em;
+	font-weight: bold;
+}
+
+.phone_txt .timetx{
+	font-size:1.5em;
+}
+
+
+h2.lines-on-sides{
+	display: flex;
+	align-items: center;
+	text-align: center; /* for no-flexbox browsers */
+	font-size: 2.1em;
+	padding: 20px 0px 10px;
+}
+
+h2.lines-on-sides:before,
+h2.lines-on-sides:after {
+	border-top: 10px #EEE solid;
+	content: "";
+	display: inline; /* for IE */
+	flex-grow: 1;
+}
+
+h2.lines-on-sides:before {
+	margin-right: 0.5em;
+}
+
+h2.lines-on-sides:after {
+	margin-left: 0.5em;
+}
+
+.mailbtn{
+	margin: 0 auto;
+	width: 380px;
+	height: 80px;
+	margin-bottom: 20px;
+	text-align: center;
+	padding: 10px 20px 0 0;
+}
+
+.mailbtn a{
+	height: 70px;
+	line-height: 15px;
+	border-radius: 10px;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1.00, #E8690A), color-stop(0.01, #FACE00));
+	background: -webkit-linear-gradient(top, #FACE00 1%, #E8690A 100%);
+	background: -moz-linear-gradient(top, #FACE00 1%, #E8690A 100%);
+	background: -o-linear-gradient(top, #FACE00 1%, #E8690A 100%);
+	background: -ms-linear-gradienttop, #FACE00 1%, #E8690A 100%);
+	background: linear-gradient(top, #FACE00 1%, #E8690A 100%);
+	text-shadow: 2px 2px 1px #999999;
+	text-decoration: none;
+	margin-left: 10px;
+	display: block;
+	cursor: pointer;
+	color: #ffffff;
+	padding-top: 10px;
+}
+
+.mailbtn a:hover {
+	opacity: 0.7;
+	filter: alpha(opacity=70);
+	-ms-filter: "alpha(opacity=70)";
+}
+
+.mailbtn .spce{
+	margin: 40px;
+	font-size: 2em;
+}
+
+.mailbtn img:first-child{
+	margin-top: 5px;
+	padding-top: 5px;
+}
+
+
+.ong{
+	margin:0 auto;
+	margin-top:20px;
+}
+
+.ong p{
+	font-size: 2em;
+	color: #ff8000;
+	text-align: center;
+	font-weight: bold;
+}
+
+.ong .bktxt{
+	font-size:1em;
+	color:#000000;
+	text-align:center;
+}
+
+
+
+.inflist{
+	margin-top:10px;
+	margin-left:50px;
+	text-align:left;
+}
+
+.inflist li{
+	padding:5px;
+}
+
+.inflist p{
+	font-size:1.8em;
+}
+
+.inflist .stg{
+	font-weight:bold;
+}
+
+
+.inflist .stgbl{
+	font-weight:bold;
+	color:#2174ed;
+	font-style:italic;
+}
+
+.inflist .rgttxt{
+	text-align: right;
+	margin-right: 280px;
+	font-size: 1em;
+}
+
+.inflist .rgttxt .red_txt{
+	color:#ff0000;
+}
+
+
+.ptxt{
+	font-size:1.8em;
+	font-weight:bold;
+	text-align:center;
+	padding-bottom: 10px;
+}
+
+
+.ptxt2{
+	font-size:1.8em;
+	font-weight:bold;
+	text-align:left;
+	margin-left:50px;
+}
+
+.ptxt3{
+	font-size:1.2em;
+	font-weight:bold;
+	text-align:center;
+	margin-right:50px;
+	color:#4173ed;
+}
+
+.ptxt4{
+	font-size:1.3em;
+	font-weight:bold;
+	text-align:center;
+}
+.ptxt4 .kome{
+	color:#ff0000;
+}
+
+
+.daytxt{
+	font-size:1.2em;
+	text-align:right;
+	margin-right:50px;
+}
+
+.daytxt .red_txt{
+	color:#ff0000;
+}
+
+.bdrline{
+	border:1px #000000 solid;
+	margin-top:10px;
+	margin-bottom:20px;
+}
+
+.contents .inner {
+	padding: 0px;
+}
+
+.contents .inner h3{
+	background:#333333;
+	height:50px;
+	text-align:center;
+	font-size:1.8em;
+	font-weight:bold;
+	color:#ffffff;
+	padding-top:5px;
+	display:none;
+}
+
+
+
+
+.lbl {
+	background:#d3d1d0;
+	font-weight: bold;
+	text-align:center;
+	padding:5px;
+}
+
+.clearfix {
+	margin-bottom: 20px;
+}
+.alert {
+	clear: both;
+	text-align: right;
+	color: #c33;
+}
+
+.section01 p {
+	margin-top: -20px;
+	font-size: 200%;
+}
+.section01 p ins {
+	font-size: 150%;
+	color: orange;
+}
+
+.section02 img {
+	margin-bottom: 10px;
+	background-color: #ffffff;
+
+}
+
+.section03 .fl,
+.section03 .fr {
+	width: 230px;
+	height: 300px;
+}
+.section03 .fl.mr01 {
+	margin-right: 20px;
+}
+.section03 .fl div,
+.section03 .fr div {
+	position: relative;
+	width: 210px;
+	height: 210px;
+	margin-bottom: 10px;
+	padding: 10px;
+}
+.section03 .fl p,
+.section03 .fr p {
+	padding: 0 .5em;
+}
+.section03 .fl p ins {
+	color: #c33;
+}
+.section03 .fl div img,
+.section03 .fr div img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+}
+.section03 .fl div.div02 img {
+	top: 25px;
+}
+.section03 .div01 {
+	background: #ffc073;
+}
+.section03 .div02 {
+	background: #fa9792;
+}
+.section03 .div03 {
+	background: #7ddbb9;
+}
+.section03 .div04 {
+	background: #e4d5c0;
+}
+.section03 .div05 {
+	background: #68d7d9;
+}
+.section03 .div06 {
+	background: #fa9792;
+}
+.section03 .div07 {
+	background: #e4d5c0;
+}
+
+.section04 p {
+	font-size: 125%;
+}
+.section04 img {
+	margin-right: 20px;
+}
+.notice {
+	margin-bottom: 1em;
+}
+.notice span {
+	padding: 5px 10px;
+	background: #c33;
+	color: #fff;
+	border-radius: 3px;
+}
+
+.section05 {
+	position: relative;
+}
+.section05 .fl {
+	margin: 10px;
+	padding: 10px 34px;
+}
+.section05 .fl p {
+	margin-bottom: 10px;
+	text-align: center;
+}
+.section05 .arrow {
+	position: absolute;
+	top: 55px;
+}
+.section05 .arrow01 {
+	left: 235px;
+}
+.section05 .arrow02 {
+	right: 177px;
+}
+.section05 .div01,
+.section05 .div02 {
+	background: #ffc073;
+}
+.section05 .div03 {
+	background: #d75f59;
+}
+.contactus {
+	display: block;
+	margin: 10px auto;
+}
+
+
+
+/*		お問合せ
+===============================================================*/
+#enq_table,
+#size_table {
+	width: 660px;
+	margin: 0 auto 30px;
+}
+#size_table caption {
+	font-size: 100%;
+}
+.contents .title_confirmation {
+	display: none;
+	margin-bottom: 5px;
+	padding: 0 0 0 10px;
+	color: #4e2210;
+	border-left: 5px solid #e1630e;
+}
+.heading3 {
+	margin-top: 1em;
+}
+
+/* override */
+dl.list dt {
+	width: 3em;
+}
+dl.list dt.que {
+	color: #c33;
+}
+dl.list dt.que + dd {
+	color: #e33;
+}
+dl.list dt.ans {
+	color: #33c;
+}
+dl.list dd {
+	padding-left: 3em;
+}
+dl.list dd.mb {
+	margin-bottom: 1.5em;
+}
+
+/* サイズとカラー */
+#size_table thead th,
+#size_table tbody th {
+	text-align: center;
+	background: #eee;
+}
+#size_table tbody td {
+	text-align: center;
+}
+#size_table input[type="number"] {
+	width: 4em;
+	text-align: right;
+}
+
+
+
+
+/*		メールフォーム
+===============================================================*/
+form {
+	margin-bottom: 30px;
+}
+.forPhone,
+.forZip,
+.email {
+	ime-mode: disabled;
+}
+#addr0,
+#addr1 {
+	margin-bottom: 5px;
+}
+#addr0 {
+	width: 10em;
+}
+
+.round_inner table th,
+.round_inner table td {
+	padding-top: 10px;
+	border-bottom: 1px solid #ddd;
+}
+.round_inner table tr.last th,
+.round_inner table tr.last td {
+	border: none;
+}
+.round_inner td {
+	line-height: 1.6;
+}
+.round_inner th {
+	text-align: left;
+	vertical-align: middle;
+	font-weight: normal;
+}
+.point{
+	margin: 5px 10px;
+	text-align: left;
+	color: #ff0019;
+}
+
+input[type="file"]{
+	height: 24px;
+}
+input[type="text"] {
+	width: 350px;
+	height: 18px;
+	padding: 3px;
+	border: 1px solid #aaa;
+	background-color: #ffffff;
+}
+input[type="text"].forZip {
+	width: 6em;
+	margin-bottom: 5px;
+	text-align: center;
+}
+input[type="text"]:focus {
+	border: 1px solid #237bc3;
+	background-color: #f1f8fe;
+}
+
+* html input{
+	width: 350px;
+	height: 24px;
+	padding: 3px;
+	border: 1px solid #aaa;
+	background-color: #ffffff;
+}
+* html input.forZip{
+	width: 6em;
+	margin-bottom: 5px;
+	text-align: center;
+}
+* html input:focus{
+	border: 1px solid #237bc3;
+	background-color: #f1f8fe;
+}
+#message,
+.message {
+	width: 450px;
+	height: 200px;
+	padding: 3px;
+	font-size: 100%;
+	border: 1px solid #aaa;
+	background-color: #ffffff;
+}
+#message:focus,
+.message:focus {
+	border: 1px solid #237bc3;
+	background-color: #f1f8fe;
+}
+
+/* 送信・リセット */
+#sendmail {
+	width: 154px;
+	height: 60px;
+	margin: 10px auto;
+	background: url(../img/express_Send_btn.png) no-repeat center top;
+	cursor: pointer;
+}
+#sendmail:hover {
+	background-position: center bottom;
+}
+
+.button_area {
+	margin-top: 30px;
+	text-align: center;
+	padding: 5px 0;
+	background: #f9f9f9;
+	border-bottom: 1px solid #ddd;
+}
+.button_area input.btn {
+	margin: 0 10px;
+	padding: 3px 20px;
+	cursor: pointer;
+}
+.button_area .msg {
+	margin-bottom: 10px;
+}
+
+/* checkbox */
+#enq_table td label {
+	padding-right: 1.5em;
+}
+
+/* list */
+dl.list ul {
+	margin: 1em 0 1em 2.5em;
+}
+dl.list ul li {
+	list-style: circle;
+}
+
+/* 添付ファイルの追加 */
+.add_attachfile{
+	/*
+	height: 32px;
+	margin: 5px 0px 15px 200px;
+	*/
+	padding-left: 30px;
+	line-height: 32px;
+	color: #0000de;
+	background: url(/contact/img/attachment.png) no-repeat left center;
+	cursor: pointer;
+}
+.add_attachfile:hover{
+	text-decoration: underline;
+	color: #0066ff;
+}
+
+/* 添付ファイルの削除 */
+.abort {
+	padding: 0px 5px;
+	color: #c33;
+	cursor: pointer;
+}
+.abort:hover {
+	color: #ff0019;
+}
+
+/* 添付ファイルの説明 */
+table td.comment {
+	padding-top: 3em;
+	font-size: 85%;
+}
+
+/* 確認時に表示を切替える要素に適用 */
+.confirmation,
+form .txt {
+	display: none;
+}
+form .txt.confirmation {
+	display: block;
+	margin-bottom: 5px;
+}
+form p.txt.confirmation {
+	height: 23px;
+}
+.form span.txt.confirmation {
+	display: inline;
+}
+#goback {
+	display: none;
+}
+
+
+
+
+/*
+プリント位置と色数
+===============================================================*/
+.noprint_wrap {
+	margin-left: 1em;
+}
+
+
+#pos_wrap h3 {
+	margin-top: 30px;
+	font-size: 125%;
+}
+#pos_wrap h3 span {
+	padding-left: 10px;
+	font-size: 12px;
+	font-weight: normal;
+	color: #666;
+}
+
+/* clear fix */
+#pos_wrap > div:after {
+	content: ".";
+	display: block;
+	height: 0;
+	visibility:hidden;
+	line-height: 0;
+	font-size: 0;
+	clear: both;
+}
+#pos_wrap > div {
+	clear: both;
+	display: inline-block;
+	width: 98%;
+	margin-bottom: 10px;
+	padding-right: 10px;
+	overflow: hidden;
+	background: #fff;
+	border: 1px solid #eae7d2;
+	border-radius: 3px;
+	margin-left: 5px;
+	margin-top: 25px;
+}
+/* Hides from IE-mac \*/
+* html #pos_wrap > div {height: 1%;}
+#pos_wrap > div {display: block;}
+/* End hide from IE-mac */
+
+.posimg {
+	position: relative;
+	float: left;
+	width: 190px;
+	padding-left: 5px;
+}
+.inkbox {
+	position: relative;
+	float: right;
+	width: 500px;
+	height: 140px;
+	padding: 10px 0px;
+	overflow: auto;
+}
+.inkbox table {
+	width: 500px;
+}
+.inkbox table thead th {
+	color: #4e2210;
+	background: #eae7d2;
+	border: 1px solid #fff;
+}
+.inkbox table caption {
+	display: none;
+}
+.inkbox table tbody th {
+	text-align: center;
+	font-weight: normal;
+	padding-left: 1em;
+}
+.inkbox table tbody td {
+	text-align: center;
+	white-space: nowrap;
+}
+
+.inkbox select {
+	width: 150px;
+}
+
+
+#step3 .inner {
+	clear: both;
+	margin: 40px 0px;
+}
+
+
+
+
+
+#planname{
+	background:#fff;
+}
+
+#head{
+	background:url(../img/head_bg.png) no-repeat top right;
+	padding-bottom:20px;
+}
+#head h1{
+	padding: 35px 25px 0;
+}
+#head h2{
+	padding:0 25px 10px;
+}
+
+#point{
+	background:url(../img/point.png) no-repeat;
+	height:253px;
+}
+#point>ul{
+	position:absolute;
+	margin-top:100px;
+	margin-left:45px;
+}
+#point>ul>li{
+	display:block;
+	float:left;
+	width:200px;
+	margin-right:22px;
+	font-size:15px;
+	font-weight:bold;
+}
+#point>ul>li p{
+	font-size:12px;
+	font-weight:normal;
+	margin-top:70px;
+}
+#point>ul>li>ul>li#voice2{
+	text-align:right;
+	margin-top:-10px;
+}
+
+#conditions{
+	background:url(../img/worb.png) no-repeat right;
+	padding:30px 25px;
+	margin-right:90px;
+}
+#conditions dl dt{
+	color:#D58735;
+	font-size:18px;
+	font-weight:bold;
+}
+#conditions dl dd{
+	margin-left:20px;
+	font-size:16px;
+	line-height:18px;
+	padding-bottom:6px;
+}
+
+#ex{
+	padding-left:30px;
+}
+
+#tel{
+	text-align:center;
+	padding:50px;
+}
