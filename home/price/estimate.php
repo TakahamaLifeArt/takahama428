@@ -66,7 +66,9 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/pageinfo.php';
 					</div>
 
 				</div>
-
+            </div>
+            <div class="banner hidden-sm-down"><img src="img/estimate_main.jpg" width="100%" alt="10秒見積もりバナー"></div>
+			<div class="banner hidden-md-up"><img src="img/sp_estimate_main.jpg" width="100%" alt="10秒見積もりバナー"></div>
 				<div id="item_wrap">
 					<h2>1.カテゴリーをお選びください</h2>
 					<table>
