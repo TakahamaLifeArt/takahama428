@@ -91,23 +91,23 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 		</div>
 		<main class="container">
 			<?php
-					if (!empty(_EXTRA_NOTICE)) {
-							$extNotice = (_EXTRA_NOTICE);
-							$txt = explode(PHP_EOL, $extNotice);
-							echo '<div id="option">';
-							echo '<h3 id="Line005"><a href="/guide/information.php">'.$txt[0].'</a></h3>';
-							$message = str_replace($txt[0].PHP_EOL, '', $extNotice);
-							echo '<p>'.nl2br($message).'</p></div>';
-						}
-					if (!empty(_NOTICE_HOLIDAY)) {
-							$notice = (_NOTICE_HOLIDAY);
-							$txt = explode(PHP_EOL, $notice);
-							echo '<div id="option">';
-							echo '<h3 id="Line005"><a href="/guide/information.php">'.$txt[0].'</a></h3>';
-							$message = str_replace($txt[0].PHP_EOL, '', $notice);
-							echo '<p>'.nl2br($message).'</p></div>';
-						}
-					?>
+				if (!empty(_EXTRA_NOTICE)) {
+						$extNotice = (_EXTRA_NOTICE);
+						$txt = explode(PHP_EOL, $extNotice);
+						echo '<div id="option">';
+						echo '<h3 id="Line005"><a href="/guide/information.php">'.$txt[0].'</a></h3>';
+						$message = str_replace($txt[0].PHP_EOL, '', $extNotice);
+						echo '<p>'.nl2br($message).'</p></div>';
+					}
+				if (!empty(_NOTICE_HOLIDAY)) {
+						$notice = (_NOTICE_HOLIDAY);
+						$txt = explode(PHP_EOL, $notice);
+						echo '<div id="option">';
+						echo '<h3 id="Line005"><a href="/guide/information.php">'.$txt[0].'</a></h3>';
+						$message = str_replace($txt[0].PHP_EOL, '', $notice);
+						echo '<p>'.nl2br($message).'</p></div>';
+					}
+			?>
 
 				<h1>オリジナルTシャツのプリント作成</h1>
 
@@ -126,9 +126,9 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 					<div class="col">
 						<a href="/items/category.php">
 							<button type="button" class="btn top_3 top_item_flex">
-				<div class="top_3_img"><img src="/common/img/home/main/sp_top_three_item.png" width="30%"></div>
-				<p class="top3_bu_txt">200種類以上！<br><span class="big_font">アイテム</span></p>
-					</button>
+								<div class="top_3_img"><img src="/common/img/home/main/sp_top_three_item.png" width="30%"></div>
+								<p class="top3_bu_txt">200種類以上！<br><span class="big_font">アイテム</span></p>
+							</button>
 						</a>
 						<a href="/items/category.php">
 							<p class="top3_txt"><img src="/common/img/global/go_btm_blue.png">アイテム一覧はこちら</p>
@@ -137,9 +137,9 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 					<div class="col">
 						<a href="/price/estimate.php">
 							<button type="button" class="btn top_3 top_item_flex">
-				<div class="top_3_img"><img src="/common/img/home/main/sp_top_three_estimate.png" width="30%"></div>
-				<p class="top3_bu_txt">かんたん10秒<br><span class="big_font">見積もり</span></p>
-				</button>
+								<div class="top_3_img"><img src="/common/img/home/main/sp_top_three_estimate.png" width="30%"></div>
+								<p class="top3_bu_txt">かんたん10秒<br><span class="big_font">見積もり</span></p>
+							</button>
 						</a>
 						<a href="/price/estimate.php">
 							<p class="top3_txt"><img src="/common/img/global/go_btm_blue.png">見積もりをする</p>
@@ -207,7 +207,6 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 					</div>
 				</section>
 
-
 				<section class="hidden-sm-up">
 
 					<div class="row btn-row ">
@@ -255,8 +254,6 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 					</div>
 
 				</section>
-
-
 
 				<section class="review_wrap">
 
@@ -484,65 +481,6 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 					</div>
 				</section>
 
-
-				<!--
-		<section>
-			<h2>プリントしたときの値段</h2>
-			<div class="row justify-content-around">
-				<div class="col-sm-6 col-md-4 col-lg px-2">
-					<div class="card card-inverse">
-						<img class="card-img" src="//placehold.jp/999999/3d4070/550x550.png?text=画像" alt="Card image">
-						<div class="card-img-overlay">
-							<h4 class="card-title">Image title</h4>
-							<p class="card-text">Description.</p>
-							<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-4 col-lg px-2">
-					<div class="card card-inverse">
-						<img class="card-img" src="//placehold.jp/999999/3d4070/550x550.png?text=画像" alt="Card image">
-						<div class="card-img-overlay">
-							<h4 class="card-title">Image title</h4>
-							<p class="card-text">Description.</p>
-							<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-4 col-lg px-2">
-					<div class="card card-inverse">
-						<img class="card-img" src="//placehold.jp/999999/3d4070/550x550.png?text=画像" alt="Card image">
-						<div class="card-img-overlay">
-							<h4 class="card-title">Image title</h4>
-							<p class="card-text">Description.</p>
-							<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-4 col-lg px-2">
-					<div class="card card-inverse">
-						<img class="card-img" src="//placehold.jp/999999/3d4070/550x550.png?text=画像" alt="Card image">
-						<div class="card-img-overlay">
-							<h4 class="card-title">Image title</h4>
-							<p class="card-text">Description.</p>
-							<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-4 col-lg px-2">
-					<div class="card card-inverse">
-						<img class="card-img" src="//placehold.jp/999999/3d4070/550x550.png?text=画像" alt="Card image">
-						<div class="card-img-overlay">
-							<h4 class="card-title">Image title</h4>
-							<p class="card-text">Description.</p>
-							<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		
--->
 				<section>
 					<h2 class="mid_ttl_2"><img src="/common/img/home/main/Instagram.png">お客様インスタ画像
 						<div class="ball">
@@ -685,113 +623,6 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 						</div>
 					</div>
 				</div>
-
-
-				<!--
-		<div class="outer">
-			<div class="row no-gutters">
-				<div class="col-12 col-md-6 pb-sm-down">
-					<h2>おすすめブランド</h2>
-					<div class="row btn-row px-2">
-						<div class="col col-md-4 view overlay hm-white-slight">
-							<a href="#!" class="btn">
-								<img alt="Service" src="//placehold.jp/bbbbbb/3d4070/550x550.png?text=画像" class="img-fluid">
-								<div class="mask"></div>
-							</a>
-						</div>
-						<div class="col col-md-4 view overlay hm-white-slight">
-							<a href="#!" class="btn">
-								<img alt="Service" src="//placehold.jp/bbbbbb/3d4070/550x550.png?text=画像" class="img-fluid">
-								<div class="mask"></div>
-							</a>
-						</div>
-						<div class="col col-md-4 view overlay hm-white-slight">
-							<a href="#!" class="btn">
-								<img alt="Service" src="//placehold.jp/bbbbbb/3d4070/550x550.png?text=画像" class="img-fluid">
-								<div class="mask"></div>
-							</a>
-						</div>
-						<div class="col col-md-4 view overlay hm-white-slight">
-							<a href="#!" class="btn">
-								<img alt="Service" src="//placehold.jp/bbbbbb/3d4070/550x550.png?text=画像" class="img-fluid">
-								<div class="mask"></div>
-							</a>
-						</div>
-						<div class="col col-md-4 view overlay hm-white-slight">
-							<a href="#!" class="btn">
-								<img alt="Service" src="//placehold.jp/bbbbbb/3d4070/550x550.png?text=画像" class="img-fluid">
-								<div class="mask"></div>
-							</a>
-						</div>
-						<div class="col col-md-4 view overlay hm-white-slight">
-							<a href="#!" class="btn">
-								<img alt="Service" src="//placehold.jp/bbbbbb/3d4070/550x550.png?text=画像" class="img-fluid">
-								<div class="mask"></div>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-12 col-md-6">
-					<h2>ニュース</h2>
-					<div class="list-group-wrap px-2">
-						<ul class="list-group">
-							<li class="list-group-item">
-								<div class="row">
-									<div class="col-12 col-lg-3">
-										2017-12-31
-									</div>
-									<div class="col-12 col-lg">
-										text .......................... ................................ .................................
-									</div>
-								</div>
-							</li>
-							<li class="list-group-item">
-								<div class="row">
-									<div class="col-12 col-lg-3">
-										2017-12-31
-									</div>
-									<div class="col-12 col-lg">
-										text .......................... ................................ .................................
-									</div>
-								</div>
-							</li>
-							<li class="list-group-item">
-								<div class="row">
-									<div class="col-12 col-lg-3">
-										2017-12-31
-									</div>
-									<div class="col-12 col-lg">
-										text .......................... ................................ .................................
-									</div>
-								</div>
-							</li>
-							<li class="list-group-item">
-								<div class="row">
-									<div class="col-12 col-lg-3">
-										2017-12-31
-									</div>
-									<div class="col-12 col-lg">
-										text .......................... ................................ .................................
-									</div>
-								</div>
-							</li>
-							<li class="list-group-item">
-								<div class="row">
-									<div class="col-12 col-lg-3">
-										2017-12-31
-									</div>
-									<div class="col-12 col-lg">
-										text .......................... ................................ .................................
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
--->
-
 
 				<section class="hidden-xs-down">
 					<div class="outer">
