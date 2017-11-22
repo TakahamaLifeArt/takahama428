@@ -148,7 +148,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 				</div>
 
 				<section class="hidden-xs-down">
-					<!--			<h1>サービス</h1>-->
+
 					<div class="row no-gutters service">
 						<div class="col-12 col-sm-4">
 							<div class="row btn-row">
@@ -209,7 +209,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 
 
 				<section class="hidden-sm-up">
-					<!--			<h1>サービス</h1>-->
+
 					<div class="row btn-row ">
 						<div class="col-6 col-item view overlay hm-white-slight">
 							<a href="/order/express/" class="btn">
