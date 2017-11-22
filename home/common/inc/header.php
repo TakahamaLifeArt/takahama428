@@ -54,7 +54,7 @@ if( empty($_SESSION['me']) ){
 			</a>
 		</li>
 		<li class="nav-item">
-			<a href="/contact/index.php" class="nav-link">
+			<a href="/contact/" class="nav-link">
 				<img class="img-fluid" alt="Contact us" src="/common/img/header/sp_mail.jpg" width="90%">
 				<span>お問合せ</span>
 			</a>
@@ -85,7 +85,7 @@ if( empty($_SESSION['me']) ){
 				<div class="dropdown-item" id="google_translate_element"></div>
 				<script type="text/javascript">
 				function googleTranslateElementInit() {
-					new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'ja,en,ko', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true}, 'google_translate_element');
+					new google.translate.TranslateElement({pageLanguage: 'ja', includedLanguages: 'ja,en,ko', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
 				}
 				</script>
 				<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
@@ -108,88 +108,88 @@ if( empty($_SESSION['me']) ){
 					<div class="menu_box">
 						<div class="item_1">
 							<div class="navi_inner">
-								<a class="dropdown-item" href="/items/index.php?cat=1"><img class="top3" src="/common/img/global/item/sp_item_01.png" width="100%"></a>
-								<a href="/items/index.php?cat=1">
+								<a class="dropdown-item" href="/items/?cat=1"><img class="top3" src="/common/img/global/item/sp_item_01.png" width="100%"></a>
+								<a href="/items/?cat=1">
 									<p class="item_txt"><img src="/common/img/global/go_btm_blue.png">Tシャツ</p>
 								</a>
 							</div>
 							<div class="navi_inner">
-								<a class="dropdown-item" href="/items/index.php?cat=3"><img class="top3" src="/common/img/global/item/sp_item_02.png" width="100%"></a>
-								<a href="/items/index.php?cat=3">
+								<a class="dropdown-item" href="/items/?cat=3"><img class="top3" src="/common/img/global/item/sp_item_02.png" width="100%"></a>
+								<a href="/items/?cat=3">
 									<p class="item_txt"><img src="/common/img/global/go_btm_blue.png">ポロシャツ</p>
 								</a>
 							</div>
 							<div class="navi_inner">
-								<a class="dropdown-item" href="/items/index.php?cat=8"><img class="top3" src="/common/img/global/item/sp_item_03.png" width="100%"></a>
-								<a href="/items/index.php?cat=8">
+								<a class="dropdown-item" href="/items/?cat=8"><img class="top3" src="/common/img/global/item/sp_item_03.png" width="100%"></a>
+								<a href="/items/?cat=8">
 									<p class="item_txt"><img src="/common/img/global/go_btm_blue.png">タオル</p>
 								</a>
 							</div>
 						</div>
 						<div class="item_2">
 							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/index.php?cat=2"><img class="item_under" src="/common/img/global/item/sp_item_04.png" width="100%"></a>
-								<a href="/items/index.php?cat=2">
+								<a class="dropdown-item" href="/items/?cat=2"><img class="item_under" src="/common/img/global/item/sp_item_04.png" width="100%"></a>
+								<a href="/items/?cat=2">
 									<p class="item_txt_min">スウェット</p>
 								</a>
 							</div>
 							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/index.php?tag=73"><img class="item_under" src="/common/img/global/item/sp_item_sports.png" width="100%"></a>
-								<a href="/items/index.php?tag=73">
+								<a class="dropdown-item" href="/items/?tag=73"><img class="item_under" src="/common/img/global/item/sp_item_sports.png" width="100%"></a>
+								<a href="/items/?tag=73">
 									<p class="item_txt_min">スポーツ</p>
 								</a>
 							</div>
 							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/index.php?cat=13"><img class="item_under" src="/common/img/global/item/sp_item_longt.png" width="100%"></a>
-								<a href="/items/index.php?cat=13">
+								<a class="dropdown-item" href="/items/?cat=13"><img class="item_under" src="/common/img/global/item/sp_item_longt.png" width="100%"></a>
+								<a href="/items/?cat=13">
 									<p class="item_txt_min">長袖Tシャツ</p>
 								</a>
 							</div>
 							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/index.php?cat=6"><img class="item_under" src="/common/img/global/item/sp_item_05.png" width="100%"></a>
-								<a href="/items/index.php?cat=6">
+								<a class="dropdown-item" href="/items/?cat=6"><img class="item_under" src="/common/img/global/item/sp_item_05.png" width="100%"></a>
+								<a href="/items/?cat=6">
 									<p class="item_txt_min">ブルゾン</p>
 								</a>
 							</div>
 							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/index.php?cat=5"><img class="item_under" src="/common/img/global/item/sp_item_lady.png" width="100%"></a>
-								<a href="/items/index.php?cat=5">
+								<a class="dropdown-item" href="/items/?cat=5"><img class="item_under" src="/common/img/global/item/sp_item_lady.png" width="100%"></a>
+								<a href="/items/?cat=5">
 									<p class="item_txt_min">レディース</p>
 								</a>
 							</div>
 							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/index.php?cat=9"><img class="item_under" src="/common/img/global/item/sp_item_bag.png" width="100%"></a>
-								<a href="/items/index.php?cat=9">
+								<a class="dropdown-item" href="/items/?cat=9"><img class="item_under" src="/common/img/global/item/sp_item_bag.png" width="100%"></a>
+								<a href="/items/?cat=9">
 									<p class="item_txt_min">バッグ</p>
 								</a>
 							</div>
 							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/index.php?cat=10"><img class="item_under" src="/common/img/global/item/sp_item_07.png" width="100%"></a>
-								<a href="/items/index.php?cat=10">
+								<a class="dropdown-item" href="/items/?cat=10"><img class="item_under" src="/common/img/global/item/sp_item_07.png" width="100%"></a>
+								<a href="/items/?cat=10">
 									<p class="item_txt_min">エプロン</p>
 								</a>
 							</div>
 							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/index.php?cat=14"><img class="item_under" src="/common/img/global/item/sp_item_baby.png" width="100%"></a>
-								<a href="/items/index.php?cat=14">
+								<a class="dropdown-item" href="/items/?cat=14"><img class="item_under" src="/common/img/global/item/sp_item_baby.png" width="100%"></a>
+								<a href="/items/?cat=14">
 									<p class="item_txt_min">ベビー</p>
 								</a>
 							</div>
 							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/index.php?cat=16"><img class="item_under" src="/common/img/global/item/sp_item_08.png" width="100%"></a>
-								<a href="/items/index.php?cat=16">
+								<a class="dropdown-item" href="/items/?cat=16"><img class="item_under" src="/common/img/global/item/sp_item_08.png" width="100%"></a>
+								<a href="/items/?cat=16">
 									<p class="item_txt_min">つなぎ</p>
 								</a>
 							</div>
 							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/index.php?cat=12"><img class="item_under" src="/common/img/global/item/sp_item_11.png" width="100%"></a>
-								<a href="/items/index.php?cat=12">
+								<a class="dropdown-item" href="/items/?cat=12"><img class="item_under" src="/common/img/global/item/sp_item_11.png" width="100%"></a>
+								<a href="/items/?cat=12">
 									<p class="item_txt_min">記念品</p>
 								</a>
 							</div>
 							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/index.php?cat=7"><img class="item_under" src="/common/img/global/item/sp_item_12.png" width="100%"></a>
-								<a href="/items/index.php?cat=7">
+								<a class="dropdown-item" href="/items/?cat=7"><img class="item_under" src="/common/img/global/item/sp_item_12.png" width="100%"></a>
+								<a href="/items/?cat=7">
 									<p class="item_txt_min">キャップ</p>
 								</a>
 							</div>
@@ -210,8 +210,8 @@ if( empty($_SESSION['me']) ){
 					<div class="menu_box">
 						<div class="item_2">
 							<div class="navi_inner_3">
-								<a class="dropdown-item" href="/order/index.php"><img src="/common/img/global/order/sp_order_01.jpg" width="100%"></a>
-								<a href="/order/index.php">
+								<a class="dropdown-item" href="/order/"><img src="/common/img/global/order/sp_order_01.jpg" width="100%"></a>
+								<a href="/order/">
 									<p class="item_txt" style="font-size: 14px;font-weight: bold;color: #109ed7;"><img src="/common/img/global/go_btm_blue.png">申し込み</p>
 								</a>
 							</div>
@@ -222,8 +222,8 @@ if( empty($_SESSION['me']) ){
 								</a>
 							</div>
 							<div class="navi_inner_3">
-								<a class="dropdown-item" href="/order/bigorder/index.php"><img src="/common/img/global/order/sp_order_03.jpg" width="100%"></a>
-								<a href="/order/bigorder/index.php">
+								<a class="dropdown-item" href="/order/bigorder/"><img src="/common/img/global/order/sp_order_03.jpg" width="100%"></a>
+								<a href="/order/bigorder/">
 									<p class="item_txt"><img src="/common/img/global/go_btm_orange.png">大口注文</p>
 								</a>
 							</div>
@@ -246,8 +246,8 @@ if( empty($_SESSION['me']) ){
 								</a>
 							</div>
 							<div class="navi_inner_3">
-								<a class="dropdown-item" href="/order/express/index.php"><img src="/common/img/global/order/sp_order_07.jpg" width="100%"></a>
-								<a href="/order/express/index.php">
+								<a class="dropdown-item" href="/order/express/"><img src="/common/img/global/order/sp_order_07.jpg" width="100%"></a>
+								<a href="/order/express/">
 									<p class="item_txt"><img src="/common/img/global/go_btm_orange.png">お急ぎの方へ</p>
 								</a>
 							</div>
@@ -286,14 +286,14 @@ if( empty($_SESSION['me']) ){
 								</a>
 							</div>
 							<div class="navi_inner_3">
-								<a class="dropdown-item" href="/guide/index.php"><img src="/common/img/global/charge/sp_chage_03.jpg" width="100%"></a>
-								<a href="/guide/index.php">
+								<a class="dropdown-item" href="/guide/"><img src="/common/img/global/charge/sp_chage_03.jpg" width="100%"></a>
+								<a href="/guide/">
 									<p class="item_txt"><img src="/common/img/global/go_btm_orange.png">お支払いについて</p>
 								</a>
 							</div>
 							<div class="navi_inner_3">
-								<a class="dropdown-item" href="/price/fee/index.php"><img src="/common/img/global/charge/sp_chage_04.jpg" width="100%"></a>
-								<a href="/price/fee/index.php">
+								<a class="dropdown-item" href="/price/fee/"><img src="/common/img/global/charge/sp_chage_04.jpg" width="100%"></a>
+								<a href="/price/fee/">
 									<p class="item_txt"><img src="/common/img/global/go_btm_orange.png">プリント料金案内</p>
 								</a>
 							</div>

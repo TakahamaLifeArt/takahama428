@@ -179,10 +179,11 @@
 	if(isset($_SESSION['imagefile'][$print_id])){
 	
 		// 古い画像を破棄
-		$old_image = _DOC_ROOT.$_SESSION['imagefile'][$print_id]['path'];
-		if(is_file($old_image)){
-			unlink($old_image);
-		}
+		// 2017-11-20 session_regenerate_id(true) を行わないため破棄しない
+//		$old_image = _DOC_ROOT.$_SESSION['imagefile'][$print_id]['path'];
+//		if(is_file($old_image)){
+//			unlink($old_image);
+//		}
 		// セッションを更新
 		$_SESSION['imagefile'][$print_id]['id'] = $print_id;
 		$_SESSION['imagefile'][$print_id]['path'] = _GUEST_IMAGE_PATH.$temp_filename;

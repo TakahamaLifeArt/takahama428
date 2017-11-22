@@ -19,8 +19,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/orders.php';
 $order = new Orders();
 $fin = $order->getDelidate(null, 1, 4, 'simple');
 ?>
-	<!DOCTYPE html>
-	<html lang="ja">
+<!DOCTYPE html>
+<html lang="ja">
 
 	<head prefix="og://ogp.me/ns# fb://ogp.me/ns/fb#  website: //ogp.me/ns/website#">
 		<meta charset="UTF-8">
@@ -115,9 +115,9 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 					<div class="col">
 						<a href="/delivery/">
 							<button type="button" class="btn top_3 top_item_flex">
-						<div id="date"><p><?php echo $fin['Month'];?>/<?php echo $fin['Day'];?><span class="min_txt">(<?php echo $fin['weekname'];?>)</span></p></div>
-						<p class="top3_bu_txt">今注文すると<br><span class="big_font">この日に届く</span></p>
-				</button>
+						    <div id="date"><p><?php echo $fin['Month'];?>/<?php echo $fin['Day'];?><span class="min_txt">(<?php echo $fin['weekname'];?>)</span></p></div>
+						    <p class="top3_bu_txt">今注文すると<br><span class="big_font">この日に届く</span></p>
+				      </button>
 						</a>
 						<a href="/delivery/">
 							<p class="top3_txt"><img src="/common/img/global/go_btm_blue.png">お届け日・地域変更はこちら</p>
@@ -860,4 +860,4 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
 	</body>
 
-	</html>
+</html>

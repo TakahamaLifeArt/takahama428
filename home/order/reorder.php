@@ -33,18 +33,16 @@ $category_selector .= '</select>';
 		<meta charset="UTF-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="google-site-verification" content="PfzRZawLwE2znVhB5M7mPaNOKFoRepB2GO83P73fe5M">
 		<meta name="Description" content="オリジナルウェアの追加・再注文の方法をまとめているページです。注文1枚からでも安い・お急ぎ製作・印刷は東京都内のタカハマライフアート！10秒で簡単・早いオリジナルTシャツ比較お見積もりも承ります。" />
 		<meta name="keywords" content="オリジナル,tシャツ,追加注文,再注文" />
 		<meta property="og:title" content="世界最速！？オリジナルTシャツを当日仕上げ！！">
 		<meta property="og:type" content="website">
 		<meta property="og:description" content="業界No. 1短納期でオリジナルTシャツを1枚から作成します。通常でも3日で仕上げます。">
-		<meta property="og:url" content="http://www.takahama428.com/">
+		<meta property="og:url" content="https://www.takahama428.com/">
 		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート">
-		<meta property="og:image" content="http://www.takahama428.com/common/img/header/Facebook_main.png">
+		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png">
 		<meta property="fb:app_id" content="1605142019732010">
 		<title>追加・再注文の方法 ｜ オリジナルTシャツが早い！タカハマライフアート</title>
-		<link rel=canonical href="http://www.takahama428.com/">
 		<link rel="shortcut icon" href="/icon/favicon.ico">
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 		<link rel="stylesheet" type="text/css" href="/order/css/reorder.css" media="screen" />
@@ -54,39 +52,11 @@ $category_selector .= '</select>';
 		<header>
 			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
 		</header>
-		<div class="container-fluid">
-
-		</div>
-
-		<!-- Google Tag Manager -->
-		<noscript>
-			<iframe src="//www.googletagmanager.com/ns.html?id=GTM-T5NQFM" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-		</noscript>
-		<script>
-			(function(w, d, s, l, i) {
-				w[l] = w[l] || [];
-				w[l].push({
-					'gtm.start': new Date().getTime(),
-					event: 'gtm.js'
-				});
-				var f = d.getElementsByTagName(s)[0],
-					j = d.createElement(s),
-					dl = l != 'dataLayer' ? '&l=' + l : '';
-				j.async = true;
-				j.src =
-					'//www.googletagmanager.com/gtm.js?id=' + i + dl;
-				f.parentNode.insertBefore(j, f);
-			})(window, document, 'script', 'dataLayer', 'GTM-T5NQFM');
-
-		</script>
-		<!-- End Google Tag Manager -->
-
 
 		<div id="container">
 			<div class="contents">
 				<ul class="pan hidden-sm-down">
 					<li><a href="/">オリジナルＴシャツ屋ＴＯＰ</a></li>
-					<li>注文ナビ</li>
 					<li>追加・再注文の方法</li>
 				</ul>
 
@@ -245,8 +215,6 @@ $category_selector .= '</select>';
 								</div>
 							</div>
 						</div>
-
-
 
 
 						<div class="login">

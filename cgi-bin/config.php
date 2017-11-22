@@ -38,9 +38,13 @@ if (strpos($_SERVER['HTTP_HOST'], 'test.')===false && strpos($_SERVER['HTTP_HOST
 	$_ORDER_DOMAIN = 'http://original-sweat.com';
 	$_API_DOMAIN = 'https://takahamalifeart.com/v1';
 	define('_VHOST_PATH', 'dev_takahama428.com');
+	define('_ORDER_VHOST', 'dev_original-sweat.com');
+	define('_DB_NAME', 'tladata1');
 } else {
 	$_ORDER_DOMAIN = 'http://test.original-sweat.com';
 	$_API_DOMAIN = 'http://test.takahamalifeart.com/v1';
+	define('_ORDER_VHOST', 'dev_test.original-sweat.com');
+	define('_DB_NAME', 'tladata2');
 	if (strpos($_SERVER['HTTP_HOST'], 'test.')===0) {
 		define('_VHOST_PATH', 'dev_test.takahama428.com');
 	} else {
@@ -53,7 +57,10 @@ define('_API_PSS', 'http://takahama428.co-site.jp/v1/api');		// Photo Sharing Se
 define('_IMG_PSS', 'https://takahamalifeart.com/weblib/img/');
 
 // 注文情報の登録
-define('_ORDER_INFO', $_ORDER_DOMAIN.'/system/php_libs/ordersinfo.php');
+//define('_ORDER_INFO', $_ORDER_DOMAIN.'/system/php_libs/ordersinfo.php');
+define('_DB_USER', 'tlauser');
+define('_DB_PASS', 'crystal428');
+define('_DB_HOST', 'localhost');
 
 // マイページのイメージ画像で使用
 define('_ORDER_DOMAIN', $_ORDER_DOMAIN);

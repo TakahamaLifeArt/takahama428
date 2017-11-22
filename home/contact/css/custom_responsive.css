@@ -50,8 +50,8 @@ td {
 
 #container {
 	width: 100%;
+	margin-top: 125px;
 }
-
 .contents {
 	width: 100%;
 	float: none;
@@ -59,8 +59,12 @@ td {
 	overflow: hidden;
 	max-width: 1000px;
 	margin: 0 auto;
-	padding: 0 10px;
-	margin-top: 180px;
+	padding: 10px;
+
+}
+
+* {
+	box-sizing: inherit;
 }
 
 .round_corner_wrapper02 {
@@ -69,32 +73,33 @@ td {
 
 ul.pan {
 	height: auto;
-	margin: 0 5px 20px 5px;
+	margin: 20px 5px 20px 5px;
 	font-size: 0.8em;
 }
-
 ul.pan li {
 	display: inline;
 	padding-right: 4px;
 	line-height: 2em;
 }
-
-ul.pan li a,
-ul.pan li span {
-	vertical-align: middle;
-	text-decoration: none;
-}
-
 ul.pan li:first-child:before {
 	content: "";
 	padding-right: 0;
 }
-
+ul.pan li:before {
+	content: ">";
+	padding-right: 10px;
+	vertical-align: middle;
+}
+ul.pan li a, ul.pan li span {
+	vertical-align: middle;
+	text-decoration: none;
+}
 h1 {
 	font-size: 40px;
 	line-height: 1.8;
 	color: #383838;
 	font-weight: bold;
+	padding-top: 10px;
 }
 
 h2 {
@@ -171,7 +176,7 @@ select,
 textarea,
 th,
 var {
-	font: inherit;
+/*	font: inherit;*/
 }
 
 dl.list {
@@ -271,6 +276,10 @@ a {
 	display: none;
 }
 
+.tor_pc{
+	text-align: right;
+}
+
 
 /*----------------------------
 
@@ -279,10 +288,14 @@ a {
 ----------------------------*/
 
 @media screen and (max-width: 768px) {
+
 	.contents {
 		width: 100%;
-		margin-top: 180px;
+		margin-top: 0px;
 		overflow: hidden;
+	}
+	ul.pan {
+		display: none;
 	}
 	h1 {
 		font-weight: bold;
@@ -360,9 +373,11 @@ a {
 	dl.list {
 		font-size: 14px;
 	}
+/*
 	.tor_pc {
 		display: none;
 	}
+*/
 	.tor_phone {
 		display: block;
 		font-size: 14px;

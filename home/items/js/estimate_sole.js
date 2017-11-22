@@ -78,18 +78,18 @@ $(function(){
 		*	@volume			サイズIDをキーにした枚数のハッシュ
 		*/
 			$.getJSON($.TLA.api+'?callback=?', {'act':'sizeprice', 'itemid':itemid, 'colorcode':colorcode, 'output':'jsonp'}, function(r){
-		    	var pre_sizeid = 0;
-		    	var cost = 0;
-		    	var amount = 0;
-		    	var size_head = '';
-		    	var size_body = '';
-	    		var sum = 0;
-	    		var size_table = '';
-		    	$.each(r, function(key, val){
-		    		if(typeof volume[val.id]=='undefined'){
-		    			amount = 0;
-		    		}else{
-		    			amount = volume[val.id]-0;
+				var pre_sizeid = 0;
+				var cost = 0;
+				var amount = 0;
+				var size_head = '';
+				var size_body = '';
+				var sum = 0;
+				var size_table = '';
+				$.each(r, function(key, val){
+					if(typeof volume[val.id]=='undefined'){
+						amount = 0;
+					}else{
+						amount = volume[val.id]-0;
 					}
 					sum += amount;
 					if(key==0){
@@ -113,8 +113,8 @@ $(function(){
 						size_body += '<td class="size_'+val['id']+'_'+val['name']+'_'+val['cost']+'" data-label="'+val['name']+'">';
 						size_body += '<input id="size_'+val['id']+'" type="number" value="'+amount+'" min="0" max="999" class="forNum" onfocus="$.focusNumber(this);" onchange="$.addOrder();" onblur="$.blurNumber(this);" /></td>';
 					}
-		        });
-		        size_table += '<tr class="heading">'+size_head+'</tr>';
+				});
+				size_table += '<tr class="heading">'+size_head+'</tr>';
 				size_table += '<tr>'+size_body+'</tr>';
 				$('table:first tbody', '#price_wrap').html(size_table);
 				
@@ -133,8 +133,8 @@ $(function(){
 					var posid = img.parent().attr('class').split('_')[1];
 					var src = img.attr('src');
 					var src_on = src.substr(0, src.lastIndexOf('.'))
-					           + postfix
-					           + src.substring(src.lastIndexOf('.'));
+							 + postfix
+							 + src.substring(src.lastIndexOf('.'));
 					$('<img>').attr('src', src_on);
 					img.hover(
 						function() {
@@ -176,11 +176,11 @@ $(function(){
 			var categoryid = my.options[my.selectedIndex].value;
 			$.getJSON($.TLA.api+'?callback=?', {'act':'item', 'categoryid':categoryid, 'output':'jsonp'}, function(r){
 				var option = '';
-	        	jQuery.each(r, function(key, val){
-	        		option += '<option value="'+val.id+'"';
-	        		if(key==0){
-	        			option += ' selected="selected"';
-	        		}
+				jQuery.each(r, function(key, val){
+					option += '<option value="'+val.id+'"';
+					if(key==0){
+						option += ' selected="selected"';
+					}
 					option += '>'+val.name+'</option>';
 					$('#item_selector').html(option);
 				});
@@ -304,8 +304,10 @@ $(function(){
 			
 			a = 0;
 			$('#pos_wrap select').each( function(){
-				var ink = $(this).val()-0;
-				var posname = $(this).parent().prev().text();
+				var self = $(this);
+				var idx = self.attr('class').split('_');
+				var ink = self.val()-0;
+				var posname = self.closest('.psnv').find('.posname_'+idx[1]).text();
 				if(ink>0){
 					posi[a] = posname;
 					inks[a] = ink;
@@ -318,7 +320,7 @@ $(function(){
 				return;
 			}
 			
-			for(var x=0; x<size.length; x++){	
+			for(var x=0; x<size.length; x++){
 				for(var y=0; y<posi.length; y++){
 					$.printparam.itemid.push(item_id);
 					$.printparam.sizeid.push(size_id[x]);
@@ -388,10 +390,10 @@ $(function(){
 				existPos[$.printparam.pos[i]] = true;
 			}
 			param['args'] = args;
-			$.getJSON($.TLA.api+'?callback=?', param, function(r){				
-			    var base = itemsum + (r.printfee-0);
-			    var tax = Math.floor( base * (r.tax/100) );
-			    var result = Math.floor( base * (1+r.tax/100) );
+			$.getJSON($.TLA.api+'?callback=?', param, function(r){
+				var base = itemsum + (r.printfee-0);
+				var tax = Math.floor( base * (r.tax/100) );
+				var result = Math.floor( base * (1+r.tax/100) );
 				var perone = Math.ceil(result/tmpVol);
 				
 				if(!output){
@@ -599,7 +601,7 @@ $(function(){
 		}
 	});
 	
-    
+	
 	/* みんなにメール一斉送信 */
 	$('#mass-email').click( function(){ $.show_mailform(); });
 	
@@ -683,7 +685,7 @@ $(function(){
 	});
 
 
-    /* initialize */
+	/* initialize */
 	$.init();
 
 

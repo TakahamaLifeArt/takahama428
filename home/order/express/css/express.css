@@ -643,9 +643,11 @@ input.place{
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: normal;
 	padding: 3px;
-	color:	#555;
+	color: #555;
+/*
 	background: url('../../../common/js/uniform/images/bg-input-focus.png') repeat-x 0px 0px;
 	background: url('../../../common/js/uniform/images/bg-input.png') repeat-x 0px 0px;
+*/
 	border-top: solid 1px #AAA;
 	border-left: solid 1px #AAA;
 	border-bottom: solid 1px #CCC;

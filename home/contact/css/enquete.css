@@ -1,0 +1,138 @@
+@charset "utf-8";
+
+/*------------------------------------------------------------
+
+2012 takahama web css
+
+	File_name    : enquete.css
+	Description  : enauete form 
+	Depend   	 : mailform.css
+	
+	log
+	2012.08.10: created
+	2017-11-16: リニューアル後のレイアウト
+		
+--------------------------------------------------------------*/
+
+
+
+main {
+	display: block;
+	padding: 5px 20px;
+}
+
+
+
+
+/*		message
+===============================================================*/
+.firstmessage {
+	padding: 1em;
+	background: #fff;
+}
+.firstmessage p {
+	margin-bottom: 1em;
+}
+
+
+
+
+/*		メールフォーム
+===============================================================*/
+#contact_form > div {
+	margin-bottom: 4rem;
+	padding-bottom: 1rem;
+	border-bottom: 1px solid #d65600;
+}
+.q {
+	padding-left: 1rem;
+	margin-bottom: 1em;
+	font-size: 125%;
+}
+.q em {
+	font-size: 2rem;
+	display: block;
+	text-indent: -1rem;
+}
+div.a {
+	padding-left: 2rem;
+}
+.a label {
+	padding-right: .5em;
+	cursor: pointer;
+}
+.a input[type=radio]{
+	margin-right: .2em;
+}
+.a p {
+	line-height: 2.2rem;
+}
+
+.note {
+	padding-left: 4rem;
+	text-indent: -1rem;
+	margin-bottom: 1rem;
+	font-size: 90%;
+}
+.note ins {
+	color: #c33;
+}
+.req {
+	margin-top: -1.5em;
+	text-align: right;
+	font-size: 90%;
+	color: #f344a6;
+	color: #d65600;
+}
+
+#contact_form textarea {
+	width: 100%;
+	height: 5em;
+}
+
+/* 顧客情報 */
+#number {
+	padding: 0 10px 10px 5px;
+	text-align: right;
+}
+#number ins {
+	text-decoration: underline;
+}
+
+/* 送信・リセット */
+p.button_area{
+	margin-top: 10px;
+	text-align: center;
+}
+p.button_area input.btn{
+	padding: 3px 0px;
+	font-size: 150%; 
+	cursor: pointer;
+}
+
+p.button_area .waves-light{
+	background-color: #5a95f5!important;
+}
+
+
+
+/*		バナー
+===============================================================*/
+.box_c {
+	margin-top: 20px;
+	border-radius: 3px;
+}
+.box_c .bg {
+	height: 120px;
+	background-image: url(/common/img/banner1.jpg);
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	border: 1px solid #eae7d2;
+}
+@media (max-width: 575px) {
+	.box_c .bg {
+		height: 10vh;
+	}
+}
+

@@ -2,16 +2,18 @@
 
 /*------------------------------------------------------------
 
-	File_name    : printposition.css
-	Description  : takahama system print position images stylesheet
-	Version      : 0.1
-	Log		     : 2010-01-20
-				   2013-04-20	boxerpants, mascot-tshirts, pocket-tshirts を追加
-				   2013-05-30	army-work-cap, active-dry-cap, chino-pants, fraise-tshirts, henry-neck-tshirts, 
-				   				button-down-shirt-long, button-down-shirt-short, polyester-pants を追加
-				   2013-06-07	プリントなしのダミー用にblank を指定
-				   2014-10-12	スウェットにプリント位置の追加
-	
+File_name    : printposition.css
+Description  : takahama system print position images stylesheet
+Version      : 0.1
+Log		     :
+2010-01-20 created
+2013-04-20 boxerpants, mascot-tshirts, pocket-tshirts を追加
+2013-05-30 army-work-cap, active-dry-cap, chino-pants, fraise-tshirts, henry-neck-tshirts, button-down-shirt-long, button-down-shirt-short, polyester-pants を追加
+2013-06-07 プリントなしのダミー用にblankを指定
+2014-10-12 スウェットにプリント位置の追加
+2016-11-17 エプロンの絵型を追加 apron_pocket_left, apron_pocket_right, apron_suso
+2017-11-13 絵型追加に伴う更新
+
 -------------------------------------------------------------- */
 
 
@@ -77,6 +79,30 @@
 	position: absolute;
 	top: 68px;
 	left: 72px;
+	cursor: pointer;
+}
+.tote_mae_mini{
+	position: absolute;
+	top: 56px;
+	left: 83px;
+	cursor: pointer;
+}
+.tote_mae_pocket{
+	position: absolute;
+	top: 105px;
+	left: 83px;
+	cursor: pointer;
+}
+.tote_mae_non_pocket{
+	position: absolute;
+	top: 61px;
+	left: 82px;
+	cursor: pointer;
+}
+.mae_backpack{
+	position: absolute;
+	top: 25px;
+	left: 56px;
 	cursor: pointer;
 }
 .mune_left{
@@ -176,6 +202,18 @@
 	left: 58px;
 	cursor: pointer;
 }
+.suso_left_1 {
+	position: absolute;
+	top: 84px;
+	left: 110px;
+	cursor: pointer;
+}
+.suso_right_1 {
+	position: absolute;
+	top: 84px;
+	left: 58px;
+	cursor: pointer;
+}
 
 .shirt_mune_right,
 .basket_mae{
@@ -257,6 +295,24 @@
 	position: absolute;
 	top: 46px;
 	left: 75px;
+	cursor: pointer;
+}
+.hat_mae {
+	position: absolute;
+	top: 82px;
+	left: 56px;
+	cursor: pointer;
+}
+.hat_teppen{
+	position: absolute;
+	top: 7px;
+	left: 56px;
+	cursor: pointer;
+}
+.knit_mae {
+	position: absolute;
+	top: 109px;
+	left: 31px;
 	cursor: pointer;
 }
 .cap_mae_left{
@@ -530,6 +586,19 @@
 	cursor: pointer;
 }
 
+.active_sode_left {
+	position: absolute;
+	top: 50px;
+	left: 122px;
+	cursor: pointer;
+}
+.active_sode_right {
+	position: absolute;
+	top: 50px;
+	left: 58px;
+	cursor: pointer;
+}
+
 .long_sode_left,
 .shirt_long_sode_left {
 	position: absolute;
@@ -742,6 +811,32 @@
 	cursor: pointer;
 }
 
+.hat_side_left{
+	position: absolute;
+	top: 70px;
+	left: 120px;
+	cursor: pointer;
+}
+.hat_side_right{
+	position: absolute;
+	top: 70px;
+	left: 38px;
+	cursor: pointer;
+}
+
+.knit_side_left{
+	position: absolute;
+	top: 109px;
+	left: 106px;
+	cursor: pointer;
+}
+.knit_side_right{
+	position: absolute;
+	top: 109px;
+	left: 23px;
+	cursor: pointer;
+}
+
 .waki_left{
 	position: absolute;
 	top: 85px;
@@ -826,6 +921,12 @@
 	left: 72px;
 	cursor: pointer;
 }
+.tote_usiro_2{
+	position: absolute;
+	top: 61px;
+	left: 84px;
+	cursor: pointer;
+}
 
 .cap_usiro{
 	position: absolute;
@@ -833,11 +934,28 @@
 	left: 70px;
 	cursor: pointer;
 }
-
+.hat_usiro {
+	position: absolute;
+	top: 56px;
+	left:56px;
+	cursor: pointer;
+}
+.knit_usiro {
+	position: absolute;
+	top: 109px;
+	left: 31px;
+	cursor: pointer;
+}
 .active_cap_usiro {
 	position: absolute;
 	top: 35px;
 	left: 72px;
+	cursor: pointer;
+}
+.active_cap_usiro_2 {
+	position: absolute;
+	top: 57px;
+	left: 74px;
 	cursor: pointer;
 }
 
