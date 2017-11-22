@@ -195,6 +195,7 @@
 	padding-bottom: 3%;
 }
 
+
 /* 告知文 */
 
 #option {
@@ -204,6 +205,7 @@
 	border: 2px #8b8b8b solid;
 	margin: 10px auto;
 }
+
 #Line005 {
 	color: #473932;
 	text-indent: 0px;
@@ -212,6 +214,7 @@
 	text-align: center;
 	font-size: 1.3em;
 }
+
 #option p {
 	margin-top: 10px;
 	padding-left: 55px;
@@ -219,12 +222,15 @@
 	padding-bottom: 10px;
 	text-align: center;
 }
-#sj{
+
+#sj {
 	display: none;
 }
-#st{
+
+#st {
 	display: none;
 }
+
 
 /* brand */
 
@@ -238,8 +244,7 @@
 	#pc_slide {
 		display: none;
 	}
-	
-/* 告知文(sp) */
+	/* 告知文(sp) */
 	#option {
 		width: 98%;
 		padding: 0px;
@@ -252,7 +257,7 @@
 		display: none;
 	}
 	a:visited {
-/*		color: #332A1B;*/
+		/*		color: #332A1B;*/
 		text-decoration: none;
 	}
 	#main h3 {
@@ -316,6 +321,7 @@ h1:before {
 	border-left: solid 15px transparent;
 	border-bottom: solid 15px rgb(119, 195, 223);
 }
+
 h1:after {
 	position: absolute;
 	content: '';
@@ -325,19 +331,6 @@ h1:after {
 	border-bottom: solid 3px rgb(119, 195, 223);
 }
 
-/*
-.carousel-caption_2 {
-	position: absolute;
-	right: 15%;
-	top: 11%;
-	left: 15%;
-	z-index: 10;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	color: #fff;
-	text-align: center;
-}
-*/
 
 @media (min-width: 992px) {
 	.list-group-wrap .list-group-item .row .col-lg-3 {
@@ -347,22 +340,9 @@ h1:after {
 		flex: 0 0 8rem;
 		max-width: 8rem;
 	}
-
 }
+
 @media (max-width: 920px) {
-/*
-	.carousel-caption_2 {
-		position: absolute;
-		right: 15%;
-		top: 7%;
-		left: 15%;
-		z-index: 10;
-		padding-top: 20px;
-		padding-bottom: 20px;
-		color: #fff;
-		text-align: center;
-	}
-*/
 	h1 {
 		font-size: 21px;
 	}
@@ -373,56 +353,35 @@ h1:after {
 		font-size: 18px;
 	}
 }
+
 @media (max-width: 459px) {
 	h1 {
 		font-size: 16px;
 	}
-/*
-	.carousel-caption_2 {
-		position: absolute;
-		right: 15%;
-		top: 6%;
-		left: 15%;
-		z-index: 10;
-		padding-top: 20px;
-		padding-bottom: 20px;
-		color: #fff;
-		text-align: center;
-	}
-*/
 }
-
-/* card group */
-/*
-.card-group .card {
-	margin: .5rem .5rem 1.5rem;
-}
-*/
-
-
 
 
 /*
 @media (max-width: 768px) {
-	#option {
-		width: 98%;
-		padding: 0px;
-		margin-bottom: 10px;
-		border: 2px #8b8b8b solid;
-		border-radius: 10px;
-		margin: 10px auto;
-	}
-	a:visited {
-		color: #332A1B;
-		text-decoration: none;
-	}
-	#main h3 {
-		margin: 5px;
-		padding: 3px 5px;
-		font-size: 16px;
-		letter-spacing: 1px;
-		text-align: center;
-		line-height: 1.4;
-	}
+#option {
+width: 98%;
+padding: 0px;
+margin-bottom: 10px;
+border: 2px #8b8b8b solid;
+border-radius: 10px;
+margin: 10px auto;
+}
+a:visited {
+color: #332A1B;
+text-decoration: none;
+}
+#main h3 {
+margin: 5px;
+padding: 3px 5px;
+font-size: 16px;
+letter-spacing: 1px;
+text-align: center;
+line-height: 1.4;
+}
 }
 */
