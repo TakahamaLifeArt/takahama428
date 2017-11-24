@@ -1,4 +1,4 @@
-@charset "euc-jp";
+@charset "utf-8";
 .heading1_wrapper {
 	width: 100%;
 	padding-bottom: 30px;
@@ -162,7 +162,7 @@ select, input, textarea, button {
 	line-height: 1.6;
 }
 input[type="text"] {
-	width: 100%;
+	width: 325px;
 	height: 18px;
 	padding: 3px;
 	border: 1px solid #aaa;
@@ -190,6 +190,9 @@ input[type="text"] {
 .box_c .bg img {
 	vertical-align: text-top;
 }
+textarea#message{
+	height: 5rem;
+}
 
 @media screen and (max-width: 740px) {
 table, tbody, thead, tfoot, tr, th, td {
@@ -200,16 +203,4 @@ table, tbody, thead, tfoot, tr, th, td {
 	border-bottom: 1px solid #ddd;
 	width: 100%;
 }
-	.heading1_wrapper {
-		width: 100%;
-		padding-bottom: 0px;
-		overflow: hidden;
-	}
-	.heading1_wrapper h1 {
-		font-size: 32px;
-		line-height: 1.8;
-		color: #383838;
-		font-weight: bold;
-		margin-top: 15px;
-	}
 }
