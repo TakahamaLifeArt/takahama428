@@ -99,7 +99,7 @@ $_version = time();
 										<th>メッセージ<span class="point">※</span></th>
 										<td>
 											<label for="sample">商品サンプルを希望されたお客様は、ご希望の商品（3点まで）をご記入ください。</label>
-											<textarea name="message" id="message" cols="40" rows="7"></textarea>
+											<textarea name="message" id="message" cols="40" rows="7" placeholder="記入例：085-CVT ヘビーウェイトTシャツ　ホワイト-S   ブラック-M   /   83-BBT ライトウェイトTシャツ ブラック-LL"></textarea>
 										</td>
 									</tr>
 								</tbody>
