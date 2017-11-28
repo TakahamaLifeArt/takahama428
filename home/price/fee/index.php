@@ -733,7 +733,7 @@
 												</th>
 
 												<th>小
-													<p class="gr_ij">(W15×H15cm)</p>
+													<p class="gr_ij">(W10×H10cm)</p>
 												</th>
 
 											</tr>
@@ -809,7 +809,7 @@
 													<p class="gr_ij">(W20×H28cm)</p>
 												</th>
 												<th>小
-													<p class="gr_ij">(W15×H15cm)</p>
+													<p class="gr_ij">(W10×H10cm)</p>
 												</th>
 											</tr>
 											<tr>
