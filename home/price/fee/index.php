@@ -431,7 +431,7 @@
 												</th>
 												<th style="text-align: center;">
 													<p class="wh">中</p>
-													<p class="gr">(W18×H27cm)</p>
+													<p class="gr">(W27×H18cm)</p>
 													<p class="re"> &yen;6,000</p>
 												</th>
 
@@ -658,13 +658,13 @@
 												<th class="mai">枚数
 												</th>
 												<th>大
-													<p class="gr_ij">(W28×H40cm)</p>
+													<p class="gr_ij">(W27×H38cm)</p>
 												</th>
 												<th class="gr_2">中
-													<p class="gr_ij">(W20×H28cm)</p>
+													<p class="gr_ij">(W27×H18cm)</p>
 												</th>
 												<th>小
-													<p class="gr_ij">(W15×H15cm)</p>
+													<p class="gr_ij">(W10×H10cm)</p>
 												</th>
 											</tr>
 											<tr>
@@ -723,19 +723,15 @@
 											<tr>
 												<th class="mai">枚数
 												</th>
-
 												<th>大
-													<p class="gr_ij">(W28×H40cm)</p>
+													<p class="gr_ij">(W27×H38cm)</p>
 												</th>
-
 												<th class="gr_2">中
-													<p class="gr_ij">(W20×H28cm)</p>
+													<p class="gr_ij">(W27×H18cm)</p>
 												</th>
-
 												<th>小
 													<p class="gr_ij">(W10×H10cm)</p>
 												</th>
-
 											</tr>
 											<tr>
 												<th class="gr_3">1枚</th>
@@ -803,10 +799,10 @@
 												<th class="mai">枚数
 												</th>
 												<th>大
-													<p class="gr_ij">(W28×H40cm)</p>
+													<p class="gr_ij">(W27×H38cm)</p>
 												</th>
 												<th class="gr_2">中
-													<p class="gr_ij">(W20×H28cm)</p>
+													<p class="gr_ij">(W27×H18cm)</p>
 												</th>
 												<th>小
 													<p class="gr_ij">(W10×H10cm)</p>
@@ -868,14 +864,14 @@
 											<tr>
 												<th class="mai">枚数
 												</th>
-												<th class="gr_2">大
-													<p class="gr_ij">(W28×H40cm)</p>
+												<th>大
+													<p class="gr_ij">(W27×H38cm)</p>
 												</th>
-												<th>中
-													<p class="gr_ij">(W20×H28cm)</p>
+												<th class="gr_2">中
+													<p class="gr_ij">(W27×H18cm)</p>
 												</th>
-												<th class="gr_2">小
-													<p class="gr_ij">(W15×H15cm)</p>
+												<th>小
+													<p class="gr_ij">(W10×H10cm)</p>
 												</th>
 											</tr>
 											<tr>
