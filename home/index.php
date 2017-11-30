@@ -19,8 +19,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/orders.php';
 $order = new Orders();
 $fin = $order->getDelidate(null, 1, 4, 'simple');
 ?>
-<!DOCTYPE html>
-<html lang="ja">
+	<!DOCTYPE html>
+	<html lang="ja">
 
 	<head prefix="og://ogp.me/ns# fb://ogp.me/ns/fb#  website: //ogp.me/ns/website#">
 		<meta charset="UTF-8">
@@ -52,7 +52,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 				<ol class="carousel-indicators">
 					<li data-target="#mainCarouselIndicators" data-slide-to="0" class="active"></li>
 					<li data-target="#mainCarouselIndicators" data-slide-to="1"></li>
-					<!--				<li data-target="#mainCarouselIndicators" data-slide-to="2"></li>-->
+					<li data-target="#mainCarouselIndicators" data-slide-to="2"></li>
 				</ol>
 
 				<div class="carousel-inner justify-content-center" role="listbox">
@@ -70,6 +70,15 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 						<div class="carousel-caption">
 							<h3></h3>
 							<a href="/order/"><button type="button" class="order_btn"><img src="/common/img/home/main/sp_go_icon.png" width="40px" style="padding-right: 12px;padding-bottom: 5px;">お申し込み</button></a>
+						</div>
+					</div>
+
+					<div class="carousel-item">
+						<img class="img-fluid" id="pc_slide" src="/common/img/home/main/top_slide_newyear.jpg" alt="First slide" width="100%">
+						<img class="img-fluid" id="sp_slide" src="/common/img/home/main/sp_top_slide_newyear.jpg" alt="First slide" width="100%">
+						<div class="carousel-caption">
+							<h3></h3>
+							<a href="/campaign/towel/noshi.php"><button type="button" class="det_btn">詳細はこちら</button></a>
 						</div>
 					</div>
 					<!--
@@ -171,8 +180,8 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 						<div class="col-12 col-sm-4">
 							<div class="row btn-row">
 								<div class="col col-item view overlay hm-white-slight">
-									<a href="//www.instagram.com/takahamalifeart/" class="btn">
-										<img alt="Service" src="/common/img//home/service/top_ser_Insta.jpg" class="img-fluid">
+									<a href="/campaign/towel/noshi.php" class="btn">
+										<img alt="Service" src="/common/img//home/service/top_ser_towel_newyear.jpg" class="img-fluid">
 										<div class="mask"></div>
 									</a>
 								</div>
@@ -217,8 +226,8 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							</a>
 						</div>
 						<div class="col-6 col-item view overlay hm-white-slight">
-							<a href="//www.instagram.com/takahamalifeart/" class="btn">
-								<img alt="Service" src="/common/img//home/service/sp_top_ser_Insta.jpg" class="img-fluid">
+							<a href="/campaign/towel/noshi.php" class="btn">
+								<img alt="Service" src="/common/img//home/service/sp_top_ser_towel_newyear.jpg" class="img-fluid">
 								<div class="mask"></div>
 							</a>
 						</div>
@@ -691,4 +700,4 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
 	</body>
 
-</html>
+	</html>
