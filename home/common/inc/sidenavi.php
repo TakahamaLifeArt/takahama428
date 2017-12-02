@@ -14,6 +14,7 @@
 			<li><a href="/items/?cat=10"><img alt="エプロン" src="/common/img/thumbs/item/apron.png" />エプロン</a></li>
 			<li><a href="/items/?cat=14"><img alt="ベビー" src="/common/img/thumbs/item/baby.png" />ベビーウェア</a></li>
 			<li><a href="/items/?cat=16"><img alt="つなぎ" src="/common/img/thumbs/item/overall.png" />つなぎ</a></li>
+			<li><a href="/items/?cat=11"><img alt="ワークウェア" src="/common/img/thumbs/item/work.png" />ワークウェア</a></li>
 			<li><a href="/items/?cat=12"><img alt="プレゼント・グッズ" src="/common/img/thumbs/item/goods.png" />記念品・プレゼント</a></li>
 			<li><a href="/items/?cat=7"><img alt="キャップ" src="/common/img/thumbs/item/cap.png" />キャップ</a></li>
 		</ul>

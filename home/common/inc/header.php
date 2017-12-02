@@ -182,6 +182,12 @@ if( empty($_SESSION['me']) ){
 								</a>
 							</div>
 							<div class="navi_inner_2">
+								<a class="dropdown-item" href="/items/?cat=11"><img class="item_under" src="/common/img/global/item/item_work.png" width="100%"></a>
+								<a href="/items/?cat=11">
+									<p class="item_txt_min">ワークウェア</p>
+								</a>
+							</div>
+							<div class="navi_inner_2">
 								<a class="dropdown-item" href="/items/?cat=12"><img class="item_under" src="/common/img/global/item/sp_item_11.png" width="100%"></a>
 								<a href="/items/?cat=12">
 									<p class="item_txt_min">記念品</p>
