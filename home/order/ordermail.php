@@ -336,27 +336,23 @@ class Ordermail extends Conndb{
 				$order_info_admin = "";
 				$order_info_user = "";
 			} else {
-//				for ($a=0; $a<count($hash['designfile']); $a++) {
-//					$order_info_admin .= "◇ファイル名：　"._ORDER_DOMAIN."/system/attachfile/".$order_id."/".$hash['designfile'][$a]."\n\n";
-//				}
+				for ($a=0; $a<count($hash['designfile']); $a++) {
+					$order_info_admin .= "◇ファイル名：　"._ORDER_DOMAIN."/system/attachfile/".$order_id."/".$hash['designfile'][$a]."\n\n";
+				}
 				for ($b=0; $b<count($uploadfilename); $b++) {
 					$fname = basename($uploadfilename[$b]);
 					$order_info_user .= "◇ファイル名：　".rawurldecode($fname)."\n";
-					$order_info_admin .= "◇ファイル名：　"._ORDER_DOMAIN."/system/attachfile/".$order_id."/".$fname."\n\n";
+//					$order_info_admin .= "◇ファイル名：　"._ORDER_DOMAIN."/system/attachfile/".$order_id."/".$fname."\n\n";
 				}
 				if (empty($order_id)) {
 					$order_info_admin .= "\n===  Error  ===\n";
 					$order_info_admin .= "\n◇ 注文データの送信中にエラーが発生しています。\n";
 					$order_info_admin .= "\n===\n\n";
-				} else if ($hash['designfile']==false) {
+				} else if (count($hash['designfile'])==0 || $a<$b) {
 					$order_info_admin .= "\n===  Error  ===\n";
 					$order_info_admin .= "\n◇ 転送できなかったデザインファイルがあります。\n";
 					$order_info_admin .= "\n-- 元ファイル（".$b."個）\n";
-					$order_info_admin .= "◇コード：　".basename(dirname($uploadfilename[$b], 1))."\n";
-//					for ($b=0; $b<count($uploadfilename); $b++) {
-//						$fname = rawurldecode(basename($uploadfilename[$b]));
-//						$order_info_admin .= "◇ファイル名：　".$fname."\n";
-//					}
+					$order_info_admin .= "◇コード：　".basename(dirname($uploadfilename[0], 1))."\n";
 					$order_info_admin .= "\n===\n\n";
 				}
 				$order_info_admin .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
@@ -1002,7 +998,7 @@ class WebOrder {
 	 * @param {string} table テーブル名
 	 * @param {array} data 追加データの配列、若しくは注文伝票ID
 	 *
-	 * @return {array} {orderid=>受注No. , designfile=>true|false}
+	 * @return {array} {orderid=>受注No. , designfile=>[ファイル名, ...]}
 	 */
 	private function insert($conn, $table, $data){
 		try{
@@ -1465,10 +1461,31 @@ class WebOrder {
 					if($upDir != ""){
 						$oldPath = $_SERVER['DOCUMENT_ROOT'].'/../../'._ORDER_VHOST.'/home/system/attachfile/'.$upDir;
 						$newPath = $_SERVER['DOCUMENT_ROOT'].'/../../'._ORDER_VHOST.'/home/system/attachfile/'.$orders_id;
+						
+						$fileName = array();
+						$up = 0;
+						$fileCount = 0;
+						$today = date('Y-m-d');
+						$root = $_SERVER['DOCUMENT_ROOT']."/";
+						if ($handle = opendir($oldPath)) {
+							setlocale(LC_ALL, 'ja_JP.UTF-8');
+							while (false !== ($f = readdir($handle))) {
+								if (is_dir($oldPath.'/'.$f)==false && $f != "." && $f != "..") {
+									$fileCount++;
+									$extension = pathinfo($f, PATHINFO_EXTENSION);
+									$fileName[] = 'design_'.$orders_id.'_'.$today.'_'.$up.'.'.$extension;
+									if (rename($oldPath.'/'.$f, $oldPath.'/'.$fileName[$up])) {
+										$up++;
+									}
+								}
+							}
+							closedir($handle);
+						}
+						
 						$isUpload = rename($oldPath, $newPath);
 					}
 					
-					return array('orderid'=>$orders_id, 'designfile'=>$isUpload);
+					return array('orderid'=>$orders_id, 'designfile'=>$fileName);
 					break;
 
 				case 'orderitem':
