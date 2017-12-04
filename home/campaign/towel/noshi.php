@@ -36,7 +36,7 @@
 			</ul>
 			<div class="towel_header">
 				<h1>短納期粗品タオル</h1> <img src="./img/newyear_main.jpg" class="hidden-xs-down" width="100%" alt="短納期粗品タオル"> <img src="./img/sp_newyear_main.jpg" class="hidden-sm-up" width="100%" alt="短納期粗品タオル">
-				<p class="right_txt">■対象期間：2017年11月30日(水)〜2018年1月30日(水) 13:00まで</p>
+				<p class="right_txt">■対象期間：2017年11月30日(水)?2018年1月31日(水) 13:00まで</p>
 				<p class="right_txt smtxt"><span class="red_new">※</span>当日特急プランは12:00まで</p>
 			</div>
 			<div class="wrap">
@@ -213,45 +213,45 @@
 								</tr>
 								<tr>
 									<td class="bgdtd">1~5</td>
-									<td>¥1,800</td>
+									<td>\1,800</td>
 									<td class="bgdtd">50~59</td>
-									<td>¥420</td>
+									<td>\420</td>
 								</tr>
 								<tr>
 									<td class="bgdtd">6~9</td>
-									<td>¥1,300</td>
+									<td>\1,300</td>
 									<td class="bgdtd">60~99</td>
-									<td>¥400</td>
+									<td>\400</td>
 								</tr>
 								<tr>
 									<td class="bgdtd">10~19</td>
-									<td>¥900</td>
+									<td>\900</td>
 									<td class="bgdtd">100~199</td>
-									<td>¥360</td>
+									<td>\360</td>
 								</tr>
 								<tr>
 									<td class="bgdtd">20~29</td>
-									<td>¥600</td>
+									<td>\600</td>
 									<td class="bgdtd">200~299</td>
-									<td>¥330</td>
+									<td>\330</td>
 								</tr>
 								<tr>
 									<td class="bgdtd">30~39</td>
-									<td>¥500</td>
+									<td>\500</td>
 									<td class="bgdtd">300~499</td>
-									<td>¥320</td>
+									<td>\320</td>
 								</tr>
 								<tr>
 									<td class="bgdtd">40~49</td>
-									<td>¥450</td>
+									<td>\450</td>
 									<td class="bgdtd">500~</td>
-									<td>¥290</td>
+									<td>\290</td>
 								</tr>
 								<tr>
 									<th colspan="4" align="center">インクの色替え代</th>
 								</tr>
 								<tr>
-									<td colspan="4" align="center">¥1,000</td>
+									<td colspan="4" align="center">\1,000</td>
 								</tr>
 							</table>
 						</div>
@@ -264,19 +264,19 @@
 								</tr>
 								<tr>
 									<td class="bgdtd">のし入り袋詰め</td>
-									<td>¥70</td>
+									<td>\70</td>
 								</tr>
 								<tr>
 									<td class="bgdtd">袋詰め</td>
-									<td>¥50</td>
+									<td>\50</td>
 								</tr>
 								<tr>
 									<td class="bgdtd">のしのみ同封</td>
-									<td>¥10</td>
+									<td>\10</td>
 								</tr>
 								<tr>
 									<td class="bgdtd">袋のみ同封</td>
-									<td>¥10</td>
+									<td>\10</td>
 								</tr>
 							</table>
 						</div>

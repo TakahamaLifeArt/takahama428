@@ -69,6 +69,10 @@ $_version = time();
 										<td><input name="customername" type="text" maxlength="32" class="restrict" /></td>
 									</tr>
 									<tr>
+										<th>フリガナ</th>
+										<td><input type="text" name="ruby" value="" class="wide" /></td>
+									</tr>
+									<tr>
 										<th>ご住所<span class="point">※</span></th>
 										<td>
 											<p>〒<input name="zipcode" id="zipcode" class="forZip" type="text" onkeyup="AjaxZip3.zip2addr(this,'','addr0','addr1');" /></p>
@@ -99,7 +103,7 @@ $_version = time();
 										<th>メッセージ<span class="point">※</span></th>
 										<td>
 											<label for="sample">商品サンプルを希望されたお客様は、ご希望の商品（3点まで）をご記入ください。</label>
-											<textarea name="message" id="message" cols="40" rows="7" placeholder="記入例：085-CVT ヘビーウェイトTシャツ　ホワイト-S   ブラック-M   /   83-BBT ライトウェイトTシャツ ブラック-LL"></textarea>
+											<textarea name="message" id="message" cols="40" rows="7" placeholder="記入例：085-CVT ヘビーウェイトTシャツ　ホワイト-S   ブラック-M   /  083-BBT ライトウェイトTシャツ ブラック-LL"></textarea>
 										</td>
 									</tr>
 								</tbody>
