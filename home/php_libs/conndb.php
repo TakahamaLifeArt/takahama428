@@ -292,6 +292,35 @@ class Conndb extends HTTP {
 	
 	
 	/*
+	* アイテムタグ一覧 - API3
+	* @id			カテゴリID, カテゴリー指定なしの場合は０
+	* @tag			条件絞り込み用の複数のタグIDの配列
+	* @return タグ一覧の配列
+	*/
+	public function itemTag($id=0, $tag=array()){
+		$param = array();
+		if (empty($id)) {
+			$endPoint = '/itemtags/';
+		} else {
+			$endPoint = '/itemtags/'.$id;
+		}
+		if (!empty($tag)){
+			for ($i=0; $i<count($tag); $i++) {
+				$param['tag'][] = $tag[$i];
+			}
+		}
+		$headers = [
+			'X-TLA-Access-Token:'._ACCESS_TOKEN,
+			'Origin:'._DOMAIN
+			];
+		parent::setURL(_API_3.$endPoint);
+		$data = parent::request('GET', $param, $headers);
+		parent::setURL(_API);
+		return $data;
+	}
+	
+	
+	/*
 	*	カテゴリーの商品情報
 	*	@categoryid		カテゴリーID
 	*	@mode			id:カテゴリーID、code:カテゴリーキー、list:カテゴリーIDで全サイズのリスト

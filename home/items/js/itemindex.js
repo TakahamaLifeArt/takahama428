@@ -12,7 +12,8 @@ $(function(){
 	$('.tag_list_item').on('change', '[type="checkbox"]', function(){
 		if ($(this).is(':checked')) {
 			var f = document.forms.form_tag_search;
-			f.addtag.value = this.value;	// tagid_tagtypekey
+			var tag = this.value.split('_');	// tagid_tagtypekey
+			$(f).append('<input type="hidden" name="'+tag[1]+'[]" value="'+tag[0]+'">');
 			f.submit();
 		} else {
 			var tag_id = this.value.split("_")[0];

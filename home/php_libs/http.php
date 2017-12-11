@@ -6,14 +6,14 @@
 */
 class HTTP {
 
-	private $url;
+	private $_url;
 	
 	public function __construct($args){
-		$this->url = $args;
+		$this->_url = $args;
 	}
 	
-	public function request($method, $params = array()){
-		$url = $this->url;
+	public function request($method, $params = array(), $headers = array()){
+		$url = $this->_url;
 		$data = http_build_query($params);
 		if($method == 'GET') {
 			$url = ($data != '')?$url.'?'.$data:$url;
@@ -30,18 +30,29 @@ class HTTP {
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 //		curl_setopt($ch, CURLOPT_TIMEOUT_MS, 500);
 		curl_setopt($ch, CURLOPT_TIMEOUT_MS, 60000);
+		
+		if (!empty($headers)) {
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+		}
+		
 		$res = curl_exec($ch);
 		//ステータスをチェック
 		$respons = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-		if(preg_match("/^(404|403|500)$/",$respons)){
+		if(preg_match("/^(400|401|403|404|405|500)$/",$respons)){
 			return 'HTTP error: '.$respons;
 		}
 	 
 		return $res;
 	}
 	
+	
+	public function setURL($url){
+		$this->_url = $url;
+	}
+	
+	
 	public function request2($method, $params = array()){
-		$url = $this->url;
+		$url = $this->_url;
 		$data = http_build_query($params);
 		$header = Array("Content-Type: application/x-www-form-urlencoded");
 		$options = array('http' => Array(
