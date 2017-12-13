@@ -42,6 +42,14 @@
 				<section>
 					<h1 class="headLine01">お知らせ</h1>
 
+					<p id="a01" class="headLine03">【冬季休業のお知らせ】</p>
+					<ul class="textUl">
+						<li>
+							<p>12月26日(火)から1月9日(火)の間、休業とさせて頂きます。
+								<br> 休業期間中に頂きましたお問合せにつきましては、1月10日(水)以降対応させて頂きます。 何卒よろしくお願い致します。
+							</p>
+						</li>
+					</ul>
 					<p id="a01" class="headLine03">【価格改定のお知らせ】</p>
 					<ul class="textUl">
 						<li>
