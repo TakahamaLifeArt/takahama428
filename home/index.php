@@ -543,6 +543,18 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 									<li class="list-group-item">
 										<div class="row">
 											<div class="col-12 col-lg-3 news_date">
+												2017.12.14
+											</div>
+											<a href="/guide/information.php">
+												<div class="col-12 col-lg news_ttl">
+													【冬季休業のお知らせ】
+												</div>
+											</a>
+										</div>
+									</li>
+									<li class="list-group-item">
+										<div class="row">
+											<div class="col-12 col-lg-3 news_date">
 												2017.11.22
 											</div>
 											<a href="/guide/information.php">

@@ -19,7 +19,7 @@
 	<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
 	<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
 	<meta property="fb:app_id" content="1605142019732010" />
-	<title>お支払いについて　|　オリジナルTシャツ作成が早い、タカハマライフアート</title>
+	<title>お支払いについて　|　オリジナルTシャツ【タカハマライフアート】</title>
 	<link rel="shortcut icon" href="/icon/favicon.ico">
 	
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
@@ -85,7 +85,7 @@
 				<div class="inner">
 					<h3 class="heading3">クレジットカード決済</h3>
 					<p>ご希望の納品日より2営業日前の午前中までにカード決済手続きをお願い致します。カード決済確認後、商品を発送致します。<br> （土日祝は決済確認ができないのでご注意ください）
-						<br> カード決済システム利用料（５％）は、お客様のご負担とさせていただいております。ご了承下さい。
+
 						<br>
 					</p>
 					<p class="note">
