@@ -306,7 +306,7 @@ class Conndb extends HTTP {
 		}
 		if (!empty($tag)){
 			for ($i=0; $i<count($tag); $i++) {
-				$param['tag'][] = $tag[$i];
+				$param['args'][] = $tag[$i];
 			}
 		}
 		$headers = [

@@ -740,11 +740,11 @@ if(isset($_REQUEST['act'])){
 	$cloth_tag = "";
 	$size_tag = "";
 
-	if (empty($_IS_TAG)) {
+	if ($mode=='category') {
 		$itemTag = $pageinfo->itemTag($_ID, $tag);	// カテゴリー指定あり
 	} else {
 		array_unshift($tag, $_ID);
-		$itemTag = $pageinfo->itemTag(0, $tag);
+		$itemTag = $pageinfo->itemTag('', $tag);
 	}
 	$itemTags = json_decode($itemTag, true);
 
