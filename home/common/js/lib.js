@@ -129,6 +129,20 @@ $(function(){
 			my.value = (str.match(/^\d+$/))? str-0: err;
 			return my.value;
 		},
+		zip_mask: function (args) {
+		/**
+		 *	郵便番号を"-"で区切る
+		 */
+			var c = args.replace(/[０-９]/g, function (m) {
+				var a = "０１２３４５６７８９";
+				var r = a.indexOf(m);
+				return r == -1 ? m : r;
+			});
+			c = c.replace(/[^\d]/g, '');
+			if (c.length >= 3) c = c.substr(0, 3) + '-' + c.substr(3, 4);
+
+			return c;
+		},
 		TLA: {
 			'api':'https://takahamalifeart.com/v1/api',
 			'show_site':'1',
