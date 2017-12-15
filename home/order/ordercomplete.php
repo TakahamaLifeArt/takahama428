@@ -21,29 +21,29 @@ if ( isset($_SESSION['orders'], $_POST['ticket']) ) {
 	}
 	
 ?>
-<!DOCTYPE html>
-<html lang="ja">
+    <!DOCTYPE html>
+    <html lang="ja">
 
-	<head prefix="og://ogp.me/ns# fb://ogp.me/ns/fb#  website: //ogp.me/ns/website#">
-		<meta charset="UTF-8">
-		<meta name="Description" content="WebでカンタンにオリジナルTシャツのお申し込みができます。簡単入力で瞬時に料金の目安がわかります！トレーナー・ポロシャツ・オリジナルTシャツの作成・プリントは、東京都葛飾区のタカハマライフアートにお任せ下さい！" />
-		<meta name="keywords" content="注文,お申し込み,オリジナル,Tシャツ,早い,東京" />
-		<meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1" />
-		<title>お申し込みメールの送信完了　|　オリジナルTシャツ屋タカハマライフアート</title>
-		<link rel="shortcut icon" href="/icon/favicon.ico" />
-		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
-		<link rel="stylesheet" type="text/css" href="./css/finish_responsive.css" media="screen" />
-	</head>
+    <head prefix="og://ogp.me/ns# fb://ogp.me/ns/fb#  website: //ogp.me/ns/website#">
+        <meta charset="UTF-8">
+        <meta name="Description" content="WebでカンタンにオリジナルTシャツのお申し込みができます。簡単入力で瞬時に料金の目安がわかります！トレーナー・ポロシャツ・オリジナルTシャツの作成・プリントは、東京都葛飾区のタカハマライフアートにお任せ下さい！" />
+        <meta name="keywords" content="注文,お申し込み,オリジナル,Tシャツ,早い,東京" />
+        <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1" />
+        <title>お申し込みメールの送信完了｜ オリジナルTシャツ【タカハマライフアート】</title>
+        <link rel="shortcut icon" href="/icon/favicon.ico" />
+        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
+        <link rel="stylesheet" type="text/css" href="./css/finish_responsive.css" media="screen" />
+    </head>
 
-	<body>
+    <body>
 
-		<header>
-		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
-		</header>
+        <header>
+            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
+        </header>
 
-		<div id="container">
-			<div class="contents">
-				<?php
+        <div id="container">
+            <div class="contents">
+                <?php
 				$cst = 'cst';
 				function cst($constant){
 					return $constant;
@@ -112,27 +112,27 @@ DOC;
 				
 			?>
 
-					<div class="heading1_wrapper">
-						<h1>
-							<?php echo $heading;?>
-						</h1>
-						<p class="comment"></p>
-						<p class="sub">
-							<?php echo $sub;?>
-						</p>
-					</div>
-					<p class="heading"></p>
-					<?php echo $html;?>
-			</div>
-		</div>
+                    <div class="heading1_wrapper">
+                        <h1>
+                            <?php echo $heading;?>
+                        </h1>
+                        <p class="comment"></p>
+                        <p class="sub">
+                            <?php echo $sub;?>
+                        </p>
+                    </div>
+                    <p class="heading"></p>
+                    <?php echo $html;?>
+            </div>
+        </div>
 
 
-		<footer class="page-footer">
-			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
-		</footer>
+        <footer class="page-footer">
+            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
+        </footer>
 
-		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
+        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
 
-	</body>
+    </body>
 
-</html>
+    </html>

@@ -16,7 +16,7 @@
 	<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
 	<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
 	<meta property="fb:app_id" content="1605142019732010" />
-	<title>手描きのデザイン入稿編 ｜ オリジナルTシャツ作成が早い、タカハマライフアート</title>
+	<title>手描きのデザイン入稿編 ｜ オリジナルTシャツ【タカハマライフアート】</title>
 	<link rel="shortcut icon" href="/icon/favicon.ico">
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 	<link rel="stylesheet" type="text/css" href="./css/freehand.css" media="screen" />

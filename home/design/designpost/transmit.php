@@ -29,55 +29,30 @@ if($isSend){
 */
 	
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8" />
-	<meta name="keywords" content="<?php echo $categoryname; ?>,オリジナル<?php echo $categoryname; ?>,作成,プリント,東京,即日,最短" />
-	<meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1" />
-	<title>メール送信 | タカハマライフアート</title>
-	<link rel="shortcut icon" href="/icon/favicon.ico" />
-	<link rel="stylesheet" type="text/css" href="/common/css/common_responsive.css" media="all" />
-	<link rel="stylesheet" type="text/css" href="/common/css/base_responsive.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="./css/finish_responsive.css" media="screen" />
-<!-- m3 begin -->
-	<link rel="stylesheet" type="text/css" href="/m3/common/css/common_responsive.css" media="all">
-	<link rel="stylesheet" type="text/css" href="/m3/common/css/slidebars_responsive.css" media="all">
-	<link rel="stylesheet" href="/m3/common/css/import_responsive.css">
-	<link rel="stylesheet" href="/m3/items/css/detail_responsive.css">
-<!-- m3 end -->
-	<script type="text/javascript" src="/common/js/jquery.js"></script>
-	<script type="text/javascript" src="/common/js/tlalib.js"></script>
-	<!--m3 begin-->
-	<script src="/m3/common/js/common1.js"></script>
-	<!--m3 end-->
-</head>
+    <!DOCTYPE html>
+    <html lang="ja">
 
-<body>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="keywords" content="<?php echo $categoryname; ?>,オリジナル<?php echo $categoryname; ?>,作成,プリント,東京,即日,最短" />
+        <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1" />
+        <title>メール送信 ｜ オリジナルTシャツ【タカハマライフアート】</title>
+        <link rel="shortcut icon" href="/icon/favicon.ico" />
+        <link rel="stylesheet" type="text/css" href="/items/css/items_style_responsive.css" media="screen" />
+        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
+        <link rel="stylesheet" type="text/css" href="/design/designpost/css/finish_responsive.css" media="screen" />
+    </head>
 
-	<?php
-		$php = file_get_contents($_SERVER['DOCUMENT_ROOT']."/common/inc/header.php");
-		eval('?>'. mb_convert_encoding($php, 'UTF-8', 'euc-jp'). '<?');
-		$php = file_get_contents($_SERVER['DOCUMENT_ROOT']."/common/inc/globalmenu.php");
-		eval('?>'. mb_convert_encoding($php, 'UTF-8', 'euc-jp'). '<?');
-	?>
+    <body>
 
-	<!-- m3 begin -->
-	<header id="header" class="head2">
-		<?php include($_SERVER['DOCUMENT_ROOT']."/m3/common/inc_utf8/header.html"); ?>
-	</header>
-	<?php include($_SERVER['DOCUMENT_ROOT']."/m3/common/inc_utf8/gnavi.html"); ?>
-	<!-- m3 end -->
-	
-	<div id="container">
-		<?php
-			$php = file_get_contents($_SERVER['DOCUMENT_ROOT']."/common/inc/sidenavi.php");
-			eval('?>'. mb_convert_encoding($php, 'UTF-8', 'euc-jp'). '<?');
-		?>
-		
-		<div class="contents">
-			
-			<?php
+        <header>
+            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
+        </header>
+
+        <div id="container">
+            <div class="contents">
+
+                <?php
 				$cst = 'cst';
 				function cst($constant){
 					return $constant;
@@ -124,46 +99,27 @@ DOC;
 DOC;
 				}
 			?>
-			
-			<div class="heading1_wrapper">
-				<h1><?php echo $heading;?></h1>
-				<p class="comment"></p>
-				<p class="sub"><?php echo $sub;?></p>
-			</div>
-			<?php echo $html;?>
-		</div>
-		
-	</div>
-	
-	<?php
-		$php = file_get_contents($_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php");
-		eval('?>'. mb_convert_encoding($php, 'UTF-8', 'euc-jp'). '<?');
-	?>
 
-<!--Yahoo!タグマネージャー導入 2014.04 -->
-<script type="text/javascript">
-  (function () {
-    var tagjs = document.createElement("script");
-    var s = document.getElementsByTagName("script")[0];
-    tagjs.async = true;
-    tagjs.src = "//s.yjtag.jp/tag.js#site=bTZi1c8";
-    s.parentNode.insertBefore(tagjs, s);
-  }());
-</script>
-<noscript>
-  <iframe src="//b.yjtag.jp/iframe?c=bTZi1c8" width="1" height="1" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-</noscript>
-<!-- m3 begin -->
-<div id="phonepage">
-<div id="fb-root"></div>
-<div id="container">
-	<?php include($_SERVER['DOCUMENT_ROOT']."/m3/common/inc_utf8/footer.html"); ?>
-	<div class="sb-slidebar sb-right">
-	<?php include($_SERVER['DOCUMENT_ROOT']."/m3/common/sidemenu.html"); ?>
-	</div>
-<!-- /container --></div>
-</div>
-<!-- m3 end -->
-	
-</body>
-</html>
+                    <div class="heading1_wrapper">
+                        <h1>
+                            <?php echo $heading;?>
+                        </h1>
+                        <p class="comment"></p>
+                        <p class="sub">
+                            <?php echo $sub;?>
+                        </p>
+                    </div>
+                    <?php echo $html;?>
+            </div>
+        </div>
+
+        <footer class="page-footer">
+            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
+        </footer>
+
+        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
+        <script type="text/javascript" src="/common/js/jquery.js"></script>
+
+    </body>
+
+    </html>

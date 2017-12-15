@@ -214,133 +214,113 @@ $avg['ratio'] = round($v/$len, 1);
 $avg['img'] = getStar($avg['ratio']);
 
 ?>
-<!DOCTYPE html>
-	<html lang="ja">
-		<head prefix="og://ogp.me/ns# fb://ogp.me/ns/fb#  website: //ogp.me/ns/website#">
-		<meta charset="UTF-8">
-		<meta name="Description" content="" />
-		<meta name="keywords" content="" />
-		<meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1" />
-		<meta property="og:title" content="世界最速！？オリジナルTシャツを当日仕上げ！！" />
-		<meta property="og:type" content="article" />
-		<meta property="og:description" content="業界No. 1短納期でオリジナルTシャツを1枚から作成します。通常でも3日で仕上げます。" />
-		<meta property="og:url" content="https://www.takahama428.com/" />
-		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
-		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
-		<meta property="fb:app_id" content="1605142019732010" />
-		<title>アイテムレビュー：
-			<?php echo strtoupper($item_code).' '.$item_name;?>　|　オリジナルTシャツ屋タカハマライフアート</title>
-		<link rel="shortcut icon" href="/icon/favicon.ico" />
-		<link rel="stylesheet" type="text/css" href="css/itemreviews.css" media="screen" />
-		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
-	</head>
+    <!DOCTYPE html>
+    <html lang="ja">
 
-	<body>
-		
-		<!-- Google Tag Manager -->
-		<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-T5NQFM"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-		<script>
-			(function(w, d, s, l, i) {
-				w[l] = w[l] || [];
-				w[l].push({
-					'gtm.start': new Date().getTime(),
-					event: 'gtm.js'
-				});
-				var f = d.getElementsByTagName(s)[0],
-					j = d.createElement(s),
-					dl = l != 'dataLayer' ? '&l=' + l : '';
-				j.async = true;
-				j.src =
-					'//www.googletagmanager.com/gtm.js?id=' + i + dl;
-				f.parentNode.insertBefore(j, f);
-			})(window, document, 'script', 'dataLayer', 'GTM-T5NQFM');
+    <head prefix="og://ogp.me/ns# fb://ogp.me/ns/fb#  website: //ogp.me/ns/website#">
+        <meta charset="UTF-8">
+        <meta name="Description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1" />
+        <meta property="og:title" content="世界最速！？オリジナルTシャツを当日仕上げ！！" />
+        <meta property="og:type" content="article" />
+        <meta property="og:description" content="業界No. 1短納期でオリジナルTシャツを1枚から作成します。通常でも3日で仕上げます。" />
+        <meta property="og:url" content="https://www.takahama428.com/" />
+        <meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
+        <meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
+        <meta property="fb:app_id" content="1605142019732010" />
+        <title>アイテムレビュー：
+            <?php echo strtoupper($item_code).' '.$item_name;?>　|　オリジナルTシャツ【タカハマライフアート】</title>
+        <link rel="shortcut icon" href="/icon/favicon.ico" />
+        <link rel="stylesheet" type="text/css" href="css/itemreviews.css" media="screen" />
+        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
+    </head>
 
-		</script>
-		<!-- End Google Tag Manager -->
+    <body>
 
-		<header>
-			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
-		</header>
-		<div id="container">
 
-			<div class="contents">
-				<input type="hidden" id="item" value="<?php echo $item_id;?>" />
-				<ul class="pan hidden-sm-down">
-					<li><a href="/">オリジナルＴシャツ屋ＴＯＰ</a></li>
-					<li>アイテムレビュー：
-						<?php echo $item_name;?>
-					</li>
-				</ul>
+        <header>
+            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
+        </header>
 
-				<div id="item_info">
-					<div id="item_left">
-						<div id="item_image">
-							<img id="item_image_m" src="<?php echo $image_path;?>" width="170" height="170">
-						</div>
-					</div>
-					<div id="item_right">
-						<h1>アイテムレビュー</h1>
-						<h2>
-							<?php echo $itemname;?>
-						</h2>
-						<p id="price">Takahama価格：<span id="price_detail"><?php echo number_format($mincost); ?>円&#65374;/１枚</span></p>
-						<div id="rating">
-							総合評価
-							<span id="totalstar">
+        <div id="container">
+            <div class="contents">
+                <input type="hidden" id="item" value="<?php echo $item_id;?>" />
+                <ul class="pan hidden-sm-down">
+                    <li><a href="/">オリジナルＴシャツ屋ＴＯＰ</a></li>
+                    <li>アイテムレビュー：
+                        <?php echo $item_name;?>
+                    </li>
+                </ul>
+
+                <div id="item_info">
+                    <div id="item_left">
+                        <div id="item_image">
+                            <img id="item_image_m" src="<?php echo $image_path;?>" width="170" height="170">
+                        </div>
+                    </div>
+                    <div id="item_right">
+                        <h1>アイテムレビュー</h1>
+                        <h2>
+                            <?php echo $itemname;?>
+                        </h2>
+                        <p id="price">Takahama価格：<span id="price_detail"><?php echo number_format($mincost); ?>円&#65374;/１枚</span></p>
+                        <div id="rating">
+                            総合評価
+                            <span id="totalstar">
 							<img src="img/<?php echo $avg['img'];?>_l.png" width="150" height="40" alt=""><?php echo $avg['ratio'];?>
 						</span>
-							<span id="numof_user">(評価数<?php echo number_format($len);?>)</span>
-						</div>
-						<div id="btns">
-							<p id="ckitem_btn">
-								<?php echo $anchor;?>
-							</p>
-							<p id="estimate_btn">
-								<?php echo $goto_estimation;?>
-							</p>
-						</div>
-					</div>
-				</div>
+                            <span id="numof_user">(評価数<?php echo number_format($len);?>)</span>
+                        </div>
+                        <div id="btns">
+                            <p id="ckitem_btn">
+                                <?php echo $anchor;?>
+                            </p>
+                            <p id="estimate_btn">
+                                <?php echo $goto_estimation;?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-				<div id="lists" class="clearfix">
-					<div class="pagenation_set">
-						<div class="pagenation_left">
-							<span><?php echo number_format($len);?></span>件中
-							<?php if($end==0) echo '0'; else echo ($start+1).'～'.$end;?>件を表示
-						</div>
-						<div class="pagenation_right">
-							<div class="pagenation_nav">
-								並び順：
-								<select id="cond_sortby" name="">
+                <div id="lists" class="clearfix">
+                    <div class="pagenation_set">
+                        <div class="pagenation_left">
+                            <span><?php echo number_format($len);?></span>件中
+                            <?php if($end==0) echo '0'; else echo ($start+1).'～'.$end;?>件を表示
+                        </div>
+                        <div class="pagenation_right">
+                            <div class="pagenation_nav">
+                                並び順：
+                                <select id="cond_sortby" name="">
 							<?php
 								$opt = '<option value="post">新着順</option><option value="high">評価が高い順</option><option value="low">評価が低い順</option>';
 								$opt = preg_replace('/value=\"'.$sort.'\"/', 'value="'.$sort.'" selected="selected"', $opt);
 								echo $opt;
 							?>
 							</select>
-							</div>
+                            </div>
 
-							<div class="pagenation_nav">
-								<?php echo $paging;?>
-							</div>
-						</div>
-					</div>
+                            <div class="pagenation_nav">
+                                <?php echo $paging;?>
+                            </div>
+                        </div>
+                    </div>
 
-					<?php echo $review;?>
+                    <?php echo $review;?>
 
-				</div>
+                </div>
 
-			</div>
-		</div>
+            </div>
+        </div>
 
-		<footer class="page-footer">
-			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
-		</footer>
+        <footer class="page-footer">
+            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
+        </footer>
 
-		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
-		<script type="text/javascript" src="../common/js/jquery.js"></script>
-		<script type="text/javascript" src="./js/review.js"></script>
-	</body>
+        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
+        <script type="text/javascript" src="../common/js/jquery.js"></script>
+        <script type="text/javascript" src="./js/review.js"></script>
+    </body>
 
-	</html>
+    </html>

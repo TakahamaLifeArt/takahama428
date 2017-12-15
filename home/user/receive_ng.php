@@ -10,79 +10,37 @@ if(!$me){
 $isOK = false;
 
 ?>
-	<!DOCTYPE html>
+    <!DOCTYPE html>
 
-	<html lang="ja">
-	<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#  website: http://ogp.me/ns/website#">
-		<meta charset="utf-8" />
-		<meta property="og:title" content="世界最速！？オリジナルTシャツを当日仕上げ！！" />
-		<meta property="og:type" content="article" />
-		<meta property="og:description" content="業界No. 1短納期でオリジナルTシャツを1枚から作成します。通常でも3日で仕上げます。" />
-		<meta property="og:url" content="http://www.takahama428.com/" />
-		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
-		<meta property="og:image" content="http://www.takahama428.com/common/img/header/Facebook_main.png" />
-		<meta property="fb:app_id" content="1605142019732010" />
-		<title>決済 - TLAメンバーズ | タカハマライフアート</title>
-		<link rel="shortcut icon" href="/icon/favicon.ico" />
-		
-		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
-		<link rel="stylesheet" type="text/css" media="screen" href="./css/my_account.css" />
-		<link rel="stylesheet" type="text/css" href="/contact/css/finish_responsive.css" media="screen" />
-		
-		<script type="text/javascript">
-			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-11155922-2']);
-			_gaq.push(['_trackPageview']);
+    <html lang="ja">
 
-			(function() {
-				var ga = document.createElement('script');
-				ga.type = 'text/javascript';
-				ga.async = true;
-				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-				var s = document.getElementsByTagName('script')[0];
-				s.parentNode.insertBefore(ga, s);
-			})();
+    <head prefix="og: //ogp.me/ns# fb: //ogp.me/ns/fb#  website: //ogp.me/ns/website#">
+        <meta charset="utf-8" />
+        <meta property="og:title" content="世界最速！？オリジナルTシャツを当日仕上げ！！" />
+        <meta property="og:type" content="article" />
+        <meta property="og:description" content="業界No. 1短納期でオリジナルTシャツを1枚から作成します。通常でも3日で仕上げます。" />
+        <meta property="og:url" content="https://www.takahama428.com/" />
+        <meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
+        <meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
+        <meta property="fb:app_id" content="1605142019732010" />
+        <title>決済 - TLAメンバーズ ｜ オリジナルTシャツ【タカハマライフアート】</title>
+        <link rel="shortcut icon" href="/icon/favicon.ico" />
 
-		</script>
-	</head>
+        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
+        <link rel="stylesheet" type="text/css" media="screen" href="./css/my_account.css" />
+        <link rel="stylesheet" type="text/css" href="/contact/css/finish_responsive.css" media="screen" />
 
-	<body>
+    </head>
 
-		<!-- Google Tag Manager -->
-		<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-T5NQFM"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-		<script>
-			(function(w, d, s, l, i) {
-				w[l] = w[l] || [];
-				w[l].push({
-					'gtm.start': new Date().getTime(),
-					event: 'gtm.js'
-				});
-				var f = d.getElementsByTagName(s)[0],
-					j = d.createElement(s),
-					dl = l != 'dataLayer' ? '&l=' + l : '';
-				j.async = true;
-				j.src =
-					'//www.googletagmanager.com/gtm.js?id=' + i + dl;
-				f.parentNode.insertBefore(j, f);
-			})(window, document, 'script', 'dataLayer', 'GTM-T5NQFM');
+    <body>
 
-		</script>
-		<!-- End Google Tag Manager -->
+        <header>
+            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
+        </header>
 
-		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
-		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/globalmenu.php"; ?>
-		<!-- m3 begin -->
-		<header id="header" class="head2">
-			<?php include($_SERVER['DOCUMENT_ROOT']."/m3/common/inc/header.html"); ?>
-		</header>
-		<?php include($_SERVER['DOCUMENT_ROOT']."/m3/common/inc/gnavi.html"); ?>
-		<!-- m3 end -->
-
-		<div id="container">
-
-			<div class="contents">
-				<?php
+        <div id="container">
+            <div class="contents">
+                <?php
 				$cst = 'cst';
 				function cst($constant){
 					return $constant;
@@ -125,32 +83,32 @@ DOC;
 			?>
 
 
-					<div class="toolbar">
-						<div class="toolbar_inner clearfix">
-							<div class="menu_wrap">
-								<?php echo $menu;?>
-							</div>
-						</div>
-					</div>
-					<div class="pagetitle">
-						<h1>
-							<?php echo $heading;?>
-						</h1>
-					</div>
+                    <div class="toolbar">
+                        <div class="toolbar_inner clearfix">
+                            <div class="menu_wrap">
+                                <?php echo $menu;?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pagetitle">
+                        <h1>
+                            <?php echo $heading;?>
+                        </h1>
+                    </div>
 
-					<?php echo $html;?>
-			</div>
+                    <?php echo $html;?>
+            </div>
 
-		</div>
+        </div>
 
-		<footer class="page-footer">
-			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
-		</footer>
-		
-		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
-		<script type="text/javascript" src="/common/js/jquery.js"></script>
-		<script type="text/javascript" src="./js/common.js"></script>
-		
-	</body>
+        <footer class="page-footer">
+            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
+        </footer>
 
-	</html>
+        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
+        <script type="text/javascript" src="/common/js/jquery.js"></script>
+        <script type="text/javascript" src="./js/common.js"></script>
+
+    </body>
+
+    </html>
