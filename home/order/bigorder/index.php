@@ -22,7 +22,6 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 		<meta charset="UTF-8">
 		<meta https-equiv="x-ua-compatible" content="ie=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="google-site-verification" content="PfzRZawLwE2znVhB5M7mPaNOKFoRepB2GO83P73fe5M">
 		<meta name="Description" content=大口のオリジナルTシャツも短納期で早い！タカハマでは個人様・法人様どなたでも大口の注文を承ります。100枚・200枚でも通常3日仕上げ！150枚以上・300枚以上のご注文は大幅値引き。まとめて買うとお買い得！特急のお急きプリントが早い・丁寧・親切の東京都で作る品質タカハマライフアートへ！ "">
 		<meta name="keywords" content="tシャツ,大口,早い,作成">
 		<meta property="og:title" content="大口も早い！オリジナルTシャツ作成｜タカハマライフアート" />
@@ -31,8 +30,7 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 		<meta property="og:url" content="https://www.takahama428.com/" />
 		<meta property="og:site_name" content="オリジナルTシャツの作成・プリントはタカハマライフアート" />
 		<meta property="fb:app_id" content="1605142019732010" />
-		<title>大口お問い合わせ ｜ オリジナルTシャツが早い、タカハマライフアート</title>
-		<link rel=canonical href="https://www.takahama428.com/" />
+		<title>大口お問い合わせ ｜ オリジナルTシャツ【タカハマライフアート】</title>
 		<link rel="shortcut icon" href="/icon/favicon.ico" />
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 		<link rel="stylesheet" type="text/css" href="css/mailform.css" media="screen" />
@@ -44,9 +42,6 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
 		</header>
 		
-		<div class="container-fluid">
-		</div>
-
 
 		<div id="container">
 			<div class="contents">
@@ -145,10 +140,10 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 							<tr>
 								<td>
 									<p class="txt"></p>
-									<input name="vol" type="radio" value="150&#65374;99枚" id="c11"><label class="radio" for="c11"> 150&#65374;299枚</label>
-									<input name="vol" type="radio" value="300&#65374;99枚" id="c12"><label class="radio" for="c12"> 300&#65374;399枚</label>
-									<input name="vol" type="radio" value="400&#65374;99枚" id="c13"><label class="radio" for="c13"> 400&#65374;499枚</label><br>
-									<input name="vol" type="radio" value="500&#65374;99枚" id="c14"><label class="radio" for="c14"> 500&#65374;599枚</label>
+									<input name="vol" type="radio" value="150&#65374;299枚" id="c11"><label class="radio" for="c11"> 150&#65374;299枚</label>
+									<input name="vol" type="radio" value="300&#65374;399枚" id="c12"><label class="radio" for="c12"> 300&#65374;399枚</label>
+									<input name="vol" type="radio" value="400&#65374;499枚" id="c13"><label class="radio" for="c13"> 400&#65374;499枚</label><br>
+									<input name="vol" type="radio" value="500&#65374;599枚" id="c14"><label class="radio" for="c14"> 500&#65374;599枚</label>
 									<input name="vol" type="radio" value="600枚以上" id="c15"><label class="radio" for="c15"> 600枚以上</label>
 								</td>
 							</tr>

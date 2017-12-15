@@ -247,85 +247,54 @@ $avg['ratio'] = round($sub/4, 1);
 $avg['img'] = getStar($avg['ratio']);
 
 ?>
-<!DOCTYPE html>
-<html lang="ja">
+    <!DOCTYPE html>
+    <html lang="ja">
 
-	<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#  website: http://ogp.me/ns/website#">
-		<meta charset="UTF-8">
-		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="google-site-verification" content="PfzRZawLwE2znVhB5M7mPaNOKFoRepB2GO83P73fe5M">
-		<meta name="Description" content="" />
-		<meta name="keywords" content="" />
-		<meta property="og:title" content="世界最速！？オリジナルTシャツを当日仕上げ！！" />
-		<meta property="og:type" content="website" />
-		<meta property="og:description" content="業界No. 1短納期でオリジナルTシャツを1枚から作成します。通常でも3日で仕上げます。" />
-		<meta property="og:url" content="http://www.takahama428.com/" />
-		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
-		<meta property="og:image" content="http://www.takahama428.com/common/img/header/Facebook_main.png" />
-		<meta property="fb:app_id" content="1605142019732010" />
-		<title>お客様ご利用レビュー　|　オリジナルTシャツ屋タカハマライフアート</title>
-		<link rel=canonical href="http://www.takahama428.com/">
-		<link rel="shortcut icon" href="/icon/favicon.ico">
-		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
-		<link rel="stylesheet" type="text/css" href="css/userreviews.css" media="screen" />
-	</head>
-	
-	<body>
-		<header>
-			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
-		</header>
-		<div class="container-fluid">
-			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/globalnavi.php"; ?>
-		</div>
-		<!-- Google Tag Manager -->
-		<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-T5NQFM"
-							  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-		<script>
-			(function(w, d, s, l, i) {
-				w[l] = w[l] || [];
-				w[l].push({
-					'gtm.start': new Date().getTime(),
-					event: 'gtm.js'
-				});
-				var f = d.getElementsByTagName(s)[0],
-					j = d.createElement(s),
-					dl = l != 'dataLayer' ? '&l=' + l : '';
-				j.async = true;
-				j.src =
-					'//www.googletagmanager.com/gtm.js?id=' + i + dl;
-				f.parentNode.insertBefore(j, f);
-			})(window, document, 'script', 'dataLayer', 'GTM-T5NQFM');
+    <head prefix="og://ogp.me/ns# fb://ogp.me/ns/fb#  website: //ogp.me/ns/website#">
+        <meta charset="UTF-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="Description" content="" />
+        <meta name="keywords" content="" />
+        <meta property="og:title" content="世界最速！？オリジナルTシャツを当日仕上げ！！" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="業界No. 1短納期でオリジナルTシャツを1枚から作成します。通常でも3日で仕上げます。" />
+        <meta property="og:url" content="https://www.takahama428.com/" />
+        <meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
+        <meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
+        <meta property="fb:app_id" content="1605142019732010" />
+        <title>お客様ご利用レビュー ｜ オリジナルTシャツ【タカハマライフアート】</title>
+        <link rel="shortcut icon" href="/icon/favicon.ico">
+        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
+        <link rel="stylesheet" type="text/css" href="css/userreviews.css" media="screen" />
+    </head>
 
-		</script>
-		<!-- End Google Tag Manager -->
+    <body>
+        <header>
+            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
+        </header>
 
-		<div id="container">
-			<div class="contents">
-				<ul class="pan">
-					<li><a href="/">オリジナルＴシャツ屋ＴＯＰ</a></li>
-					<li>お客様ご利用レビュー</li>
-				</ul>
+        <div id="container">
+            <div class="contents">
 
-				<div class="heading1_wrapper">
-					<h1>お客様ご利用レビュー</h1>
-					<p class="sub">タカハマライフアートの評判・口コミ</p>
-				</div>
-<!--
-				<div id="bloglink">
-					<img alt="お客様のうれしい！を力に。" src="img/uresii.png" width="238" height="141">
-					<a href="/blog/thanks_blog/" target="_blank"><img alt="お客様の声" src="img/blog_btn_s.png" width="88" height="22"></a>
-				</div>
--->
+                <ul class="pan hidden-sm-down">
+                    <li><a href="/">オリジナルＴシャツ屋ＴＯＰ</a></li>
+                    <li>お客様ご利用レビュー</li>
+                </ul>
 
-				<div id="total" class="clearfix">
-					<h2>現在の総合評価</h2>
-					<div id="total_inner">
-						<p id="totalstar"><img src="img/<?php echo $avg['img'];?>_l.png" width="170" height="31" alt="">
-							<?php echo $avg['ratio'];?>
-						</p>
-						<ul id="totalstar_inner">
-							<?php
+                <div class="heading1_wrapper">
+                    <h1>お客様ご利用レビュー</h1>
+                    <p class="sub">タカハマライフアートの評判・口コミ</p>
+                </div>
+
+                <div id="total" class="clearfix">
+                    <h2>現在の総合評価</h2>
+                    <div id="total_inner">
+                        <p id="totalstar"><img src="img/<?php echo $avg['img'];?>_l.png" width="170" height="31" alt="">
+                            <?php echo $avg['ratio'];?>
+                        </p>
+                        <ul id="totalstar_inner">
+                            <?php
 								$li = '';
 								for($i=0; $i<count($vote); $i++){
 									$li .= '<li>';
@@ -335,56 +304,55 @@ $avg['img'] = getStar($avg['ratio']);
 								}
 								echo $li;
 								?>
-						</ul>
-					</div>
-				</div>
+                        </ul>
+                    </div>
+                </div>
 
-				<div id="lists">
-					<div class="pagenation_set">
-						<div class="pagenation_left">
-							<span><?php echo number_format($len);?></span>件中
-							<?php if($end==0) echo '0'; else echo ($start+1).'～'.$end;?>件を表示
-						</div>
-						<div class="pagenation_right">
-							<div class="pagenation_nav">
-								<form name="sortBy" action="<?php echo $_SERVER['SCRIPT_NAME'];?>" enctype="application/x-www-form-urlencoded" method="get">
-									並び順：
-									<select name="sort" onchange="this.form.submit();">
+                <div id="lists">
+                    <div class="pagenation_set">
+                        <div class="pagenation_left">
+                            <span><?php echo number_format($len);?></span>件中
+                            <?php if($end==0) echo '0'; else echo ($start+1).'～'.$end;?>件を表示
+                        </div>
+                        <div class="pagenation_right">
+                            <div class="pagenation_nav">
+                                <form name="sortBy" action="<?php echo $_SERVER['SCRIPT_NAME'];?>" enctype="application/x-www-form-urlencoded" method="get">
+                                    並び順：
+                                    <select name="sort" onchange="this.form.submit();">
 										<?php
 										$opt = '<option value="post">新着順</option><option value="high">評価が高い順</option><option value="low">評価が低い順</option>';
 										$opt = preg_replace('/value=\"'.$sort.'\"/', 'value="'.$sort.'" selected="selected"', $opt);
 										echo $opt;
 										?>
 									</select>
-								</form>
-							</div>
+                                </form>
+                            </div>
 
-							<div class="pagenation_nav">
-								<?php echo $paging;?>
-							</div>
-						</div>
-					</div>
+                            <div class="pagenation_nav">
+                                <?php echo $paging;?>
+                            </div>
+                        </div>
+                    </div>
 
-					<div id="list" class="clearfix">
-						<?php echo $review;?>
-					</div>
-					<div class="pagenation_nav">
-						<?php echo $paging;?>
-					</div>
-				</div>
+                    <div id="list" class="clearfix">
+                        <?php echo $review;?>
+                    </div>
+                    <div class="pagenation_nav">
+                        <?php echo $paging;?>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-			</div>
-		</div>
+        <footer class="page-footer">
+            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
+        </footer>
 
-		<footer class="page-footer">
-			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
-		</footer>
+        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/util.php"; ?>
 
-		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/util.php"; ?>
+        <div id="overlay-mask" class="fade"></div>
 
-		<div id="overlay-mask" class="fade"></div>
+        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
+    </body>
 
-		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
-	</body>
-
-</html>
+    </html>
