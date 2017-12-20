@@ -152,337 +152,337 @@ $email = $u[0]['email'];
 //お届け先情報を再度取得
 $deli = $conndb->getDeli($me['id']);
 ?>
-    <!DOCTYPE html>
-    <html lang="ja">
+	<!DOCTYPE html>
+	<html lang="ja">
 
-    <head prefix="og: //ogp.me/ns# fb: //ogp.me/ns/fb#  website: //ogp.me/ns/website#">
-        <meta charset="UTF-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="Description" content="早い！Tシャツでオリジナルを作成するならタカハマへ！タカハマライフアートのログイン画面です。メールアドレスとパスワードを入れてください。マイページからご注文履歴などをご確認することができます。ログインにする為のパスワードをお忘れの方はこちら。">
-        <meta name="keywords" content="オリジナル,tシャツ,メンバー">
-        <meta property="og:title" content="世界最速！？オリジナルTシャツを当日仕上げ！！" />
-        <meta property="og:type" content="article" />
-        <meta property="og:description" content="業界No. 1短納期でオリジナルTシャツを1枚から作成します。通常でも3日で仕上げます。" />
-        <meta property="og:url" content="https://www.takahama428.com/" />
-        <meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
-        <meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
-        <meta property="fb:app_id" content="1605142019732010" />
-        <title>アカウント - TLAメンバーズ | オリジナルTシャツ【タカハマライフアート】</title>
-        <link rel="shortcut icon" href="/icon/favicon.ico" />
-        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
-        <link rel="stylesheet" type="text/css" media="screen" href="./css/my_account.css" />
+	<head prefix="og: //ogp.me/ns# fb: //ogp.me/ns/fb#  website: //ogp.me/ns/website#">
+		<meta charset="UTF-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="Description" content="早い！Tシャツでオリジナルを作成するならタカハマへ！タカハマライフアートのログイン画面です。メールアドレスとパスワードを入れてください。マイページからご注文履歴などをご確認することができます。ログインにする為のパスワードをお忘れの方はこちら。">
+		<meta name="keywords" content="オリジナル,tシャツ,メンバー">
+		<meta property="og:title" content="世界最速！？オリジナルTシャツを当日仕上げ！！" />
+		<meta property="og:type" content="article" />
+		<meta property="og:description" content="業界No. 1短納期でオリジナルTシャツを1枚から作成します。通常でも3日で仕上げます。" />
+		<meta property="og:url" content="https://www.takahama428.com/" />
+		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
+		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
+		<meta property="fb:app_id" content="1605142019732010" />
+		<title>アカウント - TLAメンバーズ | オリジナルTシャツ【タカハマライフアート】</title>
+		<link rel="shortcut icon" href="/icon/favicon.ico" />
+		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
+		<link rel="stylesheet" type="text/css" media="screen" href="./css/my_account.css" />
 
-    </head>
+	</head>
 
-    <body>
-        <header>
-            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
-        </header>
+	<body>
+		<header>
+			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
+		</header>
 
-        <div id="container">
-            <div class="contents">
+		<div id="container">
+			<div class="contents">
 
-                <div class="toolbar">
-                    <div class="toolbar_inner clearfix">
-                        <div class="menu_wrap">
-                            <?php echo $menu;?>
-                        </div>
-                    </div>
-                </div>
-                <div class="pagetitle">
-                    <h1>アカウント</h1>
-                </div>
+				<div class="toolbar">
+					<div class="toolbar_inner clearfix">
+						<div class="menu_wrap">
+							<?php echo $menu;?>
+						</div>
+					</div>
+				</div>
+				<div class="pagetitle">
+					<h1>アカウント</h1>
+				</div>
 
-                <div class="section topsec" hidden>
-                    <h2 id="topttl">住所・氏名を変更のお客様へ</h2>
-                    <p class="addtxt">
-                        住所や氏名を変更されたお客様は、お手数ですが
-                        <br>下記内容の
-                        <font color=red>変更前</font>と
-                        <font color=red>変更後</font>のみを下記メールにてお送りくださいませ。
-                    </p>
+				<div class="section topsec" hidden>
+					<h2 id="topttl">住所・氏名を変更のお客様へ</h2>
+					<p class="addtxt">
+						住所や氏名を変更されたお客様は、お手数ですが
+						<br>下記内容の
+						<font color=red>変更前</font>と
+						<font color=red>変更後</font>のみを下記メールにてお送りくださいませ。
+					</p>
 
-                    <ul class="usertop">
-                        <li class="user">
-                            <p>●お客様氏名(ユーザーネーム)</p>
-                        </li>
-                        <li class="user">
-                            <p>●お客様住所</p>
-                        </li>
-                    </ul>
-                    <ul class="usertop nonborder">
-                        <li class="user mms">
-                            <p>こちらにご連絡ください！</p>
-                        </li>
-                        <li class="user mms">
-                            <div class="addttl"></div>
-                        </li>
-                        <li class="user mms">
-                            <p>info@takahama428.com</p>
-                        </li>
-                    </ul>
-                </div>
+					<ul class="usertop">
+						<li class="user">
+							<p>●お客様氏名(ユーザーネーム)</p>
+						</li>
+						<li class="user">
+							<p>●お客様住所</p>
+						</li>
+					</ul>
+					<ul class="usertop nonborder">
+						<li class="user mms">
+							<p>こちらにご連絡ください！</p>
+						</li>
+						<li class="user mms">
+							<div class="addttl"></div>
+						</li>
+						<li class="user mms">
+							<p>info@takahama428.com</p>
+						</li>
+					</ul>
+				</div>
 
-                <form class="section" name="prof" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" onSubmit="return false;">
-                    <table class="form_table me" id="profile_table">
-                        <h2>ユーザー情報</h2>
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">
-                                    <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
-                                    <input type="hidden" name="userid" value="<?php echo $me['id'];?>">
-                                    <input type="hidden" name="profile" value="1">
-                                    <input type="hidden" name="mail-subject" value="ユーザー情報の変更">
-                                    <input type="hidden" name="send-to" value="info@takahama428.com">
-                                    <p class="view" <?php echo $hide; ?>><input type="button" value="編集" class="edit_profile"></p>
-                                    <p class="edit" <?php echo $show; ?>><span class="ok_button">更新</span><span class="cancel_button">Cancel</span></p>
-                                </td>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            <tr>
-                                <th>メールアドレス</th>
-                                <td>
-                                    <p class="view" <?php echo $hide; ?>>
-                                        <?php echo $email;?>
-                                    </p>
-                                    <p class="edit" id="mail_addr" <?php echo $show; ?>>
-                                        <?php echo $email;?>
-                                    </p>
-                                    <ins class="err"> <?php echo $err['email']; ?></ins>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>ユーザーネーム<span class="fontred">※</span></th>
-                                <td>
-                                    <p class="view" <?php echo $hide; ?>>
-                                        <?php echo $username;?>
-                                    </p>
-                                    <p class="edit" <?php echo $show; ?>><input type="text" name="uname" value="<?php echo $username;?>"></p>
-                                    <ins class="err"> <?php echo $err['uname']; ?></ins>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>フリガナ</th>
-                                <td>
-                                    <p class="view" <?php echo $hide; ?>>
-                                        <?php echo $userkana;?>
-                                    </p>
-                                    <p class="edit" <?php echo $show; ?>><input type="text" name="ukana" value="<?php echo $userkana;?>"></p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </form>
+				<form class="section" name="prof" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" onSubmit="return false;">
+					<table class="form_table me" id="profile_table">
+						<h2>ユーザー情報</h2>
+						<tfoot>
+							<tr>
+								<td colspan="2">
+									<input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
+									<input type="hidden" name="userid" value="<?php echo $me['id'];?>">
+									<input type="hidden" name="profile" value="1">
+									<input type="hidden" name="mail-subject" value="ユーザー情報の変更">
+									<input type="hidden" name="send-to" value="info@takahama428.com">
+									<p class="view" <?php echo $hide; ?>><input type="button" value="編集" class="edit_profile"></p>
+									<p class="edit" <?php echo $show; ?>><span class="ok_button">更新</span><span class="cancel_button">Cancel</span></p>
+								</td>
+							</tr>
+						</tfoot>
+						<tbody>
+							<tr>
+								<th>メールアドレス</th>
+								<td>
+									<p class="view" <?php echo $hide; ?>>
+										<?php echo $email;?>
+									</p>
+									<p class="edit" id="mail_addr" <?php echo $show; ?>>
+										<?php echo $email;?>
+									</p>
+									<ins class="err"> <?php echo $err['email']; ?></ins>
+								</td>
+							</tr>
+							<tr>
+								<th>ユーザーネーム<span class="fontred">※</span></th>
+								<td>
+									<p class="view" <?php echo $hide; ?>>
+										<?php echo $username;?>
+									</p>
+									<p class="edit" <?php echo $show; ?>><input type="text" name="uname" value="<?php echo $username;?>"></p>
+									<ins class="err"> <?php echo $err['uname']; ?></ins>
+								</td>
+							</tr>
+							<tr>
+								<th>フリガナ</th>
+								<td>
+									<p class="view" <?php echo $hide; ?>>
+										<?php echo $userkana;?>
+									</p>
+									<p class="edit" <?php echo $show; ?>><input type="text" name="ukana" value="<?php echo $userkana;?>"></p>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
 
-                <form class="section" name="pass" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" onSubmit="return false;">
-                    <table class="form_table me" id="pass_table">
-                        <h2>パスワードの変更</h2>
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">
-                                    <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
-                                    <input type="hidden" name="userid" value="<?php echo $me['id'];?>">
-                                    <input type="hidden" name="mypass" value="1">
-                                    <input type="hidden" name="mail-subject" value="ユーザー情報の変更">
-                                    <input type="hidden" name="send-to" value="info@takahama428.com">
-                                    <p><span class="ok_button">更新</span><span class="cancel_button">Cancel</span></p>
-                                </td>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            <tr>
-                                <th>パスワード</th>
-                                <td><input type="password" name="pass" value=""><br><ins class="err"> <?php echo $err['pass']; ?></ins></td>
-                            </tr>
-                            <tr>
-                                <th>パスワード確認用</th>
-                                <td><input type="password" name="passconf" value=""><br><ins class="err"> <?php echo $err['passconf']; ?></ins></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </form>
+				<form class="section" name="pass" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" onSubmit="return false;">
+					<table class="form_table me" id="pass_table">
+						<h2>パスワードの変更</h2>
+						<tfoot>
+							<tr>
+								<td colspan="2">
+									<input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
+									<input type="hidden" name="userid" value="<?php echo $me['id'];?>">
+									<input type="hidden" name="mypass" value="1">
+									<input type="hidden" name="mail-subject" value="ユーザー情報の変更">
+									<input type="hidden" name="send-to" value="info@takahama428.com">
+									<p><span class="ok_button">更新</span><span class="cancel_button">Cancel</span></p>
+								</td>
+							</tr>
+						</tfoot>
+						<tbody>
+							<tr>
+								<th>パスワード</th>
+								<td><input type="password" name="pass" value=""><br><ins class="err"> <?php echo $err['pass']; ?></ins></td>
+							</tr>
+							<tr>
+								<th>パスワード確認用</th>
+								<td><input type="password" name="passconf" value=""><br><ins class="err"> <?php echo $err['passconf']; ?></ins></td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
 
 
-                <form class="section" name="addr" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" onSubmit="return false;">
-                    <table class="form_table addr" id="addr_table">
-                        <h2>住所の変更</h2><ins class="err"> <?php echo $err['addr']; ?></ins>
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">
-                                    <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
-                                    <input type="hidden" name="userid" value="<?php echo $me['id'];?>">
-                                    <input type="hidden" name="myaddr" value="1">
-                                    <input type="hidden" name="mail-subject" value="ユーザー情報の変更">
-                                    <input type="hidden" name="send-to" value="info@takahama428.com">
-                                    <p><span class="ok_button">更新</span><span class="cancel_button">Cancel</span></p>
-                                </td>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            <tr>
-                                <th>〒郵便番号<span class="fontred">※</span></th>
-                                <td><input type="text" name="zipcode" class="forZip" id="zipcode1" value="<?php echo $u[0]['zipcode']; ?>" onChange="AjaxZip3.zip2addr(this,'','addr0','addr1');" />
-                                    <ins class="err"> <?php echo $err['zipcode']; ?></ins></td>
-                            </tr>
-                            <tr>
-                                <th>都道府県<span class="fontred">※</span></th>
-                                <td><input type="text" name="addr0" id="addr0" value="<?php echo $u[0]['addr0']; ?>" maxlength="4" />
-                                    <br><ins class="err"> <?php echo $err['addr0']; ?></ins></td>
-                            </tr>
-                            <tr>
-                                <th>住所１<span class="fontred">※</span></th>
-                                <td><input type="text" name="addr1" id="addr1" value="<?php echo $u[0]['addr1']; ?>" placeholder="文字数は全角28文字、半角56文字です" maxlength="56" class="restrict" />
-                                    <br><ins class="err"> <?php echo $err['addr1']; ?></ins></td>
-                            </tr>
-                            <tr>
-                                <th>住所２<span class="fontred">※</span></th>
-                                <td><input type="text" name="addr2" id="addr1" value="<?php echo $u[0]['addr2']; ?>" placeholder="文字数は全角16文字、半角32文字です" maxlength="32" class="restrict" />
-                                    <br><ins class="err"> <?php echo $err['addr2']; ?></ins></td>
-                            </tr>
-                            <tr>
-                                <th>電話番号<span class="fontred">※</span></th>
-                                <td><input type="text" name="tel" id="tel" class="forPhone" value="<?php echo $u[0]['tel']; ?>" />
-                                    <br><ins class="err"> <?php echo $err['tel']; ?></ins></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </form>
+				<form class="section" name="addr" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" onSubmit="return false;">
+					<table class="form_table addr" id="addr_table">
+						<h2>住所の変更</h2><ins class="err"> <?php echo $err['addr']; ?></ins>
+						<tfoot>
+							<tr>
+								<td colspan="2">
+									<input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
+									<input type="hidden" name="userid" value="<?php echo $me['id'];?>">
+									<input type="hidden" name="myaddr" value="1">
+									<input type="hidden" name="mail-subject" value="ユーザー情報の変更">
+									<input type="hidden" name="send-to" value="info@takahama428.com">
+									<p><span class="ok_button">更新</span><span class="cancel_button">Cancel</span></p>
+								</td>
+							</tr>
+						</tfoot>
+						<tbody>
+							<tr>
+								<th>〒郵便番号<span class="fontred">※</span></th>
+								<td><input type="text" name="zipcode" class="forZip" id="zipcode1" value="<?php echo $u[0]['zipcode']; ?>" onChange="AjaxZip3.zip2addr(this,'','addr0','addr1');" />
+									<ins class="err"> <?php echo $err['zipcode']; ?></ins></td>
+							</tr>
+							<tr>
+								<th>都道府県<span class="fontred">※</span></th>
+								<td><input type="text" name="addr0" id="addr0" value="<?php echo $u[0]['addr0']; ?>" maxlength="4" />
+									<br><ins class="err"> <?php echo $err['addr0']; ?></ins></td>
+							</tr>
+							<tr>
+								<th>住所１<span class="fontred">※</span></th>
+								<td><input type="text" name="addr1" id="addr1" value="<?php echo $u[0]['addr1']; ?>" placeholder="文字数は全角28文字、半角56文字です" maxlength="56" class="restrict" />
+									<br><ins class="err"> <?php echo $err['addr1']; ?></ins></td>
+							</tr>
+							<tr>
+								<th>住所２<span class="fontred">※</span></th>
+								<td><input type="text" name="addr2" id="addr1" value="<?php echo $u[0]['addr2']; ?>" placeholder="文字数は全角16文字、半角32文字です" maxlength="32" class="restrict" />
+									<br><ins class="err"> <?php echo $err['addr2']; ?></ins></td>
+							</tr>
+							<tr>
+								<th>電話番号<span class="fontred">※</span></th>
+								<td><input type="text" name="tel" id="tel" class="forPhone" value="<?php echo $u[0]['tel']; ?>" />
+									<br><ins class="err"> <?php echo $err['tel']; ?></ins></td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
 
-                <form class="section" name="deli" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" onSubmit="return false;">
-                    <table class="form_table deli" id="deli_table">
-                        <h2>お届先1の変更</h2><ins class="err"> <?php echo $err['a_deliaddr']; ?></ins>
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">
-                                    <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
-                                    <input type="hidden" name="userid" value="<?php echo $me['id'];?>">
-                                    <input type="hidden" name="mydeli" value="1">
-                                    <input type="hidden" name="deliid" value="<?php echo $deli[0]['id'];?>">
-                                    <input type="hidden" name="mail-subject" value="ユーザー情報の変更">
-                                    <input type="hidden" name="send-to" value="info@takahama428.com">
-                                    <p><span class="ok_button">更新</span><span class="cancel_button">Cancel</span></p>
-                                </td>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            <tr>
-                                <th>お届先<span class="fontred">※</span></th>
-                                <td><input type="text" name="organization" id="organization" value="<?php echo $deli[0][" organization "]; ?>" maxlength="30" class="restrict" />
-                                    <br><ins class="err"> <?php echo $err['a_organization']; ?></ins></td>
-                            </tr>
-                            <tr>
-                                <th>〒郵便番号<span class="fontred">※</span></th>
-                                <td><input type="text" name="delizipcode" class="forZip" id="zipcode1" value="<?php echo $deli[0][" delizipcode "]; ?>" onChange="AjaxZip3.zip2addr(this,'','deliaddr0','deliaddr1');" />
-                                    <ins class="err"> <?php echo $err['a_delizipcode']; ?></ins></td>
-                            </tr>
-                            <tr>
-                                <th>都道府県<span class="fontred">※</span></th>
-                                <td><input type="text" name="deliaddr0" id="addr0" value="<?php echo $deli[0][" deliaddr0 "]; ?>" maxlength="4" />
-                                    <br><ins class="err"> <?php echo $err['a_deliaddr0']; ?></ins></td>
-                            </tr>
-                            <tr>
-                                <th>住所１<span class="fontred">※</span></th>
-                                <td><input type="text" name="deliaddr1" id="addr1" value="<?php echo $deli[0][" deliaddr1 "]; ?>" placeholder="文字数は全角28文字、半角56文字です" maxlength="56" class="restrict" />
-                                    <br><ins class="err"> <?php echo $err['a_deliaddr1']; ?></ins></td>
-                            </tr>
-                            <tr>
-                                <th>住所２<span class="fontred">※</span></th>
-                                <td><input type="text" name="deliaddr2" id="addr1" value="<?php echo $deli[0][" deliaddr2 "];?>" placeholder="文字数は全角16文字、半角32文字です" maxlength="32" class="restrict" />
-                                    <br><ins class="err"> <?php echo $err['a_deliaddr2']; ?></ins></td>
-                            </tr>
-                            <tr>
-                                <th>会社・部門１</th>
-                                <td><input type="text" name="deliaddr3" id="addr1" value="<?php echo $deli[0][" deliaddr3 "];?>" placeholder="文字数は全角16文字、半角32文字です" maxlength="32" class="restrict" /></td>
-                            </tr>
-                            <tr>
-                                <th>会社・部門２</th>
-                                <td><input type="text" name="deliaddr4" id="addr1" value="<?php echo $deli[0][" deliaddr4 "];?>" placeholder="文字数は全角16文字、半角32文字です" maxlength="32" class="restrict" /></td>
-                            </tr>
-                            <tr>
-                                <th>電話番号<span class="fontred">※</span></th>
-                                <td><input type="text" name="delitel" id="tel" class="forPhone" value="<?php echo $deli[0][" delitel "] ?>"/>
-                                    <br><ins class="err"> <?php echo $err['a_delitel']; ?></ins></td>
-                            </tr>
-                            <tr></tr>
-                        </tbody>
-                    </table>
-                </form>
+				<form class="section" name="deli" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" onSubmit="return false;">
+					<table class="form_table deli" id="deli_table">
+						<h2>お届先1の変更</h2><ins class="err"> <?php echo $err['a_deliaddr']; ?></ins>
+						<tfoot>
+							<tr>
+								<td colspan="2">
+									<input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
+									<input type="hidden" name="userid" value="<?php echo $me['id'];?>">
+									<input type="hidden" name="mydeli" value="1">
+									<input type="hidden" name="deliid" value="<?php echo $deli[0]['id'];?>">
+									<input type="hidden" name="mail-subject" value="ユーザー情報の変更">
+									<input type="hidden" name="send-to" value="info@takahama428.com">
+									<p><span class="ok_button">更新</span><span class="cancel_button">Cancel</span></p>
+								</td>
+							</tr>
+						</tfoot>
+						<tbody>
+							<tr>
+								<th>お届先<span class="fontred">※</span></th>
+								<td><input type="text" name="organization" id="organization" value="<?php echo $deli[0][" organization "]; ?>" maxlength="30" class="restrict" />
+									<br><ins class="err"> <?php echo $err['a_organization']; ?></ins></td>
+							</tr>
+							<tr>
+								<th>〒郵便番号<span class="fontred">※</span></th>
+								<td><input type="text" name="delizipcode" class="forZip" id="zipcode1" value="<?php echo $deli[0][" delizipcode "]; ?>" onChange="AjaxZip3.zip2addr(this,'','deliaddr0','deliaddr1');" />
+									<ins class="err"> <?php echo $err['a_delizipcode']; ?></ins></td>
+							</tr>
+							<tr>
+								<th>都道府県<span class="fontred">※</span></th>
+								<td><input type="text" name="deliaddr0" id="addr0" value="<?php echo $deli[0][" deliaddr0 "]; ?>" maxlength="4" />
+									<br><ins class="err"> <?php echo $err['a_deliaddr0']; ?></ins></td>
+							</tr>
+							<tr>
+								<th>住所１<span class="fontred">※</span></th>
+								<td><input type="text" name="deliaddr1" id="addr1" value="<?php echo $deli[0][" deliaddr1 "]; ?>" placeholder="文字数は全角28文字、半角56文字です" maxlength="56" class="restrict" />
+									<br><ins class="err"> <?php echo $err['a_deliaddr1']; ?></ins></td>
+							</tr>
+							<tr>
+								<th>住所２<span class="fontred">※</span></th>
+								<td><input type="text" name="deliaddr2" id="addr1" value="<?php echo $deli[0][" deliaddr2 "];?>" placeholder="文字数は全角16文字、半角32文字です" maxlength="32" class="restrict" />
+									<br><ins class="err"> <?php echo $err['a_deliaddr2']; ?></ins></td>
+							</tr>
+							<tr>
+								<th>会社・部門１</th>
+								<td><input type="text" name="deliaddr3" id="addr1" value="<?php echo $deli[0][" deliaddr3 "];?>" placeholder="文字数は全角16文字、半角32文字です" maxlength="32" class="restrict" /></td>
+							</tr>
+							<tr>
+								<th>会社・部門２</th>
+								<td><input type="text" name="deliaddr4" id="addr1" value="<?php echo $deli[0][" deliaddr4 "];?>" placeholder="文字数は全角16文字、半角32文字です" maxlength="32" class="restrict" /></td>
+							</tr>
+							<tr>
+								<th>電話番号<span class="fontred">※</span></th>
+								<td><input type="text" name="delitel" id="tel" class="forPhone" value="<?php echo $deli[0][" delitel "] ?>"/>
+									<br><ins class="err"> <?php echo $err['a_delitel']; ?></ins></td>
+							</tr>
+							<tr></tr>
+						</tbody>
+					</table>
+				</form>
 
-                <form class="section" name="deli1" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" onSubmit="return false;">
-                    <table class="form_table deli1" id="deli1_table">
-                        <h2>お届先2の変更</h2><ins class="err"> <?php echo $err['b_deliaddr']; ?></ins>
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">
-                                    <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
-                                    <input type="hidden" name="userid" value="<?php echo $me['id'];?>">
-                                    <input type="hidden" name="deliid1" value="<?php echo $deli[1]['id'];?>">
-                                    <input type="hidden" name="mydeli1" value="1">
-                                    <input type="hidden" name="mail-subject" value="ユーザー情報の変更">
-                                    <input type="hidden" name="send-to" value="info@takahama428.com">
-                                    <p><span class="ok_button">更新</span><span class="cancel_button">Cancel</span></p>
-                                </td>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            <tr>
-                                <th>お届先<span class="fontred">※</span></th>
-                                <td><input type="text" name="deli1organization" id="deli1organization" value="<?php echo $deli[1][" organization "]; ?>" maxlength="30" class="restrict" />
-                                    <br><ins class="err"> <?php echo $err['b_deli1organization']; ?></ins></td>
-                            </tr>
-                            <tr>
-                                <th>〒郵便番号<span class="fontred">※</span></th>
-                                <td><input type="text" name="deli1zipcode" class="forZip" id="zipcode1" value="<?php echo $deli[1][" delizipcode "]; ?>" onChange="AjaxZip3.zip2addr(this,'','deli1addr0','deli1addr1');" />
-                                    <ins class="err"> <?php echo $err['b_delizipcode']; ?></ins></td>
-                            </tr>
-                            <tr>
-                                <th>都道府県<span class="fontred">※</span></th>
-                                <td><input type="text" name="deli1addr0" id="addr0" value="<?php echo $deli[1][" deliaddr0 "]; ?>" maxlength="4" />
-                                    <br><ins class="err"> <?php echo $err['b_deliaddr0']; ?></ins></td>
-                            </tr>
-                            <tr>
-                                <th>住所１<span class="fontred">※</span></th>
-                                <td><input type="text" name="deli1addr1" id="addr1" value="<?php echo $deli[1][" deliaddr1 "]; ?>" placeholder="文字数は全角28文字、半角56文字です" maxlength="56" class="restrict" />
-                                    <br><ins class="err"> <?php echo $err['b_deliaddr1']; ?></ins></td>
-                            </tr>
-                            <tr>
-                                <th>住所２<span class="fontred">※</span></th>
-                                <td><input type="text" name="deli1addr2" id="addr1" value="<?php echo $deli[1][" deliaddr2 "];?>" placeholder="文字数は全角16文字、半角32文字です" maxlength="32" class="restrict" />
-                                    <br><ins class="err"> <?php echo $err['b_deliaddr2']; ?></ins></td>
-                            </tr>
-                            <tr>
-                                <th>会社・部門１</th>
-                                <td><input type="text" name="deli1addr3" id="addr1" value="<?php echo $deli[1][" deliaddr3 "];?>" placeholder="文字数は全角16文字、半角32文字です" maxlength="32" class="restrict" /></td>
-                            </tr>
-                            <tr>
-                                <tr>
-                                    <th>会社・部門２</th>
-                                    <td><input type="text" name="deli1addr4" id="addr1" value="<?php echo $deli[1][" deliaddr4 "];?>" placeholder="文字数は全角16文字、半角32文字です" maxlength="32" class="restrict" /></td>
-                                </tr>
-                                <tr>
-                                    <th>電話番号<span class="fontred">※</span></th>
-                                    <td><input type="text" name="deli1tel" id="tel" class="forPhone" value="<?php echo $deli[1][" delitel "] ?>"/>
-                                        <br><ins class="err"> <?php echo $err['b_delitel']; ?></ins></td>
-                                </tr>
-                        </tbody>
-                    </table>
-                </form>
+				<form class="section" name="deli1" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" onSubmit="return false;">
+					<table class="form_table deli1" id="deli1_table">
+						<h2>お届先2の変更</h2><ins class="err"> <?php echo $err['b_deliaddr']; ?></ins>
+						<tfoot>
+							<tr>
+								<td colspan="2">
+									<input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
+									<input type="hidden" name="userid" value="<?php echo $me['id'];?>">
+									<input type="hidden" name="deliid1" value="<?php echo $deli[1]['id'];?>">
+									<input type="hidden" name="mydeli1" value="1">
+									<input type="hidden" name="mail-subject" value="ユーザー情報の変更">
+									<input type="hidden" name="send-to" value="info@takahama428.com">
+									<p><span class="ok_button">更新</span><span class="cancel_button">Cancel</span></p>
+								</td>
+							</tr>
+						</tfoot>
+						<tbody>
+							<tr>
+								<th>お届先<span class="fontred">※</span></th>
+								<td><input type="text" name="deli1organization" id="deli1organization" value="<?php echo $deli[1][" organization "]; ?>" maxlength="30" class="restrict" />
+									<br><ins class="err"> <?php echo $err['b_deli1organization']; ?></ins></td>
+							</tr>
+							<tr>
+								<th>〒郵便番号<span class="fontred">※</span></th>
+								<td><input type="text" name="deli1zipcode" class="forZip" id="zipcode1" value="<?php echo $deli[1][" delizipcode "]; ?>" onChange="AjaxZip3.zip2addr(this,'','deli1addr0','deli1addr1');" />
+									<ins class="err"> <?php echo $err['b_delizipcode']; ?></ins></td>
+							</tr>
+							<tr>
+								<th>都道府県<span class="fontred">※</span></th>
+								<td><input type="text" name="deli1addr0" id="addr0" value="<?php echo $deli[1][" deliaddr0 "]; ?>" maxlength="4" />
+									<br><ins class="err"> <?php echo $err['b_deliaddr0']; ?></ins></td>
+							</tr>
+							<tr>
+								<th>住所１<span class="fontred">※</span></th>
+								<td><input type="text" name="deli1addr1" id="addr1" value="<?php echo $deli[1][" deliaddr1 "]; ?>" placeholder="文字数は全角28文字、半角56文字です" maxlength="56" class="restrict" />
+									<br><ins class="err"> <?php echo $err['b_deliaddr1']; ?></ins></td>
+							</tr>
+							<tr>
+								<th>住所２<span class="fontred">※</span></th>
+								<td><input type="text" name="deli1addr2" id="addr1" value="<?php echo $deli[1][" deliaddr2 "];?>" placeholder="文字数は全角16文字、半角32文字です" maxlength="32" class="restrict" />
+									<br><ins class="err"> <?php echo $err['b_deliaddr2']; ?></ins></td>
+							</tr>
+							<tr>
+								<th>会社・部門１</th>
+								<td><input type="text" name="deli1addr3" id="addr1" value="<?php echo $deli[1][" deliaddr3 "];?>" placeholder="文字数は全角16文字、半角32文字です" maxlength="32" class="restrict" /></td>
+							</tr>
+							<tr>
+								<tr>
+									<th>会社・部門２</th>
+									<td><input type="text" name="deli1addr4" id="addr1" value="<?php echo $deli[1][" deliaddr4 "];?>" placeholder="文字数は全角16文字、半角32文字です" maxlength="32" class="restrict" /></td>
+								</tr>
+								<tr>
+									<th>電話番号<span class="fontred">※</span></th>
+									<td><input type="text" name="deli1tel" id="tel" class="forPhone" value="<?php echo $deli[1][" delitel "] ?>"/>
+										<br><ins class="err"> <?php echo $err['b_delitel']; ?></ins></td>
+								</tr>
+						</tbody>
+					</table>
+				</form>
 
-            </div>
-        </div>
-        <footer class="page-footer">
-            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
-        </footer>
+			</div>
+		</div>
+		<footer class="page-footer">
+			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
+		</footer>
 
-        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/util.php"; ?>
+		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/util.php"; ?>
 
-        <div id="overlay-mask" class="fade"></div>
+		<div id="overlay-mask" class="fade"></div>
 
-        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
-        <script src="//ajaxzip3.github.io/ajaxzip3.js" charset="utf-8"></script>
-        <script type="text/javascript" src="./js/account.js"></script>
-    </body>
+		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
+		<script src="//ajaxzip3.github.io/ajaxzip3.js" charset="utf-8"></script>
+		<script type="text/javascript" src="./js/account.js"></script>
+	</body>
 
-    </html>
+	</html>

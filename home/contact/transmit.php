@@ -51,32 +51,32 @@
 	}
 	
 ?>
-    <!DOCTYPE html>
-    <html>
+	<!DOCTYPE html>
+	<html>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1" />
-        <meta name="Description" content="1枚～大量のプリントまで、トレーナー・ポロシャツ・オリジナルTシャツの作成・プリントは、東京都葛飾区のタカハマライフアートにお任せ下さい！団体やグループなどで着用し、文化祭、体育祭のイベントを盛り上げてください。" />
-        <meta name="keywords" content="オリジナル,Tシャツ,東京,作成,プリント" />
-        <meta name="google-site-verification" content="PfzRZawLwE2znVhB5M7mPaNOKFoRepB2GO83P73fe5M" />
-        <title>メール送信完了 ｜ オリジナルTシャツ【タカハマライフアート】/title>
-            <link rel="shortcut icon" href="/icon/favicon.ico" />
-            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
-            <link rel="stylesheet" type="text/css" href="/items/css/items_style_responsive.css" media="screen" />
-            <link rel="stylesheet" type="text/css" href="/design/designpost/css/finish_responsive.css" media="screen" />
-    </head>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1" />
+		<meta name="Description" content="1枚～大量のプリントまで、トレーナー・ポロシャツ・オリジナルTシャツの作成・プリントは、東京都葛飾区のタカハマライフアートにお任せ下さい！団体やグループなどで着用し、文化祭、体育祭のイベントを盛り上げてください。" />
+		<meta name="keywords" content="オリジナル,Tシャツ,東京,作成,プリント" />
+		<meta name="google-site-verification" content="PfzRZawLwE2znVhB5M7mPaNOKFoRepB2GO83P73fe5M" />
+		<title>メール送信完了 ｜ オリジナルTシャツ【タカハマライフアート】</title>
+		<link rel="shortcut icon" href="/icon/favicon.ico" />
+		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
+		<link rel="stylesheet" type="text/css" href="/items/css/items_style_responsive.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="/design/designpost/css/finish_responsive.css" media="screen" />
+	</head>
 
-    <body>
+	<body>
 
-        <header>
-            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
-        </header>
+		<header>
+			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
+		</header>
 
-        <div id="container">
-            <div class="contents">
+		<div id="container">
+			<div class="contents">
 
-                <?php
+				<?php
 				$cst = 'cst';
 				function cst($constant){
 					return $constant;
@@ -132,26 +132,26 @@ DOC;
 				}
 			?>
 
-                    <div class="heading1_wrapper">
-                        <h1>
-                            <?php echo $heading;?>
-                        </h1>
-                        <p class="comment"></p>
-                        <p class="sub">
-                            <?php echo $sub;?>
-                        </p>
-                    </div>
-                    <?php echo $html;?>
+					<div class="heading1_wrapper">
+						<h1>
+							<?php echo $heading;?>
+						</h1>
+						<p class="comment"></p>
+						<p class="sub">
+							<?php echo $sub;?>
+						</p>
+					</div>
+					<?php echo $html;?>
 
-            </div>
+			</div>
 
-        </div>
+		</div>
 
-        <footer class="page-footer">
-            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
-        </footer>
-        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
+		<footer class="page-footer">
+			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
+		</footer>
+		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
 
-    </body>
+	</body>
 
-    </html>
+	</html>

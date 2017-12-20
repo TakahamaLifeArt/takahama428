@@ -29,30 +29,30 @@ if($isSend){
 */
 	
 ?>
-    <!DOCTYPE html>
-    <html lang="ja">
+	<!DOCTYPE html>
+	<html lang="ja">
 
-    <head>
-        <meta charset="utf-8" />
-        <meta name="keywords" content="<?php echo $categoryname; ?>,オリジナル<?php echo $categoryname; ?>,作成,プリント,東京,即日,最短" />
-        <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1" />
-        <title>メール送信 ｜ オリジナルTシャツ【タカハマライフアート】</title>
-        <link rel="shortcut icon" href="/icon/favicon.ico" />
-        <link rel="stylesheet" type="text/css" href="/items/css/items_style_responsive.css" media="screen" />
-        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
-        <link rel="stylesheet" type="text/css" href="/design/designpost/css/finish_responsive.css" media="screen" />
-    </head>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="keywords" content="<?php echo $categoryname; ?>,オリジナル<?php echo $categoryname; ?>,作成,プリント,東京,即日,最短" />
+		<meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1" />
+		<title>メール送信 ｜ オリジナルTシャツ【タカハマライフアート】</title>
+		<link rel="shortcut icon" href="/icon/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="/items/css/items_style_responsive.css" media="screen" />
+		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
+		<link rel="stylesheet" type="text/css" href="/design/designpost/css/finish_responsive.css" media="screen" />
+	</head>
 
-    <body>
+	<body>
 
-        <header>
-            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
-        </header>
+		<header>
+			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
+		</header>
 
-        <div id="container">
-            <div class="contents">
+		<div id="container">
+			<div class="contents">
 
-                <?php
+				<?php
 				$cst = 'cst';
 				function cst($constant){
 					return $constant;
@@ -100,26 +100,26 @@ DOC;
 				}
 			?>
 
-                    <div class="heading1_wrapper">
-                        <h1>
-                            <?php echo $heading;?>
-                        </h1>
-                        <p class="comment"></p>
-                        <p class="sub">
-                            <?php echo $sub;?>
-                        </p>
-                    </div>
-                    <?php echo $html;?>
-            </div>
-        </div>
+					<div class="heading1_wrapper">
+						<h1>
+							<?php echo $heading;?>
+						</h1>
+						<p class="comment"></p>
+						<p class="sub">
+							<?php echo $sub;?>
+						</p>
+					</div>
+					<?php echo $html;?>
+			</div>
+		</div>
 
-        <footer class="page-footer">
-            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
-        </footer>
+		<footer class="page-footer">
+			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
+		</footer>
 
-        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
-        <script type="text/javascript" src="/common/js/jquery.js"></script>
+		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
+		<script type="text/javascript" src="/common/js/jquery.js"></script>
 
-    </body>
+	</body>
 
-    </html>
+	</html>
