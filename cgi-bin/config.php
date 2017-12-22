@@ -32,6 +32,7 @@ define('_TOLL_FREE', '0120-130-428');
 
 define('_PACK_FEE', 50);
 define('_NO_PACK_FEE', 10);
+define('_NO_PRINT_RATE', 1.1);	// プリントなしの割増
 define('_CREDIT_RATE', 0.05);	// カード手数料率
 
 if (strpos($_SERVER['HTTP_HOST'], 'test.')===false && strpos($_SERVER['HTTP_HOST'], 'sub.')===false) {
