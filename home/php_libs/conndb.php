@@ -419,6 +419,28 @@ class Conndb extends HTTP {
 	
 	
 	
+	/*
+	*	プリント位置画像の相対パスのフォルダー名をを返す
+	*	@curitemid		ID
+	*	@mode			id:アイテムID(default), code:アイテムコード, pos:プリントポジションID
+	*	@return			[id: position_id, category:category_type, item:item_type, pos:position_type]　idがNULLのときは全て
+	*/
+	public function getPrintPosition($curitemid, $mode='id'){
+		$res = parent::request('POST', array('act'=>'position', 'itemid'=>$curitemid, 'mode'=>$mode));
+		$data = unserialize($res);
+		return $data;
+	}
+	
+	
+	// テスト用
+//	public function getPattern($posid) {
+//		$res = parent::request('POST', array('act'=>'pattern', 'posid'=>$posid));
+//		$data = unserialize($res);
+//		return $data;
+//	}
+	
+	
+	
 	
 	/*
 	*	カスタマーセンター
