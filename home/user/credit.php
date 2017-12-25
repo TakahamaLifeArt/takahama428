@@ -126,7 +126,7 @@ if(!empty($ls)){
 		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
 		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
 		<meta property="fb:app_id" content="1605142019732010" />
-		<title>お支払い状況 - TLAメンバーズ | オリジナルTシャツ【タカハマライフアート】</title>
+		<title>お支払い状況 | オリジナルTシャツ【タカハマライフアート】</title>
 		<link rel="shortcut icon" href="/icon/favicon.ico" />
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 		<link rel="stylesheet" type="text/css" media="screen" href="./css/my_credit.css" />

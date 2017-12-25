@@ -74,7 +74,7 @@ for($i=0; $i<count($d); $i++){
 		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
 		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
 		<meta property="fb:app_id" content="1605142019732010" />
-		<title>イメージ画像 - メンバーズ | オリジナルTシャツ【タカハマライフアート】</title>
+		<title>イメージ画像 | オリジナルTシャツ【タカハマライフアート】</title>
 		<link rel="shortcut icon" href="/icon/favicon.ico" />
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 		<link rel="stylesheet" type="text/css" media="screen" href="./css/my_design_img.css" />
