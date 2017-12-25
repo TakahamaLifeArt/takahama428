@@ -116,25 +116,6 @@
 
 						<script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=false"></script>
 						<script type="text/javascript">
-							/*
-							                            																						var map = new GMap2(document.getElementById("map"));
-							                            																						var point = new GLatLng(35.719372,139.849766);
-							                            																					  	map.setCenter(point, 5, G_NORMAL_MAP);
-							                            																						map.addControl(new GMapTypeControl());					// 地図・衛星写真の切替えボタン
-							                            																						map.addControl(new GLargeMapControl3D());				// コントロールボタンの表示
-							                            																						map.addControl(new GOverviewMapControl());				// 右下に概略地図を表示
-							                            																						map.enableContinuousZoom();								// 連続した滑らかなズーム
-							                            																						map.enableDoubleClickZoom();							// ダブルクリックでズーム可
-							                            																						map.setZoom(15);
-							                            																						var gpObj = new GLatLng(35.719372,139.849766);
-							                            																						var marker = new GMarker(gpObj);
-							                            																						map.addOverlay(marker);
-							                            																						html = "<h1 style='font-size:120%;font-weight:bold;color:#ff6600;text-align:center;'>---  TAKAHAMA LIFE ART  ---</h1>";
-							                            																						html += "<p style='margin:3px 10px 0px; border-bottom:1px dotted #e8e8e8;'>タカハマ ライフアート</p><p style='margin:0px 10px 3px; border-bottom:1px dotted #e8e8e8;'>Phone 03-5670-0787</p>";
-							                            																						GEvent.addListener(marker, "click", function(){ marker.openInfoWindowHtml(html); });
-							                            																						marker.openInfoWindowHtml(html);
-							                            																				*/
-
 							function attachMessage(marker, msg) {
 								google.maps.event.addListener(marker, 'click', function(event) {
 									new google.maps.InfoWindow({
