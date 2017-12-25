@@ -26,8 +26,6 @@ for($cnt=1,$idx=0; $cnt<5; $cnt++,$idx++){
 		<title>お届け日がすぐに分かる! ｜ オリジナルTシャツ【タカハマライフアート】</title>
 		<link rel="shortcut icon" href="/icon/favicon.ico">
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
-		<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/flick/jquery-ui.css">
-		<link rel="stylesheet" type="text/css" href="/common/css/jquery.ui.css" media="screen">
 		<link rel="stylesheet" type="text/css" href="./css/deliveryday.css" media="screen">
 	</head>
 
@@ -315,8 +313,7 @@ for($cnt=1,$idx=0; $cnt<5; $cnt++,$idx++){
 		<div id="overlay-mask" class="fade"></div>
 
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
-		<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+		<script src="//doozor.bitbucket.io/calendar/datepick_calendar.js"></script>
 		<script type="text/javascript" src="./js/deliveryday.js"></script>
 
 	</body>

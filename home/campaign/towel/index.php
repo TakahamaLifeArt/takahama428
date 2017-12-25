@@ -233,11 +233,13 @@ function getDelidate($baseSec=null, $transport=1, $count_days=4, $mode=null){
 								</div>
 								<div class="ok_item_inner_4">
 									<div class="zoom_pic">
-										<p class="zoom_ttl">シルク(染み込みインク)でプリントした写真</p> <a href="img/t_print_up_01.jpg" rel="lightbox[rubber]"><img src="img/t_print_01.jpg" width="100%"></a>
+										<p class="zoom_ttl">シルク(染み込みインク)でプリントした写真</p>
+										<a href="img/t_print_up_01.jpg" rel="lightbox[rubber]"><img src="img/t_print_01.jpg" width="100%"></a>
 										<p>薄い色の生地に3色までプリント可能です。白・金・銀カラーには非対応です。 </p>
 									</div>
 									<div class="zoom_pic">
-										<p class="zoom_ttl">インクジェットでプリントした写真</p> <a href="img/t_print_up_02.jpg" rel="lightbox[rubber1]"><img src="img/t_print_02.jpg" width="100%"></a>
+										<p class="zoom_ttl">インクジェットでプリントした写真</p>
+										<a href="img/t_print_up_02.jpg" rel="lightbox[rubber1]"><img src="img/t_print_02.jpg" width="100%"></a>
 										<p>フルカラーに対応しています。白色のみプリント可能です。 </p>
 									</div>
 								</div>
@@ -252,11 +254,13 @@ function getDelidate($baseSec=null, $transport=1, $count_days=4, $mode=null){
 								</div>
 								<div class="ok_item_inner_4">
 									<div class="zoom_pic">
-										<p class="zoom_ttl">シルク(ラバーインク)でプリントした写真</p> <a href="img/t_print_up_03.jpg" rel="lightbox[rubber2]"><img src="img/t_print_03.jpg" width="100%"></a>
+										<p class="zoom_ttl">シルク(ラバーインク)でプリントした写真</p>
+										<a href="img/t_print_up_03.jpg" rel="lightbox[rubber2]"><img src="img/t_print_03.jpg" width="100%"></a>
 										<p>3色までプリント可能で、白・金・銀カラーにも対応しています。 </p>
 									</div>
 									<div class="zoom_pic">
-										<p class="zoom_ttl">インクジェットでプリントした写真</p> <a href="img/t_print_up_04.jpg" rel="lightbox[rubber3]"><img src="img/t_print_04.jpg" width="100%"></a>
+										<p class="zoom_ttl">インクジェットでプリントした写真</p>
+										<a href="img/t_print_up_04.jpg" rel="lightbox[rubber3]"><img src="img/t_print_04.jpg" width="100%"></a>
 										<p>フルカラーに対応しています。白色のみプリント可能です。 </p>
 									</div>
 								</div>

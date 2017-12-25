@@ -116,8 +116,6 @@
 
 						<script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=false"></script>
 						<script type="text/javascript">
-
-
 							function attachMessage(marker, msg) {
 								google.maps.event.addListener(marker, 'click', function(event) {
 									new google.maps.InfoWindow({
