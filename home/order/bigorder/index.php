@@ -15,10 +15,10 @@ $category_selector .= '</select>';
 
 $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 ?>
-<!DOCTYPE html>
+	<!DOCTYPE html>
 	<html lang="ja">
 
-		<head prefix="og://ogp.me/ns# fb://ogp.me/ns/fb#  website: //ogp.me/ns/website#">
+	<head prefix="og://ogp.me/ns# fb://ogp.me/ns/fb#  website: //ogp.me/ns/website#">
 		<meta charset="UTF-8">
 		<meta https-equiv="x-ua-compatible" content="ie=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,7 +41,7 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 		<header>
 			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
 		</header>
-		
+
 
 		<div id="container">
 			<div class="contents">
@@ -97,7 +97,7 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 				</table>
 				<p class="ac mb20"><span class="fontred">※</span>時期やプリント方法によって上記の納期より前後する場合がございます。お急ぎの方はご相談ください！</p>
 				<p class="ac"><img src="img/high_img_02.png" alt="まとめて買うと150枚以上から安くなる！" width="100%"></p>
-<!--
+				<!--
 				<p class="ac fs28 fontred"><strong>他にもこんなサービスあります！</strong></p>
 				<p class="ac fs28 mb20"><strong>プリントの仕上がりを確認できます！</strong></p>
 				<img src="img/high_img_03.png" alt="サンプル出し" width="100%" class="fr mr70 mb20">
@@ -272,7 +272,7 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 					<input type="hidden" name="mode" value="send">
 					<div class="ac" style="text-align: center;">
 						<input type="image" class="order_btn_2" alt="送信" id="sendmail" onClick="$.sendmail_check(this);">
-<!--						<input type="button" value="戻る" class="btn" id="goback">-->
+						<!--						<input type="button" value="戻る" class="btn" id="goback">-->
 					</div>
 				</form>
 
@@ -293,4 +293,4 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 
 	</body>
 
-</html>
+	</html>

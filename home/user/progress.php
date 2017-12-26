@@ -89,128 +89,128 @@ if(count($d)==0){
 }
 
 ?>
-    <!DOCTYPE html>
-    <html lang="ja">
+	<!DOCTYPE html>
+	<html lang="ja">
 
-    <head prefix="og: //ogp.me/ns# fb: //ogp.me/ns/fb#  website: //ogp.me/ns/website#">
-        <meta charset="UTF-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="Description" content="早い！Tシャツでオリジナルを作成するならタカハマへ！タカハマライフアートのログイン画面です。メールアドレスとパスワードを入れてください。マイページからご注文履歴などをご確認することができます。ログインにする為のパスワードをお忘れの方はこちら。">
-        <meta name="keywords" content="オリジナル,tシャツ,メンバー">
-        <meta property="og:title" content="世界最速！？オリジナルTシャツを当日仕上げ！！" />
-        <meta property="og:type" content="article" />
-        <meta property="og:description" content="業界No. 1短納期でオリジナルTシャツを1枚から作成します。通常でも3日で仕上げます。" />
-        <meta property="og:url" content="https://www.takahama428.com/" />
-        <meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
-        <meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
-        <meta property="fb:app_id" content="1605142019732010" />
-        <title>製作の進行状況 - TLAメンバーズ | オリジナルTシャツ【タカハマライフアート】</title>
-        <link rel="shortcut icon" href="/icon/favicon.ico" />
-        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
-        <link rel="stylesheet" type="text/css" media="screen" href="./css/my_progress.css" />
-    </head>
+	<head prefix="og: //ogp.me/ns# fb: //ogp.me/ns/fb#  website: //ogp.me/ns/website#">
+		<meta charset="UTF-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="Description" content="早い！Tシャツでオリジナルを作成するならタカハマへ！タカハマライフアートのログイン画面です。メールアドレスとパスワードを入れてください。マイページからご注文履歴などをご確認することができます。ログインにする為のパスワードをお忘れの方はこちら。">
+		<meta name="keywords" content="オリジナル,tシャツ,メンバー">
+		<meta property="og:title" content="世界最速！？オリジナルTシャツを当日仕上げ！！" />
+		<meta property="og:type" content="article" />
+		<meta property="og:description" content="業界No. 1短納期でオリジナルTシャツを1枚から作成します。通常でも3日で仕上げます。" />
+		<meta property="og:url" content="https://www.takahama428.com/" />
+		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
+		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
+		<meta property="fb:app_id" content="1605142019732010" />
+		<title>製作の進行状況 | オリジナルTシャツ【タカハマライフアート】</title>
+		<link rel="shortcut icon" href="/icon/favicon.ico" />
+		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
+		<link rel="stylesheet" type="text/css" media="screen" href="./css/my_progress.css" />
+	</head>
 
-    <body>
-        <header>
-            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
-        </header>
+	<body>
+		<header>
+			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
+		</header>
 
-        <div id="container">
-            <div class="contents">
+		<div id="container">
+			<div class="contents">
 
-                <div class="toolbar">
-                    <div class="toolbar_inner clearfix">
-                        <div class="menu_wrap">
-                            <?php echo $menu;?>
-                        </div>
-                    </div>
-                </div>
-                <div class="pagetitle">
-                    <h1>製作の進行状況</h1>
-                </div>
+				<div class="toolbar">
+					<div class="toolbar_inner clearfix">
+						<div class="menu_wrap">
+							<?php echo $menu;?>
+						</div>
+					</div>
+				</div>
+				<div class="pagetitle">
+					<h1>製作の進行状況</h1>
+				</div>
 
-                <div class="section">
-                    <h2 class="title">
-                        <?php echo $msg; ?>
-                    </h2>
-                    <?php echo $ls; ?>
-                </div>
+				<div class="section">
+					<h2 class="title">
+						<?php echo $msg; ?>
+					</h2>
+					<?php echo $ls; ?>
+				</div>
 
-                <?php echo $progress; ?>
+				<?php echo $progress; ?>
 
-                <div class="section">
-                    <h2>進行状況の説明</h2>
-                    <div class="inner">
-                        <table class="form_table" id="description">
-                            <thead>
-                                <tr>
-                                    <th>進行状況</th>
-                                    <th>説明</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>受付完了</td>
-                                    <td>注文が確定し、受付が完了した状態です。</td>
-                                </tr>
-                                <tr>
-                                    <td>デザイン制作中</td>
-                                    <td>デザインの校正等をおこない、プリントするデザインを制作します。</td>
-                                </tr>
-                                <tr>
-                                    <td>プリント開始</td>
-                                    <td>版下、製版などの工程を経て実際に商品にプリントしていきます。</td>
-                                </tr>
-                                <tr>
-                                    <td>発送準備中</td>
-                                    <td>商品が完成し発送の準備をします。</td>
-                                </tr>
-                                <tr>
-                                    <td>発送完了</td>
-                                    <td>運送会社への出荷が済んだ状態です。<br>問合せ番号で荷物の配達状況が分かります。</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+				<div class="section">
+					<h2>進行状況の説明</h2>
+					<div class="inner">
+						<table class="form_table" id="description">
+							<thead>
+								<tr>
+									<th>進行状況</th>
+									<th>説明</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>受付完了</td>
+									<td>注文が確定し、受付が完了した状態です。</td>
+								</tr>
+								<tr>
+									<td>デザイン制作中</td>
+									<td>デザインの校正等をおこない、プリントするデザインを制作します。</td>
+								</tr>
+								<tr>
+									<td>プリント開始</td>
+									<td>版下、製版などの工程を経て実際に商品にプリントしていきます。</td>
+								</tr>
+								<tr>
+									<td>発送準備中</td>
+									<td>商品が完成し発送の準備をします。</td>
+								</tr>
+								<tr>
+									<td>発送完了</td>
+									<td>運送会社への出荷が済んだ状態です。<br>問合せ番号で荷物の配達状況が分かります。</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
 
 
-                <div class="section">
-                    <h2>運送会社に問い合わせる</h2>
-                    <div class="inner">
-                        <dl class="list">
-                            <dt>お問合せ番号</dt>
-                            <dd>
-                                <?php echo $d[$idx]['contact_number'];?>
-                            </dd>
-                            <dt>運送業者</dt>
-                            <dd>
-                                <?php echo $deliver_name;?>
-                            </dd>
-                            <dt>URL</dt>
-                            <dd>
-                                <?php
+				<div class="section">
+					<h2>運送会社に問い合わせる</h2>
+					<div class="inner">
+						<dl class="list">
+							<dt>お問合せ番号</dt>
+							<dd>
+								<?php echo $d[$idx]['contact_number'];?>
+							</dd>
+							<dt>運送業者</dt>
+							<dd>
+								<?php echo $deliver_name;?>
+							</dd>
+							<dt>URL</dt>
+							<dd>
+								<?php
 								if(!empty($url)){
 									echo '<a href="'.$url.'" target="_blank" rel="nofollow">'.$deliver_name.'の荷物お問合せへ</a>';
 								}
 								?>
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
+							</dd>
+						</dl>
+					</div>
+				</div>
 
-            </div>
-        </div>
-        <footer class="page-footer">
-            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
-        </footer>
+			</div>
+		</div>
+		<footer class="page-footer">
+			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
+		</footer>
 
-        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/util.php"; ?>
+		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/util.php"; ?>
 
-        <div id="overlay-mask" class="fade"></div>
+		<div id="overlay-mask" class="fade"></div>
 
-        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
-    </body>
+		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
+	</body>
 
-    </html>
+	</html>

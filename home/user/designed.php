@@ -58,74 +58,74 @@ for($i=0; $i<count($d); $i++){
 
 
 
-    <!DOCTYPE html>
-    <html lang="ja">
+	<!DOCTYPE html>
+	<html lang="ja">
 
-    <head prefix="og: //ogp.me/ns# fb: //ogp.me/ns/fb#  website: //ogp.me/ns/website#">
-        <meta charset="UTF-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="Description" content="早い！Tシャツでオリジナルを作成するならタカハマへ！タカハマライフアートのログイン画面です。メールアドレスとパスワードを入れてください。マイページからご注文履歴などをご確認することができます。ログインにする為のパスワードをお忘れの方はこちら。">
-        <meta name="keywords" content="オリジナル,tシャツ,メンバー">
-        <meta property="og:title" content="世界最速！？オリジナルTシャツを当日仕上げ！！" />
-        <meta property="og:type" content="article" />
-        <meta property="og:description" content="業界No. 1短納期でオリジナルTシャツを1枚から作成します。通常でも3日で仕上げます。" />
-        <meta property="og:url" content="https://www.takahama428.com/" />
-        <meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
-        <meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
-        <meta property="fb:app_id" content="1605142019732010" />
-        <title>イメージ画像 - メンバーズ | オリジナルTシャツ【タカハマライフアート】</title>
-        <link rel="shortcut icon" href="/icon/favicon.ico" />
-        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
-        <link rel="stylesheet" type="text/css" media="screen" href="./css/my_design_img.css" />
-        <script type="text/javascript">
-            var _CUR_ORDER = <?php echo $orderid?>;
-            var _HOGE_COUNT = <?php echo $d[0]['imagecheck'];?>;
-            var _HOGE_ID = <?php echo $d[0]['orderid'];?>;
+	<head prefix="og: //ogp.me/ns# fb: //ogp.me/ns/fb#  website: //ogp.me/ns/website#">
+		<meta charset="UTF-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="Description" content="早い！Tシャツでオリジナルを作成するならタカハマへ！タカハマライフアートのログイン画面です。メールアドレスとパスワードを入れてください。マイページからご注文履歴などをご確認することができます。ログインにする為のパスワードをお忘れの方はこちら。">
+		<meta name="keywords" content="オリジナル,tシャツ,メンバー">
+		<meta property="og:title" content="世界最速！？オリジナルTシャツを当日仕上げ！！" />
+		<meta property="og:type" content="article" />
+		<meta property="og:description" content="業界No. 1短納期でオリジナルTシャツを1枚から作成します。通常でも3日で仕上げます。" />
+		<meta property="og:url" content="https://www.takahama428.com/" />
+		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
+		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
+		<meta property="fb:app_id" content="1605142019732010" />
+		<title>イメージ画像 | オリジナルTシャツ【タカハマライフアート】</title>
+		<link rel="shortcut icon" href="/icon/favicon.ico" />
+		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
+		<link rel="stylesheet" type="text/css" media="screen" href="./css/my_design_img.css" />
+		<script type="text/javascript">
+			var _CUR_ORDER = <?php echo $orderid?>;
+			var _HOGE_COUNT = <?php echo $d[0]['imagecheck'];?>;
+			var _HOGE_ID = <?php echo $d[0]['orderid'];?>;
 
-        </script>
+		</script>
 
-    </head>
+	</head>
 
-    <body>
-        <header>
-            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
-        </header>
+	<body>
+		<header>
+			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
+		</header>
 
-        <div id="container">
-            <div class="contents">
+		<div id="container">
+			<div class="contents">
 
-                <div class="toolbar">
-                    <div class="toolbar_inner clearfix">
-                        <div class="menu_wrap">
-                            <?php echo $menu;?>
-                        </div>
-                    </div>
-                </div>
-                <div class="pagetitle">
-                    <h1>イメージ画像</h1>
-                </div>
-                <div style="font-weight:bold;"><span class="fontred">※</span>同デザインでアイテムやインクの色替えがある場合、1パターンのみの表示となります。ご了承ください。</div>
-                <div id="designed_wrap">
-                    <?php echo $designed_wrap;?>
-                </div>
-            </div>
-        </div>
+				<div class="toolbar">
+					<div class="toolbar_inner clearfix">
+						<div class="menu_wrap">
+							<?php echo $menu;?>
+						</div>
+					</div>
+				</div>
+				<div class="pagetitle">
+					<h1>イメージ画像</h1>
+				</div>
+				<div style="font-weight:bold;"><span class="fontred">※</span>同デザインでアイテムやインクの色替えがある場合、1パターンのみの表示となります。ご了承ください。</div>
+				<div id="designed_wrap">
+					<?php echo $designed_wrap;?>
+				</div>
+			</div>
+		</div>
 
 
 
-        <div id="printform_wrapper"><iframe id="printform" name="printform"></iframe></div>
+		<div id="printform_wrapper"><iframe id="printform" name="printform"></iframe></div>
 
-        <footer class="page-footer">
-            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
-        </footer>
+		<footer class="page-footer">
+			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
+		</footer>
 
-        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/util.php"; ?>
+		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/util.php"; ?>
 
-        <div id="overlay-mask" class="fade"></div>
+		<div id="overlay-mask" class="fade"></div>
 
-        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
-        <script type="text/javascript" src="./js/designed.js"></script>
-    </body>
+		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
+		<script type="text/javascript" src="./js/designed.js"></script>
+	</body>
 
-    </html>
+	</html>

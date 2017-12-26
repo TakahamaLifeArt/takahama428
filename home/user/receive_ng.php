@@ -10,37 +10,37 @@ if(!$me){
 $isOK = false;
 
 ?>
-    <!DOCTYPE html>
+	<!DOCTYPE html>
 
-    <html lang="ja">
+	<html lang="ja">
 
-    <head prefix="og: //ogp.me/ns# fb: //ogp.me/ns/fb#  website: //ogp.me/ns/website#">
-        <meta charset="utf-8" />
-        <meta property="og:title" content="世界最速！？オリジナルTシャツを当日仕上げ！！" />
-        <meta property="og:type" content="article" />
-        <meta property="og:description" content="業界No. 1短納期でオリジナルTシャツを1枚から作成します。通常でも3日で仕上げます。" />
-        <meta property="og:url" content="https://www.takahama428.com/" />
-        <meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
-        <meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
-        <meta property="fb:app_id" content="1605142019732010" />
-        <title>決済 - TLAメンバーズ ｜ オリジナルTシャツ【タカハマライフアート】</title>
-        <link rel="shortcut icon" href="/icon/favicon.ico" />
+	<head prefix="og: //ogp.me/ns# fb: //ogp.me/ns/fb#  website: //ogp.me/ns/website#">
+		<meta charset="utf-8" />
+		<meta property="og:title" content="世界最速！？オリジナルTシャツを当日仕上げ！！" />
+		<meta property="og:type" content="article" />
+		<meta property="og:description" content="業界No. 1短納期でオリジナルTシャツを1枚から作成します。通常でも3日で仕上げます。" />
+		<meta property="og:url" content="https://www.takahama428.com/" />
+		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
+		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
+		<meta property="fb:app_id" content="1605142019732010" />
+		<title>決済 ｜ オリジナルTシャツ【タカハマライフアート】</title>
+		<link rel="shortcut icon" href="/icon/favicon.ico" />
 
-        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
-        <link rel="stylesheet" type="text/css" media="screen" href="./css/my_account.css" />
-        <link rel="stylesheet" type="text/css" href="/contact/css/finish_responsive.css" media="screen" />
+		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
+		<link rel="stylesheet" type="text/css" media="screen" href="./css/my_account.css" />
+		<link rel="stylesheet" type="text/css" href="/contact/css/finish_responsive.css" media="screen" />
 
-    </head>
+	</head>
 
-    <body>
+	<body>
 
-        <header>
-            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
-        </header>
+		<header>
+			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
+		</header>
 
-        <div id="container">
-            <div class="contents">
-                <?php
+		<div id="container">
+			<div class="contents">
+				<?php
 				$cst = 'cst';
 				function cst($constant){
 					return $constant;
@@ -83,32 +83,32 @@ DOC;
 			?>
 
 
-                    <div class="toolbar">
-                        <div class="toolbar_inner clearfix">
-                            <div class="menu_wrap">
-                                <?php echo $menu;?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pagetitle">
-                        <h1>
-                            <?php echo $heading;?>
-                        </h1>
-                    </div>
+					<div class="toolbar">
+						<div class="toolbar_inner clearfix">
+							<div class="menu_wrap">
+								<?php echo $menu;?>
+							</div>
+						</div>
+					</div>
+					<div class="pagetitle">
+						<h1>
+							<?php echo $heading;?>
+						</h1>
+					</div>
 
-                    <?php echo $html;?>
-            </div>
+					<?php echo $html;?>
+			</div>
 
-        </div>
+		</div>
 
-        <footer class="page-footer">
-            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
-        </footer>
+		<footer class="page-footer">
+			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
+		</footer>
 
-        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
-        <script type="text/javascript" src="/common/js/jquery.js"></script>
-        <script type="text/javascript" src="./js/common.js"></script>
+		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
+		<script type="text/javascript" src="/common/js/jquery.js"></script>
+		<script type="text/javascript" src="./js/common.js"></script>
 
-    </body>
+	</body>
 
-    </html>
+	</html>

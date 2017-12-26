@@ -186,68 +186,68 @@ foreach($p as $category_name=>$val){
 
 
 ?>
-    <!DOCTYPE html>
-    <html lang="ja">
+	<!DOCTYPE html>
+	<html lang="ja">
 
-    <head prefix="og: //ogp.me/ns# fb: //ogp.me/ns/fb#  website: //ogp.me/ns/website#">
-        <meta charset="UTF-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta property="og:title" content="世界最速！？オリジナルTシャツを当日仕上げ！！" />
-        <meta property="og:type" content="article" />
-        <meta property="og:description" content="業界No. 1短納期でオリジナルTシャツを1枚から作成します。通常でも3日で仕上げます。" />
-        <meta property="og:url" content="https://www.takahama428.com/" />
-        <meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
-        <meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
-        <meta property="fb:app_id" content="1605142019732010" />
-        <title>ご注文履歴 - TLAメンバーズ | オリジナルTシャツ【タカハマライフアート】</title>
-        <link rel="shortcut icon" href="/icon/favicon.ico" />
-        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
-        <link rel="stylesheet" type="text/css" media="screen" href="/common/css/printposition_responsive.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="./css/my_history.css" />
-        <script type="text/javascript">
-            var _CUR_ORDER = <?php echo $orderid?>;
+	<head prefix="og: //ogp.me/ns# fb: //ogp.me/ns/fb#  website: //ogp.me/ns/website#">
+		<meta charset="UTF-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta property="og:title" content="世界最速！？オリジナルTシャツを当日仕上げ！！" />
+		<meta property="og:type" content="article" />
+		<meta property="og:description" content="業界No. 1短納期でオリジナルTシャツを1枚から作成します。通常でも3日で仕上げます。" />
+		<meta property="og:url" content="https://www.takahama428.com/" />
+		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
+		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
+		<meta property="fb:app_id" content="1605142019732010" />
+		<title>ご注文履歴 | オリジナルTシャツ【タカハマライフアート】</title>
+		<link rel="shortcut icon" href="/icon/favicon.ico" />
+		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
+		<link rel="stylesheet" type="text/css" media="screen" href="/common/css/printposition_responsive.css" />
+		<link rel="stylesheet" type="text/css" media="screen" href="./css/my_history.css" />
+		<script type="text/javascript">
+			var _CUR_ORDER = <?php echo $orderid?>;
 
-        </script>
+		</script>
 
-    </head>
+	</head>
 
-    <body>
-        <header>
-            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
-        </header>
-        <div id="container">
-            <div class="contents">
-                <div class="toolbar">
-                    <div class="toolbar_inner clearfix">
-                        <div class="menu_wrap">
-                            <?php echo $menu;?>
-                        </div>
-                    </div>
-                </div>
-                <div class="pagetitle">
-                    <h1>ご注文履歴</h1>
-                </div>
+	<body>
+		<header>
+			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
+		</header>
+		<div id="container">
+			<div class="contents">
+				<div class="toolbar">
+					<div class="toolbar_inner clearfix">
+						<div class="menu_wrap">
+							<?php echo $menu;?>
+						</div>
+					</div>
+				</div>
+				<div class="pagetitle">
+					<h1>ご注文履歴</h1>
+				</div>
 
-                <table class="form_table" id="history_table">
-                    <h2>ご注文一覧</h2>
-                    <tbody>
-                        <?php echo $data; ?>
-                    </tbody>
-                </table>
+				<table class="form_table" id="history_table">
+					<h2>ご注文一覧</h2>
+					<tbody>
+						<?php echo $data; ?>
+					</tbody>
+				</table>
 
-                <h2 class="order_detail">注文明細</h2>
+				<h2 class="order_detail">注文明細</h2>
 
-                <?php echo $hoge['estimated']; ?>
-                <p class="note tor">注文No.
-                    <?php echo $orders_id;?>
-                </p>
-                <table class="form_table" id="detail_item">
-                    <thead>
-                    </thead>
-                    <tfoot>
-                        <?php
+				<?php echo $hoge['estimated']; ?>
+				<p class="note tor">注文No.
+					<?php echo $orders_id;?>
+				</p>
+				<table class="form_table" id="detail_item">
+					<thead>
+					</thead>
+					<tfoot>
+						<?php
 						if($base>0){
 							echo '<tr class="foot_sub"><th colspan="2"></th><td colspan="2">計</th><td class="base"><ins>'.number_format($base).'</ins> 円</td></tr>';
 						}
@@ -258,50 +258,50 @@ foreach($p as $category_name=>$val){
 							echo '<tr class="foot_sub"><th colspan="2"></th><td colspan="2">カード手数料</th><td class="credit"><ins>'.number_format($credit).'</ins> 円</td></tr>';
 						}
 						?>
-                            <tr class="foot_total">
-                                <th colspan="2"></th>
-                                <td colspan="2">合計</td>
-                                <td class="tot"><ins><?php echo number_format($curTotal); ?></ins> 円</td>
-                            </tr>
-                            <tr class="foot_perone">
-                                <th colspan="2"></th>
-                                <td colspan="2">1枚あたり</td>
-                                <td class="per"><ins><?php echo number_format($perone); ?></ins> 円</td>
-                            </tr>
-                    </tfoot>
-                    <tbody>
-                        <?php echo $items;?>
-                    </tbody>
-                </table>
+							<tr class="foot_total">
+								<th colspan="2"></th>
+								<td colspan="2">合計</td>
+								<td class="tot"><ins><?php echo number_format($curTotal); ?></ins> 円</td>
+							</tr>
+							<tr class="foot_perone">
+								<th colspan="2"></th>
+								<td colspan="2">1枚あたり</td>
+								<td class="per"><ins><?php echo number_format($perone); ?></ins> 円</td>
+							</tr>
+					</tfoot>
+					<tbody>
+						<?php echo $items;?>
+					</tbody>
+				</table>
 
-                <table class="form_table" id="detail_print">
-                    <caption>プリント情報</caption>
-                    <thead>
-                        <tr>
-                            <th>カテゴリー</th>
-                            <th>プリント位置</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php echo $printing;?>
-                    </tbody>
-                </table>
+				<table class="form_table" id="detail_print">
+					<caption>プリント情報</caption>
+					<thead>
+						<tr>
+							<th>カテゴリー</th>
+							<th>プリント位置</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php echo $printing;?>
+					</tbody>
+				</table>
 
-            </div>
-        </div>
+			</div>
+		</div>
 
-        <div id="printform_wrapper"><iframe id="printform" name="printform"></iframe></div>
+		<div id="printform_wrapper"><iframe id="printform" name="printform"></iframe></div>
 
-        <footer class="page-footer">
-            <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
-        </footer>
+		<footer class="page-footer">
+			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
+		</footer>
 
-        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/util.php"; ?>
+		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/util.php"; ?>
 
-        <div id="overlay-mask" class="fade"></div>
+		<div id="overlay-mask" class="fade"></div>
 
-        <?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
-        <script type="text/javascript" src="./js/history.js"></script>
-    </body>
+		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
+		<script type="text/javascript" src="./js/history.js"></script>
+	</body>
 
-    </html>
+	</html>

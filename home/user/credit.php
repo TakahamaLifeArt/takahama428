@@ -110,8 +110,9 @@ if(!empty($ls)){
 	$display = "style='display:none;'";
 }
 ?>
-<!DOCTYPE html>
-<html lang="ja">
+	<!DOCTYPE html>
+	<html lang="ja">
+
 	<head prefix="og: //ogp.me/ns# fb: //ogp.me/ns/fb#  website: //ogp.me/ns/website#">
 		<meta charset="UTF-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -125,7 +126,7 @@ if(!empty($ls)){
 		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
 		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
 		<meta property="fb:app_id" content="1605142019732010" />
-		<title>お支払い状況 - TLAメンバーズ |  オリジナルTシャツ【タカハマライフアート】</title>
+		<title>お支払い状況 | オリジナルTシャツ【タカハマライフアート】</title>
 		<link rel="shortcut icon" href="/icon/favicon.ico" />
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 		<link rel="stylesheet" type="text/css" media="screen" href="./css/my_credit.css" />
@@ -326,4 +327,4 @@ if(!empty($ls)){
 		<script src="./js/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 
-</html>
+	</html>
