@@ -688,7 +688,7 @@ Log		     :
 }
 .trainer_sodeguti_left{
 	position: absolute;
-	top: 111px;
+	top: 127px;
 	left: 140px;
 	cursor: pointer;
 }
@@ -967,8 +967,8 @@ Log		     :
 }
 .kubi_usiro{
 	position: absolute;
-	top: 24px;
-	left: 79px;
+	top: 30px;
+	left: 80px;
 	cursor: pointer;
 }
 
