@@ -38,7 +38,8 @@
 	padding: 0 10px;
 	margin-top: 180px;
 }
-#searchcondition_clear{
+
+#searchcondition_clear {
 	max-width: 1000px;
 	margin: 0 auto;
 	padding: 10px 10px 40px;
@@ -107,26 +108,32 @@ a {
 li {
 	list-style: none;
 }
+
 ul.pan {
 	height: auto;
 	margin: 20px 5px 20px 5px;
 	font-size: 0.8em;
 }
+
 ul.pan li {
 	display: inline;
 	padding-right: 4px;
 	line-height: 2em;
 }
+
 ul.pan li:first-child:before {
 	content: "";
 	padding-right: 0;
 }
+
 ul.pan li:before {
 	content: ">";
 	padding-right: 10px;
 	vertical-align: middle;
 }
-ul.pan li a, ul.pan li span {
+
+ul.pan li a,
+ul.pan li span {
 	vertical-align: middle;
 	text-decoration: none;
 }
@@ -163,10 +170,12 @@ ul.pan li a, ul.pan li span {
 	cursor: pointer;
 	padding: 5px;
 }
+
 .btn_sub:hover {
 	background: #898989;
 	color: white;
 }
+
 .item_info_s span span {
 	font-size: 17px;
 	line-height: 16px;
@@ -176,6 +185,7 @@ ul.pan li a, ul.pan li span {
 .review_anchor {
 	box-sizing: content-box;
 }
+
 
 /*
 .listitems_ex {
@@ -192,6 +202,7 @@ ul.pan li a, ul.pan li span {
 	cursor: pointer;
 }
 */
+
 .listitems_ex {
 	border: 1px solid #BFBFBF;
 	width: 225px;
@@ -204,6 +215,7 @@ ul.pan li a, ul.pan li span {
 	-moz-box-shadow: 1px 1px 1px #ccc;
 	-webkit-box-shadow: 1px 1px 1px #ccc;
 }
+
 .hidelist {
 	display: block;
 }
@@ -367,6 +379,16 @@ div#modalBox div#modalBoxBody div.modalboxStyleContainer_surface_right {
 }
 
 
+/* description */
+
+.des_txt {
+	background-color: #c3c3c3;
+	padding: 10px;
+	border-radius: 3px;
+	color: #fff;
+}
+
+
 /* skin rounded-black - END */
 
 @media screen and (min-width: 769px) {
@@ -459,7 +481,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 */
 		cursor: pointer;
 	}
-	.tag p.act, .tag a.act, .tag p:hover, .tag a:hover {
+	.tag p.act,
+	.tag a.act,
+	.tag p:hover,
+	.tag a:hover {
 		color: #fff;
 		background: #898989;
 	}
@@ -843,10 +868,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 */
 		margin-top: 5px;
 	}
-		.rankno {
-			position: absolute;
-			margin-left: -10px;
-			margin-top: -25px;
+	.rankno {
+		position: absolute;
+		margin-left: -10px;
+		margin-top: -25px;
 	}
 	.dotted {
 		background: url(../../common/img/dotted.png) repeat-x top;
@@ -1186,7 +1211,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		border-radius: 2px;
 		cursor: pointer;
 	}
-	.tag p, .tag a {
+	.tag p,
+	.tag a {
 		display: block;
 		padding: 0 .3em;
 		height: 3em;
@@ -1513,7 +1539,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		white-space: nowrap;
 	}
 	.review_anchor a {
-/*		font-size: 10px;*/
+		/*		font-size: 10px;*/
 		color: #1055e0;
 	}
 	.review_anchor p {
@@ -2011,7 +2037,7 @@ taglist_responsive.css end
 	.btn {
 		/* font-size: 26px; */
 		font-weight: bold;
-/*		background: url(../../common/img/list_icon_b.png) no-repeat left;*/
+		/*		background: url(../../common/img/list_icon_b.png) no-repeat left;*/
 		padding-left: 30px;
 		margin-left: 3px;
 		color: #d95;
@@ -2022,6 +2048,7 @@ taglist_responsive.css end
 		display: none;
 	}
 }
+
 @media screen and (max-width: 685px) {
 	.listitems_ex {
 		border: 1px solid #BFBFBF;
@@ -2038,8 +2065,8 @@ taglist_responsive.css end
 		cursor: pointer;
 	}
 }
-@media screen and (max-width: 640px) {
 
+@media screen and (max-width: 640px) {
 	h1 {
 		font-size: 23px;
 		line-height: 1.8;

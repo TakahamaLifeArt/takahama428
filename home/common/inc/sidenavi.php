@@ -2,21 +2,21 @@
 	<p class="title">アイテム一覧</p>
 	<div class="box list">
 		<ul>
-			<li><a href="/items/?cat=1"><img alt="Tシャツ" src="/common/img/thumbs/item/t-shirts.png" />Ｔシャツ</a></li>
-			<li><a href="/items/?cat=3"><img alt="ポロシャツ" src="/common/img/thumbs/item/polo.png" />ポロシャツ</a></li>
-			<li><a href="/items/?cat=8"><img alt="タオル" src="/common/img/thumbs/item/towel.png" />タオル</a></li>
-			<li><a href="/items/?cat=2"><img alt="パーカー・スウェット" src="/common/img/thumbs/item/sweat.png" />パーカー・スウェット</a></li>
-			<li><a href="/items/?tag=73"><img alt="スポーツウェア" src="/common/img/thumbs/item/sports.png" />スポーツウェア</a></li>
-			<li><a href="/items/?cat=13"><img alt="ロングTシャツ" src="/common/img/thumbs/item/long-t.png" />ロングＴシャツ</a></li>
-			<li><a href="/items/?cat=6"><img alt="アウター" src="/common/img/thumbs/item/outer.png" />ブルゾン・ジャンパー</a></li>
-			<li><a href="/items/?cat=5"><img alt="レディース" src="/common/img/thumbs/item/ladys.png" />レディースウェア</a></li>
-			<li><a href="/items/?cat=9"><img alt="バッグ" src="/common/img/thumbs/item/tote-bag.png" />バッグ・トートバッグ</a></li>
-			<li><a href="/items/?cat=10"><img alt="エプロン" src="/common/img/thumbs/item/apron.png" />エプロン</a></li>
-			<li><a href="/items/?cat=14"><img alt="ベビー" src="/common/img/thumbs/item/baby.png" />ベビーウェア</a></li>
-			<li><a href="/items/?cat=16"><img alt="つなぎ" src="/common/img/thumbs/item/overall.png" />つなぎ</a></li>
-			<li><a href="/items/?cat=11"><img alt="ワークウェア" src="/common/img/thumbs/item/work.png" />ワークウェア</a></li>
-			<li><a href="/items/?cat=12"><img alt="プレゼント・グッズ" src="/common/img/thumbs/item/goods.png" />記念品・プレゼント</a></li>
-			<li><a href="/items/?cat=7"><img alt="キャップ" src="/common/img/thumbs/item/cap.png" />キャップ</a></li>
+			<li><a href="/items/t-shirts/"><img alt="Tシャツ" src="/common/img/thumbs/item/t-shirts.png" />Ｔシャツ</a></li>
+			<li><a href="/items/polo-shirts/"><img alt="ポロシャツ" src="/common/img/thumbs/item/polo.png" />ポロシャツ</a></li>
+			<li><a href="/items/towel/"><img alt="タオル" src="/common/img/thumbs/item/towel.png" />タオル</a></li>
+			<li><a href="/items/sweat/"><img alt="パーカー・スウェット" src="/common/img/thumbs/item/sweat.png" />パーカー・スウェット</a></li>
+			<li><a href="/items/sportswear/"><img alt="スポーツウェア" src="/common/img/thumbs/item/sports.png" />スポーツウェア</a></li>
+			<li><a href="/items/long-shirts/"><img alt="ロングTシャツ" src="/common/img/thumbs/item/long-t.png" />ロングＴシャツ</a></li>
+			<li><a href="/items/outer/"><img alt="アウター" src="/common/img/thumbs/item/outer.png" />ブルゾン・ジャンパー</a></li>
+			<li><a href="/items/ladys/"><img alt="レディース" src="/common/img/thumbs/item/ladys.png" />レディースウェア</a></li>
+			<li><a href="/items/tote-bag/"><img alt="バッグ" src="/common/img/thumbs/item/tote-bag.png" />バッグ・トートバッグ</a></li>
+			<li><a href="/items/apron/"><img alt="エプロン" src="/common/img/thumbs/item/apron.png" />エプロン</a></li>
+			<li><a href="/items/baby/"><img alt="ベビー" src="/common/img/thumbs/item/baby.png" />ベビーウェア</a></li>
+			<li><a href="/items/overall/"><img alt="つなぎ" src="/common/img/thumbs/item/overall.png" />つなぎ</a></li>
+			<li><a href="/items/workwear/"><img alt="ワークウェア" src="/common/img/thumbs/item/work.png" />ワークウェア</a></li>
+			<li><a href="/items/goods/"><img alt="プレゼント・グッズ" src="/common/img/thumbs/item/goods.png" />記念品・プレゼント</a></li>
+			<li><a href="/items/cap/"><img alt="キャップ" src="/common/img/thumbs/item/cap.png" />キャップ</a></li>
 		</ul>
 	</div>
 	<p class="title">ブランド一覧</p>

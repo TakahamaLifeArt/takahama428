@@ -511,88 +511,94 @@
 					<div class="menu_box">
 						<div class="item_1">
 							<div class="navi_inner">
-								<a class="dropdown-item" href="/items/?cat=1"><img class="top3" src="/common/img/global/item/sp_item_01.png" width="100%"></a>
-								<a href="/items/?cat=1">
+								<a class="dropdown-item" href="/items/t-shirts/"><img class="top3" src="/common/img/global/item/sp_item_01.png" width="100%"></a>
+								<a href="/items/t-shirts/">
 									<p class="item_txt"><img src="/common/img/global/go_btm_blue.png">Tシャツ</p>
 								</a>
 							</div>
 							<div class="navi_inner">
-								<a class="dropdown-item" href="/items/?cat=3"><img class="top3" src="/common/img/global/item/sp_item_02.png" width="100%"></a>
-								<a href="/items/?cat=3">
+								<a class="dropdown-item" href="/items/polo-shirts/"><img class="top3" src="/common/img/global/item/sp_item_02.png" width="100%"></a>
+								<a href="/items/polo-shirts/">
 									<p class="item_txt"><img src="/common/img/global/go_btm_blue.png">ポロシャツ</p>
 								</a>
 							</div>
 							<div class="navi_inner">
-								<a class="dropdown-item" href="/items/?cat=8"><img class="top3" src="/common/img/global/item/sp_item_03.png" width="100%"></a>
-								<a href="/items/?cat=8">
+								<a class="dropdown-item" href="/items/towel/"><img class="top3" src="/common/img/global/item/sp_item_03.png" width="100%"></a>
+								<a href="/items/towel/">
 									<p class="item_txt"><img src="/common/img/global/go_btm_blue.png">タオル</p>
 								</a>
 							</div>
 						</div>
 						<div class="item_2">
 							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/?cat=2"><img class="item_under" src="/common/img/global/item/sp_item_04.png" width="100%"></a>
-								<a href="/items/?cat=2">
+								<a class="dropdown-item" href="/items/sweat/"><img class="item_under" src="/common/img/global/item/sp_item_04.png" width="100%"></a>
+								<a href="/items/sweat/">
 									<p class="item_txt_min">スウェット</p>
 								</a>
 							</div>
 							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/?tag=73"><img class="item_under" src="/common/img/global/item/sp_item_sports.png" width="100%"></a>
-								<a href="/items/?tag=73">
+								<a class="dropdown-item" href="/items/sportswear/"><img class="item_under" src="/common/img/global/item/sp_item_sports.png" width="100%"></a>
+								<a href="/items/sportswear/">
 									<p class="item_txt_min">スポーツ</p>
 								</a>
 							</div>
 							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/?cat=13"><img class="item_under" src="/common/img/global/item/sp_item_longt.png" width="100%"></a>
-								<a href="/items/?cat=13">
+								<a class="dropdown-item" href="/items/long-shirts/"><img class="item_under" src="/common/img/global/item/sp_item_longt.png" width="100%"></a>
+								<a href="/items/long-shirts/">
 									<p class="item_txt_min">長袖Tシャツ</p>
 								</a>
 							</div>
 							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/?cat=6"><img class="item_under" src="/common/img/global/item/sp_item_05.png" width="100%"></a>
-								<a href="/items/?cat=6">
+								<a class="dropdown-item" href="/items/outer/"><img class="item_under" src="/common/img/global/item/sp_item_05.png" width="100%"></a>
+								<a href="/items/outer/">
 									<p class="item_txt_min">ブルゾン</p>
 								</a>
 							</div>
 							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/?cat=5"><img class="item_under" src="/common/img/global/item/sp_item_lady.png" width="100%"></a>
-								<a href="/items/?cat=5">
+								<a class="dropdown-item" href="/items/ladys/"><img class="item_under" src="/common/img/global/item/sp_item_lady.png" width="100%"></a>
+								<a href="/items/ladys/">
 									<p class="item_txt_min">レディース</p>
 								</a>
 							</div>
 							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/?cat=9"><img class="item_under" src="/common/img/global/item/sp_item_bag.png" width="100%"></a>
-								<a href="/items/?cat=9">
+								<a class="dropdown-item" href="/items/tote-bag/"><img class="item_under" src="/common/img/global/item/sp_item_bag.png" width="100%"></a>
+								<a href="/items/tote-bag/">
 									<p class="item_txt_min">バッグ</p>
 								</a>
 							</div>
 							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/?cat=10"><img class="item_under" src="/common/img/global/item/sp_item_07.png" width="100%"></a>
-								<a href="/items/?cat=10">
+								<a class="dropdown-item" href="/items/apron/"><img class="item_under" src="/common/img/global/item/sp_item_07.png" width="100%"></a>
+								<a href="/items/apron/">
 									<p class="item_txt_min">エプロン</p>
 								</a>
 							</div>
 							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/?cat=14"><img class="item_under" src="/common/img/global/item/sp_item_baby.png" width="100%"></a>
-								<a href="/items/?cat=14">
+								<a class="dropdown-item" href="/items/baby/"><img class="item_under" src="/common/img/global/item/sp_item_baby.png" width="100%"></a>
+								<a href="/items/baby/">
 									<p class="item_txt_min">ベビー</p>
 								</a>
 							</div>
 							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/?cat=16"><img class="item_under" src="/common/img/global/item/sp_item_08.png" width="100%"></a>
-								<a href="/items/?cat=16">
+								<a class="dropdown-item" href="/items/overall/"><img class="item_under" src="/common/img/global/item/sp_item_08.png" width="100%"></a>
+								<a href="/items/overall/">
 									<p class="item_txt_min">つなぎ</p>
 								</a>
 							</div>
 							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/?cat=12"><img class="item_under" src="/common/img/global/item/sp_item_11.png" width="100%"></a>
-								<a href="/items/?cat=12">
+								<a class="dropdown-item" href="/items/workwear/"><img class="item_under" src="/common/img/global/item/item_work.png" width="100%"></a>
+								<a href="/items/workwear/">
+									<p class="item_txt_min">ワークウェア</p>
+								</a>
+							</div>
+							<div class="navi_inner_2">
+								<a class="dropdown-item" href="/items/goods/"><img class="item_under" src="/common/img/global/item/sp_item_11.png" width="100%"></a>
+								<a href="/items/goods/">
 									<p class="item_txt_min">記念品</p>
 								</a>
 							</div>
 							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/?cat=7"><img class="item_under" src="/common/img/global/item/sp_item_12.png" width="100%"></a>
-								<a href="/items/?cat=7">
+								<a class="dropdown-item" href="/items/cap/"><img class="item_under" src="/common/img/global/item/sp_item_12.png" width="100%"></a>
+								<a href="/items/cap/">
 									<p class="item_txt_min">キャップ</p>
 								</a>
 							</div>

@@ -51,72 +51,72 @@
 					<div class="sizeimg">
 						<ul>
 							<li class="gallery_left">
-								<a href="/items/?cat=1">
+								<a href="/items/t-shirts/">
 									<p class="line_bdr">Tシャツ</p><img src="/items/img/item_01.jpg" width="100%"></a>
 							</li>
 
 							<li class="gallery_left">
-								<a href="/items/?cat=3">
+								<a href="/items/polo-shirts/">
 									<p class="line_bdr">ポロシャツ</p><img src="/items/img/item_03.jpg" width="100%"></a>
 							</li>
 
 							<li class="gallery_left">
-								<a href="/items/?cat=8">
+								<a href="/items/towel/">
 									<p class="line_bdr">タオル</p><img src="/items/img/item_08.jpg" width="100%"></a>
 							</li>
 
 							<li class="gallery_left">
-								<a href="/items/?cat=2">
+								<a href="/items/sweat/">
 									<p class="line_bdr">スウェット</p><img src="/items/img/item_02.jpg" width="100%"></a>
 							</li>
 
 							<li class="gallery_left">
-								<a href="/items/?tag=73">
+								<a href="/items/sportswear/">
 									<p class="line_bdr">スポーツ</p><img src="/items/img/item_04.jpg" width="100%"></a>
 							</li>
 
 							<li class="gallery_left">
-								<a href="/items/?cat=13">
+								<a href="/items/long-shirts/">
 									<p class="line_bdr">長袖Tシャツ</p><img src="/items/img/item_05.jpg" width="100%"></a>
 							</li>
 
 							<li class="gallery_left">
-								<a href="/items/?cat=6">
+								<a href="/items/outer/">
 									<p class="line_bdr">ブルゾン</p><img src="/items/img/item_06.jpg" width="100%"></a>
 							</li>
 
 							<li class="gallery_left">
-								<a href="/items/?cat=5">
+								<a href="/items/ladys/">
 									<p class="line_bdr">レディース</p><img src="/items/img/item_07.jpg" width="100%"></a>
 							</li>
 
 							<li class="gallery_left">
-								<a href="/items/?cat=9">
+								<a href="/items/tote-bag/">
 									<p class="line_bdr">バッグ</p><img src="/items/img/item_09.jpg" width="100%"></a>
 							</li>
 
 							<li class="gallery_left">
-								<a href="/items/?cat=10">
+								<a href="/items/apron/">
 									<p class="line_bdr">エプロン</p><img src="/items/img/item_10.jpg" width="100%"></a>
 							</li>
 
 							<li class="gallery_left">
-								<a href="/items/?cat=14">
+								<a href="/items/baby/">
 									<p class="line_bdr">ベビー</p><img src="/items/img/item_11.jpg" width="100%"></a>
 							</li>
 
 							<li class="gallery_left">
-								<a href="/items/?cat=16">
+								<a href="/items/overall/">
 									<p class="line_bdr">つなぎ</p><img src="/items/img/item_12.jpg" width="100%"></a>
 							</li>
 
 							<li class="gallery_left">
-								<a href="/items/?cat=12">
+								<a href="/items/goods/">
 									<p class="line_bdr">記念品</p><img src="/items/img/item_15.jpg" width="100%"></a>
 							</li>
 
 							<li class="gallery_left">
-								<a href="/items/?cat=7">
+								<a href="/items/cap/">
 									<p class="line_bdr">キャップ</p><img src="/items/img/item_14.jpg" width="100%"></a>
 							</li>
 
