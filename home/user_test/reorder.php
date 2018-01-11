@@ -38,7 +38,7 @@ $deli = $conndb->getDeli($me['id']);
 		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
 		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
 		<meta property="fb:app_id" content="1605142019732010" />
-		<title>ご注文内容- TLAメンバーズ | タカハマライフアート</title>
+		<title>ご注文内容 | タカハマライフアート</title>
 		<link rel="shortcut icon" href="/icon/favicon.ico" />
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 		<link rel="stylesheet" type="text/css" media="screen" href="./css/common.css" />
@@ -109,14 +109,45 @@ $deli = $conndb->getDeli($me['id']);
 									<td>10枚</td>
 									<td>88,888円</td>
 								</tr>
-							</tbody>
 
-							<tbody>
-								<tr class="border_t">
+								<tr>
 									<td rowspan="3">
 										<div class="item_name_color">
 											<p>5001</p>
 											<p>5.6オンスハイクオリティーTシャツ</p>
+											<img src="/order/img/demo_4.png">
+											<p>ブルー</p>
+										</div>
+									</td>
+									<td>160</td>
+									<td>5,000</td>
+									<td>10枚</td>
+									<td>88,888円</td>
+								</tr>
+								<tr>
+									<td>S</td>
+									<td>5,600</td>
+									<td>10枚</td>
+									<td>88,888円</td>
+								</tr>
+								<tr>
+									<td>M</td>
+									<td>5,600</td>
+									<td>10枚</td>
+									<td>88,888円</td>
+								</tr>
+								<tr class="tabl_ttl">
+									<td>アイテム/カラー</td>
+									<td>サイズ</td>
+									<td>単価</td>
+									<td>枚数</td>
+									<td>金額</td>
+								</tr>
+								<tr>
+									<td rowspan="3">
+										<div class="item_name_color">
+											<p>5910</p>
+											<p>4.1オンス ドライアスレチックポロシャツ</p>
 											<img src="/order/img/demo_4.png">
 											<p>オレンジ</p>
 										</div>
@@ -138,14 +169,18 @@ $deli = $conndb->getDeli($me['id']);
 									<td>10枚</td>
 									<td>88,888円</td>
 								</tr>
-							</tbody>
-
-							<tbody>
-								<tr class="border_t">
+								<tr class="tabl_ttl">
+									<td>アイテム/カラー</td>
+									<td>サイズ</td>
+									<td>単価</td>
+									<td>枚数</td>
+									<td>金額</td>
+								</tr>
+								<tr>
 									<td rowspan="3">
 										<div class="item_name_color">
-											<p>5001</p>
-											<p>5.6オンスハイクオリティーTシャツ</p>
+											<p>5010</p>
+											<p>5.6オンスロングスリーブTシャツ</p>
 											<img src="/order/img/demo_4.png">
 											<p>オレンジ</p>
 										</div>
@@ -169,6 +204,7 @@ $deli = $conndb->getDeli($me['id']);
 								</tr>
 							</tbody>
 						</table>
+
 					</div>
 
 					<div class="item_info_final_2">
@@ -176,10 +212,6 @@ $deli = $conndb->getDeli($me['id']);
 							<tbody>
 								<tr class="tabl_ttl_2">
 									<td class="print_total">プリント代</td>
-									
-<td></td>
-<td></td>
-
 									<td class="print_total_p">88,888円</td>
 								</tr>
 								<tr class="tabl_txt">
@@ -198,6 +230,166 @@ $deli = $conndb->getDeli($me['id']);
 									<td class="p_posi">左胸</td>
 									<td>2色</td>
 									<td>シルクスクリーン(ジャンボサイズ)</td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="subtotal">
+						<p>小計<span class="inter">30</span>枚<span class="inter_2">8,888,888</span>円</p>
+					</div>
+				</div>
+				
+				
+				<div class="final_confir">
+					<div class="item_info_final">
+						<table class="final_detail">
+							<tbody>
+								<tr class="tabl_ttl">
+									<td>アイテム/カラー</td>
+									<td>サイズ</td>
+									<td>単価</td>
+									<td>枚数</td>
+									<td>金額</td>
+								</tr>
+								<tr>
+									<td rowspan="3">
+										<div class="item_name_color">
+											<p>5001</p>
+											<p>5.6オンスハイクオリティーTシャツ</p>
+											<img src="/order/img/demo_4.png">
+											<p>オレンジ</p>
+										</div>
+									</td>
+									<td>160</td>
+									<td>5,000</td>
+									<td>10枚</td>
+									<td>88,888円</td>
+								</tr>
+								<tr>
+									<td>S</td>
+									<td>5,600</td>
+									<td>10枚</td>
+									<td>88,888円</td>
+								</tr>
+								<tr>
+									<td>M</td>
+									<td>5,600</td>
+									<td>10枚</td>
+									<td>88,888円</td>
+								</tr>
+
+								<tr>
+									<td rowspan="3">
+										<div class="item_name_color">
+											<p>5001</p>
+											<p>5.6オンスハイクオリティーTシャツ</p>
+											<img src="/order/img/demo_4.png">
+											<p>ブルー</p>
+										</div>
+									</td>
+									<td>160</td>
+									<td>5,000</td>
+									<td>10枚</td>
+									<td>88,888円</td>
+								</tr>
+								<tr>
+									<td>S</td>
+									<td>5,600</td>
+									<td>10枚</td>
+									<td>88,888円</td>
+								</tr>
+								<tr>
+									<td>M</td>
+									<td>5,600</td>
+									<td>10枚</td>
+									<td>88,888円</td>
+								</tr>
+
+								<tr class="tabl_ttl">
+									<td>アイテム/カラー</td>
+									<td>サイズ</td>
+									<td>単価</td>
+									<td>枚数</td>
+									<td>金額</td>
+								</tr>
+								<tr>
+									<td rowspan="3">
+										<div class="item_name_color">
+											<p>5910</p>
+											<p>4.1オンス ドライアスレチックポロシャツ</p>
+											<img src="/order/img/demo_4.png">
+											<p>オレンジ</p>
+										</div>
+									</td>
+									<td>160</td>
+									<td>5,000</td>
+									<td>10枚</td>
+									<td>88,888円</td>
+								</tr>
+								<tr>
+									<td>S</td>
+									<td>5,600</td>
+									<td>10枚</td>
+									<td>88,888円</td>
+								</tr>
+								<tr>
+									<td>M</td>
+									<td>5,600</td>
+									<td>10枚</td>
+									<td>88,888円</td>
+								</tr>
+
+								<tr class="tabl_ttl">
+									<td>アイテム/カラー</td>
+									<td>サイズ</td>
+									<td>単価</td>
+									<td>枚数</td>
+									<td>金額</td>
+								</tr>
+								<tr>
+									<td rowspan="3">
+										<div class="item_name_color">
+											<p>5010</p>
+											<p>5.6オンスロングスリーブTシャツ</p>
+											<img src="/order/img/demo_4.png">
+											<p>オレンジ</p>
+										</div>
+									</td>
+									<td>160</td>
+									<td>5,000</td>
+									<td>10枚</td>
+									<td>88,888円</td>
+								</tr>
+								<tr>
+									<td>S</td>
+									<td>5,600</td>
+									<td>10枚</td>
+									<td>88,888円</td>
+								</tr>
+								<tr>
+									<td>M</td>
+									<td>5,600</td>
+									<td>10枚</td>
+									<td>88,888円</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+
+					<div class="item_info_final_2">
+						<table class="print_info_final">
+							<tbody>
+								<tr class="tabl_ttl_2">
+									<td class="print_total">プリント代</td>
+									<td class="print_total_p">88,888円</td>
+								</tr>
+								<tr class="tabl_txt">
+									<td class="p_posi">前</td>
+									<td>4色</td>
+									<td>デジタル転写</td>
 									<td></td>
 								</tr>
 							</tbody>
@@ -252,17 +444,15 @@ $deli = $conndb->getDeli($me['id']);
 						</table>
 					</div>
 				</div>
-			
-				<h2>同じデザインで追加・再注文する</h2>
-				<a href="my_item.php"><button type="button" class="btn_or btn">同じアイテム</button></a>
-				<a href="my_category.php"><button type="button" class="btn_gr btn">別のアイテム</button></a>
 				
 				<div class="caution">
-					<p><span class="red_txt">※</span>別のデザインでご注文をご希望の場合は新規注文扱いとなりますので、<a href="/order/">お申し込みページ</a>へお進みください。</p>
+					<h2>同じアイテムで追加・再注文する</h2>
+					<a href="reorder_test3.php" class="btn_or btn">追加・再注文フォームへ</a>
+					<p><span class="red_txt">※</span>別のアイテムでご注文をご希望の場合は新規注文扱いとなりますので、<a href="/order/">お申し込みページ</a>へお進みください。</p>
 				</div>
-			<a href="my_menu.php" class="next_btn">マイページTOPへ戻る</a>
+			<a href="./my_menu.php" class="next_btn">マイページTOPへ戻る</a>
 			<div class="transition_wrap d-flex justify-content-between align-items-center">
-				<div class="step_prev hoverable waves-effect"><i class="fa fa-chevron-left mr-1"></i>戻る</div>
+				<a href="./order_history.php"><div class="step_prev hoverable waves-effect"><i class="fa fa-chevron-left mr-1"></i>戻る</div></a>
 			</div>
 			</div>
 		</div>

@@ -38,7 +38,7 @@ $deli = $conndb->getDeli($me['id']);
 		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
 		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
 		<meta property="fb:app_id" content="1605142019732010" />
-		<title>追加・再注文フォーム | タカハマライフアート</title>
+		<title>追加・再注文フォーム - 送信画面 | タカハマライフアート</title>
 		<link rel="shortcut icon" href="/icon/favicon.ico" />
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 		<link rel="stylesheet" type="text/css" media="screen" href="./css/common.css" />
@@ -125,7 +125,7 @@ $deli = $conndb->getDeli($me['id']);
 						</tr>
 						<tr>
 							<td>メールアドレス</td>
-							<td>aaa@gmail.com/td></tr>
+							<td>aaa@gmail.com</tr>
 						<tr>
 							<td>お届け希望日</td>
 							<td><time timedate="2017-11-10">11月10日</time></td>
@@ -142,7 +142,7 @@ $deli = $conndb->getDeli($me['id']);
 				</table>
 				</section>
 				
-				<button type="button" class="btn btn-info">この内容で送信</button>
+				<a href="/user_test/thanks.php"><button type="button" class="btn btn-info">この内容で送信</button></a>
 				<div class="transition_wrap d-flex justify-content-between align-items-center">
 					<div class="step_prev hoverable waves-effect"><i class="fa fa-chevron-left mr-1"></i>戻る</div>
 				</div>

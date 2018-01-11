@@ -537,11 +537,11 @@ foreach($p as $category_name=>$val){
 					<h3 class="txtarea">運送会社に問い合わせる</h3>
 					<p>お問合せ番号<span class="bdr_txt">1234-5678-9625</span></p>
 					<p>運送業者<span class="bdr_txt">ヤマト運輸</span></p>
-					<p>URL<a href="" class="infolink">お問い合わせはこちら</a></p>
+					<p>URL<a href="https://toi.kuronekoyamato.co.jp/cgi-bin/tneko" class="infolink">お問い合わせはこちら</a></p>
 				</div>
 
 				<div class="transition_wrap d-flex justify-content-between align-items-center">
-					<div class="step_prev hoverable waves-effect"><i class="fa fa-chevron-left mr-1"></i>戻る</div>
+					<a href="./order_list.php"><div class="step_prev hoverable waves-effect"><i class="fa fa-chevron-left mr-1"></i>戻る</div></a>
 				</div>
 			</div>
 			<a href="my_menu.php" class="next_btn">マイページTOPへ戻る</a>
