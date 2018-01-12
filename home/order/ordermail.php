@@ -52,6 +52,7 @@ class Ordermail extends Conndb{
 			$hash = $this->insertOrderToDB($uploadDir);
 			$order_id = $hash['orderid'];
 			
+			if (empty($_SESSION['orders']['customer'])) throw new Exception();
 			
 			// 本文生成
 			$items = $_SESSION['orders']['items'];
@@ -358,7 +359,7 @@ class Ordermail extends Conndb{
 				$order_info_admin .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
 				$order_info_user .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
 			}
-			$addition = array($order_info_admin, $order_info_user);
+			$addition = array($order_info_admin, $order_info_user, $order_id);
 			
 			/*
 			$order_info .= "┏━━━━━━━┓\n";
@@ -407,7 +408,7 @@ class Ordermail extends Conndb{
 	 * @param {string} name			お客様の名前
 	 * @param {string} to			返信先のメールアドレス
 	 * @param {array} attach		添付ファイル情報
-	 * @param {array} addition		本文への追加[注文メール, 顧客への返信]
+	 * @param {array} addition		本文への追加[注文メール, 顧客への返信, 受注No.]
 	 * @return {boolean} true:送信成功 , false:送信失敗
 	 */
 	protected function send_mail($mail_text, $name, $to, $attach, $addition){
@@ -415,7 +416,7 @@ class Ordermail extends Conndb{
 		mb_internal_encoding("UTF-8");
 		$sendto = _ORDER_EMAIL;						// 送信先
 		$suffix = "【takahama428】"; 				// 件名の後ろに付加するテキスト
-		$subject = "お申し込み".$suffix;			// 件名
+		$subject = "お申し込み - No.".$addition[2].$suffix;			// 件名
 		$msg = "";									// 送信文
 		$boundary = md5(uniqid(rand())); 			// バウンダリー文字（メールメッセージと添付ファイルの境界とする文字列を設定）
 		
@@ -440,7 +441,7 @@ class Ordermail extends Conndb{
 		}
 		
 		// ここで本文をエンコードして設定
-		$msg .= mb_convert_encoding("お名前：　".$name."　様\n".$mail_text.$addition[0], "JIS","UTF-8");
+		$msg .= mb_convert_encoding("受注No.".$addition[2]."\n\nお名前：　".$name."　様\n".$mail_text.$addition[0], "JIS","UTF-8");
 		
 		if(!empty($attach)){		// 添付ファイル情報
 			for($i=0; $i<count($attach); $i++){
