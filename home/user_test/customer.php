@@ -38,7 +38,7 @@ $deli = $conndb->getDeli($me['id']);
 		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
 		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
 		<meta property="fb:app_id" content="1605142019732010" />
-		<title>会員特典 | タカハマライフアート</title>
+		<title>アカウント - TLAメンバーズ | タカハマライフアート</title>
 		<link rel="shortcut icon" href="/icon/favicon.ico" />
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 		<link rel="stylesheet" type="text/css" media="screen" href="./css/common.css" />
@@ -76,7 +76,7 @@ $deli = $conndb->getDeli($me['id']);
 						<div class="off">3％OFF</div>
 						<p class="costomer_rank"> お客様は<a href=""><span class="bodtxt">ブロンズ会員</span></a>です</p>
 						<p>あと5,000円分のご購入でシルバー会員にランクアップ</p>
-						<div class="modal_style" data-featherlight="#fl1"><i class="fa fa-question-circle mr-1" aria-hidden="true"></i>お得な会員特典を見る</div>
+						<button class="btn add_btn" data-featherlight="#fl1">お得な会員特典を見る</button>
 					</div>
 				</div>
 				<div class="lightbox" id="fl1">
@@ -84,7 +84,7 @@ $deli = $conndb->getDeli($me['id']);
 						<div class="modal_window">
 							<h2>会員ランク特典一覧</h2>
 							<div class="sq_bdr">
-								<div class="min_img"><img src="./img/sp_customer_rank_gold.png" width="100%"></div>
+								<p class="min_img"><img src="./img/sp_customer_rank_gold.png" width="100%"></p>
 								<div class="min_space">
 									<h3 class="gold">ゴールド会員</h3>
 									<p>ご注文金額から7%OFF！全て送料無料！</p>
@@ -93,7 +93,7 @@ $deli = $conndb->getDeli($me['id']);
 							</div>
 							<div class="bdrline"></div>
 							<div class="sq_bdr">
-								<div class="min_img"><img src="./img/sp_customer_rank_silver.png" width="100%"></div>
+								<p class="min_img"><img src="./img/sp_customer_rank_silver.png" width="100%"></p>
 								<div class="min_space">
 									<h3 class="silver">シルバー会員</h3>
 									<p>ご注文金額から5%OFF！全て送料無料！</p>
@@ -102,7 +102,7 @@ $deli = $conndb->getDeli($me['id']);
 							</div>
 							<div class="bdrline"></div>
 							<div class="sq_bdr">
-								<div class="min_img"><img src="./img/sp_customer_rank_bronze.png" width="100%"></div>
+								<p class="min_img"><img src="./img/sp_customer_rank_bronze.png" width="100%"></p>
 								<div class="min_space">
 									<h3 class="bronze">ブロンズ会員</h3>
 									<p>ご注文金額から3%OFF！全て送料無料！</p>
@@ -170,9 +170,9 @@ $deli = $conndb->getDeli($me['id']);
 						</tr>
 					</tbody>
 				</table>
-				<a class="btn_or btn" href="./account.php">編集する</a>
+				<button type="button" class="btn_or btn"><a href="./account.php">編集する</a></button>
 				<div class="transition_wrap d-flex justify-content-between align-items-center">
-					<a href="./my_menu.php"><div class="step_prev hoverable waves-effect"><i class="fa fa-chevron-left mr-1"></i>戻る</div></a>
+					<div class="step_prev hoverable waves-effect"><i class="fa fa-chevron-left mr-1"></i>戻る</div>
 				</div>
 
 			</div>

@@ -173,13 +173,6 @@ $deli = $conndb->getDeli($me['id']);
 		<link rel="stylesheet" type="text/css" media="screen" href="./css/common.css" />
 		<link rel="stylesheet" type="text/css" media="screen" href="./css/my_account.css" />
 		
-		<style>
-			.lightbox {
-				display: none;
-			}
-
-		</style>
-		
 	</head>
 
 	<body>
@@ -531,7 +524,7 @@ $deli = $conndb->getDeli($me['id']);
 					</table>
 				</form>
 				<div class="transition_wrap d-flex justify-content-between align-items-center">
-					<a href="./my_menu.php"><div class="step_prev hoverable waves-effect"><i class="fa fa-chevron-left"></i>戻る</div></a>
+					<div class="step_prev hoverable waves-effect"><i class="fa fa-chevron-left"></i>戻る</div>
 				</div>
 			</div>
 		</div>

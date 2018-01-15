@@ -38,7 +38,7 @@ $deli = $conndb->getDeli($me['id']);
 		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
 		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
 		<meta property="fb:app_id" content="1605142019732010" />
-		<title>マイメニュー | タカハマライフアート</title>
+		<title>アカウント - TLAメンバーズ | タカハマライフアート</title>
 		<link rel="shortcut icon" href="/icon/favicon.ico" />
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 		<link rel="stylesheet" type="text/css" media="screen" href="./css/common.css" />
@@ -97,14 +97,14 @@ $deli = $conndb->getDeli($me['id']);
 					<p class="rankname"><img src="/user_test/img/sp_customer_rank_bronze.png" class="rank_img" width="60px">お客様は<a href="customer.php"><span class="bodtxt">ブロンズ会員</span></a>です</p>
 				</div>
 				<div class="button_fld">
-					<div class="button_lef btn">
+					<div class="button_lef">
 						<a href="order_history.php" class="rd_sq_button">
 							<p class="imgblk"><img src="/user_test/img/sp_m_top_icon_history.png" class="btn_img" width="60px"></p>
 							<p class="txt_btn">ご注文履歴</p>
-							<p class="txt_btn"><span>追加・再注文はこちら</span></p>
+							<p class="txt_btn">追加・再注文はこちら</p>
 						</a>
 					</div>
-					<div class="button_rgt btn">
+					<div class="button_rgt">
 						<a href="order_list.php" class="rd_sq_button">
 							<p class="imgblk"><img src="/user_test/img/sp_m_top_icon_pay.png" class="btn_img" width="60px"></p>
 							<p class="txt_btn">お支払い・制作状況</p>
@@ -112,20 +112,27 @@ $deli = $conndb->getDeli($me['id']);
 					</div>
 				</div>
 					<div class="button_fld">
-						<div class="button_lef btn">
+					<div class="button_lef">
 						<a href="account.php" class="rd_sq_button">
 							<p class="imgblk"><img src="/user_test/img/sp_m_top_icon_change.png" class="btn_img" width="60px"></p>
 							<p class="txt_btn">お客様情報変更</p>
 						</a>
 					</div>
-						<div class="button_rgt btn">
+					<div class="button_rgt">
 						<a href="my_img.php" class="rd_sq_button">
 							<p class="imgblk"><img src="/user_test/img/sp_m_top_icon_image.png" class="btn_img" width="60px"></p>
 							<p class="txt_btn">イメージ画像</p>
 						</a>
 					</div>
 					</div>
-
+					<div class="button_fld">
+					<div class="button_ctr">
+						<a href="questionnaire.php" class="rd_sq_button ctr_area">
+							<p class="imgblk"><img src="/user_test/img/sp_m_top_icon_up.png" class="btn_img leftsp" width="60px">アンケート・写真掲載</p>
+							
+						</a>
+					</div>
+					</div>
 				</div>
 			<div class="btnfld">
 				<a href="" class="next_btn"><i class="fa fa-sign-out" aria-hidden="true"></i>ログアウト</a>

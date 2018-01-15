@@ -38,7 +38,7 @@ $deli = $conndb->getDeli($me['id']);
 		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
 		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
 		<meta property="fb:app_id" content="1605142019732010" />
-		<title>追加・再注文フォーム - お申し込みリスト | タカハマライフアート</title>
+		<title>追加・再注文フォーム | タカハマライフアート</title>
 		<link rel="shortcut icon" href="/icon/favicon.ico" />
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 		<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/flick/jquery-ui.css">
@@ -63,25 +63,6 @@ $deli = $conndb->getDeli($me['id']);
 
 				<section>
 					<h2>お申し込みリスト</h2>
-					
-					<table class="order_list">
-						<tbody>
-							<tr class="tabl_ttl">
-								<td>アイテム</td>
-								<td>カラー</td>
-								<td>サイズ</td>
-								<td>枚数</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>5001 5.6オンスハイクオリティーTシャツ</td>
-								<td>オレンジ</td>
-								<td>M</td>
-								<td>10枚</td>
-								<td><button type="button" class="btn btn-outline-danger waves-effect del_btn">削除</button></td>
-							</tr>
-						</tbody>
-					</table>
 
 					<div class="block">
 						<table class="order_list cust">
@@ -112,85 +93,90 @@ $deli = $conndb->getDeli($me['id']);
 
 					<div class="block">
 						<div class="list_ttl">お届け希望日</div>
-						<div class="date_sel">
-							<div id="datepick" class="cale_box">
-								<table class="schedule_calendar fade in" id="id_33137">
-									<caption>
-										<div class="flex-container_wrap justify-between">
-											<div><ins class="sc_year">2018</ins><span>年</span><ins class="sc_month">1</ins><span>月</span></div>
-											<div class="mdl-layout-spacer"></div>
-											<div><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon prev-month" data-upgraded=",MaterialButton,MaterialRipple"><i class="material-icons"></i><span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button><button class="mdl-button mdl-js-button mdl-js-ripple-effect current-month" data-upgraded=",MaterialButton,MaterialRipple"><span>今日</span><span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon next-month" data-upgraded=",MaterialButton,MaterialRipple"><i class="material-icons"></i><span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button></div>
-										</div>
-									</caption>
+						<div class="date_block">
+						<div id="datepicker" class="hasDatepicker">
+							<div class="ui-datepicker-inline ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all date" style="display: block;">
+								<div class="ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-all"><a class="ui-datepicker-prev ui-corner-all" data-handler="prev" data-event="click" title="<前"><span class="ui-icon ui-icon-circle-triangle-w">&lt;前</span></a><a class="ui-datepicker-next ui-corner-all" data-handler="next" data-event="click" title="次>"><span class="ui-icon ui-icon-circle-triangle-e">次&gt;</span></a>
+									<div class="ui-datepicker-title"><span class="ui-datepicker-year">2017</span>年&nbsp;<span class="ui-datepicker-month">12月</span></div>
+								</div>
+								<table class="ui-datepicker-calendar">
 									<thead>
 										<tr>
-											<td class="sun">日</td>
-											<td>月</td>
-											<td>火</td>
-											<td>水</td>
-											<td>木</td>
-											<td>金</td>
-											<td class="sat">土</td>
+											<th scope="col" class="ui-datepicker-week-end"><span title="日曜日">日</span></th>
+											<th scope="col"><span title="月曜日">月</span></th>
+											<th scope="col"><span title="火曜日">火</span></th>
+											<th scope="col"><span title="水曜日">水</span></th>
+											<th scope="col"><span title="木曜日">木</span></th>
+											<th scope="col"><span title="金曜日">金</span></th>
+											<th scope="col" class="ui-datepicker-week-end"><span title="土曜日">土</span></th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td class="restrict off sun pass"><ins>31</ins></td>
-											<td class="restrict off dayoff off"><ins>1</ins></td>
-											<td class="restrict off"><ins>2</ins></td>
-											<td class="restrict off"><ins>3</ins></td>
-											<td class="restrict off"><ins>4</ins></td>
-											<td class="restrict off"><ins>5</ins></td>
-											<td class="restrict off sat"><ins>6</ins></td>
+											<td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td>
+											<td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td>
+											<td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td>
+											<td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td>
+											<td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td>
+											<td class=" undefined" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">1</a></td>
+											<td class=" ui-datepicker-week-end days_blue" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">2</a></td>
 										</tr>
 										<tr>
-											<td class="restrict off sun"><ins>7</ins></td>
-											<td class="restrict off dayoff off"><ins>8</ins></td>
-											<td class="restrict"><ins>9</ins></td>
-											<td class="restrict today">
-												<div><ins>10</ins></div>
-											</td>
-											<td class="restrict"><ins>11</ins></td>
-											<td class="ripplable"><ins>12</ins></td>
-											<td class="ripplable off sat"><ins>13</ins></td>
+											<td class=" ui-datepicker-week-end days_red" title="休日" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">3</a></td>
+											<td class=" undefined" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">4</a></td>
+											<td class=" undefined" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">5</a></td>
+											<td class=" undefined" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">6</a></td>
+											<td class=" undefined" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">7</a></td>
+											<td class=" undefined" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">8</a></td>
+											<td class=" ui-datepicker-week-end days_blue" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">9</a></td>
 										</tr>
 										<tr>
-											<td class="ripplable off sun"><ins>14</ins></td>
-											<td class="ripplable"><ins>15</ins></td>
-											<td class="ripplable"><ins>16</ins></td>
-											<td class="ripplable"><ins>17</ins></td>
-											<td class="ripplable"><ins>18</ins></td>
-											<td class="ripplable"><ins>19</ins></td>
-											<td class="ripplable off sat"><ins>20</ins></td>
+											<td class=" ui-datepicker-week-end days_red" title="休日" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">10</a></td>
+											<td class=" undefined" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">11</a></td>
+											<td class=" undefined" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">12</a></td>
+											<td class=" undefined" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">13</a></td>
+											<td class=" ui-datepicker-days-cell-over undefined ui-datepicker-current-day ui-datepicker-today" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default ui-state-highlight ui-state-active" href="#">14</a></td>
+											<td class=" undefined" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">15</a></td>
+											<td class=" ui-datepicker-week-end days_blue" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">16</a></td>
 										</tr>
 										<tr>
-											<td class="ripplable off sun"><ins>21</ins></td>
-											<td class="ripplable"><ins>22</ins></td>
-											<td class="ripplable"><ins>23</ins></td>
-											<td class="ripplable"><ins>24</ins></td>
-											<td class="ripplable"><ins>25</ins></td>
-											<td class="ripplable"><ins>26</ins></td>
-											<td class="ripplable off sat"><ins>27</ins></td>
+											<td class=" ui-datepicker-week-end days_red" title="休日" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">17</a></td>
+											<td class=" undefined" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">18</a></td>
+											<td class=" undefined" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">19</a></td>
+											<td class=" undefined" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">20</a></td>
+											<td class=" undefined" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">21</a></td>
+											<td class=" undefined" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">22</a></td>
+											<td class=" ui-datepicker-week-end days_blue" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">23</a></td>
 										</tr>
 										<tr>
-											<td class="ripplable off sun"><ins>28</ins></td>
-											<td class="ripplable"><ins>29</ins></td>
-											<td class="ripplable"><ins>30</ins></td>
-											<td class="ripplable"><ins>31</ins></td>
-											<td class="ripplable yet"><ins>1</ins></td>
-											<td class="ripplable yet"><ins>2</ins></td>
-											<td class="ripplable off sat yet"><ins>3</ins></td>
+											<td class=" ui-datepicker-week-end days_red" title="休日" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">24</a></td>
+											<td class=" undefined" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">25</a></td>
+											<td class=" undefined" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">26</a></td>
+											<td class=" days_red" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">27</a></td>
+											<td class=" days_red" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">28</a></td>
+											<td class=" days_red" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">29</a></td>
+											<td class=" ui-datepicker-week-end days_blue" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">30</a></td>
+										</tr>
+										<tr>
+											<td class=" ui-datepicker-week-end days_red" title="休日" data-handler="selectDay" data-event="click" data-month="11" data-year="2017"><a class="ui-state-default" href="#">31</a></td>
+											<td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td>
+											<td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td>
+											<td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td>
+											<td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td>
+											<td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td>
+											<td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td>
 										</tr>
 									</tbody>
 								</table>
 							</div>
-							<p class="note"><span class="red_mark">※</span>特急料金がかかります。(翌日仕上げ)</p>
-							<input type="checkbox" value="1" name="" id="">
-							<label for="front">お届け先が、北海道、九州、沖縄、東京離島、島根隠岐郡のいずれかとなる場合はチェックして下さい。</label>
-							<p class="time_sel">お時間帯の指定</p>
-							<div class="form-group">
-								<div class="btn-group">
-									<select id="" class="down_cond">
+						</div>
+						<p class="note"><span class="red_mark">※</span>特急料金がかかります。(翌日仕上げ)</p>
+						<input type="checkbox" value="1" name="" id="">
+						<label for="front">お届け先が、北海道、九州、沖縄、東京離島、島根隠岐郡のいずれかとなる場合はチェックして下さい。</label>
+						<p class="time_sel">お時間帯の指定</p>
+						<div class="form-group">
+							<div class="btn-group">
+								<select id="" class="down_cond">
 									<option value="" selected="selected" rel="">午前中</option>
 									<option value="" selected="selected" rel="">14:00-16:00</option>
 									<option value="" selected="selected" rel="">16:00-18:00</option>
@@ -198,11 +184,11 @@ $deli = $conndb->getDeli($me['id']);
 									<option value="" selected="selected" rel="">19:00-21:00</option>
 									<option value="" selected="selected" rel="">指定なし</option>
 								</select>
-								</div>
 							</div>
-							<div class="deli_date">
-								ご希望納期：<span>-</span>月<span>-</span>日
-							</div>
+						</div>
+						<div class="deli_time">
+							ご希望納期：<span>10</span>月<span>27</span>日
+						</div>
 						</div>
 					</div>
 
@@ -231,27 +217,25 @@ $deli = $conndb->getDeli($me['id']);
 					</div>
 
 					<div class="add_cha block">
-						<button class="btn add_btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-angle-down mr-1" aria-hidden="true"></i>お届け先を変更する</button>
+						<button class="btn add_btn"type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-angle-down mr-1" aria-hidden="true"></i>お届け先を変更する</button>
 					</div>
 
 					<div class="collapse" id="collapseExample">
-
-						<div class="cha_addr">
-							<ul>
-								<li>
-									<p>〒<input type="text" name="zipcode" class="forZip" id="zipcode1" onChange="AjaxZip3.zip2addr(this,'','addr0','addr1');" placeholder="郵便番号" /></p>
-									<p><input type="text" name="addr0" id="addr0" placeholder="都道府県" maxlength="4" /></p>
-									<p><input type="text" name="addr1" id="addr1" placeholder="葛飾区西新小岩1-23-456" maxlength="56" class="restrict" /></p>
-									<p><input type="text" name="addr2" id="addr2" placeholder="マンション・ビル名" maxlength="32" class="restrict" /></p>
-								</li>
-							</ul>
+						
+							<div class="cha_addr">
+								<ul>
+									<li>
+										<p>〒<input type="text" name="zipcode" class="forZip" id="zipcode1" onChange="AjaxZip3.zip2addr(this,'','addr0','addr1');" placeholder="郵便番号" /></p>
+										<p><input type="text" name="addr0" id="addr0"  placeholder="都道府県" maxlength="4" /></p>
+										<p><input type="text" name="addr1" id="addr1"  placeholder="葛飾区西新小岩1-23-456" maxlength="56" class="restrict" /></p>
+										<p><input type="text" name="addr2" id="addr2"  placeholder="マンション・ビル名" maxlength="32" class="restrict" /></p>
+									</li>
+								</ul>
+							</div>
 						</div>
-						<span class="ok_button">更新</span>
-						<span class="cancel_button">Cancel</span>
-					</div>
-
-
-
+					
+					
+					
 
 					<div class="block">
 						<div class="list_ttl">メッセージ</div>
@@ -287,8 +271,6 @@ $deli = $conndb->getDeli($me['id']);
 		<script src="//ajaxzip3.github.io/ajaxzip3.js" charset="utf-8"></script>
 		<script type="text/javascript" src="./js/account.js"></script>
 		<script src="./js/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="//doozor.bitbucket.io/calendar/datepick_calendar.js"></script>
-		<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 	</body>
 
 	</html>

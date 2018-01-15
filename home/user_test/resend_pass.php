@@ -47,8 +47,7 @@ if($_SERVER['REQUEST_METHOD']!='POST'){
 		<title>パスワードを忘れた方 ｜ オリジナルTシャツが早い、タカハマライフアート</title>
 		<link rel="shortcut icon" href="/icon/favicon.ico">
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
-		<link rel="stylesheet" type="text/css" media="screen" href="./css/common.css" />
-		<link rel="stylesheet" type="text/css" media="screen" href="./css/my_account.css" />
+		<link rel="stylesheet" type="text/css" media="screen" href="./css/my_account_responsive.css" />
 
 	</head>
 
@@ -77,16 +76,14 @@ if($_SERVER['REQUEST_METHOD']!='POST'){
 									<td colspan="2">
 										<input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
 										<input type="hidden" name="resend" value="1">
-										<button type="button" class="btn btn-info send_pass">送信</button>
+										<p><span class="ok_button">送信</span></p>
 									</td>
 								</tr>
 							</tfoot>
 							<tbody>
 								<tr>
-									<th class="center_posi">メールアドレス</th>
-								</tr>
-								<tr>
-									<td class="center_posi"><input type="text" name="email" value="<?php echo $_POST['email'];?>"><br><ins class="err"> <?php echo $err['email']; ?></ins></td>
+									<th>メールアドレス</th>
+									<td><input type="text" name="email" value="<?php echo $_POST['email'];?>"><br><ins class="err"> <?php echo $err['email']; ?></ins></td>
 								</tr>
 							</tbody>
 						</table>
