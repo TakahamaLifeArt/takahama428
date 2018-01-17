@@ -13,7 +13,6 @@
 	
 -------------------------------------------------------------- */
 
-
 /*		common
 ===============================================================*/
 
@@ -45,39 +44,65 @@ td {
 	margin: 0;
 	padding: 0;
 }
+
 p {
 	margin: 0 0 10px;
 	font-size: 16px;
 }
+
 ul.pan {
 	height: auto;
 	margin: 20px 5px 20px 5px;
 	font-size: 0.8em;
 }
+
 ul.pan li {
 	display: inline;
 	padding-right: 4px;
 	line-height: 2em;
 }
+
 ul.pan li:first-child:before {
 	content: "";
 	padding-right: 0;
 }
+
 ul.pan li:before {
 	content: ">";
 	padding-right: 10px;
 	vertical-align: middle;
 }
-ul.pan li a, ul.pan li span {
+
+ul.pan li a,
+ul.pan li span {
 	vertical-align: middle;
 	text-decoration: none;
 }
+
+ul.ato {
+	margin-left: 20px;
+}
+
+ul.ato li {
+	list-style-type: disc;
+	font-weight: bold;
+}
+
+ul.ato p {
+	font-size: 14px;
+}
+
+ul.ato .note {
+	font-size: 12px;
+}
+
 #guide_top,
 #payment,
 #discount,
 #express {
 	margin-bottom: 50px;
 }
+
 #container {
 	display: block;
 	width: 100%;
@@ -142,6 +167,11 @@ h4 {
 	font-size: 16px;
 }
 
+.heading4 {
+	margin: 20px 0px 15px 0px;
+}
+
+
 .contents .inner {
 	clear: both;
 	overflow: hidden;
@@ -156,30 +186,37 @@ h4 {
 .contents .inner p span {
 	color: #dc0000;
 }
+
 dl.list dt {
 	clear: left;
 	float: left;
 	width: 7em;
 	font-weight: bold;
 }
-dd, dt {
+
+dd,
+dt {
 	line-height: 1.42857143;
 }
+
 dl.list {
 	margin: 0 10px 20px 20px;
 }
+
 dl.list dd {
 	padding-left: 7em;
 	margin-bottom: 1em;
 	color: #333;
 	border-bottom: 1px dotted #d8d8d8;
 }
+
 dl.list dt {
 	clear: left;
 	float: left;
 	width: 7em;
 	font-weight: bold;
 }
+
 table {
 	background-color: transparent;
 	border-spacing: 0;
@@ -191,21 +228,42 @@ table {
 	border-spacing: 0;
 	border-collapse: collapse;
 }
+
 thead th {
 	text-align: center;
 }
-td, th {
+
+td,
+th {
 	padding: 0;
 }
-th, td {
+
+th,
+td {
 	padding: 2px 5px;
 	vertical-align: middle;
 }
-caption, th {
+
+caption,
+th {
 	text-align: left;
 	font-weight: normal;
 }
-address, button, caption, cite, code, dfn, em, input, optgroup, option, select, textarea, th, var {
+
+address,
+button,
+caption,
+cite,
+code,
+dfn,
+em,
+input,
+optgroup,
+option,
+select,
+textarea,
+th,
+var {
 	font: inherit;
 }
 
@@ -457,6 +515,7 @@ ul.sub_menu li:first-child {
 .note span:first-child {
 	color: #dc0000;
 }
+
 .note {
 	padding-left: 1em;
 	text-indent: -1em;
@@ -495,8 +554,8 @@ ul.sub_menu li:first-child {
 		font-size: 20px;
 	}
 	p {
-	margin: 0 0 10px;
-	font-size: 14px;
-}
-	
+		margin: 0 0 10px;
+		font-size: 14px;
+	}
+
 }
