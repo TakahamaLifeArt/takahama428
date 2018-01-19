@@ -1023,6 +1023,10 @@ footer .footer_tel_fax_2 .orange_btn:hover {
 	}
 }
 
+/* 数値測定 */
+.check{
+	display: block;
+}
 
 /* SNS */
 

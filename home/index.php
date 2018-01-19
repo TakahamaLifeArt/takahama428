@@ -68,7 +68,6 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 						<img class="img-fluid" id="pc_slide" src="/common/img/home/main/top_slide_record.jpg" alt="First slide" width="100%">
 						<img class="img-fluid" id="sp_slide" src="/common/img/home/main/sp_top_slide_record.jpg" alt="First slide" width="100%">
 						<div class="carousel-caption">
-							<h3></h3>
 							<a href="/order/"><button type="button" class="order_btn"><img src="/common/img/home/main/sp_go_icon.png" width="40px" style="padding-right: 12px;padding-bottom: 5px;">お申し込み</button></a>
 						</div>
 					</div>
@@ -77,8 +76,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 						<img class="img-fluid" id="pc_slide" src="/common/img/home/main/top_slide_newyear.jpg" alt="First slide" width="100%">
 						<img class="img-fluid" id="sp_slide" src="/common/img/home/main/sp_top_slide_newyear.jpg" alt="First slide" width="100%">
 						<div class="carousel-caption">
-							<h3></h3>
-							<a href="/campaign/towel/noshi.php"><button type="button" class="det_btn">詳細はこちら</button></a>
+							<a href="/campaign/towel/noshi.php" ><button type="button" class="det_btn">詳細はこちら</button></a>
 						</div>
 					</div>
 					<!--
@@ -122,18 +120,18 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 
 				<div class="row outer top_3_wrap">
 					<div class="col">
-						<a href="/delivery/">
+						<a href="/delivery/" class="check">
 							<button type="button" class="btn top_3 top_item_flex">
-						    <div id="date"><p><?php echo $fin['Month'];?>/<?php echo $fin['Day'];?><span class="min_txt">(<?php echo $fin['weekname'];?>)</span></p></div>
-						    <p class="top3_bu_txt">今注文すると<br><span class="big_font">この日に届く</span></p>
-				      </button>
+								<div id="date"><p><?php echo $fin['Month'];?>/<?php echo $fin['Day'];?><span class="min_txt">(<?php echo $fin['weekname'];?>)</span></p></div>
+								<p class="top3_bu_txt">今注文すると<br><span class="big_font">この日に届く</span></p>
+							</button>
 						</a>
 						<a href="/delivery/">
 							<p class="top3_txt"><img src="/common/img/global/go_btm_blue.png">お届け日・地域変更はこちら</p>
 						</a>
 					</div>
 					<div class="col">
-						<a href="/items/category.php">
+						<a href="/items/category.php" class="check">
 							<button type="button" class="btn top_3 top_item_flex">
 								<div class="top_3_img"><img src="/common/img/home/main/sp_top_three_item.png" width="30%"></div>
 								<p class="top3_bu_txt">200種類以上！<br><span class="big_font">アイテム</span></p>
@@ -144,7 +142,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 						</a>
 					</div>
 					<div class="col">
-						<a href="/price/estimate.php">
+						<a href="/price/estimate.php" class="check">
 							<button type="button" class="btn top_3 top_item_flex">
 								<div class="top_3_img"><img src="/common/img/home/main/sp_top_three_estimate.png" width="30%"></div>
 								<p class="top3_bu_txt">かんたん10秒<br><span class="big_font">見積もり</span></p>
