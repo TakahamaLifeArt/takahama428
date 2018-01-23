@@ -223,6 +223,7 @@ if( empty($_SESSION['me']) ){
 					</div>
 				</div>
 			</div>
+			</div>
 			<div class="btn-group dropdown global-menu" role="group">
 				<button id="btnGroupDrop1" type="button" class="btn btn-info_glnavi" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				注文ナビ
