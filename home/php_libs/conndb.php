@@ -292,6 +292,35 @@ class Conndb extends HTTP {
 	
 	
 	/*
+	* アイテムタグ一覧 - API3
+	* @id			カテゴリID, カテゴリー指定なしの場合は０
+	* @tag			条件絞り込み用の複数のタグIDの配列
+	* @return タグ一覧の配列
+	*/
+	public function itemTag($id=0, $tag=array()){
+		$param = array();
+		if (empty($id)) {
+			$endPoint = '/itemtags/';
+		} else {
+			$endPoint = '/itemtags/'.$id;
+		}
+		if (!empty($tag)){
+			for ($i=0; $i<count($tag); $i++) {
+				$param['args'][] = $tag[$i];
+			}
+		}
+		$headers = [
+			'X-TLA-Access-Token:'._ACCESS_TOKEN,
+			'Origin:'._DOMAIN
+			];
+		parent::setURL(_API_3.$endPoint);
+		$data = parent::request('GET', $param, $headers);
+		parent::setURL(_API);
+		return $data;
+	}
+	
+	
+	/*
 	*	カテゴリーの商品情報
 	*	@categoryid		カテゴリーID
 	*	@mode			id:カテゴリーID、code:カテゴリーキー、list:カテゴリーIDで全サイズのリスト
@@ -387,6 +416,28 @@ class Conndb extends HTTP {
 		$data = unserialize($res);
 		return $data;
 	}
+	
+	
+	
+	/*
+	*	プリント位置画像の相対パスのフォルダー名をを返す
+	*	@curitemid		ID
+	*	@mode			id:アイテムID(default), code:アイテムコード, pos:プリントポジションID
+	*	@return			[id: position_id, category:category_type, item:item_type, pos:position_type]　idがNULLのときは全て
+	*/
+	public function getPrintPosition($curitemid, $mode='id'){
+		$res = parent::request('POST', array('act'=>'position', 'itemid'=>$curitemid, 'mode'=>$mode));
+		$data = unserialize($res);
+		return $data;
+	}
+	
+	
+	// テスト用
+//	public function getPattern($posid) {
+//		$res = parent::request('POST', array('act'=>'pattern', 'posid'=>$posid));
+//		$data = unserialize($res);
+//		return $data;
+//	}
 	
 	
 	

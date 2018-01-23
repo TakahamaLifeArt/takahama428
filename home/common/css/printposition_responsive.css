@@ -13,6 +13,7 @@ Log		     :
 2014-10-12 スウェットにプリント位置の追加
 2016-11-17 エプロンの絵型を追加 apron_pocket_left, apron_pocket_right, apron_suso
 2017-11-13 絵型追加に伴う更新
+2017-12-27 プリント箇所追加に伴う更新
 
 -------------------------------------------------------------- */
 
@@ -688,7 +689,7 @@ Log		     :
 }
 .trainer_sodeguti_left{
 	position: absolute;
-	top: 127px;
+	top: 111px;
 	left: 140px;
 	cursor: pointer;
 }

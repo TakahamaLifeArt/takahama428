@@ -68,7 +68,7 @@
 #btnOrder {
 	margin: 10px auto;
 	display: block;
-	background: url(../../common/img/order_btn_0.png) no-repeat 0px 0px;
+	background: url(/common/img/order_btn_0.png) no-repeat 0px 0px;
 	height: 101px;
 	width: 308px;
 	padding-left: 85px;
@@ -198,7 +198,7 @@
 		background: #fff;
 	}
 	#item_title h2 span#item_point {
-		background: url(../../common/img/ribbon_point.png) no-repeat;
+		background: url(/common/img/ribbon_point.png) no-repeat;
 		color: #fff;
 		font-size: 80%;
 		width: 129px;
@@ -281,7 +281,7 @@
 		text-align: center;
 		line-height: 85px;
 		color: #fff;
-		background-image: url(../../common/img/calstart_btn.png);
+		background-image: url(/common/img/calstart_btn.png);
 		background-repeat: no-repeat;
 		background-position: top left;
 		margin-left: 5px;
@@ -296,7 +296,7 @@
 		text-align: center;
 		line-height: 67px;
 		color: #fff;
-		background-image: url(../../common/img/claim_btn.png);
+		background-image: url(/common/img/claim_btn.png);
 		background-repeat: no-repeat;
 		background-position: top left;
 		margin-left: 5px;
@@ -320,7 +320,7 @@
 		line-height: 25px;
 		font-size: 12px;
 		color: #fff;
-		background-image: url(../../common/img/start_btn.png);
+		background-image: url(/common/img/start_btn.png);
 		background-repeat: no-repeat;
 		background-position: top left;
 	}
@@ -340,10 +340,10 @@
 		text-decoration: none;
 	}
 	h2#print_side {
-		background: url(../../common/img/print_icon_side.png) no-repeat;
+		background: url(/common/img/print_icon_side.png) no-repeat;
 	}
 	h2#design_side {
-		background: url(../../common/img/pen_icon_side.png) no-repeat;
+		background: url(/common/img/pen_icon_side.png) no-repeat;
 	}
 	#printposition {
 		padding: 20px 0 20px;
@@ -484,15 +484,15 @@
 	}
 	#contents-lv2 h2#design,
 	.contents-lv2 h2#design {
-		background: url(../../common/img/pen_icon.png) no-repeat;
+		background: url(/common/img/pen_icon.png) no-repeat;
 	}
 	#contents-lv2 h2#recommend,
 	.contents-lv2 h2#recommend {
-		background: url(../../common/img/love_icon.png) no-repeat;
+		background: url(/common/img/love_icon.png) no-repeat;
 	}
 	#contents-lv2 h2#voice,
 	.contents-lv2 h2#voice {
-		background: url(../../common/img/voice_icon.png) no-repeat;
+		background: url(/common/img/voice_icon.png) no-repeat;
 	}
 	p.mores {
 		padding-top: 10px;
@@ -500,7 +500,7 @@
 		text-align: right;
 	}
 	span.more {
-		background: url(../../common/img/more_orange.png) no-repeat;
+		background: url(/common/img/more_orange.png) no-repeat;
 		padding-left: 20px;
 		height: 14px;
 		line-height: 14px;
@@ -548,7 +548,7 @@
 		margin-left: 0;
 	}
 	.ribbon {
-		background: url(../../common/img/ribbon.png) no-repeat;
+		background: url(/common/img/ribbon.png) no-repeat;
 		height: 32px;
 		width: 191px;
 		color: #fff;
@@ -585,7 +585,7 @@
 	}
 	li.dotted {
 		height: 3px;
-		background: url(../../common/img/dotted.png) repeat-x;
+		background: url(/common/img/dotted.png) repeat-x;
 		margin: 10px 0;
 	}
 	li.detail {
@@ -602,7 +602,7 @@
 		line-height: 25px;
 		font-size: 12px;
 		color: #fff;
-		background-image: url(../img/detail_blue_btn.png);
+		background-image: url(/items/img/detail_blue_btn.png);
 		background-repeat: no-repeat;
 		background-position: top left;
 	}
@@ -614,7 +614,7 @@
 		line-height: 25px;
 		font-size: 12px;
 		color: #fff;
-		background-image: url(../img/detail_blue_btn_s.png);
+		background-image: url(/items/img/detail_blue_btn_s.png);
 		background-repeat: no-repeat;
 		background-position: top left;
 		float: left;
@@ -1027,7 +1027,7 @@
 	}
 	div.dotted {
 		height: 3px;
-		background: url(../../common/img/dotted.png) repeat-x;
+		background: url(/common/img/dotted.png) repeat-x;
 		margin-bottom: 5px;
 	}
 	ul#item_image_notes {
@@ -1163,7 +1163,7 @@
 		font-size: 22px;
 	}
 	#orderbtn_wrap_up {
-		background-image: url(../../common/img/operator.png);
+		background-image: url(/common/img/operator.png);
 		background-repeat: no-repeat;
 		background-position: 450px 0px;
 	}
@@ -1176,7 +1176,7 @@
 	#btnOrder_up {
 		margin: 10px auto;
 		display: block;
-		background: url(../../common/img/order_btn_0.png) no-repeat 0px 0px;
+		background: url(/common/img/order_btn_0.png) no-repeat 0px 0px;
 		height: 101px;
 		width: 308px;
 		padding-left: 85px;
@@ -1195,7 +1195,7 @@
 		text-align: center;
 		line-height: 85px;
 		color: #fff;
-		background-image: url(../../common/img/calstart_btn.png);
+		background-image: url(/common/img/calstart_btn.png);
 		background-repeat: no-repeat;
 		background-position: top left;
 		margin-left: 5px;
@@ -1214,7 +1214,7 @@
 	}
 	h2#info_side,
 	h2#review_side {
-		background: url(../../common/img/info_icon_side.png) no-repeat;
+		background: url(/common/img/info_icon_side.png) no-repeat;
 	}
 	h2#review_side,
 	h2#print_side,
@@ -1235,7 +1235,7 @@
 		clear: both;
 	}
 	h2#size {
-		background: url(../../common/img/size_icon.png) no-repeat;
+		background: url(/common/img/size_icon.png) no-repeat;
 		margin-top: 30px;
 	}
 	#contents-lv2 h2,
@@ -1249,7 +1249,7 @@
 		margin-bottom: 15px;
 	}
 	h2#printarea {
-		background: url(../../common/img/print_icon.png) no-repeat;
+		background: url(/common/img/print_icon.png) no-repeat;
 		margin-top: 30px;
 	}
 	#contents-lv2 p,
@@ -1309,7 +1309,7 @@
 		clear: both;
 	}
 	a.up_icon {
-		background: url(../../common/img/up.png) no-repeat;
+		background: url(/common/img/up.png) no-repeat;
 		padding-left: 14px;
 		color: #999;
 		text-decoration: underline;
@@ -1327,7 +1327,7 @@
 	}
 	#contents-lv2 h2#howmuch,
 	.contents-lv2 h2#howmuch {
-		background: url(../../common/img/yen_icon.png) no-repeat;
+		background: url(/common/img/yen_icon.png) no-repeat;
 		margin-top: 30px;
 	}
 	#hmguide {
@@ -1335,7 +1335,7 @@
 		text-indent: 5px;
 	}
 	#hmguide span {
-		background: url(../../common/img/line_cul.png) no-repeat bottom right;
+		background: url(/common/img/line_cul.png) no-repeat bottom right;
 	}
 	div#cul {
 		border: 1px solid #DBDBDB;
@@ -1356,7 +1356,7 @@
 		border-radius: 3px;
 	}
 	#price_wrap h3.stepone {
-		background: url(../../common/img/one.png) no-repeat;
+		background: url(/common/img/one.png) no-repeat;
 		height: 27px;
 		padding-left: 30px;
 		margin-bottom: 20px;
@@ -1405,7 +1405,7 @@
 		text-align: left;
 	}
 	#pos_wrap h3.steptwo {
-		background: url(../../common/img/two.png) no-repeat;
+		background: url(/common/img/two.png) no-repeat;
 		padding-left: 30px;
 		margin-bottom: 20px;
 	}
@@ -1413,7 +1413,7 @@
 		text-align: right;
 	}
 	a.info_icon {
-		background: url(../../common/img/question.png) no-repeat;
+		background: url(/common/img/question.png) no-repeat;
 		padding: 2px 0 2px 14px;
 		color: #999;
 		text-decoration: underline;
@@ -1444,7 +1444,7 @@
 		border: 2px solid #4e2210;
 	}
 	border- #printfee_wrap h3.stepthree {
-		background: url(../../common/img/three.png) no-repeat;
+		background: url(/common/img/three.png) no-repeat;
 	}
 	#printfee_wrap table {
 		margin-top: 40px;
@@ -1490,18 +1490,18 @@
 	}
 	p#orderguide span {
 		color: #C43333;
-		background: url(../../common/img/line_order.png) no-repeat 0 1.2em;
+		background: url(/common/img/line_order.png) no-repeat 0 1.2em;
 		padding-bottom: .5em;
 	}
 	#orderbtn_wrap {
 		height: 140px;
-		background-image: url(../../common/img/operator.png);
+		background-image: url(/common/img/operator.png);
 		background-repeat: no-repeat;
 		background-position: 450px 0px;
 	}
 
 	#infoll {
-		background: url(../../common/img/info_ll.png);
+		background: url(/common/img/info_ll.png);
 		margin: 20px 0;
 		padding: 105px 0 20px 190px;
 		background-repeat: no-repeat;
@@ -1512,7 +1512,7 @@
 		height: 35px;
 		width: 527px;
 		text-align: center;
-		background-image: url(../../common/img/mail_btnll.png);
+		background-image: url(/common/img/mail_btnll.png);
 		background-repeat: no-repeat;
 		background-position: top left;
 	}
@@ -1620,7 +1620,7 @@
 
 	div.dotted {
 		height: 3px;
-		background: url(../../common/img/dotted.png) repeat-x;
+		background: url(/common/img/dotted.png) repeat-x;
 		margin-bottom: 5px;
 	}
 	ul#item_image_notes {
@@ -1799,14 +1799,14 @@
 	}
 	h2#info_side,
 	h2#review_side {
-		background: url(../../common/img/info_icon_side.png) no-repeat;
+		background: url(/common/img/info_icon_side.png) no-repeat;
 	}
 	h2#size {
-		background: url(../../common/img/size_icon.png) no-repeat;
+		background: url(/common/img/size_icon.png) no-repeat;
 		margin-top: 30px;
 	}
 	h2#printarea {
-		background: url(../../common/img/print_icon.png) no-repeat;
+		background: url(/common/img/print_icon.png) no-repeat;
 		margin-top: 30px;
 	}
 	#contents-lv2 h2,
@@ -1972,7 +1972,7 @@
 		clear: both;
 	}
 	a.up_icon {
-		background: url(../../common/img/up.png) no-repeat;
+		background: url(/common/img/up.png) no-repeat;
 		padding-left: 14px;
 		color: #999;
 		text-decoration: underline;
@@ -2013,7 +2013,7 @@
 	}
 	#contents-lv2 h2#howmuch,
 	.contents-lv2 h2#howmuch {
-		background: url(../../common/img/yen_icon.png) no-repeat;
+		background: url(/common/img/yen_icon.png) no-repeat;
 		margin-top: 30px;
 	}
 	#hmguide {
@@ -2022,7 +2022,7 @@
 		text-indent: 5px;
 	}
 	#hmguide span {
-		background: url(../../common/img/line_cul.png) no-repeat bottom right;
+		background: url(/common/img/line_cul.png) no-repeat bottom right;
 	}
 	div#cul {
 		border: none;
@@ -2076,14 +2076,14 @@
 		min-width: 30px;
 	}
 	#price_wrap h3.stepone {
-		background: url(../../common/img/one.png) no-repeat;
+		background: url(/common/img/one.png) no-repeat;
 		transform: scale(0.9, 0.9);
 		line-height: 27px;
 		text-indent: 30px;
 		height: 27px;
 	}
 	a.info_icon {
-		background: url(../../common/img/question.png) no-repeat;
+		background: url(/common/img/question.png) no-repeat;
 		color: #999;
 		text-decoration: underline;
 		transform: scale(1.2, 1.2);
@@ -2242,7 +2242,7 @@
 		display: block;
 		height: 2.3em;
 		text-align: center;
-		background-image: url(../../common/img/mail_btnll.png);
+		background-image: url(/common/img/mail_btnll.png);
 		background-repeat: no-repeat;
 		background-size: 70%;
 		position: relative;
@@ -2302,7 +2302,7 @@
 		padding-left: 15px;
 	}
 	a.info_icon {
-		background: url(../../common/img/question.png) no-repeat;
+		background: url(/common/img/question.png) no-repeat;
 		color: #999;
 		text-decoration: underline;
 		transform: scale(1.2, 1.2);
@@ -2495,7 +2495,7 @@
 	#btnOrder_up {
 		margin: 10px auto;
 		display: block;
-		background: url(../../common/img/order_btn_0.png) no-repeat 0px 0px;
+		background: url(/common/img/order_btn_0.png) no-repeat 0px 0px;
 		height: 101px;
 		width: 308px;
 		padding-left: 85px;
@@ -2511,7 +2511,7 @@
 		text-align: center;
 		line-height: 85px;
 		color: #fff;
-		background-image: url(../../common/img/calstart_btn.png);
+		background-image: url(/common/img/calstart_btn.png);
 		background-repeat: no-repeat;
 		background-position: top left;
 		/*margin-left:5px;*/
@@ -2535,7 +2535,7 @@
 		text-align: center;
 		line-height: 67px;
 		color: #fff;
-		background-image: url(../../common/img/claim_btn.png);
+		background-image: url(/common/img/claim_btn.png);
 		background-repeat: no-repeat;
 		background-position: top left;
 		margin-left: 5px;
@@ -2646,7 +2646,7 @@
 		display: block;
 		height: 1.5em;
 		text-align: center;
-		background-image: url(../../common/img/mail_btnll.png);
+		background-image: url(/common/img/mail_btnll.png);
 		background-repeat: no-repeat;
 		background-size: 40%;
 		position: relative;
@@ -2689,7 +2689,7 @@
 		margin: 0 auto;
 	}
 	.ps1 {
-		background-image: url(../../common/img/selectimg.png);
+		background-image: url(/common/img/selectimg.png);
 		background-repeat: no-repeat;
 		background-position: 220px 30px;
 		background-size: 40%;

@@ -112,7 +112,7 @@ class PageInfo extends Conndb {
 	
 	/*
 	 * 商品一覧ページの情報を返す
-	 * @id		カテゴリID
+	 * @id		カテゴリID | タグID
 	 * @tag		タグの配列
 	 * @mode	@idの種類'  category', 'tag'
 	 * @sort	並び順
@@ -122,9 +122,9 @@ class PageInfo extends Conndb {
 	 */
 	public function getCategoryInfo($id, $tag=null, $mode='category', $sort='index', $limit=null){
 		// 商品情報を取得
-		$conn = new Conndb();
-		$data = $this->itemOf($id, $tag, $mode, $limit);
 
+		$data = $this->itemOf($id, $tag, $mode, $limit);
+		
 		$tmp = array();
 		$res = array();
 		$cnt = count($data);
@@ -149,12 +149,6 @@ class PageInfo extends Conndb {
 			$tmp[$idx]['row'] = $data[$i]['item_row'];
 			$tmp[$idx]['oz'] = $data[$i]['oz'];
 			$tmp[$idx]['item_code'] = $code;
-
-			// タグ
-			$tmp[$idx]['tag'] = $data[$i]['tag'];
-
-			// ブランドタグ
-			$tmp[$idx]['brand_tag'] = $data[$i]['brandtag_id'];
 
 			// アイテムレビュー
 			$review_data = $this->getItemReview(array('sort'=>'post', 'itemid'=>$data[$i]['item_id'], 'nodata'=>'1'));
@@ -215,18 +209,6 @@ class PageInfo extends Conndb {
 
 		return $res;
 	}
-
-
-	/*
-	*	ソート（廃止）
-	*
-	function sort_asc($a,$b){
-		return ($a["cost"] - $b["cost"]);
-	}
-	function sort_desc($a,$b){
-		return ($b["cost"] - $a["cost"]);
-	}
-	*/
 
 
 	/*
@@ -445,7 +427,7 @@ if(isset($_REQUEST['act'])){
 	$category_selector .= '</select>';
 	
 	$data = $pageinfo->itemList();
-	$curitemid = $data[0]['id'];	
+	$curitemid = $data[0]['id'];
 	
 	$files = $pageinfo->positionFor($curitemid);
 	// 見積り計算フォームのプリント位置指定
@@ -605,14 +587,14 @@ if(isset($_REQUEST['act'])){
 			
 			// カラー数、最低価格
 			$itemcode = $param['itemcode'][$t];
-			$pageinfo = $pageinfo->itemPageInfo($itemcode, 'code');
+			$info = $pageinfo->itemPageInfo($itemcode, 'code');
 			
-			$res[$itemcode]['item_name'] = $pageinfo['item_name'];
-			$res[$itemcode]['colors'] = $pageinfo['colors'];
-			$tes[$itemcode]['sizes'] = $pageinfo['sizes'];
-			$res[$itemcode]['minprice'] = number_format($pageinfo['mincost']);
-			$res[$itemcode]['initcolor'] = $pageinfo['initcolor'];
-			$tmpes[$itemcode]['features'] = $pageinfo['caption'];
+			$res[$itemcode]['item_name'] = $info['item_name'];
+			$res[$itemcode]['colors'] = $info['colors'];
+			$tes[$itemcode]['sizes'] = $info['sizes'];
+			$res[$itemcode]['minprice'] = number_format($info['mincost']);
+			$res[$itemcode]['initcolor'] = $info['initcolor'];
+			$tmpes[$itemcode]['features'] = $info['caption'];
 		}
 		
 	}
@@ -621,23 +603,6 @@ if(isset($_REQUEST['act'])){
 	/*
 	*	商品一覧ページ
 	*/
-//	require_once dirname(__FILE__).'/categorypage.php';
-//	$catpage = new CategoryPage();
-
-//	$_PAGE_CATEGORIES = $_GET['cat'];
-//	if (empty($_PAGE_CATEGORIES)) {
-//		$_PAGE_CATEGORIES = 1;
-//	}
-//	$_ID = $_PAGE_CATEGORIES;
-//	
-//	$_IS_TAG = $_GET['tag'];
-//	if(empty($_IS_TAG)){
-//		$mode = "category";
-//		$_IS_TAG = 0;
-//	} else {
-//		// ブランド、スポーツウェア
-//		$mode = "tag";
-//	}
 
 
 	// タグ条件チェックボックスの指定状況と、カテゴリーまたはアイテムタグのIDを判定
@@ -676,7 +641,7 @@ if(isset($_REQUEST['act'])){
 				}
 			}
 		}
-//		$_IS_SCROLL = "tag_wrap";
+
 	}
 	
 	$tag = array();
@@ -685,9 +650,6 @@ if(isset($_REQUEST['act'])){
 		$tag = array_merge($tag, $_TAG);
 		$tag = array_unique($tag);
 		$tag = array_values($tag);
-		
-		// カテゴリ説明
-//		$writing = $catpage->getTagText(end($_TAG));
 	} 
 	
 	// カテゴリ一覧情報を取得
@@ -753,72 +715,21 @@ if(isset($_REQUEST['act'])){
 			<div class="review_anchor">'.$v['review_path'].'</div>
 		</li>';
 		
-		// 条件検索のアイテムタグ
-		foreach((array)$v['tag'] as $tag_id=>$tag_val){
-			$taginfo[$tag_id] = $tag_val;
-		}
-		
 		$item_count++;
 	}
-	
-	// 除外するアイテムタグ
-	switch($_ID){
-		case 1:		unset($taginfo[71], $taginfo[11]);
-					break;
-		case 2:		unset($taginfo[72]);
-					break;
-		case 3:		unset($taginfo[17]);
-					break;
-		case 73:	unset($taginfo[73], $taginfo[2]);
-					break;
-		case 5:		unset($taginfo[75]);
-					break;
-		case 6:		unset($taginfo[76]);
-					break;
-		case 7:		unset($taginfo[77]);
-					break;
-		case 8:		unset($taginfo[78]);
-					break;
-		case 9:		unset($taginfo[79]);
-					break;
-		case 10:	unset($taginfo[80]);
-					break;
-		case 11:	unset($taginfo[84]);
-					break;
-		case 12:	unset($taginfo[83]);
-					break;
-		case 13:	unset($taginfo[74], $taginfo[12]);
-					break;
-		case 14:	unset($taginfo[81]);
-					break;
-		case 16:	unset($taginfo[82]);
-					break;
-	}
-	
-	// 各カテゴリの商品一覧ページで全ての商品を指定した時のライティング
-//	if(empty($writing)) $writing = $catpage->getCatText($_PAGE_CATEGORIES);
 	
 	// 人気商品から探すで表示するアイテム
 	if(isset($popular)){
 		for($a=0; $a<count($popular); $a++){
 			$itemcode = $popular[$a];
-			$pageinfo = $pageinfo->itemPageInfo($itemcode, 'code');
-			$pop[$itemcode]['item_name'] = $pageinfo['item_name'];
-			$pop[$itemcode]['colors'] = $pageinfo['colors'];
-			$pop[$itemcode]['sizes'] = $pageinfo['sizes'];
-			$pop[$itemcode]['minprice'] = number_format($pageinfo['mincost']);
-			$pop[$itemcode]['initcolor'] = $pageinfo['initcolor'];	//$ic[$itemcode];
+			$info = $pageinfo->itemPageInfo($itemcode, 'code');
+			$pop[$itemcode]['item_name'] = $info['item_name'];
+			$pop[$itemcode]['colors'] = $info['colors'];
+			$pop[$itemcode]['sizes'] = $info['sizes'];
+			$pop[$itemcode]['minprice'] = number_format($info['mincost']);
+			$pop[$itemcode]['initcolor'] = $info['initcolor'];	//$ic[$itemcode];
 		}
 	}
-	
-	// アイテムタグの表示順で並び替え
-	$tmp = array();
-	foreach((array)$taginfo as $tag_id=>$tag_val){
-		$tmp[$tag_val['tagorder']] = $tag_val;
-	}
-	unset($tag_val);
-	$tagSorted = $tmp;
-	ksort($tagSorted);
 	
 	// 条件検索HTMLタグを生成
 	$catNumber = 0;
@@ -828,22 +739,44 @@ if(isset($_REQUEST['act'])){
 	$material_tag = "";
 	$cloth_tag = "";
 	$size_tag = "";
-	foreach($tagSorted as $tag_order=>$tag_val){
+
+	if ($mode=='category') {
+		$itemTag = $pageinfo->itemTag($_ID, $tag);	// カテゴリー指定あり
+	} else {
+		array_unshift($tag, $_ID);
+		$itemTag = $pageinfo->itemTag('', $tag);
+	}
+	$itemTags = json_decode($itemTag, true);
+
+	$searchTag = array();
+	$len = count($itemTags);
+	for ($i=0; $i<$len; $i++) {
+		// 除外するタグとタグ名
+		if ($mode=='tag' && $itemTags[$i]['tag_id']==$_ID) {
+			$label_pannavi = $itemTags[$i]['tag_name'];
+			continue;
+		} else if ($mode=='category' && $itemTags[$i]['tag_type']==1) {
+			continue;
+		}
+		
+		// パンナビ生成用にtag_idをキーにする
+		$searchTag[$itemTags[$i]['tag_id']] = $itemTags[$i];
+		
 		$isChecked = '';
-		if(in_array($tag_val['tagid'], $tag)) $isChecked = 'checked="checked"';
-		switch($tag_val["tagtype"]){
-			case 1:	$category_tag .= '<div class="tag_list_item"><label><input type="checkbox" '.$isChecked.' value="'.$tag_val['tagid'].'_'.$tag_val["tagtype_key"].'">'.$tag_val["tagname"].'</label></div>';
+		if(in_array($itemTags[$i]['tag_id'], $tag)) $isChecked = 'checked="checked"';
+		switch($itemTags[$i]["tag_type"]){
+			case 1:	$category_tag .= '<div class="tag_list_item"><label><input type="checkbox" '.$isChecked.' value="'.$itemTags[$i]['tag_id'].'_'.$itemTags[$i]["tagtype_key"].'">'.$itemTags[$i]["tag_name"].'</label></div>';
 					$catNumber++;
 					break;
-			case 2: $scene_tag .= '<div class="tag_list_item"><label><input type="checkbox" '.$isChecked.' value="'.$tag_val['tagid'].'_'.$tag_val["tagtype_key"].'">'.$tag_val["tagname"].'</label></div>';
+			case 2: $scene_tag .= '<div class="tag_list_item"><label><input type="checkbox" '.$isChecked.' value="'.$itemTags[$i]['tag_id'].'_'.$itemTags[$i]["tagtype_key"].'">'.$itemTags[$i]["tag_name"].'</label></div>';
 					break;
-			case 3: $silhouette_tag .= '<div class="tag_list_item"><label><input type="checkbox" '.$isChecked.' value="'.$tag_val['tagid'].'_'.$tag_val["tagtype_key"].'">'.$tag_val["tagname"].'</label></div>';
+			case 3: $silhouette_tag .= '<div class="tag_list_item"><label><input type="checkbox" '.$isChecked.' value="'.$itemTags[$i]['tag_id'].'_'.$itemTags[$i]["tagtype_key"].'">'.$itemTags[$i]["tag_name"].'</label></div>';
 					break;
-			case 4: $material_tag .= '<div class="tag_list_item"><label><input type="checkbox" '.$isChecked.' value="'.$tag_val['tagid'].'_'.$tag_val["tagtype_key"].'">'.$tag_val["tagname"].'</label></div>';
+			case 4: $material_tag .= '<div class="tag_list_item"><label><input type="checkbox" '.$isChecked.' value="'.$itemTags[$i]['tag_id'].'_'.$itemTags[$i]["tagtype_key"].'">'.$itemTags[$i]["tag_name"].'</label></div>';
 					break;
-			case 5: $cloth_tag .= '<div class="tag_list_item"><label><input type="checkbox" '.$isChecked.' value="'.$tag_val['tagid'].'_'.$tag_val["tagtype_key"].'">'.$tag_val["tagname"].'</label></div>';
+			case 5: $cloth_tag .= '<div class="tag_list_item"><label><input type="checkbox" '.$isChecked.' value="'.$itemTags[$i]['tag_id'].'_'.$itemTags[$i]["tagtype_key"].'">'.$itemTags[$i]["tag_name"].'</label></div>';
 					break;
-			case 6: $size_tag .= '<div class="tag_list_item"><label><input type="checkbox" '.$isChecked.' value="'.$tag_val['tagid'].'_'.$tag_val["tagtype_key"].'">'.$tag_val["tagname"].'</label></div>';
+			case 6: $size_tag .= '<div class="tag_list_item"><label><input type="checkbox" '.$isChecked.' value="'.$itemTags[$i]['tag_id'].'_'.$itemTags[$i]["tagtype_key"].'">'.$itemTags[$i]["tag_name"].'</label></div>';
 					break;
 		}
 	}
@@ -867,9 +800,7 @@ if(isset($_REQUEST['act'])){
 	
 	// パンナビを生成
 	if(!empty($_IS_TAG)){
-		$tag_master = $pageinfo->tagInfo($_ID);
-		$label_pannavi = $tag_master[0]['tag_name'];
-		$category_name = $tag_master[0]['tag_name'];
+		$category_name = $label_pannavi;
 		$current_path = '/items/?tag='.$_ID;
 	}else{
 		$label_pannavi = 'オリジナル'.$category_name;
@@ -878,16 +809,16 @@ if(isset($_REQUEST['act'])){
 	$pan_navi = "";
 	$navi_querystring = array();
 	if(count($tag)>0){
+		$len = count($tag)-1;
 		$pan_navi = '<li><a href="'.$current_path.'">'.$label_pannavi.'</a></li>';
-		for($i=0; $i<count($tag)-1; $i++){
-			$navi_querystring[] = urlencode($taginfo[$tag[$i]]['tagtype_key']."[]")."=".$tag[$i];
-			$pan_navi .= '<li><a href="'.$current_path.'&'.implode("&", $navi_querystring).'">'.$taginfo[$tag[$i]]['tagname'].'</a></li>';
+		for($i=0; $i<$len; $i++){
+			$navi_querystring[] = urlencode($searchTag[$tag[$i]]['tagtype_key']."[]")."=".$tag[$i];
+			$pan_navi .= '<li><a href="'.$current_path.'&'.implode("&", $navi_querystring).'">'.$searchTag[$tag[$i]]['tag_name'].'</a></li>';
 		}
-		$pan_navi .= '<li>'.$taginfo[$tag[$i]]['tagname'].'</li>';
+		$pan_navi .= '<li>'.$searchTag[$tag[$i]]['tag_name'].'</li>';
 	}else{
 		$pan_navi = '<li>'.$label_pannavi.'</li>';
 	}
-	
 	
 	// 絞り込み条件の指定状況の設定用フォームとチェックボックスを生成
 	$tagCheckBox = '';
@@ -896,9 +827,8 @@ if(isset($_REQUEST['act'])){
 	$tagCheckBox .= $cloth_tag;
 	$tagCheckBox .= $size_tag;
 	
-	$tagList = '';
-	$tagList = '<form name="form_tag_search" id="form_tag_search" action="'.$_SERVER['SCRIPT_NAME'].'" method="get">'.
-		$tag_data.'<input type="hidden" name="addtag" value="">';
+	$tagList = '<form name="form_tag_search" id="form_tag_search" action="'.dirname($_SERVER['SCRIPT_NAME']).'/" method="get">';
+	$tagList .= $tag_data;
 	if(empty($_IS_TAG)){
 		$tagList .= '<input type="hidden" name="cat" value="'.$_ID.'" class="def"></form>';
 	} else {

@@ -130,6 +130,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 						<p class="top3_bu_txt">今注文すると<br><span class="big_font">この日に届く</span></p>
 					</button>
 				</a>
+
 					<a href="/delivery/" class="check_txt">
 						<p class="top3_txt"><img src="/common/img/global/go_btm_blue.png">お届け日・地域変更はこちら</p>
 					</a>
@@ -141,7 +142,9 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 						<p class="top3_bu_txt">200種類以上！<br><span class="big_font">アイテム</span></p>
 					</button>
 				</a>
+
 					<a href="/items/category.php" class="check_txt">
+
 						<p class="top3_txt"><img src="/common/img/global/go_btm_blue.png">アイテム一覧はこちら</p>
 					</a>
 				</div>

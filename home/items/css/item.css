@@ -537,18 +537,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	}
 	#contents-lv2 h2.recommend,
 	.contents-lv2 h2.recommend {
-		background: url(../../common/img/love_icon_b.png) no-repeat;
+		background: url(/common/img/love_icon_b.png) no-repeat;
 	}
 	#contents-lv2 h2#list,
 	.contents-lv2 h2#list,
 	#contents-lv2 h2.list,
 	.contents-lv2 h2.list {
-		background: url(../../common/img/list_icon_b.png) no-repeat;
+		background: url(/common/img/list_icon_b.png) no-repeat;
 	}
 	.contents-lv2 h2.tokucho,
 	.contents-lv2 h2.popu,
 	.contents-lv2 h2.list2 {
-		background: url(../../common/img/list_icon_b.png) no-repeat;
+		background: url(/common/img/list_icon_b.png) no-repeat;
 	}
 	.contents-lv2 h2.tokucho {
 		padding-bottom: 5px;
@@ -644,7 +644,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		opacity: .65;
 	}
 	.point {
-		background: url(../img/index/point.png) no-repeat;
+		background: url(/items/img/index/point.png) no-repeat;
 		background-position: right;
 		height: 52px;
 		width: 238px;
@@ -670,7 +670,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		margin: 5px 5px 0;
 	}
 	.listindex {
-		background: url(../img/index/pointL.png) no-repeat;
+		background: url(/items/img/index/pointL.png) no-repeat;
 		background-position: left;
 		height: 40px;
 		width: 251px;
@@ -728,7 +728,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		padding: 5px 0;
 	}
 	.item_info {
-		background: url(../../common/img/dotted.png) repeat-x top;
+		background: url(/common/img/dotted.png) repeat-x top;
 		height: 20px;
 		padding: 10px 5px;
 	}
@@ -752,10 +752,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		margin-right: 3px;
 	}
 	.color {
-		background: url(../img/index/color.png) no-repeat;
+		background: url(/items/img/index/color.png) no-repeat;
 	}
 	.size {
-		background: url(../img/index/size.png) no-repeat;
+		background: url(/items/img/index/size.png) no-repeat;
 	}
 	.price {
 		text-align: right;
@@ -780,10 +780,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		margin-right: 3px;
 	}
 	.colors {
-		background: url(../img/index/color_s.png) no-repeat;
+		background: url(/items/img/index/color_s.png) no-repeat;
 	}
 	.sizes {
-		background: url(../img/index/size_s.png) no-repeat;
+		background: url(/items/img/index/size_s.png) no-repeat;
 	}
 	.price_s {
 		padding-right: 5px;
@@ -791,7 +791,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		line-height: 14px;
 	}
 	.item_info_s {
-		background: url(../../common/img/dotted.png) repeat-x top;
+		background: url(/common/img/dotted.png) repeat-x top;
 		height: 42px;
 		padding: 8px 3px;
 		margin-bottom: 5px;
@@ -831,7 +831,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		right: 30px;
 	}
 	.tokucholist {
-		background: url(../img/index/tokucholistbg.png) no-repeat bottom;
+		background: url(/items/img/index/tokucholistbg.png) no-repeat bottom;
 		padding: 10px 1px 10px;
 		height: 160px;
 	}
@@ -864,7 +864,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		overflow: hidden;
 	}
 	.recommend_item {
-		/*	background:url(../../common/img/dotted.png) repeat-x top;	
+		/*	background:url(/common/img/dotted.png) repeat-x top;	
 */
 		margin-top: 5px;
 	}
@@ -874,7 +874,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		margin-top: -25px;
 	}
 	.dotted {
-		background: url(../../common/img/dotted.png) repeat-x top;
+		background: url(/common/img/dotted.png) repeat-x top;
 		height: 10px;
 	}
 	/*tab*/
@@ -884,7 +884,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	}
 	.tokucho_block {
 		display: none;
-		background: url(../img/index/tokuchobase.png);
+		background: url(/items/img/index/tokuchobase.png);
 		border: 1px solid #CCC;
 		box-shadow: 0 0 1px #999;
 		margin: 0 1px;
@@ -893,7 +893,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	.itokucho:hover,
 	.nowtokucho {
 		margin-top: 5px;
-		background: url(../img/index/indexarrow.png) no-repeat bottom;
+		background: url(/items/img/index/indexarrow.png) no-repeat bottom;
 		padding-bottom: 5px;
 	}
 	#tokucho_wrap {
@@ -913,8 +913,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		font-weight: bold;
 		color: #d28837;
 		margin: 7px;
-		background: url(../../common/img/dotted.png) repeat-x bottom;
-		background: url(../../common/img/dotted.png) repeat-x bottom;
+		background: url(/common/img/dotted.png) repeat-x bottom;
+		background: url(/common/img/dotted.png) repeat-x bottom;
 		padding-bottom: 10px;
 	}
 	.tokucho_item_ex .price {
@@ -1018,7 +1018,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		margin-left: 310px;
 	}
 	.pickupbtn a {
-		background-image: url(../img/index/tokuchomore.png);
+		background-image: url(/items/img/index/tokuchomore.png);
 		display: block;
 		width: 340px;
 		height: 60px;
@@ -1038,7 +1038,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		padding: 10px 0;
 	}
 	a.up_icon {
-		background: url(../../common/img/up.png) no-repeat;
+		background: url(/common/img/up.png) no-repeat;
 		padding-left: 14px;
 		color: #999;
 		text-decoration: underline;
@@ -1046,7 +1046,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	}
 	h3.tokucho {
 		font-size: 26px;
-		background: url(../../common/img/list_icon_b.png) no-repeat left;
+		background: url(/common/img/list_icon_b.png) no-repeat left;
 		padding-left: 30px;
 		margin-left: 3px;
 		color: #d95;
@@ -1259,18 +1259,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	}
 	#contents-lv2 h2.recommend,
 	.contents-lv2 h2.recommend {
-		background: url(../../common/img/love_icon_b.png) no-repeat;
+		background: url(/common/img/love_icon_b.png) no-repeat;
 	}
 	#contents-lv2 h2#list,
 	.contents-lv2 h2#list,
 	#contents-lv2 h2.list,
 	.contents-lv2 h2.list {
-		background: url(../../common/img/list_icon_b.png) no-repeat;
+		background: url(/common/img/list_icon_b.png) no-repeat;
 	}
 	.contents-lv2 h2.tokucho,
 	.contents-lv2 h2.popu,
 	.contents-lv2 h2.list2 {
-		background: url(../../common/img/list_icon_b.png) no-repeat;
+		background: url(/common/img/list_icon_b.png) no-repeat;
 	}
 	.contents-lv2 h2.tokucho {
 		padding-bottom: 5px;
@@ -1379,7 +1379,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		opacity: .65;
 	}
 	.point {
-		background: url(../img/index/point.png) no-repeat;
+		background: url(/items/img/index/point.png) no-repeat;
 		background-position: right;
 		height: 52px;
 		width: 238px;
@@ -1405,7 +1405,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		margin: 5px 5px 0;
 	}
 	.listindex {
-		background: url(../img/index/pointL.png) no-repeat;
+		background: url(/items/img/index/pointL.png) no-repeat;
 		background-position: left;
 		height: 40px;
 		width: 251px;
@@ -1464,7 +1464,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		padding: 5px 0;
 	}
 	.item_info {
-		background: url(../../common/img/dotted.png) repeat-x top;
+		background: url(/common/img/dotted.png) repeat-x top;
 		height: 20px;
 		padding: 10px 5px;
 	}
@@ -1488,10 +1488,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		margin-right: 3px;
 	}
 	.color {
-		background: url(../img/index/color.png) no-repeat;
+		background: url(/items/img/index/color.png) no-repeat;
 	}
 	.size {
-		background: url(../img/index/size.png) no-repeat;
+		background: url(/items/img/index/size.png) no-repeat;
 	}
 	.price {
 		text-align: right;
@@ -1516,10 +1516,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		margin-right: 3px;
 	}
 	.colors {
-		background: url(../img/index/color_s.png) no-repeat;
+		background: url(/items/img/index/color_s.png) no-repeat;
 	}
 	.sizes {
-		background: url(../img/index/size_s.png) no-repeat;
+		background: url(/items/img/index/size_s.png) no-repeat;
 	}
 	.price_s {
 		padding-right: 5px;
@@ -1563,7 +1563,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		right: 30px;
 	}
 	.tokucholist {
-		background: url(../img/index/tokucholistbg.png) no-repeat bottom;
+		background: url(/items/img/index/tokucholistbg.png) no-repeat bottom;
 		padding: 10px 1px 10px;
 		height: 160px;
 	}
@@ -1594,7 +1594,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		overflow: hidden;
 	}
 	.recommend_item {
-		/*	background:url(../../common/img/dotted.png) repeat-x top;	
+		/*	background:url(/common/img/dotted.png) repeat-x top;	
 */
 		margin-top: 5px;
 	}
@@ -1604,7 +1604,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		margin-top: -25px;
 	}
 	.dotted {
-		background: url(../../common/img/dotted.png) repeat-x top;
+		background: url(/common/img/dotted.png) repeat-x top;
 		height: 10px;
 	}
 	/*tab*/
@@ -1614,7 +1614,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	}
 	.tokucho_block {
 		display: none;
-		background: url(../img/index/tokuchobase.png);
+		background: url(/items/img/index/tokuchobase.png);
 		border: 1px solid #CCC;
 		box-shadow: 0 0 1px #999;
 		margin: 0 1px;
@@ -1623,7 +1623,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	.itokucho:hover,
 	.nowtokucho {
 		margin-top: 5px;
-		background: url(../img/index/indexarrow.png) no-repeat bottom;
+		background: url(/items/img/index/indexarrow.png) no-repeat bottom;
 		padding-bottom: 5px;
 	}
 	#tokucho_wrap {
@@ -1643,8 +1643,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		font-weight: bold;
 		color: #d28837;
 		margin: 7px;
-		background: url(../../common/img/dotted.png) repeat-x bottom;
-		background: url(../../common/img/dotted.png) repeat-x bottom;
+		background: url(/common/img/dotted.png) repeat-x bottom;
+		background: url(/common/img/dotted.png) repeat-x bottom;
 		padding-bottom: 10px;
 	}
 	.tokucho_item_ex .price {
@@ -1748,7 +1748,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		margin-left: 310px;
 	}
 	.pickupbtn a {
-		background-image: url(../img/index/tokuchomore.png);
+		background-image: url(/items/img/index/tokuchomore.png);
 		display: block;
 		width: 340px;
 		height: 60px;
@@ -1768,7 +1768,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		padding: 10px 0;
 	}
 	a.up_icon {
-		background: url(../../common/img/up.png) no-repeat;
+		background: url(/common/img/up.png) no-repeat;
 		padding-left: 14px;
 		color: #999;
 		text-decoration: underline;
@@ -1776,7 +1776,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	}
 	h3.tokucho {
 		font-size: 26px;
-		background: url(../../common/img/list_icon_b.png) no-repeat left;
+		background: url(/common/img/list_icon_b.png) no-repeat left;
 		padding-left: 30px;
 		margin-left: 3px;
 		color: #d95;
@@ -1889,7 +1889,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	}
 	h3.tokucho {
 		font-size: 18px;
-		background: url(../../common/img/list_icon_b.png) no-repeat left;
+		background: url(/common/img/list_icon_b.png) no-repeat left;
 		padding-left: 30px;
 		margin-left: 3px;
 		color: #d95;
@@ -1934,7 +1934,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 		color: #000;
 	}
 	.item_info_s {
-		background: url(../../common/img/dotted.png) repeat-x top;
+		background: url(/common/img/dotted.png) repeat-x top;
 		/*height:22px;*/
 		padding: 8px 3px 3px 3px;
 		margin-bottom: 5px;
@@ -1972,7 +1972,7 @@ taglist_responsive.css
 	}
 	.btn {
 		/* font-size: 18px; */
-		/* background: url(../../common/img/list_icon_b.png) no-repeat left; */
+		/* background: url(/common/img/list_icon_b.png) no-repeat left; */
 		padding-left: 30px;
 		margin-left: 3px;
 		color: #d95;
@@ -2037,7 +2037,7 @@ taglist_responsive.css end
 	.btn {
 		/* font-size: 26px; */
 		font-weight: bold;
-		/*		background: url(../../common/img/list_icon_b.png) no-repeat left;*/
+		/*		background: url(/common/img/list_icon_b.png) no-repeat left;*/
 		padding-left: 30px;
 		margin-left: 3px;
 		color: #d95;

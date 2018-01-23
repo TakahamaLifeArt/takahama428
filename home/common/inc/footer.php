@@ -6,22 +6,22 @@
 			<h4 class="title item_ttl">アイテム</h4>
 			<div class="footer_item">
 			<ul class="item_ul">
-				<li><a href="/items/t-shirts/">Tシャツ</a></li>
-				<li><a href="/items/polo-shirts/">ポロシャツ</a></li>
-				<li><a href="/items/towel/">タオル</a></li>
-				<li><a href="/items/sportswear/">スポーツウェア</a></li>
-				<li><a href="/items/sweat/">パーカー</a></li>
-				<li><a href="/items/baby/">ベビー</a></li>
-				<li><a href="/items/goods/">記念品</a></li>
+				<li><a href="/items/category/t-shirts/">Tシャツ</a></li>
+				<li><a href="/items/category/polo-shirts/">ポロシャツ</a></li>
+				<li><a href="/items/category/towel/">タオル</a></li>
+				<li><a href="/items/category/sportswear/">スポーツウェア</a></li>
+				<li><a href="/items/category/sweat/">パーカー</a></li>
+				<li><a href="/items/category/baby/">ベビー</a></li>
+				<li><a href="/items/category/goods/">記念品</a></li>
 			</ul>
 			<ul class="item_ul">
-				<li><a href="/items/outer/">ブルゾン</a></li>
-				<li><a href="/items/cap/">キャップ</a></li>
-				<li><a href="/items/long-shirts/">長袖Tシャツ</a></li>
-				<li><a href="/items/tote-bag/">トートバッグ</a></li>
-				<li><a href="/items/ladys/">レディース</a></li>
-				<li><a href="/items/overall/">つなぎ</a></li>
-				<li><a href="/items/apron/">エプロン</a></li>
+				<li><a href="/items/category/outer/">ブルゾン</a></li>
+				<li><a href="/items/category/cap/">キャップ</a></li>
+				<li><a href="/items/category/long-shirts/">長袖Tシャツ</a></li>
+				<li><a href="/items/category/tote-bag/">トートバッグ</a></li>
+				<li><a href="/items/category/ladys/">レディース</a></li>
+				<li><a href="/items/category/overall/">つなぎ</a></li>
+				<li><a href="/items/category/apron/">エプロン</a></li>
 			</ul>
 		</div>
 		</div>
@@ -107,22 +107,22 @@
 		<h4 class="title item_ttl">アイテム</h4>
 		<div class="footer_item">
 			<ul class="item_ul">
-				<li><a href="/items/t-shirts/">Tシャツ</a></li>
-				<li><a href="/items/polo-shirts/">ポロシャツ</a></li>
-				<li><a href="/items/towel/">タオル</a></li>
-				<li><a href="/items/sportswear/">スポーツウェア</a></li>
-				<li><a href="/items/sweat/">パーカー</a></li>
-				<li><a href="/items/baby/">ベビー</a></li>
-				<li><a href="/items/goods/">記念品</a></li>
+				<li><a href="/items/category/t-shirts/">Tシャツ</a></li>
+				<li><a href="/items/category/polo-shirts/">ポロシャツ</a></li>
+				<li><a href="/items/category/towel/">タオル</a></li>
+				<li><a href="/items/category/sportswear/">スポーツウェア</a></li>
+				<li><a href="/items/category/sweat/">パーカー</a></li>
+				<li><a href="/items/category/baby/">ベビー</a></li>
+				<li><a href="/items/category/goods/">記念品</a></li>
 			</ul>
 			<ul class="item_ul">
-				<li><a href="/items/outer/">ブルゾン</a></li>
-				<li><a href="/items/cap/">キャップ</a></li>
-				<li><a href="/items/long-shirts/">長袖Tシャツ</a></li>
-				<li><a href="/items/tote-bag/">トートバッグ</a></li>
-				<li><a href="/items/ladys/">レディース</a></li>
-				<li><a href="/items/overall/">つなぎ</a></li>
-				<li><a href="/items/apron/">エプロン</a></li>
+				<li><a href="/items/category/outer/">ブルゾン</a></li>
+				<li><a href="/items/category/cap/">キャップ</a></li>
+				<li><a href="/items/category/long-shirts/">長袖Tシャツ</a></li>
+				<li><a href="/items/category/tote-bag/">トートバッグ</a></li>
+				<li><a href="/items/category/ladys/">レディース</a></li>
+				<li><a href="/items/category/overall/">つなぎ</a></li>
+				<li><a href="/items/category/apron/">エプロン</a></li>
 			</ul>
 		</div>
 	</div>

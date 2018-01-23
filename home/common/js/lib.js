@@ -23,12 +23,11 @@ $(function(){
 			});
 			if ($('#msgbox').isVisible()) {
 				$('#msgbox').on('hidden.bs.modal', function(){
-					$('#msgbox').off('hidden.bs.modal');
-					$('#msgbox').modal('show');
+					$('#msgbox').off('hidden.bs.modal').modal('show');
 				});
 				$('#msgbox').modal('hide');
 			} else {
-				$('#msgbox').modal('show');
+				$('#msgbox').off('hidden.bs.modal').modal('show');
 			}
 		},
 		confbox: {
@@ -41,12 +40,51 @@ $(function(){
 				$.confbox.result.data = false;
 				$('#msgbox').off('show.bs.modal').on('show.bs.modal', {'message': msg}, function (e) {
 					$('.modal-footer').show();
+					$('.modal-footer button').show();
 					$('#msgbox .modal-body p').html(e.data.message);
 					$(this).one('click', '.is-ok', function(){
 						$.confbox.result.data = true;
 					});
 					$(this).one('click', '.is-cancel', function(){
 						$.confbox.result.data = false;
+					});
+				});
+				$('#msgbox').off('hidden.bs.modal').on('hidden.bs.modal', function (e) {
+					fn();
+				});
+				$('#msgbox').modal('show');
+			},
+			result: {
+				'data':false
+			}
+		},
+		dialogBox: {
+		/**
+		 * 確認ボックス
+		 * @msg		表示するメッセージ文
+		 * @fn			callback ボタンが押された後の処理　OK:true, Cancel:false
+		 */
+			show: function(msg, title, ok, cancel, fn){
+				$.dialogBox.result.data = false;
+				$('#msgbox').off('show.bs.modal').on('show.bs.modal', {'message': msg, 'title':title, 'ok':ok, 'cancel':cancel}, function (e) {
+					$('.modal-footer').show();
+					$('#msgbox .modal-title').html(e.data.title);
+					$('#msgbox .modal-body').html(e.data.message);
+					if (ok) {
+						$('.modal-footer .is-ok').text(ok).show();
+					} else {
+						$('.modal-footer .is-ok').hide();
+					}
+					if (cancel) {
+						$('.modal-footer .is-cancel').text(cancel).show();
+					} else {
+						$('.modal-footer .is-cancel').hide();
+					}
+					$(this).one('click', '.is-ok', function(){
+						$.dialogBox.result.data = true;
+					});
+					$(this).one('click', '.is-cancel', function(){
+						$.dialogBox.result.data = false;
 					});
 				});
 				$('#msgbox').off('hidden.bs.modal').on('hidden.bs.modal', function (e) {
@@ -128,6 +166,20 @@ $(function(){
 			});
 			my.value = (str.match(/^\d+$/))? str-0: err;
 			return my.value;
+		},
+		zip_mask: function (args) {
+		/**
+		 *	郵便番号を"-"で区切る
+		 */
+			var c = args.replace(/[０-９]/g, function (m) {
+				var a = "０１２３４５６７８９";
+				var r = a.indexOf(m);
+				return r == -1 ? m : r;
+			});
+			c = c.replace(/[^\d]/g, '');
+			if (c.length >= 3) c = c.substr(0, 3) + '-' + c.substr(3, 4);
+
+			return c;
 		},
 		TLA: {
 			'api':'https://takahamalifeart.com/v1/api',
