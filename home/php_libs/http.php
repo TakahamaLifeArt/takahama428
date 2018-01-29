@@ -15,15 +15,17 @@ class HTTP {
 	public function request($method, $params = array(), $headers = array()){
 		$url = $this->_url;
 		$data = http_build_query($params);
-		if($method == 'GET') {
+		if ($method == 'GET') {
 			$url = ($data != '')?$url.'?'.$data:$url;
 		}
 	
 		$ch = curl_init($url);
 		
-		if($method == 'POST'){
+		if ($method == 'POST') {
 			curl_setopt($ch,CURLOPT_POST,1);
 			curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
+		} else if ($method == 'PUT') {
+			curl_setopt($ch,CURLOPT_PUT,1);
 		}
 	 
 		curl_setopt($ch, CURLOPT_HEADER,false); //header情報も一緒に欲しい場合はtrue

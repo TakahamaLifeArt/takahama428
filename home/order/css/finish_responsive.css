@@ -1,0 +1,149 @@
+@charset "EUC-JP";
+
+/*------------------------------------------------------------
+
+2012 takahama web css
+
+	File_name    : finish.css
+	Description  : order form
+	Version      : 1.0
+	
+	log
+	2011.08.25	 : created
+	
+--------------------------------------------------------------*/
+
+
+
+
+/*		注文メール送信完了
+===============================================================*/
+#container {
+	width: 100%;
+	margin-top: 160px;
+}
+.contents {
+	width: 100%;
+	float: none;
+	margin-top: 20px;
+	overflow: hidden;
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 10px;
+}
+.inner {
+	margin: 30px 0px 5px;
+}
+h2 {
+	margin-top: 20px;
+}
+h2 ins {
+	padding-right: 5px;
+	font-size: 125%;
+	font-weight: bold;
+	color: #e1630e;
+}
+p.heading {
+	padding-bottom: 3px;
+	background: url(/common/img/dotted.png) repeat-x left bottom;
+	margin :10px 0px 0px;
+}
+.inner h3 {
+	font-size: 125%;
+	font-weight: normal;
+	color: #003f75;
+}
+/*
+.inner p {
+	margin-left: 1em;
+	color: #666;
+}
+*/
+.remarks {
+	margin: 15px;
+	padding: 2em 1em 1em;
+/*	background: #fff url(../img/alert.png) no-repeat 30px 30px;*/
+	border: 3px solid #e1630e;
+	border-radius: 3px;
+	
+}
+.remarks p {
+	line-height: 2;
+	color: #333;
+}
+.remarks p ins {
+	font-size: 110%;
+	font-weight: bold;
+	color: #003f75;
+}
+.remarks h3 {
+	margin-bottom: .5em; 
+	font-size: 150%;
+	color: #4e2210;
+}
+hr {
+	margin: 1em 0;
+}
+.gohome {
+	margin-top: 1.5em;
+}
+
+
+/* ハイライト（注意） */
+.highlights {
+	color: #ff0019;
+	text-shadow: 0 0 3px #c90;
+	-webkit-text-shadow: 0 0 3px #c90;
+}
+
+
+
+
+
+/*		navi
+===============================================================*/
+.arrow_line:after {
+	content: ".";
+	display: block;
+	height: 0;
+	visibility:hidden;
+	line-height: 0;
+	font-size: 0;
+	clear: both;
+}
+.arrow_line {
+	clear: both;
+	display: inline-block;
+	
+	margin: 10px 0px 40px;
+}
+/* Hides from IE-mac \*/
+* html .arrow_line {height: 1%;}
+.arrow_line {display: block;}
+/* End hide from IE-mac */
+
+/* パンナビ */
+.arrow_line .crumbs {
+	float: left;
+}
+.arrow_line .crumbs p {
+	padding-left: 15px;
+	font-size: 125%;
+	font-weight: bold;
+	color: #999;
+}
+.arrow_line .crumbs div {
+	padding: 0px 30px 0px 15px;
+	color: #999;
+	background: url(../img/crumbs_next.png) no-repeat right center;
+}
+.arrow_line .pass div {
+	color: #333;
+}
+.arrow_line .pass p {
+	color: #e1630e;
+}
+.arrow_line .crumbs div.fin {
+	background: none;
+}
+

@@ -33,7 +33,7 @@ define('_TOLL_FREE', '0120-130-428');
 define('_PACK_FEE', 50);
 define('_NO_PACK_FEE', 10);
 define('_NO_PRINT_RATE', 1.1);	// プリントなしの割増
-define('_CREDIT_RATE', 0.05);	// カード手数料率
+define('_CREDIT_RATE', 0);	// カード手数料率 - 廃止2018-01-30
 
 if (strpos($_SERVER['HTTP_HOST'], 'test.')===false && strpos($_SERVER['HTTP_HOST'], 'sub.')===false) {
 	$_ORDER_DOMAIN = 'http://original-sweat.com';
@@ -69,7 +69,7 @@ define('_DB_HOST', 'localhost');
 define('_ORDER_DOMAIN', $_ORDER_DOMAIN);
 
 // PASSWORD KEY
-define('_PASSWORD_KEY', 'Rxjo:akLK(SEs!8E');
+define('_PASSWORD_SALT', 'Rxjo:akLK(SEs!8E');
 
 // Facebook App
 define('_FB_APP_ID', '333981563415198');
@@ -106,4 +106,7 @@ define('_FROM_HOLIDAY', $time_start);
 define('_TO_HOLIDAY', $time_end);
 define('_NOTICE_HOLIDAY', $notice);
 define('_EXTRA_NOTICE', $extra_noitce);
+
+// 会員割の適用開始日
+define('_START_RANKING', '2018-01-30');
 ?>
