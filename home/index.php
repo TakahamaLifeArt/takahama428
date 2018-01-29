@@ -53,7 +53,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 					<li data-target="#mainCarouselIndicators" data-slide-to="0" class="active"></li>
 					<li data-target="#mainCarouselIndicators" data-slide-to="1"></li>
 					<li data-target="#mainCarouselIndicators" data-slide-to="2"></li>
-					<li data-target="#mainCarouselIndicators" data-slide-to="3"></li>
+					<!--                    <li data-target="#mainCarouselIndicators" data-slide-to="3"></li>-->
 				</ol>
 
 				<div class="carousel-inner justify-content-center" role="listbox">
@@ -80,13 +80,16 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							<a href="/campaign/towel/noshi.php" class="check"><button type="button" class="det_btn">詳細はこちら</button></a>
 						</div>
 					</div>
-					<div class="carousel-item">
-						<img class="img-fluid" id="pc_slide" src="/common/img/home/main/top_slide_deco.jpg" alt="First slide" width="100%">
-						<img class="img-fluid" id="sp_slide" src="/common/img/home/main/sp_top_slide_deco.jpg" alt="First slide" width="100%">
-						<div class="carousel-caption">
-							<a href="//takahama428.secure-decoration.com/create_products/5-6-T-?n=69818603" class="check hidden-sm-down"><button type="button" class="order_btn">作ってみる！</button></a>
-						</div>
-					</div>
+
+					<!--
+<div class="carousel-item">
+    <img class="img-fluid" id="pc_slide" src="/common/img/home/main/top_slide_deco.jpg" alt="First slide" width="100%">
+    <img class="img-fluid" id="sp_slide" src="/common/img/home/main/sp_top_slide_deco.jpg" alt="First slide" width="100%">
+    <div class="carousel-caption">
+        <a href="//takahama428.secure-decoration.com/create_products/5-6-T-?n=69818603" class="check hidden-sm-down"><button type="button" class="order_btn">作ってみる！</button></a>
+    </div>
+</div>
+-->
 				</div>
 				<a class="carousel-control-prev" href="#mainCarouselIndicators" role="button" data-slide="prev">
 					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -157,6 +160,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 						</a>
 					</div>
 				</div>
+				<!--
 				<section class="hidden-sm-down">
 					<div>
 						<a href="//takahama428.secure-decoration.com/create_products/5-6-T-?n=69818603" class="check">
@@ -164,6 +168,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 					</a>
 					</div>
 				</section>
+-->
 				<section class="hidden-xs-down">
 
 					<div class="row no-gutters service">

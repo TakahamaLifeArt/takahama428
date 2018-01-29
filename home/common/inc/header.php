@@ -415,12 +415,14 @@ if( empty($_SESSION['me']) ){
 										<p class="item_txt"><img src="/common/img/global/go_btm_orange.png">デザインサポート</p>
 									</a>
 								</div>
+<!--
 								<div class="navi_inner_3 hidden-sm-down">
 									<a class="dropdown-item" href="//takahama428.secure-decoration.com/create_products/5-6-T-?n=69818603"><img src="/common/img/global/design/sp_design_07.jpg" width="100%"></a>
 									<a href="//takahama428.secure-decoration.com/create_products/5-6-T-?n=69818603">
 										<p class="item_txt"><img src="/common/img/global/go_btm_orange.png">デザインシミュレーター</p>
 									</a>
 								</div>
+-->
 							</div>
 						</div>
 					</div>
