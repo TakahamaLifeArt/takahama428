@@ -361,9 +361,6 @@ class Ordermail extends Conndb{
 		mb_language("japanese");
 		mb_internal_encoding("UTF-8");
 		$sendto = _ORDER_EMAIL;
-		
-		$sendto = 'test@takahama428.com';						// DEBUG
-		
 		$suffix = "【takahama428】";
 		$subject = "お申し込み - No.".$addition[2].$suffix;		// 件名
 		$msg = "";

@@ -12,6 +12,6 @@ session_destroy();
 if(isset($_GET['refpg'])){
 	jump(_DOMAIN.$_GET['refpg']);
 }else{
-	jump('login.php');
+	jump('./login.php');
 }
 ?>

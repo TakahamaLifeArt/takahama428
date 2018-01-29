@@ -1,36 +1,10 @@
 <?php
 require_once dirname(__FILE__).'/php_libs/funcs.php';
 
-if($_SERVER['REQUEST_METHOD']!='POST'){
-	setToken();
-}else{
-	chkToken();
-
-	if(isset($_POST['resend'], $_POST['token'], $_POST['email'])){
-		$conndb = new Conndb(_API_U);
-
-		$param['email'] = trim(mb_convert_kana($_POST['email'],"s", "utf-8"));
-		$args = array($param['email']);
-
-		if(empty($param['email'])){
-			$err['email'] = 'メールアドレスを入力して下さい。';
-		}else if(!isValidEmailFormat($param['email'])){
-			$err['email'] = 'メールアドレスが正しくありません。';
-		}else{
-			$user = $conndb->checkExistEmail($args);
-			$userid = $user['id'];
-			if(!$userid) $err['email'] = 'メールアドレスのご登録がありません。';
-		}
-
-		if(empty($err)) jump('/design/designpost/transmit.php?ticket='.$_POST['token'].'&u='.$userid);
-	}
-
-}
-
+setToken();
 ?>
-	<!DOCTYPE html>
-	<html lang="ja">
-
+<!DOCTYPE html>
+<html lang="ja">
 	<head prefix="og: //ogp.me/ns# fb: //ogp.me/ns/fb#  website: //ogp.me/ns/website#">
 		<meta charset="UTF-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -45,10 +19,11 @@ if($_SERVER['REQUEST_METHOD']!='POST'){
 		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
 		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
 		<meta property="fb:app_id" content="1605142019732010" />
-		<title>パスワードを忘れた方 ｜ オリジナルTシャツ【タカハマライフアート】</title>
+		<title>パスワードを忘れた方 ｜ オリジナルTシャツが早い、タカハマライフアート</title>
 		<link rel="shortcut icon" href="/icon/favicon.ico">
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
-		<link rel="stylesheet" type="text/css" media="screen" href="./css/my_account_responsive.css" />
+		<link rel="stylesheet" type="text/css" media="screen" href="./css/common.css" />
+		<link rel="stylesheet" type="text/css" media="screen" href="./css/my_account.css" />
 
 	</head>
 
@@ -63,13 +38,10 @@ if($_SERVER['REQUEST_METHOD']!='POST'){
 
 				<div class="toolbar">
 					<div class="toolbar_inner clearfix">
-						<div class="menu_wrap">
-							<?php if(checkLogin()) echo $menu;?>
+						<div class="pagetitle">
+							<h1>パスワードを忘れた方</h1>
 						</div>
 					</div>
-				</div>
-				<div class="pagetitle">
-					<h1>パスワードを忘れた方</h1>
 				</div>
 				<div class="section">
 					<form name="pass" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" onsubmit="return false;">
@@ -78,16 +50,20 @@ if($_SERVER['REQUEST_METHOD']!='POST'){
 							<tfoot>
 								<tr>
 									<td colspan="2">
-										<input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
-										<input type="hidden" name="resend" value="1">
-										<p><span class="ok_button">送信</span></p>
+										<input type="hidden" name="token" id="token" value="<?php echo $_SESSION['token']; ?>">
+										<button type="button" class="btn btn-info send_pass" id="send">送信</button>
 									</td>
 								</tr>
 							</tfoot>
 							<tbody>
 								<tr>
-									<th>メールアドレス</th>
-									<td><input type="text" name="email" value="<?php echo $_POST['email'];?>"><br><ins class="err"> <?php echo $err['email']; ?></ins></td>
+									<th class="center_posi">メールアドレス</th>
+								</tr>
+								<tr>
+									<td class="center_posi">
+										<p><input type="text" name="email" id="email" value="<?php echo $_POST['email'];?>"></p>
+										<ins class="err"> <?php echo $err['email']; ?></ins>
+									</td>
 								</tr>
 							</tbody>
 						</table>
@@ -104,7 +80,8 @@ if($_SERVER['REQUEST_METHOD']!='POST'){
 		<div id="overlay-mask" class="fade"></div>
 
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
+		<script type="text/javascript" src="/common/js/api.js"></script>
 		<script type="text/javascript" src="./js/resendpass.js"></script>
 	</body>
 
-	</html>
+</html>

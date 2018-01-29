@@ -1,0 +1,321 @@
+@charset "utf-8";
+
+/*------------------------------------------------------------
+
+File_name	: my_account.css
+log			: 2017-12-13	created
+
+-------------------------------------------------------------- */
+
+/*		forms
+===============================================================*/
+
+.form_table thead th {
+	font-weight: bold;
+	color: #323232;
+	background: #eae7d2;
+}
+
+
+.form_table tbody th {
+	font-weight: bold;
+	color: #323232;
+	background: #eceae8;
+	text-align: left;
+}
+
+
+textarea {
+	width: 290px;
+	height: 5em;
+	scroll: auto;
+}
+
+
+/* 必須 */
+
+.form_m .lbl ins {
+	margin-left: 2em;
+	font-size: 11px;
+	font-weight: bold;
+	color: #fff;
+	background: #ff5959;
+	border: 1px solid #e66;
+	border-radius: 5px;
+}
+
+.form_m .wrap {
+	padding: 5px 15px;
+	border-top: 1px solid #e0e0e0;
+	box-shadow: 0 2px #fff inset;
+}
+
+.form_m input[type="text"],
+.form_m input[type="email"],
+.form_m input[type="password"] {
+	width: 98%;
+}
+
+.form_m textarea {
+	width: 98%;
+	height: 5em;
+	scroll: auto;
+}
+
+.form_m input[type="text"],
+.form_m input[type="email"],
+.form_m input[type="number"],
+.form_m input[type="tel"],
+.form_m input[type="date"],
+.form_m input[type="password"],
+.form_m textarea {
+	padding: 5px 0;
+}
+
+
+/* table extend */
+
+.modal-content {
+	width: 50%;
+	margin: 0 auto;
+	background: #fff;
+	padding: 10px;
+}
+
+#btn-close-modal {
+	padding-top: 20px;
+	font-size: 1.2em;
+	text-align: center;
+	cursor: pointer;
+}
+
+/*		profile and pass form
+===============================================================*/
+
+.form_table.me input[type="file"] {
+	font-size: 16px;
+}
+
+input.edit_profile {
+	text-align: center;
+	border: none;
+}
+
+
+/*		input text
+===============================================================*/
+
+.form_table .tel {
+	width: 200px;
+	padding-left: 5px;
+	border-width: 2px;
+	border-style: inset;
+	border-color: initial;
+	border-image: initial;
+}
+
+
+@media all {
+	.modal-content {
+		width: 100%;
+		margin: 0 auto;
+		background: #fff;
+		padding: 10px;
+	}
+
+	.sq_bdr {
+		border: 1px solid #d9710a;
+		margin: 0 auto;
+		width: 95%;
+		padding: 20px;
+		text-align: left;
+	}
+	.on_button {
+		display: inline-block;
+		width: 80%;
+		margin: 0 auto;
+		padding: 10px 20px;
+		line-height: 20px;
+		text-align: center;
+		font-weight: bold;
+		color: #fff;
+		cursor: pointer;
+		background: #d9710a;
+		border-radius: 2px;
+	}
+	.on_button:hover {
+		background: white;
+		color: #e2710a;
+		text-decoration: none;
+		border-radius: 2px;
+		border: 2px solid #e2710a;
+	}
+}
+
+
+/*		new
+===============================================================*/
+
+
+h2 {
+	margin-top: 10px;
+	text-align: left;
+}
+
+.form_table.me tbody .ttl_left {
+	background: #fff;
+}
+
+
+.form_table.me tbody td,
+.form_table.me tbody th {
+	border: none;
+	padding: 10px 20px;
+}
+
+
+.section {
+	width: 90%;
+	margin: 20px auto 40px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	background: #fff;
+	height: auto;
+}
+
+.form_table tfoot tr:first-child th,
+.form_table tfoot tr:first-child td {
+	padding-top: 1em;
+	padding-left: 0;
+	border: none;
+}
+
+
+
+/*		profile and pass form
+===============================================================*/
+
+.form_table.me tbody label {
+	display: block;
+	font-weight: bold;
+	color: #777;
+}
+
+.form_table tbody input {
+	width: 200px;
+	font-size: 14px;
+	height: 15px;
+}
+
+.form_table.me input[type="file"] {
+	font-size: 14px;
+}
+
+.form_table.me tbody a {
+	font-size: 12px;
+	text-decoration: underline;
+}
+
+input[type="checkbox"] {
+	cursor: pointer;
+}
+
+.view {
+	height: 30px;
+	line-height: 40px;
+}
+
+p.edit {
+	display: none;
+	height: 35px;
+}
+
+input.edit_profile {
+	text-align: center;
+}
+
+input.edit_profile {
+	display: inline-block;
+	width: auto;
+	height: auto;
+	margin: 0 20px;
+	line-height: 39px;
+	text-align: center;
+	font-weight: bold;
+	color: #fff;
+	cursor: pointer;
+	background: #d9710a;
+	border-radius: 2px;
+	border: 2px solid #d9710a;
+}
+
+.form_table.me tbody td.center_posi,
+.form_table.me tbody th.center_posi {
+	border-left: none;
+	text-align: center;
+}
+
+.send_pass {
+	margin: 10px auto;
+}
+
+@media screen and (max-width: 768px) {
+	h1 {
+		font-size: 28px;
+		font-weight: bold;
+		color: #333;
+	}
+	.section {
+		margin: 0 auto;
+		padding: 5px;
+		border: 1px solid #ddd;
+		border-radius: 5px;
+		background: #fff;
+		height: auto;
+		width: 100%;
+		margin-top: 5%;
+	}
+	.section p {
+		text-align: inherit;
+	}
+	.form_table.me tbody th {
+		width: 80px;
+		font-size: 1rem;
+	}
+	.form_table.addr tbody th,
+	.form_table.deli tbody th,
+	.form_table.deli1 tbody th {
+		width: 80px;
+		font-size: 1rem;
+		padding: 10px 20px;
+	}
+	.form_table .addr1 {
+		width: 90%;
+		padding-left: 5px;
+	}
+	#pass_table tbody input,
+	#addr_table tbody input,
+	#deli_table tbody input,
+	#deli1_table tbody input {
+		font-size: 12px;
+		height: 18px;
+		margin: 3px;
+	}
+
+	/*------------------TABLE------------------*/
+	.form_table tbody th,
+	.form_table tbody td {
+		padding: 0px;
+		background: #FFF;
+		border-bottom: 1px solid #e0e0e0;
+		box-shadow: 0 2px #fff;
+	}
+	.form_table tbody th {
+		font-weight: bold;
+		color: #323232;
+		background: #fff;
+		border-bottom: 1px solid #e0e0e0;
+		text-align: left;
+		background: #eceae8;
+	}
+}

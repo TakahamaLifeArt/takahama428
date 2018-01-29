@@ -4,14 +4,14 @@ require_once dirname(__FILE__).'/php_libs/funcs.php';
 // ログイン状態のチェック
 $me = checkLogin();
 if(!$me){
-	jump('login.php');
+	jump('./login.php');
 }
 
 $isOK = true;
 
 ?>
 	<!DOCTYPE html>
-	<html lang="ja">
+<html lang="ja">
 
 	<head prefix="og: //ogp.me/ns# fb: //ogp.me/ns/fb#  website: //ogp.me/ns/website#">
 		<meta charset="utf-8" />
@@ -22,9 +22,9 @@ $isOK = true;
 		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
 		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
 		<meta property="fb:app_id" content="1605142019732010" />
-		<title>決済 ｜ オリジナルTシャツ【タカハマライフアート】</title>
+		<title>決済 - TLAメンバーズ | タカハマライフアート</title>
 		<link rel="shortcut icon" href="/icon/favicon.ico" />
-
+		
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 		<link rel="stylesheet" type="text/css" media="screen" href="./css/my_account.css" />
 		<link rel="stylesheet" type="text/css" href="/contact/css/finish_responsive.css" media="screen" />
@@ -105,7 +105,7 @@ DOC;
 		<footer class="page-footer">
 			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
 		</footer>
-
+		
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
 		<script type="text/javascript" src="/common/js/jquery.js"></script>
 		<script type="text/javascript" src="./js/common.js"></script>

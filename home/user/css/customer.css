@@ -1,0 +1,356 @@
+@charset "utf-8";
+
+/*------------------------------------------------------------
+
+File_name	: customer.css
+log			: 2017-12-18	created
+
+-------------------------------------------------------------- */
+
+
+/*マイページ 会員特典*/
+
+th,
+td {
+	margin: 0;
+	padding: 0;
+}
+
+h2 {
+	text-align: center;
+	margin: 20px 50px 5px;
+}
+
+.button_fld {
+	display: flex;
+	width: 70%;
+	margin: 0 auto;
+}
+
+.table-bordered thead td,
+.table-bordered thead th {
+	border-bottom-width: 2px;
+	padding-left: 15px;
+}
+
+.table-bordered td,
+.table-bordered th {
+	border-right: none;
+	border-left: none;
+	padding-left: 15px;
+}
+
+.featherlight .featherlight-content {
+	width: 60%;
+	max-width: 800px;
+}
+
+.user_rank {
+	display: flex;
+	text-align: initial;
+	margin: 4% auto;
+}
+
+.user_mark {
+	width: 48%;
+	margin: 0 auto;
+	padding: 0 8%;
+}
+
+.user_det {
+	text-align: left;
+	width: 48%;
+	padding: 50px 0 0;
+}
+
+.rank_caption {
+	float: right;
+	width: 500px
+}
+
+.total_fee {
+	display: block;
+	text-align: center;
+	width: 160px;
+	height: 40px;
+	padding-top: 10px;
+	color: #fff;
+	background-color: #dc0000;
+}
+
+.off {
+	color: #dc0000;
+	font-weight: bold;
+	font-size: 59.2px;
+}
+
+.costomer_rank {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.rank_up {
+	display: inline-block;
+	font-size: 12px;
+	margin: 0 auto 30px 30;
+}
+
+.pop_btn_2 {
+	display: inline-block;
+	padding: 10px 28px;
+	background-color: #e5e5e5;
+	box-shadow: 1px 1px 1px #a5a5a5;
+	font-weight: bold;
+	font-size: 14px;
+	margin-top: 20px;
+	margin-bottom: 70px;
+	cursor: pointer;
+	color: #000!important;
+}
+
+.table table-bordered {
+	border-collapse: collapse;
+}
+
+.table table-bordered caption {
+	caption-side: top
+}
+
+thead tr th {
+	background-color: #ECEAE8;
+	text-align: left;
+	padding: 100px;
+}
+
+.btn_2 {
+	display: inline-block;
+	background-color: #d9710a;
+	box-shadow: 1px 1px 1px #a5a5a5;
+	width: 200px;
+	height: 32px;
+	margin: 40px auto 40px auto;
+	font-weight: bold;
+	font-size: 14px;
+	cursor: pointer;
+	color: #FFF;
+	text-align: center center;
+}
+
+.transition_wrap .step_prev {
+	padding: 0.5rem;
+	border: 1.5px solid #e2710a;
+	cursor: pointer;
+	font-size: 14px;
+	color: #e2710a;
+	box-shadow: 1px 1px 1px #a4a4a4;
+	width: 151px;
+	text-align: center;
+}
+.modal_style {
+	font-size: 13px;
+	color: #000;
+	display: inline-block;
+	border: 1px solid #000;
+	cursor: pointer;
+	background: #fff;
+	border-radius: 30px;
+	padding: 11px 20px;
+	margin: 10px 0;
+	font-weight: normal;
+}
+
+@media screen and (max-width: 768px) {
+	.user_rank {
+		display: block;
+		text-align: initial;
+		margin: 4% auto;
+	}
+	.user_mark {
+		width: 100%;
+		margin: 0 auto;
+		padding: 0 8%;
+	}
+	.user_det {
+		text-align: center;
+		width: 100%;
+		padding: 50px 0 0;
+	}
+	.total_fee {
+		display: block;
+		text-align: center;
+		width: 60%;
+		height: 40px;
+		padding-top: 10px;
+		color: #fff;
+		margin: 0 auto;
+		background-color: #dc0000;
+	}
+	.toolbar .toolbar_inner h1 {
+		display: inline;
+		margin-left: 15px;
+	}
+	.section .addtxt {
+		width: 95%;
+		margin: 0 auto;
+		margin-bottom: 10px;
+		text-align: left;
+	}
+	.toolbar {
+		background: none;
+	}
+	.featherlight .featherlight-content {
+		width: 100%;
+	}
+}
+
+@media all {
+	.modal-content {
+		width: 100%;
+		margin: 0 auto;
+		background: #fff;
+		padding: 10px;
+	}
+	.featherlight {
+		display: none;
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 2147483647;
+		text-align: center;
+		white-space: nowrap;
+		cursor: pointer;
+		background: #333;
+		background: rgba(0, 0, 0, 0)
+	}
+	.featherlight input {
+		width: 280px;
+		padding: 15px;
+		margin: 20px auto 40px;
+		display: block;
+		background: #10a6df;
+		border: none;
+		color: #fff;
+	}
+	.featherlight input:hover {
+		color: #10a6df;
+		border: 2px solid #10a6df;
+		background: white;
+		text-decoration: none;
+	}
+	.featherlight h2 {
+		margin-bottom: 10px;
+		margin-top: 10px;
+		font-size: 1.3rem;
+		color: #777;
+		font-weight: bold;
+		padding: 0;
+		text-align: center;
+	}
+	.featherlight .tbarea {
+		width: 100%;
+	}
+	.featherlight .featherlight-close-icon {
+		position: absolute;
+		z-index: 9999;
+		top: 0;
+		right: 0;
+		line-height: 50px;
+		width: 50px;
+		cursor: pointer;
+		text-align: center;
+		font-family: Arial, sans-serif;
+		background: #fff;
+		background: rgba(255, 255, 255, .3);
+		color: #000;
+		border: 0;
+		padding: 0;
+		font-size: 1.5em;
+	}
+	.featherlight-close-button {
+		line-height: 50px;
+		width: 280px;
+		cursor: pointer;
+		text-align: center;
+		background: #eceae8;
+		color: #000;
+		border: 0;
+		padding: 0;
+		font-size: 1.2rem;
+		margin: 25px auto;
+		display: block;
+	}
+	.modal_window p {
+		padding: 5px;
+	}
+	.modal_window .min_space {
+		padding: 0px;
+		width: 68%;
+		text-align: left;
+		padding-left: 70px;
+	}
+	.modal_window .min_img {
+		padding: 0px;
+		width: 30%;
+	}
+	.gold {
+		color: #9c690d;
+		text-align: left;
+		font-size: 1.1rem;
+		margin: 30px 0 20px;
+	}
+	.silver {
+		color: #5f5958;
+		text-align: left;
+		font-size: 1.1rem;
+		margin: 30px 0 20px;
+	}
+	.bronze {
+		color: #7d3d14;
+		text-align: left;
+		font-size: 1.1rem;
+		margin: 30px 0 20px;
+	}
+	.pay_bdr {
+		margin: 0 auto;
+		width: 95%;
+		padding: 20px;
+		margin: 20px 5px;
+		text-align: left;
+		border: 1px solid #dc0000;
+	}
+	.pay_bdr h4 {
+		text-align: center;
+		padding-bottom: 10px;
+	}
+	.sq_bdr {
+		margin: 0 auto;
+		width: 95%;
+		padding: 20px;
+		text-align: center;
+		display: flex;
+		border: none;
+	}
+	.red_txt_b {
+		color: #dc0000;
+		font-weight: bold;
+		text-align: center;
+	}
+	.bdrline {
+		border: 1px solid #d5d5d5;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.modal_window .min_space {
+		padding: 0px;
+		width: 70%;
+		text-align: left;
+		padding-left: 20px;
+	}
+	h2 {
+		text-align: center;
+		margin: 50px 50px 5px;
+	}
+}

@@ -4,7 +4,7 @@ require_once dirname(__FILE__).'/php_libs/funcs.php';
 // ログイン状態のチェック
 $me = checkLogin();
 if(!$me){
-	jump('login.php');
+	jump('./login.php');
 }
 
 $isOK = false;
@@ -23,7 +23,7 @@ $isOK = false;
 		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
 		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
 		<meta property="fb:app_id" content="1605142019732010" />
-		<title>決済 ｜ オリジナルTシャツ【タカハマライフアート】</title>
+		<title>決済 - TLAメンバーズ | タカハマライフアート</title>
 		<link rel="shortcut icon" href="/icon/favicon.ico" />
 
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>

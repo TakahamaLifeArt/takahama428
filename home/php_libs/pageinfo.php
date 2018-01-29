@@ -604,7 +604,6 @@ if(isset($_REQUEST['act'])){
 	*	商品一覧ページ
 	*/
 
-
 	// タグ条件チェックボックスの指定状況と、カテゴリーまたはアイテムタグのIDを判定
 //	$_IS_SCROLL = "";
 	$_ID = 1;
@@ -643,6 +642,25 @@ if(isset($_REQUEST['act'])){
 		}
 
 	}
+	
+	if (!isset($prm['cat'], $prm['tag'])) {
+		$dirName = basename(dirname($_SERVER['SCRIPT_NAME'], 1));
+		$tmp = $pageinfo->categoryList();
+		$categoryIds = array_column($tmp, 'id', 'code');
+		
+		if ($dirName=='sportswear') {
+			$_ID = 73;
+			$_IS_TAG = 1;
+			$mode = "tag";
+		} else if(array_key_exists($dirName, $categoryIds)) {
+			$_ID = $categoryIds[$dirName];
+			$_IS_TAG = 0;
+			$mode = "category";
+		}
+		
+		$description = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/items/txt/'.$dirName.'.txt');
+	}
+	
 	
 	$tag = array();
 	if(isset($_TAG)){
@@ -689,9 +707,9 @@ if(isset($_REQUEST['act'])){
 					<li class="item_image_s">';
 		
 		if($item_count<3){
-			$itemlist_data .= '<img class="rankno" src="../img/index/no'.($item_count+1).'.png" width="60" height="34" alt="No'.($item_count+1).'">';
-			$itemname_data .= '<img class="today" src="../img/index/today'.($item_count+1).'.png" width="60" height="34" alt="No'.($item_count+1).'">';
-			$itemname_data .= '<img class="today" src="../img/index/today'.($item_count+1).'.png" width="60" height="34" alt="No'.($item_count+1).'">';
+			$itemlist_data .= '<img class="rankno" src="/items/img/index/no'.($item_count+1).'.png" width="60" height="34" alt="No'.($item_count+1).'">';
+			$itemname_data .= '<img class="today" src="/items/img/index/today'.($item_count+1).'.png" width="60" height="34" alt="No'.($item_count+1).'">';
+			$itemname_data .= '<img class="today" src="/items/img/index/today'.($item_count+1).'.png" width="60" height="34" alt="No'.($item_count+1).'">';
 		}
 		
 		$itemlist_data .= '
@@ -801,10 +819,10 @@ if(isset($_REQUEST['act'])){
 	// パンナビを生成
 	if(!empty($_IS_TAG)){
 		$category_name = $label_pannavi;
-		$current_path = '/items/?tag='.$_ID;
+		$current_path = $_SERVER['SCRIPT_NAME'].'/items/?tag='.$_ID;
 	}else{
 		$label_pannavi = 'オリジナル'.$category_name;
-		$current_path = '/items/?cat='.$_ID;
+		$current_path = $_SERVER['SCRIPT_NAME'].'/items/?cat='.$_ID;
 	}
 	$pan_navi = "";
 	$navi_querystring = array();
@@ -812,6 +830,7 @@ if(isset($_REQUEST['act'])){
 		$len = count($tag)-1;
 		$pan_navi = '<li><a href="'.$current_path.'">'.$label_pannavi.'</a></li>';
 		for($i=0; $i<$len; $i++){
+			if (empty($searchTag[$tag[$i]]['tag_name'])) continue;
 			$navi_querystring[] = urlencode($searchTag[$tag[$i]]['tagtype_key']."[]")."=".$tag[$i];
 			$pan_navi .= '<li><a href="'.$current_path.'&'.implode("&", $navi_querystring).'">'.$searchTag[$tag[$i]]['tag_name'].'</a></li>';
 		}
@@ -1370,9 +1389,10 @@ $DOC = <<<EOD
 		<div id="order_wrap">
 			<p id="orderguide"><span>お見積もり金額について</span><br>デザイン、ボディのカラー・サイズ・素材により、表示されているお見積もり金額と別のプリント方法でご提案させていただくこともございますので、お見積もり金額がお打ち合わせ後変わることがございます。</p>
 			<div id="orderbtn_wrap">
-				<form name="f1" action="/order/" method="post" >
-					<input type="hidden" name="item_id" value="{$res['itemid']}" />
-					<input type="hidden" name="update" value="1" />
+				<form name="f1" action="/order/" method="post">
+					<input type="hidden" name="item_id" value="{$res['itemid']}">
+					<input type="hidden" name="category_id" value="{$_PAGE_CATEGORYID}">
+					<input type="hidden" name="update" value="1">
 					<div id="btnOrder" {$isPopup}>お申込みフォームへ</div>
 				</form>
 			</div>
