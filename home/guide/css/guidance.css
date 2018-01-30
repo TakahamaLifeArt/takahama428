@@ -10,9 +10,8 @@
 	log
 	2012.01.18	: created
 	2014.12.19	: キャンセル料の説明を追加
-	
+	2018.1.26	: 割引ページ作成
 -------------------------------------------------------------- */
-
 
 /*		common
 ===============================================================*/
@@ -45,65 +44,43 @@ td {
 	margin: 0;
 	padding: 0;
 }
+
 p {
 	margin: 0 0 10px;
 }
+
 ul.pan {
 	height: auto;
 	margin: 20px 5px 20px 5px;
 	font-size: 0.8em;
 }
+
 ul.pan li {
 	display: inline;
 	padding-right: 4px;
 	line-height: 2em;
 }
+
 ul.pan li:first-child:before {
 	content: "";
 	padding-right: 0;
 }
+
 ul.pan li:before {
 	content: ">";
 	padding-right: 10px;
 	vertical-align: middle;
 }
-ul.pan li a, ul.pan li span {
+
+ul.pan li a,
+ul.pan li span {
 	vertical-align: middle;
 	text-decoration: none;
 }
-}
-del, ins {
-	text-decoration: none;
-}
-.note {
-	padding-left: 1em;
-	text-indent: -1em;
-	color: #666;
-}
-.note span:first-child {
-	color: #ff0019;
-}
+
 img {
 	vertical-align: middle;
 	border: 0;
-}
-#guide_top,
-#payment,
-#discount,
-#express {
-	margin-bottom: 50px;
-}
-dl.list dt {
-	clear: left;
-	float: left;
-	width: 7em;
-	font-weight: bold;
-}
-dl.list dd {
-	padding-left: 7em;
-	margin-bottom: 1em;
-	color: #333;
-	border-bottom: 1px dotted #d8d8d8;
 }
 
 #container {
@@ -115,6 +92,7 @@ dl.list dd {
 	position: relative;
 	margin-top: 110px;
 }
+
 .contents {
 	width: 100%;
 	margin-top: 20px;
@@ -136,343 +114,124 @@ dl.list dd {
 	padding-top: 10px;
 }
 
-.tor,
-{
+
+/*		new
+===============================================================*/
+
+h4 {
+	margin: 40px 0 5px 0;
+	font-size: 16px;
+	clear: both;
+	font-weight: bold;
+}
+
+.lines-on-sides {
+	margin: 40px 0 20px 0;
+}
+
+p {
+	margin: 0;
+}
+
+.towel_header {
+	margin-top: 20px;
+}
+
+.content {
+	display: flex;
+	margin: 0 20px;
+}
+
+.content_right {
+	width: 40%;
+}
+
+.discount_img {
+	margin-right: 40px;
+	width: 50%;
+	height: 50%;
+}
+
+h2 {
+	font-size: 28px;
+	font-weight: bold;
+	margin-bottom: 40px 0 12px 0;
+}
+
+h3 {
+	font-size: 18px;
+	font-weight: bold;
+	margin: 20px 0 0 30px;
+}
+
+.off {
+	margin-top: 10px;
+	clear: both;
+	font-size: 28px;
+	font-weight: bold;
+	color: #dc0000;
+}
+
+.member {
+	display: flex;
+}
+
+.mebmer_all {
+	display: flex;
+}
+
+.limit_img {
+	margin: 10px 20px 15px 0;
+	width: 90%;
+}
+
+.limit_right {
+	width: 170%;
+	margin-top: 75px;
+	margin-left: -10px;
+}
+
+.link {
 	text-align: right;
 }
 
-h3.heading3 {
-	margin: 0 0 0.5em;
-	padding: 0px;
-	font-size: 28px;
-	font-weight: bold;
-	color: #333;
-	border-left: none;
+.link a {
+	margin: 20px 90px 0 0;
+	color: #4a82c6;
+	text-align: right;
+	text-decoration: underline;
 }
 
-h3.heading3 ins {
-	padding-left: 1.5em;
-	font-size: 85%;
-	font-weight: normal;
-	color: #dc0000;
-}
-
-h4 {
-	margin: 20px 0 0 20px;
-	font-weight: bold;
-	color: #666;
-}
-
-.contents .inner {
-	clear: both;
-	overflow: hidden;
-	padding: 10px 10px 40px 20px;
-	position: relative;
-}
-
-.contents .inner .note {
-	margin-top: 0.5em;
-}
-
-.contents .inner p span {
-	color: #ff0019;
-}
-
-dl.list {
-	margin: 10px 10px 20px 0px;
-}
-
-
-/* サブメニュー（横並び） */
-
-ul.sub_menu {
-	clear: both;
-	margin: 10px 0px;
-}
-
-ul.sub_menu li {
-	display: inline;
-	padding: 0 0.5em 0 0.2em;
-	white-space: nowrap;
-	border-right: 1px solid #d8d8d8;
-}
-
-ul.sub_menu li:first-child {
-	padding-left: 0.5em;
-	border-left: 1px solid #d8d8d8;
-}
-
-
-/*		ご利用案内トップ
+/*		幅
 ===============================================================*/
-
-.heading2_wrapper {
-	margin-bottom: 30px;
-	padding: 1em 1em 1.5em;
-	background: #fff;
-	border: 1px solid #eae7d2;
-	border-radius: 3px;
-}
-
-.heading2_wrapper h2.heading {
-	color: #4e2210;
-}
-
-.heading2_wrapper h2 span {
-	padding-left: 2em;
-	font-size: 66%;
-	color: #666;
-}
-
-.heading2_wrapper .comment {
-	position: relative;
-	margin: 5px 0 10px 20px;
-	color: #666;
-}
-
-.heading2_wrapper .comment ins {
-	font-size: 125%;
-}
-
-.heading2_wrapper .comment a {
-	position: absolute;
-	display: block;
-	top: 0px;
-	right: 20px;
-	width: 114px;
-	height: 26px;
-	overflow: hidden;
-}
-
-.heading2_wrapper .comment a img:hover {
-	margin-top: -26px;
-}
-
-
-/*		割引
-===============================================================*/
-
-.comment {
-	margin: 10px 0px 40px;
-}
-.desc dl.list dd {
-	padding-left: 2em;
-}
-
-.comment ins {
-	color: #dc0000;
-}
-
-.ratio_image {
-	float: left;
-	margin-right: 20px;
-}
-
-.desc {
-	float: left;
-	width: 100%;
-}
-
-.desc dl.list dt {
-	width: 2em;
-}
-
-.desc dl.list dd {
-	margin-bottom: 0.3em;
-	padding-left: 2em;
-}
-
-.desc dl.list dd span {
-	color: #dc0000;
-}
-#discount .inner p {
-	padding-bottom: 1em;
-}
-
-#discount .inner p.note {
-	padding-bottom: 0;
-}
-
-#additional div {
-	margin-bottom: 2em;
-}
-
-
-/*		特急割増
-===============================================================*/
-
-.plan_wrapper {
-	clear: both;
-	margin-top: 50px;
-	padding-bottom: 10px;
-}
-
-.plan_list {
-	margin: 10px 0px 10px 40px;
-	padding: 5px 10px;
-}
-
-.plan_list li {
-	list-style-type: decimal;
-	color: #444;
-}
-
-.plan_wrapper p {
-	margin-left: 15px;
-}
-
-
-/*		2日仕上げ、翌日仕上げのスケジュール
-===============================================================*/
-
-.notice_wrapper {
-	position: relative;
-	height: 180px;
-	margin: 30px 0px;
-	padding: 0px;
-	overflow: hidden;
-}
-
-.notice_wrapper .banner {
-	float: left;
-}
-
-.notice_wrapper .schedule {
-	float: right;
-	margin-right: 50px;
-}
-
-
-/*----------------------------------
-    通常・特急製作のラベル
-----------------------------------*/
-
-.notice_wrapper .txt_01,
-.notice_wrapper .txt_02,
-.notice_wrapper .txt_03 {
-	position: absolute;
-	left: 335px;
-	color: #fff;
-	font-size: 150%;
-	font-weight: bold;
-}
-
-.notice_wrapper .txt_01 {
-	top: 15px;
-}
-
-.notice_wrapper .txt_02,
-.notice_wrapper .txt_03 {
-	top: 85px;
-}
-
-
-/*----------------------------------
-    受付からお届けまでのスケジュール図
-----------------------------------*/
-
-.notice_wrapper .ol_01 {
-	position: absolute;
-	top: 37px;
-	left: 408px;
-	font-size: 12px;
-}
-
-.notice_wrapper .ol_01 li {
-	float: left;
-	width: 64px;
-	text-align: center;
-	color: #fff;
-}
-
-.notice_wrapper .ol_02 {
-	position: absolute;
-	top: 111px;
-	left: 408px;
-	font-size: 12px;
-}
-
-.notice_wrapper .ol_02 li {
-	float: left;
-	width: 64px;
-	text-align: center;
-	color: #fff;
-}
-
-.notice_wrapper .ol_02 li.half {
-	width: 32px;
-}
-
-
-/*----------------------------------
-    注意点
-----------------------------------*/
-
-.notice_wrapper .notice {
-	position: absolute;
-	left: 9px;
-	bottom: 7px;
-	width: 305px;
-}
-
-.notice_wrapper .notice li {
-	margin-left: 15px;
-	list-style-type: disc;
-}
-
-.notice_wrapper .notice li span {
-	padding: 0px 0.2em;
-	font-size: 125%;
-	color: #ff0019;
-}
-.note {
-	padding-left: 1em;
-	text-indent: -1em;
-	color: #666;
-	font-size: 12px;
-}
-
-
-/*		キャンセル料
-===============================================================*/
-
-.plan_wrapper table {
-	width: 100%;
-	border: 1px solid #999;
-}
-
-.plan_wrapper table th,
-.plan_wrapper table td {
-	border: 1px solid #999;
-}
-
 
 @media screen and (max-width: 768px) {
-	#main .headLine01 {
-		margin-bottom: 0;
-		color: #383838;
+	.content {
+		display: block;
+		margin: 0 20px;
+	}
+	.discount_img {
+		margin-right: 40px;
+		width: 100%;
+	}
+	.content_right {
+		width: 100%;
+	}
+	h4 {
+		margin: 20px 0 5px 0;
+		font-size: 16px;
+		clear: both;
 		font-weight: bold;
-		font-size: 28px;
-		line-height: 1.8;
-		border-bottom: none;
-		text-align: left;
-		padding-top: 20px;
 	}
-	h3.heading3 {
-		margin: 0 0 0.5em;
-		padding: 0px;
-		font-size: 20px;
-		font-weight: bold;
-		color: #333;
-		border-left: none;
+	.member {
+		display: flex;
+		text-align: center;
 	}
-	.comment {
-		margin: 10px 8px 40px;
-		font-size: 14px;
+	.mebmer_all {
+		display: block;
 	}
-	dl.list {
-		margin: 10px 10px 20px 0px;
-		font-size: 13px;
+	.limit_img {
+		margin: 10px 20px 15px 20px;
+		width: 90%;
 	}
 }
-

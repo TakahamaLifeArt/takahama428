@@ -17,7 +17,7 @@
 		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート">
 		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png">
 		<meta property="fb:app_id" content="1605142019732010">
-		<title>割引プラン　|　オリジナルTシャツ【タカハマライフアート】</title>
+		<title>割引プラン　|　オリジナルTシャツ作成が早い、タカハマライフアート</title>
 		<link rel="shortcut icon" href="/icon/favicon.ico">
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 		<link rel="stylesheet" type="text/css" href="./css/guidance.css" media="screen" />
@@ -38,137 +38,112 @@
 				<div id="main">
 
 					<h1 class="headLine01">割引プラン</h1>
-					<div class="comment">
-						<p>オリジナルTシャツを<ins>激安最速</ins>で作成ができます。</p>
-						<p>特定の条件を満たすと、<ins>大幅な値引き</ins>が可能となります。</p>
-						<p>割引の種類と適用条件をご確認下さい。複数の割引を同時に利用して、<ins>最大12％＋1,000円</ins>の割引になります。</p>
-						<p class="note"><span>※</span> 学割・2クラス割・3クラス割の併用は出来ません。</p>
-						<p class="note"><span>※</span> 商品のみご注文の場合は割引は適用されません</p>
-						<p class="note"><span>※1</span> <a href="/delivery/">特急製作についてはこちら</a>をご覧下さい。</p>
+					<div class="dis_title">
+						<p>タカハマライフアートでは、お得な割引プランをご用意しています。</p>
+						<p>最大13%＋1000円の大幅割引となっておりますので、ぜひご利用ください。</p>
+					</div>
+					<div class="towel_header">
+						<img src="./img/discount_main.jpg" class="hidden-xs-down" width="100%" alt="割引プラン"> <img src="./img/sp_discount_main.jpg" class="hidden-sm-up" width="100%" alt="割引プラン">
 					</div>
 
-					<div class="inner">
-						<h3 class="heading3">学割<ins>3%OFF</ins></h3>
-						<img class="ratio_image" alt="" src="./img/discount/discount_student.png" />
-						<div class="desc">
-							<dl class="list">
-								<dt>◎</dt>
-								<dd>学生限定（幼・保・小・中・高・専・短・大・院）</dd>
-								<dt>※</dt>
-								<dd>注文時に学校名を提示</dd>
-								<dt>※</dt>
-								<dd>2日・翌日仕上げではないこと（<span>※1</span>）</dd>
-							</dl>
+					<div class="big_ttl">
+						<h2 class="lines-on-sides">学割</h2>
+						<div class="content">
+							<img class="discount_img" src="img/sp_discount_student.jpg" alt="学割" width="100%">
+							<div class="content_right">
+								<p class="off">3%OFF</p>
+								<p>学生（幼・保・小・中・高・専・短・大・院）の方に 適用されるプランです。
+								</p>
+								<h4>使用方法：</h4>
+								<p>注文時に学校名の提示をお願いします。</p>
+							</div>
 						</div>
 					</div>
 
-					<div class="inner">
-						<h3 class="heading3">2クラス割<ins>5%OFF</ins></h3>
-						<img class="ratio_image" alt="" src="./img/discount/discount_two_class.png" />
-						<div class="desc">
-							<dl class="list">
-								<dt>◎</dt>
-								<dd>学生限定（幼・保・小・中・高・専・短・大・院）</dd>
-								<dt>◎</dt>
-								<dd>2クラス一緒にご注文（クラスごとのデザイン）</dd>
-								<dt>※</dt>
-								<dd>注文時に学校名を提示</dd>
-								<dt>※</dt>
-								<dd>2日・翌日仕上げではないこと（<span>※1</span>）</dd>
-							</dl>
+					<div class="big_ttl">
+						<h2 class="lines-on-sides">写真掲載割</h2>
+						<div class="content">
+							<img class="discount_img" src="img/sp_discount_photo.jpg" alt="写真掲載割" width="100%">
+							<div class="content_right">
+								<p class="off">3%OFF</p>
+								<p>ご注文の着用写真、または商品写真をWEB掲載可能な方に 適用されるプランです。
+								</p>
+								<h4>使用方法：</h4>
+								<p>購入後お送りするメールのアンケートにて、写真とご感想をお送りください。</p>
+							</div>
 						</div>
 					</div>
 
-					<div class="inner">
-						<h3 class="heading3">3クラス割<ins>7%OFF</ins></h3>
-						<img class="ratio_image" alt="" src="./img/discount/discount_three_class.png" />
-						<div class="desc">
-							<dl class="list">
-								<dt>◎</dt>
-								<dd>学生限定（幼・保・小・中・高・専・短・大・院）</dd>
-								<dt>◎</dt>
-								<dd>3クラス一緒にご注文（クラスごとのデザイン）</dd>
-								<dt>※</dt>
-								<dd>注文時に学校名を提示</dd>
-								<dt>※</dt>
-								<dd>2日・翌日仕上げではないこと（<span>※1</span>）</dd>
-							</dl>
+					<div class="big_ttl">
+						<h2 class="lines-on-sides">そのままプリント割</h2>
+						<div class="content">
+							<img class="discount_img" src="img/sp_discount_print.jpg" alt="そのままプリント割" width="100%">
+							<div class="content_right">
+								<p class="off">1000円OFF</p>
+								<p>お客様の入稿したデータが、修正無しで使用できる場合に適用されるプランです。 お客様が修正した場合は、再入稿でも利用可能となっております。 データの拡大縮小は無料で行います。
+								</p>
+								<h4>使用方法：</h4>
+								<p>注文確定のお電話にて、デザインのお打ち合わせを致します。 割引ご希望のお客様は、お打ち合わせ時にお伝えください。
+								</p>
+							</div>
 						</div>
 					</div>
 
-					<div class="inner">
-						<h3 class="heading3">イラレ割<ins>&yen;1,000OFF</ins></h3>
-						<p class="tor"><a href="/design/template_illust.php">イラレ入稿テンプレートダウンロードはこちら</a></p>
-						<img class="ratio_image" alt="" src="./img/discount/discount_illustrator.png" />
-						<div class="desc">
-							<dl class="list">
-								<dt>◎</dt>
-								<dd>全てのデザインをIllustrator（.ai形式）で入稿</dd>
-								<dt>※</dt>
-								<dd>IllustratorCSからCS3までの対応</dd>
-								<dt>※</dt>
-								<dd>全てパスデータで入稿いただいた場合</dd>
-								<dt>※</dt>
-								<dd><span>2日・翌日仕上げでもOK！</span>（<span>※1</span>）</dd>
-							</dl>
+					<div class="big_ttl">
+						<h2 class="lines-on-sides">会員限定割引</h2>
+						<p>タカハマライフアートでご注文いただいた、会員の方限定の割引です。</p>
+						<p>割引に加え、どの会員でも送料無料！会員ランクはマイページからご確認ください。</p>
+						<div class="mebmer_all">
+							<div class="member">
+								<div class="limit">
+									<h3>ブロンズ会員</h3>
+									<img class="limit_img" src="img/sp_customer_rank_bronze.png" alt="ブロンズ会員" width="100%">
+								</div>
+								<div class="limit_right">
+									<p class="off">3%OFF</p>
+									<p>合計購入金額</p>
+									<p>8万円(税込)以上</p>
+									<p>ご購入の方</p>
+								</div>
+							</div>
+							<div class="member">
+								<div class="limit">
+									<h3>シルバー会員</h3>
+									<img class="limit_img" src="img/sp_customer_rank_silver.png" alt="シルバー会員" width="100%">
+								</div>
+								<div class="limit_right">
+									<p class="off">5%OFF</p>
+									<p>合計購入金額</p>
+									<p>15万円(税込)以上</p>
+									<p>ご購入の方</p>
+								</div>
+							</div>
+							<div class="member">
+								<div class="limit">
+									<h3>ゴールド会員</h3>
+									<img class="limit_img" src="img/sp_customer_rank_gold.png" alt="ゴールド会員" width="100%">
+								</div>
+								<div class="limit_right">
+									<p class="off">7%OFF</p>
+									<p>合計購入金額</p>
+									<p>30万円(税込)以上</p>
+									<p>ご購入の方</p>
+								</div>
+							</div>
 						</div>
 					</div>
+					<div class="big_ttl">
+						<h2 class="lines-on-sides">大口割引</h2>
+						<div class="content">
+							<img class="discount_img" src="img/sp_discount_bigorder.jpg" alt="大口割引" width="100%">
+							<div class="content_right">
+								<p>150枚以上ご購入のお客様は大幅値引き！
+								</p>
 
-					<div class="inner">
-						<h3 class="heading3">リピーター割<ins>3%OFF</ins></h3>
-						<img class="ratio_image" alt="" src="./img/discount/discount_repeat.png" />
-						<div class="desc">
-							<dl class="list">
-								<dt>◎</dt>
-								<dd>２回目のご注文に適用（新規デザイン）</dd>
-								<dt>※</dt>
-								<dd>2日・翌日仕上げではないこと（<span>※1</span>）</dd>
-							</dl>
-						</div>
-					</div>
-
-					<div class="inner">
-						<h3 class="heading3">VIP割<ins>5%OFF</ins></h3>
-						<img class="ratio_image" alt="" src="./img/discount/discount_vip.png" />
-						<div class="desc">
-							<dl class="list">
-								<dt>◎</dt>
-								<dd>３回目以上のご注文に適用（新規デザイン）</dd>
-								<dt>※</dt>
-								<dd>2日・翌日仕上げではないこと（<span>※1</span>）</dd>
-							</dl>
-						</div>
-					</div>
-
-					<div class="inner">
-						<h3 class="heading3">紹介割<ins>3%OFF</ins></h3>
-						<img class="ratio_image" alt="" src="./img/discount/discount_introduction.png" />
-						<div class="desc">
-							<dl class="list">
-								<dt>◎</dt>
-								<dd>弊社のお客様からのご紹介</dd>
-								<dt>※</dt>
-								<dd>注文時に紹介者の名前を提示</dd>
-								<dt>※</dt>
-								<dd>2日・翌日仕上げではないこと（<span>※1</span>）</dd>
-							</dl>
-						</div>
-					</div>
-
-					<div class="inner">
-						<h3 class="heading3">ブログ割<ins>3%OFF</ins></h3>
-						<img class="ratio_image" alt="" src="./img/discount/discount_blog.png" />
-						<div class="desc">
-							<dl class="list">
-								<dt>◎</dt>
-								<dd><a href="/app/WP/thanks-blog">弊社ブログ</a>にお写真とコメントを掲載</dd>
-								<dt>※</dt>
-								<dd>お写真＝製作Ｔシャツ着用で！</dd>
-								<dt>※</dt>
-								<dd>コメント＝できばえや着心地などご感想をお願い致します！</dd>
-								<dt>※</dt>
-								<dd><span>2日・翌日仕上げでもOK！</span>（<span>※1</span>）</dd>
-							</dl>
+								<div>
+									<p class="link"><a href="/order/bigorder/">詳しくはこちら</a></p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
