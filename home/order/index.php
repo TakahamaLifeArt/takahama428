@@ -1032,12 +1032,7 @@ $_version = time();
 										</tr>
 										<tr class="bold_t">
 											<td>お見積もり合計</td>
-											<td class="total">0
-											<!--
-												TODO: Error on dfmapi.js
-												
-											-->
-											</td>
+											<td></td>
 											<td class="big_total txt_righ"><span id="total_estimation">0</span>円</td>
 										</tr>
 										<tr class="bold_t">
