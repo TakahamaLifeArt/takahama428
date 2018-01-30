@@ -1,110 +1,36 @@
 <?php
-$_FLG_ITEM_ID = isset($_REQUEST['item_id'])? $_REQUEST['item_id'] : 1;
-$_FLG_COLORCODE = isset($_REQUEST['color_code'])? $_REQUEST['color_code']: '';
+require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/session_my_handler.php';
+//$_ITEM_ID = isset($_REQUEST['item_id'])? $_REQUEST['item_id'] : 1;
+$_CATEGORY_ID = isset($_REQUEST['category_id'])? $_REQUEST['category_id'] : 1;
 $_UPDATED = empty($_REQUEST['update'])? 0: $_REQUEST['update'];
-
-require_once dirname(__FILE__).'/../php_libs/orders.php';
-$order = new Orders();
-
-
-//ユーザー情報を取得
-$me = $_SESSION['me'];
-if(!empty($_SESSION['me'])) {
-	$order->userAuto($me);
-}
-
-
-// 消費税
-$tax = $order->salestax();
-$tax /= 100;
-
-
-// カテゴリー情報を取得
-list($itemattr, $categories) = $order->getCategoryData($_FLG_ITEM_ID);
-$categorykey = array_keys($itemattr['category'])[0];
-$categoryname = $itemattr['category'][$categorykey];
-$itemcode = array_keys($itemattr['name'])[0];
-$itemname = $itemattr['name'][$itemcode];
-$code = array_keys($itemattr['code'])[0];
-$colorname = $itemattr['code'][$code];
-$categoryID = $itemattr['id'];
-									  
-
-// 商品詳細とシーン別からの遷移してきたときのパラメータ
-$folder = $categorykey;
-if($_UPDATED!=0){
-	$_CAT_KEY = $categorykey;
-}
-
-// アイテム一覧情報を取得
-$res = $order->getItemlist($categoryID);
-//$ite = new Items($categorykey);
-//$res = $ite->getItemlist();
-
-// estimattion data
-$data = $order->reqDetails();
-$total = $data['total']*(1+$tax);
-if($data['options']['payment']==3) $total = $total*(1+_CREDIT_RATE);
-$cart_amount = $data['amount'];
-if($data['amount'] > 0) {
-	$perone = floor($total/$data['amount']);
-} else {
-	$perone = 0;
-}
-$total = floor($total);
-$cart_total = $total;
-
-// user info
-foreach((array)$regist['customer'] as $key=>$val){
-	$user[$key] = $val;
-}
-
-// カテゴリーセレクター
-$category_selector = '<select id="category_selector">';
-for($i=0; $i<count($categories); $i++){
-	$category_selector .= '<option value="'.$categories[$i]['code'].'" rel="'.$categories[$i]['id'].'">'.$categories[$i]['name'].'</option>';
-}
-$category_selector .= '</select>';
-$category_selector = str_replace('value="'.$categorykey.'"', 'value="'.$categorykey.'" selected="selected"', $category_selector);
-
+$ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
+$_SESSION['ticket'] = $ticket;
 $_version = time();
 ?>
-	<!DOCTYPE html>
-	<html lang="ja">
+<!DOCTYPE html>
+<html lang="ja">
 
-	<head prefix="og://ogp.me/ns# fb://ogp.me/ns/fb#  website: //ogp.me/ns/website#">
+	<head prefix="og: https://ogp.me/ns# fb: https://ogp.me/ns/fb#  website: https://ogp.me/ns/website#">
 		<meta charset="UTF-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="Description" content="お申し込みフォームからカンタンにオリジナルTシャツがご注文できます。Web上で金額を確認しながら進めるので安心です。対応も早い！割引キャンペーンでオンライン見積の料金よりお安くなるかも？トレーナー・ポロシャツ・オリジナルTシャツの作成・プリントは、東京都葛飾区のタカハマライフアートにお任せ下さい！" />
-		<meta name="keywords" content="注文,お申し込み,オリジナル,Tシャツ,作成" />
-		<meta property="og:title" content="世界最速！？オリジナルTシャツを当日仕上げ！！" />
-		<meta property="og:type" content="article" />
-		<meta property="og:description" content="業界No. 1短納期でオリジナルTシャツを1枚から作成します。通常でも3日で仕上げます。" />
-		<meta property="og:url" content="https://www.takahama428.com/" />
-		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
-		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
-		<meta property="fb:app_id" content="1605142019732010" />
+		<meta name="Description" content="お申し込みフォームからカンタンにオリジナルTシャツがご注文できます。Web上で金額を確認しながら進めるので安心です。対応も早い！割引キャンペーンでオンライン見積の料金よりお安くなるかも？トレーナー・ポロシャツ・オリジナルTシャツの作成・プリントは、東京都葛飾区のタカハマライフアートにお任せ下さい！">
+		<meta name="keywords" content="注文,お申し込み,オリジナル,Tシャツ,作成">
+		<meta property="og:title" content="世界最速！？オリジナルTシャツを当日仕上げ！！">
+		<meta property="og:type" content="article">
+		<meta property="og:description" content="業界No. 1短納期でオリジナルTシャツを1枚から作成します。通常でも3日で仕上げます。">
+		<meta property="og:url" content="https://www.takahama428.com/">
+		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート">
+		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png">
+		<meta property="fb:app_id" content="1605142019732010">
 		<title>お申し込みフォーム ｜ オリジナルTシャツ【タカハマライフアート】</title>
-		<link rel="shortcut icon" href="/icon/favicon.ico" />
+		<link rel="shortcut icon" href="/icon/favicon.ico">
+		<link rel="stylesheet" type="text/css" href="/user/js/upload/jquery.fileupload.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="/user/js/upload/jquery.fileupload-ui.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="/user/css/uploader.css" media="screen">
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
-		<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/flick/jquery-ui.css">
-		<link rel="stylesheet" type="text/css" href="/common/css/jquery.ui.css" media="screen">
-		<link rel="stylesheet" type="text/css" media="screen" href="/user/js/upload/jquery.fileupload.css">
-		<link rel="stylesheet" type="text/css" media="screen" href="/user/js/upload/jquery.fileupload-ui.css">
-		<link rel="stylesheet" type="text/css" media="screen" href="/user/css/uploader.css">
-		<link rel="stylesheet" type="text/css" href="/common/css/printposition_responsive.css" media="screen" />
-		<link rel="stylesheet" type="text/css" href="./css/order_responsive.css" media="screen" />
-
-		<script type="text/javascript">
-			var _UPDATED = <?php echo $_UPDATED; ?>;
-			var _ITEM_ID = <?php echo $_FLG_ITEM_ID; ?>;
-			var _CAT_KEY = '<?php echo $_CAT_KEY; ?>';
-			var _TAX = <?php echo $tax; ?>;
-			var _CREDIT_RATE = <?php echo _CREDIT_RATE; ?>;
-			var _IMG_PSS = '<?php echo _IMG_PSS;?>';
-
-		</script>
+		<link rel="stylesheet" type="text/css" href="./css/animations.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="./css/order.css" media="screen">
 	</head>
 
 	<body>
@@ -112,491 +38,497 @@ $_version = time();
 			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
 		</header>
 
-		<div id="container">
-			<div class="contents" style="z-index:5;">
+		<main class="container">
+			<ul class="pan hidden-sm-down">
+				<li><a href="/">オリジナルＴシャツ屋ＴＯＰ</a></li>
+				<li>お申し込み</li>
+			</ul>
 
-				<ul class="pan hidden-sm-down">
-					<li><a href="/">オリジナルＴシャツ屋ＴＯＰ</a></li>
-					<li>お申し込み</li>
-				</ul>
+			<div class="heading1_wrapper">
+				<h1>お申し込み</h1>
+			</div>
 
-				<div class="heading1_wrapper">
-					<h1>お申し込みフォーム</h1>
-					<p class="comment">
-						FAXでのお申し込みをご希望の方は、<br><a href="/contact/faxorderform.pdf" target="_blank">FAX用フォーム</a>をプリントして送信できます。<br>
-						<a href="/design/designguide_freehand.php" target="_blank" class="comment_des">手描きのデザインで作りたい学生さんはこちら！</a>
-					</p>
-					<img src="./img/order.png" class="order_flow" style="margin-top:10px; border: 1px solid #efefef;" width="100%">
+			<div class="contents">
+
+				<div class="step">
+					<nav>
+						<ol class="cd-multi-steps text-bottom count">
+							<li class="current"><em>アイテム</em></li>
+							<li><em>プリント</em></li>
+							<li><em>カート</em></li>
+						</ol>
+					</nav>
+
+					<section>
+						<h2>アイテムカテゴリーを選択</h2>
+						<div class="item_top3 row">
+							<div class="top3_inner col-12 col-sm-4" data-category-id="1">
+								<p class="item_txt_o">Tシャツ</p>
+								<img class="top3_o first_item" src="/common/img/global/item/sp_item_01.png" width="100%">
+							</div>
+							<div class="top3_inner col-6 col-sm-4" data-category-id="3">
+								<p class="item_txt_o">ポロシャツ</p>
+								<img class="top3_o" src="/common/img/global/item/sp_item_02.png" width="100%">
+							</div>
+							<div class="top3_inner col-6 col-sm-4" data-category-id="8">
+								<p class="item_txt_o">タオル</p>
+								<img class="top3_o" src="/common/img/global/item/sp_item_03.png" width="100%">
+							</div>
+						</div>
+						<div class="item_other row">
+							<div class="other_inner col-6 col-sm-3" data-category-id="2">
+								<p class="item_txt_o">スウェット</p>
+								<img class="item_under" src="/common/img/global/item/sp_item_04.png" width="100%">
+							</div>
+							<div class="other_inner col-6 col-sm-3" data-category-id="4">
+								<p class="item_txt_o">スポーツ</p>
+								<img class="item_under" src="/common/img/global/item/sp_item_sports.png" width="100%">
+							</div>
+							<div class="other_inner col-6 col-sm-3" data-category-id="13">
+								<p class="item_txt_o">長袖Tシャツ</p>
+								<img class="item_under" src="/common/img/global/item/sp_item_longt.png" width="100%">
+							</div>
+							<div class="other_inner col-6 col-sm-3" data-category-id="6">
+								<p class="item_txt_o">ブルゾン</p>
+								<img class="item_under" src="/common/img/global/item/sp_item_05.png" width="100%">
+							</div>
+							<div class="other_inner col-6 col-sm-3" data-category-id="5">
+								<p class="item_txt_o">レディース</p>
+								<img class="item_under" src="/common/img/global/item/sp_item_lady.png" width="100%">
+							</div>
+							<div class="other_inner col-6 col-sm-3" data-category-id="9">
+								<p class="item_txt_o">バッグ</p>
+								<img class="item_under" src="/common/img/global/item/sp_item_bag.png" width="100%">
+							</div>
+							<div class="other_inner col-6 col-sm-3" data-category-id="10">
+								<p class="item_txt_o">エプロン</p>
+								<img class="item_under" src="/common/img/global/item/sp_item_07.png" width="100%">
+							</div>
+							<div class="other_inner col-6 col-sm-3" data-category-id="14">
+								<p class="item_txt_o">ベビー</p>
+								<img class="item_under" src="/common/img/global/item/sp_item_baby.png" width="100%">
+							</div>
+							<div class="other_inner col-6 col-sm-3" data-category-id="16">
+								<p class="item_txt_o">つなぎ</p>
+								<img class="item_under" src="/common/img/global/item/sp_item_08.png" width="100%">
+							</div>
+							<div class="other_inner col-6 col-sm-3" data-category-id="12">
+								<p class="item_txt_o">記念品</p>
+								<img class="item_under" src="/common/img/global/item/sp_item_11.png" width="100%">
+							</div>
+							<div class="other_inner col-6 col-sm-3" data-category-id="7">
+								<p class="item_txt_o">キャップ</p>
+								<img class="item_under" src="/common/img/global/item/sp_item_12.png" width="100%">
+							</div>
+						</div>
+					</section>
+
+<!--
+					<div class="transition_wrap d-flex justify-content-between align-items-center">
+						<div class="step_prev hoverable waves-effect">
+							<i class="fa fa-chevron-left"></i>戻る
+						</div>
+					</div>
+-->
 				</div>
 
-				<div id="gall">
-					<div id="step1" class="is-appear">
-						<div class="heading"></div>
-						<div class="crumbs_wrap">
-							<div class="crumbs pass step_first">
-								<p>Step1</p>
-								<div>プリントする<br>アイテムを選択</div>
-							</div>
-							<div class="crumbs">
-								<p>Step2</p>
-								<div>カラー・サイズ<br>枚数入力</div>
-							</div>
-							<div class="crumbs">
-								<p>Step3</p>
-								<div>プリント位置<br>を指定</div>
-							</div>
-							<div class="crumbs">
-								<p>Step4</p>
-								<div><img alt="カート" src="./img/cart.png" />カート<br>に入れる</div>
-							</div>
-							<div class="crumbs">
-								<p>Step5</p>
-								<div>お客様情報<br>の入力</div>
-							</div>
-							<div class="crumbs step_fin">
-								<p>Step6</p>
-								<div class="fin">内容を確認して<br>お申し込み</div>
-							</div>
+				<div class="step">
+					<nav>
+						<ol class="cd-multi-steps text-bottom count">
+							<li class="current"><em>アイテム</em></li>
+							<li><em>プリント</em></li>
+							<li><em>カート</em></li>
+						</ol>
+					</nav>
+
+					<section>
+						<h2><strong id="category_name"></strong></h2>
+						<div class="search_box">
+							<!-- Button trigger modal -->
+							<button class="btn search_btn" id="modal_search">
+								<i class="fa fa-search" aria-hidden="true"></i>絞り込む
+							</button>
+							<p class="display_res" id="tag"></p>
+						</div>
+						<div class="item_cond">
+							<select id="sort" class="down_cond">
+								<option value="popular" selected>人気順</option>
+								<option value="low">価格の低い順</option>
+								<option value="high">価格の高い順</option>
+								<option value="desc">レビューが多い順</option>
+							</select>
+							<p class="txt_min">表示件数：<span id="item_count"></span> アイテム</p>
 						</div>
 
-						<div class="step_inner">
-							<h2><ins>Step1</ins>プリントするアイテムをお選びください</h2>
+						<div class="listitems_top3 row"></div>
 
-							<div class="category_list">
-								<h3><ins>１.</ins>カテゴリーを指定</h3>
-								<?php echo $category_selector; ?>
-							</div>
+						<div class="listitems_other row"></div>
+					</section>
 
-							<h3 id="h3_itemlist"><ins>２.</ins>アイテムを選択してください<span>（<?php echo count($res); ?> アイテム）</span></h3>
-							<div id="itemlist_wrap">
-								<?php
-								$recomend = '';
-								$ls='';
-								$tmp = array();
-								$i=0;
-								foreach($res as $code=>$v){
-									if($code=='085-cvt') $tmp[0] = array($code=>$res[$code]);
-									if($code=='300-act') $tmp[1] = array($code=>$res[$code]);
-									if($code=='5806') $tmp[2] = array($code=>$res[$code]);
-
-									if($i%4==0){
-										$firstlist = ' firstlist';
-									}else{
-										$firstlist = '';
-									}
-									if( preg_match('/^p-/',$code) || $code=='ss-9999'){
-										$suffix = '_style_0';
-									}else{
-										$suffix = '_'.$v['initcolor'];
-									}
-									$ls .= '<li class="listitems_ex'.$firstlist.'" id="itemid_'.$v['item_id'].'_'.$v['pos_id'].'">
-											<ul class="maker_'.$v['maker_id'].'">
-												<li class="point_s">'.$v['features'].'</li>
-												<li class="item_name_s">
-													<ul>
-														<li class="item_name_kata">'.strtoupper($code).'</li>
-														<li class="item_name_name">'.$v['item_name'].'</li>
-													</ul>
-												</li>
-												<li class="item_image_s">
-													<img src="'._IMG_PSS.'items/list/'.$folder.'/'.$code.'/'.$code.$suffix.'.jpg" width="100%" height="100%" alt="'.strtoupper($code).'">
-													<img src="./img/crumbs_next.png" alt="" class="icon_arrow">
-												</li>
-												<li class="item_info_s">
-													<div class="colors">'.$v['colors'].'</div>
-													<div class="sizes">'.$v['sizes'].'</div>
-													<p class="price_s" style="white-space: nowrap;">
-														<p style="display:inline-block;">TAKAHAMA価格<p/>
-														<span id="price_cost" style="white-space: nowrap;"><span>'.$v['minprice'].'</span>円&#12316;</span>
-													</p>
-
-												</li>
-											</ul>
-											<p class="tor"><a href="../items/item.php?code='.$code.'">アイテムの詳細へ</a></p>
-										</li>';
-									$i++;
-								}
-
-								if(!empty($tmp)){
-									for($i=0; $i<count($tmp); $i++){
-										$code = array_keys($tmp[$i])[0];
-										$v = $tmp[$i][$code];
-										if($i==2) $lastli = ' lastli';
-										$recomend .= '<li class="recitembox'.$lastli.'" id="itemid_'.$v['item_id'].'_'.$v['pos_id'].'">
-										<img class="rankno" src="./img/no'.($i+1).'.png" width="60" height="55" alt="No1">
-										<ul class="maker_'.$v['maker_id'].'">
-											<li class="item_name">
-
-												<p>'.$v['features'].'</p>
-												<ul class="popu_item_name">
-													<li class="item_name_kata">'.strtoupper($code).'</li>
-													<li class="item_name_name">'.$v['item_name'].'</li>
-												</ul>
-											</li>
-											<li class="item_image">
-												<img src="'._IMG_PSS.'items/'.$folder.'/'.$code.'/'.$code.'_'.$v['initcolor'].'.jpg" width="250" alt="'.strtoupper($code).'">
-												<img src="./img/crumbs_next.png" alt="" class="icon_arrow">
-											</li>
-											<li class="item_info clearfix">
-												<div class="color">'.$v['colors'].'</div>
-												<div class="size">'.$v['sizes'].'</div>
-												<p class="price" style="white-space: nowrap;">
-												  	<p style="display:inline-block;">TAKAHAMA価格<p/>
-													<span id="price_cost" style="white-space: nowrap;"><span>'.$v['minprice'].'</span>円&#12316;</span>
-												</p>
-											</li>
-										</ul>
-									</li>';
-									}
-
-									echo '<ul class="recommend_item clearfix">'.$recomend.'</ul>';
-								}
-
-								echo '<ul class="listitems clearfix">'.$ls.'</ul>';
-								?>
-							</div>
+					<div class="transition_wrap align-items-center">
+						<div class="step_prev hoverable waves-effect">
+							<i class="fa fa-chevron-left"></i>戻る
 						</div>
 					</div>
+				</div>
 
-					<div id="step2">
-						<div class="heading clearfix">
-							<p class="arrow prev" data-back="0"><span>戻る</span></p>
-						</div>
-						<div class="crumbs_wrap">
-							<div class="crumbs pass step_first passed">
-								<p>Step1</p>
-								<div>プリントする<br>アイテムを選択</div>
-							</div>
-							<div class="crumbs pass">
-								<p>Step2</p>
-								<div>カラー・サイズ<br>枚数入力</div>
-							</div>
-							<div class="crumbs">
-								<p>Step3</p>
-								<div>プリント位置<br>を指定</div>
-							</div>
-							<div class="crumbs">
-								<p>Step4</p>
-								<div><img alt="カート" src="./img/cart.png" />カート<br>に入れる</div>
-							</div>
-							<div class="crumbs">
-								<p>Step5</p>
-								<div>お客様情報<br>の入力</div>
-							</div>
-							<div class="crumbs step_fin">
-								<p>Step6</p>
-								<div class="fin">内容を確認して<br>お申し込み</div>
-							</div>
-						</div>
-						<div class="step_inner">
-							<h2><ins>Step2</ins>カラー・サイズ・枚数を指定してください</h2>
-
-							<p id="cur_item_name_wrap">アイテム名：　<span id="cur_item_name" class="prop_1_1"><?php echo $itemname;?></span></p>
-
-							<div class="pane">
-								<h3><ins>1.</ins>アイテムカラーの指定</h3>
-								<div class="thumb_wrap clearfix">
-									<div class="item_thumb">
-										<p class="thumb_h"><span>Color</span>全<span class="num_of_color"><?php echo $color_count; ?></span>色<span class="notes_color"><?php echo $curcolor; ?></span></p>
-										<ul class="color_thumb">
-											<?php echo $thumbs; ?>
-										</ul>
-									</div>
-									<div class="item_image">
-										<?php echo $itemimage; ?>
-									</div>
+				<div class="step">
+					<nav>
+						<ol class="cd-multi-steps text-bottom count">
+							<li class="current"><em>アイテム</em></li>
+							<li><em>プリント</em></li>
+							<li><em>カート</em></li>
+						</ol>
+					</nav>
+					<section id="item_info">
+						<h2>カラー・枚数</h2>
+						<h3><ins>1.</ins>アイテムカラーの指定</h3>
+						<div class="pane">
+							<div class="color_sele_wrap">
+								<div class="color_sele">
+									<p class="item_name"></p>
+									<p class="thumb_h">アイテムカラー:<span class="note_color"></span>全<span class="num_of_color">0</span>色</p>
+									<ul class="color_sele_thumb"></ul>
 								</div>
+								<div class="item_image_big"><img alt="" src="" width="300"></div>
+							</div>
 
-								<div class="sizeprice">
-									<h3>
-										<ins>2.</ins>サイズと枚数の指定
-										<!--<span class="anchor pop_size">サイズの目安を見る</span> -->
-									</h3>
+							<div class="sizeprice">
+								<h3>
+									<ins>2.</ins>サイズと枚数の指定
+								</h3>
+								<div class="size_sele_wrap">
 									<table class="size_table">
-										<caption></caption>
-										<tbody>
-											<tr>
-												<td></td>
-											</tr>
-										</tbody>
+										<tbody></tbody>
 									</table>
-									<div class="btmline">小計<span class="cur_amount"><?php echo $sum; ?></span>枚</div>
+									<div class="btmline">小計<span class="cur_amount">0</span>枚</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="btn_box flex_add">
+							<button class="btn add_btn" id="add_item_color"><i class="fa fa-plus mr-1" aria-hidden="true"></i> 別のカラーを追加</button>
+						</div>
+
+						<div class="arrow_line">
+							<div style="display:inline-block;">合計<span id="tot_amount">0</span>枚</div>
+						</div>
+					</section>
+
+					<div class="transition_wrap align-items-center">
+						<button class="btn btn-info" id="goto_printing">次へ進む</button>
+						<div class="step_prev hoverable waves-effect">
+							<i class="fa fa-chevron-left"></i>戻る
+						</div>
+					</div>
+				</div>
+
+				<div class="step">
+					<nav>
+						<ol class="cd-multi-steps text-bottom count">
+							<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
+							<li class="current"><em>プリント</em></li>
+							<li><em>カート</em></li>
+						</ol>
+					</nav>
+
+					<section id="printing">
+						<h2>プリント</h2>
+						<div class="form-group_top">
+							<p class="print_none"><label><input type="checkbox" name="noprint" id="noprint" value="1"> プリントなしで購入する</label></p>
+							<p class="note"><span class="red_mark">※</span>プリントなしの場合1割増の料金です。</p>
+						</div>
+						<div class="pane">
+							<h3><ins>1.</ins>プリントする面を選択</h3>
+							<form method="post" action="">
+								<div class="form-group pos">
+
+								</div>
+							</form>
+
+							<h3><ins>2.</ins>プリント位置を選択</h3>
+							<div class="form-group_2 area">
+
+							</div>
+
+							<h3><ins>3.</ins>プリント色数を選択</h3>
+							<form method="post" action="">
+								<div class="form-group_2">
+									<div class="print_color">
+										<label><input type="radio" value="1" name="ink[]" class="ink" checked>1色</label>
+									</div>
+									<div class="print_color">
+										<label><input type="radio" value="2" name="ink[]" class="ink">2色</label>
+									</div>
+									<div class="print_color">
+										<label><input type="radio" value="3" name="ink[]" class="ink">3色</label>
+									</div>
+									<div class="print_color">
+										<label><input type="radio" value="4" name="ink[]" class="ink">4色以上</label>
+									</div>
+								</div>
+							</form>
+
+							<h3><ins>4.</ins>プリント方法を選択</h3>
+							<p class="print_link modal_style_line">
+								<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>プリント方法の説明を見る
+							</p>
+
+							<div class="pull_down method">
+
+							</div>
+							<!--刺繍のみ-->
+							<div class="embroidery print_cond">
+								<p class="four_t">プリント内容を選択してください。</p>
+								<form method="post" action="" class="form-group">
+									<div class="emb">
+										<label>
+											<img src="/order/img/flow/shi_type_01.jpg">
+											<p>ネーム刺繍</p>
+											<p class="four_t">弊社所有書体の中から 1行で刺繍します。
+											</p>
+											<input type="radio" value="1" name="emb_opt[]" class="design_opt">
+										</label>
+									</div>
+									<div class="emb">
+										<label>
+											<img src="/order/img/flow/shi_type_02.jpg">
+											<p>デザイン刺繍</p>
+											<p class="four_t">オリジナルのデザイン・ 文字を刺繍します。
+											</p>
+											<input type="radio" value="0" name="emb_opt[]" class="design_opt">
+										</label>
+									</div>
+								</form>
+							</div>
+
+							<h3 class="print_cond_note hidden"><ins>5.</ins>プリントサイズの選択</h3>
+							<!--シルク-->
+							<form method="post" action="" class="form-group silk print_cond">
+								<div class="print_size">
+									<label>
+										<img src="/order/img/flow/sp_order_printsize_silk_01.png">
+										<p>通常</p>
+										<p class="four_t">w27×H35cm以内</p>
+										<input type="radio" value="0" name="silk_size[]" class="design_size">
+									</label>
+								</div>
+								<div class="print_size">
+									<label>
+										<img src="/order/img/flow/sp_order_printsize_silk_02.png">
+										<p>ジャンボ</p>
+										<p class="four_t">w32×H43cm以内</p>
+										<input type="radio" value="1" name="silk_size[]" class="design_size">
+									</label>
+								</div>
+							</form>
+
+							<!--デジテン,IJ,カティング-->
+							<form method="post" action="" class="form-group other_print print_cond">
+								<div class="print_size">
+									<label>
+										<img src="/order/img/flow/sp_order_printsize_dic_01.png">
+										<p>小</p>
+										<p class="four_t">w10×H10cm以内</p>
+										<input type="radio" value="2" name="other_size[]" class="design_size">
+									</label>
+								</div>
+								<div class="print_size">
+									<label>
+										<img src="/order/img/flow/sp_order_printsize_dic_02.png">
+										<p>中</p>
+										<p class="four_t">w18×H27cm以内</p>
+										<input type="radio" value="1" name="other_size[]" class="design_size">
+									</label>
+								</div>
+								<div class="print_size">
+									<label>
+										<img src="/order/img/flow/sp_order_printsize_dic_03.png">
+										<p>大</p>
+										<p class="four_t">w27×H38cm以内</p>
+										<input type="radio" value="0" name="other_size[]" class="design_size">
+									</label>
+								</div>
+							</form>
+
+							<!--刺繍-->
+							<form method="post" action="" class="form-group embroidery print_cond">
+								<div class="print_size">
+									<label>
+										<img src="/order/img/flow/sp_order_printsize_shi_01.png">
+										<p>小</p>
+										<p class="four_t">w10×H10cm以内</p>
+										<input type="radio" value="2" name="emb_size[]" class="design_size">
+									</label>
+								</div>
+								<div class="print_size">
+									<label>
+										<img src="/order/img/flow/sp_order_printsize_shi_02.png">
+										<p>中</p>
+										<p class="four_t">w18×H18cm以内</p>
+										<input type="radio" value="1" name="emb_size[]" class="design_size">
+									</label>
+								</div>
+								<div class="print_size">
+									<label>
+										<img src="/order/img/flow/sp_order_printsize_shi_03.png">
+										<p>大</p>
+										<p class="four_t">w25×H25cm以内</p>
+										<input type="radio" value="0" name="emb_size[]" class="design_size">
+									</label>
+								</div>
+							</form>
+
+							<!--タオル-->
+							<form method="post" action="" class="form-group silk_towel print_cond">
+								<div class="print_size">
+									<label>
+										<img src="/order/img/flow/sp_order_printsize_silk_01.png">
+										<p>通常</p>
+										<p class="four_t">w27×H35cm以内</p>
+										<input type="radio" value="0" name="silk_towel_size[]" class="design_size">
+									</label>
+								</div>
+								<div class="print_size">
+									<label>
+										<img src="/order/img/flow/sp_order_printsize_silk_02.png">
+										<p>ジャンボ</p>
+										<p class="four_t">w32×H43cm以内</p>
+										<input type="radio" value="1" name="silk_towel_size[]" class="design_size">
+									</label>
+								</div>
+								<div class="print_size">
+									<label>
+										<img src="/order/img/flow/sp_order_printsize_silk_03.png">
+										<p>スーパージャンボ</p>
+										<p class="four_t">w30×H52cm以内</p>
+										<input type="radio" value="2" name="silk_towel_size[]" class="design_size">
+									</label>
+								</div>
+							</form>
+
+							<p class="note print_cond_note hidden"><span class="red_mark">※</span>プリント箇所やアイテムサイズにより、ご希望のサイズに対応できない場合もございます。</p>
+
+							<div class="price_box">
+								<p class="total_p">合計：<span>0</span>円(税込)</p>
+								<p class="solo_p">1枚あたり: <span>0</span>円(税込)</p>
+								<p class="note mb-1 inkjet_notice" hidden="hidden"><span class="red_mark">※</span>プリント色が生地より薄い色の場合、記載金額より高くなりますのでご了承ください</p>
+								<p class="note"><span class="red_mark">※</span>お見積もりは概算です。デザインの内容によって変更になる場合がございます。</p>
+							</div>
+
+							<!--プリント方法をおまかせで選択した場合、合計料金下に表示-->
+							<div class="price_box_2">
+								<p class="print_re">合計金額は<span></span>で計算されました</p>
+								<p class="solo_p">お客様のプリント条件に最適な最安価のプリント方法を適用しています。</p>
+								<div class="print_link modal_style">
+									<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>プリント方法の説明を見る
+								</div>
+								<p class="note mb-1 inkjet_notice" hidden="hidden"><span class="red_mark">※</span>プリント色が生地より薄い色の場合、記載金額より高くなりますのでご了承ください</p>
+								<p class="note"><span class="red_mark">※</span>お見積もりは概算です。デザインの内容によって変更になる場合がございます。</p>
+							</div>
+
+							<div class="btn_box flex_add">
+								<button class="btn add_btn add_print_area"><i class="fa fa-plus mr-1" aria-hidden="true"></i> プリント箇所を追加</button>
+								<button class="hidden btn del_print_area btn-outline-danger waves-effect del_btn_2">上記プリント情報を削除</button>
+							</div>
+						</div>
+					</section>
+
+					<div class="transition_wrap align-items-center">
+						<button class="btn btn-info" id="goto_cart">カートに入れる</button>
+						<div class="step_prev hoverable waves-effect">
+							<i class="fa fa-chevron-left"></i>戻る
+						</div>
+					</div>
+				</div>
+
+				<div class="step">
+					<nav>
+						<ol class="cd-multi-steps text-bottom count">
+							<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
+							<li class="done"><em class="fa fa-check" aria-hidden="true">プリント</em></li>
+							<li class="current"><em>カート</em></li>
+						</ol>
+					</nav>
+
+					<section id="cart">
+						<h2>カート</h2>
+
+						<!--デザインパターン 1-->
+						<div class="cart_box">
+							<div class="item_wrap">
+								<div class="item_name_box">
+									<p>アイテム：<span class="code">5001</span><span class="name"></span></p>
+								</div>
+								<div class="color_diff">
+									<div class="item_info_order">
+										<div class="item_color_cart">
+											<p class="cart_fb"></p>
+											<p class="color_name"></p>
+											<img src="" class="thumb">
+										</div>
+										<table class="size_count">
+											<tbody>
+												<tr>
+													<td class="cart_fb">サイズ</td>
+													<td class="cart_fb">枚数</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td></td>
+												</tr>
+											</tbody>
+										</table>
+										<div class="ch_box">
+											<button class="btn btn-outline-warning waves-effect ch_btn">変更</button>
+											<button class="btn btn-outline-danger waves-effect del_btn">削除</button>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="item_info_order_3">
+									<button class="btn add_btn alter_print"><i class="fa fa-plus mr-1" aria-hidden="true"></i> プリントの変更</button>
 								</div>
 							</div>
 
-							<div class="btn_line">
-								<span>※</span>色違いのアイテムを選べます
-								<div id="add_item_color" class="btn_sub">別のカラーを追加する</div>
-							</div>
-
-							<div class="arrow_line">
-								<div style="display:inline-block;">合計<span id="tot_amount">0</span>枚</div>
-								<div class="arrow prev" data-back="0"><span>戻る</span></div>
-								<div class="step_next goto_position">次へ進む</div>
-							</div>
-						</div>
-					</div>
-
-					<div id="step3">
-						<div class="heading clearfix">
-							<p class="arrow prev" data-back="1"><span>戻る</span></p>
-						</div>
-						<div class="crumbs_wrap">
-							<div class="crumbs pass step_first passed">
-								<p>Step1</p>
-								<div>プリントする<br>アイテムを選択</div>
-							</div>
-							<div class="crumbs pass passed">
-								<p>Step2</p>
-								<div>カラー・サイズ<br>枚数入力</div>
-							</div>
-							<div class="crumbs pass">
-								<p>Step3</p>
-								<div>プリント位置<br>を指定</div>
-							</div>
-							<div class="crumbs">
-								<p>Step4</p>
-								<div><img alt="カート" src="./img/cart.png" />カート<br>に入れる</div>
-							</div>
-							<div class="crumbs">
-								<p>Step5</p>
-								<div>お客様情報<br>の入力</div>
-							</div>
-							<div class="crumbs step_fin">
-								<p>Step6</p>
-								<div class="fin">内容を確認して<br>お申し込み</div>
-							</div>
-						</div>
-						<div class="step_inner">
-							<h2><ins>Step3</ins>プリントする位置とデザインの色数を指定してください</h2>
-
-							<div>
-								<p><label><input type="checkbox" name="noprint" id="noprint" value="1"> プリントなしで購入する</label></p>
-								<p class="note"><span>※</span>プリントなしの場合1割増しになります。</p>
-							</div>
-
-							<div id="pos_wrap"></div>
-
-							<div>
-								<h3 class="heading_mark">刺繍をご希望の方はご記入ください</h3>
-								<p class="note">例　左そで：刺繍</p>
-								<textarea id="note_printmethod" name="note_printmethod"></textarea>
-							</div>
-							<div class="bdrtxt">
-								<p><span class="demoSpan1"></span>刺繍のお見積金額は含まれてはおりません。別途お見積りしてご連絡させて頂きます。</p>
-							</div>
-							<div class="arrow_line">
-								<div class="arrow prev" data-back="1"><span>戻る</span></div>
-								<div class="step_next goto_cart">カートに入れる</div>
-							</div>
-						</div>
-					</div>
-
-					<div id="step4">
-						<div class="heading clearfix">
-							<p class="arrow prev" data-back="0"><span>別の商品を見る</span></p>
-						</div>
-						<div class="crumbs_wrap">
-							<div class="crumbs pass step_first passed">
-								<p>Step1</p>
-								<div>プリントする<br>アイテムを選択</div>
-							</div>
-							<div class="crumbs pass passed">
-								<p>Step2</p>
-								<div>カラー・サイズ<br>枚数入力</div>
-							</div>
-							<div class="crumbs pass passed">
-								<p>Step3</p>
-								<div>プリント位置<br>を指定</div>
-							</div>
-							<div class="crumbs pass">
-								<p>Step4</p>
-								<div><img alt="カート" src="./img/cart.png" />カート<br>に入れる</div>
-							</div>
-							<div class="crumbs">
-								<p>Step5</p>
-								<div>お客様情報<br>の入力</div>
-							</div>
-							<div class="crumbs step_fin">
-								<p>Step6</p>
-								<div class="fin">内容を確認して<br>お申し込み</div>
-							</div>
-						</div>
-						<div class="step_inner">
-							<h2><ins>Step4</ins>カート</h2>
-
-							<div id="estimation_wrap">
-								<table>
-									<caption>お見積り</caption>
-									<thead>
-										<!--<tr><th colspan="2">商品名 / カラー</th><th>サイズ</th><th>単価</th><th>枚数</th><th>金額</th><th></th></tr>-->
-										<tr>
-											<th>商品名 / カラー</th>
-											<th>サイズ</th>
-											<th>単価</th>
-											<th>枚数</th>
-											<th>金額</th>
-										</tr>
-									</thead>
-									<tfoot>
-										<tr>
-											<td colspan="3">商品代計</td>
-											<td class="ac"><ins class="totamount">0</ins> 枚</td>
-											<td class="itemsum">0</td>
-										</tr>
-										<tr>
-											<td colspan="1">プリント代</td>
-											<td class="print_size ac"></td>
-											<td class="print_pos ac"></td>
-											<td class="ink_count ac"></td>
-											<td class="printfee">0</td>
-										</tr>
-										<tr>
-											<td colspan="4">送料</td>
-											<td class="carriage">0</td>
-										</tr>
-										<tr>
-											<td colspan="4">代引手数料</td>
-											<td class="codfee">0</td>
-										</tr>
-										<tr>
-											<td colspan="4">コンビニ手数料</td>
-											<td class="conbifee">0</td>
-										</tr>
-										<tr>
-											<td colspan="4">袋詰代</td>
-											<td class="package">0</td>
-										</tr>
-										<tr>
-											<td colspan="1">割引</td>
-											<td colspan="3" class="discountname"></td>
-											<td class="discountfee">0</td>
-										</tr>
-										<tr>
-											<td colspan="1">特急料金</td>
-											<td colspan="3" class="expressinfo"></td>
-											<td class="expressfee">0</td>
-										</tr>
-										<tr class="foot_sub">
-											<td colspan="4">計</td>
-											<td class="base">0</td>
-										</tr>
-										<tr class="foot_sub">
-											<td colspan="4">消費税</td>
-											<td class="tax">0</td>
-										</tr>
-										<tr class="foot_sub">
-											<td colspan="4">カード決済システム利用料</td>
-											<td class="credit">0</td>
-										</tr>
-										<tr class="foot_total">
-											<td colspan="4">お見積り合計</td>
-											<td class="total">0</td>
-										</tr>
-										<tr class="foot_perone">
-											<td colspan="4">1枚あたり</td>
-											<td class="perone">0</td>
-										</tr>
-									</tfoot>
-									<tbody>
-										<tr>
-											<td colspan="7"></td>
-											<td class="last"></td>
-										</tr>
-									</tbody>
-								</table>
-								<p class="note"><span>※</span>お見積りは概算です。デザインの内容によって変更になる場合がございます。</p>
-							</div>
-
-							<div class="inner option_wrap">
-								<table id="option_table">
-									<caption class="highlights">割引適用</caption>
-									<p class="note"><span>※</span>商品のみご注文の場合は割引は適用されません</p>
-									<tbody>
-										<tr>
-											<th>学生さんですか</th>
-											<td>
-												<label><input type="radio" name="student" value="0" <?php if(empty($regist['options']['student'])) echo 'checked="checked"'; ?> />いいえ</label>
-												<label><input type="radio" name="student" value="3" <?php if($regist['options']['student']==3) echo 'checked="checked"'; ?> />はい<ins>3%OFF</ins></label>
-												<label><input type="radio" name="student" value="5" <?php if($regist['options']['student']==5) echo 'checked="checked"'; ?> />2クラス<ins>5%OFF</ins></label>
-												<label><input type="radio" name="student" value="7" <?php if($regist['options']['student']==7) echo 'checked="checked"'; ?> />3クラス<ins>7%OFF</ins></label>
-											</td>
-										</tr>
-										<tr>
-											<th>レビューを掲載しますか</th>
-											<td>
-												<label><input type="radio" name="blog" value="0" <?php if(empty($regist['options']['blog'])) echo 'checked="checked"'; ?> />いいえ</label>
-												<label><input type="radio" name="blog" value="3" <?php if($regist['options']['blog']==3) echo 'checked="checked"'; ?> />はい<ins>3%OFF</ins></label>
-											</td>
-										</tr>
-										<tr>
-											<th>Illustratorで入稿しますか</th>
-											<td>
-												<label><input type="radio" name="illust" value="0" <?php if(empty($regist['options']['illust'])) echo 'checked="checked"'; ?> />いいえ</label>
-												<label><input type="radio" name="illust" value="1" <?php if($regist['options']['illust']==1) echo 'checked="checked"'; ?> />はい<ins>1,000円OFF</ins></label>
-											</td>
-										</tr>
-										<tr>
-											<th>弊社のお客様からのご紹介ですか</th>
-											<td>
-												<label><input type="radio" name="intro" value="0" <?php if(empty($regist['options']['intro'])) echo 'checked="checked"'; ?> />いいえ</label>
-												<label><input type="radio" name="intro" value="3" <?php if($regist['options']['intro']==3) echo 'checked="checked"'; ?> />はい<ins>3%OFF</ins></label>
-											</td>
-										</tr>
-										<tr class="separate">
-											<th>袋詰め　<span class="anchor" id="pop_pack">袋詰めとは</span></th>
-											<td>
-												<label><input type="radio" name="pack" value="0" <?php if(empty($regist['options']['pack'])) echo 'checked="checked"'; ?> />希望しない</label>
-												<label><input type="radio" name="pack" value="2" <?php if($regist['options']['pack']==2) echo 'checked="checked"'; ?> />袋のみ同封（10円/1枚）</label>
-												<br>
-												<label><input type="radio" name="pack" value="1" <?php if($regist['options']['pack']==1) echo 'checked="checked"'; ?> />希望する（50円/1枚）</label>
-
-											</td>
-										</tr>
-										<tr>
-											<th>お支払方法　<span class="anchor" id="pop_payment">注意点</span></th>
-											<td>
-												<label><input type="radio" name="payment" value="0" <?php if(empty($regist['options']['payment'])) echo 'checked="checked"'; ?> />銀行振込</label>
-												<!--	<label><input type="radio" name="payment" value="2" <?php if($regist['options']['payment']==2) echo 'checked="checked"'; ?> />現金（工場で受取）</label>  -->
-												<label><input type="radio" name="payment" value="1" <?php if($regist['options']['payment']==1) echo 'checked="checked"'; ?> />代金引換（手数料800円）</label>
-												<br>
-												<label><input type="radio" name="payment" value="3" <?php if($regist['options']['payment']==3) echo 'checked="checked"'; ?> />カード決済（システム利用料5％）</label>
-												<!--											<label><input type="radio" name="payment" value="4" <?php if($regist['options']['payment']==4) echo 'checked="checked"'; ?> />コンビニ決済（手数料800円）</label>-->
-											</td>
-										</tr>
-									</tbody>
-								</table>
-
-								<div class="line">
-									<label class="title">ご希望納期</label><input id="deliveryday" class="datepicker" type="text" size="14" name="deliveryday" value="<?php echo $regist['options']['deliveryday']; ?>" <?php if($regist[ 'options'][ 'nodeliday']==1) echo 'disabled'; ?> />
-									<!--									<label><input type="checkbox" name="nodeliday" id="nodeliday" value="1" <?php if($regist['options']['nodeliday']==1) echo 'checked="checked"'; ?> > 納期の指定なし</label>-->
-									<div id="datepicker"></div>
-
-									<p id="express_notice"><span class="highlights">※<ins></ins></span><span class="anchor" id="pop_express">特急料金について</span></p>
-									<p class="note"><span>※</span>袋詰め10枚以上で製作日数にプラス1日いただきます。</p>
-									<p>
-										<label class="title">お届時間帯の指定</label>
-										<select name="deliverytime" id="deliverytime">
-											<?php
-											$option = '<option value="0">---</option>
-														<option value="1">午前中</option>
-														<option value="3">14:00-16:00</option>
-														<option value="4">16:00-18:00</option>
-														<option value="5">18:00-20:00</option>
-														<option value="6">19:00-21:00</option>';
-											$option = str_replace('value="'.$regist['options']['deliverytime'].'"', 'value="'.$regist['options']['deliverytime'].'" selected="selected"', $option);
-											echo $option;
-											?>
-										</select>
-									</p>
-									<p class="note">
-										<span>※</span>お時間をご指定して頂いても天候、交通事情、 地域によりご希望に添えない場合がございますので、予めご了承願います。
-									</p>
+							<div class="item_info_order_2">
+								<div>
+									<p class="cart_fb">プリント情報</p>
 								</div>
+								<table class="print_info">
+									<tbody>
+										<tr>
+											<td>前</td>
+											<td>2色</td>
+											<td>シルクスクリーン
+												<br>(通常サイズ)</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 
-							<div class="inner">
-								<h3 class="heading_mark">デザインの画像ファイルをお持ちの方はこちらから入稿してください</h3>
+							<div class="cart_price_min">
+								<p>枚数:<span>0</span>枚</p>
+								<p>小計金額:<span>0</span>円(税抜)</p>
+							</div>
+
+							<button class="add_btn_or btn add_item">同じデザインで<br>別のアイテムを追加</button>
+						</div>
+
+						<div class="price_box">
+							<p class="total_p">合計：<span>0</span>円(税込)</p>
+							<p class="note red_txt hidden"><span class="red_mark">※</span>大口注文割引きが適用されました。</p>
+							<p class="note mb-1 inkjet_notice" hidden="hidden"><span class="red_mark">※</span>プリント色が生地より薄い色の場合、記載金額より高くなりますのでご了承ください</p>
+							<p class="note"><span class="red_mark">※</span>お見積もりは概算です。デザインの内容によって変更になる場合がございます。</p>
+						</div>
+
+						<button class="add_btn_gr btn" id="add_design">別のデザインで<br>アイテムを選ぶ</button>
+
+						<section id="manuscript">
+							<h3>デザインデータ入稿</h3>
+							<div class="cart_inner">
+
 								<form id="fileupload" name="fileupload" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="POST" enctype="multipart/form-data">
 									<div class="fileupload-buttonbar">
 										<div>
@@ -604,14 +536,14 @@ $_version = time();
 											<span class="btn btn-success fileinput-button">
 												<i class="fa fa-plus" aria-hidden="true"></i>
 												<span>ファイルを選択...</span>
-											<input type="file" name="files[]" multiple>
+												<input type="file" name="files[]" multiple>
 											</span>
 											<!--
 											<button type="submit" class="btn btn-primary start fade">
-												<i class="fa fa-cloud-upload" aria-hidden="true"></i>
-												<span>入稿する</span>
+											<i class="fa fa-cloud-upload" aria-hidden="true"></i>
+											<span>入稿する</span>
 											</button>
--->
+											-->
 											<!-- The global file processing state -->
 											<span class="fileupload-process"></span>
 										</div>
@@ -632,439 +564,664 @@ $_version = time();
 								</form>
 
 								<script id="template-upload" type="text/x-tmpl">
-									{% for (var i=0, file; file=o.files[i]; i++) { %}
-									<tr class="template-upload fade">
-										<td>
-											<span class="preview"></span>
-										</td>
-										<td>
-											<p class="name">{%=file.name%}</p>
-											<strong class="error text-danger"></strong>
-										</td>
-										<td>
-											<p class="size">Processing...</p>
-											<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-												<div class="progress-bar progress-bar-success" style="width:0%;"></div>
-											</div>
-										</td>
-										<td>
-											{% if (!i && !o.options.autoUpload) { %}
-											<button class="btn btn-primary start" hidden disabled>
+								{% for (var i=0, file; file=o.files[i]; i++) { %}
+								<tr class="template-upload fade">
+									<td>
+										<span class="preview"></span>
+									</td>
+									<td>
+										<p class="name">{%=file.name%}</p>
+										<strong class="error text-danger"></strong>
+									</td>
+									<td>
+										<p class="size">Processing...</p>
+										<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+											<div class="progress-bar progress-bar-success" style="width:0%;"></div>
+										</div>
+									</td>
+									<td>
+										{% if (!i && !o.options.autoUpload) { %}
+										<button class="btn btn-primary start" hidden disabled>
 											<i class="fa fa-cloud-upload" aria-hidden="true"></i>
 											<span>アップロード</span>
 										</button> {% } %} {% if (!i) { %}
-											<button class="btn btn-warning cancel">
+										<button class="btn btn-warning cancel">
 											<i class="fa fa-ban" aria-hidden="true"></i>
 											<span>キャンセル</span>
 										</button> {% } %}
-										</td>
-									</tr>
-									{% } %}
+									</td>
+								</tr>
+								{% } %}
 								</script>
 								<!-- The template to display files available for download -->
 								<script id="template-download" type="text/x-tmpl">
-									{% for (var i=0, file; file=o.files[i]; i++) { %}
-									<tr class="template-download fade">
-										<td>
-											<span class="preview">
-										{% if (file.thumbnailUrl) { %}
-											<img src="{%=file.thumbnailUrl%}">
-										{% } %}
+								{% for (var i=0, file; file=o.files[i]; i++) { %}
+								<tr class="template-download fade">
+									<td>
+										<span class="preview">
+									{% if (file.thumbnailUrl) { %}
+
+									{% } %}
 										</span>
-										</td>
-										<td>
-											<p class="name">
-												<span>{%=file.name%}</span>
-											</p>
-											<span class="path" hidden>{%=file.url%}</span> {% if (file.error) { %}
-											<div><span class="label label-danger">Error</span> {%=file.error%}</div>
-											{% } else { %}
-											<div><span class="label" style="font-size:1.2rem;font-weight:bold;color:#0275d8;">完了</span></div>
-											{% } %}
-										</td>
-										<td>
-											<span class="size">{%=o.formatFileSize(file.size)%}</span>
-										</td>
-										<td>
-											{% if (file.deleteUrl) { %}
-											<button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
+									</td>
+									<td>
+										<p class="name">
+											<span>{%=file.name%}</span>
+										</p>
+										<span class="path" hidden>{%=file.url%}</span> {% if (file.error) { %}
+										<div><span class="label label-danger">Error</span> {%=file.error%}</div>
+										{% } else { %}
+										<div><span class="label" style="font-size:1.2rem;font-weight:bold;color:#0275d8;">完了</span></div>
+										{% } %}
+									</td>
+									<td>
+										<span class="size">{%=o.formatFileSize(file.size)%}</span>
+									</td>
+									<td>
+										{% if (file.deleteUrl) { %}
+										<button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
 											<i class="fa fa-trash" aria-hidden="true"></i>
 											<span>削除</span>
 										</button> {% } else { %}
-											<button class="btn btn-warning cancel">
+										<button class="btn btn-warning cancel">
 											<i class="fa fa-ban" aria-hidden="true"></i>
 											<span>キャンセル</span>
 										</button> {% } %}
-										</td>
-									</tr>
-									{% } %}
+									</td>
+								</tr>
+								{% } %}
 								</script>
 
-								<h4>デザインについてのご要望など</h4>
-								<textarea id="note_design" name="note_design"><?php echo $user['note_design']; ?></textarea>
 
-								<div class="chapter">
-									<h4>手描きのデザイン（ラフスケッチ）でプリントをご希望の場合</h4>
-									<p>FAXでのお申し込みができます、<a href="/contact/faxorderform.pdf" target="_blank">FAX用フォーム</a>をプリントして送信してください。</p>
-									<p>FAX:
-										<?php echo _OFFICE_FAX;?>
-									</p>
+								<p class="ri_txt">最大容量：100MB</p>
+
+								<h3>デザインに関する要望</h3>
+								<textarea id="note_design" class="demand" name="note_design" placeholder="例:前のデザイン「TAKAHAMA」を極太ゴシックで打ち替え , 後ろのデザインC22ブラックで着色"></textarea>
+								<p class="note"><span class="red_mark">※</span>文字の打ち替え希望の方はテキストを入力して ください。
+								</p>
+							</div>
+						</section>
+
+						<section id="discount">
+							<h3>割引</h3>
+							<div id="sale_link" class="modal_style_line">
+								<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>割引の説明を見る
+							</div>
+							<div class="cart_inner">
+								<div class="disc_chi">
+									<label>
+										<input type="checkbox" value="3" name="student">
+										学割<span class="red_txt">(3%OFF)</span>
+									</label>
+									<div class="school_name_form">
+										<p class="note school_name"><span class="red_mark">※</span>学校名を入力してください。<span class="req">必須</span></p>
+										<input type="text" value="" name="school" placeholder="例：〇〇区△△中学校">
+									</div>
+								</div>
+								<div class="disc_chi">
+									<label>
+										<input type="checkbox" value="3" name="publish">
+										写真掲載割<span class="red_txt">(3%OFF)</span>
+									</label>
+								</div>
+								<p class="note"><span class="red_mark">※</span>WEBに掲載可能な方が対象です。</p>
+								<p class="note"><span class="red_mark">※</span>購入後のお客様アンケートご回答と商品写真と感想コメントの投稿が必須となります。</p>
+							</div>
+						</section>
+
+						<section id="pack">
+							<h3>袋詰め</h3>
+							<div class="cart_inner">
+								<p class="note"><span class="red_mark">※</span>個別包装10枚以上で制作日数にプラス1日いただきます。</p>
+								<form method="post" action="">
+									<div class="form-group flexwrap">
+										<div class="print_position">
+											<label>
+												<img src="/order/img/flow/sp_order_cart_packing_01.jpg">
+												<p>まとめて包装 (<span class="red_txt">無料</span>)</p>
+												<input type="radio" value="0" name="pack" checked>
+											</label>
+										</div>
+										<div class="print_position">
+											<label>
+												<img src="/order/img/flow/sp_order_cart_packing_02.jpg">
+												<p>個別包装 (<span class="red_txt">50円/1枚</span>)</p>
+												<input type="radio" value="50" name="pack">
+											</label>
+										</div>
+										<div class="print_position">
+											<label>
+												<img src="/order/img/flow/sp_order_cart_packing_03.jpg">
+												<p>個別袋を同封 (<span class="red_txt">10円/1枚</span>)</p>
+												<input type="radio" value="10" name="pack">
+											</label>
+										</div>
+									</div>
+								</form>
+							</div>
+						</section>
+
+						<section id="payment">
+							<h3>お支払い方法</h3>
+							<div class="cart_inner">
+								<div class="cashflow modal_style_line">
+									<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>ご利用方法を見る
+								</div>
+								<div class="form-group_2 block">
+									<div class="pay_sel">
+										<label>
+											<input type="radio" value="bank" name="payment" checked>
+											銀行振込
+										</label>
+									</div>
+									<div class="pay_sel">
+										<label>
+											<input type="radio" value="cod" name="payment">
+											代金引換 (手数料800円)
+										</label>
+									</div>
+									<div class="pay_sel">
+										<label>
+											<input type="radio" value="credit" name="payment">
+											カード決済
+										</label>
+									</div>
 								</div>
 							</div>
+						</section>
 
-							<div class="inner">
-								<h3 class="heading_mark">プリントするデザインの色がお決まりの方はご記入ください</h3>
-								<p class="note">例　前→レッド、　背面→ホワイト</p>
-								<textarea id="note_printcolor" name="note_printcolor"><?php echo $user['note_printcolor']; ?></textarea>
-							</div>
+						<section id="delivery">
+							<h3>ご希望納期</h3>
+							<div class="cart_inner">
+								<div id="ex_form" class="modal_style_line">
+									<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>当日発送をご希望の方はこちら
+								</div>
+								<div class="date_sel">
+									<h4>カレンダーから選択してください。</h4>
+									<div id="datepick" class="cale_box"></div>
+									<p class="note hidden" id="express_info">
+										<span class="red_mark">※</span>
+										特急料金がかかります。(<em>翌日仕上げ</em>)
+									</p>
+									<label for="transport"><input type="checkbox" value="2" name="transport" id="transport">お届け先が、北海道、九州、沖縄、東京離島、島根隠岐郡のいずれかとなる場合はチェックして下さい。</label>
+								</div>
 
-							<div class="arrow_line">
-								<div class="arrow prev" data-back="0"><span>別の商品を見る</span></div>
-								<div class="step_next goto_user">次へ進む</div>
+								<h4>お時間帯の指定</h4>
+								<div class="pull_down">
+									<div class="btn-group">
+										<select id="deliverytime" name="delitime" class="down_cond">
+											<option value="0" selected>指定なし</option>
+											<option value="1">午前中</option>
+											<option value="3">14:00-16:00</option>
+											<option value="4">16:00-18:00</option>
+											<option value="5">18:00-20:00</option>
+											<option value="6">19:00-21:00</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="deli_date">
+									ご希望納期：<span>-</span>月<span>-</span>日
+								</div>
+
+								<div id="estimation" class="price_box">
+									<p class="total_p">合計：<span></span>円(税込)</p>
+									<p class="solo_p">1枚あたり: <span></span>円(税込)</p>
+									<p class="note mb-1 inkjet_notice" hidden="hidden"><span class="red_mark">※</span>プリント色が生地より薄い色の場合、記載金額より高くなりますのでご了承ください</p>
+									<p class="note mb-1"><span class="red_mark">※</span>お見積もりは概算です。デザインの内容によって変更になる場合がございます。</p>
+								</div>
+								<button class="btn btn-info adj" id="goto_customer">お客様情報へ進む</button>
 							</div>
+						</section>
+					</section>
+<!--
+					<div class="transition_wrap d-flex justify-content-between align-items-center">
+						<div class="step_prev cart hoverable waves-effect">
+							<i class="fa fa-chevron-left"></i>戻る
 						</div>
 					</div>
+-->
+				</div>
 
-					<div id="step5">
-						<div class="heading clearfix">
-							<p class="arrow prev" data-back="3"><span>戻る</span></p>
-						</div>
-						<div class="crumbs_wrap">
-							<div class="crumbs pass step_first passed">
-								<p>Step1</p>
-								<div>プリントする<br>アイテムを選択</div>
-							</div>
-							<div class="crumbs pass passed">
-								<p>Step2</p>
-								<div>カラー・サイズ<br>枚数入力</div>
-							</div>
-							<div class="crumbs pass passed">
-								<p>Step3</p>
-								<div>プリント位置<br>を指定</div>
-							</div>
-							<div class="crumbs pass passed">
-								<p>Step4</p>
-								<div><img alt="カート" src="./img/cart.png" />カート<br>に入れる</div>
-							</div>
-							<div class="crumbs pass">
-								<p>Step5</p>
-								<div>お客様情報<br>の入力</div>
-							</div>
-							<div class="crumbs step_fin">
-								<p>Step6</p>
-								<div class="fin">内容を確認して<br>お申し込み</div>
-							</div>
-						</div>
-						<div class="step_inner">
-							<h2><ins>Step5</ins>お客様情報を入力してください</h2>
-							<div id="userinfo" class="clearfix">
-								<p class="comment">「<span>※</span>」印は必須入力です。</p>
-								<div id="user_wrap" class="clearfix inner">
-									<div class="g_ft" style="width=98%;border-bottom: 1px solid #d8d8d8;margin-top:20px;padding-bottom:20px;">
-										<div class="ft">
-											<ul>
-												<h1 class="login_nodisplay">マイページをお持ちの方はこちら</h1>
-												<li id="login_email" class="login_nodisplay">
-													<h2>メールアドレス:<span class="fontred">※</span></h2><input type="text" id="login_input_email" name="login_input_email" value="<?php echo $user['email']; ?>" />
-												</li>
-												<li class="login_nodisplay">
-													<h2>パスワード　　:<span class="fontred">※</span></h2><input type="password" value="<?php echo $user['password']; ?>" id="login_input_pass" name="login_input_pass" />
-												</li>
-											</ul>
-										</div>
-										<div class="ft">
-											<ul>
-												<li class="login_nodisplay"><input type="button" id="member_login" value="ログイン" /></li>
-												<div class="login_nodisplay"><span class="fontred">※</span><a href="/user/resend_pass.php">パスワードを忘れた方はこちらへ</a></div>
-											</ul>
-										</div>
-									</div>
-									<div class="ft">
-										<ul>
-											<h1 class="login_nodisplay" style="margin-top:35px;">初めての方はこちら</h1>
-											<li id="login_email">
-												<h2>メールアドレス:<span class="fontred">※</span></h2><input type="text" id="email" name="email" value="<?php echo $user['email']; ?>" />
-											</li>
-											<li class="login_nodisplay">
-												<h2>新規 パスワード:<span class="fontred">※</span></h2><input type="password" value="<?php echo $user['password']; ?>" id="pass" name="pass" />
-											</li>
-											<li class="login_nodisplay"><span class="fontred">※</span>新規の方は、新しくパスワードを入力します。半角英数字4文字以上16文字以内。</li>
-										</ul>
-									</div>
-									<div class="fl">
-										<ul>
-											<li>
-												<h2>お名前:<span class="fontred">※</span></h2>
-												<input type="text" id="customername" name="customername" value="<?php echo $user['customername']; ?>">　様
-											</li>
-											<li>
-												<h2>フリガナ:</h2><input type="text" id="customerruby" name="customerruby" value="<?php echo $user['customerruby']; ?>">　様
-											</li>
-											<li>
-												<h2>お電話番号:<span class="fontred">※</span></h2><input type="text" id="tel" name="tel" class="forPhone" value="<?php echo $user['tel']; ?>" />
-											</li>
-										</ul>
-									</div>
-									<div class="fr">
-										<ul>
-											<li>
-												<h2 class="login_nodisplay">ご住所:<span class="fontred">※</span></h2>
-											</li>
-											<li>
-												<h2 class="login_display">お届け先:<span class="fontred">※</span></h2>
-											</li>
-											<li>
-												<p><select name="delivery_customer" id="delivery_customer"></select></p>
-											</li>
-											<li>
-												<p>〒<input type="text" name="zipcode" class="forZip" id="zipcode1" value="<?php echo $user['zipcode']; ?>" onChange="AjaxZip3.zip2addr(this,'','addr0','addr1');" /></p>
-												<p><input type="text" name="addr0" id="addr0" value="<?php echo $user['addr0']; ?>" placeholder="都道府県" maxlength="4" /></p>
-												<p><input type="text" name="addr1" id="addr1" value="<?php echo $user['addr1']; ?>" placeholder="文字数は全角28文字、半角56文字です" maxlength="56" class="restrict" /></p>
-												<p><input type="text" name="addr2" id="addr2" value="<?php echo $user['addr2']; ?>" placeholder="文字数は全角16文字、半角32文字です" maxlength="32" class="restrict" /></p>
-											</li>
-											<li>
-												<h2>ご要望・ご質問など:</h2><textarea cols="30" rows="5" name="comment"><?php echo $user['comment']; ?></textarea>
-											</li>
-										</ul>
-									</div>
-								</div>
+				<div class="step">
+					<nav>
+						<ol class="cd-multi-steps text-bottom count">
+							<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
+							<li class="done"><em class="fa fa-check" aria-hidden="true">プリント</em></li>
+							<li class="done"><em class="fa fa-check" aria-hidden="true">カート</em></li>
+						</ol>
+					</nav>
 
-								<table class="inner">
+					<section>
+						<h2>お客様情報</h2>
+						<button class="add_btn_or_cus btn" id="goto_member">2回目以降のご注文の方はこちら</button>
+						<button class="add_btn_gr_cus btn" id="goto_firsttime"><img src="/order/img/flow/sp_order_firstorder.png">初めてのご注文の方はこちら</button>
+					</section>
+
+					<div class="transition_wrap d-flex justify-content-between align-items-center">
+						<div class="step_prev hoverable waves-effect">
+							<i class="fa fa-chevron-left"></i>戻る
+						</div>
+					</div>
+				</div>
+
+				<div class="step">
+					<nav>
+						<ol class="cd-multi-steps text-bottom count">
+							<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
+							<li class="done"><em class="fa fa-check" aria-hidden="true">プリント</em></li>
+							<li class="done"><em class="fa fa-check" aria-hidden="true">カート</em></li>
+						</ol>
+
+					</nav>
+
+					<section id="customer">
+						<h2>お客様情報</h2>
+						<div class="member hidden">
+							<h3>2回目以降のご注文の方</h3>
+							<p>前回ご利用時のメールアドレスとパスワードをご入力ください。<br>ログインをすると住所入力が省略できます。また、購入情報は購入履歴から確認できます。</p>
+							<div class="user_pass">
+								<li>
+									<h3>メールアドレス</h3><input type="text" id="login_email" name="login_email" value="" />
+								</li>
+								<li>
+									<h3>パスワード</h3><input type="password" value="" id="login_pass" name="login_pass" />
+								</li>
+							</div>
+							<div id="login_btn">
+								<img src="/order/img/tsuika/sp_login_icon.png">ログイン
+							</div>
+							<p>
+								<span id="resend_pass"><ins class="red_mark">※</ins>パスワードを再発行する</span>
+							</p>
+						</div>
+
+						<div class="first_time hidden">
+							<h3>初めてのご注文の方</h3>
+							<p>下記フォームに必要事項をご入力ください。<br>ご入力いただいた情報はSSL暗号通信により保護されています。</p>
+
+							<div class="new_user_pass">
+								<ul>
+									<li>
+										<h3>メールアドレス<span class="req">必須</span></h3>
+										<input type="text" id="email" name="email" value="" placeholder="例:aaa@gmail.com" />
+									</li>
+									<li>
+										<h3>新規パスワード<span class="req">必須</span></h3>
+										<input type="password" id="pass" name="pass" value="" />
+									</li>
+									<li>
+										<h3>パスワード確認用<span class="req">必須</span></h3>
+										<input type="password" id="pass_conf" name="pass_conf" value="" />
+										<p class="note"><span class="red_mark">※</span>半角英数字4文字以上16文字以内で、パスワードを設定してください。</p>
+									</li>
+									<li>
+										<h3>お名前<span class="req">必須</span></h3>
+										<input type="text" id="customername" name="customername" value="<?php echo $user['customername']; ?>" placeholder="例:高濱　太郎">様
+									</li>
+									<li>
+										<h3>フリガナ<span class="req">必須</span></h3>
+										<input type="text" id="customerruby" name="customerruby" value="<?php echo $user['customerruby']; ?>" placeholder="例:タカハマ　タロウ">様
+									</li>
+									<li>
+										<h3>お電話番号<span class="req">必須</span></h3>
+										<input type="text" id="tel" name="tel" value="<?php echo $user['tel']; ?>" placeholder="例:08012345678" />
+									</li>
+								</ul>
+
+								<ul>
+									<li>
+										<h3 class="login_display">ご住所<span class="req">必須</span></h3>
+									</li>
+
+									<li>
+										<p>〒<input type="text" name="zipcode" id="zipcode" value="<?php echo $user['zipcode']; ?>" onChange="AjaxZip3.zip2addr(this,'','addr0','addr1');" placeholder="郵便番号" /></p>
+										<p><input type="text" name="addr0" id="addr0" value="<?php echo $user['addr0']; ?>" placeholder="都道府県" maxlength="4" /></p>
+										<p><input type="text" name="addr1" id="addr1" value="<?php echo $user['addr1']; ?>" placeholder="葛飾区西新小岩1-23-456" maxlength="56" class="restrict" /></p>
+										<p><input type="text" name="addr2" id="addr2" value="<?php echo $user['addr2']; ?>" placeholder="マンション・ビル名" maxlength="32" class="restrict" /></p>
+									</li>
+								</ul>
+							</div>
+
+							<div class="transition_wrap align-items-center">
+								<button class="btn btn-info" id="confirm_customer">次へ進む</button>
+							</div>
+						</div>
+					</section>
+
+					<div class="transition_wrap d-flex justify-content-between align-items-center">
+						<div class="step_prev customer hoverable waves-effect">
+							<i class="fa fa-chevron-left"></i>戻る
+						</div>
+
+					</div>
+				</div>
+
+				<div class="step">
+					<nav>
+						<ol class="cd-multi-steps text-bottom count">
+							<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
+							<li class="done"><em class="fa fa-check" aria-hidden="true">プリント</em></li>
+							<li class="done"><em class="fa fa-check" aria-hidden="true">カート</em></li>
+						</ol>
+					</nav>
+
+					<section id="confirm_user">
+						<h2>お客様情報</h2>
+						<p>ご入力いただいた情報はSSL暗号通信により保護されています。</p>
+						<div class="user_pass_confir">
+							<ul>
+								<li>
+									<h3>メールアドレス</h3>
+									<p id="conf_email"><span></span></p>
+								</li>
+
+								<li>
+									<h3>お名前</h3>
+									<p id="conf_customername"><span></span>様</p>
+								</li>
+
+								<li>
+									<h3>フリガナ</h3>
+									<p id="conf_customerruby"><span></span>様</p>
+								</li>
+
+								<li>
+									<h3>お電話番号</h3>
+									<p id="conf_tel"><span></span></p>
+								</li>
+
+							</ul>
+
+							<ul>
+								<li>
+									<h3>ご住所</h3>
+									<p id="conf_zipcode">〒<span></span></p>
+									<p id="conf_addr0"><span></span></p>
+									<p id="conf_addr1"><span></span></p>
+									<p id="conf_addr2"><span></span></p>
+								</li>
+
+								<li>
+									<h3 class="opinion">ご意見・ご要望など<span class="any">任意</span></h3>
+									<textarea id="note_user" class="demand" name="note_user" placeholder="例:11月1日には使用したいです。"></textarea>
+								</li>
+							</ul>
+						</div>
+
+					</section>
+
+					<div class="transition_wrap align-items-center">
+						<button class="btn btn-info" id="confirm_order">最終確認へ進む</button>
+						<div class="step_prev conf_user hoverable waves-effect">
+							<i class="fa fa-chevron-left"></i>戻る
+						</div>
+					</div>
+				</div>
+
+				<div class="step">
+					<nav>
+						<ol class="cd-multi-steps text-bottom count">
+							<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
+							<li class="done"><em class="fa fa-check" aria-hidden="true">プリント</em></li>
+							<li class="done"><em class="fa fa-check" aria-hidden="true">カート</em></li>
+						</ol>
+					</nav>
+
+					<section id="confirm_order">
+						<h2>内容確認</h2>
+
+						<div class="final_confir">
+							<div class="item_info_final">
+								<table class="final_detail">
+									
+								</table>
+							</div>
+
+							<div class="item_info_final_2">
+								<table class="print_info_final">
 									<tbody>
-										<tr>
-											<th>
-												デザインの掲載について:
-											</th>
-											<td>
-												<p class="txt">オリジナルプリントを作成される方の参考に、皆様のデザインをWEB上に<br>掲載させて頂いております。下記の選択をお願い致します。</p>
-												<p class="line">
-													<label><input type="radio" name="publish" value="0" <?php if(empty($regist['options']['publish'])) echo 'checked="checked"'; ?> /> 掲載可</label>
-													<label><input type="radio" name="publish" value="1" <?php if($regist['options']['publish']==1) echo 'checked="checked"'; ?> /> 掲載不可</label>
-												</p>
-											</td>
+										<tr class="tabl_ttl_2">
+											<td colspan="3" class="print_total">プリント代</td>
+											<td class="print_total_p"><span id="final_printfee">0</span>円</td>
 										</tr>
 									</tbody>
 								</table>
 							</div>
 
-							<div class="arrow_line">
-								<div class="arrow prev" data-back="3"><span>戻る</span></div>
-								<div class="step_next goto_confirm">確認画面へ</div>
-							</div>
-						</div>
-					</div>
-
-					<div id="step6">
-						<div class="heading clearfix">
-							<p class="arrow prev" data-back="4"><span>戻る</span></p>
-						</div>
-						<div class="crumbs_wrap">
-							<div class="crumbs pass step_first passed">
-								<p>Step1</p>
-								<div>プリントする<br>アイテムを選択</div>
-							</div>
-							<div class="crumbs pass passed">
-								<p>Step2</p>
-								<div>カラー・サイズ<br>枚数入力</div>
-							</div>
-							<div class="crumbs pass passed">
-								<p>Step3</p>
-								<div>プリント位置<br>を指定</div>
-							</div>
-							<div class="crumbs pass passed">
-								<p>Step4</p>
-								<div><img alt="カート" src="./img/cart.png" />カート<br>に入れる</div>
-							</div>
-							<div class="crumbs pass passed">
-								<p>Step5</p>
-								<div>お客様情報<br>の入力</div>
-							</div>
-							<div class="crumbs pass step_fin">
-								<p>Step6</p>
-								<div class="fin">内容を確認して<br>お申し込み</div>
+							<div class="subtotal">
+								<p>小計<span class="inter" id="order_amount">0</span>枚<span class="inter_2" id="sub_total">0</span>円</p>
 							</div>
 						</div>
 
-						<div class="step_inner">
-							<h2><ins>Step6</ins>お申し込み内容をご確認ください</h2>
+						<div class="final_confir">
+							<div class="item_info_final_2">
+								<table class="discount_t">
+									<tbody>
+										<tr>
+											<td>割引</td>
+<!--											<td class="note"><p id="discount_notice" hidden="hidden"><span class="red_mark">※</span>特急料金適用時の学割はご利用できません</p></td>-->
+											<td class="txt_righ"><span class="red_txt" id="discount_fee">0</span>円</td>
+										</tr>
+<!--
+										<tr>
+											<td><span id="rank_name"></span>会員割</td>
+											<td></td>
+											<td class="txt_righ"><span class="red_txt" id="rank_fee"></span>円</td>
+										</tr>
+-->
+										<tr>
+											<td>送料</td>
+											<td class="note"><span class="red_mark">※</span>30,000円以上で送料無料</td>
+											<td class="txt_righ"><span id="carriage">0</span>円</td>
+										</tr>
+										<tr class="hidden" id="expressfee_wrap">
+											<td>特急料金</td>
+											<td></td>
+											<td class="txt_righ"><span id="express_fee">0</span>円</td>
+										</tr>
+										<tr>
+											<td>計</td>
+											<td></td>
+											<td class="txt_righ"><span id="base_price">0</span>円</td>
+										</tr>
+										<tr>
+											<td>消費税</td>
+											<td></td>
+											<td class="txt_righ"><span id="salestax">0</span>円</td>
+										</tr>
+										<tr class="bold_t">
+											<td>お見積もり合計</td>
+											<td></td>
+											<td class="big_total txt_righ"><span id="total_estimation">0</span>円</td>
+										</tr>
+										<tr class="bold_t">
+											<td>1枚あたり</td>
+											<td></td>
+											<td class="txt_righ"><span id="perone">0</span>円</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
 
-							<form id="orderform" name="orderform" method="post" action="./ordercomplete.php" onSubmit="return false;">
-								<?php
-								$ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
-								$_SESSION['ticket'] = $ticket;
-								?>
-									<input type="hidden" name="ticket" value="<?php echo $ticket; ?>">
+						<div class="final_confir">
+							<div class="item_info_final_2">
+								<table class="design_t table_info">
+									<tbody>
+										<tr class="tabl_ttl">
+											<td colspan="2">デザイン情報</td>
+										</tr>
+										<tr>
+											<td>入稿データ</td>
+											<td id="design_file"></td>
+										</tr>
+										<tr>
+											<td>デザインに関する要望</td>
+											<td id="final_note_design"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
 
-									<div class="inner1">
-										<table id="conf_item">
-											<caption>アイテム</caption>
-											<thead>
-												<tr>
-													<th>商品名 / カラー</th>
-													<th>サイズ</th>
-													<th>単価</th>
-													<th>枚数</th>
-													<th>金額</th>
-												</tr>
-											</thead>
-											<tfoot>
-												<tr class="foot_sub">
-													<th colspan="4">計</th>
-													<td class="base"><ins>0</ins> 円</td>
-												</tr>
-												<tr class="foot_sub">
-													<th colspan="4">消費税</th>
-													<td class="tax"><ins>0</ins> 円</td>
-												</tr>
-												<tr class="foot_sub">
-													<th colspan="4">カード決済システム利用料</th>
-													<td class="credit"><ins>0</ins> 円</td>
-												</tr>
-												<tr class="foot_total">
-													<th colspan="4">お見積り合計</th>
-													<td class="tot"><ins>0</ins> 円</td>
-												</tr>
-												<tr class="foot_perone">
-													<th colspan="4">1枚あたり</th>
-													<td class="per"><ins>0</ins> 円</td>
-												</tr>
-											</tfoot>
-											<tbody></tbody>
-										</table>
-									</div>
+						<div class="final_confir">
+							<div class="item_info_final_2">
+								<table class="design_t">
+									<tbody>
+										<tr class="tabl_ttl">
+											<td>割引</td>
+										</tr>
+										<tr>
+											<td id="discount_name">なし</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
 
-									<div class="inner1">
-										<table id="conf_print">
-											<caption>プリント情報</caption>
-											<thead>
-												<tr>
-													<th>アイテム</th>
-													<th>プリント位置</th>
-													<th>デザインの色数</th>
-												</tr>
-											</thead>
-											<tbody></tbody>
-										</table>
-										<table id="conf_option">
-											<tbody>
-												<tr>
-													<th>デザインファイル</th>
-													<td id="conf_attach"></td>
-												</tr>
-												<tr>
-													<th>デザインの備考</th>
-													<td id="conf_note_design"></td>
-												</tr>
-												<tr>
-													<th>デザインの色指定</th>
-													<td id="conf_note_printcolor"></td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
+						<div class="final_confir">
+							<div class="item_info_final_2">
+								<table class="design_t">
+									<tbody>
+										<tr class="tabl_ttl">
+											<td>袋詰め</td>
+										</tr>
+										<tr>
+											<td id="pack_name">なし</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
 
-									<div class="inner1">
-										<table id="conf_user">
-											<caption>お客様情報</caption>
-											<thead>
-												<tr>
-													<th>項目</th>
-													<th>入力内容</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<th>お名前</th>
-													<td id="conf_customername"></td>
-												</tr>
-												<tr>
-													<th>フリガナ</th>
-													<td id="conf_customerruby"></td>
-												</tr>
-												<tr>
-													<th>メールアドレス</th>
-													<td id="conf_email"></td>
-												</tr>
-												<tr>
-													<th>お電話番号</th>
-													<td id="conf_tel"></td>
-												</tr>
-												<tr>
-													<th>ご住所</th>
-													<td>〒<ins id="conf_zipcode"></ins><br /><ins id="conf_addr0"></ins><ins id="conf_addr1"></ins>
-														<ind id="conf_addr2"></ind>
-													</td>
-												</tr>
-												<tr>
-													<th>デザイン掲載</th>
-													<td id="conf_publish"></td>
-												</tr>
-												<tr>
-													<th>ご希望納期</th>
-													<td id="conf_deliveryday"></td>
-												</tr>
-												<tr>
-													<th>お届け時間</th>
-													<td id="conf_deliverytime"></td>
-												</tr>
-												<tr>
-													<th>お支払方法</th>
-													<td id="conf_payment"></td>
-												</tr>
-												<tr>
-													<th>ご要望・ご質問など</th>
-													<td id="conf_comment"></td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
+						<div class="final_confir">
+							<div class="item_info_final_2">
+								<table class="design_t">
+									<tbody>
+										<tr class="tabl_ttl">
+											<td>お支払い方法</td>
+										</tr>
+										<tr>
+											<td id="payment_name"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
 
-									<fieldset class="sendorder_wrap">
-										<legend class="highlights">★重要</legend>
-										<div class="inner">
-											<h3>注意事項</h3>
-											<p>
-												制作を開始するにあたり、お電話によるデザインの確認をさせていただいております。<br> 弊社よりお送りする御見積りメールをご確認いただいた後、 フリーダイヤル
-												<ins class="highlights"><?php echo _TOLL_FREE;?></ins>までお電話ください。 （平日10:00-18:00）
-											</p>
-											<img src="./img/order_6.png" width="100%" style="margin-top:10px; border:1px solid #efefef;">
-										</div>
-										<p><input type="checkbox" value="1" name="agree" id="agree"><label for="agree">確認しました</label></p>
+						<div class="final_confir">
+							<div class="item_info_final_2">
+								<table class="design_t">
+									<tbody>
+										<tr class="tabl_ttl">
+											<td colspan="2">お届け</td>
+										</tr>
+										<tr>
+											<td>ご希望納期</td>
+											<td id="delivery_date"></td>
+										</tr>
+										<tr>
+											<td>お届け時間帯</td>
+											<td id="delivery_time"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
 
-										<div>
-											<p class="pointer">チェック！</p>
-											<div id="sendorder" class="disable_button">注文する</div>
-										</div>
-									</fieldset>
+						<div class="final_confir">
+							<div class="item_info_final_2">
+								<table class="design_t table_info">
+									<tbody>
+										<tr class="tabl_ttl">
+											<td colspan="2">お客様情報</td>
+										</tr>
+										<tr>
+											<td>メールアドレス</td>
+											<td id="final_email"></td>
+										</tr>
 
-									<div class="arrow_line">
-										<div class="arrow prev" data-back="4"><span>戻る</span></div>
-									</div>
-							</form>
+										<tr>
+											<td>お名前</td>
+											<td id="final_customername"></td>
+										</tr>
+										<tr>
+											<td>フリガナ</td>
+											<td id="final_customerruby"></td>
+										</tr>
+										<tr>
+											<td>お電話番号</td>
+											<td id="final_tel"></td>
+										</tr>
+										<tr>
+											<td>ご住所</td>
+											<td id="final_address"></td>
+										</tr>
+										<tr>
+											<td>備考欄</td>
+											<td id="final_note_user"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
 
+						<div class="order_caution">
+							<p class="red_big">まだご注文は確定しておりません。</p>
+							<p>制作開始にあたり、お電話でデザインの確認をさせていただきます。<br> 弊社よりお送りする御⾒積りメールをご確認いただいた後、お電話ください。
+							</p>
+
+							<div class="mail_img">
+								<div>
+									<img src="/order/img/flow/sp_order_confirmation_mail_01.jpg" width="100%">
+								</div>
+								<div>
+									<img src="/order/img/flow/sp_order_confirmation_mail_02.jpg" width="100%">
+								</div>
+							</div>
+							<div class="confir_img">
+							<img src="/order/img/flow/sp_order_confirmation_tel.png" width="100%">
+							</div>
+
+							<div class="caution_child">
+								<p class="mid_txt">メールの受信設定</p>
+								<p>迷惑メールの設定により、弊社からのメールが届かない場合があります。<br> ドメイン指定をして<span class="red_txt">「info@takahama428.com」</span>を受信出来るように設定してください。
+								</p>
+							</div>
+
+							<div id="user_policy" class="modal_style">
+								<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>ご利用規約を見る
+							</div>
+							<label for="agree"><input type="checkbox" id="agree">ご利用規約を確認して同意しました。</label>
+						</div>
+
+					</section>
+
+					<form id="orderform" name="orderform" method="post" action="./ordercomplete.php" onSubmit="return false;">
+						<input type="hidden" name="ticket" class="ticket" value="<?php echo $ticket;?>">
+						<input type="hidden" name="design" value="">
+						<input type="hidden" name="item" value="">
+						<input type="hidden" name="sum" value="">
+						<input type="hidden" name="detail" value="">
+						<input type="hidden" name="option" value="">
+						<input type="hidden" name="user" value="">
+					</form>
+					<div class="transition_wrap align-items-center">
+						<button class="btn btn-info" id="order" disabled>この内容で申し込む</button>
+						<div class="step_prev hoverable waves-effect">
+							<i class="fa fa-chevron-left"></i>戻る
 						</div>
 					</div>
 				</div>
 
+				<div class="smooth-scroll-btn">
+					<a href="#top" class="btn-floating btn-large red">
+						<i class="fa fa-arrow-up"></i>
+					</a>
+				</div>
 			</div>
-
-			<!--
-<div id="floatingbox">
-<table>
-<caption>お見積り</caption>
-<tbody>
-<tr><th>商品枚数</th><td><span><?php echo number_format($data['amount']); ?></span>枚</td></tr>
-<tr class="total"><th>合計金額</th><td><span><?php echo number_format($total); ?></span>円</td></tr>
-<tr><th>1枚あたり</th><td><span><?php echo number_format($perone); ?></span>円</td></tr>
-</tbody>
-</table>
-<div class="btn_sub viewcart"><img alt="カート" src="./img/cart.png" />カートを見る</div>
-</div>
--->
-		</div>
-
-		<iframe name="upload_iframe" style="display: none;"></iframe>
-
+		</main>
 
 		<footer class="page-footer">
 			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
@@ -1075,12 +1232,16 @@ $_version = time();
 		<div id="overlay-mask" class="fade"></div>
 
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
-		<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
-		<script src="//ajaxzip3.github.io/ajaxzip3.js"></script>
-		<script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
-		<script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
-		<script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+		<script type="text/javascript">
+//			var _ITEM_ID = <?php echo $_ITEM_ID; ?>;
+			var _CATEGORY_ID = <?php echo $_CATEGORY_ID; ?>;
+			var _UPDATED = <?php echo $_UPDATED; ?>;
+			var IMG_PATH = '<?php echo _IMG_PSS; ?>';
+		</script>
+		<script src="https://ajaxzip3.github.io/ajaxzip3.js"></script>
+		<script src="https://blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
+		<script src="https://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+		<script src="https://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
 		<script src="/user/js/upload/vendor/jquery.ui.widget.js"></script>
 		<script src="/user/js/upload/jquery.iframe-transport.js"></script>
 		<script src="/user/js/upload/jquery.fileupload.js"></script>
@@ -1088,8 +1249,12 @@ $_version = time();
 		<script src="/user/js/upload/jquery.fileupload-image.js"></script>
 		<script src="/user/js/upload/jquery.fileupload-validate.js"></script>
 		<script src="/user/js/upload/jquery.fileupload-ui.js"></script>
-		<script src="./js/upload/main.js?v=<?php echo $_version;?>"></script>
-		<script src="./js/orderform.js"></script>
+		<script src="https://doozor.bitbucket.io/calendar/datepick_calendar.js"></script>
+		<script src="/common/js/api.js"></script>
+		<script src="./js/upload/main.js"></script>
+		<script src="./js/pagetransition.js"></script>
+		<script src="./js/orderlib.js"></script>
+		<script src="./js/order.js"></script>
+		<script src="./js/dialog.js"></script>
 	</body>
-
-	</html>
+</html>
