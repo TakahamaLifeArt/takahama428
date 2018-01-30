@@ -50,7 +50,7 @@ for($i=$cnt; $i>=0; $i--){
 	if ($d[$i]['deposit']!=2) {
 		$history .= '<p class="txt_btn"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>未決済</p>';
 	}
-	$history .= '<p class="txt_btn"><img src="/user_test/img/sp_m_history_progress_icon.png" class="btn_img" width="30px">'.$d[$i]['progressname'].'</p>';
+	$history .= '<p class="txt_btn"><img src="/user/img/sp_m_history_progress_icon.png" class="btn_img" width="30px">'.$d[$i]['progressname'].'</p>';
 	$history .= '</div>';
 
 	$history .= '</div>';

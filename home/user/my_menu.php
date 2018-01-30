@@ -88,7 +88,7 @@ $rankCode = $member->getRankCode();
 			<div class="user_rank">
 				<?php
 				if ($rank>0) {
-					echo '<p class="rankname"><img src="/user_test/img/sp_customer_rank_'.$rankCode.'.png" class="rank_img" width="60px">お客様は<a href="customer.php"><span class="bodtxt">'.$rankName.'会員</span></a>です</p>';
+					echo '<p class="rankname"><img src="/user/img/sp_customer_rank_'.$rankCode.'.png" class="rank_img" width="60px">お客様は<a href="customer.php"><span class="bodtxt">'.$rankName.'会員</span></a>です</p>';
 					echo '<p class="txt_btn"><a href="customer.php"><span class="txtbl">お客様会員情報はこちら</span></a></p>';
 				}
 				?>
@@ -96,14 +96,14 @@ $rankCode = $member->getRankCode();
 			<div class="button_fld">
 				<div class="button_lef btn">
 					<a href="order_history.php" class="rd_sq_button">
-						<p class="imgblk"><img src="/user_test/img/sp_m_top_icon_history.png" class="btn_img" width="60px"></p>
+						<p class="imgblk"><img src="/user/img/sp_m_top_icon_history.png" class="btn_img" width="60px"></p>
 						<p class="txt_btn">ご注文履歴</p>
 						<p class="txt_btn"><span>追加・再注文はこちら</span></p>
 					</a>
 				</div>
 				<div class="button_rgt btn">
 					<a href="order_list.php" class="rd_sq_button">
-						<p class="imgblk"><img src="/user_test/img/sp_m_top_icon_pay.png" class="btn_img" width="60px"></p>
+						<p class="imgblk"><img src="/user/img/sp_m_top_icon_pay.png" class="btn_img" width="60px"></p>
 						<p class="txt_btn">お支払い・制作状況</p>
 					</a>
 				</div>
@@ -111,13 +111,13 @@ $rankCode = $member->getRankCode();
 				<div class="button_fld">
 					<div class="button_lef btn">
 					<a href="account.php" class="rd_sq_button">
-						<p class="imgblk"><img src="/user_test/img/sp_m_top_icon_change.png" class="btn_img" width="60px"></p>
+						<p class="imgblk"><img src="/user/img/sp_m_top_icon_change.png" class="btn_img" width="60px"></p>
 						<p class="txt_btn">お客様情報変更</p>
 					</a>
 				</div>
 					<div class="button_rgt btn">
 					<a href="my_img.php" class="rd_sq_button">
-						<p class="imgblk"><img src="/user_test/img/sp_m_top_icon_image.png" class="btn_img" width="60px"></p>
+						<p class="imgblk"><img src="/user/img/sp_m_top_icon_image.png" class="btn_img" width="60px"></p>
 						<p class="txt_btn">イメージ画像</p>
 					</a>
 				</div>

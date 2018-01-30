@@ -65,7 +65,7 @@ $number = $me['cstprefix'].sprintf('%06d', $me['number']);
 				<div class="user_mark">
 					<?php
 					if ($rank>0) {
-						echo '<img src="/user_test/img/sp_customer_rank_'.$rankCode.'.png" class="rank_image" width="100%">';
+						echo '<img src="/user/img/sp_customer_rank_'.$rankCode.'.png" class="rank_image" width="100%">';
 					}
 					?>
 				</div>
