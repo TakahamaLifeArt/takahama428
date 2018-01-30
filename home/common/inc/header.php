@@ -84,9 +84,9 @@ if( empty($_SESSION['me']) ){
 					</div>
 					<hr>
 					<div id="signout" class="dropdown_exit" <?php echo $isHidden;?> >
-						<a href="/user/logout.php" class="dropdown-item exit_a" style="padding-bottom:20px;">
-							<p style="color:#7a420d;">ログアウト</p>
-						</a>
+						<p class="dropdown-item exit_a">
+							ログアウト
+						</p>
 					</div>
 				</div>
 			</li>

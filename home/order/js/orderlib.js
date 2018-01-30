@@ -789,7 +789,10 @@ $(function(){
 				opt = $.getStorage('option'),
 				sum = $.getStorage('sum'),
 				user = $.getStorage('user'),
+				items = $.getStorage('item'),
+				noPrintItem = $.itemPrice(items, 'id_0'),
 				subTotal = sum.item + sum.print,
+				tmpFee = 0,
 				discountName = [],
 				discountRatio = 0,
 				discountStudentRatio = 0,
@@ -805,23 +808,31 @@ $(function(){
 				deliTime = ['', '午前中', '12:00-14:00', '14:00-16:00', '16:00-18:00', '18:00-20:00', '19:00-21:00'],
 				timestamp = 0;
 
-			// 学割、ただし学校名の入力があること
-			if (opt.hasOwnProperty('school') && opt.school.trim()!=='' && opt.student!=0) {
-				discountStudentRatio = opt.student-0;
-				discountRatio += discountStudentRatio;
-				discountName.push('学割');
-			}
+			// 特急の注釈を初期化
+			$('#express_info').addClass('hidden').children('em').text('');
 
-			// 写真掲載割
-			if (opt.publish!=0) {
-				discountRatio += opt.publish-0;
-				discountName.push('写真掲載割');
-			}
-			
-			// 顧客ランク割
-			if (user.rank!=0) {
-				rankFee = -1 * Math.ceil((subTotal * user.rank)/100);
-				discountName.push(rankName[user.rank]+'会員割');
+			// プリントなしは割引不可のためアイテム代を除外する
+			subTotal -= noPrintItem.price;
+
+			if (subTotal > 0) {
+				// 学割、ただし学校名の入力があること
+				if (opt.hasOwnProperty('school') && opt.school.trim()!=='' && opt.student!=0) {
+					discountStudentRatio = opt.student-0;
+					discountRatio += discountStudentRatio;
+					discountName.push('学割');
+				}
+
+				// 写真掲載割
+				if (opt.publish!=0) {
+					discountRatio += opt.publish-0;
+					discountName.push('写真掲載割');
+				}
+
+				// 顧客ランク割
+				if (user.rank!=0) {
+					rankFee = -1 * Math.ceil((subTotal * user.rank)/100);
+					discountName.push(rankName[user.rank]+'会員割');
+				}
 			}
 
 			// 割引合計額
@@ -829,9 +840,6 @@ $(function(){
 
 			// 袋詰め代
 			packFee = opt.pack * sum.volume;
-
-			// 特急計算のため割引と袋詰めを合算
-			subTotal += (discount+packFee);
 
 			// 納期指定あり
 			if(opt.delidate){
@@ -865,17 +873,24 @@ $(function(){
 							break;
 					}
 
-					// 特急の場合は学割不可のため再計算
-					if (expressRatio>0 && discountStudentRatio>0) {
-						// 割引合計額
-						discount = -1 * Math.ceil((subTotal * (discountRatio-discountStudentRatio))/100) + (rankFee);
-						subTotal += (discount+packFee);
+					// 特急料金適用
+					if (expressRatio>0) {
+
+						// 特急の場合は学割不可のため割引を再計算（2018-01-31 併用可）
+//						if (discountStudentRatio>0) {
+//							discount = -1 * Math.ceil((subTotal * (discountRatio-discountStudentRatio))/100) + (rankFee);
+//						}
+
+						// 特急料金の計算対象項目はアイテム代、プリント代、割引、袋詰め代、インク色替え代（Web未使用）
+						tmpFee = (subTotal + discount + packFee + noPrintItem.price);
+						expressFee = Math.ceil((tmpFee * expressRatio) / 10);
+
+						// 注釈
+						$('#express_info').removeClass('hidden').children('em').text(expressInfo);
 					}
-					expressFee = Math.ceil((subTotal*expressRatio)/10);
 
 					// 製作日数不足の場合
 					if (expressError!=='') {
-						// メッセージ
 						$.msgbox(expressError);
 
 						// 日付表示の初期化と登録更新
@@ -895,20 +910,15 @@ $(function(){
 				var detail = $.getStorage('detail'),
 					total = 0,
 					salesTax = 0,
-					perone,
-					carriage = subTotal<30000 && subTotal>0 ? 700 : 0,
+					perone = 0,
+					carriage = 0,
 					codFee = opt.payment=='cod' ? 800 : 0;
-				
-//					deliTime = ['', '午前中', '12:00-14:00', '14:00-16:00', '16:00-18:00', '18:00-20:00', '19:00-21:00'],
-//					strDeliTime;
 
-				// 特急の場合の注釈
-				if (expressInfo!='') {
-					$('#express_info').removeClass('hidden').children('em').text(expressInfo);
+				// 割引、袋詰め、プリントなしアイテム代を合算
+				subTotal += (discount + packFee + noPrintItem.price);
 
-				} else {
-					$('#express_info').addClass('hidden');
-				}
+				// 送料は30000以上で無料
+				carriage = subTotal<30000 && subTotal>0 ? 700 : 0;
 
 				// 見積もり詳細を更新
 				detail.discountfee = discount;
@@ -936,6 +946,10 @@ $(function(){
 				sum.total = total;
 				sum.tax = salesTax;
 				sum = $.setStorage('sum', sum);
+
+				// ヘッダーのメニューを更新
+				$('#cart_total').text(sum.total.toLocaleString('ja-JP'));
+				$('#cart_amount').text(sum.volume.toLocaleString('ja-JP'));
 
 				d.resolve();
 			}

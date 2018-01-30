@@ -1000,7 +1000,7 @@ $_version = time();
 									<tbody>
 										<tr>
 											<td>割引</td>
-											<td class="note"><p id="discount_notice" hidden="hidden"><span class="red_mark">※</span>特急料金適用時の学割はご利用できません</p></td>
+											<td></td>
 											<td class="txt_righ"><span class="red_txt" id="discount_fee">0</span>円</td>
 										</tr>
 <!--
@@ -1238,23 +1238,23 @@ $_version = time();
 			var _UPDATED = <?php echo $_UPDATED; ?>;
 			var IMG_PATH = '<?php echo _IMG_PSS; ?>';
 		</script>
-		<script src="https://ajaxzip3.github.io/ajaxzip3.js"></script>
-		<script src="https://blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
-		<script src="https://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
-		<script src="https://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
-		<script src="/user/js/upload/vendor/jquery.ui.widget.js"></script>
-		<script src="/user/js/upload/jquery.iframe-transport.js"></script>
-		<script src="/user/js/upload/jquery.fileupload.js"></script>
-		<script src="/user/js/upload/jquery.fileupload-process.js"></script>
-		<script src="/user/js/upload/jquery.fileupload-image.js"></script>
-		<script src="/user/js/upload/jquery.fileupload-validate.js"></script>
-		<script src="/user/js/upload/jquery.fileupload-ui.js"></script>
-		<script src="https://doozor.bitbucket.io/calendar/datepick_calendar.js"></script>
-		<script src="/common/js/api.js"></script>
-		<script src="./js/upload/main.js"></script>
-		<script src="./js/pagetransition.js"></script>
-		<script src="./js/orderlib.js"></script>
-		<script src="./js/order.js"></script>
-		<script src="./js/dialog.js"></script>
+		<script src="https://ajaxzip3.github.io/ajaxzip3.js" async></script>
+		<script src="https://blueimp.github.io/JavaScript-Templates/js/tmpl.min.js" async></script>
+		<script src="https://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js" async></script>
+		<script src="https://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js" async></script>
+		<script src="/user/js/upload/vendor/jquery.ui.widget.js" defer></script>
+		<script src="/user/js/upload/jquery.iframe-transport.js" defer></script>
+		<script src="/user/js/upload/jquery.fileupload.js" defer></script>
+		<script src="/user/js/upload/jquery.fileupload-process.js" defer></script>
+		<script src="/user/js/upload/jquery.fileupload-image.js" defer></script>
+		<script src="/user/js/upload/jquery.fileupload-validate.js" defer></script>
+		<script src="/user/js/upload/jquery.fileupload-ui.js" defer></script>
+		<script src="https://doozor.bitbucket.io/calendar/datepick_calendar.js" defer></script>
+		<script src="/common/js/api.js" defer></script>
+		<script src="./js/upload/main.js" defer></script>
+		<script src="./js/pagetransition.js" defer></script>
+		<script src="./js/orderlib.js" defer></script>
+		<script src="./js/order.js" defer></script>
+		<script src="./js/dialog.js" defer></script>
 	</body>
 </html>

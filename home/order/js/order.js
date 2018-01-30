@@ -865,7 +865,7 @@ $(function () {
 		var self = $('#goto_printing');
 		if (self.next('.step_prev').is('.hidden')) {
 			showPrinting(false).then(function(){
-				resetCart();
+				$.resetCart();
 			}).then(function(){
 				self.next('.step_prev').removeClass('hidden');
 				$.next(2);	// カートへ遷移
@@ -1414,17 +1414,18 @@ $(function () {
 
 	// 色数変更
 	$('#printing').on('change', '.pane .ink', function () {
-		var ink = $(this).val(),
-			pane = $(this).closest('.pane'),
+		var self = $(this),
+			ink = self.val(),
+			pane = self.closest('.pane'),
 			index = pane.data('idx'),
 			face = pane.find('.area img').attr('alt'),
 			obj = $.curr.design[$.curr.designId][$.curr.posId][face][index];
 
 		// 刺繍の場合はオプション確認
-		if (obj['method'] == 'emb' && obj['option'] == 0) {
+		if (obj['method'] == 'emb' && obj['option'] == 1) {
 			if (ink > 1) {
 				$.msgbox('刺繍のネームは、１色のみの対応となっております。');
-				$(this).val(['1']);
+				pane.find('.ink[value="1"]').prop('checked', true);
 			}
 		}
 
@@ -1508,6 +1509,12 @@ $(function () {
 			index = pane.data('idx'),
 			face = pane.find('.area img').attr('alt');
 
+		if ($(this).val()==1 && pane.find('.ink:checked').val() > 1) {
+			$.msgbox('刺繍のネームは、１色のみの対応となっております。');
+			pane.find('.design_opt[value="0"]').prop('checked', true);
+			return;
+		}
+		
 		// デザイン選択情報を更新
 		$.curr.design[$.curr.designId][$.curr.posId][face][index]['option'] = $(this).val();
 
@@ -1944,57 +1951,59 @@ $(function () {
 	 * 注文枚数が０の場合Step1へ
 	 * 選択中の商品とカートのデータと合わせて再計算
 	 */
-	var resetCart = function() {
-		var d = $.Deferred(),
-			designs = $.getStorage('design'),
-			items = $.getStorage('item'),
-			orderItem = $.itemPrice(items),
-			sum = {};
-		
-		if ($.curr.designId!=='') {
-			if (Object.keys($.curr.design[$.curr.designId]).length!==0) {
-				designs = $.setStorage('design', $.curr.design);
-				items = $.setStorage('item', $.curr.item);
-				orderItem = $.itemPrice(items);
-			}
-			
-			sum = $.setStorage('sum', {'item': orderItem.price, 'volume': orderItem.amount});
-			
-			if (orderItem.amount==0) {
-				d.reject();
-			} else {
-				// 量販単価の適用を判定
-				if (sum.volume > 149 && sum.mass!=1) {
-					sum.mass = 1;		// 量販単価
-				} else if (sum.volume < 150 && sum.mass==1){
-					sum.mass = 0;		// 通常単価
+	$.extend({
+		resetCart: function() {
+			var d = $.Deferred(),
+				designs = $.getStorage('design'),
+				items = $.getStorage('item'),
+				orderItem = $.itemPrice(items),
+				sum = {};
+
+			if ($.curr.designId!=='') {
+				if (Object.keys($.curr.design[$.curr.designId]).length!==0) {
+					designs = $.setStorage('design', $.curr.design);
+					items = $.setStorage('item', $.curr.item);
+					orderItem = $.itemPrice(items);
 				}
-				sum = $.setStorage('sum', {'mass':sum.mass});
 
-				// 商品単価を確認してカート表示を更新
-				$.when(
-					$.setMassCost(items, sum.volume)
-				).then(function(items){
-					items = $.setStorage('item', items);
-					return setCart(designs, items);
-				}).then(function(totPrintFee){
-					// プリント代合計を更新
-					sum.print = totPrintFee;
-					sum = $.setStorage('sum', sum);
+				sum = $.setStorage('sum', {'item': orderItem.price, 'volume': orderItem.amount});
 
-					// 見積もり詳細
-					return $.estimate();
-				}).then(function(){
-					d.resolve();
-				});
+				if (orderItem.amount==0) {
+					d.reject();
+				} else {
+					// 量販単価の適用を判定
+					if (sum.volume > 149 && sum.mass!=1) {
+						sum.mass = 1;		// 量販単価
+					} else if (sum.volume < 150 && sum.mass==1){
+						sum.mass = 0;		// 通常単価
+					}
+					sum = $.setStorage('sum', {'mass':sum.mass});
+
+					// 商品単価を確認してカート表示を更新
+					$.when(
+						$.setMassCost(items, sum.volume)
+					).then(function(items){
+						items = $.setStorage('item', items);
+						return setCart(designs, items);
+					}).then(function(totPrintFee){
+						// プリント代合計を更新
+						sum.print = totPrintFee;
+						sum = $.setStorage('sum', sum);
+
+						// 見積もり詳細
+						return $.estimate();
+					}).then(function(){
+						d.resolve();
+					});
+				}
+			} else {
+				$.setStorage('sum', {'item': 0, 'volume': 0});
+				d.reject();
 			}
-		} else {
-			$.setStorage('sum', {'item': 0, 'volume': 0});
-			d.reject();
+
+			return d.promise();
 		}
-		
-		return d.promise();
-	}
+	});
 	
 	
 	/**
@@ -2132,7 +2141,7 @@ $(function () {
 			}
 
 			// カート再表示
-			resetCart().fail(function(){
+			$.resetCart().fail(function(){
 				// カートに商品がない場合
 				$.prev(0);
 			});
@@ -2517,15 +2526,15 @@ $(function () {
 			$('#total_estimation').text(z.sum.total.toLocaleString('ja-JP'));
 			$('#perone').text(perone.toLocaleString('ja-JP'));
 
-			// 特急と学割不可の表記
-			if (z.details.discountname.indexOf('学割')!==false && z.details.expressfee>0) {
-				$('#discount_notice').prop('hidden', false);
-				$('#discount_name').html(z.details.discountname + '<p><span class="red_mark">※</span>特急料金適用時の学割はご利用できません</p>');
-			} else {
-				$('#discount_notice').prop('hidden', true);
-				$('#discount_name').text(z.details.discountname);
-			}
-			
+			// 特急と学割不可の表記（2018-01-31 併用可）
+//			if (z.details.discountname.indexOf('学割')!==false && z.details.expressfee>0) {
+//				$('#discount_notice').prop('hidden', false);
+//				$('#discount_name').html(z.details.discountname + '<p><span class="red_mark">※</span>特急料金適用時の学割はご利用できません</p>');
+//			} else {
+//				$('#discount_notice').prop('hidden', true);
+//				$('#discount_name').text(z.details.discountname);
+//			}
+			$('#discount_name').text(z.details.discountname);
 			$('#pack_name').text(z.details.packname);
 			$('#payment_name').text(paymentName[z.opts.payment]);
 			$('#delivery_date').text(z.opts.delidate);
@@ -2652,16 +2661,16 @@ $(function () {
 		}
 		
 		// ユーザー
-		$.removeStorage('user', {'id':0, 'rank':0});
+//		$.removeStorage('user', {'id':0, 'rank':0});
 		
 		// 合計値
-		sessionStorage.removeItem('sum');
+//		sessionStorage.removeItem('sum');
 		
 		// オプション指定
-		$.removeStorage('option', {'publish':0, 'student':0, 'pack':0, 'payment':'bank', 'delidate':'', 'delitime':0, 'express':0, 'transport':1, 'school':'', note_design:'', note_user:''});
+//		$.removeStorage('option', {'publish':0, 'student':0, 'pack':0, 'payment':'bank', 'delidate':'', 'delitime':0, 'express':0, 'transport':1, 'school':'', note_design:'', note_user:''});
 		
 		// 見積もり詳細
-		$.removeStorage('detail', {'discountfee':0, 'discountname':'', 'packfee':0, 'packname':'', 'carriage':0, 'codfee':0, 'expressfee':0, 'expressname':'', 'rankname':''});
+//		$.removeStorage('detail', {'discountfee':0, 'discountname':'', 'packfee':0, 'packname':'', 'carriage':0, 'codfee':0, 'expressfee':0, 'expressname':'', 'rankname':''});
 		
 		// クエリストリングを取得
 		qs = $.queryString.parse();
@@ -2678,6 +2687,10 @@ $(function () {
 			if (Object.keys($.categories).length===0) {
 				$.msgbox('ネットワークの通信エラーが発生しています。<br>恐れ入りますが、再読み込みをおこなってください。');
 			} else {
+				
+				// カート再計算
+				$.estimate();
+				
 				// アイテム詳細ページからの遷移
 				if (_UPDATED==1) {
 					$.curr.designId = '0';
@@ -2712,7 +2725,7 @@ $(function () {
 						$.curr.item = {'0':{}};
 						$.curr.design = {'0':{}};
 
-						resetCart().then(
+						$.resetCart().then(
 							function(){
 								$.next(4);	// カートへ
 							},

@@ -265,18 +265,32 @@ $(function(){
 		if (location.pathname!='/order/') {
 			location.href = '/order/?update=2';
 		} else {
-			$.ajax({
-				url:'/php_libs/orders.php', type:'get', dataType:'json', async:true, timeout:5000, data:{'act':'details'}
-			}).done(function(r){
-				if(r.design.length==0 && r.options.noprint==0){
-					$.msgbox('プリントするデザインの色数を指定してください。');
-				}else{
-					$.setCart(r);
+			$.curr.designId = 0;
+			$.curr.category = {};
+			$.curr.item = {'0':{}};
+			$.curr.design = {'0':{}};
+
+			$.resetCart().then(
+				function(){
+					var page = 4 - $.orderFlow.current;
+					if (page > 0) {
+						$.next(page);
+					} else if (page < 0) {
+						$.prev(page);
+					}
+				},
+				function(){
+					$.msgbox('カートに商品はありません。');
 				}
-			}).fail(function(xhr, status, error){
-				$.msgbox("Error: "+error+"<br>カート情報が取得できませんでした。");
-			});
+			);
 		}
+	});
+	
+	
+	/** logout */
+	$('#signout').on('click', function(){
+		sessionStorage.setItem('user', JSON.stringify({'id':0, 'rank':0}));
+		location.href = '/user/logout.php';
 	});
 	
 	
