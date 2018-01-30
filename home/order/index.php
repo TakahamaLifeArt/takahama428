@@ -1000,7 +1000,6 @@ $_version = time();
 									<tbody>
 										<tr>
 											<td>割引</td>
-<!--											<td class="note"><p id="discount_notice" hidden="hidden"><span class="red_mark">※</span>特急料金適用時の学割はご利用できません</p></td>-->
 											<td class="txt_righ"><span class="red_txt" id="discount_fee">0</span>円</td>
 										</tr>
 <!--
