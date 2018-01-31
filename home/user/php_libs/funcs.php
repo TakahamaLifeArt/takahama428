@@ -2,18 +2,81 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/session_my_handler.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/conndb.php';
-require_once dirname(__FILE__).'/mailer.php';
+//require_once dirname(__FILE__).'/UserMail.php';
+require_once dirname(__FILE__).'/TlaMember.php';
 
 function h($s) {
 	return htmlspecialchars($s, ENT_QUOTES, 'utf-8');
 }
 
-/*
-*	ログイン状態のチェック
-*/
+/**
+ * ログイン
+ * @param {array} args {'email', 'pass'}
+ * @return ログイン失敗の場合{'error'=>エラーメッセージ}
+ */
+function loginTo($args) {
+	try {
+		if (!is_array($args)) throw new Exception();
+		
+		if (empty($args['email']) || empty($args['pass'])) {
+			$res = json_encode(array('error' => 'メールアドレスとパスワードは必須です'));
+		} else {
+			$headers = [
+				'X-TLA-Access-Token:'._ACCESS_TOKEN,
+				'Origin:'._DOMAIN
+			];
+			$http = new HTTP('https://takahamalifeart.com/v3/users/'.$args['email'].'/'.$args['pass']);
+			$res = $http->request('GET', [], $headers);
+			$data = json_decode($res, true);
+			if (array_key_exists('error', $data)) {
+				$mbErrorMessage = array(
+					'This email has not been registered' => 'このメールアドレスは登録されていません',
+					'Enter your password' => 'パスワードを入力して下さい。',
+					'Not registered yet' => 'メールアドレス（'.$args['email'].'）かパスワードをご確認下さい'
+				);
+				$res = json_encode(array('error' => $mbErrorMessage[$data['error']]));
+			} else {
+				$_SESSION['me'] = $data;
+				$res = '';
+			}
+		}
+	} catch(Exception $e) {
+		$res = json_encode(array('error' => 'システムエラーです'));
+	}
+	return $res;
+}
+
+/**
+ * ログイン情報を更新
+ * ログインしていない場合は無効
+ * @param {int} args ユーザーID
+ * @return 更新できた場合は顧客情報を返す
+ */
+function resetLoginMember($args) {
+	try {
+		if (empty($args)) throw new Exception();
+		if ($_SESSION['me']['id']!=$args) throw new Exception();
+
+		$headers = [
+			'X-TLA-Access-Token:'._ACCESS_TOKEN,
+			'Origin:'._DOMAIN
+		];
+		$http = new HTTP('https://takahamalifeart.com/v3/users/'.$args);
+		$res = $http->request('GET', [], $headers);
+		if (empty($res)) throw new Exception();
+		$_SESSION['me'] = json_decode($res, true);
+	} catch(Exception $e) {
+		$res = '';
+	}
+	return $res;
+}
+
+/**
+ * ログイン状態のチェック
+ */
 function checkLogin() {
 //	if( empty($_SESSION['me']) || empty($_SESSION['me']['tla_customer_id']) ){
-if( empty($_SESSION['me']) ){
+	if( empty($_SESSION['me']) ){
 		$res = false;
 	}else{
 		$res = $_SESSION['me'];
@@ -21,17 +84,17 @@ if( empty($_SESSION['me']) ){
 	return $res;
 }
 
-/*
-*	指定先へリダイレクト
-*/
+/**
+ * 指定先へリダイレクト
+ */
 function jump($s) {
 	header("Location: ".$s);
 	exit;
 }
 
-/*
-*	CSRF対策
-*/
+/**
+ * CSRF対策
+ */
 function setToken() {
 	$token = sha1(uniqid(mt_rand(), true));
 	$_SESSION['token'] = $token;
@@ -44,9 +107,9 @@ function chkToken() {
 	}
 }
 
-/*
-*	メールアドレス（addr_spec）チェック
-*/
+/**
+ * メールアドレス（addr_spec）チェック
+ */
 function isValidEmailFormat($email, $supportPeculiarFormat = true){
     $wsp              = '[\x20\x09]'; // 半角空白と水平タブ
     $vchar            = '[\x21-\x7e]'; // ASCIIコードの ! から ~ まで
@@ -81,237 +144,13 @@ function isValidEmailFormat($email, $supportPeculiarFormat = true){
 }
 
 
-/*
-*	ユーザー登録
-*	@args	POSTデータ
-*
-*	return	error text
-*/
-function user_registration($args){
-	$conndb = new Conndb(_API_U);
-	
-	// アイコンデータ用ハッシュを初期化
-		/*
-			$args['uicon'] = '';
-			$args['iname'] = '';
-			$args['mime'] = '';
-		*/
-	
-
-	$err = array();
-	if(empty($args['uname'])){
-		$err['uname'] = 'ユーザーネームを入力して下さい。';
-	}
-
-/*
-	else if($conndb->checkExistName(array($args['uname'],$args['userid']))){
-		$err['uname'] = 'ユーザーネームは使用されています。';
-	}
-*/
-
-	if(empty($args['email'])){
-		$err['email'] = 'メールアドレスを入力して下さい。';
-	}else if(!isValidEmailFormat($args['email'])){
-		$err['email'] = 'メールアドレスが正しくありません。';
-	}else if($conndb->checkExistEmail(array($args['email'],$args['reg_site']))){
-		$err['email'] = 'メールアドレスは登録されています。';
-	}
-
-	// エラーチェック
-	/*
-	$err = array();
-	if(empty($args['uname'])){
-		$err['uname'] = 'ユーザーネームを入力して下さい。';
-	}
-	/*
-	else if($conndb->checkExistName(array($args['uname'],$args['userid']))){
-		$err['uname'] = 'ユーザーネームは使用されています。';
-	}
-	*/
-	/*
-	if(empty($args['email'])){
-		$err['email'] = 'メールアドレスを入力して下さい。';
-	}else if(!isValidEmailFormat($args['email'])){
-		$err['email'] = 'メールアドレスが正しくありません。';
-	}else if($conndb->checkExistEmail(array($args['email'],$args['userid']))){
-		$err['email'] = 'メールアドレスは登録されています。';
-	}
-	*/
-	
-	/* Ver 5.2
-	if(!filter_var($args['email'], FILTER_VALIDATE_EMAIL)){
-		$err['email'] = 'メールアドレスが正しくありません。';
-	}
-	*/
-	
-	if(!isset($args['profile'])){
-		if(empty($args['pass'])){
-			$err['pass'] = 'パスワードを入力して下さい。';
-		}else if(!preg_match("/^[a-zA-Z0-9]+$/", $args['pass'])){
-			$err['pass'] = '使用できる文字は半角英数のみです。';
-		}else if(strlen($args['pass'])<8 || strlen($args['pass'])>32){
-			$err['pass'] = '8文字以上32文字以内で指定してください。';
-		}else if($args['pass']!=$args['passconf']){
-			$err['passconf'] = 'パスワードの確認が合っていません。';
-		}
-	}
-	
-	// アイコンのアップロードチェック
-/*
-	if($_FILES['uicon']['error']==UPLOAD_ERR_OK && isset($_FILES['uicon'])){
-		
-		$size = filesize($_FILES['uicon']['tmp_name']);
-		if(!$size || $size>_MAXIMUM_SIZE){
-			$err['uicon'] = 'ファイルサイズが大きすぎます。10MBまでにして下さい。';
-		}
-		
-		if(empty($err['uicon'])){
-			// アップロードされたファイルの拡張子を取得
-			$imagesize = getimagesize($_FILES['uicon']['tmp_name']);
-			switch($imagesize['mime']){
-				case 'image/gif':
-					$ext = '.gif';
-					break;
-				case 'image/png':
-					$ext = '.png';
-					break;
-				case 'image/jpeg':
-					$ext = '.jpg';
-					break;
-				default:
-					$err['uicon'] = '使用できる画像タイプは、GIF、PNG、JPEG だけです。';
-			}
-		}
-		
-		if(empty($err['uicon'])){
-			// 元画像のファイル名
-			$imageFileName = sha1(time().mt_rand()).$ext;
-			
-			// 元画像を保存
-			$imageFilePath = _USER_ICON.$imageFileName;
-			$rs = move_uploaded_file($_FILES['uicon']['tmp_name'], $imageFilePath);
-			if(!$rs){
-				$err['uicon'] = 'アイコンのアップロードでエラーが発生しました。';
-			}
-		}
-		
-		if(empty($err['uicon'])){
-			// 縮小画像の作成、保存
-			$width = $imagesize[0];
-			$height = $imagesize[1];
-			
-			if($width>_ICON_WIDTH || $height>_ICON_WIDTH){
-				// 元ファイルを画像タイプによって作る
-				switch($imagesize['mime']){
-					case 'image/gif':
-						$srcImage = imagecreatefromgif($imageFilePath);
-						break;
-					case 'image/png':
-						$srcImage = imagecreatefrompng($imageFilePath);
-						break;
-					case 'image/jpeg':
-						$srcImage = imagecreatefromjpeg($imageFilePath);
-						break;
-				}
-				
-				// 元画像を縮小した時の高さ
-				$iconheight = round($height * _ICON_WIDTH / $width);
-				
-				// アイコン用のイメージをメモリーに配置
-				$iconImage = imagecreatetruecolor(_ICON_WIDTH, _ICON_WIDTH);
-				$drawcolor = imagecolorallocatealpha($iconImage, 255, 255, 255, 0);	// 不透明の白
-				imagefill($iconImage, 0, 0, $drawcolor);
-				
-				// 塗りつぶす色に透過を指定して作成
-				//$transcolor = imagecolorallocatealpha($iconImage, 255, 255, 255, 127);	// 透明
-				//imagefill($iconImage, 0, 0, $transcolor);
-				
-				// 縮小画像作成
-				imagecopyresampled($iconImage, $srcImage, 0,0,0,0,_ICON_WIDTH,$iconheight,$width,$height);
-				
-				// 画像作成時の透過処理を設定
-				imagealphablending($iconImage,false);
-				imagesavealpha($iconImage,true);
-				
-				// アイコンを上書
-				switch($imagesize['mime']){
-					case 'image/gif':
-						imagegif($iconImage, _USER_ICON.$imageFileName);
-						break;
-					case 'image/png':
-						imagepng($iconImage, _USER_ICON.$imageFileName);
-						break;
-					case 'image/jpeg':
-						imagejpeg($iconImage, _USER_ICON.$imageFileName);
-						break;
-				}
-			}
-			
-			$args['uicon'] = base64_encode(file_get_contents(_USER_ICON.$imageFileName));
-			$args['iname'] = $imageFileName;
-			$args['mime'] = $imagesize['mime'];
-			
-			unlink(_USER_ICON.$imageFileName);
-		}
-	}
-*/
-	
-	
-	if(empty($err)){
-		/* DBに登録 */
-		if(isset($args['profile'], $args['userid'])){
-			$res = $conndb->updateUser($args);
-		}else{
-			$args['reg_site'] = _SITE;
-			$res = $conndb->setUser($args);
-		}
-		
-		if($res){
-			if(isset($args['profile'], $args['userid'])){
-				$u = $conndb->getUserList($args['userid']);
-				$_SESSION['me'] = array_merge($_SESSION['me'],array(
-					'id'=>$u[0]['id'],
-				  'customername'=>$u[0]['customername'],
-				  'email'=>$u[0]['email'],
-					'customerruby'=>$u[0]['customerruby']
-				  //'number'=>$u[0]['number']
-				));
-			}else{
-
-				// ユーザー登録のお知らせ
-				$mailer = new Mailer($args);
-				$isSend = $mailer->send_registerd();
-				
-//				$u = $conndb->getUser(array('email'=>$args['email'], 'pass'=>$args['pass']));
-//				$_SESSION['me'] = $u;
-				
-
-				$u = $conndb->getUserList($res);
-				$_SESSION['me'] = $u;
-				$_SESSION['me'] = array_merge($_SESSION['me'],array(
-					'id'=>$u[0]['id'],
-				  'customername'=>$u[0]['customername'],
-				  'email'=>$u[0]['email'],
-					'customerruby'=>$u[0]['customerruby'],
-					'new'=>true
-				));
-				jump('./account.php');
-			}
-		}else{
-			return $res;
-		}
-	}
-	
-	return $err;
-}
-
 
 /*
 *	ユーザー更新
 *	@args	POSTデータ
 *
 *	return	error text
-*/
+*
 function update_user($args){
 	$conndb = new Conndb(_API_U);
 	
@@ -322,7 +161,7 @@ function update_user($args){
 	}
 	
 	if(empty($err)){
-		/* DBに更新 */
+		// DBに更新
 		if(isset($args['profile'], $args['userid'])){
 			$res = $conndb->updateUser($args);
 		}
@@ -344,6 +183,7 @@ function update_user($args){
 	
 	return $err;
 }
+*/
 
 
 /*
@@ -351,7 +191,7 @@ function update_user($args){
 *	@args	['userid','pass']
 *
 *	return	error text
-*/
+*
 function update_pass($args){
 	// trim
 	foreach($args as $key=>&$val){
@@ -378,13 +218,14 @@ function update_pass($args){
 	
 	return $err;
 }
+*/
 
 /*
 *	お客様住所・電話変更
 *	@args	['userid','zipcode','addr0','addr1','addr2']
 *
 *	return	error text
-*/
+*
 function update_addr($args){
 	// trim
 	foreach($args as $key=>&$val){
@@ -404,10 +245,10 @@ function update_addr($args){
 	}else if(empty($args['tel'])){
 		$err['tel'] = '電話番号を入力してください。';
 	}
-/*else if(!preg_match("(0\d{1,4}-|\(0\d{1,4}\) ?)?\d{1,4}-\d{4}", $args['tel'])){
+else if(!preg_match("(0\d{1,4}-|\(0\d{1,4}\) ?)?\d{1,4}-\d{4}", $args['tel'])){
 		$err['tel'] = '電話番号をチェックしてください。';
 	}
-*/
+
 	
 	if(empty($err)){
 		$conndb = new Conndb(_API_U);
@@ -427,14 +268,14 @@ function update_addr($args){
 	
 	return $err;
 }
+*/
 
 /*
 *	お届け先変更
 *	@args	['userid','zipcode','addr0','addr1','addr2']
 *
 *	return	error text
-*/
-
+*
 function update_deli($args, $delId){
 	// trim
 	foreach($args as $key=>&$val){
@@ -457,10 +298,10 @@ function update_deli($args, $delId){
 		$err[$delId.'_delitel'] = '電話番号を入力してください。';
 	}
 
-/*else if(!preg_match("(0\d{1,4}-|\(0\d{1,4}\) ?)?\d{1,4}-\d{4}", $args['tel'])){
+else if(!preg_match("(0\d{1,4}-|\(0\d{1,4}\) ?)?\d{1,4}-\d{4}", $args['tel'])){
 		$err['tel'] = '電話番号をチェックしてください。';
 	}
-*/
+
 	
 	if(empty($err)){
 		$conndb = new Conndb(_API_U);
@@ -484,17 +325,5 @@ function update_deli($args, $delId){
 	
 	return $err;
 }
-/*
-*	menu
 */
-//$menu = '<div class="menu"><a href="/user/menu.php">メニュー</a></div>';
-$menu = '';
-$menu .= '<div class="menu" id="menu1"><a href="/user/designed.php">イメージ画像</a></div>';
-$menu .= '<div class="menu" id="menu1"><a href="/user/credit.php">お支払状況</a></div>';
-$menu .= '<div class="menu" id="menu2"><a href="/user/progress.php">製作の状況</a></div>';
-$menu .= '<div class="menu" id="menu2"><a href="/user/history.php">ご注文履歴</a></div>';
-$menu .= '<div class="menu" id="menu2"><a href="/user/account.php">アカウント</a></div>';
-
-$url_path = parse_url($_SERVER['SCRIPT_NAME'], PHP_URL_PATH);
-$menu = preg_replace('/<a href="'.preg_quote($url_path, '/').'">(.+?)<\/a>/', '<span>$1</span>', $menu);
 ?>

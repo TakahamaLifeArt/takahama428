@@ -5,7 +5,7 @@
 *
 */
 require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/http.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/JSON.php';
+//require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/JSON.php';
 
 class Conndb extends HTTP {
 	
@@ -275,14 +275,7 @@ public function takahama_log($logContext) {
 	*/
 	public function getDesigned($order_id) {
 		$res = parent::request('POST', array('act'=>'showDesignImg', 'order_id'=>$order_id, 'folder'=>'imgfile'));
-		//$this->takahama_log("conndb getDesigned   ".$res);
-		//$res = mb_convert_encoding($res,'euc-jp','utf-8');
-
-		$json = new Services_JSON();
-		$data = $json->decode($res);
-
-//$data = $res;
-//$this->takahama_log("conndb getDesigned   ".$data);
+		$data = json_decode($res, true);
 
 		return $data;
 

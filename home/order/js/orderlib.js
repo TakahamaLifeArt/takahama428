@@ -791,7 +791,8 @@ $(function(){
 				user = $.getStorage('user'),
 				items = $.getStorage('item'),
 				noPrintItem = $.itemPrice(items, 'id_0'),
-				subTotal = sum.item + sum.print,
+				orderAmount = 0,
+				subTotal = 0,
 				tmpFee = 0,
 				discountName = [],
 				discountRatio = 0,
@@ -811,6 +812,19 @@ $(function(){
 			// 特急の注釈を初期化
 			$('#express_info').addClass('hidden').children('em').text('');
 
+			if(sum) {
+				// 小計
+				subTotal = sum.item + sum.print;
+				
+				// 注文枚数
+				orderAmount = sum.volume;
+				
+				// 袋詰め代
+				packFee = opt.pack * sum.volume;
+			} else {
+				sum = {};
+			}
+			
 			// プリントなしは割引不可のためアイテム代を除外する
 			subTotal -= noPrintItem.price;
 
@@ -838,16 +852,13 @@ $(function(){
 			// 割引合計額
 			discount = -1 * Math.ceil((subTotal * discountRatio)/100) + (rankFee);
 
-			// 袋詰め代
-			packFee = opt.pack * sum.volume;
-
 			// 納期指定あり
 			if(opt.delidate){
 				// ISO-8601書式でtimestamp
 				timestamp = Date.parse(opt.delidate+"T00:00:00+09:00") / 1000;	// 日付のみの場合UTCタイムゾーンとなるため(ES5)
 				$.api(['delivery', timestamp], 'GET', function(workday){
 					// 袋詰め作業で1日必要かどうか
-					if(opt.pack==50 && sum.volume>9){
+					if(opt.pack==50 && orderAmount>9){
 						workday--;
 					}
 
@@ -938,18 +949,19 @@ $(function(){
 				subTotal += (expressFee + carriage + codFee);
 				salesTax = Math.floor(subTotal * $.tax);	// 消費税額
 				total = Math.floor(subTotal * (1+$.tax));	// 見積もり総額（税込）
-				perone = Math.ceil(total / sum.volume);
+				perone = Math.ceil(total / orderAmount);
 				$('#estimation .total_p span').text(total.toLocaleString('ja-JP'));
 				$('#estimation .solo_p span').text(perone.toLocaleString('ja-JP'));
 
 				// 見積もり合計を更新
 				sum.total = total;
 				sum.tax = salesTax;
+				sum.volume = orderAmount;
 				sum = $.setStorage('sum', sum);
 
 				// ヘッダーのメニューを更新
 				$('#cart_total').text(sum.total.toLocaleString('ja-JP'));
-				$('#cart_amount').text(sum.volume.toLocaleString('ja-JP'));
+				$('#cart_amount').text(orderAmount.toLocaleString('ja-JP'));
 
 				d.resolve();
 			}
