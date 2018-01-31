@@ -27,6 +27,7 @@ if( empty($_SESSION['me']) ){
 	<!-- Google Tag Manager (noscript) -->
 	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T5NQFM" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<!-- End Google Tag Manager (noscript) -->
+<h1 class="top_bar">オリジナルTシャツのプリント作成</h1>
 
 	<nav class="navbar navbar-toggleable-xl fixed-top navbar-light bg-faded">
 		<a class="navbar-brand" href="/">
@@ -84,9 +85,9 @@ if( empty($_SESSION['me']) ){
 					</div>
 					<hr>
 					<div id="signout" class="dropdown_exit" <?php echo $isHidden;?> >
-						<a href="/user/logout.php" class="dropdown-item exit_a" style="padding-bottom:20px;">
-							<p style="color:#7a420d;">ログアウト</p>
-						</a>
+						<p class="dropdown-item exit_a">
+							ログアウト
+						</p>
 					</div>
 				</div>
 			</li>

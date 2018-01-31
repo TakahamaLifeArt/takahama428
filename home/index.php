@@ -74,10 +74,10 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 					</div>
 
 					<div class="carousel-item">
-						<img class="img-fluid" id="pc_slide" src="/common/img/home/main/top_slide_newyear.jpg" alt="First slide" width="100%">
-						<img class="img-fluid" id="sp_slide" src="/common/img/home/main/sp_top_slide_newyear.jpg" alt="First slide" width="100%">
+						<img class="img-fluid" id="pc_slide" src="/common/img/home/main/top_slide_graduation.jpg" alt="First slide" width="100%">
+						<img class="img-fluid" id="sp_slide" src="/common/img/home/main/sp_top_slide_graduation.jpg" alt="First slide" width="100%">
 						<div class="carousel-caption">
-							<a href="/campaign/towel/noshi.php" class="check"><button type="button" class="det_btn">詳細はこちら</button></a>
+							<a href="/scene/graduation/index.php" class="check"><button type="button" class="det_btn">詳細はこちら</button></a>
 						</div>
 					</div>
 
@@ -122,8 +122,6 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 					echo '<p>'.nl2br($message).'</p></div>';
 				}
 			?>
-
-				<h1>オリジナルTシャツのプリント作成</h1>
 
 				<div class="row outer top_3_wrap">
 					<div class="col">
@@ -184,7 +182,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							<div class="row btn-row">
 								<div class="col col-item view overlay hm-white-slight">
 									<a href="/design/emb.php " class="btn">
-								<img alt="Service" src="/common/img//home/service/top_ser_needle.jpg" class="img-fluid">
+								<img alt="Service" src="/common/img/home/service/top_ser_needle.jpg" class="img-fluid">
 								<div class="mask"></div>
 							</a>
 								</div>
@@ -193,8 +191,8 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 						<div class="col-12 col-sm-4">
 							<div class="row btn-row">
 								<div class="col col-item view overlay hm-white-slight">
-									<a href="/campaign/towel/noshi.php" class="btn">
-								<img alt="Service" src="/common/img//home/service/top_ser_towel_newyear.jpg" class="img-fluid">
+									<a href="/scene/graduation/index.php" class="btn">
+								<img alt="Service" src="/common/img/home/service/top_ser_graduation.jpg" class="img-fluid">
 								<div class="mask"></div>
 							</a>
 								</div>
@@ -202,7 +200,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							<div class="row btn-row">
 								<div class="col col-item view overlay hm-white-slight">
 									<a href="/guide/discount.php" class="btn">
-								<img alt="Service" src="/common/img//home/service/top_ser_off.jpg" class="img-fluid">
+								<img alt="Service" src="/common/img/home/service/top_ser_off.jpg" class="img-fluid">
 								<div class="mask"></div>
 							</a>
 								</div>
@@ -212,7 +210,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							<div class="row btn-row">
 								<div class="col col-item view overlay hm-white-slight">
 									<a href="/contact/request.php" class="btn">
-								<img alt="Service" src="/common/img//home/service/top_ser_sample.jpg" class="img-fluid">
+								<img alt="Service" src="/common/img/home/service/top_ser_sample.jpg" class="img-fluid">
 								<div class="mask"></div>
 							</a>
 								</div>
@@ -220,7 +218,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							<div class="row btn-row">
 								<div class="col col-item view overlay hm-white-slight">
 									<a href="/campaign/towel/" class="btn">
-								<img alt="Service" src="/common/img//home/service/top_ser_towel.jpg" class="img-fluid">
+								<img alt="Service" src="/common/img/home/service/top_ser_towel.jpg" class="img-fluid">
 								<div class="mask"></div>
 							</a>
 								</div>
@@ -239,8 +237,8 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 					</a>
 						</div>
 						<div class="col-6 col-item view overlay hm-white-slight">
-							<a href="/campaign/towel/noshi.php" class="btn">
-						<img alt="Service" src="/common/img//home/service/sp_top_ser_towel_newyear.jpg" class="img-fluid">
+							<a href="/scene/graduation/index.php" class="btn">
+						<img alt="Service" src="/common/img/home/service/sp_top_ser_graduation.jpg" class="img-fluid">
 						<div class="mask"></div>
 					</a>
 						</div>
@@ -248,13 +246,13 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 					<div class="row btn-row ">
 						<div class="col-6 col-item view overlay hm-white-slight">
 							<a href="/contact/request.php" class="btn">
-						<img alt="Service" src="/common/img//home/service/sp_top_ser_sample.jpg" class="img-fluid">
+						<img alt="Service" src="/common/img/home/service/sp_top_ser_sample.jpg" class="img-fluid">
 						<div class="mask"></div>
 					</a>
 						</div>
 						<div class="col-6 col-item view overlay hm-white-slight">
 							<a href="/design/emb.php" class="btn">
-						<img alt="Service" src="/common/img//home/service/sp_top_ser_needle.jpg" class="img-fluid">
+						<img alt="Service" src="/common/img/home/service/sp_top_ser_needle.jpg" class="img-fluid">
 						<div class="mask"></div>
 					</a>
 						</div>
@@ -262,14 +260,14 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 					<div class="row btn-row ">
 						<div class="col-6 col-item view overlay hm-white-slight">
 							<a href="/guide/discount.php" class="btn">
-						<img alt="Service" src="/common/img//home/service/sp_top_ser_off.jpg" class="img-fluid">
+						<img alt="Service" src="/common/img/home/service/sp_top_ser_off.jpg" class="img-fluid">
 						<div class="mask"></div>
 					</a>
 						</div>
 
 						<div class="col-6 col-item view overlay hm-white-slight">
 							<a href="/campaign/towel/" class="btn">
-						<img alt="Service" src="/common/img//home/service/sp_top_ser_towel.jpg" class="img-fluid">
+						<img alt="Service" src="/common/img/home/service/sp_top_ser_towel.jpg" class="img-fluid">
 						<div class="mask"></div>
 					</a>
 						</div>

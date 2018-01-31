@@ -4,11 +4,11 @@
 	File_name	: ordermail.php
 	Description	: takahama428 web site send order mail class
 	Hash		: Session data
-					$_SESSION['orders']['items'];		商品
+					$_SESSION['orders']['items'];		商品（廃止）
 					$_SESSION['orders']['attach'];		添付ファイル（廃止）
-					$_SESSION['orders']['customer'];	ユーザー
-					$_SESSION['orders']['options'];		オプション
-					$_SESSION['orders']['sum'];			合計値（商品代、プリント代、枚数）
+					$_SESSION['orders']['customer'];	ユーザー（廃止）
+					$_SESSION['orders']['options'];		オプション（廃止）
+					$_SESSION['orders']['sum'];			合計値（商品代、プリント代、枚数）（廃止）
 	Charset		: utf-8
 	Log			: 2011.03.26 created
 				  2012.03.14 プリント情報の本文生成を更新
@@ -20,221 +20,221 @@
 				  2017-09-12 デザインファイルのメール添付を廃止
 				  2017-11-07 注文データの登録処理を更新
 				  2017-11-10 日本語のアップロードファイル名のエスケープ処理を回避
+				  2017-12-19 注文フロー改修に伴う更新
 
 -------------------------------------------------------------- */
-require_once dirname(__FILE__).'/../php_libs/http.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/conndb.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/http.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/conndb.php';
 
 class Ordermail extends Conndb{
 
 	/**
 	 * 注文メール本文を生成
+	 * @param {array} $args 注文データの配列 [$user, $design, $item, $option, $detail, $sum]
 	 * @param {array} uploadfilename アップロードしたデザインファイルのパス
 	 * @return {boolean} true:成功
 	 *					 false:失敗
 	 */
-	public function send($uploadfilename) {
+	public function send($args, $uploadfilename) {
 		try {
 			mb_internal_encoding("UTF-8");
 			
+			$user = json_decode($args['user'], true);
+			$designs = json_decode($args['design'], true);
+			$items = json_decode($args['item'], true);
+			$opts = json_decode($args['option'], true);
+			$detail = json_decode($args['detail'], true);
+			$sum = json_decode($args['sum'], true);
+			
+			$obj = array(
+				'user'=>$user,
+				'design'=>$designs,
+				'item'=>$items,
+				'option'=>$opts,
+				'detail'=>$detail,
+				'sum'=>$sum,
+			);
+			
 			// 受注システムに注文データを登録
-			$uploadURL = array();
 			if (!empty($uploadfilename)) {
-//				for($a=0; $a<count($uploadfilename); $a++){
-//					$tmpDir = _MEMBER_IMAGE_PATH."files/".basename(dirname($uploadfilename[$a], 1))."/";
-//					$fname = rawurldecode(basename($uploadfilename[$a]));
-//					$uploadURL[] = $tmpDir.$fname;
-//				}
-//				$uploadDir = _MEMBER_IMAGE_PATH."files/".basename(dirname($uploadfilename[0], 1));
+				// アップロードファイルのディレクトリ名を取得
 				$uploadDir = basename(dirname($uploadfilename[0], 1));
 			}
-			$hash = $this->insertOrderToDB($uploadDir);
-			$order_id = $hash['orderid'];
 			
-			if (empty($_SESSION['orders']['customer'])) throw new Exception();
+			// 受注システムから {orderid:受注番号, designfile[リネーム後のアップロードファイル名] } を受け取る
+			$registered = $this->insertOrderToDB($obj, $uploadDir);
+			$systemData = $registered[0];
+			$order_id = $systemData['orderid'];
+			
+			/*
+			* design: {
+			*			デザインID(id_インデックス): {絵型ID: {
+			*												front|back|side 絵型面: {
+			*																		表示要素のインデックス: {
+			*																			area:箇所名, 
+			*																			size:0|1|2 大中小, 
+			*																			option:0|1 インクジェット(淡|濃)と刺繍(origin|name)のオプション, 
+			*																			method:プリント方法, 
+			*																			printable:対応しているプリント方法
+			*																			ink:色数
+			*																		},
+			*																		表示要素のインデックス: {}
+			*											},
+			*												front|back|side 絵型面: {}
+			*										},
+			*										絵型ID: {}
+			*			},
+			*			デザインID(id_インデックス): {}
+			*	}
+			*/
+			/*
+			* item: {デザインID: {アイテムID: {
+			*								code:アイテムコード,
+			*								name:アイテム名,
+			*								posId:絵型ID,
+			*								cateId:カテゴリID,
+			*								rangeId:枚数レンジID
+			*								screenId:同版分類ID
+			* 								color: [{
+			*										vol: {サイズ名: {amount:枚数, cost:単価}, ...},
+			*										code: カラーコード,
+			*										name: カラー名
+			*										}, {}]
+			* 								},
+			*					  アイテムID: {}
+			*					 },
+			*		  デザインID: {}
+			*		 }
+			*/
+			/*
+			* attach: [ファイル名, ...]
+			* option: {publish:割引率, student:割引率, pack:単価, payment:bank|cod|credit|cash, delidate:希望納期, delitime:配達時間指定, express:0|1|2, transport:1|2}
+			* sum: {item:商品代, print:プリント代, volume:注文枚数, tax:消費税額, total:見積合計, mass:0 通常単価 | 1 量販単価}
+			* detail: {discountfee, discountname, packfee, packname, carriage, codfee, expressfee, expressname, rankname}
+			* user: {id:, email:, name:, ruby:, zipcode:, addr0:, addr1:, addr2:, tel:, rank:}
+			*/
 			
 			// 本文生成
-			$items = $_SESSION['orders']['items'];
-			$attach = null;
-			$user = $_SESSION['orders']['customer'];
-			$opts = $_SESSION['orders']['options'];
-			$sum = $_SESSION['orders']['sum'];
-						
 			$order_info = "☆━━━━━━━━【　お申し込み内容　】━━━━━━━━☆\n\n";
 			
 			$order_info .= "┏━━━━━━━━┓\n";
 			$order_info .= "◆　　ご希望納期\n";
 			$order_info .= "┗━━━━━━━━┛\n";
-			if(empty($opts['deliveryday'])){
-				$order_info .= "◇　納期指定なし\n";
-			}else{
-				$order_info .= "◇　納期　：　".$opts['deliveryday']."\n";
+			if (empty($opts['delidate'])) {
+				$order_info .= "◇　納期指定なし\n\n";
+			} else {
+				$order_info .= "◇　納期　：　".$opts['delidate']."\n\n";
 			}
 			
 			
-			if(!empty($opts['expressInfo'])){
-				$order_info .= "◇　".$opts['expressInfo']."：　特急料金あり\n";
+			if (!empty($detail['expressfee'])) {
+				$order_info .= "◇　".$detail['expressname']."：　特急料金あり\n\n";
 			}
 			
-			$delitime = array(
-				'なし',
-				'午前中', 
-				'12:00-14:00',
-				'14:00-16:00',
-				'16:00-18:00',
-				'18:00-20:00',
-				'19:00-21:00'
-			);
-			$order_info .= "◇　配達時間指定　：　".$delitime[$opts['deliverytime']]."\n\n";
+			$order_info .= "◇　配達時間指定　：　".$detail['delitimename']."\n\n";
 			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n";
-			
-			$order_info .= "┏━━━━━━━┓\n";
-			$order_info .= "◆　　商品情報\n";
-			$order_info .= "┗━━━━━━━┛\n";
-			
-/*
-*	['items'][category_id]['category_key']
-*			  			  ['category_name']
-*		   	  			  ['item'][id]['code']
-*					   			  	  ['name']
-*							      	  ['color'][code]['name']
-*											 		 ['size'][sizeid]['sizename']
-*											  						 ['amount']
-*																	 ['cost']
-*/
-			$attach_info = array();
-			foreach($items as $catid=>$v1){
-				foreach($v1['item'] as $itemid=>$v2){
-					$item_name = $v2['code']." ".$v2['name'];
-					$order_info .= "◆アイテム：　".$item_name."\n";
-					$posid = $v2['posid'];
-					foreach($v2['color'] as $colorcode=>$v3){
-						$color_name = $v3['name'];
-						$order_info .= "◇カラー：　".$colorcode." ".$color_name."\n";
-						$order_info .= "◇サイズと枚数\n";
-						$subtotal = 0;
-						foreach($v3['size'] as $sizeid=>$v4){
-							if(empty($v4['amount'])) continue;
-							$order_info .= $v4['sizename']."　：　".$v4['amount']."枚\n";
-						}
-						$order_info .= "--------------------\n";
-					}
-					$order_info .= "\n\n";
-/*
-*	プリント位置
-*	['items'][category_id]['item'][id]['name']
-*									  ['posid']
-*									  ['design'][base][0]['posname']
-*												   		 ['ink']
-*/
-					$attach_info[$posid]['design'] = $v2['design'];
-					$attach_info[$posid]['item'][] = $item_name;
-					
-				}
-			}
-			$order_info .= "◆枚数合計：　".number_format($sum['amount'])." 枚\n";
-			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
-			
 
-/*
-*	$attach_info
-*	[posid]['item'][アイテム名, ...]
-*		   ['design'][base][0]['posname']
-*					   		  ['ink']
-*							  ['img']['file']
-*									 ['name']
-*									 ['type']
-*/
-			$order_info .= "┏━━━━━━━━━┓\n";
-			$order_info .= "◆　　プリント情報\n";
-			$order_info .= "┗━━━━━━━━━┛\n";
-//			$sizeName = array('大', '中', '小');
-			$printName = array('silk'=>'シルク','digit'=>'デジタル転写','inkjet'=>'インクジェット');
-			foreach($attach_info as $posid=>$a1){
-				$order_item = "◇アイテム：　".implode('、', $a1['item'])."\n";
-				$printinfo = '';
-				foreach($a1['design'] as $base=>$a2){
-					
-					$tmp = "";
-					for($i=0; $i<count($a2); $i++){
-						if($a2[$i]['ink']==0) continue;
-						if($a2[$i]['ink']>=9) $ink = "フルカラー\n";
-						else $ink = $a2[$i]['ink']."色\n";
-						$tmp = $a2[$i]['posname']."　".$ink;
-						// $printinfo .= "◇プリント方法：　".$printName[$a2[$i]['printing']]."\n";
-						$printinfo .= "◇プリント位置：　".$base."\n";
-//						$printinfo .= "◇デザインサイズ：　".$sizeName[$a2[$i]['areasize']]."\n";
-						$printinfo .= "◇デザインの色数：　".$tmp."\n";
+			// デザインパターン別
+			$faceName = array('front'=>'前面', 'back'=>'背面', 'side'=>'側面');
+			$methodName = array('silk'=>'シルクスクリーン', 'digit'=>'デジタルコピー転写', 'inkjet'=>'インクジェット', 'cutting'=>'カッティング', 'emb'=>'刺繍', 'recommend'=>'おまかせ');
+			$silkSizeName = array('通常版', 'ジャンボ版', 'スーパージャンボ版');
+			$embOptionName = array('デザイン', 'ネーム');
+			$printSizeName = array('大', '中', '小');
+			$inks = ['','','','', '以上'];
+			$orderAmount = 0;
+			$pattern = 1;
+			foreach ($designs as $designId=>$v1) {
+				$order_info .= "◆　　デザインパターン - ".$pattern++."\n\n";
+				
+				$order_info .= "┏━━━━━━━┓\n";
+				$order_info .= "◆　　商品情報\n";
+				$order_info .= "┗━━━━━━━┛\n\n";
+				
+				// 当該デザインに対応するアイテム
+				foreach ($items[$designId] as $itemId=>$itemInfo) {
+					$order_info .= "◆アイテム：　".$itemInfo['name']."\n";
+					for ($i=0; $i<count($itemInfo['color']); $i++) {
+						$order_info .= "◇カラー：　".$itemInfo['color'][$i]['code']." ".$itemInfo['color'][$i]['name']."\n";
+						$order_info .= "◇サイズと枚数\n";
+						foreach ($itemInfo['color'][$i]['vol'] as $sizeName=>$v2) {
+							$order_info .= $sizeName."　：　".$v2['amount']."枚\n";
+							$orderAmount += $v2['amount'];
+						}
+					}
+					$order_info .= "--------------------\n";
+				}
+				$order_info .= "\n\n";
+				
+				$order_info .= "┏━━━━━━━━━┓\n";
+				$order_info .= "◆　　プリント情報\n";
+				$order_info .= "┗━━━━━━━━━┛\n";
+				
+				// プリント情報
+				if ($designId=='id_0') {
+					$order_info .= "プリントなし\n";
+				} else {
+					foreach ($v1 as $posId=>$v2) {
+
+						foreach ($v2 as $face=>$v3) {
+
+							foreach ($v3 as $idx=>$designInfo) {
+								$order_info .= "◇プリント位置：　".$faceName[$face].' '.$designInfo['area']."\n";
+								$order_info .= "◇デザインの色数：　".$designInfo['ink'].$inks[$designInfo['ink']]."\n";
+								$order_info .= "◇プリント方法：　".$methodName[$designInfo['method']]."\n";
+								$order_info .= "◇プリントサイズ：　";
+								if ($designInfo['method']=='silk') {
+									$order_info .= $silkSizeName[$designInfo['size']]."\n";
+								} else if ($designInfo['method']!='recommend') {
+									$order_info .= $printSizeName[$designInfo['size']]."\n";
+								}
+								$order_info .= "◇オプション：　";
+								if ($designInfo['method']=='emb') {
+									$order_info .= $embOptionName[$designInfo['option']];
+								}
+								$order_info .= "\n";
+							}
+						}
 					}
 				}
-				if($printinfo!=""){
-					$order_info .= $order_item.$printinfo;
-					$order_info .= "------------------------------------------\n\n";
-				}else{
-					$order_info .= $order_item."プリントなし\n";
-					$order_info .= "------------------------------------------\n\n";
-				}
+				$order_info .= "------------------------------------------\n\n";
 			}
-			
-			if(empty($opts['pack'])){
-				$order_info .= "◇たたみ・袋詰め：　希望しない\n";
-			}else if($opts['pack']==1){
-				$order_info .= "◇たたみ・袋詰め：　希望する\n";
-			}else{
-				$order_info .= "◇たたみ・袋詰め：　袋のみ\n";
-			}
-			
-			//$order_info .= "◇デザインの入稿方法：　".$opts['ms']."\n\n";
-			//$order_info .= "◇プリントカラー：　\n".$opts['note_printcolor']."\n\n";
-			//$order_info .= "◇文字入力の確認：　\n".$opts['note_write']."\n\n";
+			$order_info .= "◆枚数合計：　".number_format($orderAmount)." 枚\n";
 			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
+			
+			
+			$order_info .= "┏━━━━━┓\n";
+			$order_info .= "◆　　包装\n";
+			$order_info .= "┗━━━━━┛\n";
+			if (empty($opts['pack'])) {
+				$order_info .= "◇たたみ・袋詰め：　まとめて包装\n";
+			} else if ($opts['pack']==50){
+				$order_info .= "◇たたみ・袋詰め：　個別包装\n";
+			} else {
+				$order_info .= "◇たたみ・袋詰め：　袋を同封\n";
+			}
+			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
+			
 			
 			$order_info .= "┏━━━━━┓\n";
 			$order_info .= "◆　　割引\n";
 			$order_info .= "┗━━━━━┛\n";
 			
-			// 学割
-			if(!empty($opts['student'])){
-				switch($opts['student']){
-					case '3':	$discountname[] = "学割";
-								break;
-					case '5':	$discountname[] = "2クラス割";
-								break;
-					case '7':	$discountname[] = "3クラス割";
-								break;
-				}
-			}
-			
-			// ブログ割
-			if(!empty($opts['blog'])){
-				$discountname[] = "ブログ割";
-			}
-			
-			// イラレ割
-			if(!empty($opts['illust'])){
-				$discountname[] = "イラレ割";
-			}
-			
-			// 紹介割
-			if(!empty($opts['intro'])){
-				$discountname[] = "紹介割";
-			}
-			
-			if(empty($discountname)){
+			if (empty($detail['discountname'])) {
 				$order_info .= "◇割引：　なし\n";
-			}else{
-				$order_info .= "◇割引：　".implode(', ', $discountname)."\n";
+			} else {
+				$order_info .= "◇割引：　".$detail['discountname']."\n";
 			}
 			
+			$order_info .= "◇学校名：　".$opts['school']."\n";
 			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
 			
 			
 			$order_info .= "┏━━━━━━━━┓\n";
 			$order_info .= "◆　　お客様情報\n";
 			$order_info .= "┗━━━━━━━━┛\n";
-			$order_info .= "◇お名前：　".$user['customername']."　様\n";
-			$order_info .= "◇フリガナ：　".$user['customerruby']."　様\n";
+			$order_info .= "◇お名前：　".$user['name']."　様\n";
+			$order_info .= "◇フリガナ：　".$user['ruby']."　様\n";
 			$order_info .= "◇ご住所：　〒".$user['zipcode']."\n";
 			$order_info .= "　　　　　　　　".$user['addr0']."\n";
 			$order_info .= "　　　　　　　　".$user['addr1']."\n";
@@ -243,91 +243,35 @@ class Ordermail extends Conndb{
 			$order_info .= "◇E-Mail：　".$user['email']."\n";
 			$order_info .= "------------------------------------------\n\n";
 			
-//			$order_info .= "◇弊社ご利用について：　";
-//			if($user['repeater']==1){
-//				$order_info .= "初めてのご利用\n\n";
-//			}else if($user['repeater']==2){
-//				$order_info .= "以前にも注文したことがある\n\n";
-//			}else{
-//				$order_info .= "-\n\n";
-//			}
 			
-			/*
-			$attr = array('','法人','学生','個人');
-			$order_info .= "◇お客様について：　".$attr[$opts['attr']]."\n";
-			
-			$purpose = array('', 
-				'文化祭・体育祭（クラス・サークル・企業）',
-				'スポーツ・ダンスユニフォーム（部活・サークルなど）',
-				'スタッフユニフォーム・制服',
-				'販売・販促品',
-				'プレゼント・記念品',
-				'個人用'
-			);
-			$tmp = array();
-			if(!empty($opts['purpose'])){
-				for($i=0; $i<count($opts['purpose']); $i++){
-					if($opts['purpose'][$i]==1){
-						$tmp[] = $purpose[$i];
-					}
-				}
-			}
-			$tmp[] = $opts['purpose_text'];
-			$order_info .= "◇ご使用用途：　".implode(', ',$tmp)."\n";
-			
-			$media = array('', 
-				'Yahoo検索','Google検索','その他検索エンジン',
-				'Tシャツ、ファッション関連サイト','バナー広告',
-				'カタログ・チラシ等','友人・知人の紹介'
-			);
-			$tmp = array();
-			if(!empty($opts['media'])){
-				for($i=0; $i<count($opts['media']); $i++){
-					if($opts['media'][$i]==1){
-						$tmp[] = $media[$i];
-					}
-				}
-			}
-			$tmp[] = $opts['media_text'];
-			$order_info .= "◇何でお知りになったか：　".implode(', ',$tmp)."\n";
-			*/
-			
-			if(empty($opts['publish'])){
-				$order_info .= "◇デザイン掲載：　掲載可\n\n";
-			}else{
+			if (empty($opts['publish'])) {
 				$order_info .= "◇デザイン掲載：　掲載不可\n\n";
+			} else {
+				$order_info .= "◇デザイン掲載：　掲載可\n\n";
 			}
+			
 			$order_info .= "◇デザインについてのご要望など：\n";
-			if(empty($user['note_design'])){
+			if(empty($opts['note_design'])){
 				$order_info .= "なし\n";
 			}else{
-				$order_info .= $user['note_design']."\n";
+				$order_info .= $opts['note_design']."\n";
 			}
 			$order_info .= "------------------------------------------\n\n";
 			
-			$order_info .= "◇刺繍をご希望の場合：\n";
-			if(empty($user['note_printmethod'])){
-				$order_info .= "なし\n";
-			}else{
-				$order_info .= $user['note_printmethod']."\n";
-			}
-			$order_info .= "------------------------------------------\n\n";
 			
-			$order_info .= "◇プリントするデザインの色：\n";
-			$order_info .= $user['note_printcolor']."\n";
-			$order_info .= "------------------------------------------\n\n";
-			
-			$payment = array("銀行振込","代金引換","現金でお支払い（工場でお受取）","カード決済","コンビニ決済");
+			$payment = array('bank'=>'銀行振込', 'cod'=>'代金引換', 'credit'=>'カード決済');
 			$order_info .= "◇お支払方法：　".$payment[$opts['payment']]."\n\n";
 			
+			
 			$order_info .= "◇ご要望・ご質問など：\n";
-			if(empty($user['comment'])){
+			if(empty($opts['note_user'])){
 				$order_info .= "なし\n\n";
 			}else{
-				$order_info .= $user['comment']."\n\n";
+				$order_info .= $opts['note_user']."\n\n";
 			}
 			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n";
 
+			
 			$order_info .= "┏━━━━━━━━━━━┓\n";
 			$order_info .= "◆　　デザインファイル\n";
 			$order_info .= "┗━━━━━━━━━━━┛\n";
@@ -337,59 +281,61 @@ class Ordermail extends Conndb{
 				$order_info_admin = "";
 				$order_info_user = "";
 			} else {
-				for ($a=0; $a<count($hash['designfile']); $a++) {
-					$order_info_admin .= "◇ファイル名：　"._ORDER_DOMAIN."/system/attachfile/".$order_id."/".$hash['designfile'][$a]."\n\n";
+				$uploadCount = count($systemData['designfile']);
+				for ($a=0; $a<$uploadCount; $a++) {
+					$order_info_admin .= "◇ファイル名：　"._ORDER_DOMAIN."/system/attachfile/".$order_id."/".$systemData['designfile'][$a]."\n";
 				}
+				if ($uploadCount===0) {
+					$order_info_admin .= "入稿データのアップロードが正常に完了していません。\n";
+				}
+				$order_info_admin .= "----------\n\n";
+				
 				for ($b=0; $b<count($uploadfilename); $b++) {
 					$fname = basename($uploadfilename[$b]);
 					$order_info_user .= "◇ファイル名：　".rawurldecode($fname)."\n";
-//					$order_info_admin .= "◇ファイル名：　"._ORDER_DOMAIN."/system/attachfile/".$order_id."/".$fname."\n\n";
+					$order_info_admin .= "◇元ファイル名：　".rawurldecode($fname)."\n";
+					$order_info_admin .= "------------------------------------------\n\n";
 				}
+				
 				if (empty($order_id)) {
 					$order_info_admin .= "\n===  Error  ===\n";
-					$order_info_admin .= "\n◇ 注文データの送信中にエラーが発生しています。\n";
+					$order_info_admin .= "\n◇ 注文データの登録中に通信エラーが発生しています。\n";
 					$order_info_admin .= "\n===\n\n";
-				} else if (count($hash['designfile'])==0 || $a<$b) {
-					$order_info_admin .= "\n===  Error  ===\n";
-					$order_info_admin .= "\n◇ 転送できなかったデザインファイルがあります。\n";
-					$order_info_admin .= "\n-- 元ファイル（".$b."個）\n";
-					$order_info_admin .= "◇コード：　".basename(dirname($uploadfilename[0], 1))."\n";
-					$order_info_admin .= "\n===\n\n";
+					
+					$order_info_admin .= "【 入稿ファイル 】\n";
+					for ($b=0; $b<count($uploadfilename); $b++) {
+						$fname = basename($uploadfilename[$b]);
+						$order_info_admin .= "◇URL：　".$_ORDER_DOMAIN."/system/attachfile/".$uploadDir."/".$fname."\n\n";
+						$order_info_admin .= "------------------------------------------\n\n";
+					}
 				}
 				$order_info_admin .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
 				$order_info_user .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
 			}
+			
+			$order_info_admin .= "┏━━━━━━━━┓\n";
+			$order_info_admin .= "◆　　プリント\n";
+			$order_info_admin .= "┗━━━━━━━━┛\n";
+			$order_info_admin .= "◇プリント代：　".number_format($sum['print'])."円\n\n";
+			$order_info_admin .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
+			
+			$order_info_admin .= "┏━━━━━━━━┓\n";
+			$order_info_admin .= "◆　　同梱情報\n";
+			$order_info_admin .= "┗━━━━━━━━┛\n";
+			if (count($registered)==1) {
+				$order_info_admin .= "◇受注No.：　なし\n";
+			}
+			for ($i=0; $i<count($registered); $i++) {
+				if ($order_id==$registered[$i]['orderid']) continue;
+				$order_info_admin .= "◇受注No.：　".$registered[$i]['orderid']."\n";
+			}
+			$order_info_admin .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
+			
+			
 			$addition = array($order_info_admin, $order_info_user, $order_id);
 			
-			/*
-			$order_info .= "┏━━━━━━━┓\n";
-			$order_info .= "◆　　お届け先\n";
-			$order_info .= "┗━━━━━━━┛\n";
-			if(!empty($user['deli'])){
-				$order_info .= "◇宛名：　".$user['organization']."　様\n";
-				$order_info .= "◇ご住所：　〒".$user['delizipcode']."\n";
-				$order_info .= "　　　　　　　　　".$user['deliaddr1']." ".$info['deliaddr2']."\n";
-			}else{
-				$order_info .= "（上記ご連絡先と同じ場所にお届けする）\n";
-			}
-			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n";
-			*/
-			
-			/* 2013-11-25 廃止
-			if(empty($user['payment'])){
-				$order_info .= "┏━━━━━━━┓\n";
-				$order_info .= "◆　　お振込先\n";
-				$order_info .= "┗━━━━━━━┛\n";
-				$order_info .= "振込口座：　三菱東京ＵＦＪ銀行\n";
-				$order_info .= "新小岩支店744　普通 3716333\n";
-				$order_info .= "口座名義：　ユ）タカハマライフアート\n";
-				$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n";
-				$order_info .= "※お振込み手数料は、お客様のご負担とさせて頂いております。\n\n";
-			}
-			*/
-			
 			// send mail
-			$res = $this->send_mail($order_info, $user['customername'], $user['email'], $attach, $addition);
+			$res = $this->send_mail($order_info, $user['name'], $user['email'], $attach, $addition);
 			if (!$res) {
 				throw new Exception();
 			}
@@ -414,11 +360,11 @@ class Ordermail extends Conndb{
 	protected function send_mail($mail_text, $name, $to, $attach, $addition){
 		mb_language("japanese");
 		mb_internal_encoding("UTF-8");
-		$sendto = _ORDER_EMAIL;						// 送信先
-		$suffix = "【takahama428】"; 				// 件名の後ろに付加するテキスト
-		$subject = "お申し込み - No.".$addition[2].$suffix;			// 件名
-		$msg = "";									// 送信文
-		$boundary = md5(uniqid(rand())); 			// バウンダリー文字（メールメッセージと添付ファイルの境界とする文字列を設定）
+		$sendto = _ORDER_EMAIL;
+		$suffix = "【takahama428】";
+		$subject = "お申し込み - No.".$addition[2].$suffix;		// 件名
+		$msg = "";
+		$boundary = md5(uniqid(rand()));
 		
 		$fromname = "タカハマ428";
 		$from = mb_encode_mimeheader($fromname, "JIS")."<".$sendto.">";
@@ -428,14 +374,14 @@ class Ordermail extends Conndb{
 		$header .= "X-Mailer: PHP/".phpversion()."\n";
 		$header .= "MIME-version: 1.0\n";
 		
-		if(!empty($attach)){ 		// 添付ファイルがあり
+		if(!empty($attach)){
 			$header .= "Content-Type: multipart/mixed;\n";
 			$header .= "\tboundary=\"$boundary\"\n";
 			$msg .= "This is a multi-part message in MIME format.\n\n";
 			$msg .= "--$boundary\n";
 			$msg .= "Content-Type: text/plain; charset=ISO-2022-JP\n";
 			$msg .= "Content-Transfer-Encoding: 7bit\n\n";
-		}else{												// 添付ファイルなし
+		}else{
 			$header .= "Content-Type: text/plain; charset=ISO-2022-JP\n";
 			$header .= "Content-Transfer-Encoding: 7bit\n";
 		}
@@ -443,7 +389,7 @@ class Ordermail extends Conndb{
 		// ここで本文をエンコードして設定
 		$msg .= mb_convert_encoding("受注No.".$addition[2]."\n\nお名前：　".$name."　様\n".$mail_text.$addition[0], "JIS","UTF-8");
 		
-		if(!empty($attach)){		// 添付ファイル情報
+		if(!empty($attach)){
 			for($i=0; $i<count($attach); $i++){
 
 				$msg_chunk_split = chunk_split($attach[$i]['img']['file']);
@@ -460,7 +406,7 @@ class Ordermail extends Conndb{
 		
 		// 件名のマルチバイトをエンコード
 		$subject = mb_encode_mimeheader($subject, "JIS");
-				
+		
 		// メール送信
 		if(mail($sendto, $subject, $msg, $header)){
 			
@@ -527,259 +473,372 @@ class Ordermail extends Conndb{
 
 	/**
 	 * 受注システムに登録
-	 * @param {string} uploadDir アップロードしたデザインファイルのディレクトリ
-	 * @return {array} {orderid=>受注No. , designfile=>true|false}
+	 * @param {array} obj 注文情報 {$user, $design, $item, $option, $detail, $sum}
+	 * @param {array} uploadDir アップロードしたデザインファイルのディレクトリ
+	 * @return {array} [{orderid=>受注No. , designfile=>true|false}, ...]
 	 */
-	private function insertOrderToDB($uploadDir){
-		$items = $_SESSION['orders']['items'];
-		$user = $_SESSION['orders']['customer'];
-		$opts = $_SESSION['orders']['options'];
-		$sum = $_SESSION['orders']['sum'];
+	private function insertOrderToDB($obj, $uploadDir){
+		$user = $obj['user'];
+		$designs = $obj['design'];
+		$items = $obj['item'];
+		$opts = $obj['option'];
+		$detail = $obj['detail'];
+		$sum = $obj['sum'];
 
 		// 顧客情報
 		$customer_id = "";
-		//新規顧客の場合
-		if(empty($user['member'])){
+		if(empty($user['id'])){
+			// 新規顧客
 			$data1 = array(
 				"number"=>"","cstprefix"=>"k","customer_id"=>"",
-				"customerruby"=>$user['customerruby'],"companyruby"=>"","customername"=>$user['customername'],"company"=>"",
+				"customerruby"=>$user['ruby'],"companyruby"=>"","customername"=>$user['name'],"company"=>"",
 				"tel"=>$user['tel'],"mobile"=>"","fax"=>"","email"=>$user['email'],"password"=>$user['pass'],"mobmail"=>"",
 				"bill"=>"1","cutofday"=>"20","cyclebilling"=>"1","paymentday"=>"31","remittancecharge"=>"1",
 				"zipcode"=>$user['zipcode'],"addr0"=>$user['addr0'],"addr1"=>$user['addr1'],"addr2"=>$user['addr2'],"addr3"=>"","addr4"=>"","reg_site"=>_SITE
 			);
 		} else {
-			//ログインした顧客の場合
-			$customer_id = $user['member'];
+			// 会員
+			$customer_id = $user['id'];
 			$data1 = array(
 				"customer_id"=>$customer_id,
-				"customerruby"=>$user['customerruby'],"customername"=>$user['customername'],
+				"customerruby"=>$user['ruby'],"customername"=>$user['name'],
 				"tel"=>$user['tel'],"email"=>$user['email'],
 				"zipcode"=>$user['zipcode'],"addr0"=>$user['addr0'],"addr1"=>$user['addr1'],"addr2"=>$user['addr2'],"reg_site"=>_SITE
 			);
 		}
 
 		// お届け先情報
-		$data2 = array("customer_id"=>$customer_id, "delivery_customer"=>$user['delivery_customer']);
+		$data2 = array();
 
-		// 受注情報
-
-		$discount = "";
-		// ブログ割
-		if(empty($opts['blog'])){
+		// 写真掲載割（旧ブログ割）
+		if(empty($opts['publish'])){
 			$discount = "blog0";
 		}else{
 			$discount = "blog1";
 		}
-		$discount .= ",";
-		// イラレ割
-		if(empty($opts['illust'])){
-			$discount .= "illust0";
-		}else{
-			$discount .= "illust1";
-		}
 
 		// 学割
-		switch($opts['student']){
-			case '3':	$discount1 = "student";
-						break;
-			case '5':	$discount1 = "team2";
-						break;
-			case '7':	$discount1 = "team3";
-						break;
-			default: 	$discount1 = "";
+		if(empty($opts['student']) || empty($opts['school'])){
+			$discount1 = "";
+		} else {
+			$discount1 = "student";
 		}
 
-		// 紹介割
-		if(!empty($opts['intro'])){
-			$discount2 = "introduce";
-		}
 		// 支払方法
-		$payment = array("wiretransfer","cod","cash","credit","conbi");
-
-		// 消費税
-		$tax = parent::getSalesTax();
-		$tax /= 100;
-
-		// 見積
-		$basefee = $sum["itemprice"] + $sum["printprice"] + $sum["optionfee"];
-		$salestax = floor(basefee*$tax);
-		$total = floor(basefee*(1+$tax));
-		$credit = 0;
-		if($sum["payment"]==3){
-			$credit = ceil($total*_CREDIT_RATE);
-			$total += $credit;
-		}
-		$perone = ceil($total/$sum['amount']);
+		$payment = $opts['payment'];
+		if ($payment=='bank') $payment = 'wiretransfer';
 		
-		// コメント欄
-		$comment[] = $user['note_design'];
-		$comment[] = $user['note_printcolor'];
-		$comment[] = $user['note_printmethod'];
-		$comment[] = $user['comment'];
-		$strComment = implode("\n", $comment);
-		
-		$field3 = array(
-		"id","reception","destination","order_comment","paymentdate",
-		"exchink_count","exchthread_count","deliverytime","manuscriptdate","invoicenote","billnote",
-		"contact_number",
-		"additionalname","extradiscountname","boxnumber","handover","factory",
-		"destcount","ordertype","schedule1","schedule2","schedule3","schedule4",
 
-		"arrival","carriage","check_amount","noprint","design","manuscript",
-		"discount1","discount2","reduction","reductionname","freeshipping","payment",
+		// デザインパターン毎の注文枚数
+		$amounts = $this->getOrderAmount($items);
 
-		"phase","budget","deliver","purpose","designcharge","job","free_printfee",
-		"free_discount","additionalfee","extradiscount","rakuhan","completionimage",
-		"staffdiscount","maintitle","customer_id","estimated","order_amount",
-
-		"purpose_text","reuse","applyto","repeater",
-		"package_no",
-		"package_nopack",
-		"pack_nopack_volume",
-		"package_yes",
-		"pack_yes_volume",
-		"discount","media","bill",
-
-		"productfee","printfee","silkprintfee","colorprintfee","digitprintfee",
-		"inkjetprintfee","cuttingprintfee","embroideryprintfee","exchinkfee","additionalfee","packfee",
-
-		"expressfee","discountfee","reductionfee","carriagefee","extracarryfee",
-		"designfee","codfee","basefee","salestax","creditfee", "conbifee","repeatdesign","allrepeat");
-
-		$data3 = array
-		("","0","0",$strComment,"",
-		"0","0",$opts['deliverytime'],"","","",
-		"",
-		"","","0","0","0",
-		"1","general","","","",$opts['deliveryday'],
-
-		"0","normal",$sum['amount'],$opts['noprint'],"","",
-		$discount1,$discount2,"0","","0",$payment[$opts['payment']],
-
-		"accept","0","2","","0","その他","0",
-		"0","0","","0","0",
-		"0","",$customer_id,$total,$sum['amount'],
-
-		"","0","0","0",
-		empty($opts['pack'])? 1: 0,
-		$opts['pack']!=2? 0: 1,
-		$opts['pack']!=2? 0: $sum['amount'],
-		$opts['pack']!=1? 0: 1,
-		$opts['pack']!=1? 0: $sum['amount'],
-		$discount,"","",
-
-		$sum["itemprice"],$sum["printprice"],"0","0","0",
-		"0","0","0","0","0",$sum["pack"],
-
-		$sum["expressfee"],$sum["discount"],"0",$sum["carriage"],"0",
-		"0",$sum["codfee"],$basefee,$salestax,$credit, $sum["conbifee"],"0","0");
-
-		$field4 = array("master_id","choice","plateis","size_id","amount","item_cost","item_printfee","item_printone","item_id","item_name","stock_number","maker","size_name","item_color","price");
-		$field5 = array();
-		$field6 = array("category_id","printposition_id","subprice");
-		$field7 = array("areaid", "print_id", "area_name", "area_path", "origin", "ink_count", "print_type","areasize_from", "areasize_to", "areasize_id", "print_option", "jumbo_plate", "design_plate","design_type","design_size", "repeat_check", "silkmethod");
-		$field8 = array("areaid", "area_id", "selective_key", "selective_name");
-
-		//注文商品
-		$data4 = array();
-		$data5 = array();
-		//商品カテゴリーごとのプリント情報
-		//data6
-		$orderprint = array();
-		$isExistOrderPrint = array();	// 同じカテゴリで且つ同じプリントポジションIDの有無をチェック
-		//data7
-		$orderarea = array();
-		//data8
-		$orderselectivearea = array();
-
-
-		$attach_info = array();
-		$idx6 = 0;
-		$idx7 = 0;
-		$idx8 = 0;
-		$origin = 1;
-		foreach($items as $catid=>$v1){
-			foreach($v1['item'] as $itemid=>$v2){
-				$posid = $v2['posid'];
-				$orderprintTemp =$catid."|".$posid."|0";
-				if (array_key_exists($catid.'-'.$posid, $isExistOrderPrint)===false) {
-					array_push($orderprint , $orderprintTemp);
-					$isExistOrderPrint[$catid.'-'.$posid] = true;
-				}
-
-				foreach($v2['color'] as $colorcode=>$v3){
-					foreach($v3['size'] as $sizeid=>$v4){
-						if(empty($v4['amount'])) continue;
-						$tempData4 = $v3['master_id']."|1|1|".$sizeid."|".$v4['amount']."|".$v4['cost']."|0|0|".$itemid."||||||" ;
-						array_push($data4, $tempData4);
-					}
-			  	}
-				
-				foreach($v2['design'] as $base=>$a2){
-					if ($idx7>0) $origin = 0;
-					for($i=0; $i<count($a2); $i++){
-						if ($a2[$i]['ink']==0 && $opts['noprint']==0) continue;
-						if ($opts['noprint']==1 && $i>0) continue;
-						if (empty($a2[$i]['areakey']) || empty($a2[$i]['categorytype']) || empty($a2[$i]['itemtype'])) continue;
-						$sizeFrom = $a2[$i]['printing']!='silk'? 0: 35;
-						$sizeTo = $a2[$i]['printing']!='silk'? 0: 27;
-						$areasize = 0;	// 大で固定
-						$ink = 0;
-						if ($a2[$i]['printing']=='silk') {
-							$ink = $a2[$i]['ink']==9 ? "4" : $a2[$i]['ink'];
-						}
-						$tempData7 = "0|".$idx6."|". $a2[$i]['areakey']."|".$a2[$i]['categorytype']."/".$a2[$i]['itemtype']."|".$origin."|".$ink."|".$a2[$i]['printing']."|".$sizeFrom."|".$sizeTo."|".$areasize."|0|0|1|".(empty($opts['illust'])? "": "イラレ")."||0|1";
-						array_push($orderarea , $tempData7);
-						if($a2[$i]['ink']>0){
-							$data8[$idx8]['area_id'] = $idx7;
-							$data8[$idx8]['selective_key'] = $a2[$i]['poskey'];
-							$data8[$idx8]['selective_name'] = $a2[$i]['posname'];
-							$idx8++;
-							$tempData8 ="0|".$idx7."|".$a2[$i]['poskey']."|".$a2[$i]['posname'];
-							array_push($orderselectivearea , $tempData8);
-						}
-						$idx7++;
-						if($opts['noprint']==1){
-							break 2;
-						}
-					}
-				}
-				$idx6++;
-			}
-		}
-		$field9 = array("inkid", "area_id", "ink_name", "ink_code", "ink_position");
-		$orderink = array();
-		$field10= array("exchid","ink_id","exchink_name","exchink_code","exchink_volume");
-		$exchink = array();
-		$field12 = array();
-		$data12 = array();
-
-		// アップロードファイル
-		if (!empty($uploadDir)) {
-			$upDir = $uploadDir;
-		}
-
-		// hash 1
-		$data3 = $this->hash1($field3, $data3);
-		$data12 = $this->hash1($field12, $data12);
-
-		// hash 2
-		$data4 = $this->hash2($field4, $data4);
-		$data5 = $this->hash2($field5, $data5);
-		$data6 = $this->hash2($field6, $orderprint);
-		$data7 = $this->hash2($field7, $orderarea);
-		$data8 = $this->hash2($field8, $orderselectivearea);
-		$data9 = $this->hash2($field9, $orderink);
-		$data10 = $this->hash2($field10, $exchink);
-
-		$data = array($data1,$data2,$data3,$data4,$data5,$data6,$data7,$data8,$data9,$data10,$data12,$upDir,_SITE);
-		
-		// 受注システムに登録
+		// 受注システム登録クラス
 		$orders = new WebOrder();
-		$res = $orders->db('insert', 'order', $data);
+		
+		/*
+		* design: {
+		*			デザインID(id_インデックス): {絵型ID: {
+		*												front|back|side 絵型面: {
+		*																		表示要素のインデックス: {
+		*																			area:箇所名, 
+		*																			size:0|1|2 大中小, 
+		*																			option:0|1 インクジェット(淡|濃)と刺繍(origin|name)のオプション, 
+		*																			method:プリント方法, 
+		*																			printable:対応しているプリント方法
+		*																			ink:色数
+		*																		},
+		*																		表示要素のインデックス: {}
+		*											},
+		*												front|back|side 絵型面: {}
+		*										},
+		*										絵型ID: {}
+		*			},
+		*			デザインID(id_インデックス): {}
+		*	}
+		*/
+		/*
+		* item: {デザインID: {アイテムID: {
+		*								master:マスターID,
+		*								code:アイテムコード,
+		*								name:アイテム名,
+		*								posId:絵型ID,
+		*								cateId:カテゴリID,
+		*								rangeId:枚数レンジID
+		*								screenId:同版分類ID
+		* 								color: [{
+		*										vol: {サイズ名: {amount:枚数, cost:単価, id:サイズID}, ...},
+		*										code: カラーコード,
+		*										name: カラー名
+		*										}, {}]
+		* 								},
+		*					  アイテムID: {}
+		*					 },
+		*		  デザインID: {}
+		*		 }
+		*/
+		
+		/**
+		 * デザインパターン毎にデータを登録
+		 * アップロードファイルは最初の受注データに紐付ける
+		 */
+		$orderNumber = 0;	// 受注システムに登録する注文伝票の数
+		$res = [];			// 登録データの返り値
+		foreach ($designs as $designId=>$d1) {
+
+			// プリントの有無
+			$noprint = $designId=='id_0'? 1: 0;
+
+			// 見積
+			$basefee = 0;
+			$salestax = 0;
+			$total = 0;
+			$credit = 0;
+			$perone = 0;
+
+			// コメント欄
+			$comment[] = $opts['note_design'];
+			$comment[] = $opts['note_user'];
+			$comment[] = $opts['school'];
+			$strComment = implode("\n", $comment);
+
+			$field3 = array(
+			"id","reception","destination","order_comment","paymentdate",
+			"exchink_count","exchthread_count","deliverytime","manuscriptdate","invoicenote","billnote",
+			"contact_number",
+			"additionalname","extradiscountname","boxnumber","handover","factory",
+			"destcount","ordertype","schedule1","schedule2","schedule3","schedule4",
+
+			"arrival","carriage","check_amount","noprint","design","manuscript",
+			"discount1","discount2","reduction","reductionname","freeshipping","payment",
+
+			"phase","budget","deliver","purpose","designcharge","job","free_printfee",
+			"free_discount","additionalfee","extradiscount","rakuhan","completionimage",
+			"staffdiscount","maintitle","customer_id","estimated","order_amount",
+
+			"purpose_text","reuse","applyto","repeater",
+			"package_no",
+			"package_nopack",
+			"pack_nopack_volume",
+			"package_yes",
+			"pack_yes_volume",
+			"discount","media","bill",
+
+			"productfee","printfee","silkprintfee","colorprintfee","digitprintfee",
+			"inkjetprintfee","cuttingprintfee","embroideryprintfee","exchinkfee","additionalfee","packfee",
+
+			"expressfee","discountfee","reductionfee","carriagefee","extracarryfee",
+			"designfee","codfee","basefee","salestax","creditfee", "conbifee","repeatdesign","allrepeat");
+
+			$data3 = array
+			("","0","0",$strComment,"",
+			"0","0",$opts['delitime'],"","","",
+			"",
+			"",$detail["rankname"],"0","0","0",
+			"1","general","","","",$opts["delidate"],
+
+			"0","normal",$amounts[$designId],$noprint,"","",
+			$discount1,$discount2,"0","","0",$payment,
+
+			"accept","0","2","","0","その他","0",
+			"0","0",$user["rank"],"0","0",
+			"0","",$customer_id,$total,$amounts[$designId],
+
+			"","0","0","0",
+			empty($opts['pack'])? 1: 0,
+			$opts['pack']!=10? 0: 1,
+			$opts['pack']!=10? 0: $amounts[$designId],
+			$opts['pack']!=50? 0: 1,
+			$opts['pack']!=50? 0: $amounts[$designId],
+			$discount,"","",
+
+			$sum["item"],$sum["print"],"0","0","0",
+			"0","0","0","0","0",$detail["packfee"],
+
+			 $detail["expressfee"],$detail["discountfee"],"0",$detail["carriage"],"0",
+			 "0", $detail["codfee"], $basefee, $salestax, $credit, "0","0","0");
+
+			/*
+			* attach: [ファイル名, ...]
+			* option: {publish:割引率, student:割引率, pack:単価, payment:bank|cod|credit|cash, delidate:希望納期, delitime:配達時間指定, 
+			*			express:0|1|2, transport:1|2, note_design, note_user}
+			* sum: {item:商品代, print:プリント代, volume:注文枚数, tax:消費税額, total:見積合計, mass:0 通常単価 | 1 量販単価}
+			* detail: {discountfee, discountname, packfee, packname, carriage, codfee, expressfee, expressname, rankname}
+			* user: {id:, email:, name:, ruby:, zipcode:, addr0:, addr1:, addr2:, tel:, rank:}
+			*/
+
+			/*
+			*	data4	業者の時の注文商品（orderitem）
+			*	data5	業者の時の見積追加行（orderitemext）
+			*	data6	プリント情報（orderprint）
+			*	data7	プリント位置（orderarea）
+			*	data8	プリントポジション（orderselectivearea）
+			*/
+			$field4 = array("master_id","choice","plateis","size_id","amount","item_cost","item_printfee","item_printone","item_id","item_name","stock_number","maker","size_name","item_color","price");
+			$field5 = array();
+			$field6 = array("category_id","printposition_id","subprice");
+			$field7 = array("areaid", "print_id", "area_name", "area_path", "origin", "ink_count", "print_type","areasize_from", "areasize_to", "areasize_id", "print_option", "jumbo_plate", "design_plate","design_type","design_size", "repeat_check", "silkmethod");
+			$field8 = array("selectiveid", "area_id", "selective_key", "selective_name");
+
+			//注文商品
+			$data4 = array();
+			$data5 = array();
+
+			//商品カテゴリーごとのプリント情報
+			//data6
+			$orderprint = array();
+
+			// 同じカテゴリで且つ同じプリントポジションIDの有無をチェック
+			$isExistOrderPrint = array();
+
+			//data7
+			$orderarea = array();
+
+			//data8
+			// プリントなしの場合は登録なし
+			$orderselectivearea = array();
+
+			$attach_info = array();
+			$orderprint_id = 0;	// orderprint table のID
+			$orderarea_id = 0;	// orderarea table のID
+			$origin = 1;
+
+			// シルクの版の大きさ
+			$silkPlateSize = array(
+				array('h'=>35, 'w'=>27),
+				array('h'=>43, 'w'=>32),
+				array('h'=>52, 'w'=>30),
+			);
+			
+			// 当該デザインに対応するアイテム情報
+			foreach ($items[$designId] as $itemId=>$itemInfo) {
+				
+				/* 
+				 * カテゴリ別の絵型ごとに登録
+				 */
+				$tmpKey = $itemInfo['cateId'].'-'.$itemInfo['posId'];
+				if (array_key_exists($tmpKey, $isExistOrderPrint)===false) {
+					
+					// orderprint
+					$orderprint[] = $itemInfo['cateId']."|".$itemInfo['posId']."|0";
+					$isExistOrderPrint[$tmpKey] = true;
+					
+					// 絵型毎のプリント情報
+					foreach ($d1[$itemInfo['posId']] as $face=>$d2) {
+
+						// 絵型画像のパス情報を取得
+						$pattern = $this->getPrintPosition($itemInfo['posId'], 'pos');
+						
+						// プリント箇所毎
+						$origin = 1;
+						foreach ($d2 as $idx=>$designInfo) {
+							/*
+							 * orderarea
+							 * orderprintの絵型に対するプリント指定情報
+							 */
+							if ($designInfo['method']=='emb') {
+								$printType = 'embroidery';
+							} else {
+								$printType = $designInfo['method'];
+							}
+
+							if ($printType=='silk') {
+								$jumboPlate = $designInfo['size'];
+								$plateHeight = $silkPlateSize[$jumboPlate]['h'];
+								$plateWidth = $silkPlateSize[$jumboPlate]['w'];
+							} else {
+								$plateHeight = 0;
+								$plateWidth = 0;
+								$jumboPlate = 0;
+							}
+
+							$tempData7 = "0|".$orderprint_id."|".$face."|".$pattern[0]['category']."/".$pattern[0]['item']."|".$origin."|";
+							$tempData7 .= $designInfo['ink']."|".$printType."|".$plateHeight."|".$plateWidth."|".$designInfo['size']."|";
+							$tempData7 .= $designInfo['option']."|".$jumboPlate."|1|||0|1";
+							$orderarea[] = $tempData7;
+
+							// orderselectivearea プリントなしの場合は登録なし
+							if ($designId != 'id_0') {
+								$r = $this->request('POST', array('act'=>'matchpattern', 'posid'=>$itemInfo['posId'], 'face'=>$face, 'name'=>$designInfo['area']));
+								$data8 = unserialize($r);
+								$orderselectivearea[] = "0|".$orderarea_id."|".$data8['code']."|".$data8['area'];
+							}
+							
+							// 同じ絵型面が2つ以上ある場合
+							$origin = 0;
+						}
+						
+						$orderarea_id++;
+					}
+					
+					$orderprint_id++;
+				}
+				
+				// orderitem
+				for ($i=0; $i<count($itemInfo['color']); $i++) {
+					$colors = $itemInfo['color'][$i];
+					foreach ($colors['vol'] as $sizeName=>$val) {
+						$data4[] = $colors['master']."|1|1|".$val['id']."|".$val['amount']."|".$val['cost']."|0|0|".$itemId."||||||" ;
+					}
+				}
+			}
+			
+			// Web注文で未使用のデータ
+			$field9 = array("inkid", "area_id", "ink_name", "ink_code", "ink_position");
+			$orderink = array();
+			$field10= array("exchid","ink_id","exchink_name","exchink_code","exchink_volume");
+			$exchink = array();
+			$field12 = array();
+			$data12 = array();
+
+			// アップロードファイル
+			$upDir = '';
+			if (!empty($uploadDir) && $orderNumber===0) {
+				$upDir = $uploadDir;
+				$orderNumber++;
+			}
+
+			// hash 1
+			$data3 = $this->hash1($field3, $data3);
+			$data12 = $this->hash1($field12, $data12);
+
+			// hash 2
+			$data4 = $this->hash2($field4, $data4);
+			$data5 = $this->hash2($field5, $data5);
+			$data6 = $this->hash2($field6, $orderprint);
+			$data7 = $this->hash2($field7, $orderarea);
+			$data8 = $this->hash2($field8, $orderselectivearea);
+			$data9 = $this->hash2($field9, $orderink);
+			$data10 = $this->hash2($field10, $exchink);
+
+			$data = array($data1,$data2,$data3,$data4,$data5,$data6,$data7,$data8,$data9,$data10,$data12,$upDir,_SITE);
+
+			// 受注システムに登録
+			$res[] = $orders->db('insert', 'order', $data);
+		}
 		
 		return $res;
 	}
+	
+	
+	/**
+	 * デザインパターン毎の注文商品の枚数と単価
+	 * @param {array} items Web注文の商品データー
+	 * @return {array} デザインパターンごとの注文枚数 {designId: 注文枚数}
+	 */
+	private function getOrderAmount($items) {
+		foreach ($items as $designId=>$v1) {
+			$orderAmount[$designId] = 0;
+			foreach ($v1 as $itemId=>$itemInfo) {
+				for ($i=0; $i<count($itemInfo['color']); $i++) {
+					foreach ($itemInfo['color'][$i]['vol'] as $sizeName=>$v2) {
+						$orderAmount[$designId] += $v2['amount'];
+					}
+				}
+			}
+		}
+		return $orderAmount;
+	}
+	
 	
 	/**
 	 * POSTされたデータから配列を生成
@@ -814,90 +873,6 @@ class Ordermail extends Conndb{
 }
 
 
-/**
- * 2017-11-17 未使用
- */
-class Design {
-
-	/**
-	 * フロントエンドから注文のデザイン画像ファイルを受注システムに転送
-	 * @oaram {int} order_id 受注No.
-	 * @param {string} filedir アップロードされたファイルのあるディレクトリのパス
-	 * @return {array} 転送後のアップロードファイル名
-	 */
-	public function saveDesFile($order_id, $filedir){
-		$path = $_SERVER['DOCUMENT_ROOT'].'/../../'._ORDER_VHOST.'/home/system/attachfile/'.$order_id;
-		if(!is_dir($path)) {
-			mkdir($path);
-		}
-
-		$up = 0;
-		$fileCount = 0;
-		$fileName = array();
-		$today = date('Y-m-d');
-		$root = $_SERVER['DOCUMENT_ROOT']."/";
-		if ($handle = opendir($root.$filedir)) {
-			setlocale(LC_ALL, 'ja_JP.UTF-8');
-			while (false !== ($f = readdir($handle))) {
-				if (is_dir($root.$filedir.'/'.$f)==false && $f != "." && $f != "..") {
-					$fileCount++;
-					$extension = pathinfo($f, PATHINFO_EXTENSION);
-					$fileName[] = 'design_'.$order_id.'_'.$today.'_'.$up.'.'.$extension;
-					if (rename($root.$filedir.'/'.$f, $path.'/'.$fileName[$up])) {
-						$up++;
-					}
-				}
-			}
-			closedir($handle);
-		}
-		
-		
-//		$root = $_SERVER['DOCUMENT_ROOT'];
-//		$fileCount = count($filedir);
-//		$up = 0;
-//		for ($i=0; $i<$fileCount; $i++) {
-//			if (!$filedir[$i]) {
-//				break;
-//			}
-//			$fileName = basename($file[$i]);
-//
-//			$fileName = $path."/".$fileName;
-//
-//			rename($root.$filedir[$i], $fileName);
-//			$up++;
-//		}
-
-		if ($up>0 && $fileCount==$up) {
-			$this->removeDirectory($root.$filedir);
-		}
-
-		return $fileName;
-	}
-
-
-	/**
-	 * ディレクトリとファイルを再帰的に全削除
-	 * @param {string} dir 削除するディレクトリ
-	 */
-	private function removeDirectory($dir) {
-		if ($handle = opendir("$dir")) {
-			while (false !== ($item = readdir($handle))) {
-				if ($item != "." && $item != "..") {
-					if (is_dir("$dir/$item")) {
-						$this->removeDirectory("$dir/$item");
-					} else {
-						unlink("$dir/$item");
-					}
-				}
-			}
-			closedir($handle);
-			rmdir($dir);
-		}
-	}
-
-}
-
-
 class WebOrder {
 	private $print_codename = array(
 		'silk'=>array('name'=>'シルク','abbr'=>'S','index'=>0),
@@ -925,6 +900,7 @@ class WebOrder {
 	private function db_connect(){
 		$conn = mysqli_connect(_DB_HOST, _DB_USER, _DB_PASS, _DB_NAME, true) 
 			or die("MESSAGE : cannot connect!". mysqli_error());
+		
 		$conn->set_charset('utf8');
 		return $conn;
 	}
@@ -935,7 +911,6 @@ class WebOrder {
 	 */
 	private function quote_smart($conn, $value){
 		if (!is_numeric($value)) {
-			if(get_magic_quotes_gpc()) $value = stripslashes($value);
 			$value = mysqli_real_escape_string($conn, $value);
 		}
 		return $value;
@@ -1101,87 +1076,24 @@ class WebOrder {
 								'%s','%s',%d,%d,%d,%d,%d,%d,'%s','%s',
 								%d,'%s',%d,%d,%d,%d,%d,%d,%d,%d,
 								%d,%d,%d,%d,%d)",
-								   $info3["reception"],
-								   $info3["ordertype"],
-								   $info3["applyto"],
-								   $info3["maintitle"],
-								   $info3["schedule1"],
-								   $info3["schedule2"],
-								   $info3["schedule3"],
-								   $info3["schedule4"],
-								   $info3["destination"],
-								   $info3["arrival"],
-								   $info3["carriage"],
-								   $info3["check_amount"],
-								   $info3["noprint"],
-								   $info3["design"],
-								   $info3["manuscript"],
-								   $info3["discount1"],
-								   $info3["discount2"],
-								   $info3["reduction"],
-								   $info3["reductionname"],
-								   $info3['handover'],
-								   $info3["freeshipping"],
-								   $info3["payment"],
-								   $info3["order_comment"],
-								   $info3["invoicenote"],
-								   $info3["billnote"],
-								   $info3["phase"],
-								   $info3["budget"],
-								   $info3["customer_id"],
-								   $info3["delivery_id"],
-								   $info3["created"],
-								   $info3["lastmodified"],
-								   $info3["estimated"],
-								   $info3["order_amount"],
-								   $info3["paymentdate"],
-								   $info3["exchink_count"],
-								   $info3["exchthread_count"],
-								   $info3["deliver"],
-								   $info3["deliverytime"],
-								   $info3["manuscriptdate"],
-								   $info3["purpose"],
-								   $info3["purpose_text"],
-								   $info3["job"],
-								   $info3["designcharge"],
-								   $info3["repeater"],
-								   $info3["reuse"],
-								   $info3["free_discount"],
-								   $info3["free_printfee"],
-								   $info3["completionimage"],
-								   $info3["contact_number"],
-								   $info3["additionalname"],
-								   $info3["additionalfee"],
-								   $info3["extradiscountname"],
-								   $info3["extradiscount"],
-								   $info3["shipfrom_id"],
-								   $info3["package_yes"],
-								   $info3["package_no"],
-								   $info3["package_nopack"],
-								   $info3["pack_yes_volume"],
-								   $info3["pack_nopack_volume"],
-								   $info3["boxnumber"],
-								   $info3["factory"],
-								   $info3["destcount"],
-								   $info3["repeatdesign"],
-								   $info3["allrepeat"],
-								   $info3["staffdiscount"]
-
-								  );
+								$info3["reception"],$info3["ordertype"],$info3["applyto"],$info3["maintitle"],$info3["schedule1"],
+								$info3["schedule2"],$info3["schedule3"],$info3["schedule4"],$info3["destination"],$info3["arrival"],
+								$info3["carriage"],$info3["check_amount"],$info3["noprint"],$info3["design"],$info3["manuscript"],
+								$info3["discount1"],$info3["discount2"],$info3["reduction"],$info3["reductionname"],$info3['handover'],
+								$info3["freeshipping"],$info3["payment"],$info3["order_comment"],$info3["invoicenote"],$info3["billnote"],
+								$info3["phase"],$info3["budget"],$info3["customer_id"],$info3["delivery_id"],$info3["created"],
+								$info3["lastmodified"],$info3["estimated"],$info3["order_amount"],$info3["paymentdate"],$info3["exchink_count"],
+								$info3["exchthread_count"],$info3["deliver"],$info3["deliverytime"],$info3["manuscriptdate"],$info3["purpose"],
+								$info3["purpose_text"],$info3["job"],$info3["designcharge"],$info3["repeater"],$info3["reuse"],
+								$info3["free_discount"],$info3["free_printfee"],$info3["completionimage"],$info3["contact_number"],$info3["additionalname"],
+								$info3["additionalfee"],$info3["extradiscountname"],$info3["extradiscount"],$info3["shipfrom_id"],$info3["package_yes"],
+								$info3["package_no"],$info3["package_nopack"],$info3["pack_yes_volume"],$info3["pack_nopack_volume"],$info3["boxnumber"],
+								$info3["factory"],$info3["destcount"],$info3["repeatdesign"],$info3["allrepeat"],$info3["staffdiscount"]
+							);
 
 					if($this->exe_sql($conn, $sql)){
 						$rs = mysqli_insert_id($conn);
 						$orders_id = $rs;
-
-						/* reuse 2014-12-10 仕様変更、版元のreuseへの255の設定を廃止
-					if($info3['repeater']!=0){
-						$sql= sprintf("UPDATE orders SET reuse=%d WHERE id=%d", 255, $info3["repeater"]);
-						if(!$this->exe_sql($conn, $sql)){
-							mysqli_query($conn, 'ROLLBACK');
-							return null;
-						}
-					}
-					*/
 
 						// orderprint
 						$orderareaid = array();
@@ -1233,16 +1145,14 @@ class WebOrder {
 
 								// orderselectivearea
 								for($s=0; $s<count($data8); $s++){
-									if($data8[$s]['area_id']==$t){
-										$sql = sprintf("INSERT INTO orderselectivearea(orderarea_id,selective_key,selective_name) VALUES(%d,'%s','%s')",
-													   $orderarea_id,
-													   $data8[$s]['selective_key'],
-													   $data8[$s]['selective_name']);
-										if(!$this->exe_sql($conn, $sql)){
-											mysqli_query($conn, 'ROLLBACK');
-											return null;
-										}
-										break;
+									if($data8[$s]['area_id']!=$t) continue;
+									$sql = sprintf("INSERT INTO orderselectivearea(orderarea_id,selective_key,selective_name) VALUES(%d,'%s','%s')",
+												   $orderarea_id,
+												   $data8[$s]['selective_key'],
+												   $data8[$s]['selective_name']);
+									if(!$this->exe_sql($conn, $sql)){
+										mysqli_query($conn, 'ROLLBACK');
+										return null;
 									}
 								}
 
@@ -1259,20 +1169,19 @@ class WebOrder {
 										return null;
 									}
 
-									// exchange ink
-									/*
-								for($a=0; $a<count($data10); $a++){
-									if($data10[$a]['ink_id']!=$s) continue;
-									$sql = sprintf("INSERT INTO exchink(orderink_id,exchink_name,exchink_code,exchink_volume) VALUES(%d,'%s','%s',%d)",
-									$orderink_id, $data10[$a]['exchink_name'], $data10[$a]['exchink_code'], $data10[$a]['exchink_volume']);
-									if($this->exe_sql($conn, $sql)){
-										$exchinkid[$a] = mysqli_insert_id($conn);
-									}else{
-										mysqli_query($conn, 'ROLLBACK');
-										return null;
+									/* exchange ink
+									for($a=0; $a<count($data10); $a++){
+										if($data10[$a]['ink_id']!=$s) continue;
+										$sql = sprintf("INSERT INTO exchink(orderink_id,exchink_name,exchink_code,exchink_volume) VALUES(%d,'%s','%s',%d)",
+										$orderink_id, $data10[$a]['exchink_name'], $data10[$a]['exchink_code'], $data10[$a]['exchink_volume']);
+										if($this->exe_sql($conn, $sql)){
+											$exchinkid[$a] = mysqli_insert_id($conn);
+										}else{
+											mysqli_query($conn, 'ROLLBACK');
+											return null;
+										}
 									}
-								}
-								*/
+									*/
 
 								}
 							}
@@ -1457,32 +1366,32 @@ class WebOrder {
 						return null;
 					}
 
-					// アップロードされた入稿データのディレクトリ名を受注IDに変更
+					// 入稿データがアップロードされている場合
 					$isUpload = true;
 					if($upDir != ""){
 						$oldPath = $_SERVER['DOCUMENT_ROOT'].'/../../'._ORDER_VHOST.'/home/system/attachfile/'.$upDir;
 						$newPath = $_SERVER['DOCUMENT_ROOT'].'/../../'._ORDER_VHOST.'/home/system/attachfile/'.$orders_id;
 						
+						// ファイル名を変更（design_受注ID_YYY-MM-DD_連番）
 						$fileName = array();
 						$up = 0;
-						$fileCount = 0;
 						$today = date('Y-m-d');
 						$root = $_SERVER['DOCUMENT_ROOT']."/";
 						if ($handle = opendir($oldPath)) {
 							setlocale(LC_ALL, 'ja_JP.UTF-8');
 							while (false !== ($f = readdir($handle))) {
 								if (is_dir($oldPath.'/'.$f)==false && $f != "." && $f != "..") {
-									$fileCount++;
 									$extension = pathinfo($f, PATHINFO_EXTENSION);
-									$fileName[] = 'design_'.$orders_id.'_'.$today.'_'.$up.'.'.$extension;
-									if (rename($oldPath.'/'.$f, $oldPath.'/'.$fileName[$up])) {
-										$up++;
+									$newFileName = 'design_'.$orders_id.'_'.$today.'_'.$up.'.'.$extension;
+									if (rename($oldPath.'/'.$f, $oldPath.'/'.$newFileName)) {
+										$fileName[$up++] = $newFileName;
 									}
 								}
 							}
 							closedir($handle);
 						}
 						
+						// ディレクトリ名を受注IDに変更
 						$isUpload = rename($oldPath, $newPath);
 					}
 					

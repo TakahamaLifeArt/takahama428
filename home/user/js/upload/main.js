@@ -15,30 +15,30 @@ $(function () {
 	'use strict';
 
 	// Input validation
-	$('#uploadinfo .form_table').data('validation', 0);
-	$('#uploadinfo .form_table tbody').on('change', 'input', function(){
-		var valid = 1
-		var elem = $(this).closest('tbody').find('input');
-		$.each(elem, function (index) {
-			if ($(elem[index]).prop('type')=='email') {
-				document.forms.fileupload.email.value = $.trim(elem[index].value);
-			}
-			if ($(elem[index]).prop('required') && $.trim(elem[index].value)=="") {
-				valid = 0;
-				return false;
-			}
-		});
-		$('#uploadinfo .form_table').data('validation', valid);
-	});
+//	$('#uploadinfo .form_table').data('validation', 0);
+//	$('#uploadinfo .form_table tbody').on('change', 'input', function(){
+//		var valid = 1
+//		var elem = $(this).closest('tbody').find('input');
+//		$.each(elem, function (index) {
+//			if ($(elem[index]).prop('type')=='email') {
+//				document.forms.fileupload.email.value = $.trim(elem[index].value);
+//			}
+//			if ($(elem[index]).prop('required') && $.trim(elem[index].value)=="") {
+//				valid = 0;
+//				return false;
+//			}
+//		});
+//		$('#uploadinfo .form_table').data('validation', valid);
+//	});
 	
 	// For required-field message
-	$('#fileupload').data('requiredMessage', 1);
+//	$('#fileupload').data('requiredMessage', 1);
 	
 	// 一括アップロード
 	$('#fileupload .fileupload-buttonbar').on('click', '.start', function(e){
 		e.preventDefault();
-		$(e.currentTarget).data('active', 0);
-		$('#fileupload').data('requiredMessage', 1);
+//		$(e.currentTarget).data('active', 0);
+//		$('#fileupload').data('requiredMessage', 1);
 	});
 	
 	// 個別アップロード
@@ -60,11 +60,11 @@ $(function () {
 
 	// 個別キャンセル
 	$('#fileupload-table tbody').on('click', '.template-upload .cancel', function(e){
-		e.preventDefault();
-		var len = $('#fileupload-table tbody .template-upload').length;
-		if (len==1) {
-			$('#fileupload .fileupload-buttonbar .start').removeClass('in');
-		}
+//		e.preventDefault();
+//		var len = $('#fileupload-table tbody .template-upload').length;
+//		if (len==1) {
+//			$('#fileupload .fileupload-buttonbar .start').removeClass('in');
+//		}
 	});
 	
 	// Initialize the jQuery File Upload widget:
@@ -73,26 +73,30 @@ $(function () {
 		//xhrFields: {withCredentials: true},
 		url: '/user/support/data/'
 	}).on('fileuploadadd', function(e, data) {
-		$('#fileupload .fileupload-buttonbar .start').addClass('in');
-		$('#fileupload .fileupload-buttonbar .cancel').addClass('in');
+//		$('#fileupload .fileupload-buttonbar .start').addClass('in');
+//		$('#fileupload .fileupload-buttonbar .cancel').addClass('in');
 	}).on('fileuploadsubmit', function (e, data) {
-		var isValid = false;
-		if ($('#uploadinfo .form_table').data('validation')==0) {
-			if ($('#fileupload').data('requiredMessage')==1) {
-				$('#fileupload').data('requiredMessage', 0);
-				$.msgbox('お名前とメールアドレスは必須です。');
-			}
-		} else {
-			isValid = true;
-		}
-		if (isValid===false) {
-			data.context.find('.start').prop('disabled', false);
-		}
-		return isValid;
+//		var isValid = false;
+//		if ($('#uploadinfo .form_table').data('validation')==0) {
+//			if ($('#fileupload').data('requiredMessage')==1) {
+//				$('#fileupload').data('requiredMessage', 0);
+//				$.msgbox('お名前とメールアドレスは必須です。');
+//			}
+//		} else {
+//			isValid = true;
+//		}
+//		if (isValid===false) {
+//			data.context.find('.start').prop('disabled', false);
+//		}
+//		return isValid;
 	}).on('fileuploadalways', function(e, data){
-		var rest = 0;
-		var idx = 0;
-		var uri = [];
+		var i = 0,
+			len = 0,
+			rest = 0,
+			idx = 0,
+			uri = [],
+			attach = '';
+		
 		$('#fileupload-table tbody tr').each(function(){
 			var self = $(this);
 			if (self.is('.template-download')) {
@@ -103,37 +107,51 @@ $(function () {
 				}
 			}
 		});
-		if (rest==0 && uri.length>0) {
-			var postData = {"act":"fileupload"};
-			var elem = $('#uploadinfo .form_table tbody').find('input');
-			$.each(elem, function (index) {
-				postData[$(elem[index]).attr('name')] = $.trim(elem[index].value);
-			});
-			postData['message'] = $.trim($('#uploadinfo .form_table tbody textarea').val());
-			postData['uploadfile'] = uri;
-			
-			$('#fileupload .fileupload-buttonbar .start').removeClass('in');
-			
-			$.ajax({
-				type: "POST",
-				url: "/user/php_libs/controller.php",
-				async: true,
-				timeout: 10000,
-				cache: false,
-				data: postData,
-				dataType: 'json'
-			}).done(function (data, textStatus, jqXHR) {
-				if (data.response) {
-					$.msgbox('アップロードが完了いたしました。');
-				} else {
-					$.msgbox("アップロードが完了いたしました。<hr>メール送信でエラーが発生しています。恐れ入りますが、<br>0120-130-428 までご連絡ください。");
+		
+//		if (rest==0 && uri.length>0) {
+		
+		if (rest==0) {
+			len = uri.length;
+			if (len>0) {
+				for (i=0; i<len; i++){
+					attach += '<input type="hidden" name="uploadfilename[]" value="'+uri[i]+'">';
 				}
-			}).fail(function (jqXHR, textStatus, errorThrown) {
-				$.msgbox("Error: サーバー内でエラーがあったか、サーバーから応答がありませんでした。");
-
-			}).always(function (data_or_jqXHR, textStatus, jqXHR_or_errorThrown) {
-				// done,failを問わず、常に実行される処理
-			});
+			}
+			$('#myform attach_data').html(attach);
+			
+			$('#myform').submit();
+			
+//			var postData = {"act":"fileupload"};
+//			var elem = $('#uploadinfo .form_table tbody').find('input');
+//			$.each(elem, function (index) {
+//				postData[$(elem[index]).attr('name')] = $.trim(elem[index].value);
+//			});
+//			postData['message'] = $.trim($('#uploadinfo .form_table tbody textarea').val());
+//			postData['uploadfile'] = uri;
+//			
+//			$('#fileupload .fileupload-buttonbar .start').removeClass('in');
+//			
+//			$.ajax({
+//				type: "POST",
+//				url: "/user/php_libs/controller.php",
+//				async: true,
+//				timeout: 10000,
+//				cache: false,
+//				data: postData,
+//				dataType: 'json'
+//			}).done(function (data, textStatus, jqXHR) {
+//				if (data.response) {
+//					$.msgbox('アップロードが完了いたしました。');
+//				} else {
+//					$.msgbox("アップロードが完了いたしました。<hr>メール送信でエラーが発生しています。恐れ入りますが、<br>0120-130-428 までご連絡ください。");
+//				}
+//			}).fail(function (jqXHR, textStatus, errorThrown) {
+//				$.msgbox("Error: サーバー内でエラーがあったか、サーバーから応答がありませんでした。");
+//
+//			}).always(function (data_or_jqXHR, textStatus, jqXHR_or_errorThrown) {
+//				// done,failを問わず、常に実行される処理
+//			});
+			
 		}
 	});
 

@@ -1,0 +1,102 @@
+@charset "utf-8";
+
+/*------------------------------------------------------------
+
+File_name	: reorder_final.css
+log			: 2017-12-18	created
+
+-------------------------------------------------------------- */
+
+
+/*		reorder table
+===============================================================*/
+
+table,
+td,
+th {
+	border-collapse: collapse;
+	width: 25%;
+	/* text-align: center; */
+}
+
+td,
+th {
+	width: 0px;
+	height: 25px;
+	border-right: 1px solid #a5a5a5;
+	padding: 1%;
+	font-size: 14px;
+}
+
+.tabl_ttl {
+	background-color: #eceae8;
+	border-bottom: 1px solid #a5a5a5;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.order_list {
+	width: 100%;
+	border: 1px solid #a5a5a5;
+	margin: 2% 0 4%;
+}
+
+.order_list td {
+	border: 1px solid #a5a5a5;
+	padding: 1%;
+}
+
+.cust td {
+	padding: 2%;
+}
+
+
+ul li small {
+	color: #333333;
+}
+
+.result {
+	font-size: 20px;
+	color: #109DD6;
+	text-align: right;
+	margin-bottom: 0;
+}
+
+.one {
+	font-size: 14px;
+	text-align: right;
+	margin-bottom: 5px;
+}
+
+small {
+	text-align: right;
+}
+
+small span {
+/*	padding-left: 20px;*/
+	color: #c33;
+	text-align: right;
+}
+.price_box {
+	margin: 2% 0;
+}
+.btn-info {
+	background: #33b5e5;
+	width: 300px;
+	text-align: center;
+	margin: 0 auto;
+	display: block;
+	margin-bottom: 6%;
+	margin-top: 4%;
+	padding: 17px;
+}
+
+
+@media only screen and (max-width:760px) {
+	td, th {
+		font-size: 12px;
+	}
+	.order_list {
+		margin: 10% 0 4%;
+	}
+}

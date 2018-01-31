@@ -19,7 +19,7 @@ $(function(){
 			$('#msgbox').off('show.bs.modal').on('show.bs.modal', {'message': msg, 'title':title}, function (e) {
 				$('.modal-footer').hide();
 				$('#msgbox .modal-title').html(e.data.title);
-				$('#msgbox .modal-body p').html(e.data.message);
+				$('#msgbox .modal-body').html(e.data.message);
 			});
 			if ($('#msgbox').isVisible()) {
 				$('#msgbox').on('hidden.bs.modal', function(){
@@ -41,7 +41,7 @@ $(function(){
 				$('#msgbox').off('show.bs.modal').on('show.bs.modal', {'message': msg}, function (e) {
 					$('.modal-footer').show();
 					$('.modal-footer button').show();
-					$('#msgbox .modal-body p').html(e.data.message);
+					$('#msgbox .modal-body').html(e.data.message);
 					$(this).one('click', '.is-ok', function(){
 						$.confbox.result.data = true;
 					});
@@ -58,43 +58,43 @@ $(function(){
 				'data':false
 			}
 		},
-		dialogBox: {
+		dialogBox: function(msg, title, ok, cancel){
 		/**
 		 * 確認ボックス
-		 * @msg		表示するメッセージ文
-		 * @fn			callback ボタンが押された後の処理　OK:true, Cancel:false
+		 * @param msg		表示するメッセージ文
+		 * @param title		タイトル
+		 * @param ok		OKボタンのラベル
+		 * @param cancel	キャンセルボタンのラベル
+		 * @return promise object
+		 *					resolveでOK
+		 *					rejectでキャンセル
 		 */
-			show: function(msg, title, ok, cancel, fn){
-				$.dialogBox.result.data = false;
-				$('#msgbox').off('show.bs.modal').on('show.bs.modal', {'message': msg, 'title':title, 'ok':ok, 'cancel':cancel}, function (e) {
-					$('.modal-footer').show();
-					$('#msgbox .modal-title').html(e.data.title);
-					$('#msgbox .modal-body').html(e.data.message);
-					if (ok) {
-						$('.modal-footer .is-ok').text(ok).show();
-					} else {
-						$('.modal-footer .is-ok').hide();
-					}
-					if (cancel) {
-						$('.modal-footer .is-cancel').text(cancel).show();
-					} else {
-						$('.modal-footer .is-cancel').hide();
-					}
-					$(this).one('click', '.is-ok', function(){
-						$.dialogBox.result.data = true;
-					});
-					$(this).one('click', '.is-cancel', function(){
-						$.dialogBox.result.data = false;
-					});
+			var d = $.Deferred();
+
+			$('#msgbox').off('show.bs.modal').on('show.bs.modal', {'message': msg, 'title':title, 'ok':ok, 'cancel':cancel}, function (e) {
+				$('.modal-footer').show();
+				$('#msgbox .modal-title').html(e.data.title);
+				$('#msgbox .modal-body').html(e.data.message);
+				if (ok) {
+					$('.modal-footer .is-ok').text(ok).show();
+				} else {
+					$('.modal-footer .is-ok').hide();
+				}
+				if (cancel) {
+					$('.modal-footer .is-cancel').text(cancel).show();
+				} else {
+					$('.modal-footer .is-cancel').hide();
+				}
+				$(this).off('click.modal-ok').on('click.modal-ok', '.is-ok', function(){
+					d.resolve();
 				});
-				$('#msgbox').off('hidden.bs.modal').on('hidden.bs.modal', function (e) {
-					fn();
+				$(this).off('click.modal-cancel').on('click.modal-cancel', '.is-cancel', function(){
+					d.reject();
 				});
-				$('#msgbox').modal('show');
-			},
-			result: {
-				'data':false
-			}
+			});
+
+			$('#msgbox').modal('show');
+			return d.promise();
 		},
 		check_phone: function(my){
 			var str = my.value.trim().replace(/[０-９]/g, function(m){
@@ -265,18 +265,32 @@ $(function(){
 		if (location.pathname!='/order/') {
 			location.href = '/order/?update=2';
 		} else {
-			$.ajax({
-				url:'/php_libs/orders.php', type:'get', dataType:'json', async:true, timeout:5000, data:{'act':'details'}
-			}).done(function(r){
-				if(r.design.length==0 && r.options.noprint==0){
-					$.msgbox('プリントするデザインの色数を指定してください。');
-				}else{
-					$.setCart(r);
+			$.curr.designId = 0;
+			$.curr.category = {};
+			$.curr.item = {'0':{}};
+			$.curr.design = {'0':{}};
+
+			$.resetCart().then(
+				function(){
+					var page = 4 - $.orderFlow.current;
+					if (page > 0) {
+						$.next(page);
+					} else if (page < 0) {
+						$.prev(page);
+					}
+				},
+				function(){
+					$.msgbox('カートに商品はありません。');
 				}
-			}).fail(function(xhr, status, error){
-				$.msgbox("Error: "+error+"<br>カート情報が取得できませんでした。");
-			});
+			);
 		}
+	});
+	
+	
+	/** logout */
+	$('#signout').on('click', function(){
+		sessionStorage.setItem('user', JSON.stringify({'id':0, 'rank':0}));
+		location.href = '/user/logout.php';
 	});
 	
 	

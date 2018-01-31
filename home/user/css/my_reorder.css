@@ -1,0 +1,436 @@
+@charset "utf-8";
+
+/*------------------------------------------------------------
+
+File_name	: my_reorder.css
+log			: 2017-12-18	created
+
+-------------------------------------------------------------- */
+
+
+/*		reorder table
+===============================================================*/
+
+table,
+td,
+th {
+	border-collapse: collapse;
+	width: 25%;
+	/* text-align: center; */
+}
+
+td,
+th {
+	padding: 5px;
+	width: 0px;
+	height: 25px;
+}
+
+.item_info_final {
+	/* background: url(../../common/img/dotted.png) repeat-x top; */
+	padding: 0 2%;
+	display: flex;
+}
+
+.final_detail {
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+	border: 1px solid #a5a5a5;
+}
+
+.final_detail td,
+.final_detail td, th {
+	padding: 3px;
+	width: 0px;
+	height: auto;
+	border: 1px solid #a5a5a5;
+	border-top: none;
+}
+
+.final_detail td.is-hidden {
+	height: 0;
+	padding: 0;
+	border: 0;
+}
+
+.tabl_ttl {
+	background-color: #eceae8;
+	border-bottom: 1px solid #a5a5a5;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.border_t {
+	border-top: 1px solid #a5a5a5;
+}
+
+.item_info_final_2 {
+	padding: 0 2%;
+}
+
+.print_info_final {
+	border: none;
+	width: 100%;
+	border: 1px solid #a5a5a5;
+	border-top: none;
+}
+
+.print_total {
+	padding: 1.2%;
+}
+
+.print_total_p {
+	text-align: right;
+	padding-right: 4%;
+}
+
+.p_posi {
+	padding-left: 4%;
+}
+
+.item_name_color {
+	text-align: left;
+	margin-right: 2%;
+	margin-left: 3%;
+}
+
+.print_info_final .tabl_ttl_2 {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.subtotal {
+	padding: 2% 4%;
+	text-align: right;
+	border: 1px solid #a5a5a5;
+	border-top: none;
+	margin: 0 2%;
+	font-weight: bold;
+}
+
+.discount_t {
+	width: 100%;
+	margin: 5% 0;
+	border: 1px solid #a5a5a5;
+}
+
+.discount_t tr {
+	border-bottom: 1px solid #a5a5a5;
+}
+
+.discount_t td {
+	padding: .6% 2%;
+}
+
+.txt_righ {
+	text-align: right;
+}
+
+.red_txt {
+	color: #dc0000;
+}
+
+.red_txt_b {
+	color: #dc0000;
+	font-weight: bold;
+	text-align: center;
+}
+
+.bold_t {
+	font-weight: bold;
+}
+
+.big_total {
+	font-size: 22px;
+	color: #109dd6;
+}
+
+.design_t {
+	width: 100%;
+	margin: 5% 0;
+	border: 1px solid #a5a5a5;
+}
+
+.design_t td,
+th {
+	border: 1px solid #a5a5a5;
+}
+
+.order_caution {
+	text-align: center;
+}
+
+.red_big {
+	font-weight: bold;
+	color: #dc0000;
+	font-size: 28px;
+}
+
+.mail_img {
+	margin: 1%;
+	display: flex;
+	justify-content: center;
+}
+
+.mail_img div {
+	width: 130px;
+	margin: 2% 2% 0px;
+}
+
+.confir_img {
+	display: block;
+	width: 350px;
+	margin: 0 auto;
+}
+
+.mid_txt {
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.caution_child {
+	margin: 7%;
+}
+
+.inter {
+	margin: 0 1% 0 3%;
+}
+
+.inter_2 {
+	margin: 0 1% 0 5%;
+}
+
+.print_info_final tbody {
+	display: block;
+}
+
+.print_info_final .tabl_ttl_2 {
+	display: block;
+	padding: 3%;
+}
+
+.print_info_final tbody .tabl_ttl_2 .print_total,
+.print_total_p {
+	display: block;
+	width: 100%;
+	height: auto;
+	padding: 0;
+}
+
+.tabl_txt {
+	font-size: 14px;
+}
+
+.design_t .design_dema {
+	display: block;
+	border: none;
+	word-break: break-all;
+	width: 100%;
+}
+
+.tabl_ttl td {
+	word-break: keep-all;
+}
+
+
+/*		reorder_form.php
+===============================================================*/
+td, th {
+	padding: 3px;
+	width: 0px;
+	height: auto;
+}
+.size_table {
+	margin-bottom: 2em;
+	border: none;
+	width: 100%;
+}
+.size_table .heading {
+	float: left;
+	width: auto;
+	display: block;
+	position: relative;
+	left: 30px;
+	top: 4px;
+}
+.size_table tr {
+	width: 87%;
+	float: left;
+	text-align: right;
+}
+.size_table tr.heading th {
+	padding: 15px 0px 7px;
+	text-align: left;
+	border-bottom: 0px;
+	font-size: 1em;
+	width: auto;
+	height: auto;
+	margin-top: 5px;
+}
+.size_table td {
+	display: block;
+	padding-bottom: 2px;
+	border-bottom: 1px dotted #eae7d2;
+	font-size: 1rem;
+	padding: 0;
+	height: auto;
+	width: auto;
+	margin-bottom: 10px;
+}
+.size_table th {
+	display: block;
+	padding-top: 10px;
+	padding-right: 0px;
+	font-size: .9em;
+	width: auto;
+	text-align: right;
+	border-bottom: 1px solid #eae7d2;
+	border: none;
+}
+.size_table input[type=number] {
+	width: 8em;
+	padding: 2px 6px 0 0px;
+	text-align: right;
+	font-size: 1.1em;
+}
+
+
+
+@media screen and (max-width: 768px) {
+	.navi_inner_2 {
+		width: 49%;
+		padding: 0;
+		display: inline-block;
+	}
+	.item_cond {
+		float: left;
+		margin-top: 3%;
+	}
+	ul.color_sele_thumb {
+		width: 100%;
+	}
+	/* size_select */
+	.sizeprice.size_table table .sizeprice .size_table td,
+	.size_table th {
+		display: block;
+	}
+	.sizeprice .size_table {
+		margin-bottom: 2em;
+		border: none;
+		width: 100%;
+	}
+	.size_table .heading {
+		float: left;
+		width: auto;
+		display: block;
+		position: relative;
+		left: 30px;
+		top: 4px;
+	}
+	.size_table .heading:nth-child(2) {
+		clear: both;
+		width: auto;
+		display: block;
+	}
+	.size_table .heading:nth-child(3) {
+		clear: both;
+		width: auto;
+		display: block;
+	}
+	.size_table .heading:nth-child(4) {
+		clear: both;
+		width: auto;
+		display: block;
+	}
+	.size_table .heading:nth-child(5) {
+		clear: both;
+		width: auto;
+		display: block;
+	}
+	.sizeprice .size_table tr.heading th {
+		padding: 15px 0px 7px;
+		text-align: left;
+		border-bottom: 0px;
+		font-size: 1em;
+		width: auto;
+		height: auto;
+		margin-top: 5px;
+	}
+	.size_table tr {
+		width: 87%;
+		float: left;
+		text-align: right;
+	}
+	.sizeprice .size_table th {
+		padding-top: 10px;
+		padding-right: 0px;
+		font-size: .9em;
+		width: auto;
+	}
+	.sizeprice .size_table td {
+		display: block;
+		padding-bottom: 2px;
+		border-bottom: 1px dotted #eae7d2;
+		font-size: 1rem;
+		padding: 0;
+		height: auto;
+		width: auto;
+		margin-bottom: 10px;
+	}
+	.sizeprice .size_table input[type=number] {
+		width: 10em;
+		padding: 2px 0 0 0px;
+		text-align: right;
+		font-size: 1.1em;
+	}
+	.sizeprice .size_table input[type=number] {
+		width: 8em;
+		padding: 2px 6px 0 0px;
+		text-align: right;
+		font-size: 1.1em;
+	}
+	.price_box {
+		margin: 10% 2%;
+	}
+	.price_box_2 {
+		margin: 7% 2%;
+	}
+	.print_re {
+		font-size: 16px;
+		font-weight: bold;
+	}
+	.solo_p {
+		font-size: 12px;
+		margin-bottom: 2%;
+	}
+	.heading1_wrapper h1 {
+		float: none;
+		color: #333;
+		font-size: 28px;
+		text-align: center;
+	}
+
+	.design_t .design_dema {
+		display: block;
+		border: none;
+		word-break: break-all;
+		width: 100%;
+	}
+
+}
+
+/*		other
+===============================================================*/
+
+.caution {
+	padding: 5%;
+	border-top: 1px solid #d5d5d5;
+}
+.reorder_btn .btn_or {
+	margin-top: 10px;
+	margin-bottom: 40px;
+}
+.final_confir{
+	margin-top: 60px;
+}

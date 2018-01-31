@@ -2,7 +2,9 @@
 /**
  * メール送信モジュール用のコントローラー
  * charaset	utf-8
- * created	2017-08-29 デザインデータのアップロードを通知する
+ * log
+ * 2017-08-29 デザインデータのアップロードを通知する
+ * 2018-01-30 マイページ改修に伴い廃止
  */
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/config.php';

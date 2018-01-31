@@ -1,27 +1,47 @@
 <?php
-	ini_set('memory_limit', '256M');
-	require_once dirname(__FILE__).'/../php_libs/orders.php';
-	require_once dirname(__FILE__).'/ordermail.php';
+ini_set('memory_limit', '256M');
+require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/session_my_handler.php';
+require_once dirname(__FILE__).'/ordermail.php';
+
+// ユーザー名
+if ($_POST['user']) {
+	$user = json_decode($_POST['user'], true);
+	$userName = $user['name'];
+	$email = $user['email'];
+}
+
+if ( isset($userName, $_POST['ticket'], $_SESSION['ticket']) ) {
+	$obj = array(
+		'user'=>$_POST['user'],
+		'design'=>$_POST['design'],
+		'item'=>$_POST['item'],
+		'option'=>$_POST['option'],
+		'detail'=>$_POST['detail'],
+		'sum'=>$_POST['sum'],
+	);
 	
-	$customer = $_SESSION['orders']['customer']['customername'];
-if ( isset($_SESSION['orders'], $_POST['ticket']) ) {
-		$email = $_SESSION['orders']['customer']['email'];
-		$ordermail = new Ordermail();
-		$isSend = $ordermail->send($_POST['uploadfilename']);
+	$ordermail = new Ordermail();
+	$isSend = $ordermail->send($obj, $_POST['uploadfilename']);
+} else {
+	$isSend = false;
+}
+
+/* セッションを破棄 */
+if ($isSend) {
+	unset($_SESSION['ticket']);
+//	$_SESSION['orders'] = array();
+//	setcookie(session_name(), "", time()-86400, "/");
+//	unset($_SESSION['orders']);
+} else {
+	if (!isset($_SESSION['ticket'])) {
+		$errMessage = "お手数ですが、お申し込みページを再読み込みしてください。";
 	} else {
-		$isSend = false;
+		$errMessage = "お申し込みメールの送信中にエラーが発生いたしました。";
 	}
-	
-	/* 注文フローのセッションを破棄 */
-	if ($isSend) {
-		unset($_SESSION['ticket']);
-		$_SESSION['orders'] = array();
-//		setcookie(session_name(), "", time()-86400, "/");
-		unset($_SESSION['orders']);
-	}
-	
+}
+
 ?>
-	<!DOCTYPE html>
+<!DOCTYPE html>
 	<html lang="ja">
 
 	<head prefix="og://ogp.me/ns# fb://ogp.me/ns/fb#  website: //ogp.me/ns/website#">
@@ -54,7 +74,7 @@ if ( isset($_SESSION['orders'], $_POST['ticket']) ) {
 					$sub = 'Sending';
 					$html = <<<DOC
 				<div class="inner">
-					<p>{$customer}　様</p>
+					<p>{$userName}　様</p>
 					<p>この度はタカハマライフアートをご利用いただき、誠にありがとうございます。</p>
 				</div>
 				
@@ -64,7 +84,7 @@ if ( isset($_SESSION['orders'], $_POST['ticket']) ) {
 					<p>
 						制作を開始するにあたり、お電話によるデザインの確認をもって注文確定とさせていただいております。<br>
 						弊社から御見積りメールをお送りいたしますので、
-						大変お手数ですが、ご確認後フリーダイヤル<ins> {$cst(_TOLL_FREE)} </ins>までご連絡ください。
+						大変お手数ですが、ご確認後フリーダイヤル <ins> {$cst(_TOLL_FREE)} </ins>までご連絡ください。
 					</p>
 				</div>
 				
@@ -93,10 +113,10 @@ DOC;
 					$sub = 'Error';
 					$html = <<<DOC
 				<div class="inner">
-					<p>{$customer}　様</p>
+					<p>{$userName}　様</p>
 					<div class="remarks">
 						<h3>お申し込みメールの送信が出来ませんでした。</h3>
-						<p>お申し込みメールの送信中にエラーが発生いたしました。</p>
+						<p>{$errMessage}</p>
 					</div>
 					<p>恐れ入りますが、再度 <a href="/order/">お申し込みフォーム</a> に戻り [ 注文する ] ボタンをクリックして下さい。</p>
 				</div>
@@ -133,6 +153,12 @@ DOC;
 
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
 
+		<script>
+			;(function(){
+				sessionStorage.removeItem('design');
+				sessionStorage.removeItem('item');
+			})();
+		</script>
 	</body>
 
-	</html>
+</html>

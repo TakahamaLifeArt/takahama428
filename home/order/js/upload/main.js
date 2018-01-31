@@ -14,66 +14,6 @@
 $(function () {
 	'use strict';
 
-	// SessionStorage initialize
-	if( ('sessionStorage' in window) && (window.sessionStorage !== null) ) {
-		// available
-	} else {
-//		alert("Session が使用できません。");
-	}
-	sessionStorage.clear();
-
-	// SessionStorage
-	$.extend({
-		getStorage: function(key){
-		/**
-		 *	sessionStorageのデータを取得
-		 *	@param key		取得するデータのキーを指定、未指定（偽となる0,"",null,undefined,false）で全てのデータ
-		 *	@return			全データの場合:{key:[], key:[], ...}
-		 * 					キー指定の場合:[]
-		 *					キーまたはデータが存在しない場合:null
-		 */
-			var sess = sessionStorage;
-			var store = {};
-			if(!key){
-				for(var key in sess){
-					if(sess.hasOwnProperty(key)) {
-						store[key] = JSON.parse(sess.getItem(key));
-					}
-				}
-			}else{
-				store = JSON.parse(sess.getItem(key));
-			}
-			return store;
-		},
-		setStorage: function(list){
-		/**
-		 * sessionStorageに格納
-		 * @param list	{"uploadfile":	{"name":ファイル名, "path":ファイルパス}}	// アップロードしたフィアル名とファイルパス
-		 */
-			var key = Object.keys(list)[0];
-			var sess = sessionStorage;
-			var store = $.getStorage(key);
-			var isExist = false;
-			if(store!==null){
-				var len = store.length;
-				for(var i=0; i<len; i++){
-					if(list[key]["name"]!=store[i]["name"]) continue;
-					// 同じファイル名あり
-					isExist = i;
-					store[i]["path"] = list[key]["path"];
-					break;
-				}
-				if(isExist===false){
-					store.push(list[key]);
-				}
-				sess.setItem(key, JSON.stringify(store));
-			}else{
-				store = [list[key]];
-			}
-			sess.setItem(key, JSON.stringify(store));
-		}
-	});
-
 	// 一括アップロード
 	$('#fileupload .fileupload-buttonbar').on('click', '.start', function(e){
 		e.preventDefault();
@@ -90,6 +30,24 @@ $(function () {
 		}
 	});
 
+	// 個別に削除
+	$('#fileupload-table tbody').on('click', '.template-download .delete', function(e){
+		var i = 0,
+			self = $(this).closest('tr'),
+			name = self.find('.name').children().text(),
+			store = $.getStorage('attach'),
+			attach = [];
+		
+		for (i=0; i<store.length; i++) {
+			if (store[i]['name']!=name) {
+				attach.push(store[i]);
+			}
+		}
+		
+		if (attach.length===0) attach = {};
+		$.removeStorage('attach', attach);
+	});
+
 	// Initialize the jQuery File Upload widget:
 	$('#fileupload').fileupload({
 		// Uncomment the following to send cross-domain cookies:
@@ -98,28 +56,46 @@ $(function () {
 	}).on('fileuploadadd', function(e, data) {
 		$('#fileupload .fileupload-buttonbar .start').addClass('in');
 	}).on('fileuploadalways', function(e, data){
-		var rest = 0;
-		var idx = 0;
-		var uri = [];
-		var attach = "";
+		var rest = 0,
+			idx = 0,
+			files = [],
+			names = [];
 		$('#fileupload-table tbody tr').each(function(){
-			var self = $(this);
-			if (self.is('.template-download')) {
-				var path = self.find('.path').text();
-				var name = self.find('.name').children().text();
-				uri[idx++] = name;
-				attach += '<p><input type="hidden" name="uploadfilename[]" value="'+path+'">'+name+'</p>';
-//				attach += '<p><input type="hidden" name="uploadfilename[]" value="'+encodeURIComponent(name)+'">'+name+'</p>';
-			} else {
+			var self = $(this),
+				path = '',
+				name = '',
+				size = '',
+				deleteURL = '';
+			
+			// アップロード中
+			if (self.is('.template-upload')) {
 				if (self.find('.error').text()=="") {
 					rest++;
 				}
 			}
+			
+			// アップロード完了
+			if (self.is('.template-download')) {
+				path = self.find('.path').text();
+				name = self.find('.name').children().text();
+				size = self.find('.size').text();
+				deleteURL = self.find('.delete').data('url');
+				
+				if (names.indexOf(name)>-1) {
+					self.remove();
+				} else {
+					names[idx] = name;
+					files[idx++] = {'name':name, 'url':path, 'size':size, 'deleteUrl':deleteURL};
+				}
+				
+			}
 		});
-		
-		// 確認画面を更新
-		if (attach=="") attach = "なし";
-		$('#conf_attach').html(attach);
+
+		if (files.length===0) {
+			$.removeStorage('attach', {});
+		} else {
+			$.setStorage('attach', files);
+		}
 		
 		// 全てのアップロードが完了
 		if (rest==0) {

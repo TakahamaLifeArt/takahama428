@@ -5,12 +5,9 @@
 
 
 .step {
-	position: absolute;
 	display: none;
 	visibility: hidden;
-	overflow: hidden;
 	padding-bottom: 80px;
-	background: rgb(255,255,255);
 	will-change: animation;
 }
 .step.pt-page-current {

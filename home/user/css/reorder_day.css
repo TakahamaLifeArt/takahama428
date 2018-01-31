@@ -1,0 +1,317 @@
+@charset "utf-8";
+
+/*------------------------------------------------------------
+
+File_name	: reprder_day.css
+log			: 2017-12-18	created
+
+-------------------------------------------------------------- */
+
+
+/*		reorder table
+===============================================================*/
+
+table,
+td,
+th {
+	border-collapse: collapse;
+	width: 25%;
+	/* text-align: center; */
+}
+
+td,
+th {
+	width: 0px;
+	height: 25px;
+	border-right: 1px solid #a5a5a5;
+	padding: 1%;
+	font-size: 14px;
+}
+
+.tabl_ttl {
+	background-color: #eceae8;
+	border-bottom: 1px solid #a5a5a5;
+	font-size: 14px;
+	font-weight: bold;
+}
+.cust .tabl_ttl th {
+	padding: 2%
+}
+
+.order_list {
+	width: 100%;
+	border: 1px solid #a5a5a5;
+}
+
+.order_list td {
+	border: 1px solid #a5a5a5;
+	padding: 1%;
+}
+
+.cust td {
+	padding: 2%;
+}
+
+
+/*day*/
+
+ul li small {
+	color: #333333;
+}
+
+.result {
+	font-size: 20px;
+	color: #109DD6;
+	text-align: right;
+	margin-bottom: 0;
+}
+
+.one {
+	font-size: 14px;
+	text-align: right;
+	margin-bottom: 0;
+}
+
+small {
+	text-align: right;
+}
+
+small span {
+	/*	padding-left: 20px;*/
+	color: #c33;
+	text-align: right;
+}
+
+.price_box {
+	margin: 2% 0;
+}
+
+.btn-info {
+	background: #33b5e5;
+	width: 300px;
+	text-align: center;
+	margin: 0 auto;
+	display: block;
+	margin-bottom: 3%;
+	margin-top: 4%;
+	padding: 17px;
+}
+
+.price_box {
+	border: 1px solid #a5a5a5;
+	padding: 2%;
+	text-align: center;
+	margin: 7% 20%;
+	font-weight: bold;
+}
+
+.total_p {
+	font-size: 20px;
+	color: #109dd6;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.solo_p {
+	font-size: 14px;
+	margin-bottom: 2%;
+}
+
+.note {
+	font-size: 12px;
+}
+
+.red_mark {
+	color: #dc0000;
+}
+
+#note_ {
+	width: 695px;
+	height: 100px;
+}
+
+textarea {
+	padding: 1px 5px;
+	border: 1px solid #a5a5a5;
+	width: 100%;
+	height: 10em;
+	 margin: 0;
+}
+
+.cust .tabl_ttl th {
+	padding: 1%;
+}
+
+.list_ttl {
+	background-color: #eceae8;
+	border-bottom: 1px solid #a5a5a5;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 1%;
+	border: 1px solid #a5a5a5;
+}
+
+.block {
+	margin: 2% 0 4%;
+}
+
+.add_cha {
+	text-align: center;
+	margin-bottom: 0;
+}
+
+.add_btn {
+	display: inline-block;
+	padding: 10px 50px;
+	background-color: #e5e5e5;
+	box-shadow: 1px 1px 1px #a5a5a5;
+	font-weight: bold;
+	font-size: 14px;
+	cursor: pointer;
+	color: #000!important;
+}
+
+.date_box {
+	display: block;
+	margin: 0 auto;
+	margin-top: 2%;
+}
+
+.down_cond {
+	font-size: 14px;
+	margin-right: 8px;
+	width: 200px;
+	height: 40px;
+}
+
+h3 {
+	margin-bottom: 0.5em;
+	padding-left: 5px;
+	background-color: white;
+	border-bottom: 1px solid #d8d8d8;
+	font-size: 20px;
+}
+
+.form-group {
+	display: flex;
+	padding: 1% 3%;
+	margin-bottom: 0;
+}
+
+.deli_date {
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	text-decoration: underline;
+	text-decoration-color: #e2710a;
+	text-underline-position: under;
+}
+
+.deli_date span {
+	font-size: 32px;
+	color: #109dd6;
+	border: none;
+}
+
+.time_sel {
+	font-size: 15px;
+	font-weight: bold;
+	margin-top: 1%;
+}
+
+.date_sel {
+	padding: 2% 2% 6%;
+	border: 1px solid #a5a5a5;
+	border-top: none;
+}
+
+.cha_addr {
+	margin-top: 2%;
+}
+
+.cha_addr ul .forZip {
+	width: 200px;
+}
+
+.cha_addr ul input {
+	margin: 0.5% 0;
+	width: 60%;
+	margin-right: 1%;
+	padding: 0 1%;
+}
+
+.cha_addr ul .zipcode {
+	width: 100px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"] {
+	width: 230px;
+	height: 40px;
+	border: 1px solid #a5a5a5;
+	border-radius: 2px;
+	box-shadow: 1px 1px 1px #dddddd;
+	background: none;
+}
+#datepick {
+	max-width: 350px;
+}
+caption{
+	border:none;
+}
+.ok_button, .cancel_button{
+	margin:10px 10px 15px 0;
+}
+
+.print_position {
+	flex: 1 0 20%;
+	margin: 0 2%;
+	word-break: keep-all;
+	border: 1px solid #dedede;
+	border-radius: 2px;
+	box-shadow: 1px 1px 1px #a5a5a5;
+	padding: 2px 5px;
+}
+.print_position label {
+	text-align: center;
+}
+.print_position img {
+	width: 100%;
+}
+.red_txt {
+	color: #dc0000;
+}
+.print_position input {
+	display: block;
+	margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+	.price_box {
+		margin: 10% 2%;
+		padding: 5% 0;
+	}
+	.solo_p {
+		font-size: 12px;
+		margin-bottom: 2%;
+	}
+	.cha_addr ul input {
+		margin: 0.5% 0;
+		width: 95%;
+		margin-right: 1%;
+	}
+	.block {
+		margin: 10% 0 4%;
+	}
+}
+
+@media only screen and (max-width:760px) {
+	.toolbar {
+		margin-bottom: 0px;
+	}
+	textarea {
+		width: 100%;
+	}
+}

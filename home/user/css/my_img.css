@@ -1,0 +1,74 @@
+@charset "utf-8";
+
+/*------------------------------------------------------------
+
+File_name	: my_img.css
+log			: 2017-12-18	created
+
+-------------------------------------------------------------- */
+
+
+/*		img
+===============================================================*/
+
+.flex_box {
+	display: flex;
+	justify-content: space-between;
+}
+
+.flex_inner {
+	border: 1px solid #858585;
+	box-shadow: 1px 1px 1px #858585;
+	border-radius: 3px;
+	padding: 2% 20%;
+	margin: 10px 30px;
+	cursor: pointer;
+}
+
+.flex_inner_2 {
+	border: 1px solid #858585;
+	box-shadow: 1px 1px 1px #858585;
+	border-radius: 3px;
+	padding: 2% 20%;
+	margin: 10px 60px;
+	cursor: pointer;
+}
+.img_big {
+	width: 85%;
+	margin: 0 auto;
+}
+.flex_inner:hover {
+	box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);
+}
+
+.img_box {
+	text-align: center;
+}
+
+.line-hi {
+	line-height: 2;
+}
+
+.num_data p {
+	margin: 0 2%;
+}
+
+@media screen and (max-width: 576px) {
+	.flex_inner {
+		border: 1px solid #858585;
+		box-shadow: 1px 1px 1px #858585;
+		border-radius: 3px;
+		padding: 4%;
+		margin: 0;
+	}
+	.flex_inner_2 {
+		border: 1px solid #858585;
+		box-shadow: 1px 1px 1px #858585;
+		border-radius: 3px;
+		padding: 4%;
+	}
+	.img_big {
+		width: 100%;
+		margin: 0 auto;
+	}
+}

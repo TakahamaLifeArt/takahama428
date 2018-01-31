@@ -1,66 +1,72 @@
 <?php
 /**
- * 顧客情報
+ * ユーザーログイン処理
+ * -----
+ * ログイン
+ * ログイン状態の確認
+ * パスワード再発行メール送信
  */
 require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/session_my_handler.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/conndb.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/package/mail/Mailer.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/http.php';
+use package\mail\Mailer;
 
-// ログイン処理
 if (isset($_REQUEST['login'])) {
+	// ログイン
 	$args = array($_REQUEST['email']);
-	$conn = new Conndb(_API_U);
-
-	// エラーチェック
-	if (empty($_REQUEST['email'])) {
-		$err = 'メールアドレスを入力して下さい。';
-	} else if (!$conn->checkExistEmail($args)) {
-		$err = 'このメールアドレスは登録されていません。';
-	} else if (empty($_REQUEST['pass'])) {
-		$err = 'パスワードを入力して下さい。';
-	} else {
-		$args = array('email'=>$_REQUEST['email'], 'pass'=>$_REQUEST['pass']);
-		$me = $conn->getUser($args);
-		if (!$me) {
-			$err = "メールアドレス（".$_REQUEST['email']."）かパスワードが認識できません。ご確認下さい。";
-		}
-	}
 	
-	if (empty($err)) {
-		$_SESSION['me'] = $me;
-		//注文画面でログインした場合、注文情報にもセッションを設定する必要がある
-		$_SESSION['orders']['customer']['member'] = $me['id'];
-		$_SESSION['orders']['customer']['customername'] = $me['customername'];
-		$_SESSION['orders']['customer']['customerruby'] = $me['customerruby'];
-		$_SESSION['orders']['customer']['email'] = $me['email'];
-		$_SESSION['orders']['customer']['tel'] = $me['tel'];
-		$_SESSION['orders']['customer']['zipcode'] = $me['zipcode'];
-		$_SESSION['orders']['customer']['addr0'] = $me['addr0'];
-		$_SESSION['orders']['customer']['addr1'] = $me['addr1'];
-		$_SESSION['orders']['customer']['addr2'] = $me['addr2'];
-		$res = json_encode($me);
+	if (empty($_REQUEST['email']) || empty($_REQUEST['pass'])) {
+		$res = json_encode(array('error' => 'メールアドレスとパスワードは必須です'));
 	} else {
-		$res = json_encode($err);
+		$headers = [
+			'X-TLA-Access-Token:'._ACCESS_TOKEN,
+			'Origin:'._DOMAIN
+		];
+		$http = new HTTP('https://takahamalifeart.com/v3/users/'.$_REQUEST['email'].'/'.$_REQUEST['pass']);
+		$res = $http->request('GET', [], $headers);
+		$data = json_decode($res, true);
+		if (array_key_exists('error', $data)) {
+			$mbErrorMessage = array(
+				'This email has not been registered' => 'このメールアドレスは登録されていません',
+				'Enter your password' => 'パスワードを入力して下さい。',
+				'Not registered yet' => 'メールアドレス（'.$_REQUEST['email'].'）かパスワードをご確認下さい'
+			);
+			$res = json_encode(array('error' => $mbErrorMessage[$data['error']]));
+		} else {
+			$_SESSION['me'] = $data;
+		}
 	}
 	header("Content-Type: text/javascript; charset=utf-8");
 	echo $res;
-}
-
-// ログインしている顧客のデータ取得処理
-if (isset($_REQUEST['getcustomer'])) {
-	// ログイン状態のチェック
+	
+} else if (isset($_REQUEST['getcustomer'])) {
+	// ログイン状態の確認
 	$me = $_SESSION['me'];
 	if (!$me) {
 		$res = json_encode("");
 	} else {
-		// 届け先を取得し、セッションに置く
-		$conn = new Conndb();
-		//お届け先情報を設定
-		$deli = $conn->getDeliveryList($me['id']);
-		$_SESSION['me']['delivery'] = $deli;
 		$res = json_encode($_SESSION['me']);
 	}
 	header("Content-Type: text/javascript; charset=utf-8");
 	echo $res;
+	
+} else if(isset($_REQUEST['sendmail'])) {
+	// パスワード再発行メール送信
+	$subject = 'パスワードを再発行いたしました';
+	$summary = "いつもご利用いただき、誠にありがとうございます。\n";
+	$summary .= "新しいパスワードを発行いたしました。";
+	$mailBody = array(
+		'title' => 'パスワード再発行',
+		'summary' => $summary,
+		'パスワード' => $_REQUEST['pass']
+	);
+	
+	$mail = new Mailer();
+	$mail->setMailBody($mailBody);
+	$sendTo = array($_REQUEST['email']);
+	$res = $mail->send($subject, $sendTo);
+	header("Content-Type: text/javascript; charset=utf-8");
+	echo json_encode($res);
 }
 
 ?>
