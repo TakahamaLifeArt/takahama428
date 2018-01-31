@@ -2661,16 +2661,22 @@ $(function () {
 		}
 		
 		// ユーザー
-//		$.removeStorage('user', {'id':0, 'rank':0});
+		if (!sessionStorage.hasOwnProperty('user')) {
+			$.removeStorage('user', {'id':0, 'rank':0});
+		}
+		
+		// オプション指定
+		if (!sessionStorage.hasOwnProperty('option')) {
+			$.removeStorage('option', {'publish':0, 'student':0, 'pack':0, 'payment':'bank', 'delidate':'', 'delitime':0, 'express':0, 'transport':1, 'school':'', note_design:'', note_user:''});
+		}
+		
+		// 見積もり詳細
+		if (!sessionStorage.hasOwnProperty('detail')) {
+			$.removeStorage('detail', {'discountfee':0, 'discountname':'', 'packfee':0, 'packname':'', 'carriage':0, 'codfee':0, 'expressfee':0, 'expressname':'', 'rankname':''});
+		}
 		
 		// 合計値
 //		sessionStorage.removeItem('sum');
-		
-		// オプション指定
-//		$.removeStorage('option', {'publish':0, 'student':0, 'pack':0, 'payment':'bank', 'delidate':'', 'delitime':0, 'express':0, 'transport':1, 'school':'', note_design:'', note_user:''});
-		
-		// 見積もり詳細
-//		$.removeStorage('detail', {'discountfee':0, 'discountname':'', 'packfee':0, 'packname':'', 'carriage':0, 'codfee':0, 'expressfee':0, 'expressname':'', 'rankname':''});
 		
 		// クエリストリングを取得
 		qs = $.queryString.parse();
