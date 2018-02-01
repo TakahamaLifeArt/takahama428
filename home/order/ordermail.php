@@ -587,6 +587,9 @@ class Ordermail extends Conndb{
 
 			// プリントの有無
 			$noprint = $designId=='id_0'? 1: 0;
+			
+			// ランク割はプリントありの時だけ適用
+			$rank = $noprint==1? 0: $user["rank"];
 
 			// 見積
 			$basefee = 0;
@@ -640,7 +643,7 @@ class Ordermail extends Conndb{
 			$discount1,$discount2,"0","","0",$payment,
 
 			"accept","0","2","","0","その他","0",
-			"0","0",$user["rank"],"0","0",
+			"0","0",$rank,"0","0",
 			"0","",$customer_id,$total,$amounts[$designId],
 
 			"","0","0","0",

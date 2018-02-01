@@ -2589,11 +2589,12 @@ $(function () {
 	 * カートデータ（見積もり、オプション）
 	 */
 	;(function () {
-		var i = 0,
+		var i = 0, d,
 			args = [],
 			tags,
 			designs,
 			items,
+			opt,
 			attach,
 			file,
 			qs = {},
@@ -2668,6 +2669,57 @@ $(function () {
 		// オプション指定
 		if (!sessionStorage.hasOwnProperty('option')) {
 			$.removeStorage('option', {'publish':0, 'student':0, 'pack':0, 'payment':'bank', 'delidate':'', 'delitime':0, 'express':0, 'transport':1, 'school':'', note_design:'', note_user:''});
+		} else {
+			opt = $.getStorage('option');
+			
+			// 学割
+			if (opt.student != 0) {
+				$('#discount [name="student"]').prop('checked', true);
+			}
+			
+			// 学校名
+			if (opt.school != 0) {
+				$('#discount [name="school"]').val(opt.school);
+			}
+			
+			// 写真掲載割
+			if (opt.publish != '') {
+				$('#discount [name="publish"]').prop('checked', true);
+			}
+			
+			// 袋詰め
+			if (opt.pack != 0) {
+				$('#pack [name="pack"][value="'+opt.pack+'"]').prop('checked', true);
+			}
+			
+			// 支払い方法
+			$('#payment [name="payment"][value="'+opt.payment+'"]').prop('checked', true);
+			
+			// お届け希望日
+			if (opt.delidate != '') {
+				d = opt.delidate.split('-');
+				$('#delivery .deli_date span').each(function(idx){
+					$(this).text(d[(idx+1)]);
+				});
+			}
+			
+			// お届けに２日かかるかどうか
+			if (opt.transport != 1) {
+				$('#transport').prop('checked', true);
+			}
+			
+			// 配達時間指定
+			$('#deliverytime').val(opt.delitime);
+			
+			// デザインに関するご要望
+			if (opt.note_design != '') {
+				$('#note_design').val(opt.note_design);
+			}
+			
+			// ご意見・ご要望
+			if (opt.note_user != '') {
+				$('#note_user').val(opt.note_user);
+			}
 		}
 		
 		// 見積もり詳細

@@ -575,7 +575,7 @@ $(function(){
 						'inkjet': {},
 						'cutting': {},
 						'emb': {},
-						'recommend': {}
+						'recommend': {'printable':['silk', 'digit', 'inkjet']}
 					};
 
 				// プリントなしの場合
@@ -638,10 +638,17 @@ $(function(){
 							 */
 							if (method==='recommend') {
 								param = this[attrId]['area'] + '_0_' + this[attrId]['ink']+'_0';
+								
+								// 対応可能なプリント名
 								for (i=0; i<this[attrId]['printable'].length; i++){
 									if (this[attrId]['printable'][i]!=1) continue;
 									printable.push(recommendType[i]);
 								}
+								
+								// 同じ条件の全てのアイテムに共通で対応できるプリント方法のみを設定
+								printMethod[method]['printable'] = printMethod[method]['printable'].filter(function(val){
+									return printable.indexOf(val)!=-1
+								});
 							}
 
 							// 他の絵型で同じ条件指定のプリント方法が既にあるかどうか
@@ -649,15 +656,16 @@ $(function(){
 
 								// 既にある場合、当該プリント方法で設定済みの枚数レンジの有無をチェック
 								Object.keys(volumeRange).forEach(function (rangeId) {
+									
+									// 新しい枚数レンジの場合
 									if (!printMethod[method][param].hasOwnProperty(rangeId)) {
-										// 新しい枚数レンジ
-										printMethod[method][param][rangeId] = volumeRange[rangeId];
-									} else {
-										// 同じ枚数レンジがあればアイテム毎の枚数を追加
-										Object.keys(this[rangeId]).forEach(function (itemId) {
-											printMethod[method][param][rangeId][itemId] = this[itemId];
-										}, this[rangeId]);
+										printMethod[method][param][rangeId] = {};
 									}
+									
+									// 枚数を追加
+									Object.keys(this[rangeId]).forEach(function (itemId) {
+										printMethod[method][param][rangeId][itemId] = this[itemId];
+									}, this[rangeId]);
 								}, volumeRange);
 
 								if (method == 'silk' || method == 'recommend') {
@@ -667,27 +675,23 @@ $(function(){
 											repeatSilk[param][id] = screenGroup[id];
 										}
 									});
-
-
-								}
-								if (method == 'recommend') {
-									// おまかせで対応するプリント方法を更新
-									printMethod[method]['printable'] = printMethod[method]['printable'].filter(function(val){
-										return printable.indexOf(val)!=-1
-									});
 								}
 							} else {
 								// 同じ条件指定のプリント方法を初めて指定
-								printMethod[method][param] = volumeRange;
+								printMethod[method][param] = {};
+								Object.keys(volumeRange).forEach(function (rangeId) {
+									printMethod[method][param][rangeId] = {};
+									Object.keys(this[rangeId]).forEach(function (itemId) {
+										printMethod[method][param][rangeId][itemId] = this[itemId];
+									}, this[rangeId]);
+								}, volumeRange);
 
 								// シルクの場合は同版分類を設定
 								if (method == 'silk' || method == 'recommend') {
-									repeatSilk[param] = screenGroup;
-								}
-
-								// おまかせで対応するプリント方法を設定
-								if (method == 'recommend') {
-									printMethod[method]['printable'] = printable;
+									repeatSilk[param] = {};
+									Object.keys(screenGroup).forEach(function (screenId) {
+										repeatSilk[param][screenId] = screenGroup[screenId];
+									});
 								}
 							}
 						}, this[face]);
@@ -703,7 +707,7 @@ $(function(){
 					var printable = [];		// おまかせプリントで適用するプリント方法を指定 [silk, digit, inkjet]
 
 					if (method=='recommend') {
-						printable = this[method]['printable'];
+						printable = this[method]['printable'].concat();
 					}
 
 					/*
@@ -714,30 +718,31 @@ $(function(){
 
 						if (cond=='printable') return;
 
-						var param = cond.split('_'),// [area, size, ink, option]
-							samePlateId,			// シルクの同版分類ID
-							rangeCount = Object.keys(this[cond]).length,	// 同じプリント条件の枚数レンジIDの数
-							repeatStatus = {};
+						var param = cond.split('_');	// [area, size, ink, option]
 
-						for (i=0; i<rangeCount; i++) {
-							p = p.then(function(cond, idx, param, printable){
-								var rangeId = Object.keys(printMethod[method][cond])[idx],	// 枚数レンジID
-									itemids = printMethod[method][cond][rangeId],			// アイテムIDをキーにした枚数の連装配列
-									amount = 0;	// 計算対象の合計枚数
-
-								// 計算対象の枚数を計算
-								Object.keys(itemids).forEach(function(id){
-									amount += itemids[id]-0;
+						// 枚数レンジ毎
+						Object.keys(this[cond]).forEach(function(rangeId){
+							
+							// this[cond]をthisとしてbind
+							p = p.then(function(cond){
+								var jsonData = JSON.stringify({
+									'amount': 0,
+									'items': this[rangeId],	// アイテムIDをキーにした枚数の連装配列
+									'size': param[1],
+									'ink': param[2],
+									'option': param[3],
+									'repeat': {'silk':repeatSilk[cond], 'digit':0, 'emb':0},
+									'printable': printable
 								});
-
+								
 								return $.api(['printcharges', method], 'GET', function(r){
 									if (method=='silk') {
-										// シルクの場合は同版分類をチェック
-										for (samePlateId in r.plates) {
+										// シルクの場合は同版分類IDをチェック
+										Object.keys(r.plates).forEach(function(samePlateId){
 											if (repeatSilk[cond].hasOwnProperty(samePlateId)) {
 												repeatSilk[cond][samePlateId] = 2;
 											}
-										}
+										});
 									} else if (method=='recommend' && recommendPrint.indexOf(r.method)<0) {
 										// おまかせの場合に適用されたプリント名
 										recommendPrint.push(recommendName[r.method]);
@@ -745,18 +750,10 @@ $(function(){
 
 									// プリント代を合計
 									price[method] += r.tot;
-								}, JSON.stringify({
-									'amount': 0,
-									'items': itemids,
-									'size': param[1],
-									'ink': param[2],
-									'option': param[3],
-									'repeat': {'silk':repeatSilk[cond], 'digit':0, 'emb':0},
-									'printable': printable
-								}));
-							}.bind(null, cond, i, param, printable));
-						}
-
+								}, jsonData);
+							}.bind(this, cond));
+							
+						}, this[cond]);
 					}, this[method]);
 				}, printMethod);
 			}, designs);
