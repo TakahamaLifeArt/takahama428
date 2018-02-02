@@ -138,12 +138,6 @@ a {
 	margin-bottom: 40px;
 }
 
-h1 {
-	font-size: 40px;
-	font-weight: bold;
-	margin-bottom: 20px;
-}
-
 /*---- contents ----*/
 
 /*---- kind_correspondence ----*/
@@ -386,13 +380,6 @@ h4 {
 	ul.pan {
 		display: none;
 	}
-
-	h1 {
-		font-size: 28px;
-		font-weight: bold;
-		margin-bottom: 10px;
-	}
-
 
 	.kind_correspondence {
 		display: block;
