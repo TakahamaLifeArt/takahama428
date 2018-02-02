@@ -616,7 +616,7 @@ foreach($hash as $key=>$val){
 			</div>
 
 			<div class="wrap">
-				<h2 class="heading">カッティングシートカラーの見本16色です。</h2>
+				<h2 class="heading">カッティングシートカラーの見本15色です。</h2>
 				<p class="note"><span>※</span> 画面の都合上、多少色味が異なる場合がございます。</p>
 				<!--  <?php echo $cuttingsheet_table; ?>  -->
 
@@ -707,6 +707,7 @@ foreach($hash as $key=>$val){
 						</div>
 					</div>
 -->
+<!--
 					<div class="span4">
 						<div class="thumbnail">
 							<img alt="パステルオレンジ" src="./designcreator/img/cuttingsheet/440-pastel-orange.png" width="124" />
@@ -714,6 +715,7 @@ foreach($hash as $key=>$val){
 									<br>パステルオレンジ</span></p>
 						</div>
 					</div>
+-->
 					<!--
 					<div class="span4">
 						<div class="thumbnail">
