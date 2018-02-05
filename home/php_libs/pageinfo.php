@@ -1159,6 +1159,7 @@ if(isset($_REQUEST['act'])){
 		$right_column .= '<div id="orderbtn_wrap_up">';
 			$right_column .= '<form name="f1" action="/order/" method="post">';
 				$right_column .= '<input type="hidden" name="item_id" value="'.$data['itemid'].'">';
+				$right_column .= '<input type="hidden" name="category_id" value="'.$_PAGE_CATEGORYID.'">';
 				$right_column .= '<input type="hidden" name="update" id="update" value="1">';
 				$right_column .= '<div id="btnOrder_up" onclick="ga([\'send\',\'event\',\'order\',\'click\',\''.$itemcode.'\']);">お申込みフォームへ</div>';
 			$right_column .= '</form>';
