@@ -359,7 +359,16 @@ nav .list-group .list-group-item a {
 	margin-bottom: 4%;
 }
 
-.exit_a:hover {
+#signout {
+	cursor: pointer;
+}
+
+#signout .exit_a {
+	padding: 1.5rem;
+	color:#7a420d;
+}
+
+#signout .exit_a:hover {
 	color: #1d1e1f;
 	text-decoration: none;
 	background-color: #a79383;
