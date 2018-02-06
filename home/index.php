@@ -122,7 +122,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 					echo '<p>'.nl2br($message).'</p></div>';
 				}
 			?>
-
+			<h1 class="top_ttl">オリジナルTシャツのプリント作成、最短即日発送！</h1>
 				<div class="row outer top_3_wrap">
 					<div class="col">
 						<a href="/delivery/" class="check">

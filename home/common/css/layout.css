@@ -359,16 +359,7 @@ nav .list-group .list-group-item a {
 	margin-bottom: 4%;
 }
 
-#signout {
-	cursor: pointer;
-}
-
-#signout .exit_a {
-	padding: 1.5rem;
-	color:#7a420d;
-}
-
-#signout .exit_a:hover {
+.exit_a:hover {
 	color: #1d1e1f;
 	text-decoration: none;
 	background-color: #a79383;
@@ -546,6 +537,14 @@ section,
 	width: 8%;
 	box-shadow: none;
 	margin: 2% 2% 4%;
+}
+
+.top_ttl {
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 1%;
+	margin-top: 3%;
 }
 
 .rank_ttl {
@@ -1227,7 +1226,7 @@ footer.page-footer ul li .fa {
 	height: 42px;
 	display: flex;
 	position: absolute;
-	top: 108px;
+	top: 85px;
 	right: 0;
 	left: 0;
 	z-index: 1020;
@@ -1625,6 +1624,9 @@ footer.page-footer ul li .fa {
 }
 
 @media screen and (max-width: 500px) {
+	.top_ttl {
+		font-size: 1rem;
+	}
 	.top_3 {
 		background: #fff;
 		color: #333;
