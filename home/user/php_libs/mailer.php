@@ -4,6 +4,7 @@
 	File_name    : maler.php
 	Description  : resend password
 	Log	    	 : 2011.07.01	created
+				   2018.01.30	マイページ改修に伴い廃止
 				   
 -------------------------------------------------------------- */
 
@@ -328,8 +329,6 @@ class Mailer{
 			
 			// 送信処理
 			$sendto = _INFO_EMAIL;
-			
-			$sendto = "test@takahama428.com";
 
 			$subject = "デザインアップロード";	// 件名
 			$msg = "";							// 送信文
