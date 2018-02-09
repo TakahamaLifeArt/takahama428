@@ -656,7 +656,7 @@ $(function () {
 						colorName = !cartData? '': cartData['name'],
 						colorCode = !cartData? '': cartData['code'];
 					
-					// 現在洗濯中のカテゴリーIDを再設定（サムネイルのパスは商品カテゴリーに依存しないため）
+					// 現在選択中のカテゴリーIDを再設定（サムネイルのパスは商品カテゴリーに依存しないため）
 					Object.keys($.categories).forEach(function(id, index){
 						if ($.categories[id]['code']==categoryCode) {
 							$.curr.item[$.curr.designId][$.curr.itemId]['cateId'] = id;
