@@ -819,10 +819,10 @@ if(isset($_REQUEST['act'])){
 	// パンナビを生成
 	if(!empty($_IS_TAG)){
 		$category_name = $label_pannavi;
-		$current_path = $_SERVER['SCRIPT_NAME'].'/items/?tag='.$_ID;
+		$current_path = $_SERVER['SCRIPT_NAME'];
 	}else{
 		$label_pannavi = 'オリジナル'.$category_name;
-		$current_path = $_SERVER['SCRIPT_NAME'].'/items/?cat='.$_ID;
+		$current_path = $_SERVER['SCRIPT_NAME'];
 	}
 	$pan_navi = "";
 	$navi_querystring = array();
@@ -832,7 +832,7 @@ if(isset($_REQUEST['act'])){
 		for($i=0; $i<$len; $i++){
 			if (empty($searchTag[$tag[$i]]['tag_name'])) continue;
 			$navi_querystring[] = urlencode($searchTag[$tag[$i]]['tagtype_key']."[]")."=".$tag[$i];
-			$pan_navi .= '<li><a href="'.$current_path.'&'.implode("&", $navi_querystring).'">'.$searchTag[$tag[$i]]['tag_name'].'</a></li>';
+			$pan_navi .= '<li><a href="'.$current_path.'?'.implode("&", $navi_querystring).'">'.$searchTag[$tag[$i]]['tag_name'].'</a></li>';
 		}
 		$pan_navi .= '<li>'.$searchTag[$tag[$i]]['tag_name'].'</li>';
 	}else{
