@@ -7,29 +7,24 @@
 $(function(){
 	
 	$.extend({
-		sendResetPass: function(email, pass){
-			/**
-			 * パスワード再発行メール
-			 * @param email
-			 * @param pass
-			 */
+		sendData: {},
+		sendMail: function(){
 			$.ajax({
-				url: '/order/user_login.php',
-				type: 'get',
+				url: '/user/php_libs/sendMail.php',
+				type: 'POST',
 				dataType: 'json',
 				async: true,
 				timeout: 5000,
-				data: {
-					'sendmail': 'true',
-					'email': email,
-					'pass': pass
-				}
+				data: $.sendData
 			}).done(function(r){
-				if (r[0] == 'SUCCESS') {
-					$.msgbox('<p>'+email+'宛にパスワードを再発行いたしました</p>');
+				if (r.send == 'success') {
+					$.msgbox('<p>'+$.sendData.tpl-sendto+'宛にパスワードを再発行いたしました</p>');
+					$('#token').val('');
 				} else {
-					$.msgbox('メールの送信ができませんでした。<hr><br>送信先メールアドレス：<br>'+r.join('<br>'));
+					$.msgbox('メールの送信ができませんでした。');
 				}
+			}).fail(function(xhr, status, error){
+				alert("Error: "+error+"<br>通信エラーです。");
 
 			});
 		}
@@ -68,8 +63,13 @@ $(function(){
 		}).then(function(pass){
 			// メール送信
 			if (pass!='') {
-				$.sendResetPass(email, pass);
-				$('#token').val('');
+				$.sendData = {};
+				$.sendData['tpl-subject'] = 'パスワードを再発行いたしました';
+				$.sendData['tpl-sendto'] = email;
+				$.sendData['tpl-title'] = 'パスワード再発行';
+				$.sendData['tpl-summary'] = "いつもご利用いただき、誠にありがとうございます。\n新しいパスワードを発行いたしました。";
+				$.sendData['tpl-0_password'] = pass;
+				$.sendMail();
 			} else {
 				$.msgbox('Error: パスワードの設定ができませんでした');
 			}

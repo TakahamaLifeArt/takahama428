@@ -179,7 +179,6 @@ $(function(){
 				'message': $.deli.message
 			},
 			param = {
-				'sendmail': 'true',
 				'user': user,
 				'deli': deli,
 				'item': JSON.stringify($.orderItem),
@@ -194,7 +193,7 @@ $(function(){
 			timeout: 5000,
 			data: param
 		}).done(function(r){
-			if (r[0] == 'SUCCESS') {
+			if (r.send == 'success') {
 				window.location.href = './thanks.php';
 			} else {
 				$.msgbox('Error: メールの送信ができませんでした');

@@ -7,34 +7,6 @@
 
 $(function(){
 
-	/**
-	 * メール送信
-	 * $.sendData {boject} 送信データ
-	 */
-	$.extend({
-		sendData: {},
-		sendMail: function(){
-			$.ajax({
-				url: '/user/php_libs/sendMail.php',
-				type: 'POST',
-				dataType: 'json',
-				async: true,
-				timeout: 5000,
-				data: $.sendData
-			}).done(function(r){
-//				if (r[0] == 'SUCCESS') {
-//					$.msgbox('<p>顧客情報を更新いたしました。</p>');
-//				} else {
-//					$.msgbox('メールの送信ができませんでした。');
-//				}
-			}).fail(function(xhr, status, error){
-//				alert("Error: "+error+"<br>通信エラーです。");
-				
-			});
-		}
-	});
-	
-	
 	// ユーザー情報更新クラス
 	function User(args) {
 		this.args = args;
@@ -49,13 +21,10 @@ $(function(){
 			if (r.id) {
 				return d.resolve().promise();
 			} else {
-				$.msgbox('Errpr: 更新できませんでした');
+				$.msgbox('Error: 更新できませんでした');
 				return d.reject().promise();
 			}
 		}).then(function(){
-			// 顧客情報変更の業務メール送信
-			$.sendMail();
-			
 			// ログイン情報を更新してリロード
 			var param = {
 				'id': id,
@@ -90,65 +59,37 @@ $(function(){
 			if (r.id) {
 				return d.resolve().promise();
 			} else {
-				$.msgbox('Errpr: 更新できませんでした');
+				$.msgbox('Error: 更新できませんでした');
 				return d.reject().promise();
 			}
 		}).then(function(){
-			// 顧客情報変更の業務メール送信
-			$.sendMail();
-
 			$.dialogBox('パスワードを更新いたしました。', 'メッセージ', 'OK').then(function(){
 				// フォームをリセット
 				document.forms.pass.reset();
-				$('.err').text('');
 			});
 		});
 	}
 	
 	
 	//ユーザー情報の更新ボタン
-	$('#profile tfoot .ok_button').on('click', function(){
+	eMailer.submitButton('#profile tfoot .ok_button').setExtraValidity(function(){
 		var user,
-			args = {},
-			isValid = true;
+			args = {};
 		
-		// メール送信データ初期化
-		$.sendData = {};
-		
-		// 必須確認とメール送信データ取得
-		$('#profile input').each(function(){
+		// 更新データ取得
+		$('#profile .update-args').each(function(){
 			var self = $(this),
-				key = self.attr('name'),
-				data = self.val().trim();
-			
-			self.val(data);
-			
-			// メールデータ
-			if (self.hasClass('send-args')) {
-				$.sendData[key] = data;
-			}
-			
-			// 必須項目
-			if (self.prop('required') && !data) {
-				self.closest('td').find('.err').text('必須です');
-				isValid = false;
-			}
+				key = self.attr('name');
+			args[key] = self.val();
 		});
-		
-		if (isValid) {
-			// 更新データ取得
-			$('#profile .update-args').each(function(){
-				var self = $(this),
-					key = self.attr('name');
-				args[key] = self.val();
-			});
-			
-			// 更新
-			user = new User(args);
-			user.update();
-		} else {
-			$.msgbox('必須項目をご確認ください');
-		}
+
+		// 更新
+		user = new User(args);
+		user.update();
+
+		return true;
+	}).setXhrDone(function(){
+		// Do nothing.
 	});
 	
 	
@@ -159,67 +100,36 @@ $(function(){
 	});
 	
 	
-	// パスワードを変更
-	$('#pass_table tfoot .ok_button').on('click', function(){
-		var i = 0,
-			user,
+	// パスワード変更フォームの送信ボタン設定
+	eMailer.submitButton('#pass_table tfoot .ok_button').setExtraValidity(function () {
+		/**
+		 * 必須項目の検証
+		 */
+		var password = $('#pass_table [name="password"]').val().trim(),
+			passconf = $('#pass_table [name="passconf"]').val().trim(),
 			args = {},
-			isValid = true,
-			pass = [];
-
-		// 必須確認とメール送信データ取得
-		$('#pass_table input').each(function(){
-			var self = $(this),
-				key = self.attr('name'),
-				data = self.val().trim();
-
-			self.val(data);
-
-			// メールデータ
-			$.sendData = {};
-			if (self.hasClass('send-args')) {
-				$.sendData[key] = data;
-			}
-
-			// 必須項目
-			if (self.prop('required') && !data) {
-				self.closest('td').find('.err').text('必須です');
-				isValid = false;
-			}
-			
-			// パスワード
-			if (self.attr('type')=='password') {
-				pass.push(data);
-			}
-		});
+			user;
 		
-		if (isValid) {
-			// パスワード確認の照合
-			for (i=1; i<pass.length; i++) {
-				if (pass[0]!=pass[i]) {
-					isValid = false;
-					break;
-				}
-			}
-			if (!isValid) {
-				$.msgbox('パスワードをご確認ください');
-				return;
-			}
-			
-			
-			// 更新データ取得
-			$('#pass_table .update-args').each(function(){
-				var self = $(this),
-					key = self.attr('name');
-				args[key] = self.val();
-			});
-
-			// 更新
-			user = new User(args);
-			user.setPass();
-		} else {
-			$.msgbox('必須項目をご確認ください');
+		// パスワード確認の照合
+		if (password != passconf) {
+			$.msgbox('パスワードをご確認ください');
+			return false;
 		}
+
+		// 更新データ取得
+		$('#pass_table .update-args').each(function(){
+			var self = $(this),
+				key = self.attr('name');
+			args[key] = self.val();
+		});
+
+		// 更新
+		user = new User(args);
+		user.setPass();
+
+		return true;
+	}).setXhrDone(function(){
+		// Do nothing.
 	});
 	
 	
