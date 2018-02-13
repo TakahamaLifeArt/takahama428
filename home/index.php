@@ -53,6 +53,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 					<li data-target="#mainCarouselIndicators" data-slide-to="0" class="active"></li>
 					<li data-target="#mainCarouselIndicators" data-slide-to="1"></li>
 					<li data-target="#mainCarouselIndicators" data-slide-to="2"></li>
+					<li data-target="#mainCarouselIndicators" data-slide-to="3"></li>
 					<!--                    <li data-target="#mainCarouselIndicators" data-slide-to="3"></li>-->
 				</ol>
 
@@ -78,6 +79,14 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 						<img class="img-fluid" id="sp_slide" src="/common/img/home/main/sp_top_slide_graduation.jpg" alt="First slide" width="100%">
 						<div class="carousel-caption">
 							<a href="/scene/graduation/index.php" class="check"><button type="button" class="det_btn">詳細はこちら</button></a>
+						</div>
+					</div>
+
+					<div class="carousel-item">
+						<img class="img-fluid" id="pc_slide" src="/common/img/home/main/top_slide_extrabig.jpg" alt="First slide" width="100%">
+						<img class="img-fluid" id="sp_slide" src="/common/img/home/main/sp_top_slide_extrabig.jpg" alt="First slide" width="100%">
+						<div class="carousel-caption">
+							<a href="/campaign/towel/extrabig.php" class="check"><button type="button" class="det_btn">詳細はこちら</button></a>
 						</div>
 					</div>
 
@@ -122,7 +131,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 					echo '<p>'.nl2br($message).'</p></div>';
 				}
 			?>
-			<h1 class="top_ttl">オリジナルTシャツのプリント作成、最短即日発送！</h1>
+				<h1 class="top_ttl">オリジナルTシャツのプリント作成、最短即日発送！</h1>
 				<div class="row outer top_3_wrap">
 					<div class="col">
 						<a href="/delivery/" class="check">
