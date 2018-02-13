@@ -30,6 +30,8 @@ define('_TOLL_FREE', '0120-130-428');
 
 class Property {
 	
+	protected $_fromName = _MY_NAME;
+	protected $_sendFrom = _INFO_EMAIL;
 	protected $_mailFoot = '';
 	
 	public function __construct() {
@@ -49,6 +51,28 @@ class Property {
 		$txt .= "　Web site：　"._DOMAIN."/\n";
 		$txt .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
 		$this->_mailFoot = $txt;
+	}
+	
+	
+	/**
+	 * 送信者の名前を設定
+	 * @param {string} args 送信者名
+	 */
+	public function setFromName(string $args) {
+		if (!empty($args)) {
+			$this->_fromName = $args;
+		}
+	}
+
+
+	/**
+	 * 送信者のメールアドレスを設定
+	 * @param {string} args メールアドレス
+	 */
+	public function setSendFrom(string $args) {
+		if (!empty($args)) {
+			$this->_sendFrom = $args;
+		}
 	}
 }
 ?>

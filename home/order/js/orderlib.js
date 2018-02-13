@@ -1286,7 +1286,7 @@ $(function(){
 					'pass': pass
 				}
 			}).done(function(r){
-				if (r[0] == 'SUCCESS') {
+				if (r.send == 'success') {
 					$.msgbox('パスワードを再発行いたしました');
 				} else {
 					$.msgbox('メールの送信ができませんでした。<hr><br>送信先メールアドレス：<br>'+r.join('<br>'));

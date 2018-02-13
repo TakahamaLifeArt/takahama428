@@ -56,15 +56,13 @@ if (isset($_REQUEST['login'])) {
 	$summary = "いつもご利用いただき、誠にありがとうございます。\n";
 	$summary .= "新しいパスワードを発行いたしました。";
 	$mailBody = array(
-		'title' => 'パスワード再発行',
-		'summary' => $summary,
-		'パスワード' => $_REQUEST['pass']
+		'tpl-title' => 'パスワード再発行',
+		'tpl-summary' => $summary,
+		'tpl-0_password' => $_REQUEST['pass']
 	);
 	
-	$mail = new Mailer();
-	$mail->setMailBody($mailBody);
-	$sendTo = array($_REQUEST['email']);
-	$res = $mail->send($subject, $sendTo);
+	$mail = new Mailer('', $mailBody);
+	$res = $mail->send($subject, $_REQUEST['email']);
 	header("Content-Type: text/javascript; charset=utf-8");
 	echo json_encode($res);
 }
