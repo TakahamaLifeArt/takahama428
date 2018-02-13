@@ -537,7 +537,7 @@
 					<div class="price">
 						<div class="print_left"><img src="img/extrabig_price_01.png" alt="割引でもっとお得" width="100%"></div>
 						<div class="print_right">
-							<p class="print_ex"><span class="price_txt_01">最大</span><span class="price_txt_02">12</span><span class="price_txt_01">%</span><span class="price_txt_01">＋</span><span class="min_txt">1000</span><span class="price_txt_01">円OFF</span></p>
+							<p class="print_ex"><span class="price_txt_01">最大</span><span class="price_txt_02">13</span><span class="price_txt_01">%</span><span class="price_txt_01">＋</span><span class="min_txt">1000</span><span class="price_txt_01">円OFF</span></p>
 						</div>
 						<div>
 							<p class="link"><a href="/guide/discount.php">割引一覧を見る</a></p>
