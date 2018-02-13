@@ -705,7 +705,7 @@
 					</div>
 					
 					<button type="submit" class="order_btn btn-outline-primary waves-effect" id="sendmail">お申し込み</button>
-					<input type="hidden" name="sendto" value="takahamayokoyama@gmail.com">
+					<input type="hidden" name="sendto" value="info@takahama428.com">
 					<input type="hidden" name="subject" value="特大プリントタオルのお申し込み">
 					<input type="hidden" name="title" value="特大プリントタオル">
 				</form>
