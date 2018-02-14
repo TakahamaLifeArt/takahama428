@@ -581,10 +581,21 @@ class Ordermail extends Conndb{
 		 * デザインパターン毎にデータを登録
 		 * アップロードファイルは最初の受注データに紐付ける
 		 */
-		$orderNumber = 0;	// 受注システムに登録する注文伝票の数
+		$orderNumber = 0;	// 受注システムに登録する注文伝票の数、複数の場合は同梱扱い
 		$res = [];			// 登録データの返り値
 		foreach ($designs as $designId=>$d1) {
 
+			// 同梱扱いで且つ新規ユーザーの場合、新規登録した顧客IDを使用
+			if (empty($customer_id) && $orderNumber===1) {
+				$customer_id = $res[0]['customerid'];
+				$data1 = array(
+					"customer_id"=>$customer_id,
+					"customerruby"=>$user['ruby'],"customername"=>$user['name'],
+					"tel"=>$user['tel'],"email"=>$user['email'],
+					"zipcode"=>$user['zipcode'],"addr0"=>$user['addr0'],"addr1"=>$user['addr1'],"addr2"=>$user['addr2'],"reg_site"=>_SITE
+				);
+			}
+			
 			// プリントの有無
 			$noprint = $designId=='id_0'? 1: 0;
 			
@@ -797,7 +808,6 @@ class Ordermail extends Conndb{
 			$upDir = '';
 			if (!empty($uploadDir) && $orderNumber===0) {
 				$upDir = $uploadDir;
-				$orderNumber++;
 			}
 
 			// hash 1
@@ -817,6 +827,8 @@ class Ordermail extends Conndb{
 
 			// 受注システムに登録
 			$res[] = $orders->db('insert', 'order', $data);
+			
+			$orderNumber++;
 		}
 		
 		return $res;
@@ -977,7 +989,7 @@ class WebOrder {
 	 * @param {string} table テーブル名
 	 * @param {array} data 追加データの配列、若しくは注文伝票ID
 	 *
-	 * @return {array} {orderid=>受注No. , designfile=>[ファイル名, ...]}
+	 * @return {array} {orderid=>受注No. , customerid=>顧客ID , designfile=>[ファイル名, ...]}
 	 */
 	private function insert($conn, $table, $data){
 		try{
@@ -1016,6 +1028,7 @@ class WebOrder {
 							}
 						}else{
 							$rs = $this->update($conn, 'customer', $data1);
+							$customer_id = $data1["customer_id"];
 						}
 					}
 
@@ -1398,7 +1411,7 @@ class WebOrder {
 						$isUpload = rename($oldPath, $newPath);
 					}
 					
-					return array('orderid'=>$orders_id, 'designfile'=>$fileName);
+					return array('orderid'=>$orders_id, 'customerid'=>$customer_id, 'designfile'=>$fileName);
 					break;
 
 				case 'orderitem':
