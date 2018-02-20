@@ -1,81 +1,87 @@
 @charset "UTF-8";
- /*------------------------------------------------------------
+/*------------------------------------------------------------
 reorder
 ------------------------------------------------------------*/
- 
- body,
- div,
- dl,
- dt,
- dd,
- ul,
- ol,
- li,
- h1,
- h2,
- h3,
- h4,
- h5,
- h6,
- pre,
- code,
- form,
- input,
- button,
- textarea,
- select,
- p,
- blockquote,
- th,
- td {
- 	margin: 0;
- 	padding: 0;
- }
- 
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+input,
+button,
+textarea,
+select,
+p,
+blockquote,
+th,
+td {
+	margin: 0;
+	padding: 0;
+}
+
 #container {
 	width: 100%;
 	margin: 0px auto;
 	margin-top: 125px;
 }
- 
- .contents {
- 	width: 100%;
- 	float: none;
- 	margin-top: 20px;
- 	overflow: hidden;
- 	max-width: 1000px;
- 	margin: 0 auto;
- 	padding: 10px;
- }
- 
+
+.contents {
+	width: 100%;
+	float: none;
+	margin-top: 20px;
+	overflow: hidden;
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 10px;
+}
+
 ul.pan {
 	height: auto;
 	margin: 20px 5px 20px 5px;
 	font-size: 0.8em;
 }
+
 ul.pan li {
 	display: inline;
 	padding-right: 4px;
 	line-height: 2em;
 }
+
 ul.pan li:first-child:before {
 	content: "";
 	padding-right: 0;
 }
+
 ul.pan li:before {
 	content: ">";
 	padding-right: 10px;
 	vertical-align: middle;
 }
-ul.pan li a, ul.pan li span {
+
+ul.pan li a,
+ul.pan li span {
 	vertical-align: middle;
 	text-decoration: none;
 }
- 
+
 .flow_1_butt {
 	padding: 3%;
 	text-align: center;
 }
+
 .button1 {
 	position: relative;
 	display: block;
@@ -101,6 +107,7 @@ ul.pan li a, ul.pan li span {
 	background-position-x: 27px;
 	background-position-y: center;
 }
+
 .button1:hover {
 	text-decoration: none;
 	color: #fff;
@@ -113,116 +120,120 @@ ul.pan li a, ul.pan li span {
 	background-position-x: 27px;
 	background-position-y: center;
 }
+
 .login_btn_2 a {
 	color: #7d410d;
 	text-decoration: none;
 	display: block;
 }
+
 .login_btn_2 a:hover {
 	color: #7d410d;
 	text-decoration: none;
 }
-.login_btn_2 img{
+
+.login_btn_2 img {
 	width: 8%;
 	vertical-align: middle;
 	margin-right: 10px;
 }
- 
- a:hover {
- 	color: white;
- 	text-decoration: none;
- }
- 
- .bluepas {
- 	color: #1055e0;
- 	text-decoration: none;
- 	font-size: 12px;
- }
- 
- .red_txt {
- 	color: #dc0000;
- }
-.red_txt_2{
+
+a:hover {
+	color: white;
+	text-decoration: none;
+}
+
+.bluepas {
+	color: #1055e0;
+	text-decoration: none;
+	font-size: 12px;
+}
+
+.red_txt {
+	color: #dc0000;
+}
+
+.red_txt_2 {
 	color: #dc0000;
 	font-size: 40px;
 	font-weight: bold;
 }
- 
- .clearfix {
- 	display: block;
- 	clear: both;
- }
- 
- .clearfix:after {
- 	content: ".";
- 	display: block;
- 	height: 0;
- 	visibility: hidden;
- 	line-height: 0;
- 	font-size: 0;
- 	clear: both;
- }
- 
+
+.clearfix {
+	display: block;
+	clear: both;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+	line-height: 0;
+	font-size: 0;
+	clear: both;
+}
+
 h1 {
 	font-size: 40px;
 	font-weight: bold;
 	color: #333;
 	padding-top: 10px;
 }
- 
- #main {
- 	width: 100%;
- 	position: relative;
- 	overflow: hidden;
- 	margin-top: 5px;
- }
- 
- img {
- 	vertical-align: bottom;
- 	border: 0;
- }
- 
- .heading1_wrapper {
- 	width: 100%;
- 	padding-bottom: 30px;
- 	overflow: hidden;
- }
- 
- li {
- 	list-style: none;
- }
- 
- div.dotted {
- 	background: url(/common/img/dotted.png) repeat-x bottom;
- 	height: 12px;
- 	margin-bottom: 5px;
- }
- 
- #bene_1 h2 {
- 	font-size: 35px;
- 	font-weight: bold;
- 	background-image: url(/price/img/tsuika/privilege.png);
- 	background-repeat: no-repeat;
- 	background-size: 41px;
- 	padding: 7px 0px 5px 50px;
- }
- 
- #bene_2 h2 {
- 	font-size: 35px;
- 	font-weight: bold;
- 	background-image: url(/price/img/tsuika/privilege.png);
- 	background-repeat: no-repeat;
- 	background-size: 42px;
- 	padding: 7px 0px 5px 50px;
- }
- 
+
+#main {
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+	margin-top: 5px;
+}
+
+img {
+	vertical-align: bottom;
+	border: 0;
+}
+
+.heading1_wrapper {
+	width: 100%;
+	padding-bottom: 30px;
+	overflow: hidden;
+}
+
+li {
+	list-style: none;
+}
+
+div.dotted {
+	background: url(/common/img/dotted.png) repeat-x bottom;
+	height: 12px;
+	margin-bottom: 5px;
+}
+
+#bene_1 h2 {
+	font-size: 35px;
+	font-weight: bold;
+	background-image: url(/price/img/tsuika/privilege.png);
+	background-repeat: no-repeat;
+	background-size: 41px;
+	padding: 7px 0px 5px 50px;
+}
+
+#bene_2 h2 {
+	font-size: 35px;
+	font-weight: bold;
+	background-image: url(/price/img/tsuika/privilege.png);
+	background-repeat: no-repeat;
+	background-size: 42px;
+	padding: 7px 0px 5px 50px;
+}
+
 .min_ttl {
 	color: #EB5C02;
 	font-weight: bold;
 	font-size: 20px;
 	margin-left: 0;
 }
- 
+
 .circle {
 	width: 50px;
 	height: 50px;
@@ -233,56 +244,56 @@ h1 {
 	color: white;
 	margin-right: 10px;
 }
- 
- .triangle {
- 	height: 0;
- 	width: 15px;
- 	display: inline-block;
- 	position: relative;
- 	margin: 0 10px;
- }
- 
- .triangle:before {
- 	content: '';
- 	height: 0;
- 	width: 0;
- 	display: block;
- 	border: 10px transparent solid;
- 	border-right-width: 0;
- 	border-left-color: #727171;
- 	position: absolute;
- 	top: -16px;
- 	left: 4px;
- }
- 
- .flow .sp {
- 	display: none;
- }
- 
- .flow .pc {
- 	display: block;
- 	margin: 10px 0 40px 0;
- 	font-size: 18px;
- }
- 
- .flow_2 .sp {
- 	display: none;
- }
- 
- .flow_2 .pc {
- 	display: block;
- 	margin: 10px 0 40px 0;
- 	font-size: 18px;
- }
- 
- .flow .pc li {
- 	display: inline-block;
- }
- 
- .flow_2 .pc li {
- 	display: inline-block;
- }
- 
+
+.triangle {
+	height: 0;
+	width: 15px;
+	display: inline-block;
+	position: relative;
+	margin: 0 10px;
+}
+
+.triangle:before {
+	content: '';
+	height: 0;
+	width: 0;
+	display: block;
+	border: 10px transparent solid;
+	border-right-width: 0;
+	border-left-color: #727171;
+	position: absolute;
+	top: -16px;
+	left: 4px;
+}
+
+.flow .sp {
+	display: none;
+}
+
+.flow .pc {
+	display: block;
+	margin: 10px 0 40px 0;
+	font-size: 18px;
+}
+
+.flow_2 .sp {
+	display: none;
+}
+
+.flow_2 .pc {
+	display: block;
+	margin: 10px 0 40px 0;
+	font-size: 18px;
+}
+
+.flow .pc li {
+	display: inline-block;
+}
+
+.flow_2 .pc li {
+	display: inline-block;
+}
+
 .comment2 {
 	display: block;
 	border: 2px solid #eb5c02;
@@ -293,7 +304,7 @@ h1 {
 	font-size: 1.2em;
 	width: 80%;
 }
- 
+
 /*
 .button1 {
 	position: relative;
@@ -325,92 +336,128 @@ h1 {
 	color: white;
 }
 */
+
 .discount {
 	width: 45%;
 	margin-bottom: 30px;
 	padding-left: 20px;
 }
+
 .discount_2 {
 	clear: both;
 	margin-left: 20px;
 }
-.repeat {
-	float: left;
-	width: 45%;
-	margin-bottom: 20px;
-	margin-left: 0;
+
+h3 {
+	font-size: 18px;
+	font-weight: bold;
+	margin: 20px 0 0 30px;
 }
- 
- .vip {
- 	float: left;
- 	width: 45%;
- 	margin-left: 40px;
- }
- 
+
+.customer_rank {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.off {
+	margin-top: 10px;
+	clear: both;
+	font-size: 28px;
+	font-weight: bold;
+	color: #dc0000;
+}
+
+.member {
+	display: flex;
+}
+
+.mebmer_all {
+	display: flex;
+}
+
+.limit_img {
+	margin: 10px 20px 15px 0;
+	width: 90%;
+}
+
+.limit_right {
+	width: 170%;
+	margin-top: 75px;
+	margin-left: -10px;
+}
+
+
+
 .flow_2 {
 	clear: both;
 	margin-left: 20px;
 	margin-top: 10px;
 	margin-bottom: 60px;
 }
- 
- .mail {
- 	background-image: url(/price/img/tsuika/email_address.png);
- 	background-repeat: no-repeat;
- 	background-size: 70px;
- 	font-size: 18px;
- 	font-weight: bold;
- 	padding: 43px 0 0 87px;
- }
- 
- .example {
- 	padding: 20px 40px;
- }
- 
- .asan {
- 	width: 34%;
- 	float: left;
- 	margin: 0;
- }
- 
- .bsan {
- 	width: 35%;
- 	float: left;
- 	margin: 0 20px;
- }
- 
+
+.mail {
+	background-image: url(/price/img/tsuika/email_address.png);
+	background-repeat: no-repeat;
+	background-size: 70px;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 43px 0 0 87px;
+}
+
+.example {
+	padding: 20px 40px;
+}
+
+.asan {
+	width: 34%;
+	float: left;
+	margin: 0;
+}
+
+.bsan {
+	width: 35%;
+	float: left;
+	margin: 0 20px;
+}
+
 .mail_change {
 	display: flex;
+	margin-top: 20px;
 	margin-bottom: 50px;
 }
- 
+
 .step {
 	margin-top: 4%;
 }
-.step_2{
-font-size: 15px;
+
+.step_2 {
+	font-size: 15px;
 }
- .login {
- 	clear: both;
- }
- 
- .user {
- 	display: block;
- 	border: 2px solid #eb5c02;
- 	padding: 10px 0 10px 30px;
- 	margin: 10px 5px;
- 	font-size: 1.2em;
- }
- 
- .ora {
- 	color: #EB5C02;
- }
+
+.login {
+	clear: both;
 }
+
+.user {
+	display: block;
+	border: 2px solid #eb5c02;
+	padding: 10px 0 10px 30px;
+	margin: 10px 5px;
+	font-size: 1.2em;
+}
+
+.ora {
+	color: #EB5C02;
+}
+
+}
+
 .mypage_in {
 	width: 900px;
 	margin: 0 auto;
 	margin-top: 20px;
 }
+
 .log_txt {
 	font-size: 18px;
 	font-weight: bold;
@@ -419,6 +466,7 @@ font-size: 15px;
 	background-size: 51px;
 	padding: 24px 0 0 55px;
 }
+
 .login_btn_2 {
 	display: block;
 	padding: 1% 0%;
@@ -436,28 +484,34 @@ font-size: 15px;
 	border: 2px solid #cbb39e;
 	transition: all .3s;
 }
+
 .login_btn_2:hover {
 	background: #fff;
 	border: 2px solid #cbb39e;
 }
+
 .log_box {
 	margin: 10px 262px;
 	width: 100%;
 	display: block;
 }
+
 .log_txt_2 {
 	text-align: center;
 	color: #3B76F9;
 }
+
 .phone_txt {
 	width: 60%;
 	margin: 0 auto;
 	text-align: center;
 	margin-top: 20px;
 }
+
 .phone_txt .timetx {
 	font-size: 1.5em;
 }
+
 .phone_txt .red {
 	margin: 0 auto;
 	text-align: center;
@@ -465,6 +519,7 @@ font-size: 15px;
 	font-size: 2.5em;
 	font-weight: bold;
 }
+
 .arrow_box {
 	position: relative;
 	background: #ffffff;
@@ -475,6 +530,7 @@ font-size: 15px;
 	width: 286px;
 	margin: 0px 40px;
 }
+
 .arrow_box:after,
 .arrow_box:before {
 	top: 100%;
@@ -486,22 +542,26 @@ font-size: 15px;
 	position: absolute;
 	pointer-events: none;
 }
+
 .arrow_box:after {
 	border-color: rgba(255, 255, 255, 0);
 	border-top-color: #ffffff;
 	border-width: 15px;
 	margin-left: -99px;
 }
+
 .arrow_box:before {
 	border-color: rgba(150, 150, 150, 0);
 	border-top-color: #969696;
 	border-width: 18px;
 	margin-left: -102px;
 }
+
 .example_1 {
 	width: 80%;
 	margin: 20px 0 0 40px;
 }
+
 .arrow {
 	height: 40px;
 	width: 40px;
@@ -511,6 +571,7 @@ font-size: 15px;
 	top: 61px;
 	left: 17px;
 }
+
 .arrow:before {
 	content: '';
 	height: 0;
@@ -523,6 +584,7 @@ font-size: 15px;
 	top: 0px;
 	right: 0px;
 }
+
 .arrow:after {
 	content: '';
 	height: 10px;
@@ -533,66 +595,84 @@ font-size: 15px;
 	top: 10px;
 	left: 0px;
 }
+
 .mail_change_l {
 	float: left;
 	padding: 20px 40px;
 }
+
 .next_txt {
 	clear: both;
 	text-align: center;
 }
+
 .ab_txt {
 	text-align: center;
 	font-size: 17px;
 }
+
 .ab_mail {
 	font-size: 17px;
 	text-align: center;
 }
+
 .sp {
 	display: none;
 }
+
 .pc {
 	display: block;
 }
+
 .fuki_sp {
 	display: none;
 }
+
 .log_box_sp {
 	display: none;
 }
+
 .flow_txt {
 	font-size: 16px;
 }
+
 .red_b {
 	color: #E50012;
 	font-weight: bold;
 }
+
 .mp {
 	font-size: 28px;
 	font-weight: bold;
 }
+
 .user_2 {
 	display: none;
 }
+
 .ab_list {
 	width: 100%;
 }
+
 .asan img {
 	margin: 0 20%;
 	width: 60%;
 }
+
 .bsan img {
 	margin: 0 20px;
 	width: 59%;
 }
+
 .flow {
 	padding-left: 20px;
 	margin-bottom: 60px;
 }
+
 .banner {
 	display: block;
 }
+
 .banner_sp {
 	display: none;
 }
@@ -600,16 +680,17 @@ font-size: 15px;
 /*===============================================
 画面の横幅が768pxまで
 ===============================================*/
+
 @media screen and (max-width: 768px) {
 	.sp {
 		display: block;
 		font-size: 15px;
 	}
-	
+
 	.pc {
 		display: none;
 	}
-	
+
 	#bene_1 h2 {
 		font-size: 26px;
 		font-weight: bold;
@@ -622,7 +703,7 @@ font-size: 15px;
 		line-height: 1.4;
 		margin-bottom: 10px;
 	}
-	
+
 	#bene_2 h2 {
 		font-size: 26px;
 		font-weight: bold;
@@ -635,13 +716,13 @@ font-size: 15px;
 		line-height: 1.4;
 		margin-bottom: 10px;
 	}
-	
+
 	.discount {
 		width: 95%;
 		margin: 15px 0;
 		padding: 0;
 	}
-	.discount_2{
+	.discount_2 {
 		width: 95%;
 		margin: 15px 0;
 		padding: 0;
@@ -649,36 +730,35 @@ font-size: 15px;
 	.dotted {
 		display: none;
 	}
-	
+
 	.flow_txt {
 		font-size: 14px;
 	}
-	
-	.repeat {
-		width: 95%;
-		margin: 0;
-		margin-bottom: 20px;
-		clear: both;
-		float: none;
+
+	.member {
+		display: flex;
+		text-align: center;
 	}
-	
-	.vip {
-		width: 95%;
-		margin: 0;
-		margin-bottom: 20px;
-		float: none;
+	.mebmer_all {
+		display: block;
 	}
-	
+	.limit_img {
+		margin: 10px 20px 15px 20px;
+		width: 90%;
+	}
+
+
+
 	.fuki_sp {
 		display: block;
 	}
-	
+
 	.flow {
 		margin-bottom: 40px;
 		padding: 0;
 		margin: 20px 0px;
 	}
-	
+
 	.mail {
 		background-image: url(/price/img/tsuika/email_address.png);
 		background-repeat: no-repeat;
@@ -688,13 +768,13 @@ font-size: 15px;
 		padding: 33px 0 0 74px;
 		color: black;
 	}
-	
+
 	.example {
 		padding: 10px 23px;
 		color: black;
 		font-size: 17px;
 	}
-	
+
 	.arrow_box {
 		position: block;
 		background: #ffffff;
@@ -708,10 +788,7 @@ font-size: 15px;
 		color: black;
 	}
 
-	reorder.css:401
-
-	
-	.button1 {
+	reorder.css:401 .button1 {
 		display: block;
 		padding: .9em 2em;
 		background: linear-gradient(to bottom, #ffa161 0%, #ff9d5a 71%, #fc7e35 100%);
@@ -726,7 +803,7 @@ font-size: 15px;
 		width: 180px;
 		margin: 0 auto;
 	}
-	
+
 	.login_btn_2 {
 		display: block;
 		padding: 2% 0%;
@@ -744,7 +821,7 @@ font-size: 15px;
 		border: 2px solid #cbb39e;
 		transition: all .3s;
 	}
-/*
+	/*
 	.button1 {
 		position: relative;
 		display: block;
@@ -762,11 +839,10 @@ font-size: 15px;
 		box-shadow: 1px 1px 1px #898989;
 	}
 */
-	
 	.log_box {
 		display: none;
 	}
-	
+
 	.log_txt {
 		font-size: 18px;
 		display: block;
@@ -778,34 +854,34 @@ font-size: 15px;
 		margin: 0;
 		color: black;
 	}
-	
+
 	.log_box_sp {
 		display: block;
 		width: 100%;
 		margin-bottom: 10px;
 		text-align: center;
 	}
-	
+
 	.mail_change {
 		float: none;
 		margin-bottom: 30px;
 		width: 100%;
 	}
-	
+
 	.step {
 		float: none;
 		width: 100%;
 		margin-top: 4%;
 		clear: both;
 	}
-	
+
 	.triangle {
 		height: 0px;
 		width: 35px;
 		display: inline-block;
 		position: relative;
 	}
-	
+
 	.triangle:before {
 		content: '';
 		height: 0;
@@ -818,29 +894,29 @@ font-size: 15px;
 		top: -20px;
 		left: 8px;
 	}
-	
+
 	.flow .pc {
 		display: none;
 	}
-	
+
 	.flow .sp {
 		display: block;
 		font-size: 22px;
 		margin: 5% 10% 12% 10%;
 		width: 80%;
 	}
-	
+
 	.flow_2 .pc {
 		display: none;
 	}
-	
+
 	.flow_2 .sp {
 		display: block;
 		font-size: 22px;
 		margin: 5% 10% 12% 10%;
 		width: 80%;
 	}
-	
+
 	.circle {
 		width: 50px;
 		height: 50px;
@@ -854,14 +930,14 @@ font-size: 15px;
 		background-color: #000;
 		color: white;
 	}
-	
+
 	.triangle_b {
 		height: 26px;
 		width: 15px;
 		display: block;
 		position: relative;
 	}
-	
+
 	.triangle_b:before {
 		content: '';
 		height: 0;
@@ -874,12 +950,12 @@ font-size: 15px;
 		top: 9px;
 		left: 72px;
 	}
-	
+
 	.mp {
 		font-size: 22px;
 		font-weight: bold;
 	}
-	
+
 	.arrow {
 		height: 40px;
 		width: 40px;
@@ -889,23 +965,23 @@ font-size: 15px;
 		top: 66px;
 		left: 3px;
 	}
-	
+
 	.asan {
 		width: 33%;
 		float: left;
 		margin: 0;
 	}
-	
+
 	.bsan {
 		width: 33%;
 		float: left;
 		margin: 0;
 	}
-	
+
 	.next_txt {
 		display: none;
 	}
-	
+
 	.user_2 {
 		display: block;
 		border: 2px solid #eb5c02;
@@ -917,7 +993,7 @@ font-size: 15px;
 		clear: both;
 		font-size: 16px;
 	}
-	
+
 	.comment2 {
 		display: block;
 		border: 2px solid #eb5c02;
@@ -929,24 +1005,24 @@ font-size: 15px;
 		width: 88%;
 		font-size: 14px;
 	}
-	
+
 	.step {
 		display: none;
 	}
-	
+
 	.mail_change_l {
 		float: left;
 		margin-bottom: 40px;
 		width: 100%;
 		padding: 0;
 	}
-	
+
 	.phone_txt {
 		width: 100%;
 		margin: 0 auto;
 		text-align: center;
 	}
-	
+
 	.phone_txt .red {
 		margin: 0 auto;
 		text-align: center;
@@ -955,41 +1031,41 @@ font-size: 15px;
 		font-weight: bold;
 		margin-bottom: 20px;
 	}
-	
+
 	.phone_txt .timetx {
 		font-size: 1.2em;
 	}
-	
+
 	.lf {
 		position: relative;
 		right: 34px;
 	}
-	
+
 	.example_1 {
 		width: 100%;
 		margin: 5% 10%;
 	}
-	
+
 	.bsan img {
 		margin: 0 24%;
 		width: 50%;
 	}
-	
+
 	.banner {
 		display: none;
 	}
-	
+
 	.banner_sp {
 		display: block;
 	}
-	
+
 	.min_ttl {
 		color: #EB5C02;
 		font-weight: bold;
 		font-size: 20px;
 		margin-left: 10px;
 	}
-	
+
 	.flow_2 {
 		clear: both;
 		margin: 0;
@@ -1013,10 +1089,11 @@ font-size: 15px;
 		font-weight: bold;
 		color: #333;
 	}
-	.pan{
+	.pan {
 		display: none;
 	}
 }
+
 @media screen and (max-width: 950px) {
 	.step {
 		margin-top: 4%;

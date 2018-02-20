@@ -118,16 +118,48 @@ $category_selector .= '</select>';
 
 						<div class="discount_2">
 							<p class="min_ttl">割引について</p>
-							<div class="repeat">
-								<p class="flow_txt">新しいデザインで<span class="red_b">2回目</span>のご注文の方！</p>
-								<img src="/order/img/tsuika/discount_repeat.png" alt="保存期間なし" width="100%">
-								<p><span class="red_txt">※</span>当日特急、翌日・2日仕上げは対象外</p>
-							</div>
-
-							<div class="vip">
-								<p class="flow_txt">新しいデザインで<span class="red_b">3回目</span>以降のご注文の方！</p>
-								<img src="/order/img/tsuika/discount_vip.png" alt="保存期間なし" width="100%">
-								<p><span class="red_txt">※</span>当日特急、翌日・2日仕上げは対象外</p>
+							<div class="big_ttl">
+								<p class="customer_rank">会員限定割引</p>
+								<p>タカハマライフアートでご注文いただいた、会員の方限定の割引です。</p>
+								<p>割引に加え、どの会員でも送料無料！会員ランクはマイページからご確認ください。</p>
+								<div class="mebmer_all">
+									<div class="member">
+										<div class="limit">
+											<h3>ブロンズ会員</h3>
+											<img class="limit_img" src="img/sp_customer_rank_bronze.png" alt="ブロンズ会員" width="100%">
+										</div>
+										<div class="limit_right">
+											<p class="off">3%OFF</p>
+											<p>合計購入金額</p>
+											<p>8万円(税込)以上</p>
+											<p>ご購入の方</p>
+										</div>
+									</div>
+									<div class="member">
+										<div class="limit">
+											<h3>シルバー会員</h3>
+											<img class="limit_img" src="img/sp_customer_rank_silver.png" alt="シルバー会員" width="100%">
+										</div>
+										<div class="limit_right">
+											<p class="off">5%OFF</p>
+											<p>合計購入金額</p>
+											<p>15万円(税込)以上</p>
+											<p>ご購入の方</p>
+										</div>
+									</div>
+									<div class="member">
+										<div class="limit">
+											<h3>ゴールド会員</h3>
+											<img class="limit_img" src="img/sp_customer_rank_gold.png" alt="ゴールド会員" width="100%">
+										</div>
+										<div class="limit_right">
+											<p class="off">7%OFF</p>
+											<p>合計購入金額</p>
+											<p>30万円(税込)以上</p>
+											<p>ご購入の方</p>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 
