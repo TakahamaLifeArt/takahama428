@@ -3,9 +3,10 @@
  * page information
  *
  * Function
- * getSilhouetteId	プリントポジションIDをキーにした、たぐIDと絵型名のハッシュ
- * getCategoryInfo	アイテム一覧の商品情報を取得
- * getStar			レビューの星マークを取得（アイテム詳細で使用）
+ * getSilhouetteId	プリントポジションIDをキーにした、タグIDと絵型名のハッシュ
+ * getCategoryInfo	アイテム一覧の商品情報
+ * htmlTag			アイテム一覧ページのHTMLタグ生成
+ * getStar			レビューの星マーク（アイテム詳細で使用）
  *
  * require
  * カンタン見積もり($_PAGE_ESTIMATION_1)
@@ -96,11 +97,11 @@ class PageInfo extends Conndb {
 	);
 
 
-	/*
-	* 簡単見積もりのシルエットの絵型情報を返す
-	* @id	category ID
-	* @return プリントポジションIDをキーにした、たぐIDと絵型名のハッシュ
-	*/
+	/**
+	 * 簡単見積もりのシルエットの絵型情報を返す
+	 * @id	category ID
+	 * @return プリントポジションIDをキーにした、たぐIDと絵型名のハッシュ
+	 */
 	public function getSilhouetteId($id=null){
 		if(empty($id)){
 			return $this->silhouetteId;
@@ -110,108 +111,111 @@ class PageInfo extends Conndb {
 	}
 	
 	
-	/*
+	/**
 	 * 商品一覧ページの情報を返す
 	 * @id		カテゴリID | タグID
 	 * @tag		タグの配列
 	 * @mode	@idの種類'  category', 'tag'
 	 * @sort	並び順
-	 * @limit	検索レコード数
+	 * @limit	検索レコード数 {@code length|offset-length}
 	 *
 	 * @return 商品情報の配列
+	 * 			[category_key, category_name, item_id, item_name, item_code, cost, pos_id, maker_id, 
+	 * 			oz, colors, i_color_code, i_caption, reviews, sizename_from, sizename_to, range_id, screen_id]
 	 */
-	public function getCategoryInfo($id, $tag=null, $mode='category', $sort='index', $limit=null){
-		// 商品情報を取得
-
-		$data = $this->itemOf($id, $tag, $mode, $limit);
-		
-		$tmp = array();
-		$res = array();
-		$cnt = count($data);
-		if($cnt==0) return $res;
-
-		// タグを生成
-		$idx = 0;
-		for($i=0; $i<$cnt; $i++){
-			$code = $data[$i]['item_code'];
-			$tmp[$idx]['category_key'] = $data[$i]['category_key'];
-			$tmp[$idx]['category_name'] = $data[$i]['category_name'];
-			$tmp[$idx]['item_name'] = $data[$i]['item_name'];
-			$tmp[$idx]['colors'] = $data[$i]['colors'];
-			$tmp[$idx]['sizes'] = $data[$i]['sizecount'];
-			$tmp[$idx]['sizerange'] = array($data[$i]['sizename_from'],$data[$i]['sizename_to']);
-			$tmp[$idx]['makerprice'] = number_format($data[$i]['makercost']);	//$maker price;
-			$tmp[$idx]['minprice'] = number_format($data[$i]['cost']);	//$minprice;
-			$tmp[$idx]['initcolor'] = $data[$i]['i_color_code'];	//$ic[$code];
-			$tmp[$idx]['features'] = $data[$i]['i_caption'];
-
-			$tmp[$idx]['sort'] = $data[$i]['cost'];	//$sortprice;
-			$tmp[$idx]['row'] = $data[$i]['item_row'];
-			$tmp[$idx]['oz'] = $data[$i]['oz'];
-			$tmp[$idx]['item_code'] = $code;
-
-			// アイテムレビュー
-			$review_data = $this->getItemReview(array('sort'=>'post', 'itemid'=>$data[$i]['item_id'], 'nodata'=>'1'));
-			$review_len = count($review_data);
-			$tmp[$idx]['review_count'] = $review_len;
-			if($review_len>0){
-				$tmp[$idx]['review_path'] = '<p><a href="/itemreviews/?item='.$data[$i]['item_id'].'">レビューを見る（'.$review_len.'件）</a></p>';
-			}else{
-				$tmp[$idx]['review_path'] = '<p>レビューを見る（0件）</p>';
-			}
-			$idx++;
+	public function getCategoryInfo($id=0, $tag=array(), $mode='category', $sort='popular', $limit=''){
+		$param = array();
+		if ($mode != 'category') {
+			$endPoint = '/categories/0/'.$sort.'/'.$limit;
+			$param['args'][] = $id;
+		} else {
+			$endPoint = '/categories/'.$id.'/'.$sort.'/'.$limit;
 		}
-
-		// ソート
-		switch($sort){
-			case 'none':	break;
-			case 'low':		$order_type = 'sort';
-							$sort = 'asc';
-						break;
-			case 'high':	$order_type = 'sort';
-							$sort = 'desc';
-						break;
-			case 'asc':		$order_type = 'review_count';
-							$sort = 'asc';
-						break;
-			case 'desc':	$order_type = 'review_count';
-							$sort = 'desc';
-						break;
-			case 'heavy':	$order_type = 'oz';
-							$sort = 'desc';
-						break;
-			case 'light':	$order_type = 'oz';
-							$sort = 'asc';
-						break;
-			default:		$order_type = 'row';
-							$sort = 'asc';
-						break;
+		if (!empty($tag)){
+			for ($i=0; $i<count($tag); $i++) {
+				$param['args'][] = $tag[$i];
+			}
 		}
-
-		if($sort!="none"){
-			foreach($tmp as $key=>$row){
-				$sortkey[$key] = $row[$order_type];
-			}
-			if($sort=='asc'){
-				array_multisort($sortkey,SORT_ASC,SORT_NUMERIC,$tmp);
-			}else{
-				array_multisort($sortkey,SORT_DESC,SORT_NUMERIC,$tmp);
-			}
-
-			// キーをアイテムコードに変換
-			for($i=0; $i<count($tmp); $i++){
-				if($order_type=='oz' && $tmp[$i]['oz']==0) continue;
-				$res[$tmp[$i]['item_code']] = $tmp[$i];
-			}
-		}else{
-			$res = $tmp;
-		}
-
-		return $res;
+		$headers = [
+			'X-TLA-Access-Token:'._ACCESS_TOKEN,
+			'Origin:'._DOMAIN
+		];
+		parent::setURL(_API_3.$endPoint);
+		$data = parent::request('GET', $param, $headers);
+		parent::setURL(_API);
+		return $data;
 	}
 
 
-	/*
+	/**
+	 * アイテム一覧ページのHTMLタグ生成
+	 * @param {array} data 商品情報
+	 * @return {string} HTMLタグ
+	 */
+	public function htmlTag($data) {
+		$len = count($data);
+		$html='' ; 
+		for ($i=0; $i<$len; $i++){
+
+			if($data[$i]['reviews']>0){
+				$reviewPath = '<p><a href="/itemreviews/?item='.$data[$i]['item_id'].'">レビューを見る（'.$data[$i]['reviews'].'件）</a></p>';
+			}else{
+				$reviewPath = '<p>レビューを見る（0件）</p>';
+			}
+
+			if($i%4==0){ 
+				$firstlist = ' firstlist'; 
+			}else{ 
+				$firstlist = ''; 
+			} 
+			if( (preg_match('/^p-/',$data[$i]['item_code']) && $data[$i]['i_color_code']=="") ){
+				$suffix = '_style_0'; 
+			} elseif (_IS_THUMB_FOR_EXPRESS=='1' && ($data[$i]['item_code']=='522-ft' || $data[$i]['item_code']=='085-cvt' )) {
+				$suffix = '_for-express';	// 当日特急用のサムネイル 
+			}else{ 
+				$suffix = '_'.$data[$i]['i_color_code']; 
+			}
+			$html .= '<li class="listitems_ex'.$firstlist.'">
+				<a href="/items/item.php?code='.$data[$i]['item_code'].'">
+					<ul>
+						<li class="point_s">'.$data[$i]['i_caption'].'</li>
+						<li class="item_name_s">
+							<ul>
+								<li class="item_name_kata">'.strtoupper($data[$i]['item_code']).'</li>
+								<li class="item_name_name">'.$data[$i]['item_name'].'</li>
+							</ul>
+						</li>
+						<li class="item_image_s">';
+
+			if($i<3 && strpos($_REQUEST['limit'], '0-')!==false){
+				$html .= '<img class="rankno" src="/items/img/index/no'.($i+1).'.png" width="60" height="34" alt="No'.($i+1).'">';
+			}
+
+			$html .= '<img src="'._IMG_PSS.'items/list/'.$data[$i]['category_key'].'/'.$data[$i]['item_code'].'/'.$data[$i]['item_code'].$suffix.'.jpg" width="90%" height="auto" alt="'.strtoupper($data[$i]['item_code']).'">
+						</li>
+						<li class="item_info_s clearfix">
+							<ul>
+								<li class="cs_s">
+									<ul>
+										<li class="colors">'.$data[$i]['colors'].'</li>
+										<li class="sizes">'.$data[$i]['sizes'].'</li>
+									</ul>
+								</li>
+								<li class="price_s">TAKAHAMA価格
+									<br> <span><span>'.$data[$i]['cost'].'</span>円～</span>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</a>
+				<div class="review_anchor">'.$reviewPath.'</div>
+			</li>';
+		}
+		return $html;
+	}
+
+
+	/**
 	 * レビューの星マーク
 	 * @args 星の数
 	 * @return 評価を0.5単位に変換し画像パスを返す
@@ -249,20 +253,14 @@ $pageinfo = new PageInfo();
 if(isset($_REQUEST['act'])){
 	switch($_REQUEST['act']){
 	case 'itemtype':
-	/* 簡単見積もり */
+	/** 簡単見積ページ */
 		$dat = $pageinfo->getSilhouetteId($_REQUEST['category_id']);
 		$res = json_encode($dat);
 		header("Content-Type: text/javascript; charset=utf-8");
 		break;
-			
-	case 'price':
-	/* （未使用）簡単見積ページ */
-		list($rows, $isSwitch) = $pageinfo->priceFor($_REQUEST['itemid'], $_REQUEST['colormode']);
-		$res = $rows.'|'.$isSwitch;
-		break;
-		
+
 	case 'position':
-	/* 簡単見積ページ */
+	/** 簡単見積ページ */
 		if(isset($_REQUEST['id_type'])){
 			$files = $pageinfo->positionFor($_REQUEST['itemid'], $_REQUEST['id_type']);
 		}else{
@@ -287,7 +285,6 @@ if(isset($_REQUEST['act'])){
 			$res .= '</tr>';
 			$res .= '<tr>'.$ink.'</tr>';
 		}else{
-
 			$posdiv = "";
 			for($i=0; $i<count($files); $i++){
 				$imgfile = file_get_contents($files[$i]['filename']);
@@ -309,7 +306,7 @@ if(isset($_REQUEST['act'])){
 		break;
 		
 	case 'body':
-	/* 簡単見積ページのシルエット*/
+	/** 簡単見積ページのシルエット*/
 		$ids = array('',
 			array(1=>'綿素材',3=>'ドライ'),
 			array(6=>'トレーナー',7=>'プルパーカー',8=>'パンツ',10=>'ジップパーカー'),
@@ -349,74 +346,20 @@ if(isset($_REQUEST['act'])){
 		break;
 		
 	case 'itemtag':
-	/* 商品一覧ページの条件（タグ）で探す */
-		$dat = $pageinfo->getCategoryInfo($_REQUEST['catid'], $_REQUEST['tagid'], $_REQUEST['mode'], $_REQUEST['priceorder']);
-		
-		$ls = array();
-		$i = 0;
-		foreach($dat as $code=>$v){
-			$folder=$v['category_key'];
-			if($i%4==0){
-				$firstlist = ' firstlist';
-			}else{
-				$firstlist = '';
-			}
-			if( (preg_match('/^p-/',$code) && $v['initcolor']=="") || $code=='ss-9999'){
-				$suffix = '_style_0';
-			}else{
-				$suffix = '_'.$v['initcolor'];
-			}
-			$itemlist_data = '
-			<li class="listitems_ex'.$firstlist.'">
-				<a href="/items/item.php?code='.$code.'">
-					<ul>
-						<li class="point_s">'.$v['features'].'</li>
-						<li class="item_name_s">
-							<ul>
-								<li class="item_name_kata">'.strtoupper($code).'</li>
-								<li class="item_name_name">'.$v['item_name'].'</li>
-							</ul>
-						</li>
-						<li class="item_image_s">';
-			
-			if($i<3){
-				$itemlist_data .= '<img class="rankno" src="../img/index/no'.($i+1).'.png" width="60" height="34" alt="No'.($i+1).'">';
-			}
-			
-			$itemlist_data .= '
-							<img src="'._IMG_PSS.'items/list/'.$folder.'/'.$code.'/'.$code.$suffix.'.jpg" width="90%" height="auto" alt="'.strtoupper($code).'">
-						</li>
-						<li class="item_info_s clearfix">
-							<ul>
-								<li class="cs_s">
-									<ul>
-										<li class="colors">'.$v['colors'].'</li>
-										<li class="sizes">'.$v['sizes'].'</li>
-									</ul>
-								</li>
-								<li class="price_s">TAKAHAMA価格
-									<br> <span><span>'.$v['minprice'].'</span>円～</span>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</a>
-				<div class="review_anchor">'.$v['review_path'].'</div>
-			</li>';
-			
-			$ls[] = $itemlist_data;
-			$i++; 
-		} 
-		$res = implode("", $ls).'|'.mb_convert_kana(count($dat),'A', 'utf-8');
-		
+	/** 商品一覧ページの条件（タグ）で探す */
+		$dat = $pageinfo->getCategoryInfo($_REQUEST['catid'], $_REQUEST['tagid'], $_REQUEST['mode'], $_REQUEST['priceorder'], $_REQUEST['limit']);
+		$r = json_decode($dat, true);
+		$itemCount = count($r);
+		$itemlist_data = $pageinfo->htmlTag($r) ;
+		$res = $itemlist_data.'|'.mb_convert_kana($itemCount,'A', 'utf-8');
 		break;
 	}
 	echo $res;
 
 }else if(isset($_PAGE_ESTIMATION_1)){
-	/*
-	*	簡単見積ページ
-	*/
+	/**
+	 * 簡単見積ページ
+	 */
 	$data = $pageinfo->categoryList();
 	$category_selector = '<select id="category_selector" onchange="$.changeCategory(this)">';
 	for($i=0; $i<count($data); $i++){
@@ -436,17 +379,13 @@ if(isset($_REQUEST['act'])){
 	for($i=0; $i<count($files); $i++){
 		$imgfile = file_get_contents($files[$i]['filename']);
 		$f = preg_replace('/\.\/img\//', _IMG_PSS, $imgfile);
-//			$ink = '<div id="inktarget'.$i.'" class="'.$files[$i]['base_name'].'">';
-//			$ink .= '</div>';
 		$posname = '<div class="posname_'.$i.'"></div>';
 		$ink = '<div><select class="ink_'.$i.'"><option value="0" selected="selected">選択してください</option>';
 		$ink .= '<option value="1">1色</option><option value="2">2色</option><option value="3">3色</option>';
 		$ink .= '<option value="9">4色以上</option></select></div>';
 			$posdiv .= '<li class="pntposition">';
 				$posdiv .= '<div class="psnv">';
-//				$posdiv .= '<div class="pnttxt"><p class="posname_'.$i.'"></p></div>';
 					$posdiv .= '<div class="pos_'.$i.'">'.$f.'</div>';
-					//$posdiv .= '<div><p>デザインの色数</p><p><select class="ink_'.$i.'"><option value="0" selected="selected">選択してください</option><option value="1">1色</option><option value="2">2色</option><option value="3">3色</option><option value="9">4色以上</option></select></p></div>';
 					$posdiv .= $posname;
 					$posdiv .= $ink;
 					$posdiv .= '</div>';
@@ -454,164 +393,18 @@ if(isset($_REQUEST['act'])){
 	}
 	$posdiv = $posdiv;
 
-//	$pos = '<tr>';
-//	$pos .= '<th>プリント位置</th>';
-//	for($i=0; $i<count($files); $i++){
-//		$imgfile = file_get_contents($files[$i]['filename']);
-//		$f = preg_replace('/.\/img\//', _IMG_PSS, $imgfile);
-//		$pos .= '<td><div class="pos_'.$i.'">'.$f.'</div></td>';
-//		$posname .= '<td><p class="posname_'.$i.'"></p></td>';
-//		$ink .= '<td><p><select class="ink_'.$i.'"><option value="0" selected="selected">選択してください</option>';
-//		$ink .= '<option value="1">1色</option><option value="2">2色</option><option value="3">3色</option>';
-//		$ink .= '<option value="9">4色以上</option></select></p></td>';
-//	}
-//	$pos .= '</tr>';
-//	$pos .= '<tr><th>　</th>'.$posname.'</tr>';
-//	$pos .= '<tr><th>デザインの<br>色数</th>'.$ink.'</tr>';
-
-}else if(isset($_PAGE_STANDARD)){
-	/*
-	*	料金の目安
-	*	一枚あたりの料金の目安を取得する
-	*	（未使用）
-	*/
-	
-	$data = $pageinfo->categoryList();
-	$category_selector = '<select id="category_selector" onchange="$.changeCategory(this)">';
-	foreach($data as $key=>$val){
-		$category_selector .= '<option value="'.$val['id'].'"';
-		if($key==0) $category_selector .= ' selected="selected"';
-		$category_selector .= '>'.$val['name'].'</option>';
-	}
-	$category_selector .= '</select>';
-	
-}else if(isset($_PAGE_ESTIMATION)){
-	/*
-	*	シーン別ページ
-	*/
-
-	$data = $pageinfo->categoryList();
-	$category_selector = '<select id="category_selector">';
-	foreach($data as $key=>$val){
-		$category_selector .= '<option value="'.$val['code'].'" rel="'.$val['id'].'"';
-		if($key==0) $category_selector .= ' selected="selected"';
-		$category_selector .= '>'.$val['name'].'</option>';
-	}
-	$category_selector .= '</select>';
-	
-	$data = $pageinfo->itemList();
-	$item_selector = '<select id="item_selector" onchange="$.changeItem()">';
-	foreach($data as $key=>$val){
-		//if($subcat['long-shirts'][$val['code']] || $subcat['baby'][$val['code']]) continue;
-		if($val['code']=='ss-9999-96') continue;
-		
-		$item_selector .= '<option value="'.$val['id'].'" rel="'.$val['code'].'"';
-		if($key==0) $item_selector .= ' selected="selected"';
-		$item_selector .= '>'.$val['name'].'</option>';
-	}
-	$item_selector .= '</select>';
-	$curitemid = $data[0]['id'];
-	
-	$itemattr = $pageinfo->itemAttr($curitemid);
-	list($categorykey, $categoryname) = each($itemattr['category']);
-	list($itemcode, $itemname) = each($itemattr['name']);
-	list($code, $colorname) = each($itemattr['code']);
-	
-	$color_count = 0;
-	foreach($itemattr['code'] as $code=>$colorname){
-		$color_count++;
-		$c = explode('_', $code);
-		$color_name = $colorname;
-		$thumbs .= '<li';
-		if($color_count==1){
-			$thumbs .= ' class="nowimg"';
-			$curcolor = $color_name;
-		}
-		$thumbs .= '><img alt="'.$c[1].'" title="'.$color_name.'" src="'._IMG_PSS.'items/'.$categorykey.'/'.$itemcode.'/'.$code.'_s.jpg" /></li>';
-	}
-	
-	$files = $pageinfo->positionFor($curitemid);
-	$pos = '<tr class="posid_'.$files[0]['posid'].'"><td colspan="3" class="pos_step ps1">(1)プリントする位置を選択してください。</td></tr>';
-	$pos .= '<tr>';
-	for($i=0; $i<count($files); $i++){
-		$imgfile = file_get_contents($files[$i]['filename']);
-		$f = preg_replace('/\.\/img\//', _IMG_PSS, $imgfile);
-		$pos .= '<td><div class="pos_'.$i.'">'.$f.'</div></td>';
-		$ink .= '<td id="inktarget'.$i.'" class="'.$files[$i]['base_name'].'">';
-		$ink .= '</td>';
-	}
-	$pos .= '</tr>';
-	
-	$pos .= '<tr>';
-	$pos .= '<td colspan="3" class="pos_step">(2)選択した位置のプリントに使用する、インクの色数を選択してください。';
-	$pos .= '<span class="questions"><a class="info_icon" target="_new" href="/design/fontcolor.php#navi2">使用インク色？</a></span>';
-	$pos .= '</td>';
-	$pos .= '</tr>';
-	
-	$pos .= '<tr>'.$ink.'</tr>';
-	$pos = $pos;
-		
-	if(isset($param['itemcode'], $param['amount'], $param['ink'])){
-		
-		for($i=0; $i<count($param['itemcode']); $i++){
-			$args[] = array('itemcode'=>$param['itemcode'][$i], 'amount'=>$param['amount'][$i], 'ink'=>$param['ink'][$i], 'pos'=>'前', 'size'=>0);
-			$price = $pageinfo->printfee($args);
-			$cost = $pageinfo->itemPrice($param['itemcode'][$i], 'code');
-			$res[$param['itemcode'][$i]]['price'] = $price['printfee'] + ($cost[0]['price_white'] * $param['amount'][$i]);
-			$res[$param['itemcode'][$i]]['perone'] = ceil($price['printfee'] / $param['amount'][$i]) + $cost[0]['price_white'];
-		}
-		
-		for($t=0; $t<count($param['itemcode']); $t++){			
-			// サイズ展開
-			$data = $pageinfo->itemSize($param['itemcode'][$t],null,'code');
-			$s = array();
-			for($i=0; $i<count($data); $i++){
-				if($data[$i]['id']<11){								// 70-160
-					$s[0][] = $data[$i]['name'];
-				}else if($data[$i]['id']<17 || $data[$i]['id']>28){	// JS-JL, GS-GL, WS-WL
-					$s[1][] = $data[$i]['name'];
-				}else{												// XS-8L
-					$s[2][] = $data[$i]['name'];
-				}
-			}
-			for($i=0; $i<3; $i++){
-				if(!empty($s[$i])){
-					if($s[$i][0]!=$s[$i][count($s[$i])-1]){
-						$s[3][] = $s[$i][0].'-'.$s[$i][count($s[$i])-1];
-					}else{
-						$s[3][] = $s[$i][0];
-					}
-				}
-			}
-			$size[$param['itemcode'][$t]] = implode(', ', $s[3]);
-			
-			// カラー数、最低価格
-			$itemcode = $param['itemcode'][$t];
-			$info = $pageinfo->itemPageInfo($itemcode, 'code');
-			
-			$res[$itemcode]['item_name'] = $info['item_name'];
-			$res[$itemcode]['colors'] = $info['colors'];
-			$tes[$itemcode]['sizes'] = $info['sizes'];
-			$res[$itemcode]['minprice'] = number_format($info['mincost']);
-			$res[$itemcode]['initcolor'] = $info['initcolor'];
-			$tmpes[$itemcode]['features'] = $info['caption'];
-		}
-		
-	}
-	
 }else if(isset($_PAGE_CATEGORIES)){
-	/*
-	*	商品一覧ページ
-	*/
-
-	// タグ条件チェックボックスの指定状況と、カテゴリーまたはアイテムタグのIDを判定
-//	$_IS_SCROLL = "";
+	/**
+	 * 商品一覧ページ
+	 */
 	$_ID = 1;
 	$_IS_TAG = 0;
 	$mode = "category";
+	$tag = array();
+	$dirName = basename(dirname($_SERVER['SCRIPT_NAME'], 1));
 	parse_str(urldecode($_SERVER['QUERY_STRING']), $prm);
 	if(!empty($prm)){
-		// カテゴリーまたはアイテムタグのID判定
+		// 検索結果の表示
 		if (isset($prm['cat'])) {
 			$_ID = $prm['cat'];
 			$_IS_TAG = 0;
@@ -621,8 +414,8 @@ if(isset($_REQUEST['act'])){
 			$_IS_TAG = 1;
 			$mode = "tag";
 		}
-		
-		// 絞り込み条件チェックボックス
+
+		// 絞り込み検索条件チェックボックス
 		$_TAG = array();
 		$tag_data = "";
 		foreach ($prm as $key=>$val) {
@@ -641,13 +434,18 @@ if(isset($_REQUEST['act'])){
 			}
 		}
 
-	}
-	
-	if (!isset($prm['cat'], $prm['tag'])) {
-		$dirName = basename(dirname($_SERVER['SCRIPT_NAME'], 1));
+		// 検索条件で指定されているアイテムタグを設定
+		if(!empty($_TAG)){
+			$tag = array_merge($tag, $_TAG);
+			$tag = array_unique($tag);
+			$tag = array_values($tag);
+		}
+
+	} else if (!isset($prm['cat'], $prm['tag'])) {
+		// 初期表示
 		$tmp = $pageinfo->categoryList();
 		$categoryIds = array_column($tmp, 'id', 'code');
-		
+
 		if ($dirName=='sportswear') {
 			$_ID = 73;
 			$_IS_TAG = 1;
@@ -657,98 +455,23 @@ if(isset($_REQUEST['act'])){
 			$_IS_TAG = 0;
 			$mode = "category";
 		}
-		
+	}
+	
+	// カテゴリ毎の説明文
+	if (is_file($_SERVER['DOCUMENT_ROOT'].'/items/txt/'.$dirName.'.txt')) {
 		$description = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/items/txt/'.$dirName.'.txt');
 	}
-	
-	
-	$tag = array();
-	if(isset($_TAG)){
-		// 検索条件で指定されているアイテムタグを設定
-		$tag = array_merge($tag, $_TAG);
-		$tag = array_unique($tag);
-		$tag = array_values($tag);
-	} 
-	
+
 	// カテゴリ一覧情報を取得
-	$res = $pageinfo->getCategoryInfo($_ID, $tag, $mode);
-	
+	$contentsLength = 12;	// 表示する商品数
+	$data = $pageinfo->getCategoryInfo($_ID, $tag, $mode, 'popular', $contentsLength);
+	$res = json_decode($data, true);
+
 	// アイテム一覧のHTMLタグを生成
-	$category_name = '';
-	$folder = '';
-	$itemlist_data='' ; 
-	$item_count = 0;
-	foreach($res as $code=>$v){
-		$category_name = $v['category_name'];
-		$folder = $v['category_key'];
-		if($item_count%4==0){ 
-			$firstlist = ' firstlist'; 
-		}else{ 
-			$firstlist = ''; 
-		} 
-		if( (preg_match('/^p-/',$code) && $v['initcolor']=="") ){
-			$suffix = '_style_0'; 
-		} elseif (_IS_THUMB_FOR_EXPRESS=='1' && ($code=='522-ft' || $code=='085-cvt' )) {
-			$suffix = '_for-express';	// 当日特急用のサムネイル 
-		}else{ 
-			$suffix = '_'.$v['initcolor']; 
-		}
-		$itemlist_data .= '
-		<li class="listitems_ex'.$firstlist.'">
-			<a href="/items/item.php?code='.$code.'">
-				<ul>
-					<li class="point_s">'.$v['features'].'</li>
-					<li class="item_name_s">
-						<ul>
-							<li class="item_name_kata">'.strtoupper($code).'</li>
-							<li class="item_name_name">'.$v['item_name'].'</li>
-						</ul>
-					</li>
-					<li class="item_image_s">';
-		
-		if($item_count<3){
-			$itemlist_data .= '<img class="rankno" src="/items/img/index/no'.($item_count+1).'.png" width="60" height="34" alt="No'.($item_count+1).'">';
-			$itemname_data .= '<img class="today" src="/items/img/index/today'.($item_count+1).'.png" width="60" height="34" alt="No'.($item_count+1).'">';
-			$itemname_data .= '<img class="today" src="/items/img/index/today'.($item_count+1).'.png" width="60" height="34" alt="No'.($item_count+1).'">';
-		}
-		
-		$itemlist_data .= '
-						<img src="'._IMG_PSS.'items/list/'.$folder.'/'.$code.'/'.$code.$suffix.'.jpg" width="90%" height="auto" alt="'.strtoupper($code).'">
-					</li>
-					<li class="item_info_s clearfix">
-						<ul>
-							<li class="cs_s">
-								<ul>
-									<li class="colors">'.$v['colors'].'</li>
-									<li class="sizes">'.$v['sizes'].'</li>
-								</ul>
-							</li>
-							<li class="price_s">TAKAHAMA価格
-								<br> <span><span>'.$v['minprice'].'</span>円～</span>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</a>
-			<div class="review_anchor">'.$v['review_path'].'</div>
-		</li>';
-		
-		$item_count++;
-	}
-	
-	// 人気商品から探すで表示するアイテム
-	if(isset($popular)){
-		for($a=0; $a<count($popular); $a++){
-			$itemcode = $popular[$a];
-			$info = $pageinfo->itemPageInfo($itemcode, 'code');
-			$pop[$itemcode]['item_name'] = $info['item_name'];
-			$pop[$itemcode]['colors'] = $info['colors'];
-			$pop[$itemcode]['sizes'] = $info['sizes'];
-			$pop[$itemcode]['minprice'] = number_format($info['mincost']);
-			$pop[$itemcode]['initcolor'] = $info['initcolor'];	//$ic[$itemcode];
-		}
-	}
-	
+	$itemlist_data = $pageinfo->htmlTag($res);
+	$category_name = $res[0]['category_name'];
+	$itemCount = count($res);
+
 	// 条件検索HTMLタグを生成
 	$catNumber = 0;
 	$category_tag = "";
@@ -758,6 +481,7 @@ if(isset($_REQUEST['act'])){
 	$cloth_tag = "";
 	$size_tag = "";
 
+	// アイテムタグ一覧を取得
 	if ($mode=='category') {
 		$itemTag = $pageinfo->itemTag($_ID, $tag);	// カテゴリー指定あり
 	} else {
@@ -767,6 +491,8 @@ if(isset($_REQUEST['act'])){
 	$itemTags = json_decode($itemTag, true);
 
 	$searchTag = array();
+
+	// 条件検索用チェックボックス生成
 	$len = count($itemTags);
 	for ($i=0; $i<$len; $i++) {
 		// 除外するタグとタグ名
@@ -776,26 +502,26 @@ if(isset($_REQUEST['act'])){
 		} else if ($mode=='category' && $itemTags[$i]['tag_type']==1) {
 			continue;
 		}
-		
+
 		// パンナビ生成用にtag_idをキーにする
 		$searchTag[$itemTags[$i]['tag_id']] = $itemTags[$i];
-		
+
 		$isChecked = '';
 		if(in_array($itemTags[$i]['tag_id'], $tag)) $isChecked = 'checked="checked"';
 		switch($itemTags[$i]["tag_type"]){
 			case 1:	$category_tag .= '<div class="tag_list_item"><label><input type="checkbox" '.$isChecked.' value="'.$itemTags[$i]['tag_id'].'_'.$itemTags[$i]["tagtype_key"].'">'.$itemTags[$i]["tag_name"].'</label></div>';
-					$catNumber++;
-					break;
+				$catNumber++;
+				break;
 			case 2: $scene_tag .= '<div class="tag_list_item"><label><input type="checkbox" '.$isChecked.' value="'.$itemTags[$i]['tag_id'].'_'.$itemTags[$i]["tagtype_key"].'">'.$itemTags[$i]["tag_name"].'</label></div>';
-					break;
+				break;
 			case 3: $silhouette_tag .= '<div class="tag_list_item"><label><input type="checkbox" '.$isChecked.' value="'.$itemTags[$i]['tag_id'].'_'.$itemTags[$i]["tagtype_key"].'">'.$itemTags[$i]["tag_name"].'</label></div>';
-					break;
+				break;
 			case 4: $material_tag .= '<div class="tag_list_item"><label><input type="checkbox" '.$isChecked.' value="'.$itemTags[$i]['tag_id'].'_'.$itemTags[$i]["tagtype_key"].'">'.$itemTags[$i]["tag_name"].'</label></div>';
-					break;
+				break;
 			case 5: $cloth_tag .= '<div class="tag_list_item"><label><input type="checkbox" '.$isChecked.' value="'.$itemTags[$i]['tag_id'].'_'.$itemTags[$i]["tagtype_key"].'">'.$itemTags[$i]["tag_name"].'</label></div>';
-					break;
+				break;
 			case 6: $size_tag .= '<div class="tag_list_item"><label><input type="checkbox" '.$isChecked.' value="'.$itemTags[$i]['tag_id'].'_'.$itemTags[$i]["tagtype_key"].'">'.$itemTags[$i]["tag_name"].'</label></div>';
-					break;
+				break;
 		}
 	}
 
@@ -815,7 +541,7 @@ if(isset($_REQUEST['act'])){
 	$material_tag = empty($material_tag)? "": '<div class="tag_list"><div class="tag_list_title">素材</div>'.$material_tag."</div><hr>";
 	$cloth_tag = empty($cloth_tag)? "": '<div class="tag_list"><div class="tag_list_title">生地</div>'.$cloth_tag."</div><hr>";
 	$size_tag = empty($size_tag)? "": '<div class="tag_list"><div class="tag_list_title">サイズ</div>'.$size_tag."</div><hr>";
-	
+
 	// パンナビを生成
 	if(!empty($_IS_TAG)){
 		$category_name = $label_pannavi;
@@ -838,14 +564,14 @@ if(isset($_REQUEST['act'])){
 	}else{
 		$pan_navi = '<li>'.$label_pannavi.'</li>';
 	}
-	
+
 	// 絞り込み条件の指定状況の設定用フォームとチェックボックスを生成
 	$tagCheckBox = '';
 	$tagCheckBox .= $material_tag;
 	$tagCheckBox .= $silhouette_tag;
 	$tagCheckBox .= $cloth_tag;
 	$tagCheckBox .= $size_tag;
-	
+
 	$tagList = '<form name="form_tag_search" id="form_tag_search" action="'.dirname($_SERVER['SCRIPT_NAME']).'/" method="get">';
 	$tagList .= $tag_data;
 	if(empty($_IS_TAG)){
@@ -860,15 +586,15 @@ if(isset($_REQUEST['act'])){
 	$tagList .= $tagCheckBox;
 	$tagList .= '<div id="searchcondition_clear"><a href="'.$current_path.'" class="btn_sub btn_clear">条件リセット</a></div>';
 	$tagList .= '</form>';
-	
+
 	if (empty($tagCheckBox)) {
 		$tagList = '';
 	}
 	
 }else if(isset($_PAGE_ITEMDETAIL)){
-	/*
-	*	商品詳細ページ
-	*/
+	/**
+	 * 商品詳細ページ
+	 */
 	
 	// アイテムカラーの初期値
 	if($_PAGE_ITEMDETAIL===true) $_PAGE_ITEMDETAIL=1;
@@ -878,18 +604,6 @@ if(isset($_REQUEST['act'])){
 	$data['itemcode'] = $path_parts['filename'];
 	*/
 
-	//パラメーターからitemcodeを取得
-//	$_ITEM_CODE = $_GET['id'];
-//	$data['itemcode'] = $_ITEM_CODE;
-//
-//	if(isset($_ITEM_CODE)){
-//		$data['itemcode'] = $_ITEM_CODE;
-//	}else{
-//		$data['itemcode'] = basename($_SERVER['SCRIPT_NAME'],'.'.$path_parts['extension']);
-//	}
-//	$data['itemid'] = $pageinfo->itemID($data['itemcode']);
-
-	
 	// アイテム情報取得
 	$data['itemid'] = $pageinfo->itemID($_GET['code']);
 	if (empty($data['itemid'])) header("Location: "._DOMAIN);
@@ -1077,15 +791,6 @@ if(isset($_REQUEST['act'])){
 	if(!empty($style_gallery)){
 		$style_gallery = '<p class="thumb_h">Style</p><ul id="style_thumb">'.$style_gallery.'</ul>';
 	}
-	
-	// アンカーリンク
-//	$path = str_replace(DIRECTORY_SEPARATOR.$_SERVER['SERVER_NAME'], '', dirname($_SERVER['SCRIPT_NAME'])).DIRECTORY_SEPARATOR;
-//	$items = $pageinfo->itemList($_PAGE_CATEGORYID);
-//	$extension = '<div class="ext_wrap"><ul>';
-//	foreach((array)$items as $key=>$val){
-//		$extension .= '<li><a href="'.$path.'item.php?code='.$val['code'].'">'.$val['name'].'</a></li>';
-//	}
-//	$extension .= '</ul></div>';
 	
 	// アイテムレビュー
 	$review = '';
@@ -1282,30 +987,17 @@ if(isset($_REQUEST['act'])){
 	for($i=0; $i<count($files); $i++){
 		$printAreaImage .= '<div id="printarea_pic"><img src="'._IMG_PSS.'printarea/'.$position_type.'/base_'.$baseName[$files[$i]['base_name']].'.png" alt=""><div id="printAreaImageText_one">'.$baseNameText[$baseName[$files[$i]['base_name']]].'</div></div>';
 	}
-/*
-	if(count($files)>0) {
-		$printAreaImage .= '<div id="printAreaImageText">';
-		for($i=0; $i<count($files); $i++){
-			$printAreaImage .= '<div id="printAreaImageText_one">'.$baseNameText[$baseName[$files[$i]['base_name']]].'</div>';
-		}
-		$printAreaImage .= '</div>';
-	}
-*/
 
 	// 見積り計算フォームのプリント位置指定
 	$posdiv = "";
 	for($i=0; $i<count($files); $i++){
 		$imgfile = file_get_contents($files[$i]['filename']);
 		$f = preg_replace('/\.\/img\//', _IMG_PSS, $imgfile);
-//		$ink .= '<td id="inktarget'.$i.'" class="'.$files[$i]['base_name'].'">';
-//		$ink .= '</td>';
 			$ink = '<div id="inktarget'.$i.'" class="'.$files[$i]['base_name'].'">';
 			$ink .= '</div>';
 			$posdiv .= '<li class="pntposition">';
 				$posdiv .= '<div class="psnv">';
-//				$posdiv .= '<div class="pnttxt"><p class="posname_'.$i.'"></p></div>';
 					$posdiv .= '<div class="pos_'.$i.'">'.$f.'</div>';
-					//$posdiv .= '<div><p>デザインの色数</p><p><select class="ink_'.$i.'"><option value="0" selected="selected">選択してください</option><option value="1">1色</option><option value="2">2色</option><option value="3">3色</option><option value="9">4色以上</option></select></p></div>';
 					$posdiv .= $ink;
 					$posdiv .= '</div>';
 			$posdiv .= '</li>';

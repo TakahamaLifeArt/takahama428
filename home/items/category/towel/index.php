@@ -19,17 +19,13 @@ require_once $_SERVER['DOCUMENT_ROOT']. '/php_libs/pageinfo.php';
 		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
 		<meta property="fb:app_id" content="1605142019732010" />
 		<title>
-			<?php echo $category_name;?>一覧【<?php echo mb_convert_kana(count($res),'A'); ?>種類】 ｜オリジナルTシャツ作成が早いタカハマライフアート！
+			<?php echo $category_name;?>一覧 ｜オリジナルTシャツ作成が早いタカハマライフアート！
 		</title>
+		<link rel="preconnect" href="https://takahamalifeart.com">
 		<link rel="shortcut icon" href="/icon/favicon.ico">
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 		<link rel="stylesheet" type="text/css" href="/items/css/item.css" media="screen" />
 		<link rel="stylesheet" type="text/css" href="/items/css/items_style_responsive.css" media="screen" />
-		<script type="text/javascript">
-			var _CAT_ID = <?php echo $_ID;?>;
-			var _IS_TAG = <?php echo $_IS_TAG;?>;
-
-		</script>
 	</head>
 
 	<body>
@@ -74,11 +70,13 @@ require_once $_SERVER['DOCUMENT_ROOT']. '/php_libs/pageinfo.php';
 						</div>
 						<div class="tag_btn"></div>
 						<div class="tag_btn">
-							<p id="sort_popular_index" class="act">人気順</p>
+							<p id="sort_popular_popular" class="act">人気順</p>
 						</div>
 					</div>
 
-					<p class="txt_min">表示件数：<span class="number"><?php echo mb_convert_kana(count($res),'A'); ?></span> アイテム</p>
+					<p class="txt_min">表示件数：
+						<span class="number"><?php echo mb_convert_kana($itemCount,'A'); ?></span> アイテム
+					</p>
 
 					<ul class="listitems clearfix">
 						<?php echo $itemlist_data; ?>
@@ -98,8 +96,13 @@ require_once $_SERVER['DOCUMENT_ROOT']. '/php_libs/pageinfo.php';
 
 		<div id="overlay-mask" class="fade"></div>
 
+		<script type="text/javascript">
+			var _CAT_ID = <?php echo $_ID;?>;
+			var _IS_TAG = <?php echo $_IS_TAG;?>;
+		</script>
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
 		<script type="text/javascript" src="/items/js/itemindex.js"></script>
+		<script type="text/javascript" src="/items/js/ScrollPagination.min.js"></script>
 
 	</body>
 
