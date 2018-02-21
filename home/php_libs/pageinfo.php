@@ -1048,7 +1048,7 @@ if(isset($_REQUEST['act'])){
 	list($sizeid, $mincost) = each($cost);
 	$res['mincost'] = $mincost;
 	$amount = 30;
-	$args[] = array('itemid'=>$data['itemid'], 'amount'=>$amount, 'ink'=>1, 'pos'=>'f');
+	$args[] = array('itemid'=>$data['itemid'], 'amount'=>$amount, 'ink'=>1, 'pos'=>'f', 'size'=>0);
 	$price = $pageinfo->printfee($args);
 	$base = $price['printfee'] + $mincost*$amount;
 	$tax = 1+($price['tax']/100);

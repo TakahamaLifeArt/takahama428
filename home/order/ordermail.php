@@ -777,11 +777,12 @@ class Ordermail extends Conndb{
 								$orderselectivearea[] = "0|".$orderarea_id."|".$data8['code']."|".$data8['area'];
 							}
 							
+							$orderarea_id++;
+							
 							// 同じ絵型面が2つ以上ある場合
 							$origin = 0;
 						}
 						
-						$orderarea_id++;
 					}
 					
 					$orderprint_id++;
