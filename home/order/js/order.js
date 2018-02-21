@@ -2390,7 +2390,6 @@ $(function () {
 		$('#design_file').html(filename);
 
 		$.estimate().then(function(){
-			var printInfo = '';
 			
 			// 注文メールフォームを更新
 			$('#orderfom input:not(.ticket)').remove();
@@ -2410,7 +2409,8 @@ $(function () {
 			// アイテムとプリント
 			tbl.children('tbody').remove();
 			Object.keys(z.designs).forEach(function(designId, designIdx){
-				var printTr = '';
+				var printTr = '',
+					printInfo = '';
 				
 				// ヘッダー
 				tbl.append('<tbody><tr class="tabl_ttl border_t"><td>アイテム/カラー</td><td>サイズ</td><td>単価</td><td>枚数</td><td>金額</td></tr></tbody>');
