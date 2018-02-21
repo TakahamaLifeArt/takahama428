@@ -22,7 +22,7 @@ if (isset($_REQUEST['login'])) {
 			'X-TLA-Access-Token:'._ACCESS_TOKEN,
 			'Origin:'._DOMAIN
 		];
-		$http = new HTTP(_API_3.'/users/'.$_REQUEST['email'].'/'.$_REQUEST['pass']);
+		$http = new HTTP('https://takahamalifeart.com/v3/users/'.$_REQUEST['email'].'/'.$_REQUEST['pass']);
 		$res = $http->request('GET', [], $headers);
 		$data = json_decode($res, true);
 		if (array_key_exists('error', $data)) {
