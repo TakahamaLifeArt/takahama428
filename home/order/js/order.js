@@ -1166,21 +1166,31 @@ $(function () {
 								$(target[i]).find('.price_box_2').removeClass('hidden');	// 初めてのStepはおまかせプリントが初期値
 							}
 							list += '>おまかせ</option>';
-							if (r[0]['silk'] == 1) list += '<option value="silk"';
-							if (method=='silk') list += ' selected';
-							list += '>シルクスクリーン</option>';
-							if (r[0]['digit'] == 1) list += '<option value="digit"';
-							if (method=='digit') list += ' selected';
-							list += '>デジタル転写</option>';
-							if (r[0]['inkjet'] == 1) list += '<option value="inkjet"';
-							if (method=='inkjet') list += ' selected';
-							list += '>インクジェット</option>';
-							if (r[0]['cutting'] == 1) list += '<option value="cutting"';
-							if (method=='cutting') list += ' selected';
-							list += '>カッティング</option>';
-							if (r[0]['emb'] == 1) list += '<option value="emb"';
-							if (method=='emb') list += ' selected';
-							list += '>刺繍</option>';
+							if (r[0]['silk'] == 1) {
+								list += '<option value="silk"';
+								if (method=='silk') list += ' selected';
+								list += '>シルクスクリーン</option>';
+							}
+							if (r[0]['digit'] == 1) {
+								list += '<option value="digit"';
+								if (method=='digit') list += ' selected';
+								list += '>デジタル転写</option>';
+							}
+							if (r[0]['inkjet'] == 1) {
+								list += '<option value="inkjet"';
+								if (method=='inkjet') list += ' selected';
+								list += '>インクジェット</option>';
+							}
+							if (r[0]['cutting'] == 1) {
+								list += '<option value="cutting"';
+								if (method=='cutting') list += ' selected';
+								list += '>カッティング</option>';
+							}
+							if (r[0]['emb'] == 1) {
+								list += '<option value="emb"';
+								if (method=='emb') list += ' selected';
+								list += '>刺繍</option>';
+							}
 						} else {
 							list = '<p><select class="print_selector down_cond">';
 							if (r[0]['cutting'] == 1) {

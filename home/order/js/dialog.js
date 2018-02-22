@@ -3,10 +3,9 @@
  */
 $(function(){
 	'use strict';
-	const TAP_EVENT = ('ontouchstart' in window) ? 'touchstart' : 'click';
 
 	//	プリント方法
-	$('.print_link').on(TAP_EVENT, function () {
+	$('.print_link').on("TAP_EVENT", function () {
 		var msg = '';
 		msg += '<div class="print_type">';
 		msg += '<h3 class="print_ttl">シルクスクリーン</h3>';
@@ -70,7 +69,7 @@ $(function(){
 	});
 
 	//お支払ご利用方法（未使用）
-	$('#pop_payment').on(TAP_EVENT, function () {
+	$('#pop_payment').on("TAP_EVENT", function () {
 		var msg = '<h3 class="syousai">銀行振込</h3><hr>';
 		msg += '<p>下記の口座にお振込ください。</p>';
 		msg += '<p>ご希望の納品日より2日前までにお振込をお願い致します。（土日祝は入金確認ができないのでご注意ください）お振込手数料は、お客様のご負担とさせていただいております。</p>';
@@ -102,7 +101,7 @@ $(function(){
 	});
 	
 	//	割引　説明を見る
-	$('#sale_link').on(TAP_EVENT, function () {
+	$('#sale_link').on("TAP_EVENT", function () {
 		var msg = '<div class="sale_txt">';
 		msg += '<div class="sale_block">';
 		msg += '<h3>学割<span class="red_txt">(3%OFF)</span></h3>';
@@ -124,7 +123,7 @@ $(function(){
 	});
 
 	//	お支払い　ご利用方法
-	$('.cashflow').on(TAP_EVENT, function () {
+	$('.cashflow').on("TAP_EVENT", function () {
 		var msg = '<div class="payflow">';
 		msg += '<div class="paylist">';
 		msg += '<h3>銀行振込</h3>';
@@ -159,7 +158,7 @@ $(function(){
 	});
 
 	// ご利用規約
-	$('#user_policy').on(TAP_EVENT, function(){
+	$('#user_policy').on("TAP_EVENT", function(){
 		var msg = '<p>この利用規約（以下、「本規約」といいます。）は、有限会社タカハマライフアート（以下、「当社」といいます。）がこのウェブサイト上で提供するサービス（以下「本サービス」といいます。）の利用条件を定めるものです。登録ユーザーの皆様（以下、「ユーザー」といいます。）には、本規約に従って、本サービスをご利用いただきます。</p>' +
 			'<h4>第１条　＜適用＞</h4>' +
 			'<p>本規約は、ユーザーと当社との間の本サービスの利用に関わる一切の関係に適用されるものとします。</p>' +
@@ -281,7 +280,7 @@ $(function(){
 	});
 
 	//	会員ランク（未使用）
-	$('#bronze').on(TAP_EVENT, function () {
+	$('#bronze').on("TAP_EVENT", function () {
 		var msg = '<div class="cust_rank_b">';
 		msg += '<div class="rank_img"><img src="/order/img/flow/sp_customer_rank_bronze.png" width="100%"></div>';
 		msg += '<div class="rank_inner">合計金額から</div>';
@@ -291,7 +290,7 @@ $(function(){
 		msg += '</div>';
 		$.msgbox(msg, '<h2>会員ランク特典</h2>');
 	});
-	$('#silver').on(TAP_EVENT, function () {
+	$('#silver').on("TAP_EVENT", function () {
 		var msg = '<div class="cust_rank_s">';
 		msg += '<div class="rank_img"><img src="/order/img/flow/sp_customer_rank_silver.png" width="100%"></div>';
 		msg += '<div class="rank_inner">合計金額から</div>';
@@ -301,7 +300,7 @@ $(function(){
 		msg += '</div>';
 		$.msgbox(msg, '<h2>会員ランク特典</h2>');
 	});
-	$('#gold').on(TAP_EVENT, function () {
+	$('#gold').on("TAP_EVENT", function () {
 		var msg = '<div class="cust_rank_g">';
 		msg += '<div class="rank_img"><img src="/order/img/flow/sp_customer_rank_gold.png" width="100%"></div>';
 		msg += '<div class="rank_inner">合計金額から</div>';
@@ -313,7 +312,7 @@ $(function(){
 	});
 
 	//	カレンダーの当日特急の納期を選択した場合の表示
-	$('#ex_form').on(TAP_EVENT, function () {
+	$('#ex_form').on("TAP_EVENT", function () {
 		var msg = '<div class="date_ex">';
 		msg += '<h3><i class="fa fa-exclamation-triangle red_mark" aria-hidden="true"></i>「当日特急プランについて」</h3>';
 		msg += '<p class="txt_sml"><span class="red_mark">カレンダーで選択できないお日にちは当日特急プランとなります。ご希望の方は恐れ入りますが、当日特急フォームからお問い合わせください。</span></p>';
