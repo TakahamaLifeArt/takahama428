@@ -267,6 +267,6 @@
 
 <div class="footer-copyright">
 	<div class="container-fluid">
-		&copy; 2018 Copyright: <a href="/" class="copyright"> オリジナルTシャツ屋 </a> All rights reserved.<br>【掲載の記事・写真・イラストなどの無断複写・転載等を禁じます。】
+		&copy; 2001-2018 有限会社タカハマライフアート<br>【掲載の記事・写真・イラストなどの無断複写・転載等を禁じます。】
 	</div>
 </div>
