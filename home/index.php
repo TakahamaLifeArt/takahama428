@@ -683,7 +683,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 								<div><img src="/common/img/home/blog/sp_top_customerblog.jpg" width="100%"></div>
 								<div class="blog_txt">
 									<p class="blog_ttl">お客様ブログ</p>
-									<p class="blog_com">タカハマの制作実績を紹介！ <br>掲載OKのお客様は<br>ブログ割引3％OFF！ <br>デザインの参考にどうぞ！</p>
+									<p class="blog_com">タカハマの制作実績を紹介！ <br>掲載OKのお客様は<br>写真掲載割3％OFF！ <br>デザインの参考にどうぞ！</p>
 									<a href="/app/WP/thanks-blog">
 										<div class="method_button_blog">制作実績を見る</div>
 									</a>
