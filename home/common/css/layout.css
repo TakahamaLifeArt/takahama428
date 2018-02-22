@@ -365,7 +365,7 @@ nav .list-group .list-group-item a {
 
 #signout .exit_a {
 	padding: 1.5rem;
-	color:#7a420d;
+	color: #7a420d;
 }
 
 #signout .exit_a:hover {
@@ -760,6 +760,11 @@ table {
 	padding: 0;
 	font-size: 14px;
 	font-weight: normal;
+}
+
+caption {
+	caption-side: top;
+	padding: 0;
 }
 
 
@@ -1317,10 +1322,12 @@ footer.page-footer ul li .fa {
 	margin-top: 60px!important;
 	padding-top: 0px!important;
 }
+
 .contents {
 	margin-top: 20px!important;
 	padding-top: 0px!important;
 }
+
 /* grid resize */
 
 @media (min-width: 576px) {
@@ -1415,7 +1422,7 @@ footer.page-footer ul li .fa {
 		font-size: 4em;
 		font-weight: bold;
 	}
-	
+
 }
 
 @media screen and (max-width: 768px) {
