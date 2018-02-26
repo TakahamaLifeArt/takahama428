@@ -41,6 +41,17 @@
 				</ul>
 				<section>
 					<h1 class="headLine01">お知らせ</h1>
+					
+					<p id="a01" class="headLine03">【価格改定のお知らせ】</p>
+					<ul class="textUl">
+						<li>
+							<p>3月1日(木)より下記のブランドのアイテムが価格改定となります。
+								<br> 「Printstar」「glimmer」「DALUC」「AIMY」
+								<br>改定前に御見積りいただいた場合でも、ご注文確定が3月1日(木)以降になりますと改定後の価格となりますのでご了承くださいませ。
+								<br>※リピート注文の場合も改定後は改定価格でのご提供となりますのでご了承ください。
+							</p>
+						</li>
+					</ul>
 
 					<p id="a01" class="headLine03">【冬季休業のお知らせ】</p>
 					<ul class="textUl">
