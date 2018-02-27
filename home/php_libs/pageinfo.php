@@ -102,10 +102,10 @@ class PageInfo extends Conndb {
 	 * @id	category ID
 	 * @return プリントポジションIDをキーにした、たぐIDと絵型名のハッシュ
 	 */
-	public function getSilhouetteId($id=null){
-		if(empty($id)){
+	public function getSilhouetteId($id=null) {
+		if (empty($id)) {
 			return $this->silhouetteId;
-		}else{
+		} else {
 			return $this->silhouetteId[$id];
 		}
 	}
@@ -123,7 +123,7 @@ class PageInfo extends Conndb {
 	 * 			[category_key, category_name, item_id, item_name, item_code, cost, pos_id, maker_id, 
 	 * 			oz, colors, i_color_code, i_caption, reviews, sizename_from, sizename_to, range_id, screen_id]
 	 */
-	public function getCategoryInfo($id=0, $tag=array(), $mode='category', $sort='popular', $limit=''){
+	public function getCategoryInfo($id=0, $tag=array(), $mode='category', $sort='popular', $limit='') {
 		$param = array();
 		if ($mode != 'category') {
 			$endPoint = '/categories/0/'.$sort.'/'.$limit;
@@ -131,7 +131,7 @@ class PageInfo extends Conndb {
 		} else {
 			$endPoint = '/categories/'.$id.'/'.$sort.'/'.$limit;
 		}
-		if (!empty($tag)){
+		if (!empty($tag)) {
 			for ($i=0; $i<count($tag); $i++) {
 				$param['args'][] = $tag[$i];
 			}
@@ -152,27 +152,22 @@ class PageInfo extends Conndb {
 	 * @param {array} data 商品情報
 	 * @return {string} HTMLタグ
 	 */
-	public function htmlTag($data) {
+	public function htmlTag($data, $isStart=false) {
 		$len = count($data);
 		$html='' ; 
 		for ($i=0; $i<$len; $i++){
 
-			if($data[$i]['reviews']>0){
+			if ($data[$i]['reviews']>0) {
 				$reviewPath = '<p><a href="/itemreviews/?item='.$data[$i]['item_id'].'">レビューを見る（'.$data[$i]['reviews'].'件）</a></p>';
-			}else{
+			} else {
 				$reviewPath = '<p>レビューを見る（0件）</p>';
 			}
 
-			if($i%4==0){ 
-				$firstlist = ' firstlist'; 
-			}else{ 
-				$firstlist = ''; 
-			} 
-			if( (preg_match('/^p-/',$data[$i]['item_code']) && $data[$i]['i_color_code']=="") ){
+			if ( (preg_match('/^p-/',$data[$i]['item_code']) && $data[$i]['i_color_code']=="") ) {
 				$suffix = '_style_0'; 
 			} elseif (_IS_THUMB_FOR_EXPRESS=='1' && ($data[$i]['item_code']=='522-ft' || $data[$i]['item_code']=='085-cvt' )) {
 				$suffix = '_for-express';	// 当日特急用のサムネイル 
-			}else{ 
+			} else { 
 				$suffix = '_'.$data[$i]['i_color_code']; 
 			}
 			$html .= '<li class="listitems_ex'.$firstlist.'">
@@ -187,7 +182,7 @@ class PageInfo extends Conndb {
 						</li>
 						<li class="item_image_s">';
 
-			if($i<3 && strpos($_REQUEST['limit'], '0-')!==false){
+			if ($i<3 && $isStart) {
 				$html .= '<img class="rankno" src="/items/img/index/no'.($i+1).'.png" width="60" height="34" alt="No'.($i+1).'">';
 			}
 
@@ -220,28 +215,28 @@ class PageInfo extends Conndb {
 	 * @args 星の数
 	 * @return 評価を0.5単位に変換し画像パスを返す
 	 */
-	public function getStar($args){
-		if($args<0.5){
+	public function getStar($args) {
+		if ($args<0.5) {
 			$r = 'star00';
-		}else if($args>=0.5 && $args<1){
+		} else if ($args>=0.5 && $args<1) {
 			$r = 'star05';
-		}else if($args>=1 && $args<1.5){
+		} else if ($args>=1 && $args<1.5) {
 			$r = 'star10';
-		}else if($args>=1.5 && $args<2){
+		} else if ($args>=1.5 && $args<2) {
 			$r = 'star15';
-		}else if($args>=2 && $args<2.5){
+		} else if ($args>=2 && $args<2.5) {
 			$r = 'star20';
-		}else if($args>=2.5 && $args<3){
+		} else if ($args>=2.5 && $args<3) {
 			$r = 'star25';
-		}else if($args>=3 && $args<3.5){
+		} else if ($args>=3 && $args<3.5) {
 			$r = 'star30';
-		}else if($args>=3.5 && $args<4){
+		} else if ($args>=3.5 && $args<4) {
 			$r = 'star35';
-		}else if($args>=4 && $args<4.5){
+		} else if ($args>=4 && $args<4.5) {
 			$r = 'star40';
-		}else if($args>=4.5 && $args<5){
+		} else if ($args>=4.5 && $args<5) {
 			$r = 'star45';
-		}else{
+		} else {
 			$r = 'star50';
 		}
 		return $r;
@@ -350,7 +345,8 @@ if(isset($_REQUEST['act'])){
 		$dat = $pageinfo->getCategoryInfo($_REQUEST['catid'], $_REQUEST['tagid'], $_REQUEST['mode'], $_REQUEST['priceorder'], $_REQUEST['limit']);
 		$r = json_decode($dat, true);
 		$itemCount = count($r);
-		$itemlist_data = $pageinfo->htmlTag($r) ;
+		$isStart = (strpos($_REQUEST['limit'], '0-')!==false || strpos($_REQUEST['limit'], '-')===false)? true: false;
+		$itemlist_data = $pageinfo->htmlTag($r, $isStart);
 		$res = $itemlist_data.'|'.mb_convert_kana($itemCount,'A', 'utf-8');
 		break;
 	}
@@ -468,7 +464,7 @@ if(isset($_REQUEST['act'])){
 	$res = json_decode($data, true);
 
 	// アイテム一覧のHTMLタグを生成
-	$itemlist_data = $pageinfo->htmlTag($res);
+	$itemlist_data = $pageinfo->htmlTag($res, true);
 	$category_name = $res[0]['category_name'];
 	$itemCount = count($res);
 

@@ -911,7 +911,6 @@ $(function () {
 					var amount = $(this).val() - 0;
 					if (amount == 0) return true; // continue
 					var param = $(this).parent().attr('class').split('_');	//[, id, name, cost]
-					var name = [2]; //[, id, name, cost]
 					hash[param[2]] = {'amount':amount, 'cost':param[3], 'id':param[1]};
 					tot += amount;
 				});

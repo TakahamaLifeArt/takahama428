@@ -222,18 +222,7 @@ if($_SERVER['REQUEST_METHOD']!='POST'){
 
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
 	<script src="//ajaxzip3.github.io/ajaxzip3.js" charset="utf-8"></script>
-<!--	<script src="//doozor.bitbucket.io/email/e-mailform.min.js" defer></script>-->
-
-	<script src="/beta-u/test/js/mail/e-mailform.js" defer></script>
-	<script src="/beta-u/test/js/mail/InputField.js" defer></script>
-	<script src="/beta-u/test/js/mail/MailAddress.js" defer></script>
-	<script src="/beta-u/test/js/mail/PhoneNumber.js" defer></script>
-	<script src="/beta-u/test/js/mail/CheckMark.js" defer></script>
-	<script src="/beta-u/test/js/mail/RadioButton.js" defer></script>
-	<script src="/beta-u/test/js/mail/SelectBox.js" defer></script>
-	<script src="/beta-u/test/js/mail/MultilineText.js" defer></script>
-	<script src="/beta-u/test/js/mail/SubmitButton.js" defer></script>
-	
+	<script src="//doozor.bitbucket.io/email/e-mailform.min.js" defer></script>
 	<script src="/common/js/api.js"></script>
 	<script src="./js/account.js"></script>
 </body>
