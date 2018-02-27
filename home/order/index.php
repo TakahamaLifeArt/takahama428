@@ -7,8 +7,8 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 $_SESSION['ticket'] = $ticket;
 $_version = time();
 ?>
-<!DOCTYPE html>
-<html lang="ja">
+	<!DOCTYPE html>
+	<html lang="ja">
 
 	<head prefix="og: https://ogp.me/ns# fb: https://ogp.me/ns/fb#  website: https://ogp.me/ns/website#">
 		<meta charset="UTF-8">
@@ -123,12 +123,12 @@ $_version = time();
 						</div>
 					</section>
 
-<!--
-					<div class="transition_wrap d-flex justify-content-between align-items-center">
-						<div class="step_prev hoverable waves-effect">
-							<i class="fa fa-chevron-left"></i>戻る
-						</div>
-					</div>
+					<!--
+<div class="transition_wrap d-flex justify-content-between align-items-center">
+<div class="step_prev hoverable waves-effect">
+<i class="fa fa-chevron-left"></i>戻る
+</div>
+</div>
 -->
 				</div>
 
@@ -300,6 +300,8 @@ $_version = time();
 										</label>
 									</div>
 								</form>
+								<p class="note"><span class="red_mark">※</span>3D刺繍の場合は、一箇所＋400円の追加料金をいただきます。</p>
+								<p class="note"><span class="red_mark">※</span>ご希望のお客様は、次のページ「デザインに関する要望」の欄に「3D刺繍希望」とご記入ください。</p>
 							</div>
 
 							<h3 class="print_cond_note hidden"><ins>5.</ins>プリントサイズの選択</h3>
@@ -536,14 +538,14 @@ $_version = time();
 											<span class="btn btn-success fileinput-button">
 												<i class="fa fa-plus" aria-hidden="true"></i>
 												<span>ファイルを選択...</span>
-												<input type="file" name="files[]" multiple>
+											<input type="file" name="files[]" multiple>
 											</span>
 											<!--
-											<button type="submit" class="btn btn-primary start fade">
-											<i class="fa fa-cloud-upload" aria-hidden="true"></i>
-											<span>入稿する</span>
-											</button>
-											-->
+<button type="submit" class="btn btn-primary start fade">
+<i class="fa fa-cloud-upload" aria-hidden="true"></i>
+<span>入稿する</span>
+</button>
+-->
 											<!-- The global file processing state -->
 											<span class="fileupload-process"></span>
 										</div>
@@ -564,72 +566,72 @@ $_version = time();
 								</form>
 
 								<script id="template-upload" type="text/x-tmpl">
-								{% for (var i=0, file; file=o.files[i]; i++) { %}
-								<tr class="template-upload fade">
-									<td>
-										<span class="preview"></span>
-									</td>
-									<td>
-										<p class="name">{%=file.name%}</p>
-										<strong class="error text-danger"></strong>
-									</td>
-									<td>
-										<p class="size">Processing...</p>
-										<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-											<div class="progress-bar progress-bar-success" style="width:0%;"></div>
-										</div>
-									</td>
-									<td>
-										{% if (!i && !o.options.autoUpload) { %}
-										<button class="btn btn-primary start" hidden disabled>
+									{% for (var i=0, file; file=o.files[i]; i++) { %}
+									<tr class="template-upload fade">
+										<td>
+											<span class="preview"></span>
+										</td>
+										<td>
+											<p class="name">{%=file.name%}</p>
+											<strong class="error text-danger"></strong>
+										</td>
+										<td>
+											<p class="size">Processing...</p>
+											<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+												<div class="progress-bar progress-bar-success" style="width:0%;"></div>
+											</div>
+										</td>
+										<td>
+											{% if (!i && !o.options.autoUpload) { %}
+											<button class="btn btn-primary start" hidden disabled>
 											<i class="fa fa-cloud-upload" aria-hidden="true"></i>
 											<span>アップロード</span>
-										</button> {% } %} {% if (!i) { %}
-										<button class="btn btn-warning cancel">
+									</button> {% } %} {% if (!i) { %}
+											<button class="btn btn-warning cancel">
 											<i class="fa fa-ban" aria-hidden="true"></i>
 											<span>キャンセル</span>
-										</button> {% } %}
-									</td>
-								</tr>
-								{% } %}
+									</button> {% } %}
+										</td>
+									</tr>
+									{% } %}
 								</script>
 								<!-- The template to display files available for download -->
 								<script id="template-download" type="text/x-tmpl">
-								{% for (var i=0, file; file=o.files[i]; i++) { %}
-								<tr class="template-download fade">
-									<td>
-										<span class="preview">
+									{% for (var i=0, file; file=o.files[i]; i++) { %}
+									<tr class="template-download fade">
+										<td>
+											<span class="preview">
 									{% if (file.thumbnailUrl) { %}
 
 									{% } %}
-										</span>
-									</td>
-									<td>
-										<p class="name">
-											<span>{%=file.name%}</span>
-										</p>
-										<span class="path" hidden>{%=file.url%}</span> {% if (file.error) { %}
-										<div><span class="label label-danger">Error</span> {%=file.error%}</div>
-										{% } else { %}
-										<div><span class="label" style="font-size:1.2rem;font-weight:bold;color:#0275d8;">完了</span></div>
-										{% } %}
-									</td>
-									<td>
-										<span class="size">{%=o.formatFileSize(file.size)%}</span>
-									</td>
-									<td>
-										{% if (file.deleteUrl) { %}
-										<button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
+									</span>
+										</td>
+										<td>
+											<p class="name">
+												<span>{%=file.name%}</span>
+											</p>
+											<span class="path" hidden>{%=file.url%}</span> {% if (file.error) { %}
+											<div><span class="label label-danger">Error</span> {%=file.error%}</div>
+											{% } else { %}
+											<div><span class="label" style="font-size:1.2rem;font-weight:bold;color:#0275d8;">完了</span></div>
+											{% } %}
+										</td>
+										<td>
+											<span class="size">{%=o.formatFileSize(file.size)%}</span>
+										</td>
+										<td>
+											{% if (file.deleteUrl) { %}
+											<button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
 											<i class="fa fa-trash" aria-hidden="true"></i>
 											<span>削除</span>
-										</button> {% } else { %}
-										<button class="btn btn-warning cancel">
+									</button> {% } else { %}
+											<button class="btn btn-warning cancel">
 											<i class="fa fa-ban" aria-hidden="true"></i>
 											<span>キャンセル</span>
-										</button> {% } %}
-									</td>
-								</tr>
-								{% } %}
+									</button> {% } %}
+										</td>
+									</tr>
+									{% } %}
 								</script>
 
 
@@ -740,8 +742,8 @@ $_version = time();
 									<h4>カレンダーから選択してください。</h4>
 									<div id="datepick" class="cale_box"></div>
 									<p class="note hidden" id="express_info">
-										<span class="red_mark">※</span>
-										特急料金がかかります。(<em>翌日仕上げ</em>)
+										<span class="red_mark">※</span> 特急料金がかかります。(
+										<em>翌日仕上げ</em>)
 									</p>
 									<label for="transport"><input type="checkbox" value="2" name="transport" id="transport">お届け先が、北海道、九州、沖縄、東京離島、島根隠岐郡のいずれかとなる場合はチェックして下さい。</label>
 								</div>
@@ -774,12 +776,12 @@ $_version = time();
 							</div>
 						</section>
 					</section>
-<!--
-					<div class="transition_wrap d-flex justify-content-between align-items-center">
-						<div class="step_prev cart hoverable waves-effect">
-							<i class="fa fa-chevron-left"></i>戻る
-						</div>
-					</div>
+					<!--
+<div class="transition_wrap d-flex justify-content-between align-items-center">
+<div class="step_prev cart hoverable waves-effect">
+<i class="fa fa-chevron-left"></i>戻る
+</div>
+</div>
 -->
 				</div>
 
@@ -974,7 +976,7 @@ $_version = time();
 						<div class="final_confir">
 							<div class="item_info_final">
 								<table class="final_detail">
-									
+
 								</table>
 							</div>
 
@@ -1003,12 +1005,12 @@ $_version = time();
 											<td></td>
 											<td class="txt_righ"><span class="red_txt" id="discount_fee">0</span>円</td>
 										</tr>
-<!--
-										<tr>
-											<td><span id="rank_name"></span>会員割</td>
-											<td></td>
-											<td class="txt_righ"><span class="red_txt" id="rank_fee"></span>円</td>
-										</tr>
+										<!--
+<tr>
+<td><span id="rank_name"></span>会員割</td>
+<td></td>
+<td class="txt_righ"><span class="red_txt" id="rank_fee"></span>円</td>
+</tr>
 -->
 										<tr>
 											<td>送料</td>
@@ -1181,7 +1183,7 @@ $_version = time();
 								</div>
 							</div>
 							<div class="confir_img">
-							<img src="/order/img/flow/sp_order_confirmation_tel.png" width="100%">
+								<img src="/order/img/flow/sp_order_confirmation_tel.png" width="100%">
 							</div>
 
 							<div class="caution_child">
@@ -1233,10 +1235,11 @@ $_version = time();
 
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
 		<script type="text/javascript">
-//			var _ITEM_ID = <?php echo $_ITEM_ID; ?>;
+			var _ITEM_ID = <?php echo $_ITEM_ID; ?>;
 			var _CATEGORY_ID = <?php echo $_CATEGORY_ID; ?>;
 			var _UPDATED = <?php echo $_UPDATED; ?>;
 			var IMG_PATH = '<?php echo _IMG_PSS; ?>';
+
 		</script>
 		<script src="https://ajaxzip3.github.io/ajaxzip3.js" async></script>
 		<script src="https://blueimp.github.io/JavaScript-Templates/js/tmpl.min.js" async></script>
@@ -1257,4 +1260,5 @@ $_version = time();
 		<script src="./js/order.js" defer></script>
 		<script src="./js/dialog.js" defer></script>
 	</body>
-</html>
+
+	</html>
