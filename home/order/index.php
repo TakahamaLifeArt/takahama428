@@ -1235,7 +1235,7 @@ $_version = time();
 
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
 		<script type="text/javascript">
-			var _ITEM_ID = <?php echo $_ITEM_ID; ?>;
+//			var _ITEM_ID = <?php echo $_ITEM_ID; ?>;
 			var _CATEGORY_ID = <?php echo $_CATEGORY_ID; ?>;
 			var _UPDATED = <?php echo $_UPDATED; ?>;
 			var IMG_PATH = '<?php echo _IMG_PSS; ?>';
