@@ -1343,16 +1343,24 @@
 								<div class="rgtblc_5">
 									<h3 class="big_ttl">オプション</h3>
 
-									<div class="inkiro">
+									<div class="inkiro_02">
 										<p class="mid_ttl">その1：刺繍の糸色替え</p>
 										<img src="/price/fee/img/p_cange.jpg" width="100%">
-										<p class="red_big">&yen;500</p>
+										<p class="red_big_01">&yen;500/1箇所1色</p>
 									</div>
+                                    
+                                    <div class="three_d">
+										<p class="mid_ttl">その2：3D加工</p>
+                                        <div class="three_d_image">
+                                        <img src="/price/fee/img/3d.jpg" width="100%">
+                                        </div>
+                                        <p class="text"><span class="red_big_01">&yen;400/1箇所</span></p>
+                                    </div>
 
-									<div class="fukuro">
-										<p class="mid_ttl">その2：袋詰め</p>
+									<div class="fukuro_02">
+										<p class="mid_ttl_shishu">その3：袋詰め</p>
 
-										<ul class="tumedai">
+										<ul class="tumedai_02">
 											<li>詰め代</li>
 											<li class="tumedai_img"><img src="/price/fee/img/p_bag_01.jpg" width="100%"></li>
 											<li>
@@ -1361,7 +1369,7 @@
 											</li>
 										</ul>
 
-										<ul class="doufu">
+										<ul class="doufu_02">
 											<li>袋のみ<br>同封</li>
 											<li><img src="/price/fee/img/p_bag_02.jpg" width="100%"></li>
 											<li>
