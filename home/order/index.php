@@ -636,6 +636,10 @@ $_version = time();
 
 
 								<p class="ri_txt">最大容量：100MB</p>
+								<p class="note">ファイルアップロードできない場合は、下記のファイル転送サービスをご利用ください。</p>
+								<div id="upload_link" class="modal_style_line">
+									<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>ファイル転送サービス
+								</div>
 
 								<h3>デザインに関する要望</h3>
 								<textarea id="note_design" class="demand" name="note_design" placeholder="例:前のデザイン「TAKAHAMA」を極太ゴシックで打ち替え , 後ろのデザインC22ブラックで着色"></textarea>
@@ -1171,7 +1175,7 @@ $_version = time();
 
 						<div class="order_caution">
 							<p class="red_big">まだご注文は確定しておりません。</p>
-							<p>制作開始にあたり、お電話でデザインの確認をさせていただきます。<br> 弊社よりお送りする御⾒積りメールをご確認いただいた後、お電話ください。
+							<p>制作開始にあたり、お電話でデザインの確認をさせていただきます。<br> 弊社よりお送りする御?積りメールをご確認いただいた後、お電話ください。
 							</p>
 
 							<div class="mail_img">
