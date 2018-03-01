@@ -1238,7 +1238,7 @@ th {
 }
 
 .three_d_image {
-	width: 65%;
+	width: 73%;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 10px;
@@ -2312,6 +2312,14 @@ a {
 		left: 15px;
 		color: #fff;
 		font-size: 18px;
+	}
+}
+
+@media screen and (max-width: 544px) {
+	.menu_box .navi_inner_2 p {
+		font-size: 10px;
+		font-weight: normal;
+		color: #109ed7;
 	}
 }
 
