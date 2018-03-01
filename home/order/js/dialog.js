@@ -100,6 +100,32 @@ $(function(){
 		$.msgbox(msg);
 	});
 	
+	//	ファイル転送サービス説明を見る
+	$('#upload_link').on("TAP_EVENT", function () {
+		var msg = '<div class="sale_txt">';
+		msg += '<div class="sale_block">';
+		msg += '<h3>ファイル転送サービスについて</h3>';
+		msg += '<p>ファイルアップロードできない場合は、 下記のファイル転送サービスをご利用ください。</p>';
+		msg += '<a href="http://up300.net/" target="_blank"><button class="btn btn-success fileinput-button waves-effect waves-light">ファイル転送サービスへ</button></a>';
+		msg += '</div>';
+		msg += '<div class="sale_block">';
+		msg += '<h3>使い方</h3>';
+		msg += '<p>①「ファイルを選択」をクリックし、ファイルをアップロード</p>';
+		msg += '<center><p><img width="100%" alt="アップロード1" src="./img/design_step_01.jpg"></p></center>';
+		msg += '<p>②「ファイルの転送開始する」をクリック</p>';
+		msg += '<center><p><img width="100%" alt="アップロード1" src="./img/design_step_02.jpg"></p></center>';
+		msg += '<p>③ダウンロードURLをコピー</p>';
+		msg += '<center><p><img width="100%" alt="アップロード1" src="./img/design_step_03.jpg"></p></center>';
+		msg += '<p>④お問い合わせ、もしくはお申し込みフォームの メッセージ欄にリンクをペースト</p>';
+		msg += '<center><p><img width="100%" alt="アップロード1" src="./img/design_step_04_01.jpg"></p></center>';
+		msg += '<center><p><img width="100%" alt="アップロード1" src="./img/design_step_04_02.jpg"></p></center>';
+		msg += '<p>⑤お問い合わせ・お申し込みを完了させる</p>';
+		msg += '</div>';
+		msg += '</div>';
+		msg += '<button class="pop_btn_close btn waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times-circle mr-1" aria-hidden="true"></i>閉じる</button>';
+		$.msgbox(msg, '<h2>ファイル転送サービス</h2>');
+	});
+	
 	//	割引　説明を見る
 	$('#sale_link').on("TAP_EVENT", function () {
 		var msg = '<div class="sale_txt">';
@@ -142,13 +168,13 @@ $(function(){
 		msg += '<div class="bdr_line"></div>';
 		msg += '<div class="paylist">';
 		msg += '<h3>代金引換</h3>';
-		msg += '<p class="payttl">代金引換手数料は1件につき¥800（税抜）かかります。お支払い総額（商品代+送料＋代金引換手数料＋消費税）を配送業者にお支払いください。お客様のご都合でお支払い件数が複数になった場合、1件につき¥800（税抜）を追加させていただきます。</p>';
+		msg += '<p class="payttl">代金引換手数料は1件につき\800（税抜）かかります。お支払い総額（商品代+送料＋代金引換手数料＋消費税）を配送業者にお支払いください。お客様のご都合でお支払い件数が複数になった場合、1件につき\800（税抜）を追加させていただきます。</p>';
 		msg += '</div>';
 		msg += '<div class="bdr_line"></div>';
 		msg += '<div class="paylist">';
 		msg += '<h3>カード決済</h3>';
 		msg += '<p class="payttl">ご希望の納品日より2日前までにカード決済手続きをお願い致します。カード決済確認後、商品を発送致します。（土日祝は決済確認ができないのでご注意ください）</p>';
-		msg += '<p class="txt_sml"><span class="red_txt">※</span>ご指定の期⽇までにカード決済手続きをお願い致します。お客様のカード決済が遅れてご指定の納品日に商品の到着が間に合わなかった場合、当方では一切責任を負いかねますのでご了承ください。</p>';
+		msg += '<p class="txt_sml"><span class="red_txt">※</span>ご指定の期?までにカード決済手続きをお願い致します。お客様のカード決済が遅れてご指定の納品日に商品の到着が間に合わなかった場合、当方では一切責任を負いかねますのでご了承ください。</p>';
 		msg += '<p class="txt_sml"><span class="red_txt">※</span>お支払い期日を過ぎた後、再三の催促・督促にもかかわらず、何のご連絡もなくお支払いのないお客様は、法的手段を含め対応させて頂きます。この場合に発生する手数料等の諸費用、法的手続きにかかった諸費用のすべてを、未払い代金に加算して請求致します。</p>';
 		msg += '<div class="cardimg"><img src="  /order/img/card.png" width="100%"></div>';
 		msg += '</div>';
@@ -321,7 +347,7 @@ $(function(){
 		msg += '<div class="date_list">';
 		msg += '<ul>';
 		msg += '<li class="date_txt"><p class="txt_sml"><span class="red_mark">当日12時まで</span>にお電話で<span class="red_mark">注文確定</span></p></li>';
-		msg += '<li class="date_txt"><p class="txt_sml">085-CVT Tシャツ白色と黒色(Sサイズ〜XLサイズ)522-FT タオルの白色(フリーサイズ)<span class="red_mark">2つの商品のみ対応</span></p></li>';
+		msg += '<li class="date_txt"><p class="txt_sml">085-CVT Tシャツ白色と黒色(Sサイズ?XLサイズ)522-FT タオルの白色(フリーサイズ)<span class="red_mark">2つの商品のみ対応</span></p></li>';
 		msg += '<li class="date_txt"><p class="txt_sml">注文確定後、<span class="red_mark">すぐに入金</span></p><p>商品の発送は入金確認後になりますので、お早めのご入金をお願い致します。</p>';
 		msg += '<p class="txt_sml"><span class="red_mark">※</span>詳しくはスタッフまでお問合わせください。</p>';
 		msg += '</li>';

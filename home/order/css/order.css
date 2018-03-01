@@ -438,6 +438,8 @@ em {
 	font-size: 20px;
 	word-break: keep-all;
 	font-weight: bold;
+	clear: both;
+	margin-top: 0.5em;
 }
 
 .down_cond {
