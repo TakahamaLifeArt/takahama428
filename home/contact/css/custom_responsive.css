@@ -280,6 +280,63 @@ a {
 	text-align: right;
 }
 
+.modal_style_line {
+	font-size: 13px;
+	color: #000;
+	display: inline-block;
+	border: 1px solid #000;
+	cursor: pointer;
+	background: #fff;
+	border-radius: 30px;
+	padding: 10px 24px;
+	margin: 1%;
+}
+
+.sale_txt,
+.payflow {
+	padding: 10px;
+}
+
+.sale_txt h2,
+.payflow h2 {
+	text-align: center;
+}
+
+.sale_txt .sale_block,
+.payflow .paylist {
+	margin: 5px auto;
+	padding: 10px 5px;
+}
+
+.sale_txt .txt_sml,
+.payflow .txt_sml {
+	font-size: 0.8rem;
+	padding: 5px 0;
+}
+.modal h3 {
+	font-size: 1.4rem;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.modal p {
+	font-size: .8rem;
+	margin: 20px 2%;
+}
+.pop_btn_close {
+	display: inline-block;
+	padding: 2.5%;
+	width: 35%;
+	background-color: #e5e5e5;
+	box-shadow: 1px 1px 1px #a5a5a5;
+	font-weight: bold;
+	font-size: 14px;
+	cursor: pointer;
+	color: #000!important;
+	margin: 0 auto;
+	display: block;
+}
+
 
 /*----------------------------
 

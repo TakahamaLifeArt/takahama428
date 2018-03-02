@@ -140,7 +140,10 @@ $_version = time();
 												<!-- The global file processing state -->
 												<span class="fileupload-process"></span>
 											</div>
-
+											<p class="note">ファイルアップロードできない場合は、下記のファイル転送サービスをご利用ください。</p>
+											<div id="upload_link" class="modal_style_line">
+												<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>ファイル転送サービス
+											</div>
 											<div class="drop-area hidden-sm-down">
 												<p>ここにファイルをドロップできます</p>
 											</div>
@@ -173,7 +176,6 @@ $_version = time();
 							<button class="btn btn-warning" id="goback" hidden>戻る</button>
 						</div>
 					</form>
-
 					<div class="QA">
 						<h2>よくあるご質問</h2>
 						<dl class="list">
@@ -223,6 +225,40 @@ $_version = time();
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/util.php"; ?>
 
 	<div id="overlay-mask" class="fade"></div>
+	
+<!--	ファイル転送サービス説明を見る-->
+	
+	<div class="modal fade sale_txt" id="sampleModal" tabindex="-1">
+		<div class="modal-dialog sale_block">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+				</div>
+				<div class="sale_block">
+					<h3>ファイル転送サービスについて</h3>
+					<p>ファイルアップロードできない場合は、 下記のファイル転送サービスをご利用ください。</p>
+					<a href="http://up300.net/" target="_blank"><button class="btn btn-success fileinput-button waves-effect waves-light">ファイル転送サービスへ</button></a>
+				</div>
+				<div class="sale_block">
+					<h3>使い方</h3>
+					<p>①「ファイルを選択」をクリックし、ファイルをアップロード</p>
+					<center><p><img width="100%" alt="アップロード1" src="../order/img/design_step_01.jpg"></p></center>
+					<p>②「ファイルの転送開始する」をクリック</p>
+					<center><p><img width="100%" alt="アップロード1" src="../order/img/design_step_02.jpg"></p></center>
+					<p>③ダウンロードURLをコピー</p>
+					<center><p><img width="100%" alt="アップロード1" src="../order/img/design_step_03.jpg"></p></center>
+					<p>④お問い合わせ、もしくはお申し込みフォームの メッセージ欄にリンクをペースト</p>
+					<center><p><img width="100%" alt="アップロード1" src="../order/img/design_step_04_01.jpg"></p></center>
+					<center><p><img width="100%" alt="アップロード1" src="../order/img/design_step_04_02.jpg"></p></center>
+					<p>⑤お問い合わせ・お申し込みを完了させる</p>
+				</div>
+				<div class="modal-footer">
+					<button class="pop_btn_close btn waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times-circle mr-1" aria-hidden="true"></i>閉じる</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<script id="template-upload" type="text/x-tmpl">
 		{% for (var i=0, file; file=o.files[i]; i++) { %}
@@ -292,6 +328,10 @@ $_version = time();
 		</tr>
 		{% } %}
 	</script>
+
+
+	
+	
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
 	<script src="/user/js/upload/vendor/jquery.ui.widget.js"></script>
 	<script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
@@ -306,6 +346,16 @@ $_version = time();
 	<script src="//ajaxzip3.github.io/ajaxzip3.js" charset="utf-8"></script>
 	<script src="./js/contact.js?v=<?php echo $_version;?>"></script>
 	<script src="./js/upload/main.js"></script>
+	
+	<script>
+		$( function() {
+			$('#upload_link').click( function () {
+				$('#sampleModal').modal();
+			});
+		});
+	</script>
+	
+	
 </body>
 
 </html>
