@@ -210,10 +210,7 @@ $(function () {
 	 * アイテムを生成してページ遷移
 	 */
 	$('.top3_inner, .other_inner').on("TAP_EVENT", function () {
-		var store,
-			i,
-			len,
-			ids,
+		var len,
 			categoryId = $(this).data('categoryId'),
 			args = ['categories', categoryId],
 			tags,
@@ -518,7 +515,13 @@ $(function () {
 		// レビューを見る場合
 		if (e.target.className=='show_review') return;
 		
-		setItemDetail($(e.currentTarget)).then(function(){
+		// 選択したアイテム情報
+		var self = $(e.currentTarget),
+			data = self.attr('id').split('_');	// [ , item_id, position_id, ranage_id, screen_id]
+		data.push(self.find('.item_name_kata').text().toLowerCase());
+		data.push(self.find('.item_name_name').text());
+		
+		setItemDetail(data).then(function(){
 			$.next();	// ページ遷移
 		});
 	});
@@ -526,8 +529,8 @@ $(function () {
 
 	/**
 	 * 選択されたアイテムの詳細情報の設定とタグ生成
-	 * @param self	Step1でアイテム指定の場合はイベントの現在のターゲット
-	 *				カートでアイテム変更の場合は未指定
+	 * @param itemInfo	Step1でアイテム指定の場合はアイテム情報の配列{@code [ , item_id, position_id, ranage_id, screen_id, item_code, item_name]}
+	 *					カートでアイテム変更の場合は未指定
 	 * -----
 	 * Step1で{@code $.curr.itemId}と同じアイテムを選択した場合は即ページ遷移
 	 * Step1で{@code $.curr.itemId}と違うアイテムを選択した場合はカート内のアイテムを確認
@@ -536,7 +539,7 @@ $(function () {
 	 * 			同じ絵型があれば{@code $.curr.design}を更新、無ければ{@code $.curr.design}を初期化
 	 * カートの変更の場合は「戻る」ボタンを非表示
 	 */
-	var setItemDetail = function (self) {
+	var setItemDetail = function (itemInfo) {
 		var i = 0,
 			d = $.Deferred(),
 			p = $.Deferred().resolve().promise(),
@@ -545,23 +548,23 @@ $(function () {
 			designs = $.getStorage('design'),
 			items = $.getStorage('item'),
 			currItem = {},
-			ids = [],		// [ , item_id, position_id, ranage_id, screen_id]
+			posId = 1,
 			itemCode = '',
 			itemName = '',
-			colors = '',
+			colors = {},
 			colorCount = 1,
 			clone;
 
 		// 追加カラー用タグを削除
 		$('#item_info .pane:gt(0)').remove();
 		
-		if (!self) {
+		if (!itemInfo) {
 			// カートの変更
 			currItem = items[$.curr.designId][$.curr.itemId];
 			itemCode = currItem.code.toLowerCase();
 			itemName = currItem.name;
 			colors = currItem.color;
-			colorCount = currItem.color.length;
+			colorCount = Object.keys(colors).length;
 			
 			// 選択しているカラー数分コピー
 			for (i=0; i<colorCount-1; i++) {
@@ -580,40 +583,37 @@ $(function () {
 			pane = $('#item_info .pane');
 		} else {
 			// Step1 で指定
-			ids = self.attr('id').split('_'); // [ , item_id, position_id, ranage_id, screen_id]
-			itemCode = self.find('.item_name_kata').text().toLowerCase();
-			itemName = self.find('.item_name_name').text();
-
-			// アイテムが変更された場合
-			if ($.curr.itemId != ids[1]) {
-
-				// アイテムの選択状態を再設定
-				$.curr.itemId = ids[1];
+			posId = itemInfo[2];
+			itemCode = itemInfo[5];
+			itemName = itemInfo[6];
+			
+			if ($.curr.itemId != itemInfo[1]) {
+				// アイテムが変更された場合は選択状態を再設定
+				$.curr.itemId = itemInfo[1];
 				$.curr.item[$.curr.designId] = {};
 				
-				if ($.curr.designId==0 || !items.hasOwnProperty($.curr.designId) || !items[$.curr.designId].hasOwnProperty(ids[1])) {
+				if ($.curr.designId==0 || !items.hasOwnProperty($.curr.designId) || !items[$.curr.designId].hasOwnProperty($.curr.itemId)) {
 					// まだカートに入れていないアイテム、または別のデザインパターンでアイテム追加
 					$.curr.item[$.curr.designId][$.curr.itemId] = {
 						"code": itemCode,
 						"name": itemName,
-						"posId": ids[2],
-						"rangeId": ids[3],
-						"screenId": ids[4],
+						"posId": posId,
+						"rangeId": itemInfo[3],
+						"screenId": itemInfo[4],
 						"cateId": categoryId,
-						"color": []
+						"color": {}
 					};
-
 					$.curr.design[$.curr.designId] = {};
 
 					// 違うアイテムで同じ絵型がカートにあればプリントの選択情報を設定
-					if ($.curr.designId!=0 && items.hasOwnProperty($.curr.designId) && designs[$.curr.designId].hasOwnProperty(ids[2])) {
-						$.curr.design[$.curr.designId][ids[2]] = designs[$.curr.designId][ids[2]];
+					if ($.curr.designId!=0 && items.hasOwnProperty($.curr.designId) && designs[$.curr.designId].hasOwnProperty(posId)) {
+						$.curr.design[$.curr.designId][posId] = designs[$.curr.designId][posId];
 					}
 				} else {
 					// カートの同じデザインパターンに既にあるアイテムの場合
-					currItem = items[$.curr.designId][ids[1]];
+					currItem = items[$.curr.designId][$.curr.itemId];
 					colors = currItem.color;
-					colorCount = currItem.color.length;
+					colorCount = Object.keys(colors).length;
 					$.curr.item[$.curr.designId][$.curr.itemId] = currItem;
 					
 					// 選択しているカラー数分コピー
@@ -635,7 +635,7 @@ $(function () {
 					
 					// プリントの選択情報を設定
 					$.curr.design[$.curr.designId] = {};
-					$.curr.design[$.curr.designId][ids[2]] = designs[$.curr.designId][ids[2]];
+					$.curr.design[$.curr.designId][posId] = designs[$.curr.designId][posId];
 				}
 
 			} else {
@@ -648,8 +648,13 @@ $(function () {
 		for (i=0; i<colorCount; i++) {
 			p = p.then(function(idx){
 				var def = $.Deferred(),
-					cartData = colors.length!==0? colors[idx]: '',
-					target = colors.length!==0? $(pane[idx]): pane;
+					cartData = '',
+					target = pane;
+				
+				if (colors.hasOwnProperty(idx)) {
+					cartData = colors[idx];
+					target = $(pane[idx]);
+				}
 				$.api(['items', $.curr.itemId, 'colors'], 'GET', function (r) {
 					var thumb = '',
 						categoryCode = r[0]['category'],
@@ -694,7 +699,7 @@ $(function () {
 		
 		// 戻るボタンの表示切り替え
 		p.then(function(){
-			if (!self) {
+			if (!itemInfo) {
 				// カートの変更の場合
 				$('#item_info').next('.transition_wrap').children('.step_prev').addClass('hidden');
 			} else {
@@ -771,9 +776,7 @@ $(function () {
 	$('#item_info').on("TAP_EVENT", '.color_sele_thumb li img', function () {
 		if ($(this).parent().is('.nowimg')) return;
 		
-		var i = 0,
-			colors = $.curr.item[$.curr.designId][$.curr.itemId]['color'],
-			len = colors.length,
+		var colors = $.curr.item[$.curr.designId][$.curr.itemId]['color'],
 			self = $(this),
 			pane = self.closest('.pane'),
 			src = self.attr('src').replace('\/list\/', '/'),
@@ -789,7 +792,7 @@ $(function () {
 		pane.find('.note_color').html(colorName);
 
 		// サイズ毎の枚数の指定済みデータを取得
-		for (i=0; i<len; i++) {
+		for (let i in colors) {
 			if (colorCode==colors[i]['code']) {
 				data = colors[i]['vol'];
 				break;
@@ -855,6 +858,62 @@ $(function () {
 	});
 
 
+	/** 
+	 * アイテムカラー別にサイズ毎の枚数の選択情報を更新
+	 * @return {bool} 枚数の指定が０枚若しくはカラー指定に重複がある場合{@code false}、それ以外は{@code true}を返す
+	 */
+	var isDetailOfCurrentItem = function() {
+		var tot = 0,				// 枚数小計
+			isDuplicate = false;	// カラー指定の重複チェック
+		
+		// 当該アイテムのカラー指定を初期化
+		$.curr.item[$.curr.designId][$.curr.itemId]['color'] = {};
+
+		// カラー毎に更新
+		$('#item_info .pane').each(function () {
+			var self = $(this),
+				colorCode = self.find('.item_image_big').children('img').attr('alt'),
+				colorName = self.find('.note_color').text(),
+				masterId = self.find('.size_table').data('masterId'),
+				colors = $.curr.item[$.curr.designId][$.curr.itemId]['color'],
+				len = Object.keys(colors).length,
+				hash = {};
+
+			// サイズ毎の枚数をチェック {サイズ名: 枚数}
+			self.find('.size_table').find('tbody tr:not(".heading") td[class*="size_"] input').each(function () {
+				var amount = $(this).val() - 0;
+				if (amount == 0) return true; // continue
+				var param = $(this).parent().attr('class').split('_');	//[, id, name, cost]
+				hash[param[2]] = {'amount':amount, 'cost':param[3], 'id':param[1]};
+				tot += amount;
+			});
+
+			if (Object.keys(hash).length !== 0) {
+				// カラーの重複チェック
+				for (let i in colors) {
+					if (colors[i]['code']==colorCode) {
+						isDuplicate = true;
+						return false; // break;
+					}
+				}
+				$.curr.item[$.curr.designId][$.curr.itemId]['color'][len] = {};
+				$.curr.item[$.curr.designId][$.curr.itemId]['color'][len]['master'] = masterId;
+				$.curr.item[$.curr.designId][$.curr.itemId]['color'][len]['code'] = colorCode;
+				$.curr.item[$.curr.designId][$.curr.itemId]['color'][len]['name'] = colorName;
+				$.curr.item[$.curr.designId][$.curr.itemId]['color'][len]['vol'] = hash; // ex: {M: {amount:10, cost:500, id:sizeID}, ...};
+			}
+		});
+		if (isDuplicate === true) {
+			$.msgbox('カラーの指定が重複しています。');
+			return false;
+		} else if (tot === 0) {
+			$.msgbox('枚数をご指定ください。');
+			return fasle;
+		}
+		return true;
+	}
+
+
 	/**
 	 * Step2
 	 * プリント指定へ
@@ -887,56 +946,11 @@ $(function () {
 		var d = $.Deferred(),
 			p = $.Deferred().resolve().promise(),
 			designs = {},
-			target,
-			tot = 0,				// 枚数小計
-			isDuplicate = false;	// カラー指定の重複チェック
+			target;
 
 		// カートの変更以外は初期化
 		if (!isCart) {
-			$.curr.item[$.curr.designId][$.curr.itemId]['color'] = [];
-
-			// アイテムカラー別にサイズ毎の枚数の選択情報を更新
-			$('#item_info .pane').each(function () {
-				var i = 0,
-					self = $(this),
-					colorCode = self.find('.item_image_big').children('img').attr('alt'),
-					colorName = self.find('.note_color').text(),
-					masterId = self.find('.size_table').data('masterId'),
-					colors = [],
-					len = 0,
-					hash = {};
-
-				// サイズ毎の枚数をチェック {サイズ名: 枚数}
-				self.find('.size_table').find('tbody tr:not(".heading") td[class*="size_"] input').each(function () {
-					var amount = $(this).val() - 0;
-					if (amount == 0) return true; // continue
-					var param = $(this).parent().attr('class').split('_');	//[, id, name, cost]
-					hash[param[2]] = {'amount':amount, 'cost':param[3], 'id':param[1]};
-					tot += amount;
-				});
-
-				if (Object.keys(hash).length !== 0) {
-					// カラーの重複チェック
-					colors = $.curr.item[$.curr.designId][$.curr.itemId]['color'];
-					len = colors.length;
-					for (i=0; i<len; i++) {
-						if (colors[i]['code']==colorCode) {
-							isDuplicate = true;
-							return false; // break;
-						}
-					}
-					$.curr.item[$.curr.designId][$.curr.itemId]['color'][len] = {};
-					$.curr.item[$.curr.designId][$.curr.itemId]['color'][len]['master'] = masterId;
-					$.curr.item[$.curr.designId][$.curr.itemId]['color'][len]['code'] = colorCode;
-					$.curr.item[$.curr.designId][$.curr.itemId]['color'][len]['name'] = colorName;
-					$.curr.item[$.curr.designId][$.curr.itemId]['color'][len]['vol'] = hash; // ex: {M: {amount:10, cost:500, id:sizeID}, ...};
-				}
-			});
-			if (isDuplicate === true) {
-				$.msgbox('カラーの指定が重複しています。');
-				return d.reject().promise();
-			} else if (tot === 0) {
-				$.msgbox('枚数をご指定ください。');
+			if (!isDetailOfCurrentItem()) {
 				return d.reject().promise();
 			}
 		}
@@ -1023,11 +1037,13 @@ $(function () {
 						// コピー後に要素集合を再設定
 						target = $('#printing .pane');
 					} else {
-						// 初めてのStep通過、または戻るボタン
+						// 初めてのStep通過、または戻るボタンでアイテムに変更あり
+						// デザイン選択情報の初期設定
 						designCount++;
 						target = pane;
 					}
 
+					// プリント面指定毎のHTMLタグを生成
 					len = designData.length;
 					for (i=0; i<designCount; i++) {
 						// プリント面
@@ -1090,7 +1106,6 @@ $(function () {
 						if (len>0) {
 							$(target[i]).find('.ink').val([designData[i]['ink']]);
 						}
-						
 					}
 
 					// 初めてのStep、または戻るボタンでアイテム変更
@@ -1841,7 +1856,7 @@ $(function () {
 				// アイテム別に集計
 				Object.keys(items[designId]).forEach(function (itemId) {
 					var itemInfo = $(itemWrap[itemIndex]).children('.color_diff').children('.item_info_order'),
-						colorCount = this[itemId]['color'].length,
+						colorCount = Object.keys(this[itemId]['color']).length,
 						categoryCode = $.categories[this[itemId]['cateId']]['code'],
 						itemCode = this[itemId]['code'],
 						itemName = this[itemId]['name'];
@@ -1872,7 +1887,7 @@ $(function () {
 					itemInfo = $(itemWrap[itemIndex]).children('.color_diff').children('.item_info_order');
 
 					// アイテムカラー別に集計
-					for (i=0; i<colorCount; i++) {
+					for (let i in this[itemId]['color']) {
 						var colorName = this[itemId]['color'][i]['name'],
 							colorCode = this[itemId]['color'][i]['code'],
 							sizeCount = '';
@@ -2090,11 +2105,10 @@ $(function () {
 			colorName = self.closest('.item_info_order').find('.color_name').text();
 		
 		$.dialogBox('<p>'+itemName+'<br>カラー： '+colorName+'<br>を全て削除します。よろしいですか？', 'カラー削除', 'OK', 'Cancel').then(function(designId, itemId, colorName){
-			var i = 0,
-				items = $.getStorage('item'),
+			var items = $.getStorage('item'),
 				designs,
 				sum = {},
-				len = items[designId][itemId]['color'].length,
+				len = Object.keys(items[designId][itemId]['color']).length,
 				target = {},
 				orderItem = {},
 				totAmount = 0;
@@ -2102,7 +2116,7 @@ $(function () {
 			// 削除するアイテムを確定
 			target[designId] = {};
 			if (len>1) {
-				for (i=0; i<len; i++) {
+				for (let i in items[designId][itemId]['color']) {
 					if (items[designId][itemId]['color'][i]['name']==colorName) {
 						target[designId][itemId] = {'color': {'name':colorName}};
 
@@ -2443,8 +2457,7 @@ $(function () {
 				}
 				
 				Object.keys(z.items[designId]).forEach(function (itemId) {
-					var colorCount = this[itemId]['color'].length,
-						cateId = this[itemId]['cateId'],
+					var cateId = this[itemId]['cateId'],
 						categoryCode = $.categories[cateId]['code'],
 						itemCode = this[itemId]['code'],
 						itemName = this[itemId]['name'],
@@ -2456,7 +2469,7 @@ $(function () {
 						rows = 0;
 
 					// カラー毎にtbodyを生成
-					for (i=0; i<colorCount; i++) {
+					for (let i in this[itemId]['color']) {
 						tbl.append('<tbody>'+tmpTr+'</tbody>');
 						tbody = tbl.children('tbody:last');
 						tr = tbody.children('tr');
@@ -2514,11 +2527,6 @@ $(function () {
 			// プリント情報
 			tbody = $('#confirm_order .print_info_final tbody');
 			tbody.children('tr:gt(0)').remove();
-//			$('#cart .cart_box').each(function(){
-//				$(this).find('.print_info tbody tr').each(function(){
-//					$(this).clone().addClass('tabl_txt').append('<td></td>').appendTo(tbody);
-//				});
-//			});
 
 			$('#discount_fee').text(z.details.discountfee.toLocaleString('ja-JP'));
 //			$('#rank_name').text(z.details.rankname);
@@ -2739,6 +2747,26 @@ $(function () {
 		// 合計値
 //		sessionStorage.removeItem('sum');
 		
+		// カート表示
+		function showCart() {
+			$.curr.designId = 0;
+			$.curr.category = {};
+			$.curr.item = {'0':{}};
+			$.curr.design = {'0':{}};
+
+			$.resetCart().then(
+				function(){
+					$.next(4);	// カートへ
+				},
+				function(){
+					$.msgbox('カートに商品はありません。');
+				}
+			).then(function(){
+				// カテゴリ一覧フェードイン
+				$('#categories .fade').addClass('in');
+			});
+		}
+		
 		// クエリストリングを取得
 		qs = $.queryString.parse();
 		
@@ -2758,8 +2786,16 @@ $(function () {
 				// カート再計算
 				$.estimate();
 				
-				// アイテム詳細ページからの遷移
-				if (_UPDATED==1) {
+				if (Object.keys(qs).length>0) {
+					// カートを見るボタンによる表示
+					if (qs.hasOwnProperty('update') && qs.update==1) {
+						showCart();
+					}
+				} else if (_UPDATED==3 && _ITEM_ID) {
+					// アイテム詳細ページのその場で見積もりからの遷移
+					showCart();
+				} else if (_UPDATED==2 && _ITEM_ID) {
+					// アイテム詳細ページからの遷移
 					$.curr.designId = '0';
 					$.curr.itemId = 0;
 					$.curr.category = {};
@@ -2780,27 +2816,25 @@ $(function () {
 					// 絞り込みの条件表示を初期化
 					$('#tag').text('');
 
+					// アイテム一覧ページを生成
 					$.api(args, 'GET', showItem, tags).then(function(){
-						// ページ遷移
-						$.next();
-					});
-				} else if (Object.keys(qs).length>0) {
-					// カートを見るボタンによる表示
-					if (qs.hasOwnProperty('update') && qs.update==2) {
-						$.curr.designId = 0;
-						$.curr.category = {};
-						$.curr.item = {'0':{}};
-						$.curr.design = {'0':{}};
+						// アイテムの基本情報を取得
+						return $.api(['items', _ITEM_ID], 'GET', null);
+					}).then(function(rec){
+						var r = rec[0],
+							data = ['', _ITEM_ID, r.position_id, r.volumerange_id, r.silkscreen_id, r.code, r.name];
 
-						$.resetCart().then(
-							function(){
-								$.next(4);	// カートへ
-							},
-							function(){
-								$.msgbox('カートに商品はありません。');
-							}
-						);
-					}
+						// カラー、サイズ、枚数の選択ページを生成
+						return setItemDetail(data);
+					}).then(function(){
+						$.next(2);
+						
+						// カテゴリ一覧フェードイン
+						$('#categories .fade').addClass('in');
+					});
+				} else {
+					// カテゴリ一覧フェードイン
+					$('#categories .fade').addClass('in');
 				}
 			}
 		});

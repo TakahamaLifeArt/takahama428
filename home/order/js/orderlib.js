@@ -142,15 +142,15 @@ $(function(){
 						delete store[currDesignId][currItemId];
 					} else {
 						// カラーを削除
-						for (i=0; i<store[currDesignId][currItemId]['color'].length; i++) {
+						for (let i in store[currDesignId][currItemId]['color']) {
 							if (store[currDesignId][currItemId]['color'][i]['name']==data[currDesignId][currItemId]['color']['name']) {
-								store[currDesignId][currItemId]['color'].splice(i, 1);
+								delete store[currDesignId][currItemId]['color'][i];
 								break;
 							}
 						}
 
 						// 全てのカラーが削除された場合は当該アイテムを全削除
-						if (store[currDesignId][currItemId]['color'].length==0) {
+						if (Object.keys(store[currDesignId][currItemId]['color']).length==0) {
 							currPosId = store[currDesignId][currItemId]['posId'];
 							delete store[currDesignId][currItemId];
 						}
@@ -337,24 +337,6 @@ $(function(){
 								// 同じアイテムIDの商品がカートにある場合、カラー指定とサイズ毎の枚数指定を上書き
 								this[itemId]['color'] = data[designId][itemId]['color'];
 
-								// カラー毎に更新を判断する場合（テスト）
-								//								for (i=0; i<data[designId][itemId]['color'].length; i++) {
-								//									isExistColor = false;
-								//									for (var t=0; t<this[itemId]['color'].length; t++) {
-								//
-								//										// 同じカラーがある場合はサイズ毎の枚数指定を更新
-								//										if (this[itemId]['color'][t]['code']==data[designId][itemId]['color'][i]['code']) {
-								//											$.extend(this[itemId]['color'][t], data[designId][itemId]['color'][i]);
-								//											isExistColor = true;
-								//										}
-								//									}
-								//
-								//									// 新規カラーの追加
-								//									if (isExistColor===false) {
-								//										this[itemId]['color'].push(data[designId][itemId]['color'][i]);
-								//									}
-								//								}
-
 								isExist = true;
 								return;
 							}, store[designId]);
@@ -458,7 +440,7 @@ $(function(){
 				price += this[method]-0;
 			}, obj.price);
 			price = Math.floor(price * (1 + $.tax));
-			perone = Math.ceil(price / amount);
+			perone = amount==0? 0: Math.ceil(price / amount);
 			pane.find('.price_box .total_p span').text(price.toLocaleString('ja-JP'));
 			pane.find('.price_box .solo_p span').text(perone.toLocaleString('ja-JP'));
 			if (obj.recommend.length>0){
@@ -485,9 +467,8 @@ $(function(){
 
 			Object.keys(items).forEach(function(designId){
 				Object.keys(items[designId]).forEach(function (itemId) {
-					var i = 0,
-						len = this[itemId]['color'].length;
-					for (i=0; i<len; i++) {
+					var i = 0;
+					for (i in this[itemId]['color']) {
 						p = p.then(function(idx, colors){
 							return $.api(['items', itemId, 'costs', colors[idx]['code']], 'GET', function(r){
 								var costOf = {};
@@ -529,7 +510,7 @@ $(function(){
 					// アイテムID指定がある場合
 					if (targetItemId && targetItemId!=itemId) return;
 
-					for (i=0; i<this[itemId]['color'].length; i++) {
+					for (i in this[itemId]['color']) {
 						Object.keys(this[itemId]['color'][i]['vol']).forEach(function (sizeName) {
 							cost = this[sizeName]['cost']-0;
 							
@@ -602,7 +583,7 @@ $(function(){
 							}
 
 							// 枚数レンジ別のアイテム毎
-							for (i=0; i<this[itemId]['color'].length; i++) {
+							for (let i in this[itemId]['color']) {
 								Object.keys(this[itemId]['color'][i]['vol']).forEach(function (sizeName) {
 									volumeRange[items[designId][itemId]['rangeId']][itemId] += this[sizeName]['amount'] - 0;
 								}, this[itemId]['color'][i]['vol']);
@@ -1400,13 +1381,15 @@ $(function(){
 			 * @param {string} sep {@code &} それ以外も可
 			 * @param {string} eq {@code =} それ以外も可
 			 * @param {bool} isDecode URIエンコードの有無
-			 * @return {array}
+			 * @return {object}
 			 */
 				var decode = (isDecode) ? decodeURIComponent : function(a) { return a; };
 			 	text = text || location.search.substr(1);
 				sep = sep || '&';
 				eq = eq || '=';
-			
+
+				if (!text) return {};
+
 				return text.split(sep).reduce(function(obj, v) {
 					var pair = v.split(eq);
 					

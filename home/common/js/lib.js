@@ -263,7 +263,7 @@ $(function(){
 	/** goto cart page */
 	$('#show_cart').on('click', function(){
 		if (location.pathname!='/order/') {
-			location.href = '/order/?update=2';
+			location.href = '/order/?update=1';
 		} else {
 			$.curr.designId = 0;
 			$.curr.category = {};

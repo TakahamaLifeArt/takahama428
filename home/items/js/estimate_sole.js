@@ -1,13 +1,86 @@
 /**
-*	Takahama Life Art
-*	見積　（単一商品）
-*/
+ * Takahama Life Art
+ * 見積　（単一商品）
+ * log
+ * 2018-03-05 アイテム一覧ページ「その場で見積もり」の仕様変更
+ */
 
 $(function(){
-	
-	/***************************************************
-	*		全ての画像の読込みを完了してから処理を実行させる
-	*/
+
+	// Tap or Click
+	(function($, window) {
+		"use strict";
+
+		var RANGE = 5,
+			events = ["click", "touchstart", "touchmove", "touchend"],
+			handlers = {
+				click: function(e) {
+					if(e.target === e.currentTarget) {
+						e.preventDefault();
+					}
+				},
+				touchstart: function(e) {
+					this.jQueryTap.touched = true;
+					this.jQueryTap.startX = e.touches[0].pageX;
+					this.jQueryTap.startY = e.touches[0].pageY;
+				},
+				touchmove: function(e) {
+					if(!this.jQueryTap.touched) {
+						return;
+					}
+
+					if(Math.abs(e.touches[0].pageX - this.jQueryTap.startX) > RANGE ||
+					   Math.abs(e.touches[0].pageY - this.jQueryTap.startY) > RANGE) {
+						this.jQueryTap.touched = false;
+					}
+				},
+				touchend: function(e) {
+					if(!this.jQueryTap.touched) {
+						return;
+					}
+
+					this.jQueryTap.touched = false;
+					$.event.dispatch.call(this, $.Event("TAP_EVENT", {
+						originalEvent: e,
+						target: e.target,
+						pageX: e.changedTouches[0].pageX,
+						pageY: e.changedTouches[0].pageY
+					}));
+				}
+			};
+
+		$.event.special.TAP_EVENT = "ontouchend" in window? {
+			setup: function() {
+				var thisObj = this;
+
+				if(!this.jQueryTap) {
+					Object.defineProperty(this, "jQueryTap", {value: {}});
+				}
+				$.each(events, function(i, ev) {
+					thisObj.addEventListener(ev, handlers[ev], false);
+				});
+			},
+			teardown: function() {
+				var thisObj = this;
+
+				$.each(events, function(i, ev) {
+					thisObj.removeEventListener(ev, handlers[ev], false);
+				});
+			}
+		}: {
+			bindType: "click",
+			delegateType: "click"
+		};
+
+		$.fn.TAP_EVENT = function(data, fn) {
+			return arguments.length > 0? this.on("TAP_EVENT", null, data, fn): this.trigger("TAP_EVENT");
+		};
+	})(jQuery, this);
+
+
+	/**
+	 * 全ての画像の読込みを完了してから処理を実行させる
+	 */
 	$.fn.imagesLoaded = function(callback){
 		var elems = this.filter('img'),
 			len = elems.length,
@@ -31,65 +104,542 @@ $(function(){
 
 		return this;
 	};
-	
-	jQuery.extend({
-		init: function(){
-			$('#color_thumb li img').imagesLoaded(function(){$('#item_colors').fadeIn();});
-			$.my.curitemid = _ITEM_ID;
-			$.setPrintposEvent();
-			var colorcode = $('#item_image_l').attr('src');
-			colorcode = colorcode.slice(colorcode.lastIndexOf('_')+1, colorcode.lastIndexOf('.'));
-			$.showSizeform($.my.curitemid, colorcode, []);
-		},
-		changeThumb: function(my){
-		/*
-		*	サムネイルの変更
-		*/
-			var colorcode = my.attr("alt");
-			var colorname = my.attr("title");
-			$(".notes_color").html(colorname);
-			$(".color_thumb li.nowimg").removeClass("nowimg");
-			my.parent().addClass("nowimg");
-			
-			var tmp = {};
-			$('#price_wrap table tbody tr:odd td').each( function(index){
-				var sizeid = $(this).attr('class').split('_')[1];
-				tmp[sizeid] = $(this).find('input.forNum').val();
+
+
+	// カラーとサイズ毎の枚数指定のdata属性値を設定
+	$('#item_info .pane:first').data('idx', 0);
+
+
+	// 枚数の変更
+	$('#item_info').on('change', '.pane table tbody tr:not(".heading") td[class*="size_"] input', function () {
+		var tot = 0,
+			subTot = 0,
+			tbl = $(this).closest('table'),
+			masterId = tbl.data('masterId'),
+			hash = {},
+			p = $.Deferred().resolve().promise();
+
+		if (!$.hasDuplicated()) {
+			$(this).val(0);
+			return;
+		}
+
+		// サイズ毎の枚数をチェック {サイズ名: 枚数}
+		tbl.find('tbody tr:not(".heading") td[class*="size_"] input').each(function () {
+			var amount = $(this).val() - 0;
+			if (amount == 0) return true; // continue
+			var param = $(this).parent().attr('class').split('_');	//[, id, name, cost]
+			hash[param[2]] = {'amount':amount, 'cost':param[3], 'id':param[1]};
+			subTot += amount;
+		});
+
+		tbl.siblings('.btmline').children('.cur_amount').text(subTot.toLocaleString('ja-JP'));
+
+		// 合計枚数を更新
+		$('#item_info').children('.pane').each(function () {
+			tot += $(this).find('.cur_amount').text() - 0;
+		});
+		$('#tot_amount').text(tot.toLocaleString('ja-JP'));
+
+		// 選択データを更新
+		$.each($.curr.item[$.curr.designId][$.curr.itemId]['color'], function(index, val){
+			if (masterId != val.master) return true;
+			$.curr.item[$.curr.designId][$.curr.itemId]['color'][index]['vol'] = hash;	// ex: {M: {amount:10, cost:500, id:sizeID}, ...};
+		});
+
+		// 見積もり再計算
+		$('#printing .pane').each(function(){
+			var self = $(this),
+				index = self.data('idx'),
+				face = self.find('.area img').attr('alt');
+
+			p = p.then(function(self, face, index){
+				return $.printCharge($.curr, [face, index]);
+			}.bind(null, self, face, index)).then(function(printFee){
+				$.showPrintPrice(self, printFee);
 			});
-			
-			$.showSizeform($.my.curitemid, colorcode, tmp);
-		},
-		//inputボックスをクリックすると「0」を消す
-		focusNumber: function(my){
-			if($(my).val()=="0") {
+		});
+	});
+
+
+	// 別のアイテムカラーを追加
+	$('#add_item_color').on("TAP_EVENT", function () {
+		var pane = $('#item_info .pane:first'),
+			clone = pane.clone(true),
+			newIndex = 0,
+			colorCode = pane.find('.color_sele_thumb li.nowimg img').attr('alt'),
+			colorName = pane.find('.note_color').text(),
+			masterId = pane.find('table').data('masterId');
+
+		// データ属性値を設定
+		$('#item_info .pane').each(function() {
+			newIndex = Math.max(newIndex, ($(this).data('idx')-0));
+		});
+		clone.data('idx', ++newIndex);
+
+		// サイズテーブルと枚数小計を初期化
+		clone.find('table input[type="number"]').val(0);
+		clone.find('.cur_amount').text('0');
+
+		// 削除ボタンを追加
+		clone.prepend('<button class="del_item_color btn btn-outline-danger waves-effect del_btn_2">カラーを削除</button>');
+
+		clone.insertBefore($(this).parent('.btn_box'));
+
+		// 選択データを更新
+		$.curr.item[$.curr.designId][$.curr.itemId]['color'][newIndex] = {};
+		$.curr.item[$.curr.designId][$.curr.itemId]['color'][newIndex]['master'] = masterId;
+		$.curr.item[$.curr.designId][$.curr.itemId]['color'][newIndex]['code'] = colorCode;
+		$.curr.item[$.curr.designId][$.curr.itemId]['color'][newIndex]['name'] = colorName;
+		$.curr.item[$.curr.designId][$.curr.itemId]['color'][newIndex]['vol'] = {};
+	});
+
+
+	// アイテムカラーを削除
+	$('#item_info').on("TAP_EVENT", '.del_item_color', function () {
+		var pane = $(this).closest('.pane'),
+			idx = pane.data('idx'),
+			p = $.Deferred().resolve().promise();
+
+		pane.slideUp('normal', function () {
+			var tot = 0;
+
+			$(this).remove();
+
+			// 選択データを更新
+			delete $.curr.item[$.curr.designId][$.curr.itemId]['color'][idx];
+
+			// 合計枚数を更新
+			$('#item_info').children('.pane').each(function () {
+				tot += $(this).find('.cur_amount').text() - 0;
+			});
+			$('#tot_amount').text(tot.toLocaleString('ja-JP'));
+
+			// 見積もり再計算
+			$('#printing .pane').each(function(){
+				var self = $(this),
+					index = self.data('idx'),
+					face = self.find('.area img').attr('alt');
+
+				p = p.then(function(self, face, index){
+					return $.printCharge($.curr, [face, index]);
+				}.bind(null, self, face, index)).then(function(printFee){
+					$.showPrintPrice(self, printFee);
+				});
+			});
+		});
+	});
+
+
+	// プリント指定項目と金額表示を初期化
+	$('#printing .pane:gt(0)').remove();
+	$('#printing .pane').find('.print_selector').val('recommend');
+	$('#printing .pane').find('.ink').val(['1']);
+	$('#printing .pane').find('.print_cond').addClass('hidden').find('input').val(['0']);
+	$('#printing .pane').find('.price_box_2').addClass('hidden');
+	$('#printing .pane').find('.print_cond_note').addClass('hidden');
+	$('.price_box .total_p span, price_box .solo_p span').text('0');
+
+
+	// プリント指定のdata属性値を設定
+	$('#printing .pane:first').data('idx', 0);
+
+
+	// プリントなし
+	$('#noprint').on('TAP_EVENT', function () {
+		var val = $(this).prop('checked') ? 0 : 1,
+			p = $.Deferred().resolve().promise();
+
+		// 選択項目の表示・非表示を切り替え
+		if (val !== 1) {
+			$('#printing .pane').hide();
+			$('#add_print').hide();
+		} else {
+			$('#printing .pane').show();
+			$('#add_print').show();
+
+			// 見積もり再計算
+			$('#printing .pane').each(function(){
+				var self = $(this),
+					index = self.data('idx'),
+					face = self.find('.area img').attr('alt');
+
+				p = p.then(function(self, face, index){
+					return $.printCharge($.curr, [face, index]);
+				}.bind(null, self, face, index)).then(function(printFee){
+					$.showPrintPrice(self, printFee);
+				});
+			});
+		}
+	});
+
+
+	// プリント面変更
+	$('#printing').on('change', '.pane .face', function () {
+		var face = $(this).val(),
+			pane = $(this).closest('.pane'),
+			index = pane.data('idx'),
+			img = pane.find('.area img'),
+			preFace = img.attr('alt'),
+			src = img.attr('src'),
+			obj = $.curr.design[$.curr.designId][$.curr.posId],
+			tmp = JSON.stringify(obj[preFace][index]),
+			list = '',
+			area = '',
+			newIndex = 0;
+
+		// プリント面の指定状況を確認
+		if (obj.hasOwnProperty(face)) {
+			// 既に指定されているプリント面あり
+			if (Object.keys(obj[face]).length == 2) {
+				$.msgbox('同じ面に指定できる箇所は２箇所までとなっています。<br>３箇所以上をご希望の方はご相談ください。');
+				$(this).val([preFace]);
+				return;
+			}
+			newIndex = Math.max.apply(null, Object.keys(obj[face])) + 1;
+		} else {
+			// 新規のプリント面
+			obj[face] = {};
+		}
+
+		// データ属性値を更新
+		pane.data('idx', newIndex);
+
+		// ファイル名変更
+		src = src.replace('base_' + preFace + '.svg', 'base_' + face + '.svg');
+		img.attr({
+			'src': src,
+			'alt': face
+		});
+
+		// プリント箇所のセレクターを変更
+		list += '<select class="down_cond">';
+		$(this).data('pos').split(',').forEach(function (pos, idx) {
+			list += '<option value="' + pos + '"';
+			if (idx === 0) {
+				list += ' selected';
+				area = pos;
+			}
+			list += '>' + pos + '</option>';
+		});
+		list += '</select>';
+		img.closest('.pane').find('.pos_selector_wrap').html(list);
+
+		// デザイン選択情報を更新
+		obj[face][newIndex] = JSON.parse(tmp);
+		obj[face][newIndex]['area'] = area;
+		delete $.curr.design[$.curr.designId][$.curr.posId][preFace][index];	// deleteは参照先は削除されない
+		if (Object.keys(obj[preFace]).length == 0) {
+			delete $.curr.design[$.curr.designId][$.curr.posId][preFace];		// deleteは参照先は削除されない
+		}
+
+		// 見積もり再計算
+		$.printCharge($.curr, [face, newIndex]).then(function(printFee){
+			$.showPrintPrice(pane, printFee);
+		});
+	});
+
+
+	// プリント箇所を変更
+	$('#printing').on('change', '.pane .pos_selector_wrap select', function () {
+		var self = $(this),
+			area = self.val(),
+			pane = self.closest('.pane'),
+			index = pane.data('idx'),
+			face = pane.find('.area img').attr('alt'),
+			obj = $.curr.design[$.curr.designId][$.curr.posId][face],
+			isExist = false;
+
+		// デザイン選択情報を更新
+		Object.keys(obj).forEach(function(idx){
+			if (obj[idx]['area']==area) {
+				$.msgbox(area+'はすでに選択されています');
+				self.val(obj[index]['area']);
+				isExist = true;
+				return;
+			}
+		});
+
+		if (isExist===false) {
+			obj[index]['area'] = area;
+
+			// 見積もり再計算
+			$.printCharge($.curr, [face, index]).then(function(printFee){
+				$.showPrintPrice(pane, printFee);
+			});
+		}
+	});
+
+
+	// 色数変更
+	$('#printing').on('change', '.pane .ink', function () {
+		var self = $(this),
+			ink = self.val(),
+			pane = self.closest('.pane'),
+			index = pane.data('idx'),
+			face = pane.find('.area img').attr('alt'),
+			obj = $.curr.design[$.curr.designId][$.curr.posId][face][index];
+
+		// 刺繍の場合はオプション確認
+		if (obj['method'] == 'emb' && obj['option'] == 1) {
+			if (ink > 1) {
+				$.msgbox('刺繍のネームは、１色のみの対応となっております。');
+				pane.find('.ink[value="1"]').prop('checked', true);
+			}
+		}
+
+		// デザイン選択情報を更新
+		obj['ink'] = ink;
+
+		// 見積もり再計算
+		$.printCharge($.curr, [face, index]).then(function(printFee){
+			$.showPrintPrice(pane, printFee);
+		});
+	});
+
+
+	// プリント方法を変更
+	$('#printing').on('change', '.print_selector', function () {
+		var val = $(this).val(),
+			pane = $(this).closest('.pane'),
+			index = pane.data('idx'),
+			face = pane.find('.area img').attr('alt'),
+			obj = $.curr.design[$.curr.designId][$.curr.posId][face][index];
+
+		// 初期化
+		pane.find('.print_cond').addClass('hidden').find('input').val(['0']);
+		pane.find('.price_box_2').addClass('hidden');
+		pane.find('.print_cond_note').removeClass('hidden');
+
+		// 表示切り替え
+		switch (val) {
+			case 'recommend':
+				pane.find('.price_box_2').removeClass('hidden');
+				pane.find('.print_cond_note').addClass('hidden');
+				break;
+			case 'silk':
+				if (Object.keys($.curr.category)[0] == 8) {
+					pane.find('.silk_towel').removeClass('hidden');
+				} else {
+					pane.find('.silk').removeClass('hidden');
+				}
+				break;
+			case 'digit':
+			case 'inkjet':
+			case 'cutting':
+				pane.find('.other_print').removeClass('hidden');
+				break;
+			case 'emb':
+				pane.find('.embroidery').removeClass('hidden');
+				break;
+		}
+
+		// デザイン選択情報を更新
+		obj['size'] = 0;
+		obj['option'] = 0;
+		obj['method'] = val;
+
+		// 見積もり再計算
+		$.printCharge($.curr, [face, index]).then(function(printFee){
+			$.showPrintPrice(pane, printFee);
+		});
+	});
+
+
+	// プリントサイズ変更
+	$('#printing').on('change', '.pane .design_size', function () {
+		var pane = $(this).closest('.pane'),
+			index = pane.data('idx'),
+			face = pane.find('.area img').attr('alt');
+
+		// デザイン選択情報を更新
+		$.curr.design[$.curr.designId][$.curr.posId][face][index]['size'] = $(this).val();
+
+		// 見積もり再計算
+		$.printCharge($.curr, [face, index]).then(function(printFee){
+			$.showPrintPrice(pane, printFee);
+		});
+	});
+
+
+	// プリントオプション変更（刺繍）
+	$('#printing').on('change', '.pane .design_opt', function () {
+		var pane = $(this).closest('.pane'),
+			index = pane.data('idx'),
+			face = pane.find('.area img').attr('alt');
+
+		if ($(this).val()==1 && pane.find('.ink:checked').val() > 1) {
+			$.msgbox('刺繍のネームは、１色のみの対応となっております。');
+			pane.find('.design_opt[value="0"]').prop('checked', true);
+			return;
+		}
+
+		// デザイン選択情報を更新
+		$.curr.design[$.curr.designId][$.curr.posId][face][index]['option'] = $(this).val();
+
+		// 見積もり再計算
+		$.printCharge($.curr, [face, index]).then(function(printFee){
+			$.showPrintPrice(pane, printFee);
+		});
+	});
+
+
+	//	プリント方法のダイアログ
+	$('.print_link').on("TAP_EVENT", function () {
+		var msg = '';
+		msg += '<div class="print_type">';
+		msg += '<h3 class="print_ttl">シルクスクリーン</h3>';
+		msg += '<div class="btns">';
+		msg += '<p class="print_img"><img src="/order/img/silk.gif" width="100%"></p>';
+		msg += '<div>';
+		msg += '<p class="print_unit">人気NO.1プリント！版画のように、職人が一回一回 手刷りでプリントしていきます。</p>';
+		msg += '<div class="print_rec">';
+		msg += '<p class=""><img src="/order/img/sp_order_print_clothes.png" width="18px">おすすめ枚数：20枚以上</p>';
+		msg += '<p class=""><img src="/order/img/sp_order_print_color.png" width="18px">おすすめ色数：3色以内</p>';
+		msg += '</div>';
+		msg += '</div>';
+		msg += '</div>';
+		msg += '</div>';
+		msg += '<div class="print_type">';
+		msg += '<h3 class="print_ttl">インクジェット</h3>';
+		msg += '<div class="btns">';
+		msg += '<p class="print_img"><img src="/order/img/inc.gif" width="100%"></p>';
+		msg += '<div>';
+		msg += '<p class="print_unit">何色使っても料金は変わらずに一枚から作成できます。 手触りがよく、柔らかい風合いに仕上がります。</p>';
+		msg += '<div class="print_rec">';
+		msg += '<p class=""><img src="/order/img/sp_order_print_clothes.png" width="18px">おすすめ枚数：1~10枚</p>';
+		msg += '<p class=""><img src="/order/img/sp_order_print_color.png" width="18px">おすすめ色数：フルカラー</p>';
+		msg += '</div>';
+		msg += '</div>';
+		msg += '</div>';
+		msg += '</div>';
+		msg += '<div class="print_type">';
+		msg += '<h3 class="print_ttl">デジタル転写</h3>';
+		msg += '<div class="btns">';
+		msg += '<p class="print_img"><img src="/order/img/digi.gif" width="100%"></p>';
+		msg += '<div>';
+		msg += '<p class="print_unit">シートに印刷をし、スタンプのように熱で圧着させるプリント方法です。 色の発色が良く、 グラデーションなど細やかな柄の再現に優れています。</p>';
+		msg += '<div class="print_rec">';
+		msg += '<p class=""><img src="/order/img/sp_order_print_clothes.png" width="18px">おすすめ枚数：30 枚以上</p>';
+		msg += '<p class=""><img src="/order/img/sp_order_print_color.png" width="18px">おすすめ色数：フルカラー</p>';
+		msg += '</div>';
+		msg += '</div>';
+		msg += '</div>';
+		msg += '</div>';
+		msg += '<div class="print_type">';
+		msg += '<h3 class="print_ttl">カッティングプリント</h3>';
+		msg += '<div class="btns">';
+		msg += '<p class="print_img"><img src="/order/img/cut.gif" width="100%"></p>';
+		msg += '<div>';
+		msg += '<p class="print_unit">背番号やゼッケンへのプリントに適しています。一枚一枚デザイン を変更できるので、チームユニフォームのように背番号や名前を 一枚一枚変更したい方におすすめです。</p>';
+		msg += '</div>';
+		msg += '</div>';
+		msg += '</div>';
+		msg += '<div class="print_type">';
+		msg += '<h3 class="print_ttl">刺繍</h3>';
+		msg += '<div class="btns">';
+		msg += '<p class="print_img"><img src="/order/img/emb.gif" width="100%"></p>';
+		msg += '<div>';
+		msg += '<p class="print_unit">糸を使って、布地の表面に文字や絵を表現します。 耐久性にも 優れ、 色落ち、高級感ある表現ができるので、企業 や店舗のユニフォームにおすすめです。</p>';
+		msg += '</div>';
+		msg += '</div>';
+		msg += '</div>';
+		msg += '<button class="pop_btn_close btn waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times-circle mr-1" aria-hidden="true"></i>閉じる</button>';
+		$.msgbox(msg, '<h2>プリント方法の説明</h2>');
+	});
+
+
+	jQuery.extend({
+		focusNumber: function(my) {
+			if ($(my).val()=="0") {
 				$(my).val("");
 			}
 		},
-		blurNumber: function(my){
-			if($(my).val()=="") {
+		blurNumber: function(my) {
+			if ($(my).val()=="") {
 				$(my).val("0");
 			}
 		},
-		showSizeform: function(itemid, colorcode, volume){
-		/*
-		*	サイズごとの枚数入力フォーム
-		*	@itemid			アイテムID
-		*	@colorcode		アイテムカラーコード
-		*	@volume			サイズIDをキーにした枚数のハッシュ
-		*/
-			$.getJSON($.TLA.api+'?callback=?', {'act':'sizeprice', 'itemid':itemid, 'colorcode':colorcode, 'output':'jsonp'}, function(r){
-				var pre_sizeid = 0;
-				var cost = 0;
-				var amount = 0;
-				var size_head = '';
-				var size_body = '';
-				var sum = 0;
-				var size_table = '';
+		changeThumb: function(my) {
+		/**
+		 * サムネイルの変更
+		 */
+			var colorCode = my.attr("alt"),
+				colorName = my.attr("title"),
+				src = my.attr('src').replace('\/list\/', '/'),
+				tmp = {},
+				pane = my.closest('.pane'),
+				currentIdx = pane.data('idx')-0,
+				colors = [],
+				len = 0,
+				isDuplicate = false;
+
+			// カラーの重複チェック
+			if ($.hasDuplicated(colorName)===false) return;
+
+			$.curr.item[$.curr.designId][$.curr.itemId]['color'][currentIdx]['code'] = colorCode;
+			$.curr.item[$.curr.designId][$.curr.itemId]['color'][currentIdx]['name'] = colorName;
+
+			pane.find(".note_color").html(colorName);
+			my.parent().addClass('nowimg').siblings('li.nowimg').removeClass('nowimg');
+			pane.find('.item_image_big img').attr({
+				'src': src,
+				'alt': colorCode
+			});
+
+			// 枚数の指定内容を保持
+			pane.find('table tbody tr:odd td').each( function(index){
+				var sizeid = $(this).attr('class').split('_')[1];
+				tmp[sizeid] = $(this).find('input.forNum').val();
+			});
+
+			// サイズテーブル更新
+			$.showSizeform(_ITEM_ID, colorCode, tmp, currentIdx).then(function(){
+				// 見積もり再計算
+				var p = $.Deferred().resolve().promise();
+
+				$('#printing .pane').each(function(){
+					var self = $(this),
+						index = self.data('idx'),
+						face = self.find('.area img').attr('alt');
+
+					p = p.then(function(self, face, index){
+						return $.printCharge($.curr, [face, index]);
+					}.bind(null, self, face, index)).then(function(printFee){
+						$.showPrintPrice(self, printFee);
+					});
+				});
+			});
+		},
+		showSizeform: function(itemId, colorCode, volume, currentIdx) {
+		/**
+		 * サイズごとの枚数入力フォーム
+		 * @itemId			アイテムID
+		 * @colorCode		アイテムカラーコード
+		 * @volume			サイズIDをキーにした枚数のハッシュ
+		 * @currentIdx		ラッパー（.pane）のdata属性値
+		 */
+			var d = $.Deferred();
+			
+			$.getJSON($.TLA.api+'?callback=?', {'act':'sizeprice', 'itemid':itemId, 'colorcode':colorCode, 'output':'jsonp'}, function(r){
+				var pre_sizeid = 0,
+					cost = 0,
+					amount = 0,
+					size_head = '',
+					size_body = '',
+					sum = 0,
+					tot = 0,
+					size_table = '',
+					hash = {};
+				
 				$.each(r, function(key, val){
 					if(typeof volume[val.id]=='undefined'){
 						amount = 0;
 					}else{
 						amount = volume[val.id]-0;
+						if (amount!=0) {
+							hash[val['name']] = {'amount':amount, 'cost':val['cost'], 'id':val['id']};
+						}
 					}
 					sum += amount;
 					if(key==0){
@@ -97,7 +647,7 @@ $(function(){
 						cost = val['cost'];
 						size_head = '<th></th><th>'+val['name']+'</th>';
 						size_body = '<th data-label="1枚単価">'+(val['cost']).toLocaleString('ja-JP')+' 円</th><td class="size_'+val['id']+'_'+val['name']+'_'+val['cost']+'" data-label="'+val['name']+'">';
-						size_body += '<input id="size_'+val['id']+'" type="number" value="'+amount+'" min="0" max="999" class="forNum" onfocus="$.focusNumber(this);" onchange="$.addOrder();" onblur="$.blurNumber(this);" /></td>';
+						size_body += '<input id="size_'+val['id']+'" type="number" value="'+amount+'" min="0" max="999" class="forNum" onfocus="$.focusNumber(this);" onblur="$.blurNumber(this);" /></td>';
 					}else if(cost != val['cost'] || (val['id']>(++pre_sizeid) && val['id']>10)){	// 単価が違うかまたは、サイズ160以下を除きサイズが連続していない
 						size_table += '<tr class="heading">'+size_head+'</tr>';
 						size_table += '<tr>'+size_body+'</tr>';
@@ -106,473 +656,135 @@ $(function(){
 						cost = val['cost'];
 						size_head = '<th></th><th>'+val['name']+'</th>';
 						size_body = '<th data-label="1枚単価">'+(val['cost']).toLocaleString('ja-JP')+' 円</th><td class="size_'+val['id']+'_'+val['name']+'_'+val['cost']+'" data-label="'+val['name']+'">';
-						size_body += '<input id="size_'+val['id']+'" type="number" value="'+amount+'" min="0" max="999" class="forNum" onfocus="$.focusNumber(this);" onchange="$.addOrder();" onblur="$.blurNumber(this);" /></td>';
+						size_body += '<input id="size_'+val['id']+'" type="number" value="'+amount+'" min="0" max="999" class="forNum" onfocus="$.focusNumber(this);" onblur="$.blurNumber(this);" /></td>';
 					}else{
 						pre_sizeid = val['id'];
 						size_head += '<th>'+val['name']+'</th>';
 						size_body += '<td class="size_'+val['id']+'_'+val['name']+'_'+val['cost']+'" data-label="'+val['name']+'">';
-						size_body += '<input id="size_'+val['id']+'" type="number" value="'+amount+'" min="0" max="999" class="forNum" onfocus="$.focusNumber(this);" onchange="$.addOrder();" onblur="$.blurNumber(this);" /></td>';
+						size_body += '<input id="size_'+val['id']+'" type="number" value="'+amount+'" min="0" max="999" class="forNum" onfocus="$.focusNumber(this);" onblur="$.blurNumber(this);" /></td>';
 					}
 				});
 				size_table += '<tr class="heading">'+size_head+'</tr>';
 				size_table += '<tr>'+size_body+'</tr>';
-				$('table:first tbody', '#price_wrap').html(size_table);
 				
-				$.addOrder(false);
-			});
-		
-		},
-		setPrintposEvent: function(){
-		/*
-		*	プリント位置と色数の変更イベント設定
-		*/
-			$('#pos_wrap div').each( function(){
-				$(this).children('img:not(:nth-child(1))').each(function() {
-					var postfix = '_on';
-					var img = $(this);
-					var posid = img.parent().attr('class').split('_')[1];
-					var src = img.attr('src');
-					var src_on = src.substr(0, src.lastIndexOf('.'))
-							 + postfix
-							 + src.substring(src.lastIndexOf('.'));
-					$('<img>').attr('src', src_on);
-					img.hover(
-						function() {
-							img.not('.cur').attr('src', src_on);
-						},
-						function() {
-							img.not('.cur').attr('src', src);
-						}
-					).click( function(e){
-						if(img.is('.cur')){
-							img.attr('src', src).removeClass('cur');
-							$('#inktarget'+posid).find('.pos-'+img.attr('class')).remove();
-						}else{
-							var cur = img.siblings('.cur');
-							if (cur.length) {
-								cur.attr('src',cur.attr('src').replace(/_on.png/,'.png')).removeClass('cur');
-								$('#inktarget'+posid).find('.pos-'+cur.attr('class')).remove();
-							}
-							var ink = '<div class="inks pos-'+img.attr('class')+'">';
-							ink += '<p class="posname_'+posid+'">'+img.attr('alt')+'</p>';
-							ink += '<p>使用インク<select class="ink_'+posid+'" onchange="$.addOrder();"><option value="0" selected="selected">選択してください</option>';
-							ink += '<option value="1">1色</option><option value="2">2色</option><option value="3">3色</option>';
-							ink += '<option value="9">4色以上</option></select></p>';
-							ink += '</div>';
-							
-							img.attr('src', src_on).addClass('cur');
-							$('#inktarget'+posid).append(ink);
-						}
-						
-						$.addOrder();
-					});
-				});
-			});
-		},
-		changeCategory: function(my){
-		/*
-		*	商品カテゴリーの変更
-		*
-			var categoryid = my.options[my.selectedIndex].value;
-			$.getJSON($.TLA.api+'?callback=?', {'act':'item', 'categoryid':categoryid, 'output':'jsonp'}, function(r){
-				var option = '';
-				jQuery.each(r, function(key, val){
-					option += '<option value="'+val.id+'"';
-					if(key==0){
-						option += ' selected="selected"';
-					}
-					option += '>'+val.name+'</option>';
-					$('#item_selector').html(option);
-				});
-				$.changeItem();
-			});
-		*/
-		},
-		changeItem: function(){
-		/*
-		*	商品の変更
-		*
-			$.my.curitemid = $('#item_selector').val();
-			$.ajax({url:'/php_libs/pageinfo.php', async:false, type:'POST', dataType:'text', 
-				data:{'act':'price','itemid':$.my.curitemid}, success: function(r){
-					var dat = r.split('|');
-					if(dat[1]){
-						$('#switch_color').show();
-					}else{
-						$('#switch_color').hide();
-					}
-					$('#price_wrap table tbody').html(dat[0]);
-					$('#mode1').val(['white']);
-				}
-			});
-			
-			$.showPrintPosition();
-		*/
-		},
-		showPrintPosition: function(){
-		/*
-		*	プリント位置画像（絵型）とインク色数指定の生成
-		*
-			$.ajax({url:'/php_libs/pageinfo.php', async:false, type:'POST', dataType:'text', 
-				data:{'act':'position','itemid':$.my.curitemid}, success: function(r){
-					$('#pos_wrap tbody').html(r);
-					$.setPrintposEvent();
-					$.resetResult();
-				}
-			});
-		*/
-		},
-		my:{
-		/*
-		*	アイテムが固定の場合に対応
-		*/
-			'curitemid': ''
-		},
-		printparam:{
-		/*
-		*	プリント代計算で使用するパラメーター
-		*/
-			'itemid':[],
-			'sizeid':[],
-			'size':[],
-			'cost':[],
-			'amount':[],
-			'pos':[],
-			'ink':[],
-			'color':[]
-		},
-		clearparam: function(){
-			$.printparam.itemid = [];
-			$.printparam.sizeid = [];
-			$.printparam.size = [];
-			$.printparam.cost = [];
-			$.printparam.amount = [];
-			$.printparam.pos = [];
-			$.printparam.ink = [];
-			$.printparam.color = [];
-		},
-		resetResult: function(){
-			$('#totamount span, #result span, #perone span, #baseprice span, #salestax span').text('0');
-			if(arguments.length>0) $.msgbox(arguments[0]);
-		},
-		addOrder: function(){
-		/*
-		*	見積計算のハッシュを生成する
-		*	@第一引数　false: 枚数のチェックを行なわない
-		*/
-			var item_id = $.my.curitemid;
-			var size_id = [];
-			var size = [];
-			var cost = [];
-			var posi = [];
-			var inks = [];
-			var volm = [];
-			var a = 0;
-			
-			$.clearparam();
-			
-			// アイテムカラー名
-			var colorName = $('#price_wrap .item_colors .thumb_h .notes_color').text();
-			
-			/*
-			$('#price_wrap table tbody tr').each( function(){
-				var v = ($(this).find('input.forNum').val()-0);
-				if(v==0) return true;
-				size_id[a] = $(this).children('th').attr('class').split('_')[1];
-				size[a] = $(this).children('th').text();
-				cost[a] = $(this).children('td:first').text().split('円')[0].replace(/,/g, '');
-				volm[a] = v;
-				a++
-			});
-			*/
-			
-			$('#price_wrap table tbody tr:odd td').each( function(index){
-				var v = $(this).find('input.forNum').val();
-				if(v==0) return true;
-				var param = $(this).attr('class').split('_');
-				size_id[a] = param[1];
-				size[a] = param[2];
-				cost[a] = param[3];
-				volm[a] = v;
-				a++;
-			});
-			
-			if(a==0 && arguments[0]!==false){
-				$.resetResult('枚数をご指定ください。');
-				return;
-			}
-			
-			a = 0;
-			$('#pos_wrap select').each( function(){
-				var self = $(this);
-				var idx = self.attr('class').split('_');
-				var ink = self.val()-0;
-				var posname = self.closest('.psnv').find('.posname_'+idx[1]).text();
-				if(ink>0){
-					posi[a] = posname;
-					inks[a] = ink;
-					a++;
-				}
-			});
-			
-			if(a==0){
-				$.resetResult();
-				return;
-			}
-			
-			for(var x=0; x<size.length; x++){
-				for(var y=0; y<posi.length; y++){
-					$.printparam.itemid.push(item_id);
-					$.printparam.sizeid.push(size_id[x]);
-					$.printparam.size.push(size[x]);
-					$.printparam.cost.push(cost[x]);
-					$.printparam.amount.push(volm[x]);
-					$.printparam.pos.push(posi[y]);
-					$.printparam.ink.push(inks[y]);
-					$.printparam.color.push(colorName);
-				}
-			}
-			
-			$.calcPrice();
-		},
-		calcPrice: function(){
-		/*
-		*	プリント代を取得
-		*/
-			if($.printparam.itemid.length==0){
-				$.resetResult();
-				return;
-			}
-			
-			var output = false;
-			if(arguments.length>0) output=arguments[0];
-			
-			/*
-			*	アイテムのサイズ毎で保持している枚数をアイテム毎に集計する
-			*	（アイテムとサイズの昇順になっていること）
-			*/
-			var tmpVol = 0;
-			var presize = 0;
-			var itemsum = 0;
-			for(var i=0; i<$.printparam.itemid.length; i++){
-				vol = $.printparam.amount[i]-0;
-				if(i==0){
-					tmpVol = $.printparam.amount[i]-0;
-					itemsum = ($.printparam.cost[i]-0) * ($.printparam.amount[i]-0);
-				}else if(presize!=$.printparam.size[i]){
-					tmpVol += $.printparam.amount[i]-0;
-					itemsum += ($.printparam.cost[i]-0) * ($.printparam.amount[i]-0);
-				}
-				presize = $.printparam.size[i];
-			}
-			
-			var amount = $.printparam.amount.slice(0);
-			for(var j=0; j<amount.length; j++){
-				amount[j] = tmpVol;
-			}
-			
-			var optionId = $.printparam.color[0]!='ホワイト'? 1: 0;
-			var inkjetOption = {};
-			inkjetOption[optionId] = amount[0];
-			var param = {'act':'printfee', 'output':'jsonp', 'args':[]};
-			var args = [];
-			var existPos = {};
-			for (var i=0; i<$.printparam.itemid.length; i++) {
-				if (existPos.hasOwnProperty($.printparam.pos[i])) continue;
-				args[i] = { 
-					'itemid':$.printparam.itemid[i], 
-					'amount':amount[i], 
-					'pos':$.printparam.pos[i], 
-					'ink':$.printparam.ink[i],
-					'size':0,
-					'option':inkjetOption
-				};
-				existPos[$.printparam.pos[i]] = true;
-			}
-			param['args'] = args;
-			$.getJSON($.TLA.api+'?callback=?', param, function(r){
-				var base = itemsum + (r.printfee-0);
-				var tax = Math.floor( base * (r.tax/100) );
-				var result = Math.floor( base * (1+r.tax/100) );
-				var perone = Math.ceil(result/tmpVol);
-				
-				if(!output){
-					$('#baseprice span').text((base).toLocaleString('ja-JP'));
-					$('#salestax span').text((tax).toLocaleString('ja-JP'));
-					$('#result span').text((result).toLocaleString('ja-JP'));
-					$('#totamount span').text(tmpVol);
-					$('#perone span').text((perone).toLocaleString('ja-JP'));
-				}else{
-					if(typeof output.attr('value')=='undefined') output.text((perone).toLocaleString('ja-JP'));
-					else output.val((perone).toLocaleString('ja-JP'));
-				}
-			});
-		},
-		delOrder: function(e){
-		/*
-		*	見積テーブルから商品を削除
-		*
-			var row = $(e.target).closest('tr');
-			var key = row.attr('class').split('_');
-			row.remove();
-			for(var i=0; i<$.printparam.itemid.length; i++){
-				if($.printparam.itemid[i]==key[0] && $.printparam.sizeid[i]==key[1]){
-					for(var key in $.printparam){
-						$.printparam[key].splice(i,1);
-					}
-					i--;
-				}
-			}
-			
-			$.calcPrice();
-		*/
-		},
-		changeAmount: function(e){
-		/*
-		*	見積テーブル内で枚数の変更
-		*	同じサイズの商品で指定されているプリント位置に対応する枚数も変更する
-		*
-			var row = $(e.target).closest('tr');
-			var key = row.attr('class').split('_');
-			var amount = $.check_NaN(e.target);
-			for(var i=0; i<$.printparam.itemid.length; i++){
-				if($.printparam.itemid[i]==key[0] && $.printparam.sizeid[i]==key[1]){
-					$.printparam.amount[i] = amount;	// 枚数を上書
-				}
-			}
-			$.calcPrice();
-		*/
-		},
-		show_mailform: function(){
-			$.ajax({
-				url:'/common/txt/mailform/multisend.txt', async:false, type:'get', dataType:'text',
-				success: function(r){
-					var self = $('<div>').html(r);
-					var tr = $('#mail_text tr', self);
-					$('td:first', tr[0]).html($('#result span').text()+' 円');
-					$('td:first', tr[1]).text($('#perone span').text()+' 円');
-					$('td:first', tr[2]).text($('#totamount span').text()+' 枚');
-					$('#mail_comment span', self).text(location.pathname);
-					var form = self.children();
-					$.msgbox(form, 692);
-				}
-			});
-		},
-		updateItem: function(){
-		/*
-		*	カートに商品を追加更新
-		*/
-			var postData = {};
-			var mode = 'update';
-			var isResult = false;
-			
-			postData = {'act':'update', 'mode':'items'};
-//			postData.categoryid = _CAT_ID;
-			postData.categorykey = _CAT_KEY;
-			postData.categoryname = _CAT_NAME;
-			postData.itemid = $.my.curitemid;
-			postData.itemcode = _ITEM_CODE;
-			postData.itemname = _ITEM_NAME;
-			postData.posid = _POS_ID;
+				$('#item_info .pane').each(function(index, pane){
+					var idx = $(pane).data('idx')-0,
+						tbl = $(pane).find('table');
 
-			// 全サイズを上書する
-			var color_name = $('.thumb_h .notes_color', '#price_wrap').text();
-			var color_code = $('.color_thumb li.nowimg img', '#price_wrap').attr("alt");
-			var totAmount = 0;
-			postData['sizeid'] = [];
-			postData['sizename'] = [];
-			postData['cost'] = [];
-			postData['amount'] = [];
-			postData['colorcode'] = [];
-			postData['colorname'] = [];
-			
-			$('#price_wrap table tbody tr:odd td').each( function(index){
-
-				var v = $(this).find('input.forNum').val();
-				var param = $(this).attr('class').split('_');
-				postData['sizeid'][index] = param[1];
-				postData['sizename'][index] = param[2];
-				postData['cost'][index] = param[3];
-				postData['amount'][index] = v;
-				postData['colorcode'][index] = color_code;
-				postData['colorname'][index] = color_name;
+					if (idx === currentIdx) {
+						tbl.data('masterId', r[0]['master_id']);
+						tbl.find('tbody').html(size_table);
+						tbl.siblings('.btmline').children('.cur_amount').text(sum.toLocaleString('ja-JP'));
+						return false;
+					}
+				});
 				
-				totAmount += v;
+				// 合計枚数を更新
+				$('#item_info').children('.pane').each(function () {
+					tot += $(this).find('.cur_amount').text() - 0;
+				});
+				$('#tot_amount').text(tot.toLocaleString('ja-JP'));
+				
+				$.curr.item[$.curr.designId][itemId]['color'][currentIdx]['master'] = r[0]['master_id'];
+				$.curr.item[$.curr.designId][itemId]['color'][currentIdx]['vol'] = hash;	// ex: {M: {amount:10, cost:500, id:sizeID}, ...};
+				
+//				$.addOrder(false);
+				d.resolve();
 			});
-			if(totAmount==0){
+			return d.promise();
+		},
+		hasDuplicated: function(curColor=null) {
+		/**
+		 * アイテムカラー指定の重複確認
+		 * @param {string} curColor 確認するカラーを指定する場合
+		 * @return {bool} 重複している場合{@code false}、そうでない場合{@code true}を返す
+		 */
+			var colors = {},
+				isDuplicate = false;
+			
+			$('#item_info .pane').each(function(){
+				var colorName = $(this).find('.note_color').text();
+
+				if (curColor) {
+					if (curColor == colorName) {
+						isDuplicate = true;
+						return false;
+					}
+				} else {
+					if (colors.hasOwnProperty(colorName)) {
+						isDuplicate = true;
+						return false;
+					} else {
+						colors[colorName] = true;
+					}
+				}
+			});
+
+			if (isDuplicate === true) {
+				$.msgbox('カラーの指定が重複しています。');
 				return false;
 			}
 			
-			var curRow = 0;
-			$.ajax({url:'/php_libs/orders.php', async:false, type:'POST', dataType:'json', data:postData, 
-				success:function(r){
-					if(r.length!=0){
-						isResult = true;
-					}
-				}
-			});
-		
-			return isResult;
-		},
-		updatePosition: function(){
-		/*
-		*	プリント位置とインク色数を更新
-		*/
-			var posid = _POS_ID;
-			var base = [];
-			var posname = [];
-			var ink = [];
-			var attach = [];
-			var isResult = false;
-			
-//			$('#pos_wrap table tbody tr:eq(3) td').each( function(){
-			$('#pos_wrap div').each( function(){
-				var div_id = $(this).attr("id");
-				if(typeof div_id!='undefined' && div_id != null && div_id.indexOf("inktarget") != -1) {
-					var base_name = $(this).attr('class');
-					$('div.inks', this).each( function(){
-						var v = $(this).find('select').val();
-						if(v>0){
-							base.push(base_name);
-							posname.push( $(this).children('p:first').text() );
-							ink.push( v );
-							
-							isResult = true;
-						}
-					});
-				}
-			});
-			
-			if(isResult){
-				$.ajax({url:'/php_libs/orders.php', async:false, type:'POST', dataType:'json', 
-					data:{'act':'update','mode':'design', 'posid':posid, 'base':base, 'posname':posname, 'ink':ink, 'attachname':attach}, success: function(r){
-						if(r.length!=0){
-							isResult = r;
-						}
-					}
-				});
-			}
-			
-			return isResult;
+			return true;
 		}
 	});
-	
-	
-	/* 注文フォームへ遷移 */
+
+
+	/**
+	 * 注文フォームへ遷移
+	 */
 	$('#btnOrder, #btnOrder_up').click( function(){
-		var f = $(this).closest("form");
-		var func = function(){
-			var step = 1;
-			if($('#result span').text()!='0'){
-				if($.updateItem()){
-					if($.updatePosition()){
-						step = 3;
+		var f = $(this).closest("form")[0],
+			func = function(){
+				if (f.update.value == 3) {
+					// その場で見積もりから遷移
+					var i = 0,
+						newId = 0,
+						ids = [],
+						sum = $.getStorage('sum'),
+						orderItem = {},	// {'price':商品金額合計 'amount':注文総枚数}
+						designs = {},
+						items = {},
+						dummy = {},
+						amount = 0;
+
+					// 注文枚数の確認
+					$('#item_info .pane').each(function(){
+						amount += $(this).find('.cur_amount').text()-0;
+					});
+					if (amount == 0) {
+						$.msgbox('枚数をご指定ください。');
+						return;
 					}
+					
+					// デザインIDの付け替え
+					designs = $.getStorage("design");
+					if ($('#noprint').prop('checked')) {
+						$.curr.designId = 'id_0';	// プリントなし
+					} else if (designs !== null) {
+						Object.keys(designs).forEach(function(designId){
+							ids.push(designId.split('_')[1]);
+						});
+						newId = Math.max.apply(null, ids) + 1;
+						$.curr.designId = 'id_' + newId;
+					} else {
+						$.curr.designId = 'id_1';	// 新規デザインパターン
+					}
+					dummy = JSON.stringify($.curr.design[0]);
+					$.curr.design[$.curr.designId] = JSON.parse(dummy);
+					delete $.curr.design[0];
+
+					// アイテムのデザインIDを変更
+					dummy = JSON.stringify($.curr.item[0]);
+					$.curr.item[$.curr.designId] = JSON.parse(dummy);
+					delete $.curr.item[0];
+					
+					// 選択中のアイテムとカート内のデータをマージ
+					designs = $.setStorage('design', $.curr.design);
+					items = $.setStorage('item', $.curr.item);
 				}
-			}
-			document.getElementById("update").value = step;
-			f.submit();
-		};
+				f.submit();
+			};
 		
 		// メーカー「ザナックス」の場合にポップアップ
 		if($(this).hasClass('popup')){
@@ -600,117 +812,247 @@ $(function(){
 			func();
 		}
 	});
-	
-	
-	/* みんなにメール一斉送信 */
-	$('#mass-email').click( function(){ $.show_mailform(); });
-	
-	$('#multimailform .send_mail').on('click', function(){
-		var email = [];
-		var msg="";
-		if($('#multimailform input[name="myname"]').val().trim()==""){
-			msg = "お名前を入力して下さい。";
-		}else if($('#multimailform input[name="myemail"]').val().trim()==""){
-			msg = "送信者のメールアドレスを入力して下さい。";
-		}else{
-			var chk = false;
-			$('.half_l .email, .half_r .email', '#multimailform').each( function(){
-				var tmp = $(this).val().trim();
-				if(tmp!=""){
-					chk = true;
-					email.push(tmp);
-				}
-			});
-			if(!chk) msg = "送信先のメールアドレスを入力して下さい。";
-		}
-		if(msg!=""){
-			alert(msg);
-			return;
-		}else{
-			jQuery.fn.modalBox('close');
-		}
-		
-		var pos = [];
-		$('#pos_wrap tbody tr:last td select').each( function(){
-			var ink = $(this).val()-0;
-			if(ink>0){
-				var id = $(this).attr('class').split('_')[1];
-				var posname = $('#pos_wrap tbody tr:eq(1)').find('.posname_'+id).text();
-				if(ink!=9){
-					posname += '　インク：'+ink+' 色';
-				}else{
-					posname += '　インク： フルカラー';
-				}
-				pos.push(posname);
-			}
-		});
-		
-		var subject = $('#multimailform input[name="subject"]').val().trim();
-		if(subject==""){
-			subject = "お見積り";
-		}
-		
-		var tr = $('#mail_text tr', '#multimailform');
-		var total = $('td:first', tr[0]).html();
-		var per = $('td:first', tr[1]).text();
-		var amount = $('td:first', tr[2]).text();
-		var item_name = $('#item_title h1').text();
-		var color_name = $('#notes_color').text();
-		var message = $('textarea', '#multimailform').val();
-		var f = document.forms.multimailform;
-		var prm = {'subject':subject, 'myname':f.myname.value, 'myemail':f.myemail.value, 'email':email, 'message':message,
-					'pageurl':location.pathname, 'total':total, 'per':per, 'amount':amount,
-					'item_name':item_name, 'color_name':color_name, 'pos':pos
-				};
-		
-		$.ajax({
-			url:'/php_libs/multisend.php', type:'get', async:false, dataType:'json', data:prm, success:function(r){
-				if(r.length==0){
-					alert("メールの送信でエラーが発生しています。\n恐れ入りますが、もう一度送信をお願い致します。");
-				}else if(r[0]=='success'){
-					alert('お見積りのメールを送信いたしました。');
-				}else{
-					var res = r.toString();
-					res = res.replace(/,/g, "\n");
-					alert('以下のアドレスに送信できませんでした。\nメールアドレスをご確認ください。\n\n'+res);
-				}
-			}
-		});
-	});
-	
-	
-	/* change thumbnails */
-	$(".color_thumb li img").on('click', function(){
+
+	/**
+	 * その場で見積もりのカラー変更
+	 */
+	$(".color_sele_thumb li img").on('click', function(){
 		$.changeThumb($(this));
 	});
 
 
-	/* initialize */
-	$.init();
-
-
-	/* 計算開始 */
-	//$('#calc').click( function(){ $.addOrder(); });
-	
-	
-	/* 白色と白以外の変更
-	$('#switch_color :radio').change( function(){
-		var tmp = [];
-		$('#price_wrap table tbody tr').each( function(index){
-			tmp[index] = $(this).find('input.forNum').val();
+	// ページ初期化
+	$.api(['categories', 0], 'GET', function (r) {
+		// カテゴリーのマスターデータを取得
+		r.forEach(function (val, idx, ary) {
+			$.categories[val.id] = val;
 		});
-		var colormode = $(this).val();
-		$.ajax({url:'/php_libs/pageinfo.php', async:false, type:'POST', dataType:'text', 
-			data:{'act':'price','itemid':$.my.curitemid, 'colormode':colormode}, success: function(r){
-				var dat = r.split('|');
-				$('#price_wrap table tbody').html(dat[0]);
-				$('#price_wrap table tbody tr').each( function(index){
-					$(this).find('input.forNum').val(tmp[index]);					
+	}).then(function(){
+		// 消費税率を設定
+		return $.api(['taxes'], 'GET', function (r) { $.tax = r/100; });
+	}).then(function(){
+		// デフォルト値を設定
+		return $.api(['items', _ITEM_ID], 'GET', function(rec){
+			var r = rec[0],
+				self = $('#item_info .pane:first'),
+				colorCode = self.find('.color_sele_thumb li.nowimg img').attr('alt'),
+				colorName = self.find('.note_color').text(),
+				masterId = self.find('table').data('masterId'),
+				len = 0,
+				hash = {};
+
+			$.curr.designId = '0';
+			$.curr.itemId = _ITEM_ID;
+			$.curr.posId = r.position_id;
+			$.curr.category = {};
+			$.curr.category[_CAT_ID] = {
+				"code": $.categories[_CAT_ID]['code'],
+				"name": $.categories[_CAT_ID]['name']
+			};
+
+			$.curr.design = {'0':{}};
+
+			$.curr.item = {'0':{}};
+			$.curr.item[$.curr.designId][$.curr.itemId] = {
+				"code": r.code,
+				"name": r.name,
+				"posId": r.position_id,
+				"rangeId": r.volumerange_id,
+				"screenId": r.silkscreen_id,
+				"cateId": _CAT_ID,
+				"color": {}
+			};
+			$.curr.item[$.curr.designId][$.curr.itemId]['color'][len] = {};
+			$.curr.item[$.curr.designId][$.curr.itemId]['color'][len]['master'] = masterId;
+			$.curr.item[$.curr.designId][$.curr.itemId]['color'][len]['code'] = colorCode;
+			$.curr.item[$.curr.designId][$.curr.itemId]['color'][len]['name'] = colorName;
+			$.curr.item[$.curr.designId][$.curr.itemId]['color'][len]['vol'] = hash; // ex: {M: {amount:10, cost:500, id:sizeID}, ...};
+
+			// サムネイルのロード完了後にサイズテーブルを表示
+			$.showSizeform(_ITEM_ID, colorCode, [], 0).then(function(){
+				$('#color_thumb li img').imagesLoaded(function(){$('.item_colors').fadeIn();});
+			});
+		});
+	}).then(function(){
+		var def = $.Deferred();
+
+		// 絵型とプリント箇所のタグを生成
+		$.api(['items', $.curr.itemId, 'printpatterns'], 'GET', function(r){
+			var i = 0,
+				designData = [],
+				pane = $('#printing .pane:first'),
+				list = '',
+				face = '',
+				area = '',
+				attrId = 0,			// プリント箇所指定の要素ID
+				designCount = 0,
+				clone,
+				len = 0;
+
+			$.curr.posId = r[0]['id'];
+
+			// 初めてのStep通過、または戻るボタン
+			designCount++;
+			target = pane;
+
+			len = designData.length;
+			for (i=0; i<designCount; i++) {
+				// プリント面
+				list = '';
+				r.forEach(function (val, idx, ary) {
+					if (val.front) {
+						face = 'front';
+						list += '<div class="print_position"><label><img src="' + IMG_PATH + 'printpattern/' + val.category + '/' + val.item + '/base_front.svg">';
+						list += '<p>前面</p><input type="radio" name="face[]" class="face" value="front"';
+						if (len===0 || designData[i]['face']=='front') list += ' checked';
+						list += '></label></div>';
+					}
+					if (val.back) {
+						face = face || 'back';
+						list += '<div class="print_position"><label><img src="' + IMG_PATH + 'printpattern/' + val.category + '/' + val.item + '/base_back.svg">';
+						list += '<p>背面</p><input type="radio" name="face[]" class="face" value="back"';
+						if ((len>0 && designData[i]['face']=='back') || face == 'back') list += ' checked';
+						list += '></label></div>';
+
+					}
+					if (val.side) {
+						face = face || 'side';
+						list += '<div class="print_position"><label><img src="' + IMG_PATH + 'printpattern/' + val.category + '/' + val.item + '/base_side.svg">';
+						list += '<p>側面</p><input type="radio" name="face[]" class="face" value="side"';
+						if ((len>0 && designData[i]['face']=='side') || face == 'side') list += ' checked';
+						list += '></label></div>';
+					}
 				});
-				$('#price_wrap table input').change( function(){ $.addOrder(); });
-				$.addOrder();
+				$(target[i]).find('.pos').html(list);
+
+				// プリント箇所名を設定
+				if (r[0].front) $('#printing .pos .face[value="front"]').data('pos', r[0]['front']);
+				if (r[0].back) $('#printing .pos .face[value="back"]').data('pos', r[0]['back']);
+				if (r[0].side) $('#printing .pos .face[value="side"]').data('pos', r[0]['side']);
+
+				// プリント箇所のセレクトタグ
+				if (len>0) face = designData[i]['face'];
+				if (face) {
+					list = '<img alt="' + face + '" src="' + IMG_PATH + 'printpattern/' + r[0].category + '/' + r[0].item + '/base_' + face + '.svg">';
+					list += '<p class="pos_selector_wrap"><select class="down_cond">';
+					r[0][face].split(',').forEach(function (pos, idx) {
+						list += '<option value="' + pos + '"';
+						if ((designData.length>0 && designData[i]['area']==pos) || idx === 0) {
+							list += ' selected';
+							area = pos;
+						}
+						list += '>' + pos + '</option>';
+					});
+					list += '</select></p>';
+				} else {
+					// プリント不可の商品
+					list = '<img alt="' + face + '" src="' + IMG_PATH + 'printpattern/misc/noprint/base_front.svg">';
+					list += '<p class="pos_selector_wrap">';
+					list += '<select class="down_cond"><option value="" selected>プリントなし</option></select>';
+					list += '</p>';
+				}
+				$(target[i]).find('.area').html(list);
 			}
+
+			// 初めてのStep、または戻るボタンでアイテム変更
+			if ($.curr.designId==0 || Object.keys($.curr.design[$.curr.designId]).length===0) {
+				// デザイン選択情報の初期設定
+				$.curr.design[$.curr.designId] = {};
+				$.curr.design[$.curr.designId][$.curr.posId] = {};
+				$.curr.design[$.curr.designId][$.curr.posId][face] = {
+					'0': {
+						'area': area,
+						'size': 0,
+						'option': 0,
+						'method': 'recommend',
+						'printable': [],
+						'ink': 1
+					}
+				};
+			}
+
+			def.resolve(designData, designCount);
+		});
+		return def.promise();
+	}).then(function(designData, designCount){
+		// プリント方法選択のセレクトタグを生成
+		$.api(['items', $.curr.itemId, 'details'], 'GET', function (r) {
+			var i = 0,
+				pane = $('#printing .pane:first'),
+				face = Object.keys($.curr.design[$.curr.designId][$.curr.posId])[0],
+				list = '',
+				len = designData.length,
+				method = 'recommend';
+
+			for(i=0; i<designCount; i++){
+
+				// カッティングと刺繍のみ対応の商品の場合は、「おまかせ」なし
+				if (r[0]['silk'] == 1 || r[0]['digit'] == 1 || r[0]['inkjet'] == 1) {
+					list = '<p><select class="print_selector down_cond">';
+					list += '<option value="recommend"';
+					if (method=='recommend') {
+						list += ' selected';
+						$(target[i]).find('.price_box_2').removeClass('hidden');	// 初めてのStepはおまかせプリントが初期値
+					}
+					list += '>おまかせ</option>';
+					if (r[0]['silk'] == 1) {
+						list += '<option value="silk"';
+						if (method=='silk') list += ' selected';
+						list += '>シルクスクリーン</option>';
+					}
+					if (r[0]['digit'] == 1) {
+						list += '<option value="digit"';
+						if (method=='digit') list += ' selected';
+						list += '>デジタル転写</option>';
+					}
+					if (r[0]['inkjet'] == 1) {
+						list += '<option value="inkjet"';
+						if (method=='inkjet') list += ' selected';
+						list += '>インクジェット</option>';
+					}
+					if (r[0]['cutting'] == 1) {
+						list += '<option value="cutting"';
+						if (method=='cutting') list += ' selected';
+						list += '>カッティング</option>';
+					}
+					if (r[0]['emb'] == 1) {
+						list += '<option value="emb"';
+						if (method=='emb') list += ' selected';
+						list += '>刺繍</option>';
+					}
+				} else {
+					list = '<p><select class="print_selector down_cond">';
+					if (r[0]['cutting'] == 1) {
+						list += '<option value="cutting"';
+						if (method=='cutting' || r[0]['emb'] != 1) {
+							list += ' selected';
+							$.curr.design[$.curr.designId][$.curr.posId][face]['0']['method'] = 'cutting';
+
+							// オプション選択表示
+							$(target[i]).find('.other_print').removeClass('hidden');
+							$(target[i]).find('.print_cond_note').removeClass('hidden');
+						}
+						list += '>カッティング</option>';
+					}
+					if (r[0]['emb'] == 1) {
+						list += '<option value="emb"';
+						if (method=='emb' || r[0]['cutting'] != 1) {
+							list += ' selected';
+							$.curr.design[$.curr.designId][$.curr.posId][face]['0']['method'] = 'emb';
+
+							// オプション選択表示
+							$(target[i]).find('.embroidery').removeClass('hidden');
+							$(target[i]).find('.print_cond_note').removeClass('hidden');
+						}
+						list += '>刺繍</option>';
+					}
+				}
+				list += '</select></p>';
+				$(target[i]).find('.method').html(list);
+			}
+
+			// 対応するプリント方法を設定[silk, digit, inkjet] 1:対応する、0:未対応
+			$.curr.design[$.curr.designId][$.curr.posId][face]['0']['printable'] = [r[0]['silk'],r[0]['digit'],r[0]['inkjet']];
 		});
 	});
-	*/
 });

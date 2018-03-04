@@ -24,7 +24,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/conndb.php';
 
 class PageInfo extends Conndb {
-	public function __construct(){
+	public function __construct() {
 		parent::__construct();
 	}
 
@@ -150,11 +150,12 @@ class PageInfo extends Conndb {
 	/**
 	 * アイテム一覧ページのHTMLタグ生成
 	 * @param {array} data 商品情報
+	 * @param {bool} isStart リストの先頭から表示する場合は{@code true}、それ以外は{@code false}
 	 * @return {string} HTMLタグ
 	 */
 	public function htmlTag($data, $isStart=false) {
 		$len = count($data);
-		$html='' ; 
+		$html='' ;
 		for ($i=0; $i<$len; $i++){
 
 			if ($data[$i]['reviews']>0) {
@@ -246,7 +247,7 @@ class PageInfo extends Conndb {
 
 $pageinfo = new PageInfo();
 if(isset($_REQUEST['act'])){
-	switch($_REQUEST['act']){
+	switch ($_REQUEST['act']){
 	case 'itemtype':
 	/** 簡単見積ページ */
 		$dat = $pageinfo->getSilhouetteId($_REQUEST['category_id']);
@@ -608,8 +609,6 @@ if(isset($_REQUEST['act'])){
 	list($categorykey, $categoryname) = each($itemattr['category']);
 	list($itemcode, $itemname) = each($itemattr['name']);
 	list($code, $colorname) = each($itemattr['code']);
-	$categoryname = $categoryname;
-	$itemname = $itemname;
 	
 	// カテゴリ一覧ページへのクエリストリング
 	if ($_PAGE_CATEGORYID==4) {
@@ -714,9 +713,11 @@ if(isset($_REQUEST['act'])){
 
 	$posid = $itemattr['ppid'];
 	
+	// カレントイメージ
 	$curthumb = '<img id="item_image_l" src="'._IMG_PSS.'items/'.$categorykey.'/'.$itemcode.'/'.$code.'.jpg" width="300" height="300">';
-	$color_count = 0;
+	$curImage = '<img src="'._IMG_PSS.'items/'.$categorykey.'/'.$itemcode.'/'.$code.'.jpg" width="300">';
 	
+	$color_count = 0;
 	foreach($itemattr['code'] as $code=>$colorname){
 		$size = array();
 		foreach($itemattr['size'][$code] as $sizeid=>$sizename){
@@ -740,17 +741,23 @@ if(isset($_REQUEST['act'])){
 		$s = implode(', ', $size[3]);
 		
 		$color_count++;
+		
+		// サムネイル
 		$c = explode('_', $code);
+		$thumbs_min .= '<li';
 		$thumbs .= '<li';
 		if($color_count==$_PAGE_ITEMDETAIL){
+			$thumbs_min .= ' class="nowimg"';
 			$thumbs .= ' class="nowimg"';
 			$curcolor = $colorname;
 			$curthumbcolor = $colorname;
 			$cursize = $s;
 			
 			$curthumb = '<img id="item_image_l" src="'._IMG_PSS.'items/'.$categorykey.'/'.$itemcode.'/'.$code.'.jpg" width="300" height="300">';
+			$curImage = '<img src="'._IMG_PSS.'items/'.$categorykey.'/'.$itemcode.'/'.$code.'.jpg" width="300">';
 		}
-		$thumbs .= '><img alt="'.$c[1].'" title="'.$colorname.'" src="'._IMG_PSS.'items/'.$categorykey.'/'.$itemcode.'/'.$code.'_s.jpg" /></li>';
+		$thumbs_min .= '><img alt="'.$c[1].'" title="'.$colorname.'" src="'._IMG_PSS.'items/'.$categorykey.'/'.$itemcode.'/'.$code.'_s.jpg" /></li>';
+		$thumbs .= '><img alt="'.$c[1].'" title="'.$colorname.'" src="'._IMG_PSS.'items/list/'.$categorykey.'/'.$itemcode.'/'.$code.'.jpg" /></li>';
 	}
 	
 	$res['itemid'] = $data['itemid'];
@@ -861,7 +868,7 @@ if(isset($_REQUEST['act'])){
 			$right_column .= '<form name="f1" action="/order/" method="post">';
 				$right_column .= '<input type="hidden" name="item_id" value="'.$data['itemid'].'">';
 				$right_column .= '<input type="hidden" name="category_id" value="'.$_PAGE_CATEGORYID.'">';
-				$right_column .= '<input type="hidden" name="update" id="update" value="1">';
+				$right_column .= '<input type="hidden" name="update" id="update" value="2">';
 				$right_column .= '<div id="btnOrder_up" onclick="ga([\'send\',\'event\',\'order\',\'click\',\''.$itemcode.'\']);">お申込みフォームへ</div>';
 			$right_column .= '</form>';
 		$right_column .= '</div>';
@@ -1020,70 +1027,25 @@ if(isset($_REQUEST['act'])){
 	// 見積り計算フォーム
 	$isPopup = $itemattr['maker']==10? 'class="popup"': '';
 $DOC = <<<EOD
-	<div id="cul">
-		<div id="price_wrap">
-			<h3 class="stepone">カラーとサイズごとの枚数をご指定ください。<a class="info_icon" href="#size">サイズ目安</a></h3>
-			<div class="item_colors">
-				<p class="thumb_h">(1) Color<span>全{$color_count}色</span><span class="notes_color">{$curthumbcolor}</span></p>
-				<ul class="color_thumb clearfix">{$thumbs}</ul>
+	<div class="pane">
+		<div class="color_sele_wrap">
+			<div class="color_sele">
+				<p class="item_name">{$itemname}</p>
+				<p class="thumb_h">アイテムカラー:<span class="note_color">{$curthumbcolor}</span>全<span class="num_of_color">{$color_count}</span>色</p>
+				<ul class="color_sele_thumb">{$thumbs}</ul>
 			</div>
-			<table class="curitemid_{$data['itemid']}">
-				<caption>(2) サイズと枚数</caption>
-				<tbody></tbody>
-			</table>
+			<div class="item_image_big">{$curImage}</div>
 		</div>
-		<div id="pos_wrap">
-			<div class="content-lv3">
-				<h3 class="steptwo">プリント位置と、使用するインクの色数を指定してください。<span class="questions"><a class="info_icon" target="_new" href="/design/fontcolor.php#navi2">使用インク色？</a></span></h3>
-				<div>
-					<figure>
-						<div>
-							<p class="pos_step ps1">(1)プリントする位置を選択してください。</p>
-						</div>
-						<ul>
-							{$posdiv}
-						</ul>
-					</figure>
-				</div>
-			</div>
-		</div>
-		<div id="printfee_wrap">
-			<h3 class="stepthree">計算結果を確認してください。</h3> 
-			<table>
-				<tbody>
-					<tr>
-						<td class="lbl02"><p>計</p></td>
-						<td><p id="baseprice"><span>0</span> 円</p></td>
-					</tr>
-					<tr>
-						<td class="lbl02"><p>消費税</p></td>
-						<td><p id="salestax"><span>0</span> 円</p></td>
-					</tr>
-					<tr>
-						<td class="lbl01"><p>合　　計</p></td>
-						<td><p id="result"><span>0</span> 円</p></td>
-					</tr>
-					<tr>
-						<td class="lbl02"><p>1枚あたり</p></td>
-						<td><p id="perone"><span>0</span> 円</p></td>
-					</tr>
-					<tr>
-						<td class="lbl02"><p>合計枚数</p></td>
-						<td><p id="totamount"><span>0</span> 枚</p></td>
-						<!--<td><input type="button" value="結果をみんなにメール" id="mass-email" /></td>-->
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div id="order_wrap">
-			<p id="orderguide"><span>お見積もり金額について</span><br>デザイン、ボディのカラー・サイズ・素材により、表示されているお見積もり金額と別のプリント方法でご提案させていただくこともございますので、お見積もり金額がお打ち合わせ後変わることがございます。</p>
-			<div id="orderbtn_wrap">
-				<form name="f1" action="/order/" method="post">
-					<input type="hidden" name="item_id" value="{$res['itemid']}">
-					<input type="hidden" name="category_id" value="{$_PAGE_CATEGORYID}">
-					<input type="hidden" name="update" value="1">
-					<div id="btnOrder" {$isPopup}>お申込みフォームへ</div>
-				</form>
+
+		<div class="sizeprice">
+			<h3>
+				<ins>2.</ins>サイズと枚数の指定
+			</h3>
+			<div class="size_sele_wrap">
+				<table class="size_table">
+					<tbody><tr><th><img src="/common/img/loading.svg"></th></tr></tbody>
+				</table>
+				<div class="btmline">小計<span class="cur_amount">0</span>枚</div>
 			</div>
 		</div>
 	</div>
