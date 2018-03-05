@@ -337,6 +337,14 @@ a {
 	display: block;
 }
 
+.fileupload-buttonbar .note{
+	margin-top: 30px;
+}
+
+.fileinput-button input{
+	font-size: 1rem !important;
+	height: 50px;
+}
 
 /*----------------------------
 
