@@ -870,7 +870,7 @@ $(function(){
 
 			// サムネイルのロード完了後にサイズテーブルを表示
 			$.showSizeform(_ITEM_ID, colorCode, [], 0).then(function(){
-				$('#color_thumb li img').imagesLoaded(function(){$('.item_colors').fadeIn();});
+				$('#color_thumb li img').imagesLoaded(function(){$('#item_colors').fadeIn();});
 			});
 		});
 	}).then(function(){
