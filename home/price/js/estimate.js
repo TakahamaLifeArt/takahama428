@@ -328,8 +328,8 @@ $(function(){
 					TR[idx] +=  '<p class="per">￥<span>'+(perone).toLocaleString('ja-JP')+'</span>&#65374;</p>';
 					TR[idx] +=  '<p class="total">合計￥ <span>'+(result).toLocaleString('ja-JP')+'</span>&#65374;</p>';
 					//							TR[idx] +=  '<p class="detail"><a href="/items/'+category_key+'/'+itemcode+'.html">詳細を見る</a></p>';
-					TR[idx] +=  '<p class="detail"><a href="/items/'+category_key+'/item.html?id='+itemcode+'">詳細を見る</a></p>';
-					TR[idx] +=  '<p class="apply"><a href="/order/?item_id='+itemid+'&update=1">お申し込みへ</a></p>';
+					TR[idx] +=  '<p class="detail"><a href="/items/item.php?code='+itemcode+'">詳細を見る</a></p>';
+					TR[idx] +=  '<p class="apply"><a href="/order/?item_id='+itemid+'&update=2">お申し込みへ</a></p>';
 					TR[idx] +=  '</td>';
 
 					itemid = r2[key].itemid;
@@ -354,8 +354,8 @@ $(function(){
 					TR[idx] +=  '<p class="per">￥<span>'+(perone).toLocaleString('ja-JP')+'</span>&#65374;</p>';
 					TR[idx] +=  '<p class="total">合計￥ <span>'+(result).toLocaleString('ja-JP')+'</span>&#65374;</p>';
 					//							TR[idx] +=  '<p class="detail"><a href="/items/'+category_key+'/'+itemcode+'.html">詳細を見る</a></p>';
-					TR[idx] +=  '<p class="detail"><a href="/items/'+category_key+'/item.html?id='+itemcode+'">詳細を見る</a></p>';
-					TR[idx] +=  '<p class="apply"><a href="/order/?item_id='+itemid+'&update=1">お申し込みへ</a></p>';
+					TR[idx] +=  '<p class="detail"><a href="/items/item.php?code='+itemcode+'">詳細を見る</a></p>';
+					TR[idx] +=  '<p class="apply"><a href="/order/?item_id='+itemid+'&update=2">お申し込みへ</a></p>';
 					TR[idx] +=  '</td>';
 					TR[idx] +=  '</tr>';
 				});
@@ -379,7 +379,7 @@ $(function(){
 
 
 	/* 計算開始 */
-	$('#order_amount, #sort_selector, #color_wrap input').change( function(){
+	$('#order_amount, #sort_selector, #color_wrap input').on('change',function(){
 		$.calcPrice();
 	});
 

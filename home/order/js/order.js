@@ -2747,7 +2747,7 @@ $(function () {
 		// 合計値
 //		sessionStorage.removeItem('sum');
 		
-		// カート表示
+		// 他のページからの繊維でカートを表示
 		function showCart() {
 			$.curr.designId = 0;
 			$.curr.category = {};
@@ -2786,11 +2786,10 @@ $(function () {
 				// カート再計算
 				$.estimate();
 				
-				if (Object.keys(qs).length>0) {
+				// 他のページから遷移してきた場合
+				if (Object.keys(qs).length>0 && _UPDATED==1) {
 					// カートを見るボタンによる表示
-					if (qs.hasOwnProperty('update') && qs.update==1) {
-						showCart();
-					}
+					showCart();
 				} else if (_UPDATED==3 && _ITEM_ID) {
 					// アイテム詳細ページのその場で見積もりからの遷移
 					showCart();

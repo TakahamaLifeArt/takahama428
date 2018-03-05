@@ -265,10 +265,12 @@ $(function(){
 		if (location.pathname!='/order/') {
 			location.href = '/order/?update=1';
 		} else {
-			$.curr.designId = 0;
-			$.curr.category = {};
-			$.curr.item = {'0':{}};
-			$.curr.design = {'0':{}};
+			if ($.curr.designId==''){
+				$.curr.designId = 0;
+				$.curr.category = {};
+				$.curr.item = {'0':{}};
+				$.curr.design = {'0':{}};
+			}
 
 			$.resetCart().then(
 				function(){
@@ -292,6 +294,17 @@ $(function(){
 		sessionStorage.setItem('user', JSON.stringify({'id':0, 'rank':0}));
 		location.href = '/user/logout.php';
 	});
+	
+	
+	/** カートに入っている商品の枚数と金額 */
+	(function(){
+		var sum = JSON.parse(sessionStorage.getItem('sum'));
+		if (Object.keys(Object(sum)).length!==0) {
+			// ヘッダーのメニューを更新
+			$('#cart_total').text(sum.total.toLocaleString('ja-JP'));
+			$('#cart_amount').text(sum.volume.toLocaleString('ja-JP'));
+		}
+	})();
 	
 	
 	/** tooltip */
