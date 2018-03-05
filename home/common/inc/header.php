@@ -4,14 +4,6 @@
  */
 require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/orders.php';
 $order = new Orders();
-$salesTaxByOrder = $order->salestax();
-$salesTaxByOrder /= 100;
-$cartdata = $order->reqDetails();
-$totalByOrder = $cartdata['total']*(1+$salesTaxByOrder);
-if($cartdata['options']['payment']==3) $totalByOrder = $totalByOrder*(1+_CREDIT_RATE);
-$cartAmount = $cartdata['amount'];
-//$perone = floor($totalByOrder/$cartAmount);
-$cartTotal = floor($totalByOrder);
 if( empty($_SESSION['me']) ){
 	$signinState = 'ログイン';
 	$signinName = '';
@@ -70,8 +62,8 @@ if( empty($_SESSION['me']) ){
 						<?php echo $signinName;?>
 					</p>
 					<div class="cart_a_t_box">
-						<p>商品枚数<span id="cart_amount"><?php echo number_format($cartAmount);?></span>枚</p>
-						<p>商品金額<span id="cart_total"><?php echo number_format($cartTotal);?></span>円</p>
+						<p>商品枚数<span id="cart_amount">0</span>枚</p>
+						<p>商品金額<span id="cart_total">0</span>円</p>
 					</div>
 					<div class="dropdown_cart">
 						<div id="show_cart" class="dropdown-item cart_a">
