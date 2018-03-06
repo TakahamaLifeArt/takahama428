@@ -610,13 +610,6 @@ if(isset($_REQUEST['act'])){
 	list($itemcode, $itemname) = each($itemattr['name']);
 	list($code, $colorname) = each($itemattr['code']);
 	
-	// カテゴリ一覧ページへのクエリストリング
-	if ($_PAGE_CATEGORYID==4) {
-		$_QUERY = 'tag=73';
-	} else {
-		$_QUERY = 'cat='.$_PAGE_CATEGORYID;
-	}
-	
 	// サイズテーブル
 	$itemMeasure = $pageinfo->getItemMeasure($itemcode);
 	$columns = array("KIDS&#39"=>1,"LADIES&#39"=>1,"UNISEX"=>1);
