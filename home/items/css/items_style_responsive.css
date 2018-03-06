@@ -59,6 +59,11 @@
 	color: #fff;
 	cursor: pointer;
 }
+@media screen and (max-width: 1017px){
+	.snavi {
+		display: none;
+	}
+}
 
 @media screen and (min-width: 769px) {
 	body,
@@ -720,6 +725,7 @@
 	}
 
 }
+
 
 
 /*===============================================
