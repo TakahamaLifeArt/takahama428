@@ -40,7 +40,7 @@ $_version = time();
 		<div class="contents">
 			<div id="topicpath">
 				<a href="/">オリジナルＴシャツ屋ＴＯＰ</a> >
-				<a href="/items/?<?php echo $_QUERY;?>">
+				<a href="/items/category/<?php echo $categorykey;?>/">
 					<?php echo $categoryname;?>
 				</a> >
 				<?php echo $itemname; ?>
