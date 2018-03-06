@@ -756,7 +756,7 @@
 			<td>
 				<span class="preview">
 				{% if (file.thumbnailUrl) { %}
-					<img src="{%=file.thumbnailUrl%}">
+					<img src="{%=file.thumbnailUrl%}?auth=admin">
 				{% } %}
 				</span>
 			</td>
