@@ -4,6 +4,7 @@
  */
 require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/orders.php';
 $order = new Orders();
+
 if( empty($_SESSION['me']) ){
 	$signinState = 'ログイン';
 	$signinName = '';
@@ -24,7 +25,7 @@ if( empty($_SESSION['me']) ){
 	<nav class="navbar navbar-toggleable-xl fixed-top navbar-light bg-faded">
 		<a class="navbar-brand" href="/">
 		<img alt="Brand" src="/common/img/header/top_logo.png" class="hidden-xs-down">
-		<img alt="Brand" src="/common/img/header/sp_top_logo.png" class="hidden-sm-up">
+			<img alt="Brand" src="/common/img/header/sp_top_logo.png" class="hidden-sm-up sp_logo" width="100%">
 	</a>
 		<a class="navbar-brand" href="/">
 		<img alt="Brand" src="/common/img/header/top_boast.png" class="hidden-md-down">
