@@ -67,15 +67,17 @@ $(function(){
 					},
 					405: function () {
 						alert("405 Method Not Allowed");
+					},
+					0: function() {
+						alert("通信状況が不安定なためリソースの読み込みができませんでした");
 					}
 				}
-			}).done(function (r) {
-				if (Object.prototype.toString.call(callback)==='[object Function]') callback(r);
+			}).done(function (response, textStatus, jqXHR) {
+				if (Object.prototype.toString.call(callback)==='[object Function]') callback(response);
 			}).fail(function (jqXHR, textStatus, errorThrown) {
-				if (typeof jqXHR.statusCode[jqXHR.status] != 'undefined') {
-					return false;
+				if (jqXHR.status != 0) {
+					alert(textStatus+": ネットワークでエラーが発生しました");
 				}
-				alert("不正なリクエストです");
 			}).always(function (data_or_jqXHR, textStatus, jqXHR_or_errorThrown) {
 
 			});
