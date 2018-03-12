@@ -1,7 +1,7 @@
 @charset "utf-8";
 .heading1_wrapper {
 	width: 100%;
-	padding-bottom: 30px;
+	padding-bottom: 0;
 	overflow: hidden;
 }
 .heading1_wrapper h1 {
@@ -37,7 +37,7 @@ ul.pan li a, ul.pan li span {
 h2.heading {
 	padding-bottom: 3px;
 	background: url(/common/img/dotted.png) repeat-x left bottom;
-	margin: 10px 0px 15px;
+	margin: 30px 0px 15px;
 	font-size: 20px;
 }
 .heading3 {
@@ -193,6 +193,12 @@ input[type="text"] {
 textarea#message{
 	height: 5rem;
 }
+.pc{
+	display: block;
+}
+.sp{
+	display: none;
+}
 
 @media screen and (max-width: 740px) {
 table, tbody, thead, tfoot, tr, th, td {
@@ -203,4 +209,10 @@ table, tbody, thead, tfoot, tr, th, td {
 	border-bottom: 1px solid #ddd;
 	width: 100%;
 }
+	.pc{
+		display: none;
+	}
+	.sp{
+		display: block
+	}
 }

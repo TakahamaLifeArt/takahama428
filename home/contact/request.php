@@ -40,6 +40,12 @@ $_version = time();
 			<div class="heading1_wrapper">
 				<h1>資料請求も早い！</h1>
 			</div>
+			<div>
+				<img class="pc" src="/contact/img/sample_main.jpg" width="100%">
+			</div>
+			<div>
+				<img class="sp" src="/contact/img/sp_sample_main.jpg" width="100%">
+			</div>
 
 			<h2 class="heading">無料でサンプルを貸出</h2>
 			<p>
