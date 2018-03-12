@@ -17,7 +17,6 @@
 	<title>【大迫力】オリジナルタオル作成、特大シルクスクリーンプリント | タカハマライフアート</title>
 	<link rel="shortcut icon" href="/icon/favicon.ico">
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
-	<link rel="stylesheet" type="text/css" media="screen" href="//doozor.bitbucket.io/email/e-mailform.min.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="/user/js/upload/jquery.fileupload.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="/user/js/upload/jquery.fileupload-ui.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="/user/css/uploader.css">
@@ -789,18 +788,18 @@
 	</script>
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
 	<script src="//ajaxzip3.github.io/ajaxzip3.js" async></script>
-	<script src="//doozor.bitbucket.io/email/e-mailform.min.js" defer></script>
-	<script src="//doozor.bitbucket.io/calendar/datepick_calendar.min.js" defer></script>
-	<script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js" defer></script>
-	<script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js" defer></script>
-	<script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js" defer></script>
-	<script src="/user/js/upload/vendor/jquery.ui.widget.js" defer></script>
-	<script src="/user/js/upload/jquery.iframe-transport.js" defer></script>
-	<script src="/user/js/upload/jquery.fileupload.js" defer></script>
-	<script src="/user/js/upload/jquery.fileupload-process.js" defer></script>
-	<script src="/user/js/upload/jquery.fileupload-image.js" defer></script>
-	<script src="/user/js/upload/jquery.fileupload-validate.js" defer></script>
-	<script src="/user/js/upload/jquery.fileupload-ui.js" defer></script>
+	<script src="//doozor.bitbucket.io/email/e-mailform.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
+	<script src="//doozor.bitbucket.io/calendar/datepick_calendar.min.js"></script>
+	<script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
+	<script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+	<script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+	<script src="/user/js/upload/vendor/jquery.ui.widget.js"></script>
+	<script src="/user/js/upload/jquery.iframe-transport.js"></script>
+	<script src="/user/js/upload/jquery.fileupload.js"></script>
+	<script src="/user/js/upload/jquery.fileupload-process.js"></script>
+	<script src="/user/js/upload/jquery.fileupload-image.js"></script>
+	<script src="/user/js/upload/jquery.fileupload-validate.js"></script>
+	<script src="/user/js/upload/jquery.fileupload-ui.js"></script>
 	<script src="./js/upload/main.js"></script>
 	<script src="./js/extrabig.js"></script>
 </body>

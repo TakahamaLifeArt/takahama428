@@ -1537,12 +1537,6 @@ caption {
 	color: #777;
 }
 
-#pass_table tbody input {
-	width: 160px;
-	font-size: 14px;
-	height: 15px;
-}
-
 #profile_table tbody input {
 	width: 200px;
 	font-size: 14px;

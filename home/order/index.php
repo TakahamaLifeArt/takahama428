@@ -811,20 +811,29 @@ $_version = time();
 					<div class="member hidden">
 						<h3>2回目以降のご注文の方</h3>
 						<p>前回ご利用時のメールアドレスとパスワードをご入力ください。<br>ログインをすると住所入力が省略できます。また、購入情報は購入履歴から確認できます。</p>
-						<div class="user_pass">
-							<li>
-								<h3>メールアドレス</h3><input type="text" id="login_email" name="login_email" value="" />
-							</li>
-							<li>
-								<h3>パスワード</h3><input type="password" value="" id="login_pass" name="login_pass" />
-							</li>
-						</div>
-						<div id="login_btn">
-							<img src="/order/img/tsuika/sp_login_icon.png">ログイン
-						</div>
-						<p>
-							<span id="resend_pass"><ins class="red_mark">※</ins>パスワードを再発行する</span>
-						</p>
+						<form name="pass" class="e-mailer" action="" method="post" onsubmit="return false;">
+							<div class="user_pass">
+								<li>
+									<h3>メールアドレス</h3><input type="text" id="login_email" name="sendto" value="" />
+								</li>
+								<li>
+									<h3>パスワード</h3><input type="password" value="" id="login_pass" name="login_pass" class="e-none" />
+								</li>
+							</div>
+							<div id="login_btn">
+								<img src="/order/img/tsuika/sp_login_icon.png">ログイン
+							</div>
+							<p>
+								<span id="resend_pass"><ins class="red_mark">※</ins>パスワードを再発行する</span>
+							</p>
+							
+							<input type="hidden" name="subject" value="パスワードを再発行いたしました">
+							<input type="hidden" name="title" value="パスワード再発行">
+							<textarea name="summary" hidden>いつもご利用いただき、誠にありがとうございます。新しいパスワードを発行いたしました。</textarea>
+							<label hidden>パスワード</label>
+							<input type="text" name="newpass" id="newpass" value="" hidden>
+							<button type="submit" id="sendmail" hidden></button>
+						</form>
 					</div>
 
 					<div class="first_time hidden">
@@ -1232,6 +1241,7 @@ $_version = time();
 	</script>
 	<script src="https://ajaxzip3.github.io/ajaxzip3.js" async></script>
 	<script src="https://doozor.bitbucket.io/calendar/datepick_calendar.min.js"></script>
+	<script src="https://doozor.bitbucket.io/email/e-mailform.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
 	<script src="https://blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
 	<script src="https://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
 	<script src="https://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>

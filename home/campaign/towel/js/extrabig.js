@@ -37,13 +37,14 @@ $(function () {
 	}
 
 
-	// 送信ボタン設定
-	eMailer.submitButton('#sendmail').setExtraValidity(function () {
+	/**
+	 * 入力項目の検証
+	 */
+	eMailer.onValidate('#sendmail', function () {
 		/**
 		 * 必須項目の検証
 		 */
 		var minimumNumber = 10; // 申し込み最低枚数
-
 
 		/**
 		 * Check the upload file
@@ -53,7 +54,6 @@ $(function () {
 			$.msgbox('アップロードされていないフィルがあります');
 			return false;
 		}
-
 
 		/**
 		 * 枚数
@@ -68,7 +68,6 @@ $(function () {
 			$.msgbox('ご注文は' + minimumNumber + '枚以上からとなっております');
 			return false;
 		}
-
 
 		/**
 		 * 住所
@@ -93,10 +92,12 @@ $(function () {
 		}
 
 		return true;
-	}).setXhrDone(function(){
-		/**
-		 * 送信完了時の処理
-		 */
+	});
+	
+	/**
+	 * 送信完了時の処理
+	 */
+	eMailer.onComplete('#sendmail', function(){
 		window.location.href = '/campaign/towel/thanks.php';
 	});
 

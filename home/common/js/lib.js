@@ -301,8 +301,16 @@ $(function(){
 		var sum = JSON.parse(sessionStorage.getItem('sum'));
 		if (Object.keys(Object(sum)).length!==0) {
 			// ヘッダーのメニューを更新
-			$('#cart_total').text(sum.total.toLocaleString('ja-JP'));
-			$('#cart_amount').text(sum.volume.toLocaleString('ja-JP'));
+			if (sum.total) {
+				$('#cart_total').text(sum.total.toLocaleString('ja-JP'));
+			} else {
+				$('#cart_total').text('0');
+			}
+			if (sum.volume) {
+				$('#cart_amount').text(sum.volume.toLocaleString('ja-JP'));
+			} else {
+				$('#cart_amount').text('0');
+			}
 		}
 	})();
 	

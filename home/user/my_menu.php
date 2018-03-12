@@ -4,6 +4,8 @@ require_once dirname(__FILE__).'/php_libs/funcs.php';
 $me = checkLogin();
 if(!$me){
 	jump('./login.php');
+} else if (empty($me['id'])) {
+	jump(_DOMAIN);
 }
 
 $username = $me['customername'];

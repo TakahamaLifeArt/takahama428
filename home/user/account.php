@@ -32,7 +32,6 @@ if($_SERVER['REQUEST_METHOD']!='POST'){
 	<title>お客様情報変更 | タカハマライフアート</title>
 	<link rel="shortcut icon" href="/icon/favicon.ico" />
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
-<!--	<link rel="stylesheet" type="text/css" media="screen" href="//doozor.bitbucket.io/email/e-mailform.min.css">-->
 	<link rel="stylesheet" type="text/css" media="screen" href="./css/common.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="./css/my_account.css" />
 </head>
@@ -77,7 +76,7 @@ if($_SERVER['REQUEST_METHOD']!='POST'){
 							</th>
 						</tr>
 						<tr>
-							<th>お客様番号</th>
+							<th><label>お客様番号</label></th>
 						</tr>
 						<tr>
 							<td>
@@ -86,7 +85,7 @@ if($_SERVER['REQUEST_METHOD']!='POST'){
 							</td>
 						</tr>
 						<tr>
-							<th>お名前<span class="fontred">※</span></th>
+							<th><label>お名前</label><span class="fontred">※</span></th>
 						</tr>
 						<tr>
 							<td>
@@ -95,7 +94,7 @@ if($_SERVER['REQUEST_METHOD']!='POST'){
 							</td>
 						</tr>
 						<tr>
-							<th>フリガナ</th>
+							<th><label>フリガナ</label></th>
 						</tr>
 						<tr>
 							<td>
@@ -103,7 +102,7 @@ if($_SERVER['REQUEST_METHOD']!='POST'){
 							</td>
 						</tr>
 						<tr>
-							<th>メールアドレス</th>
+							<th><label>メールアドレス</label></th>
 						</tr>
 						<tr>
 							<td>
@@ -111,7 +110,7 @@ if($_SERVER['REQUEST_METHOD']!='POST'){
 							</td>
 						</tr>
 						<tr>
-							<th>〒郵便番号<span class="fontred">※</span></th>
+							<th><label>〒郵便番号</label><span class="fontred">※</span></th>
 						</tr>
 						<tr>
 							<td>
@@ -120,7 +119,7 @@ if($_SERVER['REQUEST_METHOD']!='POST'){
 							</td>
 						</tr>
 						<tr>
-							<th>都道府県<span class="fontred">※</span></th>
+							<th><label>都道府県</label><span class="fontred">※</span></th>
 						</tr>
 						<tr>
 							<td>
@@ -129,7 +128,7 @@ if($_SERVER['REQUEST_METHOD']!='POST'){
 							</td>
 						</tr>
 						<tr>
-							<th>住所１<span class="fontred">※</span></th>
+							<th><label>住所１</label><span class="fontred">※</span></th>
 						</tr>
 						<tr>
 							<td>
@@ -138,7 +137,7 @@ if($_SERVER['REQUEST_METHOD']!='POST'){
 							</td>
 						</tr>
 						<tr>
-							<th>住所２</th>
+							<th><label>住所２</label></th>
 						</tr>
 						<tr>
 							<td>
@@ -146,7 +145,7 @@ if($_SERVER['REQUEST_METHOD']!='POST'){
 							</td>
 						</tr>
 						<tr>
-							<th>電話番号<span class="fontred">※</span></th>
+							<th><label>電話番号</label><span class="fontred">※</span></th>
 						</tr>
 						<tr>
 							<td>
@@ -222,7 +221,7 @@ if($_SERVER['REQUEST_METHOD']!='POST'){
 
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
 	<script src="//ajaxzip3.github.io/ajaxzip3.js" charset="utf-8"></script>
-	<script src="//doozor.bitbucket.io/email/e-mailform.min.js" defer></script>
+	<script src="//doozor.bitbucket.io/email/e-mailform.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
 	<script src="/common/js/api.js"></script>
 	<script src="./js/account.js"></script>
 </body>

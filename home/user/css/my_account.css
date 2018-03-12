@@ -201,10 +201,16 @@ h2 {
 	color: #777;
 }
 
-.form_table tbody input {
+.form_table.me tbody th label {
+	display: inline;
+	color: inherit;
+}
+
+form.e-mailer .form_table tbody input {
 	width: 200px;
 	font-size: 14px;
-	height: 15px;
+	height: 29px;
+	background-color: inherit;
 }
 
 .form_table.me input[type="file"] {

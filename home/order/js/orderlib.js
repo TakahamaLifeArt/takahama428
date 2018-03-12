@@ -792,7 +792,9 @@ $(function(){
 
 			if(sum) {
 				// 小計
-				subTotal = sum.item + sum.print;
+				if (sum.item && sum.print) {
+					subTotal = sum.item + sum.print;
+				}
 				
 				// 注文枚数
 				orderAmount = sum.volume;
@@ -969,7 +971,6 @@ $(function(){
 	 * validEmail		メールアドレスの妥当性チェック
 	 * confirmUser		メールアドレスの登録状況と必須項目の入力確認
 	 * showUserConfirmation	初めての方の顧客情報の確認ページ表示
-	 * sendResetPass	パスワード再発行のメールを送信
 	 * mbConvert		全角の英数記号を半角に変換
 	 * isPhone			電話番号の検証
 	 */
@@ -1248,32 +1249,6 @@ $(function(){
 
 			// ページ遷移
 			$.next(page);
-		},
-		sendResetPass: function(email, pass){
-			/**
-			 * パスワード再発行メール
-			 * @param email
-			 * @param pass
-			 */
-			$.ajax({
-				url: 'user_login.php',
-				type: 'get',
-				dataType: 'json',
-				async: true,
-				timeout: 5000,
-				data: {
-					'sendmail': 'true',
-					'email': email,
-					'pass': pass
-				}
-			}).done(function(r){
-				if (r.send == 'success') {
-					$.msgbox('パスワードを再発行いたしました');
-				} else {
-					$.msgbox('メールの送信ができませんでした。<hr><br>送信先メールアドレス：<br>'+r.join('<br>'));
-				}
-				
-			});
 		},
 		mbConvert: function (args){
 			/**

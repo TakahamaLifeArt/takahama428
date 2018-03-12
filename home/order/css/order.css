@@ -1307,6 +1307,9 @@ input[type="password"] {
 
 #login_email {
 	margin: 0 auto;
+	width: 230px;
+	border: 1px solid #a5a5a5;
+	background: #f6fbfd;
 }
 
 #login_pass {

@@ -44,14 +44,18 @@ setToken();
 					</div>
 				</div>
 				<div class="section">
-					<form name="pass" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" onsubmit="return false;">
+					<form name="pass" class="e-mailer" action="" method="post" onsubmit="return false;">
 						<table class="form_table me" id="pass_table">
 							<p>登録されたメールアドレスに仮パスワードを送信いたします。</p>
 							<tfoot>
 								<tr>
 									<td colspan="2">
-										<input type="hidden" name="token" id="token" value="<?php echo $_SESSION['token']; ?>">
-										<button type="button" class="btn btn-info send_pass" id="send">送信</button>
+										<input type="hidden" name="token" class="e-none" id="token" value="<?php echo $_SESSION['token']; ?>">
+										<input type="hidden" name="subject" value="パスワードを再発行いたしました">
+										<input type="hidden" name="title" value="パスワード再発行">
+										<textarea name="summary" hidden>いつもご利用いただき、誠にありがとうございます。新しいパスワードを発行いたしました。</textarea>
+										<button type="button" class="btn btn-info send_pass" id="validation">送信</button>
+										<button type="submit" id="sendmail" hidden></button>
 									</td>
 								</tr>
 							</tfoot>
@@ -61,8 +65,10 @@ setToken();
 								</tr>
 								<tr>
 									<td class="center_posi">
-										<p><input type="text" name="email" id="email" value="<?php echo $_POST['email'];?>"></p>
+										<p><input type="text" name="sendto" id="email" value="<?php echo $_POST['email'];?>"></p>
 										<ins class="err"> <?php echo $err['email']; ?></ins>
+										<label hidden>パスワード</label>
+										<input type="text" name="newpass" id="newpass" value="" hidden>
 									</td>
 								</tr>
 							</tbody>
@@ -80,6 +86,7 @@ setToken();
 		<div id="overlay-mask" class="fade"></div>
 
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
+		<script src="//doozor.bitbucket.io/email/e-mailform.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
 		<script type="text/javascript" src="/common/js/api.js"></script>
 		<script type="text/javascript" src="./js/resendpass.js"></script>
 	</body>

@@ -4,12 +4,9 @@
  * -----
  * ログイン
  * ログイン状態の確認
- * パスワード再発行メール送信
  */
 require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/session_my_handler.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/package/mail/Mailer.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/http.php';
-use package\mail\Mailer;
 
 if (isset($_REQUEST['login'])) {
 	// ログイン
@@ -50,21 +47,6 @@ if (isset($_REQUEST['login'])) {
 	header("Content-Type: text/javascript; charset=utf-8");
 	echo $res;
 	
-} else if(isset($_REQUEST['sendmail'])) {
-	// パスワード再発行メール送信
-	$subject = 'パスワードを再発行いたしました';
-	$summary = "いつもご利用いただき、誠にありがとうございます。\n";
-	$summary .= "新しいパスワードを発行いたしました。";
-	$mailBody = array(
-		'tpl-title' => 'パスワード再発行',
-		'tpl-summary' => $summary,
-		'tpl-0_password' => $_REQUEST['pass']
-	);
-	
-	$mail = new Mailer('', $mailBody);
-	$res = $mail->send($subject, $_REQUEST['email']);
-	header("Content-Type: text/javascript; charset=utf-8");
-	echo json_encode($res);
 }
 
 ?>

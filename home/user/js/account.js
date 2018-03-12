@@ -21,6 +21,8 @@ $(function(){
 			if (r.id) {
 				return d.resolve().promise();
 			} else {
+				// loading終了
+				eMailer.loaderOff();
 				$.msgbox('Error: 更新できませんでした');
 				return d.reject().promise();
 			}
@@ -39,13 +41,10 @@ $(function(){
 				data: param
 			}).done(function(r){
 				if (!r) {
+					// loading終了
+					eMailer.loaderOff();
 					$.msgbox('<p>Error: 顧客情報を更新できませんでした</p>');
-				} else {
-					$.dialogBox('顧客情報を更新いたしました。', 'メッセージ', 'OK').then(function(){
-						window.location.reload();
-					});
 				}
-
 			});
 		});
 	}
@@ -55,24 +54,22 @@ $(function(){
 		var id = this.args.id;
 		$.api(['users', id, 'pass'], 'GET', null, JSON.stringify(this.args)).then(function(r){
 			var d = $.Deferred();
+			
 			// 更新結果を確認
 			if (r.id) {
 				return d.resolve().promise();
 			} else {
+				// loading終了
+				eMailer.loaderOff();
 				$.msgbox('Error: 更新できませんでした');
 				return d.reject().promise();
 			}
-		}).then(function(){
-			$.dialogBox('パスワードを更新いたしました。', 'メッセージ', 'OK').then(function(){
-				// フォームをリセット
-				document.forms.pass.reset();
-			});
 		});
 	}
 	
 	
-	//ユーザー情報の更新ボタン
-	eMailer.submitButton('#profile tfoot .ok_button').setExtraValidity(function(){
+	//ユーザー情報更新フォームのバリデーション
+	eMailer.onValidate('#profile tfoot .ok_button', function(){
 		var user,
 			args = {};
 		
@@ -88,8 +85,13 @@ $(function(){
 		user.update();
 
 		return true;
-	}).setXhrDone(function(){
-		// Do nothing.
+	});
+	
+	// ユーザー情報更新フォーム送信完了
+	eMailer.onComplete('#profile tfoot .ok_button', function(){
+		$.dialogBox('顧客情報を更新いたしました。', 'メッセージ', 'OK').then(function(){
+			window.location.reload();
+		});
 	});
 	
 	
@@ -100,8 +102,8 @@ $(function(){
 	});
 	
 	
-	// パスワード変更フォームの送信ボタン設定
-	eMailer.submitButton('#pass_table tfoot .ok_button').setExtraValidity(function () {
+	// パスワード変更フォームのバリデーション
+	eMailer.onValidate('#pass_table tfoot .ok_button', function () {
 		/**
 		 * 必須項目の検証
 		 */
@@ -128,8 +130,14 @@ $(function(){
 		user.setPass();
 
 		return true;
-	}).setXhrDone(function(){
-		// Do nothing.
+	});
+	
+	// パスワード変更フォーム送信完了
+	eMailer.onComplete('#pass_table tfoot .ok_button', function(){
+		$.dialogBox('パスワードを更新いたしました。', 'メッセージ', 'OK').then(function(){
+			// フォームをリセット
+			document.forms.pass.reset();
+		});
 	});
 	
 	

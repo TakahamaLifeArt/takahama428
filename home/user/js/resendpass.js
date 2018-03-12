@@ -5,36 +5,10 @@
 */
 
 $(function(){
-	
-	$.extend({
-		sendData: {},
-		sendMail: function(){
-			$.ajax({
-				url: '/user/php_libs/sendMail.php',
-				type: 'POST',
-				dataType: 'json',
-				async: true,
-				timeout: 5000,
-				data: $.sendData
-			}).done(function(r){
-				if (r.send == 'success') {
-					$.msgbox('<p>'+$.sendData.tpl-sendto+'宛にパスワードを再発行いたしました</p>');
-					$('#token').val('');
-				} else {
-					$.msgbox('メールの送信ができませんでした。');
-				}
-			}).fail(function(xhr, status, error){
-				alert("Error: "+error+"<br>通信エラーです。");
-
-			});
-		}
-	});
-	
-	
 	/********************************
 	*	仮パスワード送信
 	*/
-	$('#send').click( function(){
+	$('#validation').click( function(){
 		var email = $('#email').val().trim(),
 			token = $('#token').val();
 
@@ -63,13 +37,16 @@ $(function(){
 		}).then(function(pass){
 			// メール送信
 			if (pass!='') {
-				$.sendData = {};
-				$.sendData['tpl-subject'] = 'パスワードを再発行いたしました';
-				$.sendData['tpl-sendto'] = email;
-				$.sendData['tpl-title'] = 'パスワード再発行';
-				$.sendData['tpl-summary'] = "いつもご利用いただき、誠にありがとうございます。\n新しいパスワードを発行いたしました。";
-				$.sendData['tpl-0_password'] = pass;
-				$.sendMail();
+				let event;
+				document.forms.pass.newpass.value = pass;
+				if(typeof(Event) === 'function') {
+					event = new Event('change');
+				}else{
+					event = document.createEvent('Event');
+					event.initEvent('change', false, true);
+				}
+				document.forms.pass.newpass.dispatchEvent(event);
+				$('#sendmail').click();
 			} else {
 				$.msgbox('Error: パスワードの設定ができませんでした');
 			}
@@ -78,8 +55,14 @@ $(function(){
 	});
 	
 	
+	eMailer.onComplete('#sendmail', function(){
+		let email = $('#email').val();
+		document.forms.pass.newpass.value = '';
+		$.msgbox('<p>'+email+'宛にパスワードを再発行いたしました</p>');
+	});
+	
 	/********************************
 	*	フォーカス
 	*/
-	document.forms.pass.email.focus();
+	document.forms.pass.sendto.focus();
 });

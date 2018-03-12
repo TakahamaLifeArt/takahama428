@@ -908,7 +908,7 @@ $(function () {
 			return false;
 		} else if (tot === 0) {
 			$.msgbox('枚数をご指定ください。');
-			return fasle;
+			return false;
 		}
 		return true;
 	}
@@ -1823,8 +1823,10 @@ $(function () {
 				Object.keys(this[posId]).forEach(function(face){
 					Object.keys(this[face]).forEach(function(idx){
 						var info = this[idx],
-							optName = printOption.hasOwnProperty(info.method)? '<br>'+printOption[info.method][info.option]: '';
-						printInfo += '<tr><td>'+info.area+'</td><td>'+info.ink+'色</td>' +
+							optName = printOption.hasOwnProperty(info.method)? '<br>'+printOption[info.method][info.option]: '',
+							inkCount = info.ink==4? '4色以上': info.ink+'色';
+						
+						printInfo += '<tr><td>'+info.area+'</td><td>'+inkCount+'</td>' +
 							'<td>'+printName[info.method]+'<br>'+printSize[info.method][info.size]+optName+'</td></tr>';
 					}, this[face]);
 				}, this[posId]);
@@ -1993,6 +1995,7 @@ $(function () {
 				sum = $.setStorage('sum', {'item': orderItem.price, 'volume': orderItem.amount});
 
 				if (orderItem.amount==0) {
+					$.setStorage('sum', {'item':0, 'volume':0, 'mass':0, 'print':0, 'tax':0, 'total':0});
 					d.reject();
 				} else {
 					// 量販単価の適用を判定
@@ -2021,8 +2024,10 @@ $(function () {
 					});
 				}
 			} else {
-				$.setStorage('sum', {'item': 0, 'volume': 0});
-				d.reject();
+				$.setStorage('sum', {'item':0, 'volume':0, 'mass':0, 'print':0, 'tax':0, 'total':0});
+				$.estimate().then(function(){
+					d.reject();
+				});
 			}
 
 			return d.promise();
@@ -2278,7 +2283,7 @@ $(function () {
 	$('#goto_member').on("TAP_EVENT", function(){
 		$('#customer .member').removeClass('hidden');
 		$('#customer .first_time').addClass('hidden');
-		$('#customer .member input').val('');
+		$('#customer .member input[type!="hidden"]').val('');
 		
 		// ページ遷移
 		$.next();
@@ -2316,7 +2321,16 @@ $(function () {
 		}).then(function(pass){
 			// メール送信
 			if (pass!='') {
-				$.sendResetPass(email, pass);
+				let event;
+				document.forms.pass.newpass.value = pass;
+				if(typeof(Event) === 'function') {
+					event = new Event('change');
+				}else{
+					event = document.createEvent('Event');
+					event.initEvent('change', false, true);
+				}
+				document.forms.pass.newpass.dispatchEvent(event);
+				$('#sendmail').click();
 			} else {
 				$.msgbox('Error: パスワードの設定ができませんでした');
 			}
@@ -2324,6 +2338,11 @@ $(function () {
 		});
 	});
 	
+	eMailer.onComplete('#sendmail', function(){
+		let email = $('#login_email').val();
+		document.forms.pass.newpass.value = '';
+		$.msgbox('<p>'+email+'宛にパスワードを再発行いたしました</p>');
+	});
 	
 	/**
 	 * Step3 - 1
@@ -2444,11 +2463,13 @@ $(function () {
 					Object.keys(z.designs[designId]).forEach(function(posId){
 						Object.keys(this[posId]).forEach(function(face){
 							Object.keys(this[face]).forEach(function(cur){
-								var optName = printOption.hasOwnProperty(this[cur]['method'])? '<span class="pl-3">オプション: ' + printOption[this[cur]['method']][this[cur]['option']] + '</span><br>': '';
+								var optName = printOption.hasOwnProperty(this[cur]['method'])? '<span class="pl-3">オプション: ' + printOption[this[cur]['method']][this[cur]['option']] + '</span><br>': '',
+									inkCount = this[cur]['ink']==4? '4色以上': this[cur]['ink']+'色';
+								
 								printInfo += '<p>';
 								printInfo += '<span class="pl-3">プリント方法: ' + printName[this[cur]['method']] + '<br>サイズ: '+printSize[this[cur]['method']][this[cur]['size']]+optName + '</span>';
 								printInfo += '<span class="pl-3">プリント箇所: ' + faceName[face] + '</span>';
-								printInfo += '<span class="pl-3">インク色数: ' + this[cur]['ink'] + '色</span>';
+								printInfo += '<span class="pl-3">インク色数: ' + inkCount + '</span>';
 								printInfo += '</p>';
 							}, this[face]);
 						}, this[posId]);
