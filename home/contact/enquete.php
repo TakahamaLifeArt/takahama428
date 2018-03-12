@@ -1,10 +1,15 @@
 <?php
 
 $isSend = null;
-require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/mailer.php';
 if( isset($_POST['ticket']) && !empty($_POST['ticket']) ) {
-	$mailer = new Mailer($_POST);
-	$isSend = $mailer->send_enquete();
+	require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/conndb.php';
+	$data = $_POST;
+	$data['customername'] = '';
+	$data['zipcode'] = '';
+	$data['addr'] ='';
+	$conn = new ConnDB();
+	$conn->setEnquete($data);
+	$isSend = true;
 }else if(isset($_REQUEST['enq']) && !empty($_REQUEST['enq'])){
 	$ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 	$enq = preg_replace('/^\D/', '', $_REQUEST['enq']);
@@ -14,7 +19,6 @@ if( isset($_POST['ticket']) && !empty($_POST['ticket']) ) {
 }else{
 	header("Location: "._DOMAIN);
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -33,6 +37,9 @@ if( isset($_POST['ticket']) && !empty($_POST['ticket']) ) {
 		<title>アンケート　|　オリジナルTシャツ屋タカハマライフアート</title>
 		<link rel="shortcut icon" href="/icon/favicon.ico">
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
+		<link rel="stylesheet" type="text/css" media="screen" href="/user/js/upload/jquery.fileupload.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="/user/js/upload/jquery.fileupload-ui.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="/user/css/uploader.css">
 		<link rel="stylesheet" type="text/css" href="./css/custom_responsive.css" media="screen">
 		<link rel="stylesheet" type="text/css" href="./css/enquete.css" media="screen">
 	</head>
@@ -63,150 +70,147 @@ if( isset($_POST['ticket']) && !empty($_POST['ticket']) ) {
 			</div>
 			
 			<main>
-				<form id="contact_form" name="contact_form" method="post" action="{$_SERVER['SCRIPT_NAME']}" onsubmit="return false;">
+				<form id="fileupload" class="e-mailer" action="{$_SERVER['SCRIPT_NAME']}" method="POST" enctype="multipart/form-data">
 					<div>
-						<p id="number">顧客ID： <ins>{$number}</ins></p>
-						<input type="hidden" value="{$customer_id}" name="number">
+						<label id="number">顧客ID： <ins>{$number}</ins></label>
+						<input type="hidden" value="{$customer_id}" name="number" class="e-none">
 					</div>
 
 					<div>
 						<p class="q">
-							<em>Q1</em>
-							今回、タカハマライフアートをお選びいただいた理由をお聞かせ下さい。
-						</p>
-						<p class="a">
-							<textarea name="a12"></textarea>
-						</p>
-					</div>
-
-					<div>
-						<p class="q">
-							<em>Q2</em>
-							タカハマライフアートのホームページはわかりやすかったでしょうか？
+							<em>Q1 - <ins>1</ins></em>
+							<label>商品、プリントの品質には満足できましたか？</label>
 						</p>
 						<div class="a">
-							<p><label><input type="radio" name="a1" value="5">とても分りやすかった</label></p>
-							<p><label><input type="radio" name="a1" value="4">分りやすかった</label></p>
-							<p><label><input type="radio" name="a1" value="3">普通</label></p>
-							<p><label><input type="radio" name="a1" value="2">分りにくかった</label></p>
-							<p><label><input type="radio" name="a1" value="1">とても分りにくかった</label></p>
+							<p><label><input type="radio" name="a6" value="5" required>とても満足</label></p>
+							<p><label><input type="radio" name="a6" value="4" required>満足</label></p>
+							<p><label><input type="radio" name="a6" value="3" required>普通</label></p>
+							<p><label><input type="radio" name="a6" value="2" required>不満</label></p>
+							<p><label><input type="radio" name="a6" value="1" required>とても不満</label></p>
 						</div>
+						
+						<p class="q">
+							<em>Q1 - <ins>2</ins></em>
+							<label>その理由があればお聞かせください</label>
+						</p>
+						<p class="a">
+							<textarea name="a15"></textarea>
+						</p>
+					</div>
+
+					<div>
+						<p class="q">
+							<em>Q2 - <ins>1</ins></em>
+							<label>スタッフの対応には満足できましたか?</label>
+						</p>
+						<div class="a">
+							<p><label><input type="radio" name="a5" value="5" required>とても満足</label></p>
+							<p><label><input type="radio" name="a5" value="4" required>満足</label></p>
+							<p><label><input type="radio" name="a5" value="3" required>普通</label></p>
+							<p><label><input type="radio" name="a5" value="2" required>不満</label></p>
+							<p><label><input type="radio" name="a5" value="1" required>とても不満</label></p>
+						</div>
+						
+						<p class="q">
+							<em>Q2 - <ins>2</ins></em>
+							<label>その理由があればお聞かせください</label>
+						</p>
+						<p class="a">
+							<textarea name="a16"></textarea>
+						</p>
 					</div>
 
 					<div>
 						<p class="q">
 							<em>Q3</em>
-							ホームページで、わかりやすかった点、わかりにくかった点について、<br>具体的に教えて下さい。
+							<label>タカハマライフアートの「ここが使いづらい！」という点を教えてください</label><span>(複数回答可)</span>
 						</p>
-						<p class="a">
-							<textarea name="a2"></textarea>
-						</p>
+						<div class="a" id="q3">
+							<p><label><input type="checkbox" name="a17[]" value="1">注文確定の電話</label></p>
+							<p><label><input type="checkbox" name="a17[]" value="2">商品の選び方</label></p>
+							<p><label><input type="checkbox" name="a17[]" value="3">商品の素材や色</label></p>
+							<p><label><input type="checkbox" name="a17[]" value="4">お届け日</label></p>
+							<p><label><input type="checkbox" name="a17[]" value="5">商品の見積もり</label></p>
+							<p><label><input type="checkbox" name="a17[]" value="6">デザインの入稿の方法</label></p>
+							<p><label><input type="checkbox" name="a17[]" value="7">プリントサイズ</label></p>
+							<p><label><input type="checkbox" name="a17[]" value="8">プリント方法</label></p>
+							<p><label><input type="checkbox" name="a17[]" value="9">割引の内容や条件</label></p>
+							<p><label><input type="checkbox" name="a17[]" value="10">資料請求・商品サンプルの注文</label></p>
+							<p><label><input type="checkbox" name="a17[]" value="11">ホームページ全体</label></p>
+							<p><label><input type="checkbox" name="a17[]" value="0">特になし</label></p>
+						</div>
 					</div>
 
 					<div>
 						<p class="q">
 							<em>Q4</em>
-							ご注文いただいた際の弊社の対応はいかがでしたでしょうか？
-						</p>
-						<div class="a">
-							<p><label><input type="radio" name="a5" value="5">とても良かった</label></p>
-							<p><label><input type="radio" name="a5" value="4">良かった</label></p>
-							<p><label><input type="radio" name="a5" value="3">普通</label></p>
-							<p><label><input type="radio" name="a5" value="2">悪かった</label></p>
-							<p><label><input type="radio" name="a5" value="1">とても悪かった</label></p>
-						</div>
-					</div>
-
-					<div>
-						<p class="q">
-							<em>Q5</em>
-							プリントの仕上がりは、お客様のイメージ通りでしたでしょうか？
-						</p>
-						<div class="a">
-							<p><label><input type="radio" name="a6" value="5">イメージ以上に良かった</label></p>
-							<p><label><input type="radio" name="a6" value="4">イメージ通り良かった</label></p>
-							<p><label><input type="radio" name="a6" value="3">普通</label><br></p>
-							<p><label><input type="radio" name="a6" value="2">イメージしていたより悪かった</label></p>
-							<p><label><input type="radio" name="a6" value="1">全くイメージ通りではなかった</label></p>
-						</div>
-					</div>
-
-					<div>
-						<p class="q">
-							<em>Q6</em>
-							商品が到着した際の梱包状態はいかがでしたでしょうか？
-						</p>
-						<div class="a">
-							<p><label><input type="radio" name="a7" value="5">とても良かった</label></p>
-							<p><label><input type="radio" name="a7" value="4">良かった</label></p>
-							<p><label><input type="radio" name="a7" value="3">普通</label></p>
-							<p><label><input type="radio" name="a7" value="2">悪かった</label></p>
-							<p><label><input type="radio" name="a7" value="1">とても悪かった</label></p>
-						</div>
-					</div>
-
-					<div>
-						<p class="q">
-							<em>Q7</em>
-							実際に商品を着用・使用してみての、アイテムに関する感想をお願いします。
-						</p>
-						<p class="note"><ins>※</ins>プリントについてではなく、Ｔシャツやポロシャツなどアイテム自体への感想（着心地や生地感、色合い、<br>サイズについてなど）をお願いします。</p>
-						<p class="note"><ins>※</ins>商品レビューとしてＨＰ等に使用させていただく場合があります。予めご了承下さい。</p>
-						<p class="a">
-							<textarea name="a10"></textarea>
-						</p>
-					</div>
-
-					<div>
-						<p class="q">
-							<em>Q8</em>
-							ご使用の用途を教えてください。(音楽イベント、文化祭など)
-						</p>
-						<p class="a">
-							<textarea name="a13"></textarea>
-						</p>
-					</div>
-
-					<div>
-						<p class="q">
-							<em>Q9</em>
-							「もっとこんなサービス・商品があれば良いのに！」というご要望があれば<br>お聞かせ下さい。
-						</p>
-						<p class="a">
-							<textarea name="a8"></textarea>
-						</p>
-					</div>
-
-					<div>
-						<p class="q">
-							<em>Q10</em>
-							弊社を知ったきっかけを教えてください。
-						</p>
-						<div class="a">
-							<p><label><input type="radio" name="a14" value="6">インターネット検索</label></p>
-							<p><label><input type="radio" name="a14" value="5">知り合いの紹介</label></p>
-							<p><label><input type="radio" name="a14" value="4">雑誌、新聞記事、広告</label></p>
-							<p><label><input type="radio" name="a14" value="3">セミナー講演会</label></p>
-							<p><label><input type="radio" name="a14" value="2">2回目以降の購入</label></p>
-							<p><label><input type="radio" name="a14" value="1">その他</label></p>
-						</div>
-					</div>
-
-					<div>
-						<p class="q">
-							<em>Q11</em>
-							その他、注文してみての感想・お気づきの点などがありましたら<br>お聞かせ下さい。
+							<label>全体を通して、ご意見ご感想がありましたらご記入お願いします</label>
 						</p>
 						<p class="a">
 							<textarea name="a9"></textarea>
 						</p>
 					</div>
 
-					<input type="hidden" name="ticket" value="{$ticket}">
+					<div>
+						<p class="q">
+							<em>Q5</em>
+							<label>写真掲載割をご利用のお客様は、商品到着後の感想やコメントをご入力ください</label>
+						</p>
+						<p class="a">
+							<textarea name="a18"></textarea>
+						</p>
+					</div>
 
-					<p class="button_area" id="sendmail">
-						<input type="button" value="アンケートを送信する" class="btn">
+					<div>
+						<p class="q">
+							<em>Q6</em>
+							<label>写真掲載割をご利用のお客様は、商品着用写真をお送りください</label>
+						</p>
+
+						<div class="fileupload-buttonbar">
+							<div class="">
+								<!-- The fileinput-button span is used to style the file input field as button -->
+								<span class="btn btn-success fileinput-button fade in">
+									<i class="fa fa-plus" aria-hidden="true"></i>
+									<span>ファイルを選択...</span>
+									<input type="file" name="files[]" class="e-none" multiple>
+								</span>
+
+								<!-- The global file processing state -->
+								<span class="fileupload-process"></span>
+							</div>
+
+							<div class="drop-area">
+								<p>ここにファイルをドロップできます</p>
+							</div>
+							<p class="ri_txt">最大容量：100MB</p>
+
+							<!-- The global progress state -->
+							<div class="fileupload-progress fade">
+								<!-- The global progress bar -->
+								<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+									<div class="progress-bar progress-bar-success" style="width:0%;"></div>
+								</div>
+								<!-- The extended global progress state -->
+								<div class="progress-extended">&nbsp;</div>
+							</div>
+						</div>
+						<!-- The table listing the files available for upload/download -->
+						<table role="presentation" class="table table-striped" id="fileupload-table">
+							<tbody class="files"></tbody>
+						</table>
+					</div>
+
+					<div id="uploaded-files"></div>
+
+					<p class="button_area">
+						<button type="submit" id="sendmail" class="btn">アンケートを送信する</button>
 					</p>
+
+					<input type="hidden" name="ticket" class="e-none" value="{$ticket}">
+					<input type="hidden" name="sendto" value="order@takahama428.com">
+					<input type="hidden" name="subject" value="お客様アンケート">
+					<input type="hidden" name="title" value="お客様アンケート">
 				</form>
 			</main>
 DOC;
@@ -249,11 +253,11 @@ DOC;
 	}
 ?>
 
-		<div class="box_c">
-			<div class="bg"></div>
-		</div>
-		
-		</div>
+				<div class="box_c">
+					<div class="bg"></div>
+				</div>
+
+			</div>
 		</div>
 		
 		<footer class="page-footer">
@@ -265,6 +269,87 @@ DOC;
 		<div id="overlay-mask" class="fade"></div>
 
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
+
+		<!-- The template to display files available for upload -->
+		<script id="template-upload" type="text/x-tmpl">
+		{% for (var i=0, file; file=o.files[i]; i++) { %}
+		<tr class="template-upload fade">
+			<td>
+				<span class="preview"></span>
+			</td>
+			<td>
+				<p class="name">{%=file.name%}</p>
+				<strong class="error text-danger"></strong>
+			</td>
+			<td>
+				<p class="size">Processing...</p>
+				<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+					<div class="progress-bar progress-bar-success" style="width:0%;"></div>
+			</div>
+			</td>
+			<td>
+				{% if (!i && !o.options.autoUpload) { %}
+				<button class="btn btn-primary start" hidden disabled>
+					<i class="fa fa-cloud-upload" aria-hidden="true"></i>
+					<span>アップロード</span>
+			</button> {% } %} {% if (!i) { %}
+				<button class="btn btn-warning cancel">
+					<i class="fa fa-ban" aria-hidden="true"></i>
+					<span>キャンセル</span>
+			</button> {% } %}
+			</td>
+			</tr>
+		{% } %}
+		</script>
+		<!-- The template to display files available for download -->
+		<script id="template-download" type="text/x-tmpl">
+		{% for (var i=0, file; file=o.files[i]; i++) { %}
+		<tr class="template-download fade">
+			<td>
+				<span class="preview">
+				{% if (file.thumbnailUrl) { %}
+					<img src="{%=file.thumbnailUrl%}?auth=admin">
+				{% } %}
+			</span>
+			</td>
+			<td>
+				<p class="name">
+					<span>{%=file.name%}</span>
+			</p>
+				<span class="path" hidden>{%=file.url%}</span> {% if (file.error) { %}
+				<div><span class="label label-danger">Error</span> {%=file.error%}</div>
+				{% } else { %}
+				<div><span class="label" style="font-size:1.2rem;font-weight:bold;color:#0275d8;">完了</span></div>
+				{% } %}
+			</td>
+			<td>
+				<span class="size">{%=o.formatFileSize(file.size)%}</span>
+			</td>
+			<td>
+				{% if (file.deleteUrl) { %}
+				<button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
+					<i class="fa fa-trash" aria-hidden="true"></i>
+					<span>削除</span>
+			</button> {% } else { %}
+				<button class="btn btn-warning cancel">
+					<i class="fa fa-ban" aria-hidden="true"></i>
+					<span>キャンセル</span>
+			</button> {% } %}
+			</td>
+			</tr>
+		{% } %}
+		</script>
+		<script src="//doozor.bitbucket.io/email/e-mailform.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
+		<script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
+		<script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+		<script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+		<script src="/user/js/upload/vendor/jquery.ui.widget.js"></script>
+		<script src="/user/js/upload/jquery.iframe-transport.js"></script>
+		<script src="/user/js/upload/jquery.fileupload.js"></script>
+		<script src="/user/js/upload/jquery.fileupload-process.js"></script>
+		<script src="/user/js/upload/jquery.fileupload-image.js"></script>
+		<script src="/user/js/upload/jquery.fileupload-validate.js"></script>
+		<script src="/user/js/upload/jquery.fileupload-ui.js"></script>
 		<script type="text/javascript" src="./js/enquete.js"></script>
 
 	</body>
