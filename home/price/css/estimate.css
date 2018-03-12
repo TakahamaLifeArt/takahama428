@@ -1,4 +1,4 @@
-@charset "euc-jp";
+@charset "utf-8";
 
 /*------------------------------------------------------------
 
@@ -44,86 +44,77 @@ p,
 blockquote,
 th,
 td {
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 ul.pan {
-    height: auto;
-    margin: 20px 5px 20px 5px;
-    font-size: 0.8em;
+	height: auto;
+	margin: 20px 5px 20px 5px;
+	font-size: 0.8em;
 }
 
 ul.pan li {
-    display: inline;
-    padding-right: 4px;
-    line-height: 2em;
+	display: inline;
+	padding-right: 4px;
+	line-height: 2em;
 }
 
 ul.pan li:before {
-    content: ">";
-    padding-right: 10px;
-    vertical-align: middle;
+	content: ">";
+	padding-right: 10px;
+	vertical-align: middle;
 }
 
 ul.pan li:first-child:before {
-    content: "";
-    padding-right: 0;
+	content: "";
+	padding-right: 0;
 }
 
 ul.pan li a,
 ul.pan li span {
-    vertical-align: middle;
-    text-decoration: none;
+	vertical-align: middle;
+	text-decoration: none;
 }
 
 .pan {
-    display: block;
+	display: block;
 }
 
 a {
-    color: #1055e0;
-    text-decoration: none;
+	color: #1055e0;
+	text-decoration: none;
 }
 
 .heading1_wrapper {
-    width: 100%;
-    padding-bottom: 0px;
-    padding-top: 10px;
-    overflow: hidden;
+	width: 100%;
+	padding-bottom: 0px;
+	padding-top: 10px;
+	overflow: hidden;
 }
 
 table {
-    margin-bottom: 1em;
-}
-
-table {
-    font-size: inherit;
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 40%;
+	font-size: inherit;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 40%;
+	margin-bottom: 1em;
 }
 
 caption {
-    font-size: 125%;
+	font-size: 125%;
 }
 
 caption,
 th {
-    text-align: left;
-    font-weight: normal;
+	text-align: left;
+	font-weight: normal;
 }
 
 th,
 td {
-    padding: 2px 5px;
-    vertical-align: middle;
-}
-
-caption,
-th {
-    text-align: left;
-    font-weight: normal;
+	padding: 2px 5px;
+	vertical-align: middle;
 }
 
 label,
@@ -134,18 +125,112 @@ input[type="checkbox"],
 input[type="radio"],
 input[type="reset"],
 input[type="submit"] {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 select,
 input,
 textarea,
 button {
-    font-size: 99%;
+	font-size: 99%;
 }
 
 ul {
-    list-style-type: none;
+	list-style-type: none;
+}
+
+/*		category item
+===============================================================*/
+
+#item_wrap table td {
+	padding: 5px 0px;
+}
+
+/*		item color
+===============================================================*/
+
+#color_wrap {
+	display: none;
+	padding: 20px;
+	overflow: hidden;
+	background: #fff;
+	border: 1px solid #eae7d2;
+	border-radius: 3px;
+}
+
+#color_wrap input {
+	margin-right: .5em;
+}
+
+#color_wrap label {
+	padding-right: 20px
+}
+
+/*		size, item cost, amount
+===============================================================*/
+
+#price_wrap input {
+	width: 3em;
+	text-align: right;
+}
+
+#price_wrap table td {
+	text-align: right;
+	padding: 5px 10px;
+}
+
+/*		print position
+===============================================================*/
+
+#pos_wrap {
+	margin-top: 40px;
+}
+
+#pos_wrap table div {
+	position: relative;
+	width: 190px;
+	padding-left: 5px;
+}
+
+#pos_wrap table p select {
+	margin-left: 2em;
+}
+
+figure .pntposition .psnv {
+	position: relative;
+	width: 200px;
+}
+
+figure .pntposition {
+	float: left;
+	margin: 10px 5%;
+	text-align: center;
+}
+
+/*		ink of design
+===============================================================*/
+
+#add_inkselector {
+	margin-top: 20px;
+}
+
+.abort {
+	padding: 0px 5px;
+	color: #c33;
+	cursor: pointer;
+}
+
+.abort:hover {
+	color: #ff0019;
+}
+
+/*		dynamicgrid.css の拡張
+===============================================================*/
+
+#boxwrap .box .desc label {
+	margin-left: 1em;
+	font-size: 14px;
+	color: #04c;
 }
 
 /*===============================================
@@ -153,964 +238,596 @@ ul {
 ===============================================*/
 
 @media screen and (min-width: 769px) {
-    .contents h2 {
-        margin-bottom: 5px;
-        padding: 0 0 0 10px;
-        color: #4e2210;
-        border-left: 5px solid #ff9135;
-    }
-    #item_wrap,
-    #price_wrap,
-    #pos_wrap,
-    #estimation_wrap,
-    #result_wrap {
-        clear: both;
-        padding: 1em 0 0.5em 0.5em;
-        margin-bottom: 20px;
-        margin-top: 20px;
-        overflow: hidden;
-        background: #fff;
-        border: 1px solid #eae7d2;
-        border-radius: 3px;
-    }
-    #item_wrap table tbody th,
-    #price_wrap table tbody th,
-    #pos_wrap table tbody th,
-    #estimation_wrap table tbody th {
-        width: 12.5em;
-    }
 
-    #item_wrap tbody {
-        width: 40%;
-    }
-    .heading1_wrapper h1 {
-        font-size: 40px;
-        line-height: 1.8;
-        color: #383838;
-        font-weight: bold;
-    }
-
-    /*===============================================
-	●base201507_responsive.css
-	===============================================*/
-    @media screen and (min-width: 769px) {
-
-        #container {
-            width: 100% !important;
-        }
-        /*
-		.contents {
-			width: 780px 
-		}
-*/
-        #header .inner,
-        #gnavi .inner {
-            width: 1000px !important;
-        }
-        #showcart_box {
-            margin-left: 520px !important;
-        }
-        #oisogi {
-            margin-left: 500px !important;
-        }
-        .mb20 {
-            margin-bottom: 20px !important;
-        }
-        .ml15 {
-            margin-left: 15px !important;
-        }
-        .fs20 {
-            font-size: 20px !important;
-        }
-        .fs28 {
-            font-size: 28px !important;
-        }
-        .clear {
-            float: none !important;
-            clear: both !important;
-        }
-    }
-
-
-
-    /*------------------------------------------------------------
-
-	File_name	: dynamicgrid.css
-	log			: 2014-07-19	created
-
-	-------------------------------------------------------------- */
-    /*		A dynamic grid layout page for multi-column
-	===============================================================*/
-    /*===============================================
-	●画面の横幅が769px以上
-	===============================================*/
-    @media screen and (min-width: 769px) {
-        #boxwrap {
-            width: 730px;
-            /*padding-bottom: 40px;*/
-            overflow: hidden;
-        }
-        #boxwrap .box {
-            float: left;
-            width: 220px;
-            margin: 0 0 15px 15px;
-            font-size: 12px;
-            background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 3px / 3px;
-            box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
-            -moz-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
-            -webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
-        }
-        #boxwrap .box img {
-            display: block;
-            max-width: 210px;
-            height: auto;
-            margin: 5px auto 0px;
-        }
-        #boxwrap .box .desc {
-            margin: 10px 0 0;
-            padding: 0 5px 5px;
-            line-height: 1.3;
-            font-size: 11px;
-            color: #999;
-            overflow: hidden;
-        }
-        #boxwrap .box .comment {
-            margin: 0;
-            padding: 10px 5px;
-            background-color: #f2f0f0;
-            border-top: 1px solid #d9d4d4;
-            box-shadow: 0 1px 1px #fff inset;
-            -moz-box-shadow: 0 1px 1px #fff inset;
-            -webkit-box-shadow: 0 1px 1px #fff inset;
-            overflow: hidden;
-        }
-
-        /* extension */
-        .box .title {
-            margin-top: 8px;
-            margin-left: -4px;
-            padding-left: 8px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            border-left: 6px solid #5fa6ff;
-            /*#4183C4;*/
-        }
-        .box .subtitle {
-            margin-right: 5px;
-            text-align: right;
-            font-size: 12px;
-            color: #999;
-        }
-        #boxwrap .box .btn_sub {
-            margin: 15px 5px;
-        }
-
-        /* description ext */
-        #boxwrap .box .desc img {
-            float: left;
-            margin: 0 5px 0 0;
-        }
-        .box .desc a {
-            color: #999;
-            white-space: nowrap;
-        }
-        .box .desc a:hover {
-            color: #07e;
-        }
-
-        /*
-		.box .desc table th {
-		padding-right: 1em;
-		text-align: left;
-		font-weight: normal;
+	#item_wrap,
+	#price_wrap,
+	#pos_wrap,
+	#estimation_wrap,
+	#result_wrap {
+		clear: both;
+		padding: 1em 0 0.5em 0.5em;
+		margin-bottom: 20px;
+		margin-top: 20px;
+		overflow: hidden;
+		background: #fff;
+		border: 1px solid #eae7d2;
+		border-radius: 3px;
 	}
-		.box .desc table td.price {
-		margin-right: 1em;
-		text-align: right;
-		font-size: 120%;
-		font-family: 'Times New Roman',serif;
+	#item_wrap table tbody th,
+	#price_wrap table tbody th,
+	#pos_wrap table tbody th,
+	#estimation_wrap table tbody th {
+		width: 12.5em;
 	}
-		.box .desc table td.price.emphasis {
-		font-size: 150%;
+
+	#item_wrap tbody {
+		width: 40%;
 	}
-		.box .desc table td.price span {
-		padding-left: 3px;
+	.heading1_wrapper h1 {
+		font-size: 40px;
+		line-height: 1.8;
+		color: #383838;
+		font-weight: bold;
+	}
+
+	#boxwrap {
+		width: 730px;
+		overflow: hidden;
+	}
+	#boxwrap .box {
+		float: left;
+		width: 220px;
+		margin: 0 0 15px 15px;
+		font-size: 12px;
+		background-color: white;
+		border: 1px solid #ddd;
+		border-radius: 3px / 3px;
+		box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+		-moz-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+		-webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+	}
+	#boxwrap .box img {
+		display: block;
+		max-width: 210px;
+		height: auto;
+		margin: 5px auto 0px;
+	}
+	#boxwrap .box .desc {
+		margin: 10px 0 0;
+		padding: 0 5px 5px;
+		line-height: 1.3;
 		font-size: 11px;
+		color: #999;
+		overflow: hidden;
 	}
-		*/
-    }
 
+	/* extension */
+	.box .title {
+		margin-top: 8px;
+		margin-left: -4px;
+		padding-left: 8px;
+		font-size: 18px;
+		font-weight: bold;
+		color: #333;
+		border-left: 6px solid #5fa6ff;
+		/*#4183C4;*/
+	}
+	.box .subtitle {
+		margin-right: 5px;
+		text-align: right;
+		font-size: 12px;
+		color: #999;
+	}
+	#boxwrap .box .btn_sub {
+		margin: 15px 5px;
+	}
 
+	/* description ext */
+	#boxwrap .box .desc img {
+		float: left;
+		margin: 0 5px 0 0;
+	}
+	.box .desc a {
+		color: #999;
+		white-space: nowrap;
+	}
+	.box .desc a:hover {
+		color: #07e;
+	}
 
-    /*		category item
-===============================================================*/
-    #item_wrap table td {
-        padding: 5px 0px;
-    }
-    /*		item color
-===============================================================*/
-    #color_wrap {
-        display: none;
-        padding: 20px;
-        overflow: hidden;
-        background: #fff;
-        border: 1px solid #eae7d2;
-        border-radius: 3px;
-    }
-    #color_wrap input {
-        margin-right: .5em;
-    }
-    #color_wrap label {
-        padding-right: 20px
-    }
-    /*		size, item cost, amount
-===============================================================*/
-    #price_wrap input {
-        width: 3em;
-        text-align: right;
-    }
-    #price_wrap table td {
-        text-align: right;
-        padding: 5px 10px;
-    }
-    /*		print position
-===============================================================*/
-    #pos_wrap {
-        margin-top: 40px;
-    }
-    #pos_wrap table div {
-        position: relative;
-        width: 190px;
-        padding-left: 5px;
-    }
-    #pos_wrap table p {
-        text-align: center;
-    }
-    #pos_wrap table p select {
-        margin-left: 2em;
-    }
-    /*		ink of design
-===============================================================*/
-    #add_inkselector {
-        margin-top: 20px;
-    }
-    .abort {
-        padding: 0px 5px;
-        color: #c33;
-        cursor: pointer;
-    }
-    .abort:hover {
-        color: #ff0019;
-    }
-    /*		print fee
-===============================================================
-#printfee_wrap {
-	padding: 1em 0 0.5em 0.5em;
-	margin-bottom: 20px;
-	background: #fff;
-	border: 2px solid #4e2210;
-	border-radius: 3px;
-}
-#printfee_wrap table {
-	font-size: 16px;
-}
-#printfee_wrap table td {
-	vertical-align: top;
-}
-#printfee_wrap table td.lbl01,
-#printfee_wrap table td.lbl02 {
-	padding-left: 100px;
-}
-#printfee_wrap table td p {
-	text-align: right;
-	font-weight: bold;
-}
-#result,
-#perone {
-	width: 150px;
-	border-bottom: 1px solid #d8d8d8;
-}
-*/
-    /* 合計 
-#printfee_wrap table td.lbl01,
-#result {
-	font-size: 150%;
-	color: #003f75;
-}
-*/
-    /* 1人あたり 
-#printfee_wrap table td.lbl02 p,
-#perone,
-#totamount {
-	font-weight: normal;
-	color: #666;
-}
-*/
-    /*		estimation table
-===============================================================*/
-    table.list {
-        width: 100%;
-    }
-    table.list caption {
-        position: relative;
-    }
-    table.list caption span {
-        position: absolute;
-        right: 5px;
-        bottom: 0px;
-        font-size: 12px;
-        color: #c33;
-    }
-    table.list thead th {
-        color: #fff;
-        background: #ff9135;
-        border: 2px solid #fff;
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-    table.list td {
-        padding: 2px 10px 2px 5px;
-        font-size: 12px;
-        border-bottom: 1px solid #d8d8d8;
-    }
-    table.list td.last {
-        border: none;
-    }
-    /* 商品名 */
-    #estimation_wrap table td p {
-        width: 320px;
-    }
-    /* 枚数 */
-    #estimation_wrap input.forNum {
-        width: 3em;
-        text-align: right;
-    }
-    /* 合計 */
-    #estimation_wrap table .totamount,
-    #estimation_wrap table .itemsum,
-    #estimation_wrap table .baseprice,
-    #estimation_wrap table .salestax,
-    #estimation_wrap table .printfee,
-    #estimation_wrap table .total,
-    #estimation_wrap table .perone {
-        text-align: right;
-    }
-    table.list tfoot .foot_total td {
-        padding-top: 1em;
-        font-size: 125%;
-    }
-    table.list tfoot .foot_total td,
-    table.list tfoot .foot_perone td {
-        font-weight: bold;
-        background: #f2f2f2;
-    }
-    table.list tfoot .foot_total td.last,
-    table.list tfoot .foot_perone td.last {
-        background-color: transparent;
-    }
-    /*		result table
-===============================================================*/
-    #result_wrap table tbody td {
-        padding: 5px 10px 5px 5px;
-    }
-    #result_wrap table tr:hover {
-        color: #04c;
-        background: #efefef;
-        cursor: pointer;
-    }
-    #result_wrap table .icon_next {
-        margin-left: 20px;
-    }
-    /* sort */
-    #sort_selector {
-        margin-right: 10px;
-    }
-    /*		order button
-===============================================================
-#action_wrap {
-	clear: both;
-	padding: 10px 0;
-	margin: 30px 0px 20px;
-	overflow: hidden;
-}
-#btnOrder {
-	width: 211px;
-	height: 25px;
-	margin: 0px auto;
-	line-height: 25px;
-	text-align: center;
-	color: #fff;
-	background: url(/common/img/detail_blue_btn_l.png) no-repeat;
-	cursor: pointer;
-}
-#btnOrder:hover {
-	background-position: 0px -25px;
-}
-*/
-    /*		mail form
-===============================================================
-.round_corner_wrapper02 {
-	display: none;
-}
-*/
-    /*		dynamicgrid.css の拡張
-===============================================================*/
-    #boxwrap .box .desc label {
-        margin-left: 1em;
-        font-size: 14px;
-        color: #04c;
-    }
-}
+	#container {
+		width: 100%;
+		margin-top: 110px;
+	}
 
-@media screen and (max-width: 768px) {
-    .contents h2 {
-        margin-bottom: 5px;
-        padding: 0 0 0 10px;
-        color: #4e2210;
-        border-left: 5px solid #ff9135;
-        font-size: 20px;
-    }
-    h2 {
-        /* padding-left: .5rem; */
-        font-size: 150%;
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
-    .body_type img {
-        width: 100%;
-    }
-    #color_wrap {
-        text-align: center;
-        clear: both;
-    }
-    #color_wrap label {
-        font-size: 120%;
-    }
-    #item_wrap,
-    #price_wrap,
-    #pos_wrap,
-    #estimation_wrap {
-        clear: both;
-        padding: 1em 0 0.5em 0.5em;
-        margin-bottom: 20px;
-        margin-top: 20px;
-        overflow: hidden;
-        background: #fff;
-        border: 1px solid #eae7d2;
-        border-radius: 3px;
-    }
-    /*-------------result table---------------------*/
-    table.result th:first-child {
-        display: none;
-    }
-    table.result td:first-child {
-        display: none;
-    }
-    /*
-.result p {
-	height : 25px;
-}
-
-p.arrow,
-p.per {
-	color: red;
-	font-weight: bold;
-}
-
-.result p .name {
-	height : 50px;
-
-}
-*/
-}
-
-
-/*------------------------------------------------------------
-
-2015 takahama web css
-
-File_name	: estimate02.css
-Description	: estimation 
-
-log
-2015.08.20	: created
-
---------------------------------------------------------------*/
-
-/*		common
-===============================================================*/
-
-/*===============================================
-∥脰昍及產汔互769px動曉
-===============================================*/
-
-@media screen and (min-width: 769px) {
-    #container {
-        width: 100%;
-        margin-top: 110px;
-    }
-
-    .contents {
-        width: 100%;
-        float: none;
-        margin-top: 20px;
-        overflow: hidden;
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 10px;
-    }
-    #result_wrap02 {
-        clear: both;
-        padding: 1em 0 0.5em 0.5em;
-        margin-bottom: 20px;
-        overflow: hidden;
-        background: none;
-        border: none;
-    }
-    #result_wrap02 p.ttl {
-        background: #FD9141;
-        text-align: center;
-        font-size: 20px;
-    }
-    #result_wrap02 p.ttl span {
-        font-size: 14px;
-    }
-    #result_wrap02 p.caution {
-        font-size: 12px;
-    }
-    /*		result table
+	.contents {
+		width: 100%;
+		float: none;
+		margin-top: 20px;
+		overflow: hidden;
+		max-width: 1000px;
+		margin: 0 auto;
+		padding: 10px;
+	}
+	#result_wrap02 {
+		clear: both;
+		padding: 1em 0 0.5em 0.5em;
+		margin-bottom: 20px;
+		overflow: hidden;
+		background: none;
+		border: none;
+	}
+	#result_wrap02 p.ttl {
+		background: #FD9141;
+		text-align: center;
+		font-size: 20px;
+	}
+	#result_wrap02 p.ttl span {
+		font-size: 14px;
+	}
+	#result_wrap02 p.caution {
+		font-size: 12px;
+	}
+	/*		result table
 	===============================================================*/
-    #result_wrap02 .rankingmore {
-        /*display: none;*/
-    }
-    table.result {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 0;
-    }
-    table.result thead th {
-        background: #f1f1f1;
-        border: 1px solid #D3C8BA;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        text-align: center;
-        width: 355px;
-    }
-    table.result thead th.nobdr {
-        border: none;
-        background: none;
-        width: 70px;
-    }
-    table.result td {
-        font-size: 14px;
-        padding: 20px 18px !important;
-        border: 1px solid #D3C8BA;
-        width: 45%;
-    }
-    table.result td.number {
-        padding: 20px 0 !important;
-        background: #fff4cc;
-        border: 1px solid #D3C8BA;
-        text-align: center;
-        vertical-align: top;
-        font-size: 20px;
-        width: 10%;
-    }
-    table.result.other {
-        border-top: none;
-    }
-    table.result.other tr:first-child td {
-        border-top: none;
-    }
-    table.result.other td.number {
-        background: #F1F1F1;
-        width: 10%;
-    }
-    table.result td img.result_img {
-        float: left;
-        margin-right: 15px;
-    }
-    table.result td p {
-        margin: 0 0 10px 0;
-    }
-    table.result td p.coment {
-        color: #FF4800;
-        margin: 8px 0 15px 0;
-    }
-    table.result td p.arrow {
-        clear: both;
-        background: #ff0000;
-        color: #fff;
-        background: url(../img/arrow.png) no-repeat;
-        width: 140px;
-        text-align: center;
-        padding: 0 10px 0 0;
-        line-height: 30px;
-        float: left;
-        margin: 0 0 0 10px;
-    }
-    table.result td p.per {
-        font-size: 20px;
-        text-align: right;
-        float: right;
-        color: #f00;
-        padding: 0 10px 0 0;
-        margin: 0;
-    }
-    table.result td p.total {
-        clear: both;
-        font-size: 14px;
-        text-align: right;
-        margin: 0 10px 10px 0;
-    }
-    table.result td p.apply a {
-        border-radius: 6px;
-        width: 150px;
-        height: 32px;
-        text-align: center;
-        color: #fff;
-        display: block;
-        padding: 7px 0 0 0;
-        float: right;
-        text-decoration: none;
-        background: #ffffff;
-        background: -moz-linear-gradient(top, #ffffff 3%, #4173ed 3%, #1353d3 100%);
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(3%, #ffffff), color-stop(3%, #4173ed), color-stop(100%, #1353d3));
-        background: -webkit-linear-gradient(top, #ffffff 3%, #4173ed 3%, #1353d3 100%);
-        background: -o-linear-gradient(top, #ffffff 3%, #4173ed 3%, #1353d3 100%);
-        background: -ms-linear-gradient(top, #ffffff 3%, #4173ed 3%, #1353d3 100%);
-        background: linear-gradient(to bottom, #ffffff 3%, #4173ed 3%, #1353d3 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#1353d3', GradientType=0);
-    }
-    table.result td p.detail a {
-        border: 1px solid #4173ed;
-        border-radius: 6px;
-        width: 150px;
-        height: 32px;
-        text-align: center;
-        color: #383838;
-        display: block;
-        padding: 7px 0 0 0;
-        float: left;
-        text-decoration: none;
-        background: #ffffff;
-        background: -moz-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(3%, #ffffff), color-stop(3%, #ffffff), color-stop(58%, #ededed), color-stop(100%, #dbdbdb));
-        background: -webkit-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
-        background: -o-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
-        background: -ms-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
-        background: linear-gradient(to bottom, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dbdbdb', GradientType=0);
-    }
-    .more {
-        display: none;
-        border: 1px solid #8B8B8B;
-        border-radius: 6px;
-        color: #4173ED;
-        margin: 20px 0;
-        font-size: 14px;
-        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+3,ffffff+3,ededed+58,dbdbdb+100 */
-        background: #ffffff;
-        /* Old browsers */
-        background: -moz-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
-        /* FF3.6+ */
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(3%, #ffffff), color-stop(3%, #ffffff), color-stop(58%, #ededed), color-stop(100%, #dbdbdb));
-        /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
-        /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
-        /* Opera 11.10+ */
-        background: -ms-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
-        /* IE10+ */
-        background: linear-gradient(to bottom, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
-        /* W3C */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dbdbdb', GradientType=0);
-        /* IE6-9 */
-        text-align: center;
-        padding: 5px;
-        cursor: pointer;
-    }
-    .more span {
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 14px 7px 0 7px;
-        border-color: #4173ED transparent transparent;
-        display: block;
-        margin: 5px auto;
-    }
-    table.result td p.apply a:hover,
-    table.result td p.detail a:hover,
-    .more:hover {
-        filter: alpha(opacity=75);
-        -moz-opacity: .75;
-        opacity: .75;
-    }
-    .ranking_icon {
-        display: none;
-    }
+	#result_wrap02 .rankingmore {
+		/*display: none;*/
+	}
+	table.result {
+		width: 100%;
+		border-collapse: collapse;
+		margin: 0;
+	}
+	table.result thead th {
+		background: #f1f1f1;
+		border: 1px solid #D3C8BA;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		text-align: center;
+		width: 355px;
+	}
+	table.result thead th.nobdr {
+		border: none;
+		background: none;
+		width: 70px;
+	}
+	table.result td {
+		font-size: 14px;
+		padding: 20px 18px !important;
+		border: 1px solid #D3C8BA;
+		width: 45%;
+	}
+	table.result td.number {
+		padding: 20px 0 !important;
+		background: #fff4cc;
+		border: 1px solid #D3C8BA;
+		text-align: center;
+		vertical-align: top;
+		font-size: 20px;
+		width: 10%;
+	}
+	table.result.other {
+		border-top: none;
+	}
+	table.result.other tr:first-child td {
+		border-top: none;
+	}
+	table.result.other td.number {
+		background: #F1F1F1;
+		width: 10%;
+	}
+	table.result td img.result_img {
+		float: left;
+		margin-right: 15px;
+	}
+	table.result td p {
+		margin: 0 0 10px 0;
+	}
+	table.result td p.coment {
+		color: #FF4800;
+		margin: 8px 0 15px 0;
+	}
+	table.result td p.arrow {
+		clear: both;
+		background: #ff0000;
+		color: #fff;
+		background: url(../img/arrow.png) no-repeat;
+		width: 140px;
+		text-align: center;
+		padding: 0 10px 0 0;
+		line-height: 30px;
+		float: left;
+		margin: 0 0 0 10px;
+	}
+	table.result td p.per {
+		font-size: 20px;
+		text-align: right;
+		float: right;
+		color: #f00;
+		padding: 0 10px 0 0;
+		margin: 0;
+	}
+	table.result td p.total {
+		clear: both;
+		font-size: 14px;
+		text-align: right;
+		margin: 0 10px 10px 0;
+	}
+	table.result td p.apply a {
+		border-radius: 6px;
+		width: 150px;
+		height: 32px;
+		text-align: center;
+		color: #fff;
+		display: block;
+		padding: 7px 0 0 0;
+		float: right;
+		text-decoration: none;
+		background: #ffffff;
+		background: -moz-linear-gradient(top, #ffffff 3%, #4173ed 3%, #1353d3 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(3%, #ffffff), color-stop(3%, #4173ed), color-stop(100%, #1353d3));
+		background: -webkit-linear-gradient(top, #ffffff 3%, #4173ed 3%, #1353d3 100%);
+		background: -o-linear-gradient(top, #ffffff 3%, #4173ed 3%, #1353d3 100%);
+		background: -ms-linear-gradient(top, #ffffff 3%, #4173ed 3%, #1353d3 100%);
+		background: linear-gradient(to bottom, #ffffff 3%, #4173ed 3%, #1353d3 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#1353d3', GradientType=0);
+	}
+	table.result td p.detail a {
+		border: 1px solid #4173ed;
+		border-radius: 6px;
+		width: 150px;
+		height: 32px;
+		text-align: center;
+		color: #383838;
+		display: block;
+		padding: 7px 0 0 0;
+		float: left;
+		text-decoration: none;
+		background: #ffffff;
+		background: -moz-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(3%, #ffffff), color-stop(3%, #ffffff), color-stop(58%, #ededed), color-stop(100%, #dbdbdb));
+		background: -webkit-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
+		background: -o-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
+		background: -ms-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
+		background: linear-gradient(to bottom, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dbdbdb', GradientType=0);
+	}
+	.more {
+		display: none;
+		border: 1px solid #8B8B8B;
+		border-radius: 6px;
+		color: #4173ED;
+		margin: 20px 0;
+		font-size: 14px;
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+3,ffffff+3,ededed+58,dbdbdb+100 */
+		background: #ffffff;
+		/* Old browsers */
+		background: -moz-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
+		/* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(3%, #ffffff), color-stop(3%, #ffffff), color-stop(58%, #ededed), color-stop(100%, #dbdbdb));
+		/* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
+		/* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
+		/* Opera 11.10+ */
+		background: -ms-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
+		/* IE10+ */
+		background: linear-gradient(to bottom, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
+		/* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dbdbdb', GradientType=0);
+		/* IE6-9 */
+		text-align: center;
+		padding: 5px;
+		cursor: pointer;
+	}
+	.more span {
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 14px 7px 0 7px;
+		border-color: #4173ED transparent transparent;
+		display: block;
+		margin: 5px auto;
+	}
+	table.result td p.apply a:hover,
+	table.result td p.detail a:hover,
+	.more:hover {
+		filter: alpha(opacity=75);
+		-moz-opacity: .75;
+		opacity: .75;
+	}
+	.ranking_icon {
+		display: none;
+	}
 }
 
 
 /*769動票*/
 
 @media screen and (max-width: 768px) {
-    #container {
-        width: 100%;
-        margin-top: 125px;
-    }
-    .contents {
-        width: 100%;
-        float: none;
-        margin-top: 20px;
-        overflow: hidden;
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 10px;
-    }
-    ul.pan {
-        display: none;
-    }
-    table {
-        font-size: inherit;
-        border-collapse: collapse;
-        border-spacing: 0;
-        width: 96%;
-    }
-
-    .title_box {
-        width: 100%;
-        position: relative;
-        /*		background: url(../img/title_img_2.jpg) no-repeat left top;*/
-        /*		margin-bottom: 20px;*/
-        background-size: 100%;
-    }
-    /*
-	.title_box:before {
-		content: "";
-		display: block;
-		padding-top: 25%;
+	#container {
+		width: 100%;
+		margin-top: 125px;
 	}
-*/
-    .title_box h1#toptxt {
-        /*
-		position: absolute;
-		left: 5%;
-		top: 25%;
-*/
-        color: #333333;
-        font-size: 3em;
-        font-weight: bold;
-    }
-    table.result {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 0;
-    }
-    table.result thead th {
-        background: #f1f1f1;
-        border: 1px solid #D3C8BA;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        text-align: center;
-    }
-    table.result thead th.nobdr {
-        border: none;
-        background: none;
-        width: 70px;
-    }
-    table.result td {
-        border: 1px solid #D3C8BA;
-    }
-    table.result td.number {
-        background: #fff4cc;
-        border: 1px solid #D3C8BA;
-        text-align: center;
-    }
-    table.result td p.detail a {
-        border: 1px solid #4173ed;
-        border-radius: 6px;
-        width: 70%;
-        height: 20px;
-        text-align: center;
-        color: #383838;
-        margin: 5% 15% 10%;
-        display: block;
-        /*padding:18px 0 0 0;*/
-        font-size: 10px;
-        /*float:left;*/
-        text-decoration: none;
-        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+3,ffffff+3,ededed+58,dbdbdb+100 */
-        background: #ffffff;
-        /* Old browsers */
-        background: -moz-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
-        /* FF3.6+ */
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(3%, #ffffff), color-stop(3%, #ffffff), color-stop(58%, #ededed), color-stop(100%, #dbdbdb));
-        /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
-        /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
-        /* Opera 11.10+ */
-        background: -ms-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
-        /* IE10+ */
-        background: linear-gradient(to bottom, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
-        /* W3C */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dbdbdb', GradientType=0);
-        /* IE6-9 */
-    }
-    table.result td p.apply a {
-        display: none !important;
-        border: 1px solid #383838;
-        border-radius: 6px;
-        width: 100%;
-        height: 20px;
-        text-align: center;
-        color: #fff;
-        display: block;
-        /*padding:18px 0 0 0;*/
-        margin-bottom: 5px;
-        font-size: 10px;
-        float: left;
-        text-decoration: none;
-        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+3,4173ed+3,1353d3+100 */
-        background: #ffffff;
-        /* Old browsers */
-        background: -moz-linear-gradient(top, #ffffff 3%, #4173ed 3%, #1353d3 100%);
-        /* FF3.6+ */
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(3%, #ffffff), color-stop(3%, #4173ed), color-stop(100%, #1353d3));
-        /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(top, #ffffff 3%, #4173ed 3%, #1353d3 100%);
-        /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(top, #ffffff 3%, #4173ed 3%, #1353d3 100%);
-        /* Opera 11.10+ */
-        background: -ms-linear-gradient(top, #ffffff 3%, #4173ed 3%, #1353d3 100%);
-        /* IE10+ */
-        background: linear-gradient(to bottom, #ffffff 3%, #4173ed 3%, #1353d3 100%);
-        /* W3C */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#1353d3', GradientType=0);
-        /* IE6-9 */
-    }
-    table.result th {
-        font-size: 16px;
-        font-weight: 700;
-    }
-    table.result td {
-        width: 150px;
-        height: 200px;
-        text-align: center;
-    }
-    table.result td p.coment {
-        color: #FF4800;
-        /*margin:8px 0 15px 0;*/
-    }
-    table.result td p.arrow {
-        clear: both;
-        background: #ff0000;
-        color: #fff;
-        background: url(../img/arrow.png) no-repeat;
-        width: 140px;
-        text-align: center;
-        padding: 0 10px 0 0;
-        line-height: 30px;
-        float: left;
-        margin: 0 0 0 10px;
-    }
-    table.result td:first-child {
-        width: 40px;
-        height: 200px;
-    }
-    table.result.other th {
-        font-size: 16px;
-        font-weight: 700;
-    }
-    table.result.other td {
-        width: 150px;
-        height: 200px;
-        text-align: center;
-    }
-    table.result.other td:first-child {
-        width: 70px;
-        height: 200px;
-    }
-    table.result td p.per {
-        color: red;
-        font-weight: bold;
-        font-size: 130%;
-    }
-    .more {
-        display: block;
-        border: 1px solid #8B8B8B;
-        border-radius: 6px;
-        color: #4173ED;
-        margin: 20px 0;
-        font-size: 14px;
-        width: 100%;
-        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+3,ffffff+3,ededed+58,dbdbdb+100 */
-        background: #ffffff;
-        /* Old browsers */
-        background: -moz-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
-        /* FF3.6+ */
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(3%, #ffffff), color-stop(3%, #ffffff), color-stop(58%, #ededed), color-stop(100%, #dbdbdb));
-        /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
-        /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
-        /* Opera 11.10+ */
-        background: -ms-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
-        /* IE10+ */
-        background: linear-gradient(to bottom, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
-        /* W3C */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dbdbdb', GradientType=0);
-        /* IE6-9 */
-        text-align: center;
-        padding: 5px;
-        cursor: pointer;
-    }
-    p.name {
-        font-weight: 800;
-        height: 60px;
-        /*padding-top: 20px;*/
-    }
-    img.result_img {
-        padding-bottom: 0px;
-    }
-    .ranking_icon {
-        display: block;
-        /*text-align: left;*/
-    }
-    #boxwrap .box {
-        float: left;
-        width: 48%;
-        margin: 0 .8% 15px .8%;
-        font-size: 12px;
-        background-color: white;
-        border: 1px solid #ddd;
-        border-radius: 3px / 3px;
-        box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
-        -moz-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
-        -webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
-        padding: 20px 5%;
-        text-align: center;
-    }
-    #color_wrap h3 {
-        font-size: 1.3rem;
-        font-weight: bold;
-    }
-    #result_wrap02 p.ttl {
-        background: #FD9141;
-        text-align: center;
-        font-size: 20px;
-    }
+	.contents {
+		width: 100%;
+		float: none;
+		margin-top: 20px;
+		overflow: hidden;
+		max-width: 1000px;
+		margin: 0 auto;
+		padding: 10px;
+	}
+	ul.pan {
+		display: none;
+	}
+	table {
+		font-size: inherit;
+		border-collapse: collapse;
+		border-spacing: 0;
+		width: 96%;
+	}
 
+	.title_box {
+		width: 100%;
+		position: relative;
+		background-size: 100%;
+	}
+
+	.title_box h1#toptxt {
+		color: #333333;
+		font-size: 3em;
+		font-weight: bold;
+	}
+	table.result {
+		width: 100%;
+		border-collapse: collapse;
+		margin: 0;
+	}
+	table.result thead th {
+		background: #f1f1f1;
+		border: 1px solid #D3C8BA;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		text-align: center;
+	}
+	table.result thead th.nobdr {
+		border: none;
+		background: none;
+		width: 70px;
+	}
+	table.result td {
+		border: 1px solid #D3C8BA;
+	}
+	table.result td.number {
+		background: #fff4cc;
+		border: 1px solid #D3C8BA;
+		text-align: center;
+	}
+	table.result td p.detail a {
+		border: 1px solid #4173ed;
+		border-radius: 6px;
+		width: 70%;
+		height: 20px;
+		text-align: center;
+		color: #383838;
+		margin: 5% 15% 10%;
+		display: block;
+		/*padding:18px 0 0 0;*/
+		font-size: 10px;
+		/*float:left;*/
+		text-decoration: none;
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+3,ffffff+3,ededed+58,dbdbdb+100 */
+		background: #ffffff;
+		/* Old browsers */
+		background: -moz-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
+		/* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(3%, #ffffff), color-stop(3%, #ffffff), color-stop(58%, #ededed), color-stop(100%, #dbdbdb));
+		/* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
+		/* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
+		/* Opera 11.10+ */
+		background: -ms-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
+		/* IE10+ */
+		background: linear-gradient(to bottom, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
+		/* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dbdbdb', GradientType=0);
+		/* IE6-9 */
+	}
+	table.result td p.apply a {
+		display: none !important;
+		border: 1px solid #383838;
+		border-radius: 6px;
+		width: 100%;
+		height: 20px;
+		text-align: center;
+		color: #fff;
+		display: block;
+		/*padding:18px 0 0 0;*/
+		margin-bottom: 5px;
+		font-size: 10px;
+		float: left;
+		text-decoration: none;
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+3,4173ed+3,1353d3+100 */
+		background: #ffffff;
+		/* Old browsers */
+		background: -moz-linear-gradient(top, #ffffff 3%, #4173ed 3%, #1353d3 100%);
+		/* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(3%, #ffffff), color-stop(3%, #4173ed), color-stop(100%, #1353d3));
+		/* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top, #ffffff 3%, #4173ed 3%, #1353d3 100%);
+		/* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top, #ffffff 3%, #4173ed 3%, #1353d3 100%);
+		/* Opera 11.10+ */
+		background: -ms-linear-gradient(top, #ffffff 3%, #4173ed 3%, #1353d3 100%);
+		/* IE10+ */
+		background: linear-gradient(to bottom, #ffffff 3%, #4173ed 3%, #1353d3 100%);
+		/* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#1353d3', GradientType=0);
+		/* IE6-9 */
+	}
+	table.result th {
+		font-size: 16px;
+		font-weight: 700;
+	}
+	table.result td {
+		width: 150px;
+		height: 200px;
+		text-align: center;
+	}
+	table.result td p.coment {
+		color: #FF4800;
+		/*margin:8px 0 15px 0;*/
+	}
+	table.result td p.arrow {
+		clear: both;
+		background: #ff0000;
+		color: #fff;
+		background: url(../img/arrow.png) no-repeat;
+		width: 140px;
+		text-align: center;
+		padding: 0 10px 0 0;
+		line-height: 30px;
+		float: left;
+		margin: 0 0 0 10px;
+	}
+	table.result td:first-child {
+		width: 40px;
+		height: 200px;
+	}
+	table.result.other th {
+		font-size: 16px;
+		font-weight: 700;
+	}
+	table.result.other td {
+		width: 150px;
+		height: 200px;
+		text-align: center;
+	}
+	table.result.other td:first-child {
+		width: 70px;
+		height: 200px;
+	}
+	table.result td p.per {
+		color: red;
+		font-weight: bold;
+		font-size: 130%;
+	}
+	.more {
+		display: block;
+		border: 1px solid #8B8B8B;
+		border-radius: 6px;
+		color: #4173ED;
+		margin: 20px 0;
+		font-size: 14px;
+		width: 100%;
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+3,ffffff+3,ededed+58,dbdbdb+100 */
+		background: #ffffff;
+		/* Old browsers */
+		background: -moz-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
+		/* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(3%, #ffffff), color-stop(3%, #ffffff), color-stop(58%, #ededed), color-stop(100%, #dbdbdb));
+		/* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
+		/* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
+		/* Opera 11.10+ */
+		background: -ms-linear-gradient(top, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
+		/* IE10+ */
+		background: linear-gradient(to bottom, #ffffff 3%, #ffffff 3%, #ededed 58%, #dbdbdb 100%);
+		/* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dbdbdb', GradientType=0);
+		/* IE6-9 */
+		text-align: center;
+		padding: 5px;
+		cursor: pointer;
+	}
+	p.name {
+		font-weight: 800;
+		height: 60px;
+	}
+	img.result_img {
+		padding-bottom: 0px;
+	}
+	.ranking_icon {
+		display: block;
+	}
+	#boxwrap .box {
+		float: left;
+		width: 48%;
+		margin: 0 .8% 15px .8%;
+		font-size: 12px;
+		background-color: white;
+		border: 1px solid #ddd;
+		border-radius: 3px / 3px;
+		box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+		-moz-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+		-webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+		padding: 20px 5%;
+		text-align: center;
+	}
+	#color_wrap h3 {
+		font-size: 1.3rem;
+		font-weight: bold;
+	}
+	#result_wrap02 p.ttl {
+		background: #FD9141;
+		text-align: center;
+		font-size: 20px;
+	}
+	figure .pntposition {
+		float: left;
+		margin: 10px 2%;
+		text-align: center;
+		width: 95%;
+		padding: 0;
+	}
+	figure .pntposition .psnv {
+		position: relative;
+		width: 200px;
+		margin: 0 auto;
+	}
+	h2 {
+		font-size: 150%;
+		font-weight: bold;
+		margin-bottom: 10px;
+	}
+	.body_type img {
+		width: 100%;
+	}
+	#color_wrap {
+		text-align: center;
+		clear: both;
+	}
+	#color_wrap label {
+		font-size: 120%;
+	}
+	#item_wrap,
+	#price_wrap,
+	#pos_wrap,
+	#estimation_wrap {
+		clear: both;
+		padding: 1em 0 0.5em 0.5em;
+		margin-bottom: 20px;
+		margin-top: 20px;
+		overflow: hidden;
+		background: #fff;
+		border: 1px solid #eae7d2;
+		border-radius: 3px;
+	}
+	/*-------------result table---------------------*/
+	table.result th:first-child {
+		display: none;
+	}
+	table.result td:first-child {
+		display: none;
+	}
 }
 
-
 @media screen and (max-width: 640px) {
-    .title_box h1#toptxt {
-        font-size: 28px;
-        text-align: center;
-    }
+	.title_box h1#toptxt {
+		font-size: 28px;
+		text-align: center;
+	}
 }
