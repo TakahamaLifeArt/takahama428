@@ -101,9 +101,16 @@ $printing = '';
 $p = $conndb->getDetailsPrint($orderId);
 foreach($p as $category_name=>$val){
 	for($i=0; $i<count($val); $i++){
+		if ($val[$i]['method']!='silk') {
+			$inkCount = '';
+		} else if ($val[$i]['ink']==4) {
+			$inkCount = '4色以上';
+		} else {
+			$inkCount = $val[$i]['ink']+'色';
+		}
 		$printing .= '<tr class="tabl_txt">';
 		$printing .= '<td class="p_posi">'.$val[$i]['select_name'].'</td>';
-		$printing .= '<td>'.$val[$i]['ink'].'色</td>';
+		$printing .= '<td>'.$inkCount.'</td>';
 		$printing .= '<td>'.$printMethod[$val[$i]['method']].'('.$printSize[$val[$i]['method']][$val[$i]['size']].')</td>';
 		$printing .= '<td></td>';
 		$printing .= '</tr>';

@@ -93,6 +93,13 @@ $printing = '';
 $p = $conndb->getDetailsPrint($orderId);
 foreach($p as $category_name=>$val){
 	for($i=0; $i<count($val); $i++){
+		if ($val[$i]['method']!='silk') {
+			$inkCount = '<span class="ink"></span>';
+		} else if ($val[$i]['ink']==4) {
+			$inkCount = '<span class="ink">'.$val[$i]['ink'].'</span>色以上';
+		} else {
+			$inkCount = '<span class="ink">'.$val[$i]['ink'].'</span>色';
+		}
 		$printing .= '<tr class="tabl_txt"';
 		$printing .= ' data-prn-pos="'.$val[$i]['printposition_id'].'"';
 		$printing .= ' data-prn-face="'.$val[$i]['area_name'].'"';
@@ -101,7 +108,7 @@ foreach($p as $category_name=>$val){
 		$printing .= ' data-prn-method="'.$val[$i]['method'].'"';
 		$printing .= '>';
 		$printing .= '<td class="p_posi">'.$val[$i]['select_name'].'</td>';
-		$printing .= '<td><span class="ink">'.$val[$i]['ink'].'</span>色</td>';
+		$printing .= '<td><span class="ink">'.$inkCount.'</td>';
 		$printing .= '<td>'.$printMethod[$val[$i]['method']].'('.$printSize[$val[$i]['method']][$val[$i]['size']].')</td>';
 		$printing .= '<td></td>';
 		$printing .= '</tr>';
