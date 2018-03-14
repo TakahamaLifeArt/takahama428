@@ -57,7 +57,7 @@
 			</div>
 			<div class="banner"><img src="img/printsize/printsize_top_pc.jpg" width="100%" alt="プリントサイズ"></div>
 			<div class="banner2"><img src="img/printsize/printsize_top_sp.jpg" width="100%" alt="プリントサイズ"></div>
-			<p class="comment2">プリントサイズの大きさを決める際の参考としてご活用ください！
+			<p class="comment2">プリントの大きさを決める際の参考としてご活用ください！
 			</p>
 			<p>
 				<span class="fontred">※</span>70&sim;90cmは201-BSTベビーTシャツ、100cm&sim;XXXLサイズは085-CVTヘビーウェイトTシャツです

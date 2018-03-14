@@ -83,7 +83,7 @@
 					<div id="fragment-1">
 						<h3 class="txtleft2">前のプリント位置例</h3>
 						<p class="txtleft3">下記のプリント位置は弊社が定めた一般的な位置になります。</p>
-						<h4 class="ctr_bld">プリントサイズとボディサイズによって位置を調整します。</h4>
+						<h4 class="ctr_bld">プリントサイズとアイテムサイズによって位置を調整します。</h4>
 						<div class="line_blu"></div>
 						<img src="img/position/tshirt/pi_change_tmae.jpg" alt="" width="100%" />
 					</div>
@@ -91,7 +91,7 @@
 					<div id="fragment-2">
 						<h3 class="txtleft2">うしろのプリント位置例</h3>
 						<p class="txtleft3">下記のプリント位置は弊社が定めた一般的な位置になります。</p>
-						<h4 class="ctr_bld">プリントサイズとボディサイズによって位置を調整します。</h4>
+						<h4 class="ctr_bld">プリントサイズとアイテムサイズによって位置を調整します。</h4>
 						<div class="line_blu"></div>
 						<img src="img/position/tshirt/pi_change_tushiro.jpg" alt="" width="100%" />
 					</div>
@@ -99,7 +99,7 @@
 					<div id="fragment-3">
 						<h3 class="txtleft2">左胸のプリント位置例</h3>
 						<p class="txtleft3">下記のプリント位置は弊社が定めた一般的な位置になります。</p>
-						<h4 class="ctr_bld">プリントサイズとボディサイズによって位置を調整します。</h4>
+						<h4 class="ctr_bld">プリントサイズとアイテムサイズによって位置を調整します。</h4>
 						<div class="line_blu"></div>
 						<img src="img/position/tshirt/pi_change_tmune.jpg" alt="" width="100%" />
 					</div>
@@ -107,7 +107,7 @@
 					<div id="fragment-4">
 						<h3 class="txtleft2">首うしろのプリント位置例</h3>
 						<p class="txtleft3">下記のプリント位置は弊社が定めた一般的な位置になります。</p>
-						<h4 class="ctr_bld">プリントサイズで位置を決め<br> どのボディサイズでも同じ位置にプリントします。
+						<h4 class="ctr_bld">プリントサイズで位置を決め<br> どのアイテムサイズでも同じ位置にプリントします。
 						</h4>
 						<div class="line_blu"></div>
 						<img src="img/position/tshirt/pi_change_tkubi.jpg" alt="" width="100%" />
@@ -116,7 +116,7 @@
 					<div id="fragment-5">
 						<h3 class="txtleft2">すそのプリント位置例</h3>
 						<p class="txtleft3">下記のプリント位置は弊社が定めた一般的な位置になります。</p>
-						<h4 class="ctr_bld">どのプリントサイズ・ボディサイズでも<br> 裾縫い目と脇線から2cmづつ離してプリントします。
+						<h4 class="ctr_bld">どのプリントサイズ・アイテムサイズでも<br> 裾縫い目と脇線から2cmづつ離してプリントします。
 						</h4>
 						<div class="line_blu"></div>
 						<img src="img/position/tshirt/pi_change_tsuso.jpg" alt="" width="100%" />
@@ -125,7 +125,7 @@
 					<div id="fragment-6">
 						<h3 class="txtleft2">そでのプリント位置例</h3>
 						<p class="txtleft3">下記のプリント位置は弊社が定めた一般的な位置になります。</p>
-						<h4 class="ctr_bld">どのプリントサイズ・ボディサイズでも<br> 縫い目から2cm離してプリントします。
+						<h4 class="ctr_bld">どのプリントサイズ・アイテムサイズでも<br> 縫い目から2cm離してプリントします。
 						</h4>
 						<div class="line_blu"></div>
 						<img src="img/position/tshirt/pi_change_tsode.jpg" alt="" width="100%" />
@@ -237,7 +237,7 @@
 					<div id="fragment-7">
 						<h3 class="txtleft2">前のプリント位置例</h3>
 						<p class="txtleft3">下記のプリント位置は弊社が定めた一般的な位置になります。</p>
-						<h4 class="ctr_bld">プリントサイズとボディサイズによって位置を調整します。</h4>
+						<h4 class="ctr_bld">プリントサイズとアイテムサイズによって位置を調整します。</h4>
 						<div class="line_blu"></div>
 						<img src="img/position/parker/pi_change_parmae.jpg" alt="" width="100%" />
 					</div>
@@ -245,7 +245,7 @@
 					<div id="fragment-8">
 						<h3 class="txtleft2">うしろのプリント位置例</h3>
 						<p class="txtleft3">下記のプリント位置は弊社が定めた一般的な位置になります。</p>
-						<h4 class="ctr_bld">プリントサイズとボディサイズによって位置を調整します。</h4>
+						<h4 class="ctr_bld">プリントサイズとアイテムサイズによって位置を調整します。</h4>
 						<div class="line_blu"></div>
 						<img src="img/position/parker/pi_change_parushiro.jpg " alt="" width="100%" />
 					</div>
@@ -253,7 +253,7 @@
 					<div id="fragment-9">
 						<h3 class="txtleft2">左胸のプリント位置例</h3>
 						<p class="txtleft3">下記のプリント位置は弊社が定めた一般的な位置になります。</p>
-						<h4 class="ctr_bld">プリントサイズとボディサイズによって位置を調整します。</h4>
+						<h4 class="ctr_bld">プリントサイズとアイテムサイズによって位置を調整します。</h4>
 						<div class="line_blu"></div>
 						<img src="img/position/parker/pi_change_parmune.jpg" alt="" width="100%" />
 					</div>
@@ -261,7 +261,7 @@
 					<div id="fragment-10">
 						<h3 class="txtleft2">フードのプリント位置例</h3>
 						<p class="txtleft3">下記のプリント位置は弊社が定めた一般的な位置になります。</p>
-						<h4 class="ctr_bld">前はどのプリントサイズ・ボディサイズでも縫い目から2cm離してプリントします。<br> 横はプリントサイズとボディサイズによって位置を調整します。
+						<h4 class="ctr_bld">前はどのプリントサイズ・アイテムサイズでも縫い目から2cm離してプリントします。<br> 横はプリントサイズとアイテムサイズによって位置を調整します。
 						</h4>
 						<div class="line_blu"></div>
 						<img src="img/position/parker/pi_change_parfood.jpg" alt="" width="100%" />
@@ -270,7 +270,7 @@
 					<div id="fragment-11">
 						<h3 class="txtleft2">すそのプリント位置例</h3>
 						<p class="txtleft3">下記のプリント位置は弊社が定めた一般的な位置になります。</p>
-						<h4 class="ctr_bld">どのプリントサイズ・ボディサイズでも<br> 裾と脇の縫い目から4cmづつ離してプリントします。
+						<h4 class="ctr_bld">どのプリントサイズ・アイテムサイズでも<br> 裾と脇の縫い目から4cmづつ離してプリントします。
 						</h4>
 						<div class="line_blu"></div>
 						<img src="img/position/parker/pi_change_parsuso.jpg" alt="" width="100%" />
@@ -279,8 +279,8 @@
 					<div id="fragment-12">
 						<h3 class="txtleft2">そでのプリント位置例</h3>
 						<p class="txtleft3">下記のプリント位置は弊社が定めた一般的な位置になります。</p>
-						<h4 class="ctr_bld">袖口はどのプリントサイズ・ボディサイズでも縫い目から4cm離してプリントします。<br> 肘はどのプリントサイズ・ボディサイズでも中心にプリントします。
-							<br> 肩はプリントサイズとボディサイズによって位置を調整します。（半袖の袖のあたりにプリントされるイメージです）
+						<h4 class="ctr_bld">袖口はどのプリントサイズ・アイテムサイズでも縫い目から4cm離してプリントします。<br> 肘はどのプリントサイズ・アイテムサイズでも中心にプリントします。
+							<br> 肩はプリントサイズとアイテムサイズによって位置を調整します。（半袖の袖のあたりにプリントされるイメージです）
 						</h4>
 						<div class="line_blu"></div>
 						<img src="img/position/parker/pi_change_parsode.jpg" alt="" width="100%" />
@@ -393,7 +393,7 @@
 					<div id="fragment-13" class="ui-tabs-panel ui-tabs-hide ui-pants">
 						<h3 class="txtleft2">もものプリント位置例</h3>
 						<p class="txtleft3">下記のプリント位置は弊社が定めた一般的な位置になります。</p>
-						<h4 class="ctr_bld">どのプリントサイズ・ボディサイズでも<br> ポケット下から3cm離してプリントします。
+						<h4 class="ctr_bld">どのプリントサイズ・アイテムサイズでも<br> ポケット下から3cm離してプリントします。
 						</h4>
 						<div class="line_blu"></div>
 						<img src="img/position/pants/pi_change_panmae.jpg" alt="" width="100%" />
@@ -402,7 +402,7 @@
 					<div id="fragment-14" class="ui-tabs-panel ui-tabs-hide ui-pants">
 						<h3 class="txtleft2">ひざのプリント位置例</h3>
 						<p class="txtleft3">下記のプリント位置は弊社が定めた一般的な位置になります。</p>
-						<h4 class="ctr_bld">どのプリントサイズ・ボディサイズでも<br> ポケット下から裾の中心にプリントします。
+						<h4 class="ctr_bld">どのプリントサイズ・アイテムサイズでも<br> ポケット下から裾の中心にプリントします。
 						</h4>
 						<div class="line_blu"></div>
 						<img src="img/position/pants/pi_change_panhiza.jpg " alt="" width="100%" />
@@ -420,7 +420,7 @@
 					<div id="fragment-16" class="ui-tabs-panel ui-tabs-hide ui-pants">
 						<h3 class="txtleft2">前のプリント位置例</h3>
 						<p class="txtleft3">下記のプリント位置は弊社が定めた一般的な位置になります。</p>
-						<h4 class="ctr_bld">どのプリントサイズ・ボディサイズでも中心にプリントします。</h4>
+						<h4 class="ctr_bld">どのプリントサイズ・アイテムサイズでも中心にプリントします。</h4>
 						<div class="line_blu"></div>
 						<img src="img/position/pants/pi_change_panmaemae.jpg" alt="" width="975px" />
 					</div>
@@ -428,7 +428,7 @@
 					<div id="fragment-17" class="ui-tabs-panel ui-tabs-hide ui-pants">
 						<h3 class="txtleft2">お尻のプリント位置例</h3>
 						<p class="txtleft3">下記のプリント位置は弊社が定めた一般的な位置になります。</p>
-						<h4 class="ctr_bld">どのプリントサイズ・ボディサイズでも中心にプリントします。</h4>
+						<h4 class="ctr_bld">どのプリントサイズ・アイテムサイズでも中心にプリントします。</h4>
 						<div class="line_blu"></div>
 						<img src="img/position/pants/pi_change_panoshiri.jpg" alt="" width="100%" />
 					</div>
