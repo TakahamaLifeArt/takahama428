@@ -43,7 +43,7 @@
 					<li class="act">
 						<p>シルクスクリーン</p>
 					</li>
-					<li><a href="#navi2">デジタルコピー転写</a></li>
+					<li><a href="#navi2">デジタル転写</a></li>
 					<li><a href="#navi4">インクジェット</a></li>
 					<li><a href="#navi5" class="lastchild">カッティング</a></li>
 				</ul>
@@ -167,14 +167,14 @@
 				<ul class="navi">
 					<li><a href="#navi1">シルクスクリーン</a></li>
 					<li class="act">
-						<p>デジタルコピー転写</p>
+						<p>デジタル転写</p>
 					</li>
 					<li><a href="#navi4">インクジェット</a></li>
 					<li><a href="#navi5" class="lastchild">カッティング</a></li>
 				</ul>
 			</div>
 
-			<h2 class="dsubmenu" id="digit">デジタルコピー転写</h2>
+			<h2 class="dsubmenu" id="digit">デジタル転写</h2>
 			<div class="wrap1_clearfix">
 				<div class="rightside"><img src="./img/printing/top_digital.png" alt="デジタル転写　サンプル" width="100%" /></div>
 				<h3>特徴</h3>
@@ -208,16 +208,16 @@
 				<p>接着させるための糊処理に版を使っているので、柄に沿ったふち取りが可能です。</p>
 				<ul>
 					<li>
-						<div class="img_wrapper"><img src="./img/printing/digital_2.png" alt="デジタルコピー転写 柄のふちが白のもの" width="100%" /></div>
+						<div class="img_wrapper"><img src="./img/printing/digital_2.png" alt="デジタル転写 柄のふちが白のもの" width="100%" /></div>
 						<p>柄のふちが白のもの</p>
 					</li>
 					<li>
-						<div class="img_wrapper"><img src="./img/printing/digital_3.png" alt="デジタルコピー転写 柄のふちが透明のもの" width="100%" /></div>
+						<div class="img_wrapper"><img src="./img/printing/digital_3.png" alt="デジタル転写 柄のふちが透明のもの" width="100%" /></div>
 						<p>柄のふちが透明のもの</p>
 						<p class="note"><span>※</span>生地が白色の場合に限ります</p>
 					</li>
 					<li>
-						<div class="img_wrapper"><img src="./img/printing/digital_4.png" alt="デジタルコピー転写 柄のふちがカラーのもの" width="100%" /></div>
+						<div class="img_wrapper"><img src="./img/printing/digital_4.png" alt="デジタル転写 柄のふちがカラーのもの" width="100%" /></div>
 						<p>柄のふちがカラーのもの<br />（スーパーふち）</p>
 					</li>
 				</ul>
@@ -240,7 +240,7 @@
 			<div id="navi4">
 				<ul class="navi">
 					<li><a href="#navi1">シルクスクリーン</a></li>
-					<li><a href="#navi2">デジタルコピー転写</a></li>
+					<li><a href="#navi2">デジタル転写</a></li>
 					<li class="act">
 						<p>インクジェット</p>
 					</li>
@@ -467,7 +467,7 @@
 			<div id="navi5">
 				<ul class="navi">
 					<li><a href="#navi1">シルクスクリーン</a></li>
-					<li><a href="#navi2">デジタルコピー転写</a></li>
+					<li><a href="#navi2">デジタル転写</a></li>
 					<li><a href="#navi4" class="lastchild">インクジェット</a></li>
 					<li class="act">
 						<p>カッティング</p>

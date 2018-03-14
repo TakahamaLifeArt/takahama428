@@ -56,7 +56,7 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 					<p class="comment">法人・学校・団体・個人様！どなたでも大量注文したい方！</p>
 				</div>
 				<p class="nmt50"><img src="img/high_img_00.png" alt="Tシャツ業界No.1　受注のレスポンスも早い！大量注文も短納期" width="100%" class="mb20"></p>
-				<h2 class="responce">シルクプリントの実績例</h2>
+				<h2 class="responce">シルクスクリーンプリントの実績例</h2>
 				<table width="100%" border="0" class="case">
 					<tr>
 						<th>数量</th>
@@ -271,7 +271,7 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 					<input type="hidden" name="title" value="bigorder">
 					<input type="hidden" name="mode" value="send">
 					<div class="ac" style="text-align: center;">
-						<input type="image" class="order_btn_2" alt="送信" id="sendmail" onClick="$.sendmail_check(this);">
+						<input type="submit" class="order_btn_2" id="sendmail" onClick="$.sendmail_check(this);">
 						<!--						<input type="button" value="戻る" class="btn" id="goback">-->
 					</div>
 				</form>

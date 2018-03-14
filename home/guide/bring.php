@@ -101,7 +101,7 @@
 				<div class="tel">
 					<p style="font-size:20px">お電話受付時間：平日 10:00-18:00</p>
 					<p class="red_txt">
-						<img alt="電話" src="./img/tel_mark.png" width="40px" height="50px" style="padding-bottom:8px; padding-left:10px"> 0120-130-428
+						<i class="fa fa-phone" aria-hidden="true"></i>0120-130-428
 					</p>
 				</div>
 			</div>
