@@ -53,7 +53,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 					<li data-target="#mainCarouselIndicators" data-slide-to="0" class="active"></li>
 					<li data-target="#mainCarouselIndicators" data-slide-to="1"></li>
 					<li data-target="#mainCarouselIndicators" data-slide-to="2"></li>
-					<li data-target="#mainCarouselIndicators" data-slide-to="3"></li>
+					<!--<li data-target="#mainCarouselIndicators" data-slide-to="3"></li>-->
 					<!--                    <li data-target="#mainCarouselIndicators" data-slide-to="3"></li>-->
 				</ol>
 
@@ -81,7 +81,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							<a href="/scene/graduation/index.php" class="check"><button type="button" class="det_btn">詳細はこちら</button></a>
 						</div>
 					</div>
-
+					<!--
 					<div class="carousel-item">
 						<img class="img-fluid" id="pc_slide" src="/common/img/home/main/top_slide_extrabig.jpg" alt="First slide" width="100%">
 						<img class="img-fluid" id="sp_slide" src="/common/img/home/main/sp_top_slide_extrabig.jpg" alt="First slide" width="100%">
@@ -89,7 +89,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							<a href="/campaign/towel/extrabig.php" class="check"><button type="button" class="det_btn">詳細はこちら</button></a>
 						</div>
 					</div>
-
+					-->
 					<!--
 <div class="carousel-item">
     <img class="img-fluid" id="pc_slide" src="/common/img/home/main/top_slide_deco.jpg" alt="First slide" width="100%">

@@ -44,8 +44,9 @@ require_once $_SERVER['DOCUMENT_ROOT']. '/php_libs/pageinfo.php';
 
 				<h1><strong><?php echo $category_name;?></strong>にオリジナルプリント！</h1>
 				<p class="note min"><span>※</span>アイテムメーカーの在庫状況によってはご希望に沿えない場合がございます。</p>
-				<p><a class="check" href="/campaign/towel/extrabig.php"><img src="img/list_extrabig.jpg" class="hidden-xs-down"></a></p><br>
-				<p><a class="check" href="/campaign/towel/extrabig.php"><img src="img/sp_list_extrabig.jpg"  class="hidden-sm-up" width="100%"></a></p><br>
+				
+			<!--<p><a class="check" href="/campaign/towel/extrabig.php"><img src="img/list_extrabig.jpg" class="hidden-xs-down"></a></p><br>
+				<p><a class="check" href="/campaign/towel/extrabig.php"><img src="img/sp_list_extrabig.jpg"  class="hidden-sm-up" width="100%"></a></p><br>-->
 				<?php echo $tagList; ?>
 				<div class="contents-lv2" id="tag_wrap">
 					<h3 id="sortbtn" class="list tokucho">並べ替え</h3>
