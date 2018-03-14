@@ -226,7 +226,7 @@ nav .list-group .list-group-item a {
 
 .navbar-nav .nav-item:first-child {
 	margin-right: 1rem;
-	margin-top: 10px;
+	margin-top: 5px;
 }
 
 .navbar-nav .nav-item .nav-link {
@@ -433,7 +433,7 @@ nav .list-group .list-group-item a {
 /* Phone */
 
 .navbar-nav .nav-item .fa-phone {
-	font-size: 2.8rem;
+	font-size: 2.5rem;
 	margin-right: .2rem;
 }
 
@@ -444,8 +444,11 @@ nav .list-group .list-group-item a {
 
 .navbar-nav .nav-item .fa-phone + p em {
 	display: block;
-	font-size: 1.8rem;
+	font-size: 1.7rem;
 	margin-bottom: -.5rem;
+	font-family: Roboto,sans-serif!important;
+	font-style: normal;
+	font-weight: bold;
 }
 
 .navbar-nav .nav-item .fa-phone + p em + span {
@@ -687,6 +690,7 @@ table {
 	width: 50%;
 	text-align: center;
 	/* border: 1px solid; */
+	min-width: 200px;
 }
 
 .review_le p {

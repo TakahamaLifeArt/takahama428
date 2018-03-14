@@ -53,7 +53,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 					<li data-target="#mainCarouselIndicators" data-slide-to="0" class="active"></li>
 					<li data-target="#mainCarouselIndicators" data-slide-to="1"></li>
 					<li data-target="#mainCarouselIndicators" data-slide-to="2"></li>
-					<li data-target="#mainCarouselIndicators" data-slide-to="3"></li>
+					<!--<li data-target="#mainCarouselIndicators" data-slide-to="3"></li>-->
 					<!--                    <li data-target="#mainCarouselIndicators" data-slide-to="3"></li>-->
 				</ol>
 
@@ -81,7 +81,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							<a href="/scene/graduation/index.php" class="check"><button type="button" class="det_btn">詳細はこちら</button></a>
 						</div>
 					</div>
-
+					<!--
 					<div class="carousel-item">
 						<img class="img-fluid" id="pc_slide" src="/common/img/home/main/top_slide_extrabig.jpg" alt="First slide" width="100%">
 						<img class="img-fluid" id="sp_slide" src="/common/img/home/main/sp_top_slide_extrabig.jpg" alt="First slide" width="100%">
@@ -89,7 +89,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							<a href="/campaign/towel/extrabig.php" class="check"><button type="button" class="det_btn">詳細はこちら</button></a>
 						</div>
 					</div>
-
+					-->
 					<!--
 <div class="carousel-item">
     <img class="img-fluid" id="pc_slide" src="/common/img/home/main/top_slide_deco.jpg" alt="First slide" width="100%">
@@ -305,15 +305,32 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							<div class="carousel-item active">
 
 								<div class="col-md-4">
-									<div><img src="/common/img/home/review/review/sp_review_01.png" style="width: 100%;"></div>
+									<div><ul>
+										<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.5</span></li>
+										<li><h3>丁寧な対応で満足でした</h3></li>
+										<li><p>いつも、丁寧で対応の早さが素晴らしいと思います！私のようにパソコンを使ってのデザイン画を送れない人にとっては、本当に助かり...
+											</p></li>
+									</ul></div>
 								</div>
 
 								<div class="col-md-4 clearfix d-none d-md-block">
-									<div><img src="/common/img/home/review/review/sp_review_02.png" style="width: 100%;"></div>
+									<div><ul>
+										<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price">4.2</span></li>
+										<li><h3>印刷色を確認したかった</h3></li>
+										<li><p>各商品名の印刷色を決める際に、全ての商品に対して、印刷色を確認できるページが欲しいです。
+											Tシャツだとそんなページがありましたが、...
+											</p></li>
+										</ul></div>
 								</div>
 
 								<div class="col-md-4 clearfix d-none d-md-block">
-									<div><img src="/common/img/home/review/review/sp_review_03.png" style="width: 100%;"></div>
+									<div><ul>
+										<li><img src="/common/img/home/review/sp_review_050.png" width="100%" class="imgsz"><span class="rank_price">5.0</span></li>
+										<li><h3>丁寧な対応ありがとう</h3></li>
+										<li><p>窓口のスタッフの対応が大変よく、ありがとうございました。
+											追加なども夏頃出るかと思いますが、また宜しくお願い致します。
+											</p></li>
+										</ul></div>
 								</div>
 
 							</div>
@@ -323,15 +340,31 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							<div class="carousel-item">
 
 								<div class="col-md-4">
-									<div><img src="/common/img/home/review/review/sp_review_04.png" style="width: 100%;"></div>
+									<div><ul>
+										<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price">4.0</span></li>
+										<li><h3>ネット注文なのにイメージ通り！</h3></li>
+										<li><p>ネットでこれだけ注文に応じられるのは驚きました。プリントもイメージ通りで大変満足しました。
+											</p></li>
+										</ul></div>
 								</div>
 
 								<div class="col-md-4 clearfix d-none d-md-block">
-									<div><img src="/common/img/home/review/review/sp_review_05.png" style="width: 100%;"></div>
+									<div><ul>
+										<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.7</span></li>
+										<li><h3>電話対応がわかりやすい</h3></li>
+										<li><p>今回は追加注文だったのですが、電話での対応が良かった。金額の事や、デザインの微調整についてわかりやすかった。
+											</p></li>
+										</ul></div>
 								</div>
 
 								<div class="col-md-4 clearfix d-none d-md-block">
-									<div><img src="/common/img/home/review/review/sp_review_06.png" style="width: 100%;"></div>
+									<div><ul>
+										<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.7</span></li>
+										<li><h3>担当者へ相談できて安心</h3></li>
+										<li><p>最初から最後まで、一人の担当者が相談に乗ってくれるので発注までスムーズでした。
+											また宜しくお願い致します。
+											</p></li>
+										</ul></div>
 								</div>
 
 							</div>
@@ -341,15 +374,31 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							<div class="carousel-item">
 
 								<div class="col-md-4">
-									<div><img src="/common/img/home/review/review/sp_review_07.png" style="width: 100%;"></div>
+									<div><ul>
+										<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.5</span></li>
+										<li><h3>安くて、早い</h3></li>
+										<li><p>安く、早く届き非常に助かりました。ありがとうございました。
+											</p></li>
+										</ul></div>
 								</div>
 
 								<div class="col-md-4 clearfix d-none d-md-block">
-									<div><img src="/common/img/home/review/review/sp_review_08.png" style="width: 100%;"></div>
+									<div><ul>
+										<li><img src="/common/img/home/review/sp_review_050.png" width="100%" class="imgsz"><span class="rank_price">5.0</span></li>
+										<li><h3>優しく素早い対応でした。</h3></li>
+										<li><p>わがままばかりで色々とお手数おかけいたしましたが、優しく素早く対応して下さり感謝しております。
+											ありがとうございました。
+											</p></li>
+										</ul></div>
 								</div>
 
 								<div class="col-md-4 clearfix d-none d-md-block">
-									<div><img src="/common/img/home/review/review/sp_review_09.png" style="width: 100%;"></div>
+									<div><ul>
+										<li><img src="/common/img/home/review/sp_review_035.png" width="100%" class="imgsz"><span class="rank_price">3.7</span></li>
+										<li><h3>時間がなかったのにスムーズ</h3></li>
+										<li><p>注文から発送まで本当にスムーズで時間がなかった私たちには嬉しい限りでした。
+											</p></li>
+										</ul></div>
 								</div>
 
 							</div>
@@ -359,15 +408,33 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							<div class="carousel-item">
 
 								<div class="col-md-4">
-									<div><img src="/common/img/home/review/review/sp_review_10.png" style="width: 100%;"></div>
+									<div><ul>
+										<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price">4.0</span></li>
+										<li><h3>イメージ通りに仕上がった</h3></li>
+										<li><p>白インクの部分が、少しだけ明度が下がったように感じたましたが、イメージ通りに仕上がり良かったです。
+											注文の最終確認の段階で、...
+											</p></li>
+										</ul></div>
 								</div>
 
 								<div class="col-md-4 clearfix d-none d-md-block">
-									<div><img src="/common/img/home/review/review/sp_review_11.png" style="width: 100%;"></div>
+									<div><ul>
+										<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price">4.2</span></li>
+										<li><h3>またお願いします。</h3></li>
+										<li><p>欲しかった通りの物が届いて嬉しかったです。
+											また何かオリジナルTシャツを作りたいときはお願いしたいと思います。
+											</p></li>
+										</ul></div>
 								</div>
 
 								<div class="col-md-4 clearfix d-none d-md-block">
-									<div><img src="/common/img/home/review/review/sp_review_12.png" style="width: 100%;"></div>
+									<div><ul>
+										<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.7</span></li>
+										<li><h3>感じのよい電話対応でした</h3></li>
+										<li><p>電話で確認した時に対応してくださった方が、とても感じがよかったです。
+											気持ちよくお話ができました。
+											</p></li>
+										</ul></div>
 								</div>
 
 							</div>

@@ -47,6 +47,26 @@
 	animation-delay: .2s;
 }
 
+.carousel-item .imgsz{
+	width: 70%;
+	margin: 10px 0 20px;
+}
+
+.carousel-item h3 {
+	font-size: 1rem;
+	font-weight: bold;
+}
+
+.carousel-item p{
+	margin-top: 0.5rem;
+	margin-bottom: 1rem;
+	font-size: 0.8rem;
+}
+
+.review_le {
+	min-width: 220px;
+}
+
 @keyframes transtoright {
 	0% {
 		left: 1%;
@@ -339,3 +359,4 @@ line-height: 1.4;
 }
 }
 */
+

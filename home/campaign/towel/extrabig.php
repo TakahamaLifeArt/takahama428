@@ -35,7 +35,8 @@
 				<li>特大プリントタオル</li>
 			</ul>
 			<div class="towel_header">
-				<h1>特大プリントタオル</h1> <img src="./img/extrabig_main.jpg" class="hidden-xs-down" width="100%" alt="短納期粗品タオル"> <img src="./img/sp_extrabig_main.jpg" class="hidden-sm-up" width="100%" alt="短納期粗品タオル">
+			<!--<h1>特大プリントタオル</h1> <img src="./img/extrabig_main.jpg" class="hidden-xs-down" width="100%" alt="短納期粗品タオル"> 
+				<img src="./img/sp_extrabig_main.jpg" class="hidden-sm-up" width="100%" alt="短納期粗品タオル">-->
 			</div>
 			<div class="wrap">
 				<div class="day">
