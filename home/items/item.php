@@ -355,7 +355,7 @@ $_version = time();
 							<input type="hidden" name="item_id" value="<?php echo $data['itemid']; ?>">
 							<input type="hidden" name="category_id" value="<?php echo $_PAGE_CATEGORYID; ?>">
 							<input type="hidden" name="update" value="3">
-							<div id="btnOrder">お申込みフォームへ</div>
+							<div id="btnOrder" class="order_btn"><img src="/common/img/home/main/sp_go_icon.png" width="40px" style="padding-right: 12px;padding-bottom: 5px;">お申し込み</div>
 						</form>
 					</div>
 				</div>

@@ -42,7 +42,7 @@
 			</ul>
 			<section>
 				<h1 class="headLine01">お客様のデザイン実例集</h1>
-				<p style="font-size: 14px;padding: 10px;">お客様のデザインと、デザイン案一覧を載せました。 「こんなのいいね!」「こういうのカッコいいね!」を見つけて、あなたのデザインの参考にしてください。 手書きからでも注文できます。手書きの場合は、 FAX送信用オーダーシートが便利です。</p>
+				<p style="font-size: 14px;padding: 10px;">お客様のデザインと、デザイン案一覧を載せました。 「こんなのいいね!」「こういうのカッコいいね!」を見つけて、あなたのデザインの参考にしてください。 手書きからでも注文できます。手書きの場合は、 <a href="/contact/faxorderform.pdf">FAX送信用オーダーシート</a>が便利です。</p>
 
 				<div>
 					<img src="/design/img/gallery/designbanner.jpg" width="100%">

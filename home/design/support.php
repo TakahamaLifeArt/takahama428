@@ -200,43 +200,43 @@
 
 					<li id="sec8">
 						<span id="freetemp" class="anchorlink"></span>
-									<div id="c08">
-										<h2 class="ogline">8.　無料デザインテンプレートの利用</h2>
-										<h3 class="ogborder">弊社が用意したデザインテンプレートを無料にてご使用できます！</h3>
-										<div class="text1">
-											<span class="ong">作成納期</span>
-											<p>基本納期は頂きませんが、ご要望内容によっては<br> 日数がかかる場合がございます。
-											</p>
-											<span class="ong">料金</span>
-											<p>基本的に無料です。</p>
-											<p><span class="red_txt">※</span>ご要望内容によって料金が発生します。</p>
+						<div id="c08">
+							<h2 class="ogline">8.　無料デザインテンプレートの利用</h2>
+							<h3 class="ogborder">弊社が用意したデザインテンプレートを無料にてご使用できます！</h3>
+							<div class="text1">
+								<span class="ong">作成納期</span>
+								<p>基本納期は頂きませんが、ご要望内容によっては<br> 日数がかかる場合がございます。
+								</p>
+								<span class="ong">料金</span>
+								<p>基本的に無料です。</p>
+								<p><span class="red_txt">※</span>ご要望内容によって料金が発生します。</p>
 
-										</div>
-										<div class="img1"><img src="/design/support/img/template/ds_img_08.jpg" width="100%" class="rgtimg"></div>
-										<div class="botn1">
-											<a href="/design/designtemp.php" class="pho2">
-												<p class="sp">無料デザインテンプレートを見る</p>
-											</a>
-										</div>
-									</div>
+							</div>
+							<div class="img1"><img src="/design/support/img/template/ds_img_08.jpg" width="100%" class="rgtimg"></div>
+							<div class="botn1">
+								<a href="/design/designtemp.php" class="pho2">
+									<p class="sp">無料デザインテンプレートを見る</p>
+								</a>
+							</div>
+						</div>
 					</li>
 				</ul>
-				</div>
-
-				<a href="/contact/index.php">
-					<div class="bottom_contact"><img src="/design/support/img/template/mail_banner_1000.jpg" width="100%"></div>
-				</a>
-				</div>
 			</div>
-			<footer class="page-footer">
-				<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
-			</footer>
 
-			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/util.php"; ?>
+			<a href="/contact/index.php">
+				<div class="bottom_contact"><img src="/design/support/img/template/mail_banner_1000.jpg" width="100%"></div>
+			</a>
+		</div>
+	</div>
+	<footer class="page-footer">
+		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
+	</footer>
 
-			<div id="overlay-mask" class="fade"></div>
+	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/util.php"; ?>
 
-			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
+	<div id="overlay-mask" class="fade"></div>
+
+	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
 
 </body>
 

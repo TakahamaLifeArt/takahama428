@@ -53,7 +53,7 @@ $_SESSION['ticket'] = $ticket;
 					<h2 class="white_ttl"><span id="sday" class="anchorlink"></span>最短当日にお届け！</h2>
 					<div class="rightside"><img src="../reason/img/pc_jpg/sp_s_front.jpg" alt="早い理由1" width="100%" align="right" /></div>
 					<p class="righttxt">
-						タカハマライフアートは<span class="yellowtxt">最短当日</span>にオリジナルTシャツ・オリジナルタオルのお届けができます！ 東京に二つの自社工場があるので、自社一貫で業界でも類を見ない
+						タカハマライフアートは<span class="yellowtxt">最短当日</span>にオリジナルTシャツ・オリジナルタオルのお届けができます！ 東京に2つの自社工場があるので、自社一貫で業界でも類を見ない
 						<span class="linetxt">最速の即納対応</span>が可能になっています。
 					</p>
 					<p class="smalltxt">
@@ -79,11 +79,11 @@ $_SESSION['ticket'] = $ticket;
 
 					<div class="section clearfix">
 						<div class="rightside">
-							<p class="comment">二箇所の自社工場</p>
+							<p class="comment">2箇所の自社工場</p>
 							<img src="../reason/img/sp_jpg/sp_s_reason_01_a.jpg" alt="早い理由1" width="100%" align="right" />
 						</div>
 						<p class="righttxt">
-							タカハマライフアートのお届けが早い理由は、<span class="yellowtxt">自社で全ての加工を行っている</span>からです。 お客様の電話を受ける受注・デザインを加工するデザイナー・各製造工程を担う現場の部署が一つの工場の中で完結しているため、
+							タカハマライフアートのお届けが早い理由は、<span class="yellowtxt">自社で全ての加工を行っている</span>からです。 お客様の電話を受ける受注・デザインを加工するデザイナー・各製造工程を担う現場の部署が1つの工場の中で完結しているため、
 							<span class="yellowtxt">各部署の連携がスムーズ</span>で不足の事態にも臨機応変に対応が可能です。
 						</p>
 						<p class="smalltxt">
@@ -110,10 +110,10 @@ $_SESSION['ticket'] = $ticket;
 						タカハマライフアートの早さは、商品の品質や作成<span class="linetxt">スタッフの仕事に対する姿勢</span>からも成り立っています。通常の注文と<span class="yellowtxt">特急対応</span>とで金額や納期に違いが有りますが、どの注文も同じ様に心を込めて丁寧に作成しています。
 					</p>
 					<p class="smalltxt">
-						納期が短い＝「時間がないから仕上がりが雑になるのでは？」と考える方もいらっしゃると思いますし、事実そういったスタイルで仕事を行う業者が無いとは言い切れません。しかし、タカハマライフアートでは<span class="yellowtxt">「時間がないから仕上がりが雑になる」といった状況に決してなりません！</span>機械ではなく、職人の手で一枚一枚、心を込めて仕事をしています。
+						納期が短い＝「時間がないから仕上がりが雑になるのでは？」と考える方もいらっしゃると思いますし、事実そういったスタイルで仕事を行う業者が無いとは言い切れません。しかし、タカハマライフアートでは<span class="yellowtxt">「時間がないから仕上がりが雑になる」といった状況に決してなりません！</span>機械ではなく、職人の手で1枚1枚、心を込めて仕事をしています。
 					</p>
 					<p class="smalltxt2">
-						一つの注文に目安の時間を決めておき、現場で設けた品質基準を参考に作成を行うので雑にならず安定した<span class="yellowtxt">高品質商品を納期に必ず間に合わせてお届け</span>しています！
+						1つの注文に目安の時間を決めておき、現場で設けた品質基準を参考に作成を行うので雑にならず安定した<span class="yellowtxt">高品質商品を納期に必ず間に合わせてお届け</span>しています！
 					</p>
 					<p class="smalltxt2">
 						現場スタッフにはＴシャツやプリント好きが多く集まり、<span class="linetxt">お客様目線を意識</span>しながら仕事をしています。自分たちが注文する側の気持ちが分かっているからこそ、「明日商品が無いと困るお客様に<span class="yellowtxt">出来る限り早く</span>お届けしたい。」「Ｔシャツの完成を心待ちにしているお客様に<span class="yellowtxt">出来る限り良いものを作りたい。</span>」といった気持ちで商品作成に励んでいます。
@@ -129,7 +129,7 @@ $_SESSION['ticket'] = $ticket;
 						タカハマライフアートの作成が早い商品の中でも、特に他社と比べ抜きん出て、ハイスピードなのが<span class="linetxt">デジタルコピー転写プリント</span>です。デジタルコピー転写とはフルカラーで作成したシートをボディに貼り付けるタイプのプリントです。デジタル転写プリントは一般的に広く利用されているシルクスクリーンプリントに比べて業務工程が多く時間がかかります。
 					</p>
 					<p class="smalltxt">
-						作成目安として、一般的な会社の納期が7xA訓0営業日程度に対して、弊社は<span class="linetxt">3営業日での対応</span>となっています。なぜこんなに違うのか、速さの秘密は<span class="yellowtxt">自社一貫での対応と業務工程の工夫</span>にあります。上でも述べたように、コピー転写はシートを貼り付けるプリントのため、シートを作成する必要があります。<span class="yellowtxt">プリント会社の多くは外部の業者にこのシート作成を依頼</span>しますが、弊社では<span class="yellowtxt">自社で全てを作成</span>しています。
+						作成目安として、一般的な会社の納期が7&sim;10営業日程度に対して、弊社は<span class="linetxt">3営業日での対応</span>となっています。なぜこんなに違うのか、速さの秘密は<span class="yellowtxt">自社一貫での対応と業務工程の工夫</span>にあります。上でも述べたように、コピー転写はシートを貼り付けるプリントのため、シートを作成する必要があります。<span class="yellowtxt">プリント会社の多くは外部の業者にこのシート作成を依頼</span>しますが、弊社では<span class="yellowtxt">自社で全てを作成</span>しています。
 					</p>
 					<p class="smalltxt2">
 						また、シートを作成するための機材の作成も必要で、こちらも同じく<span class="yellowtxt">自社で作成</span>を行っています。そのため外部に依頼する分の時間が短縮でき、その早くなった分だけ<span class="yellowtxt">納品速度が上がります！</span>シート作成に関しては企業秘密が多く具体的にはお伝えできませんが、設備と材料を研究して一般的な作成工程に改良を加えています。このような対策により他者と比べて圧倒的に早い納品を実現しています。
@@ -149,7 +149,7 @@ $_SESSION['ticket'] = $ticket;
 							<img src="../reason/img/sp_jpg/sp_s_reason_02_a.jpg" alt="早い理由1" width="100%" />
 						</div>
 						<p class="righttxt">
-							早い理由二つ目は、<span class="yellowtxt">スピード受注の体制</span>です。タカハマライフアートの<span class="linetxt">電話対応の速さ</span>はどこにも負けません！お急ぎのお客様が安心して受け取れるように、当日特急から<span class="yellowtxt">通常納期でも３営業日</span>での発送が可能となっています。
+							早い理由2つ目は、<span class="yellowtxt">スピード受注の体制</span>です。タカハマライフアートの<span class="linetxt">電話対応の速さ</span>はどこにも負けません！お急ぎのお客様が安心して受け取れるように、当日特急から<span class="yellowtxt">通常納期でも３営業日</span>での発送が可能となっています。
 						</p>
 						<p class="smalltxt">
 							急ぎのお問い合わせや「早くTシャツが欲しい！」という方にも、出来るだけ早いご対応が出来るようお電話は<span class="yellowtxt">３コール以内</span>に必ずお取りし、お客様をお待たせしないよう取り組んでいます。
@@ -179,7 +179,7 @@ $_SESSION['ticket'] = $ticket;
 						もちろんじっくりとお打合せをご希望のお客様や、「メールなんてしている暇はない！すぐに対応してくれ！」という<span class="yellowtxt">お客様もお電話でご注文の確定</span>ができます。
 					</p>
 					<p class="smalltxt2">
-						タカハマライフアートは常に<span class="linetxt">お客様の目線に合わせてご対応</span>することを心がけています！そしてお問い合わせのみなら<a class="speed" href="/contact/line/">LINE</a>でもお受付しております。<span class="yellowtxt">対応時間は営業時間と同じ10:00xA訓8:00</span>ですが、メール以上にお気軽にお問い合わせをすることができます。「納期が知りたいです。」こんな簡単な一言だけでもかまいません！ご不明点があれば<span class="linetxt">お友達にLINEを送る感覚</span>で送ってみてください。電話・メールと変わらないクオリティでご対応をさせて頂きます！
+						タカハマライフアートは常に<span class="linetxt">お客様の目線に合わせてご対応</span>することを心がけています！そしてお問い合わせのみなら<a class="speed" href="/contact/line/">LINE</a>でもお受付しております。<span class="yellowtxt">対応時間は営業時間と同じ10:00&sim;8:00</span>ですが、メール以上にお気軽にお問い合わせをすることができます。「納期が知りたいです。」こんな簡単な一言だけでもかまいません！ご不明点があれば<span class="linetxt">お友達にLINEを送る感覚</span>で送ってみてください。電話・メールと変わらないクオリティでご対応をさせて頂きます！
 					</p>
 				</div>
 
@@ -303,7 +303,7 @@ $_SESSION['ticket'] = $ticket;
 							即日対応でのプリント種類は、シルクスクリーンプリントと、インクジェットプリントからお選びいただけます。
 						</p>
 						<p class="smalltxt">
-							機械ではなく、<span class="yellowtxt">全て、手作業でプリント</span>していきますので、スピードだけでなく、他社よりも高品質な商品が短納期で出来上がります。プリント作業終了後、一枚ずつスタッフが検品を行い、<span class="yellowtxt">少しでも問題がある商品を事前に弾き</span>、完璧な商品をお客様の元へお届け致します。
+							機械ではなく、<span class="yellowtxt">全て、手作業でプリント</span>していきますので、スピードだけでなく、他社よりも高品質な商品が短納期で出来上がります。プリント作業終了後、1枚ずつスタッフが検品を行い、<span class="yellowtxt">少しでも問題がある商品を事前に弾き</span>、完璧な商品をお客様の元へお届け致します。
 						</p>
 					</div>
 					<div class="section clearfix">
@@ -314,7 +314,7 @@ $_SESSION['ticket'] = $ticket;
 							東京であれば、<span class="yellowtxt">発送した当日</span>に、それ以外の地域であれば、発送した翌日にオリジナルTシャツがお客様のお手元に到着します。
 						</p>
 						<p class="rightposition">
-							基本的には<span class="linetxt">ヤマト便</span>か<span class="linetxt">佐川急便</span>にて配送させて頂くのですが、<span class="yellowtxt">東京工場でお受け取りも可能</span>です。ご希望のお客様は、<span class="yellowtxt">17：00	&sim;18：00</span>の間に工場へお越し下さい。
+							基本的には<span class="linetxt">ヤマト便</span>か<span class="linetxt">佐川急便</span>にて配送させて頂くのですが、<span class="yellowtxt">東京工場でお受け取りも可能</span>です。ご希望のお客様は、<span class="yellowtxt">17：00	&sim;18：00</span>の間に工場へお越しください。
 						</p>
 					</div>
 
@@ -372,7 +372,7 @@ $_SESSION['ticket'] = $ticket;
 						タカハマライフアートは<span class="yellowtxt">即日</span>でオリジナルウェアをお届けできます。
 						<br> 東京であれば、
 						<span class="yellowtxt">ご注文日当日に商品が到着</span>しますので、明日のイベントに間に合います！
-						<br> お急ぎのお客様は一度タカハマライフアートまでお電話下さい。
+						<br> お急ぎのお客様は一度タカハマライフアートまでお電話ください。
 						<br> 在庫数やご注文からお届けまでの流れをご説明させて頂きます。
 					</p>
 					<ul class="blockimg">

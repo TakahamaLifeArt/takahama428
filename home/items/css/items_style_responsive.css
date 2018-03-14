@@ -47,19 +47,12 @@
 	background-position-y: center;
 }
 
-#btnOrder {
+.order_btn {
+	text-align: center;
 	margin: 10px auto;
-	display: block;
-	background: url(/common/img/order_btn_0.png) no-repeat 0px 0px;
-	height: 101px;
-	width: 308px;
-	padding-left: 85px;
-	font-size: 21px;
-	line-height: 97px;
-	color: #fff;
-	cursor: pointer;
 }
-@media screen and (max-width: 1017px){
+
+@media screen and (max-width: 1017px) {
 	.snavi {
 		display: none;
 	}
@@ -261,7 +254,10 @@
 	}
 	.printarea_wrap .printtype span:not(.none) {
 		display: inline-block;
-		padding: .5em 1.3em;
+		padding: 1em;
+		width: 20%;
+		text-align: center;
+		font-size: .8rem;
 	}
 
 	.footnote p {
@@ -616,21 +612,24 @@
 		margin-bottom: 20px;
 	}
 	.printarea_wrap .printtype span:nth-child(2) {
-		background: orange;
+		background: #C22538;
+		color: #fff;
 	}
 	.printarea_wrap .printtype span:nth-child(3) {
-		background: lightgreen;
+		background: #FF8F00;
+		color: #FFF;
 	}
 	.printarea_wrap .printtype span:nth-child(4) {
-		background: pink;
+		background: #689F38;
+		color: #fff;
 	}
 	.printarea_wrap .printtype span:nth-child(5) {
-		background: brown;
-		color: #eee;
+		background: #1BA8DF;
+		color: #fff;
 	}
 	.printarea_wrap .printtype span:nth-child(6) {
-		background: cornflowerblue;
-		color: yellow;
+		background: #3D5AFE;
+		color: #fff;
 	}
 	div.up {
 		text-align: right;

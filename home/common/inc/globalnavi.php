@@ -116,7 +116,7 @@
 							<div class="navi_inner_3">
 								<a class="dropdown-item" href="/order/index.php"><img src="/common/img/global/order/sp_order_01.jpg" width="100%"></a>
 								<a href="/order/index.php">
-									<p class="item_txt" style="font-size: 14px;font-weight: bold;color: #109ed7;"><img src="/common/img/global/go_btm_blue.png">申し込み</p>
+									<p class="item_txt" style="font-size: 14px;font-weight: bold;color: #109ed7;"><img src="/common/img/global/go_btm_blue.png">お申し込み</p>
 								</a>
 							</div>
 							<div class="navi_inner_3">
@@ -134,7 +134,7 @@
 							<div class="navi_inner_3">
 								<a class="dropdown-item" href="/guide/orderflow.php"><img src="/common/img/global/order/sp_order_04.jpg" width="100%"></a>
 								<a href="/guide/orderflow.php">
-									<p class="item_txt"><img src="/common/img/global/go_btm_orange.png">注文の流れ</p>
+									<p class="item_txt"><img src="/common/img/global/go_btm_orange.png">ご注文の流れ</p>
 								</a>
 							</div>
 							<div class="navi_inner_3">

@@ -128,7 +128,7 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 							<div class="blocktxt4">
 								<p class="txt3">2. 注文確定後、すぐ入金！</p>
 								<p class="textc">商品の発送は入金確認後になりますので、お早めのご入金をお願い致します。</p>
-								<p class="textc"><span class="red_new">※</span>詳しくはスタッフまでお問合わせください。</p>
+								<p class="textc"><span class="red_new">※</span>詳しくはスタッフまでお問い合わせください。</p>
 							</div>
 							<div class="blocktxt4">
 								<p class="txt3">3.料金</p>
@@ -137,7 +137,7 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 							</div>
 						</div>
 						<div class="btnarea">
-							<a href="#overtime" class="method_button">当日特急のお問合わせはこちら</a>
+							<a href="#overtime" class="method_button">当日特急のお問い合わせはこちら</a>
 						</div>
 					</div>
 					<div id="delivery_date1">
@@ -452,14 +452,14 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 								</div>
 								<div class="button_area">
 									<p class="msg">入力内容をご確認の上、よろしければ[ 送信 ]ボタンを押してください。</p>
-									<div id="sendmail" style="width: 154px; height: 60px"></div>
+									<div id="sendmail" class="order_btn">送信</div>
 								</div>
 							</form>
 						</div>
 					</div>
 					<div>
-						<p class="ptxt4">手書きのイラストや、デザインをプリントアウトしたものなどの場合は、下記の宛先までお送りください。</p>
-						<p class="ptxt3"><a href="/contact/faxorderform.pdf" target="_blank">手書き注文書(PDF)はこちら<img src="./img/img_01.png" width="40px" height="40px"></a></p>
+						<p class="ptxt4">手描きのイラストや、デザインをプリントアウトしたものなどの場合は、下記の宛先までお送りください。</p>
+						<p class="ptxt3"><a href="/contact/faxorderform.pdf" target="_blank">手描き注文書(PDF)はこちら<img src="./img/img_01.png" width="40px" height="40px"></a></p>
 						<p class="ptxt">FAX: 03-5670-0730 (受付時間：24時間受信)</p>
 						<p class="ptxt4"><span class="kome">※</span>家庭用は画質が低い為、複合機やコンビニからをオススメします。</p>
 					</div>
