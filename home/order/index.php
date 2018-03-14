@@ -1240,7 +1240,7 @@ $_version = time();
 
 	</script>
 	<script src="https://ajaxzip3.github.io/ajaxzip3.js" async></script>
-	<script src="https://doozor.bitbucket.io/calendar/datepick_calendar.min.js"></script>
+	<script src="https://doozor.bitbucket.io/calendar/datepick_calendar.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
 	<script src="https://doozor.bitbucket.io/email/e-mailform.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
 	<script src="https://blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
 	<script src="https://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>

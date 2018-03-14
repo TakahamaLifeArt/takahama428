@@ -313,7 +313,7 @@ for($cnt=1,$idx=0; $cnt<5; $cnt++,$idx++){
 	<div id="overlay-mask" class="fade"></div>
 
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
-	<script src="//doozor.bitbucket.io/calendar/datepick_calendar.min.js"></script>
+	<script src="//doozor.bitbucket.io/calendar/datepick_calendar.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
 	<script type="text/javascript" src="./js/deliveryday.js"></script>
 
 </body>
