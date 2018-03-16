@@ -73,6 +73,18 @@ $(function () {
 		 * 住所
 		 * 都道府県と市区町村
 		 */
+		
+		// 自動入力ではchange event が発生しないため
+		let event;
+		if(typeof(Event) === 'function') {
+			event = new Event('change');
+		}else{
+			event = document.createEvent('Event');
+			event.initEvent('change', false, true);
+		}
+		document.forms.form1.addr0.dispatchEvent(event);
+		document.forms.form1.addr1.dispatchEvent(event);
+		
 		// 都道府県
 		if ($('#addr0').val().trim() !== '') {
 			$('#addr0')[0].classList.remove('is_invalid');
