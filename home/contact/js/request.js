@@ -5,39 +5,59 @@
 	
 $(function(){
 
-	jQuery.extend({
-		sendmail_check:function(e){
-			var f = document.forms.request_form;
-			if(!$.check_email(f.email.value)){
-				return false;
-			}
-			if(f.customername.value.trim()==""){
-				$.msgbox("お名前を入力してください。");
-				return false;
-			}
-			if(f.message.value.trim()==""){
-				$.msgbox("メッセージを入力してください。");
-				return false;
-			}
-			if(f.addr0.value.trim()==""){
-				$.msgbox("ご住所を入力してください。");
-				return false;
-			}
-			
-			f.submit();
+	/**
+	 * 入力項目の検証
+	 */
+	eMailer.onValidate('#sendmail', function () {
+
+		/**
+		 * 住所
+		 * 都道府県と市区町村
+		 */
+		
+		// 自動入力ではchange event が発生しないため
+		let event;
+		if(typeof(Event) === 'function') {
+			event = new Event('change');
+		}else{
+			event = document.createEvent('Event');
+			event.initEvent('change', false, true);
 		}
-	});
-	
-	$('#sendmail').on('click', function(){
-		$.sendmail_check();
-	});
-	
-	// フォームのエンターキーを無効にする
-	$('form').on("keypress", "input:not(.allow_submit)", function(e) {
-		if ((e.which && e.which === 13) || (e.keyCode && e.keyCode === 13)) {
-			return false;
+		document.forms.request_form.addr0.dispatchEvent(event);
+		document.forms.request_form.addr1.dispatchEvent(event);
+		
+		// 都道府県
+		if ($('#addr0').val().trim() !== '') {
+			$('#addr0')[0].classList.remove('is_invalid');
 		} else {
-			return true;
+			$('#addr0')[0].classList.add('is_invalid');
+			$.msgbox('都道府県の入力は必須です');
+			return false;
+		}
+
+		// 市区町村
+		if ($('#addr1').val().trim() !== '') {
+			$('#addr1')[0].classList.remove('is_invalid');
+		} else {
+			$('#addr1')[0].classList.add('is_invalid');
+			$.msgbox('市区町村の入力は必須です');
+			return false;
+		}
+		
+		return true;
+	});
+
+	/**
+	 * 送信完了時の処理
+	 */
+	eMailer.onComplete('#sendmail', function(){
+		window.location.href = '/contact/thanks.php?title=request';
+	});
+	
+	// 郵便番号
+	$('#zipcode').on('change', function () {
+		if ($(this).val().trim() !== '') {
+			$('#addr0, #addr1').removeClass('is_invalid');
 		}
 	});
 	

@@ -1,6 +1,4 @@
 <?php
-$ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
-$_SESSION['ticket'] = $ticket;
 $_version = time();
 ?>
 <!DOCTYPE html>
@@ -66,58 +64,55 @@ $_version = time();
 				<div class="round_rt"></div>
 				<div class="round_inner">
 
-					<form name="request_form" method="post" action="transmit.php?req=request" enctype="multipart/form-data" onsubmit="return false;">
+					<form name="request_form" class="e-mailer" method="post">
 						<table id="enq_table">
 							<tbody>
 								<tr>
-									<th>お名前<span class="point">※</span></th>
-									<td><input name="customername" type="text" maxlength="32" class="restrict" /></td>
+									<th><label>お名前</label><span class="point">※</span></th>
+									<td><input name="customername" type="text" maxlength="32" class="restrict" required/></td>
 								</tr>
 								<tr>
-									<th>フリガナ</th>
+									<th><label>フリガナ</label></th>
 									<td><input type="text" name="ruby" value="" class="wide" /></td>
 								</tr>
 								<tr>
-									<th>ご住所<span class="point">※</span></th>
+									<th><label>ご住所</label><span class="point">※</span></th>
 									<td>
 										<p>〒<input name="zipcode" id="zipcode" class="forZip" type="text" onkeyup="AjaxZip3.zip2addr(this,'','addr0','addr1');" /></p>
 										<p><input name="addr0" id="addr0" type="text" placeholder="都道府県" maxlength="4" /></p>
-										<p><input name="addr1" id="addr1" type="text" maxlength="56" class="restrict" /></p>
-										<p><input name="addr2" id="addr2" type="text" maxlength="32" class="restrict" /></p>
+										<p><input name="addr1" id="addr1" type="text" maxlength="56" ></p>
+										<p><input name="addr2" id="addr2" type="text" maxlength="32" ></p>
 									</td>
 								</tr>
 								<tr>
-									<th>メールアドレス<span class="point">※</span></th>
-									<td><input name="email" type="text" class="email" /></td>
+									<th><label>メールアドレス</label><span class="point">※</span></th>
+									<td><input name="email" type="text" class="email" required/></td>
 								</tr>
 								<tr>
-									<th>電話番号<span class="point">※</span></th>
-									<td><input name="tel" type="text" class="forPhone" /></td>
+									<th><label>電話番号</label><span class="point">※</span></th>
+									<td><input name="tel" type="text" class="forPhone" required/></td>
 								</tr>
 								<tr>
-									<th>件　名</th>
-
-									<td><input name="subject" type="text" id="subject" value="資料請求" readonly /></td>
+									<th><label>サンプル</label></th>
+									<td><label><input name="sample" type="checkbox" value="商品サンプル希望" />商品サンプルを希望します</label></td>
 								</tr>
 								<tr>
-									<th>サンプル</th>
-
-									<td><input name="sample" type="checkbox" id="sample" value="商品サンプル希望" /><label for="sample">商品サンプルを希望します</label></td>
-								</tr>
-								<tr>
-									<th>メッセージ<span class="point">※</span></th>
+									<th><label>メッセージ</label><span class="point">※</span></th>
 									<td>
-										<label for="sample">商品サンプルを希望されたお客様は、ご希望の商品（3点まで）をご記入ください。</label>
-										<textarea name="message" id="message" cols="40" rows="7" placeholder="記入例：085-CVT ヘビーウェイトTシャツ　ホワイト-S   ブラック-M   /  083-BBT ライトウェイトTシャツ ブラック-LL"></textarea>
+										<p>商品サンプルを希望されたお客様は、ご希望の商品（3点まで）をご記入ください。</p>
+										<textarea name="message" id="message" cols="40" rows="7" required placeholder="記入例：085-CVT ヘビーウェイトTシャツ　ホワイト-S   ブラック-M   /  083-BBT ライトウェイトTシャツ ブラック-LL"></textarea>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 						<p class="point">「※」 は必須です。</p>
-						<input type="hidden" name="ticket" value="<?php echo $ticket; ?>" />
-						<input type="hidden" name="title" value="request" />
+						<input type="hidden" name="sendto" value="<?php echo _INFO_EMAIL;?>">
+						<input type="hidden" name="subject" value="資料請求">
+						<input type="hidden" name="title" value="資料請求">
+						<input type="hidden" name="replyto" value="email">
+						<input type="hidden" name="replyhead" value="このたびは、タカハマライフアートをご利用いただき誠にありがとうございます。">
 						<p class="button_area">
-							<button class="btn btn-primary" id="sendmail">送　信</button>
+							<button type="submit" class="btn btn-primary" id="sendmail">送　信</button>
 						</p>
 					</form>
 				</div>
@@ -136,7 +131,8 @@ $_version = time();
 	<div id="overlay-mask" class="fade"></div>
 
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
-	<script src="//ajaxzip3.github.io/ajaxzip3.js" charset="utf-8"></script>
+	<script src="//ajaxzip3.github.io/ajaxzip3.js" defer></script>
+	<script src="//doozor.bitbucket.io/email/e-mailform.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
 	<script type="text/javascript" src="./js/request.js?v=<?php echo $_version;?>"></script>
 </body>
 

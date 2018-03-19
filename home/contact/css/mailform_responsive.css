@@ -138,8 +138,6 @@ input[type="text"]:focus {
 	height: 200px;
 	padding: 3px;
 	font-size: 100%;
-	border: 1px solid #aaa;
-	background-color: #ffffff;
 }
 #message:focus,
 .message:focus {
@@ -161,16 +159,11 @@ input[type="text"]:focus {
 	cursor: pointer;
 }
 .button_area .msg {
-	display: none;
 	margin-bottom: 10px;
 }
 
-/* checkbox */
-#enq_table td label {
-	padding-right: 1.5em;
-	padding-left: 25%;
-	font-weight: normal;
-	display:block;
+.table_left label {
+	display: inline-block;
 }
 
 /* list */
@@ -368,6 +361,7 @@ form p.txt.confirmation {
 		font-size: 25px;
 	}
 
+/*
 	#enq_table td label {
 		padding-right: 1.5em;
 		padding-left: 0;
@@ -375,6 +369,7 @@ form p.txt.confirmation {
 		display:block;
 		font-weight: normal;
 	}
+*/
 
 	#enq_table td span {
 		display: inline;

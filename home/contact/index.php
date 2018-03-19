@@ -1,6 +1,4 @@
 <?php
-$ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
-$_SESSION['ticket'] = $ticket;
 $_version = time();
 ?>
 <!DOCTYPE html>
@@ -60,66 +58,64 @@ $_version = time();
 
 					<h2 class="title_confirmation">入力内容の確認</h2>
 					<p class="point">「※」 は必須です。</p>
-					<form id="fileupload" name="contact_form" method="post" action="/contact/transmit.php?req=contact" enctype="multipart/form-data" onsubmit="return false;">
+					<form id="fileupload" class="e-mailer" name="contact_form" method="post">
 						<table id="enq_table">
 							<tbody>
 								<tr>
 									<td>
-										<div id="table_left">お名前<span class="point">※</span></div>
-										<div id="table_right">
-											<p class="txt"></p><input name="customername" type="text" value=""></div>
+										<div class="table_left"><label>お名前</label><span class="point">※</span></div>
+										<div class="table_right">
+											<p class="txt"></p><input name="customername" type="text" value="" required></div>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<div id="table_left">フリガナ<span class="point">※</span></div>
-										<div id="table_right">
-											<p class="txt"></p><input name="ruby" type="text" value=""></div>
+										<div class="table_left"><label>フリガナ</label><span class="point">※</span></div>
+										<div class="table_right">
+											<p class="txt"></p><input name="ruby" type="text" value="" required></div>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<div id="table_left">メールアドレス<span class="point">※</span></div>
-										<div id="table_right">
-											<p class="txt"></p><input name="email" type="text" class="email"></div>
+										<div class="table_left"><label>メールアドレス</label><span class="point">※</span></div>
+										<div class="table_right">
+											<p class="txt"></p><input name="email" type="email" required></div>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<div id="table_left">電話番号<span class="point">※</span></div>
-										<div id="table_right">
-											<p class="txt"></p><input name="tel" type="text" class="forPhone"></div>
+										<div class="table_left"><label>電話番号</label><span class="point">※</span></div>
+										<div class="table_right">
+											<p class="txt"></p><input name="tel" type="tel" required></div>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<div id="table_left">弊社ご利用<span class="point">※</span></div>
+										<div class="table_left"><label>弊社ご利用</label><span class="point">※</span></div>
 										<p class="txt"></p>
-										<label><input name="repeater" type="radio" value="初めてのご利用"> 初めてのご利用</label>
-										<label><input name="repeater" type="radio" value="以前にも注文したことがある"> 以前にも注文したことがある</label>
+										<fieldset>
+											<label><input name="repeater" type="radio" value="初めてのご利用" required> 初めてのご利用</label>
+											<label><input name="repeater" type="radio" value="以前にも注文したことがある" required> 以前にも注文したことがある</label>
+										</fieldset>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<div id="table_left">お問合せ項目<span class="point">※</span></div>
+										<div class="table_left"><label>お問合せ項目</label><span class="point">※</span></div>
 										<p class="txt"></p>
-										<label><input name="subtitle[]" type="checkbox" value="お見積り"> お見積り</label>
-										<label><input name="subtitle[]" type="checkbox" value="デザイン"> デザインについて</label>
-										<label><input name="subtitle[]" type="checkbox" value="納期"> 納期について</label>
+										<fieldset>
+											<label><input name="subtitle[]" type="checkbox" value="お見積り" required> お見積り</label>
+											<label><input name="subtitle[]" type="checkbox" value="デザイン" required> デザインについて</label>
+											<label><input name="subtitle[]" type="checkbox" value="納期" required> 納期について</label>
+										</fieldset>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<div id="table_left">件　名<span class="point">※</span></div>
-										<div id="table_right">
-											<p class="txt"></p><input name="subject" type="text" id="subject" value="お問い合わせ"></div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<div id="table_left">メッセージ<span class="point">※</span></div>
-										<div id="table_right">
-											<p class="txt"></p><textarea name="message" id="message" cols="40" rows="7"></textarea></div>
+										<div class="table_left"><label>メッセージ</label><span class="point">※</span></div>
+										<div class="table_right">
+											<p class="txt"></p><textarea name="message" id="message" cols="40" rows="7" required></textarea>
+										</div>
 									</td>
 								</tr>
 								<tr>
@@ -130,12 +126,14 @@ $_version = time();
 												<span class="btn btn-success fileinput-button fade in">
 													<i class="fa fa-plus" aria-hidden="true"></i>
 													<span>ファイルを選択...</span>
-												<input type="file" name="files[]" multiple>
+												<input type="file" name="files[]" class="e-none" multiple>
 												</span>
-												<button type="submit" class="btn btn-primary start fade" hidden>
+<!--
+												<button type="submit" class="btn btn-primary start fade e-none" hidden>
 													<i class="fa fa-cloud-upload" aria-hidden="true"></i>
 													<span>アップロード</span>
 												</button>
+-->
 
 												<!-- The global file processing state -->
 												<span class="fileupload-process"></span>
@@ -166,14 +164,15 @@ $_version = time();
 								</tr>
 							</tbody>
 						</table>
-						<div id="conf_attach"></div>
-						<input type="hidden" name="ticket" value="<?php echo $ticket; ?>">
-						<input type="hidden" name="title" value="info">
-						<input type="hidden" name="mode" value="confirm">
+						<div id="uploaded-files"></div>
+						<input type="hidden" name="sendto" value="<?php echo _INFO_EMAIL;?>">
+						<input type="hidden" name="subject" value="お問い合わせ">
+						<input type="hidden" name="title" value="お問い合わせ">
+						<input type="hidden" name="replyto" value="email">
+						<input type="hidden" name="replyhead" value="このたびは、タカハマライフアートをご利用いただき誠にありがとうございます。">
 						<div class="button_area">
 							<p class="msg">入力内容をご確認の上、よろしければ[ 送信 ]ボタンを押してください。</p>
-							<button class="btn btn-primary" id="sendmail">入力内容の確認</button>
-							<button class="btn btn-warning" id="goback" hidden>戻る</button>
+							<button type="submit" class="btn btn-primary" id="sendmail">送信する</button>
 						</div>
 					</form>
 					<div class="QA">
@@ -297,7 +296,7 @@ $_version = time();
 			<td>
 				<span class="preview">
 				{% if (file.thumbnailUrl) { %}
-					<img src="{%=file.thumbnailUrl%}">
+					<img src="{%=file.thumbnailUrl%}?auth=admin">
 				{% } %}
 				</span>
 			</td>
@@ -316,7 +315,7 @@ $_version = time();
 			</td>
 			<td>
 				{% if (file.deleteUrl) { %}
-				<button class="btn btn-danger delete fade" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
+				<button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
 					<i class="fa fa-trash" aria-hidden="true"></i>
 					<span>削除</span>
 				</button> {% } else { %}
@@ -330,9 +329,8 @@ $_version = time();
 	</script>
 
 
-	
-	
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
+	<script src="//doozor.bitbucket.io/email/e-mailform.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
 	<script src="/user/js/upload/vendor/jquery.ui.widget.js"></script>
 	<script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
 	<script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
@@ -343,9 +341,8 @@ $_version = time();
 	<script src="/user/js/upload/jquery.fileupload-image.js"></script>
 	<script src="/user/js/upload/jquery.fileupload-validate.js"></script>
 	<script src="/user/js/upload/jquery.fileupload-ui.js"></script>
-	<script src="//ajaxzip3.github.io/ajaxzip3.js" charset="utf-8"></script>
 	<script src="./js/contact.js?v=<?php echo $_version;?>"></script>
-	<script src="./js/upload/main.js"></script>
+	<script src="./js/upload/main.js?v=<?php echo $_version;?>"></script>
 	
 	<script>
 		$( function() {

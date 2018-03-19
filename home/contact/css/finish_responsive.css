@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+/*------------------------------------------------------------
+
+2012 takahama web css
+
+	File_name    : finish.css
+	Description  : order form
+	Version      : 1.0
+	
+	log
+	2011.08.25   : created
+	2018.03.20   : charset utf-8
+	
+--------------------------------------------------------------*/
+
+/*		メール確認
+===============================================================*/
+
+#container {
+	width: 100%;
+	margin: 0px auto;
+	margin-top: 160px;
+	max-width: 1000px;
+}
+
+.contents {
+	width: 780px;
+	float: none;
+	margin-top: 20px;
+	overflow: hidden;
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 10px;
+}
+
+@media screen and (min-width: 769px) {
+	#support {
+		display: block;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	body {
+		color: #383838;
+		line-height: 1.5;
+		-webkit-text-size-adjust: none;
+		text-size-adjust: none;
+		background-color: #ffffff;
+		-webkit-text-size-adjust: 100%;
+		text-size-adjust: 100%;
+		font-size: 90%;
+	}
+
+	#container {
+		width: 100%;
+		margin: 0px auto;
+		margin-top: 160px;
+	}
+
+	.contents {
+		width: 100%;
+		float: none;
+		margin-top: 20px;
+		overflow: hidden;
+		max-width: 1000px;
+		margin: 0 auto;
+		padding: 10px;
+	}
+
+	#support {
+		display: none;
+	}
+}
+
+.inner {
+	margin: 30px 0px 5px;
+	font-size: 120%;
+}
+
+.inner p.red {
+	color: #ff0000;
+}
+
+
+.inner h3 {
+	font-size: 125%;
+	font-weight: normal;
+	color: #003f75;
+}
+
+.remarks {
+	margin: 15px;
+	padding: 2em 2em 1em;
+	border: 3px solid #e1630e;
+	border-radius: 3px;
+}
+
+.remarks p {
+	margin: 0 0 1em 0;
+	text-align: center;
+	color: #333;
+}
+
+.remarks strong {
+	margin-bottom: 1em;
+	font-size: 150%;
+	color: #4e2210;
+}
+
+hr {
+	margin: 1em 0;
+}
+
+.gohome {
+	margin-top: 1.5em;
+}

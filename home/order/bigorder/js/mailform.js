@@ -86,4 +86,8 @@ $(function(){
 		$('.title_confirmation, .msg, #goback').hide();
 	});
 	
+	
+	// お名前にフォーカス
+//	document.forms.bigorder_form.customername.focus();
+	
 });

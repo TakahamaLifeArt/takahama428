@@ -259,12 +259,13 @@ a {
 	color: #ff0000;
 }
 
-#table_left,
-#table_right {
+.table_left,
+.table_right {
 	float: left;
+	width: 70%;
 }
 
-#table_left {
+.table_left {
 	width: 25%;
 }
 
@@ -391,11 +392,11 @@ a {
 	.bg img {
 		display: none;
 	}
-	#table_left,
-	#table_right {
+	.table_left,
+	.table_right {
 		float: none;
 	}
-	#table_left {
+	.table_left {
 		width: 100%;
 	}
 	#enq_table {
@@ -407,8 +408,10 @@ a {
 	}
 	#enq_table input[type=checkbox],
 	#enq_table input[type=radio] {
+/*
 		height: 20px;
 		width: 20px;
+*/
 	}
 	#enq_table tbody th {
 		width: 76px;
