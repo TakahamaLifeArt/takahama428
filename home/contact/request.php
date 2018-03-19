@@ -86,11 +86,11 @@ $_version = time();
 								</tr>
 								<tr>
 									<th><label>メールアドレス</label><span class="point">※</span></th>
-									<td><input name="email" type="text" class="email" required/></td>
+									<td><input name="email" type="email" class="email" required/></td>
 								</tr>
 								<tr>
 									<th><label>電話番号</label><span class="point">※</span></th>
-									<td><input name="tel" type="text" class="forPhone" required/></td>
+									<td><input name="tel" type="tel" class="forPhone" required/></td>
 								</tr>
 								<tr>
 									<th><label>サンプル</label></th>
