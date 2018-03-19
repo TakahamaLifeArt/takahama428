@@ -1,0 +1,97 @@
+@charset "utf-8";
+
+/*------------------------------------------------------------
+
+2012 takahama web css
+
+	File_name    : style.css
+	Description  : takahama428 sitemap stylesheet 
+	Version      : 1.0
+	
+	log
+	2012.09.20	 : created
+		
+--------------------------------------------------------------*/
+
+/*		sitemap
+===============================================================*/
+
+ul.pan {
+	height: auto;
+	margin: 20px 5px 20px 5px;
+	font-size: 0.8em;
+}
+
+ul.pan li {
+	display: inline;
+	padding-right: 4px;
+	line-height: 2em;
+}
+
+ul.pan li:first-child:before {
+	content: "";
+	padding-right: 0;
+}
+
+ul.pan li:before {
+	content: ">";
+	padding-right: 10px;
+	vertical-align: middle;
+}
+
+ul.pan li a,
+ul.pan li span {
+	vertical-align: middle;
+	text-decoration: none;
+}
+
+.sitemap:after {
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+	line-height: 0;
+	font-size: 0;
+	clear: both;
+}
+
+.sitemap {
+	clear: both;
+	width: 100%;
+	padding: 0px 20px 10px;
+	display: block;
+	margin-top: 2rem;
+}
+
+/* End hide from IE-mac */
+
+.sitemap h3 {
+	margin: 1em 0 .5em;
+	text-indent: 1em;
+	font-weight: normal;
+}
+
+
+.sitemap ul {
+	float: left;
+	width: 250px;
+	margin: 20px 40px 5px 10px;
+}
+
+.sitemap ul li {
+	margin-bottom: 0.5em;
+	padding-left: 25px;
+	border-bottom: 1px solid #eae7d2;
+	padding-top: 5px;
+}
+
+.sitemap ul li a {
+	display: block;
+	font-size: 80%;
+}
+
+.sitemap ul li.title {
+	padding-left: 0px;
+	font-family: "Times New Roman";
+	border: none;
+}
