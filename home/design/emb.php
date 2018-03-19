@@ -173,14 +173,10 @@ $category_selector .= '</select>';
 							<h2>価格一覧</h2>
 							<div class="dotted"></div>
 							<p class="kakaku_text">ご希望のサイズの価格表をご覧ください。同じデザインの場合、次回からは刺繍代のみ(型代無料)でご注文いただけます。</p>
-							<p class="katadaibtn">
-								<abbr title="お客様からいただいたデザインを
-										 刺繍専用ソフトを用いて刺繍データを
-										 設計する費用が「型代」です。
-										 型は半永久に保存しますので、
-										 リピートのお客様は無料になります。
-										 " rel="tooltip"><a class="anchor_1"><img src="img/other/st_question_icon.png">型代とは</a></abbr>
-							</p>
+
+							<div id="upload_link" class="modal_style_line">
+								<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>型代とは
+							</div>
 
 							<table border="1" class="sisyuudai">
 								<tr class="line" align="center">
@@ -888,6 +884,7 @@ $category_selector .= '</select>';
 
 			</div>
 		</div>
+		</div>
 		<footer class="page-footer">
 			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
 		</footer>
@@ -897,6 +894,37 @@ $category_selector .= '</select>';
 		<div id="overlay-mask" class="fade"></div>
 
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
+
+		<!--	ファイル転送サービス説明を見る-->
+
+		<div class="modal fade sale_txt" id="attnModal" tabindex="-1">
+			<div class="modal-dialog sale_block">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+					</div>
+					<div class="sale_block">
+						<h3>型代とは</h3>
+						<p>刺繍の元となるデータ（設計図）作りの費用です。</p>
+						<center><p><img width="100%" alt="刺繍前" src="/design/img/emb/emb_aftr.jpg"></p></center>
+						<p>専用ソフトで一針一針、縫い目（角度や間隔）を手作業で決めていきます。一度作成すれば追加注文の際には型代がかかりません。弊社所有のの書体をご利用の場合はこの作業がないため型代が無料になります。</p>
+						<center><p><img width="100%" alt="刺繍後" src="/design/img/emb/emb_befo.jpg"></p></center>
+					</div>
+					<div class="modal-footer">
+						<button class="pop_btn_close btn waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times-circle mr-1" aria-hidden="true"></i>閉じる</button>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			$( function() {
+				$('#upload_link').click( function () {
+					$('#attnModal').modal();
+				});
+			});
+		</script>
 
 	</body>
 
