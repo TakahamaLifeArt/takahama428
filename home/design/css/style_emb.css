@@ -954,7 +954,7 @@ table {
 		border-bottom: 1px solid black;
 		padding: 2px 1px 2px 20px;
 	}
-	------------------------------------ #tooltip {
+	#tooltip {
 		text-align: center;
 		color: #fff;
 		background: #111;
@@ -962,8 +962,8 @@ table {
 		z-index: 100;
 		padding: 15px;
 	}
-	#tooltip:after/* triangle decoration */
-		{
+	/* triangle decoration */
+	#tooltip:after {
 		width: 0;
 		height: 0;
 		border-left: 10px solid transparent;
@@ -1305,6 +1305,4 @@ h3 {
 	width: 10%;
 	box-shadow: none;
 	margin: 2% 2% 4%;
-}
-
 }
