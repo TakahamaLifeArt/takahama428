@@ -547,7 +547,7 @@
 				<div class="line_solid"></div>
 				
 				
-				<form id="fileupload" class="e-mailer" action="" method="POST" enctype="multipart/form-data">
+				<form name="form1" id="fileupload" class="e-mailer" action="" method="POST" enctype="multipart/form-data">
 					<div class="order">
 						<h2 class="order_01" id="overtime"><span class="text">特大プリントタオル専用</span>&nbsp;<span class="text">お申込みフォーム</span></h2>
 					</div>
