@@ -445,6 +445,9 @@ foreach($p as $category_name=>$val){
 			<div class="btnfld">
 				<button class="btn_or btn" id="btn_bill" data-order-id="<?php echo $orderId; ?>"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><span class="txtbld">請求書ダウンロード(PDF)</span></button>
 			</div>
+			<div class="btnfld">
+				<button class="btn_or btn" id="btn_invoice" data-order-id="<?php echo $orderId; ?>"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><span class="txtbld">納品書ダウンロード(PDF)</span></button>
+			</div>
 			<div class="caution">
 				<h3 class="txtarea">運送会社に問い合わせる</h3>
 				<p>お問合せ番号<span class="bdr_txt"><?php echo $contactNumber; ?></span></p>
