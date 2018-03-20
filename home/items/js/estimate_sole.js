@@ -482,7 +482,107 @@ $(function(){
 			$.showPrintPrice(pane, printFee);
 		});
 	});
+	
 
+
+	// プリント箇所を追加（２箇所まで可）
+	/**
+	 * TODO:
+	 * 同じプリント箇所が指定できる
+	 */
+	$('#printing').on("TAP_EVENT", '.pane .btn_box .add_print_area', function(){
+		var pane = $(this).closest('.pane'),
+			face = pane.find('.area img').attr('alt'),
+			obj = $.curr.design[$.curr.designId][$.curr.posId],
+			aryFace = Object.keys(obj[face]),
+			index = +aryFace[0],
+			area = obj[face][index]['area'],
+			clone = '';
+
+		$(this).blur();
+
+		// プリント面の指定状況を確認
+		if (aryFace.length == 2) {
+			$.msgbox('同じ面に指定できる箇所は２箇所までとなっています。<br>３箇所以上をご希望の方はご相談ください。');
+			return;
+		}
+
+		clone = pane.clone(true);
+
+		// デザイン選択情報を更新
+		if (Math.max.apply(null, obj[face][0]['printable'])==0) {
+			// おまかせが不可の場合
+			obj[face][++index] = [].concat(obj[face][aryFace[0]])[0];
+		} else {
+			obj[face][++index] = {
+				'area': area,
+				'size': 0,
+				'option': 0,
+				'method': 'recommend',
+				'printable': obj[face][aryFace[0]]['printable'],
+				'ink': 1
+			};
+
+			// プリント方法をおまかせに指定
+			clone.find('.print_selector').val('recommend');
+			clone.find('.price_box_2').removeClass('hidden');
+
+			// プリントサイズ選択を非表示
+			clone.find('.print_cond_note').addClass('hidden');
+
+			// プリントサイズの初期化と非表示
+			clone.find('.print_cond').addClass('hidden').find('input').val(['0']);
+
+			// インク色数を初期化
+			clone.find('.ink').val(['1']);
+		}
+
+		// プリント指定のdata属性値を設定
+		clone.data('idx', index);
+
+		// プリント箇所をコピー元と違う箇所に設定
+		pane.children('.area').children('.pos_selector_wrap').children('select').children('option').each(function(){
+			var areaName = $(this).val();
+			if (areaName!=area) {
+				obj[face][index]['area'] = areaName;
+				clone.children('.area').children('.pos_selector_wrap').children('select').val(areaName);
+				return false;	// break;
+			}
+		});
+
+		// 削除ボタンを表示
+		clone.children('.btn_box').children('.del_print_area').removeClass('hidden');
+
+		// 要素を追加
+		pane.after(clone);
+
+		// 見積もり再計算
+		$.printCharge($.curr, [face, index]).then(function(printFee){
+			$.showPrintPrice(pane.next(), printFee);
+		});
+	});
+	
+	// プリント箇所を削除
+	$('#printing').on("TAP_EVENT", '.pane .btn_box .del_print_area', function () {
+		var pane = $(this).closest('.pane'),
+			index = pane.data('idx'),
+			face = pane.find('.area img').attr('alt'),
+			obj = $.curr.design[$.curr.designId][$.curr.posId][face];
+		pane.slideUp('normal', function () {
+			$(this).remove();
+			delete $.curr.design[$.curr.designId][$.curr.posId][face][index];	// deleteは参照先は削除されない
+			if (Object.keys(obj).length == 0) {
+				delete $.curr.design[$.curr.designId][$.curr.posId][face];	// deleteは参照先は削除されない
+			}
+
+			// 見積もり再計算
+			$.printCharge($.curr, [face, index]).then(function(printFee){
+				$.showPrintPrice(pane, printFee);
+			});
+		});
+	});
+
+	
 
 	//	プリント方法のダイアログ
 	$('.print_link').on("TAP_EVENT", function () {
@@ -728,7 +828,6 @@ $(function(){
 			return true;
 		}
 	});
-
 
 	/**
 	 * 注文フォームへ遷移
