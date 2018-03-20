@@ -47,7 +47,7 @@
 				<li><a href="/app/WP">スタッフブログ</a></li>
 				<li><a href="/reason/speed.php">早い理由</a></li>
 				<li><a href="/corporate/transactions.php">特定商取引法</a></li>
-				<li><a href="/preparation/">サイトマップ</a></li>
+				<li><a href="/sitemap/">サイトマップ</a></li>
 			</ul>
 			</div>
 		</div>
@@ -148,7 +148,7 @@
 				<li><a href="www.takahama428.com/app/WP">スタッフブログ</a></li>
 				<li><a href="/reason/speed.php">早い理由</a></li>
 				<li><a href="/corporate/transactions.php">特定商取引法</a></li>
-				<li><a href="/preparation/">サイトマップ</a></li>
+				<li><a href="/sitemap/">サイトマップ</a></li>
 			</ul>
 		</div>
 	</div>
