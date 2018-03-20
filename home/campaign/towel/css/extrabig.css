@@ -243,31 +243,40 @@ textarea {
 	font-weight: normal;
 	background: #FFF;
 }
+
 .e-mailer .is_invalid[class*=e-mailer] {
 	border: 1px solid #acacac;
 	background-color: #fff;
 	margin: 20px 40px;
 }
-.e-mailer input[class*=e-mailer], .e-mailer textarea[class*=e-mailer] {
+
+.e-mailer input[class*=e-mailer],
+.e-mailer textarea[class*=e-mailer] {
 	width: calc(93% - 1rem);
 	padding: 1.5rem .5rem;
 	border: 1px solid #acacac;
 	background-color: #fff;
 }
+
 .e-mailer select[class*=e-mailer] {
 	margin: 10px 50px;
 }
+
 .e-mailer #zipcode[class*=e-mailer] {
 	margin: 10px 15px;
 	width: calc(90% - 1rem);
 }
-.e-mailer input[class*=e-mailer], .e-mailer textarea[class*=e-mailer] {
+
+.e-mailer input[class*=e-mailer],
+.e-mailer textarea[class*=e-mailer] {
 	margin: 20px 40px;
 }
+
 .e-mailer label {
 	margin: 0;
 	padding-top: 10px;
 }
+
 /*--------------------------------------
 特大タオル
 --------------------------------------*/
@@ -473,11 +482,15 @@ table td.line_02 {
 	vertical-align: text-bottom;
 
 }
+
 .order_btn:hover {
 	color: #00a7e1!important;
+	margin: 20px auto 0 auto!important;
 }
+
 .order_btn {
 	color: #fff!important;
+	margin: 20px auto 0 auto!important;
 }
 
 /*---------
@@ -645,11 +658,13 @@ input[type="number"] {
 	border-radius: 5px;
 	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
+
 .choice .color_choice input {
 	width: 100px;
 	margin: 0 10px 0 -25px;
 	padding: 1.2rem 0;
 }
+
 .choice {
 	margin: 10px 0 0 76px;
 	display: inline-flex;
@@ -876,7 +891,7 @@ input[type="text"] {
 		margin-right: 40px;
 		width: 65%;
 	}
-	
+
 }
 
 @media screen and (max-width: 680px) {
@@ -999,7 +1014,8 @@ input[type="text"] {
 	.second {
 		margin-top: -20px;
 	}
-	.e-mailer input[class*=e-mailer], .e-mailer textarea[class*=e-mailer] {
+	.e-mailer input[class*=e-mailer],
+	.e-mailer textarea[class*=e-mailer] {
 		margin: 10px 20px;
 	}
 	.choice .color_choice input {
@@ -1026,8 +1042,9 @@ input[type="text"] {
 	}
 
 }
+
 @media screen and (min-width: 768px) {
-	.hidden-sm-down{
+	.hidden-sm-down {
 		display: table-cell;
 	}
 }
