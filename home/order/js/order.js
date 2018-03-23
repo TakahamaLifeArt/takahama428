@@ -1174,41 +1174,41 @@ $(function () {
 						// カッティングと刺繍のみ対応の商品の場合は、「おまかせ」なし
 						if (r[0]['silk'] == 1 || r[0]['digit'] == 1 || r[0]['inkjet'] == 1) {
 							list = '<p><select class="print_selector down_cond">';
-							list += '<option value="recommend"';
+							list += '<option class="recommend" value="recommend"';
 							if (method=='recommend') {
 								list += ' selected';
 								$(target[i]).find('.price_box_2').removeClass('hidden');	// 初めてのStepはおまかせプリントが初期値
 							}
 							list += '>おまかせ</option>';
 							if (r[0]['silk'] == 1) {
-								list += '<option value="silk"';
+								list += '<option class="silk" value="silk"';
 								if (method=='silk') list += ' selected';
 								list += '>シルクスクリーン</option>';
 							}
 							if (r[0]['digit'] == 1) {
-								list += '<option value="digit"';
+								list += '<option class="digit" value="digit"';
 								if (method=='digit') list += ' selected';
 								list += '>デジタル転写</option>';
 							}
 							if (r[0]['inkjet'] == 1) {
-								list += '<option value="inkjet"';
+								list += '<option class="inkjet" value="inkjet"';
 								if (method=='inkjet') list += ' selected';
 								list += '>インクジェット</option>';
 							}
 							if (r[0]['cutting'] == 1) {
-								list += '<option value="cutting"';
+								list += '<option class="cutting" value="cutting"';
 								if (method=='cutting') list += ' selected';
 								list += '>カッティング</option>';
 							}
 							if (r[0]['emb'] == 1) {
-								list += '<option value="emb"';
+								list += '<option class="emb" value="emb"';
 								if (method=='emb') list += ' selected';
 								list += '>刺繍</option>';
 							}
 						} else {
 							list = '<p><select class="print_selector down_cond">';
 							if (r[0]['cutting'] == 1) {
-								list += '<option value="cutting"';
+								list += '<option class="cutting" value="cutting"';
 								if (method=='cutting' || r[0]['emb'] != 1) {
 									list += ' selected';
 									$.curr.design[$.curr.designId][$.curr.posId][face]['0']['method'] = 'cutting';
@@ -1220,7 +1220,7 @@ $(function () {
 								list += '>カッティング</option>';
 							}
 							if (r[0]['emb'] == 1) {
-								list += '<option value="emb"';
+								list += '<option class="emb" value="emb"';
 								if (method=='emb' || r[0]['cutting'] != 1) {
 									list += ' selected';
 									$.curr.design[$.curr.designId][$.curr.posId][face]['0']['method'] = 'emb';
