@@ -137,52 +137,6 @@ $(function(){
 	
 	
 	$.extend({
-//		sendmail_check:function(f){
-//			if(f.customername.value.trim()==""){
-//				$.msgbox("お名前を入力してください。");
-//				return false;
-//			}
-//			if(f.ruby.value.trim()==""){
-//				$.msgbox("フリガナを入力してください。");
-//				return false;
-//			}
-//			if(f.addr0.value.trim()=="" || f.addr1.value.trim()==""){
-//				$.msgbox("ご住所を入力してください。");
-//				return false;
-//			}
-//			if(!$.check_email(f.email.value)){
-//				return false;
-//			}
-//			if(f.tel.value.trim()==""){
-//				$.msgbox("お電話番号を入力してください。");
-//				return false;
-//			}
-//			if(f.deliveryday.value.trim()==""){
-//				$.msgbox("ご希望納期を入力してください。");
-//				return false;
-//			}
-//			if(f.Free_001.value.trim()==0 && f.S_001.value.trim()==0 && f.M_001.value.trim()==0 && f.L_001.value.trim()==0 && f.XL_001.value.trim()==0 && f.S_005.value.trim()==0 && f.M_005.value.trim()==0 && f.L_005.value.trim()==0 && f.XL_005.value.trim()==0){
-//				$.msgbox("枚数を入力してください。");
-//				return false;
-//			}
-//			if(!$.chkInks()){
-//				$.msgbox("プリントする位置とデザインの色数を指定してください。");
-//				return false;
-//
-//			}
-//			if(f.tel.value.trim()==""){
-//				$.msgbox("お電話番号を入力してください。");
-//				return false;
-//			}
-//
-//			$.updatePosition();	// プリント位置と色数の指定内容を更新
-//			f.submit();
-//		},
-//		add_attach:function(my){
-//			var new_row = '<tr><th>&nbsp;</th><td>&nbsp;</td>';
-//			new_row += '<td><input type="file" name="attachfile[]" /><ins class="abort">取消</ins></td></tr>';
-//			$(my).closest('tr').before(new_row);
-//		},
 		showPrintPosition: function(){
 			/**
 			 * プリント位置画像（絵型）とインク色数指定のタグ生成
@@ -304,23 +258,6 @@ $(function(){
 			eMailer.onChanged('#pos_info textarea');
 		}
 	});
-	
-	
-	// 添付ファイルの追加
-//	$('#enq_table .add_attachfile').on('click', function(e){ $.add_attach(e.target) });
-	
-	
-	// 追加した添付ファイルを削除
-//	$('#enq_table').on('click', '.abort', function(){
-//		$(this).closest('tr').remove();
-//	});
-	
-	
-	// メール送信
-//	$('#sendmail').click( function(){
-//		$.sendmail_check(document.forms.express_form);
-//	});
-	
 	
 	// init
 	$.showPrintPosition();
