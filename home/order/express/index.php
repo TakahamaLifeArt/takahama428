@@ -4,8 +4,7 @@ $order = new Orders();
 for ($i=0,$t=1; $i<4; $i++,$t++) {
 	$fin[$i] = $order->getDelidate(null, 1, $t);
 }
-
-$ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
+$_version = time();
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -48,7 +47,7 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 			</div>
 
 			<div id="delivery_date_wrapper">
-				<div id="delivery_date1">
+				<div class="delivery_date1">
 					<p class="texorg">オリジナルTシャツ業界でNo.1の早さ！</p>
 					<h2>最速！当日特急プラン</h2>
 					<div class="blockgrp">
@@ -140,7 +139,7 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 						<a href="#overtime" class="method_button">当日特急のお問い合わせはこちら</a>
 					</div>
 				</div>
-				<div id="delivery_date1">
+				<div class="delivery_date1">
 					<p class="texorg">「早く届けてほしい」に答える！</p>
 					<h2>他のプラン</h2>
 					<div class="time">
@@ -256,7 +255,7 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 					</div>
 					<p class="textc"><span class="red_new">※</span>通常料金はアイテム＋プリント代です。&emsp;<span class="red_new">※</span>営業日は月～金曜日です。（土日祝を除く）</p>
 				</div>
-				<div id="delivery_date1">
+				<div class="delivery_date1">
 					<p class="texorg">お見積りご希望の方へ！</p>
 					<h2>お見積りについて</h2>
 					<p class="textc">お見積もりには以下の情報が必須となります。</p>
@@ -279,7 +278,7 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 						</div>
 					</div>
 				</div>
-				<div id="delivery_date1">
+				<div class="delivery_date1">
 					<p class="texorg">タカハマライフアートが早い理由！</p>
 					<h2>なぜ早くお届けできるのか？</h2>
 					<div class="blockgrp">
@@ -305,7 +304,8 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 					</div>
 					<div class="order_bubble">
 						<a href="/order/" class="order_btn"><img src="/delivery/img/deli/sp_go_icon.png" width="20%;">お申し込み</a>
-						<img class="bubble_img" src="/delivery/img/deli/sp_go_min.png" width="100%;"></div>
+						<img class="bubble_img" src="/delivery/img/deli/sp_go_min.png" width="100%;">
+					</div>
 				</div>
 
 				<div class="inner">
@@ -313,61 +313,56 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 					<div class="bdrline">
 						<p class="lbl">■データを添付や詳細を下記にて記載して、お問い合わせ下さい。</p>
 						<p class="point">「※」 は必須です。</p>
-						<form name="express_form" method="post" action="/contact/transmit.php?req=sameday" enctype="multipart/form-data" onsubmit="return false;">
+						<form name="express_form" class="e-mailer" method="post">
 							<table id="enq_table">
 								<tbody>
 									<tr>
-										<th>お名前</th>
+										<th><label>お名前</label></th>
 										<td class="point">※</td>
 										<td>
-											<p class="txt"></p>
-											<input name="customername" type="text" value="">
+											<input name="customername" type="text" value="" required>
 										</td>
 									</tr>
 									<tr>
-										<th>フリガナ</th>
+										<th><label>フリガナ</label></th>
 										<td class="point">※</td>
 										<td>
-											<p class="txt"></p>
-											<input name="ruby" type="text" value="">
+											<input name="ruby" type="text" value="" required>
 										</td>
 									</tr>
 									<tr>
-										<th>ご住所</th>
+										<th><label>ご住所</label></th>
 										<td class="point">※</td>
 										<td>
-											<p>〒<input name="zipcode" id="zipcode" class="forZip" type="text" onkeyup="AjaxZip3.zip2addr(this,'','addr0','addr1');" /></p>
-											<p><input name="addr0" id="addr0" type="text" placeholder="都道府県" maxlength="4" /></p>
-											<p><input name="addr1" id="addr1" type="text" placeholder="文字数は全角28文字、半角56文字です" maxlength="56" class="restrict" /></p>
-											<p><input name="addr2" id="addr2" type="text" placeholder="文字数は全角16文字、半角32文字です" maxlength="32" class="restrict" /></p>
+											<p>〒<input name="zipcode" id="zipcode" class="forZip" type="text" onkeyup="AjaxZip3.zip2addr(this,'','addr0','addr1');" required></p>
+											<p><input name="addr0" id="addr0" type="text" placeholder="都道府県" maxlength="4"></p>
+											<p><input name="addr1" id="addr1" type="text" placeholder="文字数は全角28文字、半角56文字です" maxlength="56"></p>
+											<p><input name="addr2" id="addr2" type="text" placeholder="文字数は全角16文字、半角32文字です" maxlength="32"></p>
 										</td>
 									</tr>
 									<tr>
-										<th>メールアドレス</th>
+										<th><label>メールアドレス</label></th>
 										<td class="point">※</td>
 										<td>
-											<p class="txt"></p>
-											<input name="email" type="text">
+											<input name="email" type="email" required>
 										</td>
 									</tr>
 									<tr>
-										<th>電話番号</th>
+										<th><label>電話番号</label></th>
 										<td class="point">※</td>
 										<td>
-											<p class="txt"></p>
-											<input name="tel" type="text" class="forPhone">
+											<input name="tel" type="tel" required>
 										</td>
 									</tr>
 									<tr>
-										<th>ご希望納期</th>
+										<th><label>ご希望納期</label></th>
 										<td class="point">※</td>
-										<td><input type="date" size="14" name="deliveryday" class="forDate" value="" /></td>
+										<td><input type="text" size="14" name="deliveryday" id="datepick" value="" required></td>
 									</tr>
 									<tr>
-										<th>メッセージ</th>
+										<th><label>メッセージ</label></th>
 										<td>&nbsp;</td>
 										<td>
-											<div class="txt"></div>
 											<textarea name="message" id="message" cols="40" rows="7"></textarea>
 										</td>
 									</tr>
@@ -375,21 +370,14 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 										<td colspan="3" class="comment">デザインデータなどのファイルを送信される方は、こちらから添付できます。</td>
 									</tr>
 									<tr>
-										<th>添付ファイル</th>
+										<th><label>添付ファイル</label></th>
 										<td>&nbsp;</td>
-										<td><input type="file" name="attachfile[]"></td>
-									</tr>
-									<tr class="last">
-										<th></th>
-										<td>&nbsp;</td>
-										<td>
-											<p class="add_attachfile" onClick="$.add_attach('enq_table');">別の添付ファイルを追加</p>
-										</td>
+										<td><input type="file" name="attachfile" multiple></td>
 									</tr>
 								</tbody>
 							</table>
 
-							<p class="lbl">■カラーとサイズ</p>
+							<p class="lbl">■<label>カラーとサイズ</label></p>
 							<p class="select_cs">サイズの中に必要な枚数を選択ください(複数可)</p>
 
 							<table id="size_table">
@@ -404,11 +392,15 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 								</thead>
 								<tbody>
 									<tr>
-										<td><img src="<?php echo _IMG_PSS?>/items/list/t-shirts/085-cvt/085-cvt_001.jpg" width="100"></td>
-										<td><input type="number" value="0" min="0" step="1" name="S_001">枚</td>
-										<td><input type="number" value="0" min="0" step="1" name="M_001">枚</td>
-										<td><input type="number" value="0" min="0" step="1" name="L_001">枚</td>
-										<td><input type="number" value="0" min="0" step="1" name="XL_001">枚</td>
+										<td>
+											<img src="<?php echo _IMG_PSS?>/items/list/t-shirts/085-cvt/085-cvt_001.jpg" width="100">
+											<input type="hidden" name="part-whitetshirts" value="Tシャツ白">
+											<textarea hidden></textarea>
+										</td>
+										<td><input type="number" value="0" min="0" step="1" name="S" class="e-none">枚</td>
+										<td><input type="number" value="0" min="0" step="1" name="M" class="e-none">枚</td>
+										<td><input type="number" value="0" min="0" step="1" name="L" class="e-none">枚</td>
+										<td><input type="number" value="0" min="0" step="1" name="XL" class="e-none">枚</td>
 									</tr>
 									<tr>
 										<th>色</th>
@@ -418,11 +410,15 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 										<th>XL (&yen;560)</th>
 									</tr>
 									<tr>
-										<td><img src="<?php echo _IMG_PSS?>/items/list/t-shirts/085-cvt/085-cvt_005.jpg" width="100"></td>
-										<td><input type="number" value="0" min="0" step="1" name="S_005">枚</td>
-										<td><input type="number" value="0" min="0" step="1" name="M_005">枚</td>
-										<td><input type="number" value="0" min="0" step="1" name="L_005">枚</td>
-										<td><input type="number" value="0" min="0" step="1" name="XL_005">枚</td>
+										<td>
+											<img src="<?php echo _IMG_PSS?>/items/list/t-shirts/085-cvt/085-cvt_005.jpg" width="100" data-color="ブラック">
+											<input type="hidden" name="part-whitetshirts" value="Tシャツ黒">
+											<textarea hidden></textarea>
+										</td>
+										<td><input type="number" value="0" min="0" step="1" name="S" class="e-none">枚</td>
+										<td><input type="number" value="0" min="0" step="1" name="M" class="e-none">枚</td>
+										<td><input type="number" value="0" min="0" step="1" name="L" class="e-none">枚</td>
+										<td><input type="number" value="0" min="0" step="1" name="XL" class="e-none">枚</td>
 									</tr>
 									<tr>
 										<th>色</th>
@@ -430,29 +426,34 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 										<th colspan="3"></th>
 									</tr>
 									<tr>
-										<td><img src="<?php echo _IMG_PSS?>/items/list/towel/522-ft/522-ft_001.jpg" width="100"></td>
-										<td><input type="number" value="0" min="0" step="1" name="Free_001">枚</td>
+										<td>
+											<img src="<?php echo _IMG_PSS?>/items/list/towel/522-ft/522-ft_001.jpg" width="100" data-color="ホワイト">
+											<input type="hidden" name="part-whitetshirts" value="タオル白">
+											<textarea hidden></textarea>
+										</td>
+										<td><input type="number" value="0" min="0" step="1" name="Free" class="e-none">枚</td>
 										<td colspan="3"></td>
 									</tr>
 								</tbody>
 							</table>
 
-							<p class="lbl">■プリントする位置とデザインの色数を指定してください</p>
+							<p class="lbl">■<label>プリントする位置とデザインの色数を指定してください</label></p>
 							<div class="noprint_wrap">
 								<p><label><input type="checkbox" name="noprint" id="noprint" value="1"> プリントなしで購入する</label></p>
 								<p class="note"><span>※</span>プリントなしの場合1割増しになります。</p>
 							</div>
 							<div id="pos_wrap"></div>
-
-							<input type="hidden" name="ticket" value="<?php echo $ticket; ?>">
-							<input type="hidden" name="title" value="expresstoday">
-							<input type="hidden" name="mode" value="send">
-							<div id="pos_info">
-
-							</div>
+							<div id="pos_info"><textarea hidden></textarea></div>
 							<div class="button_area">
 								<p class="msg">入力内容をご確認の上、よろしければ[ 送信 ]ボタンを押してください。</p>
-								<div id="sendmail" class="order_btn">送信</div>
+<!--								<div id="validation" class="order_btn">送信</div>-->
+								
+								<input type="hidden" name="sendto" value="<?php echo _INFO_EMAIL;?>">
+								<input type="hidden" name="subject" value="当日特急プラン">
+								<input type="hidden" name="title" value="当日特急プラン">
+								<input type="hidden" name="replyto" value="email">
+								<input type="hidden" name="replyhead" value="このたびは、タカハマライフアートをご利用いただき誠にありがとうございます。">
+								<button type="submit" id="sendmail" class="order_btn">送信</button>
 							</div>
 						</form>
 					</div>
@@ -473,8 +474,10 @@ $ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 	</footer>
 
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
-	<script src="//ajaxzip3.github.io/ajaxzip3.js" charset="utf-8"></script>
-	<script type="text/javascript" src="./js/express.js"></script>
+	<script src="https://doozor.bitbucket.io/email/e-mailform.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
+	<script src="https://doozor.bitbucket.io/calendar/datepick_calendar.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
+	<script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="utf-8"></script>
+	<script type="text/javascript" src="./js/express.js?v=<?php echo $_version;?>"></script>
 
 </body>
 

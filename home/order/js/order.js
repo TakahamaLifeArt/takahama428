@@ -2321,15 +2321,7 @@ $(function () {
 		}).then(function(pass){
 			// メール送信
 			if (pass!='') {
-				let event;
-				document.forms.pass.newpass.value = pass;
-				if(typeof(Event) === 'function') {
-					event = new Event('change');
-				}else{
-					event = document.createEvent('Event');
-					event.initEvent('change', false, true);
-				}
-				document.forms.pass.newpass.dispatchEvent(event);
+				eMailer.onChanged('#newpass');
 				$('#sendmail').click();
 			} else {
 				$.msgbox('Error: パスワードの設定ができませんでした');

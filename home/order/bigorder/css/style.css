@@ -1,4 +1,4 @@
-@charset "euc-jp";
+@charset "utf-8";
 #container {
 	width: 100%;
 	margin: 0 auto;
@@ -14,6 +14,7 @@
 	margin: 0 auto;
 	padding: 0 10px;
 }
+
 .heading1_wrapper_new {
 	color: #383838;
 	padding: 10px 0 20px 0;
@@ -31,26 +32,32 @@
 	border-bottom: none;
 	text-align: left;
 }
+
 ul.pan {
 	height: auto;
 	margin: 20px 5px 20px 5px;
 	font-size: 0.8em;
 }
+
 ul.pan li {
 	display: inline;
 	padding-right: 4px;
 	line-height: 2em;
 }
+
 ul.pan li:first-child:before {
 	content: "";
 	padding-right: 0;
 }
+
 ul.pan li:before {
 	content: ">";
 	padding-right: 10px;
 	vertical-align: middle;
 }
-ul.pan li a, ul.pan li span {
+
+ul.pan li a,
+ul.pan li span {
 	vertical-align: middle;
 	text-decoration: none;
 }
@@ -94,6 +101,7 @@ h3.responce {
 	font-size: 20px;
 	text-align: center;
 }
+
 .mr70 {
 	margin-right: 5%;
 }
@@ -207,7 +215,8 @@ table.case td.lbdr {
 	margin: 0 auto;
 	margin-top: 40px;
 }
-.fontred{
+
+.fontred {
 	color: #ff0000;
 }
 
@@ -217,6 +226,7 @@ table.case td.lbdr {
 	color: #4e2210;
 	margin: 20px 50px;
 }
+
 .order_btn_2 {
 	clear: both;
 	display: block;
@@ -231,16 +241,19 @@ table.case td.lbdr {
 	font-size: 16px;
 	font-weight: bold;
 }
+
 .order_btn_2:hover {
 	color: #10a6df;
 	background: #fff;
 	border: 2px solid #10a6df;
 }
-.ac{
+
+.ac {
 	margin: 20px;
 }
 
-form.bigorder input[type=radio], form.bigorder input[type=checkbox] {
+form.bigorder input[type=radio],
+form.bigorder input[type=checkbox] {
 	display: none;
 }
 
@@ -263,21 +276,28 @@ form.bigorder .checkbox:before {
 	transform: rotate(45deg);
 }
 
-form.bigorder .radio:hover:after, form.bigorder .checkbox:hover:after {
+form.bigorder .radio:hover:after,
+form.bigorder .checkbox:hover:after {
 	border-color: #4173ED;
 }
+
 form.bigorder input[type=radio]:checked + .radio:before {
 	opacity: 1;
 }
-form.bigorder input[type=radio], form.bigorder input[type=checkbox] {
+
+form.bigorder input[type=radio],
+form.bigorder input[type=checkbox] {
 	display: none;
 }
+
 form.bigorder input[type=checkbox]:checked + .checkbox:before {
 	opacity: 1;
 }
+
 form.bigorder input[type=checkbox]:checked + .checkbox:after {
 	border: 2px solid #4173ED;
 }
+
 table.big_table,
 table.big_table02 {
 	width: 92%;
@@ -312,7 +332,7 @@ input[type="text"],
 input[type="number"],
 input[type="email"] {
 	width: 80%;
-	height: 18px;
+	height: 40px;
 	padding: 10px;
 	border: 1px solid #aaa;
 	background-color: #ffffff;
@@ -333,14 +353,6 @@ table.big_table02 span.free {
 table.big_table th {
 	background: #C3C3C3;
 	padding: 10px 10px 10px 20px;
-}
-
-table.big_table02 th {
-	background: #F0F0F0;
-	border-left: 1px solid #383838;
-	border-bottom: 1px solid #383838;
-	padding: 10px 20px 10px 40px;
-	width: 30%;
 }
 
 #message,
@@ -436,6 +448,43 @@ table.big_table02 td {
 	border-bottom: 1px solid #383838;
 }
 
+.e-mailer input[type='radio'][class*="e-mailer"] + label.is_clickable,
+.e-mailer input[type='checkbox'][class*="e-mailer"] + label.is_clickable {
+	padding-left: 42px;
+}
+
+.e-mailer input[class*="e-mailer"],
+.e-mailer textarea[class*="e-mailer"],
+.e-mailer select[class*="e-mailer"] {
+	margin: 0;
+}
+
+.e-mailer button[class*="e-mailer"] {
+	margin: 0 auto;
+}
+
+.e-mailer label {
+	display: inline-block;
+	font-size: 1rem;
+}
+
+.e-mailer .choose_file {
+	margin-top: 1rem;
+}
+
+.e-mailer input[type="file"][class*="e-mailer"] + .attachment {
+	margin: .5rem 0 1rem;
+}
+
+.e-mailer input[type="file"][class*="e-mailer"] + .attachment ul {
+	margin: 0;
+	padding-left: 40px;
+}
+
+.e-mailer input[type="file"][class*="e-mailer"] + .attachment ul li {
+	list-style-type: circle;
+}
+
 @media screen and (max-width: 768px) {
 	.orange {
 		background-image: url(/order/bigorder/img/Frame_orange.png);
@@ -459,7 +508,8 @@ table.big_table02 td {
 		padding-bottom: 0px;
 		padding-left: 10px;
 	}
-	.heading1_wrapper_new h1, .heading1_wrapper_new h2 {
+	.heading1_wrapper_new h1,
+	.heading1_wrapper_new h2 {
 		margin-bottom: 0;
 		color: #383838;
 		font-weight: bold;
@@ -469,7 +519,7 @@ table.big_table02 td {
 		text-align: left;
 	}
 
-	.comment{
+	.comment {
 		font-size: 13px;
 		margin-bottom: 30px;
 	}
@@ -515,7 +565,10 @@ table.big_table02 td {
 		width: 95%;
 		margin-left: 10px;
 	}
-	h2.sample, h3.sample, .contents h1.sample, .contents h2.sample {
+	h2.sample,
+	h3.sample,
+	.contents h1.sample,
+	.contents h2.sample {
 		border: 1px solid #383838;
 		width: 80%;
 		padding: 5px 0;
@@ -525,7 +578,8 @@ table.big_table02 td {
 		margin-bottom: 10px;
 		font-size: 100%;
 	}
-	form.bigorder .radio, form.bigorder .checkbox {
+	form.bigorder .radio,
+	form.bigorder .checkbox {
 		box-sizing: border-box;
 		-webkit-transition: background-color 0.2s linear;
 		transition: background-color 0.2s linear;
@@ -546,7 +600,9 @@ table.big_table02 td {
 		padding: 10px 20px 10px 40px;
 		width: 100%;
 	}
-	input[type="text"], input[type="number"], input[type="email"] {
+	input[type="text"],
+	input[type="number"],
+	input[type="email"] {
 		width: 94%;
 		height: 18px;
 		padding: 10px;
@@ -587,7 +643,8 @@ table.big_table02 td {
 	user agent stylesheet div {
 		display: block;
 	}
-	table.big_table, table.big_table02 {
+	table.big_table,
+	table.big_table02 {
 		margin: 0 auto;
 	}
 	table.big_table th {
@@ -611,7 +668,8 @@ table.big_table02 td {
 		text-align: center;
 		background: #fff;
 	}
-	#message, .message {
+	#message,
+	.message {
 		width: 100%;
 		height: 150px;
 		padding: 3px;
@@ -619,7 +677,11 @@ table.big_table02 td {
 		border: 1px solid #aaa;
 		background-color: #ffffff;
 	}
-	.big_table02, .big_table02 tbody, .big_table02 tr, .big_table02 th, .big_table02 td {
+	.big_table02,
+	.big_table02 tbody,
+	.big_table02 tr,
+	.big_table02 th,
+	.big_table02 td {
 		display: block;
 	}
 }
