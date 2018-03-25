@@ -58,11 +58,12 @@ if($_SERVER['REQUEST_METHOD']!='POST'){
 						<tr>
 							<td colspan="2">
 								<input type="hidden" name="id" class="update-args e-none" value="<?php echo $me['id'];?>">
-								<input type="hidden" name="sendto" value="info@takahama428.com">
+								<input type="hidden" name="sendto" value="<?php echo _INFO_EMAIL;?>">
 								<input type="hidden" name="subject" value="ユーザー情報の変更がありました">
 								<input type="hidden" name="title" value="ユーザー情報の変更">
+								<button type="submit" hidden>-</button>
 								<p>
-									<button type="submit" class="ok_button">更新</button>
+									<button type="button" class="ok_button">更新</button>
 									<span class="cancel_button">Cancel</span>
 								</p>
 								
@@ -163,14 +164,15 @@ if($_SERVER['REQUEST_METHOD']!='POST'){
 						<tr>
 							<td colspan="2">
 								<input type="hidden" name="id" class="update-args e-none" value="<?php echo $me['id'];?>">
-								<input type="hidden" name="sendto" value="info@takahama428.com">
+								<input type="hidden" name="sendto" value="<?php echo _INFO_EMAIL;?>">
 								<input type="hidden" name="subject" value="パスワードの変更がありました">
 								<input type="hidden" name="title" value="パスワードの変更">
 								
 								<input type="hidden" name="顧客ID" value="<?php echo $me['customer_num']; ?>">
 								<input type="hidden" name="顧客名" value="<?php echo $me['customername']; ?>">
+								<button type="submit" hidden>-</button>
 								<p>
-									<button type="submit" class="ok_button">更新</button>
+									<button type="button" class="ok_button">更新</button>
 									<span class="cancel_button">Cancel</span>
 								</p>
 							</td>

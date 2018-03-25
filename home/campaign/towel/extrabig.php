@@ -681,8 +681,8 @@
 						</div>
 						<li>
 							<p class="post"><span class="ziparea">〒</span><input type="text" name="〒" id="zipcode" value="" onchange="AjaxZip3.zip2addr(this,'','都道府県','市区町村');" placeholder="郵便番号" required></p>
-							<p class="post_01"><input type="text" name="都道府県" id="addr0" value="" placeholder="都道府県" maxlength="4"></p>
-							<p class="post_01"><input type="text" name="市区町村" id="addr1" value="" placeholder="葛飾区西新小岩1-23-456" maxlength="56"></p>
+							<p class="post_01"><input type="text" name="都道府県" id="addr0" value="" placeholder="都道府県" maxlength="4" required></p>
+							<p class="post_01"><input type="text" name="市区町村" id="addr1" value="" placeholder="葛飾区西新小岩1-23-456" maxlength="56" required></p>
 							<p class="post_01"><input type="text" name="建物号室" value="" placeholder="マンション・ビル名" maxlength="32"></p>
 						</li>
 						<div class="order_title">
@@ -705,7 +705,7 @@
 					</div>
 					
 					<button type="submit" class="order_btn btn-outline-primary waves-effect" id="sendmail">お申し込み</button>
-					<input type="hidden" name="sendto" value="info@takahama428.com">
+					<input type="hidden" name="sendto" value="<?php echo _INFO_EMAIL;?>">
 					<input type="hidden" name="subject" value="特大プリントタオルのお申し込み">
 					<input type="hidden" name="title" value="特大プリントタオル">
 				</form>

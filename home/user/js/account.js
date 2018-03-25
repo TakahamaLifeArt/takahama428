@@ -44,6 +44,8 @@ $(function(){
 					// loading終了
 					eMailer.loaderOff();
 					$.msgbox('<p>Error: 顧客情報を更新できませんでした</p>');
+				} else {
+					$('#profile tfoot [type="submit"]').click();
 				}
 			});
 		});
@@ -64,12 +66,14 @@ $(function(){
 				$.msgbox('Error: 更新できませんでした');
 				return d.reject().promise();
 			}
+		}).then(function(){
+			$('#pass_table tfoot [type="submit"]').click();
 		});
 	}
 	
 	
 	//ユーザー情報更新フォームのバリデーション
-	eMailer.onValidate('#profile tfoot .ok_button', function(){
+	$('#profile tfoot .ok_button').on('click', function(){
 		var user,
 			args = {};
 		
@@ -83,12 +87,10 @@ $(function(){
 		// 更新
 		user = new User(args);
 		user.update();
-
-		return true;
 	});
 	
 	// ユーザー情報更新フォーム送信完了
-	eMailer.onComplete('#profile tfoot .ok_button', function(){
+	eMailer.onComplete('#profile tfoot [type="submit"]', function(){
 		$.dialogBox('顧客情報を更新いたしました。', 'メッセージ', 'OK').then(function(){
 			window.location.reload();
 		});
@@ -103,17 +105,14 @@ $(function(){
 	
 	
 	// パスワード変更フォームのバリデーション
-	eMailer.onValidate('#pass_table tfoot .ok_button', function () {
-		/**
-		 * 必須項目の検証
-		 */
+	$('#pass_table tfoot .ok_button').on('click', function () {
 		var password = $('#pass_table [name="password"]').val().trim(),
 			passconf = $('#pass_table [name="passconf"]').val().trim(),
 			args = {},
 			user;
 		
 		// パスワード確認の照合
-		if (password != passconf) {
+		if (password === '' || password !== passconf) {
 			$.msgbox('パスワードをご確認ください');
 			return false;
 		}
@@ -128,12 +127,10 @@ $(function(){
 		// 更新
 		user = new User(args);
 		user.setPass();
-
-		return true;
 	});
 	
 	// パスワード変更フォーム送信完了
-	eMailer.onComplete('#pass_table tfoot .ok_button', function(){
+	eMailer.onComplete('#pass_table tfoot [type="submit"]', function(){
 		$.dialogBox('パスワードを更新いたしました。', 'メッセージ', 'OK').then(function(){
 			// フォームをリセット
 			document.forms.pass.reset();

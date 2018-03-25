@@ -78,10 +78,10 @@ $_version = time();
 								<tr>
 									<th><label>ご住所</label><span class="point">※</span></th>
 									<td>
-										<p>〒<input name="zipcode" id="zipcode" class="forZip" type="text" onkeyup="AjaxZip3.zip2addr(this,'','addr0','addr1');" /></p>
-										<p><input name="addr0" id="addr0" type="text" placeholder="都道府県" maxlength="4" /></p>
-										<p><input name="addr1" id="addr1" type="text" maxlength="56" ></p>
-										<p><input name="addr2" id="addr2" type="text" maxlength="32" ></p>
+										<p>〒<input name="zipcode" id="zipcode" class="forZip" type="text" onkeyup="AjaxZip3.zip2addr(this,'','addr0','addr1');" required></p>
+										<p><input name="addr0" id="addr0" type="text" placeholder="都道府県" maxlength="4" required></p>
+										<p><input name="addr1" id="addr1" type="text" maxlength="56" required></p>
+										<p><input name="addr2" id="addr2" type="text" maxlength="32"></p>
 									</td>
 								</tr>
 								<tr>

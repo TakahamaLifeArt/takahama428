@@ -335,8 +335,8 @@ $_version = time();
 										<td class="point">※</td>
 										<td>
 											<p>〒<input name="zipcode" id="zipcode" class="forZip" type="text" onkeyup="AjaxZip3.zip2addr(this,'','addr0','addr1');" required></p>
-											<p><input name="addr0" id="addr0" type="text" placeholder="都道府県" maxlength="4"></p>
-											<p><input name="addr1" id="addr1" type="text" placeholder="文字数は全角28文字、半角56文字です" maxlength="56"></p>
+											<p><input name="addr0" id="addr0" type="text" placeholder="都道府県" maxlength="4" required></p>
+											<p><input name="addr1" id="addr1" type="text" placeholder="文字数は全角28文字、半角56文字です" maxlength="56" required></p>
 											<p><input name="addr2" id="addr2" type="text" placeholder="文字数は全角16文字、半角32文字です" maxlength="32"></p>
 										</td>
 									</tr>
