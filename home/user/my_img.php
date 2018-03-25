@@ -19,7 +19,8 @@ $conndb = new Conndb($api_designed);
 
 // 注文別イメージ画表示
 $designed = [];
-for($i=0; $i<count($d); $i++){
+$len = count($d);
+for($i=$len; $i>0; $i--){
 	if($d[$i]['imagecheck']==1){
 		$orderId = $d[$i]['orderid'];
 		$desedImg = $conndb->getDesigned($orderId);
@@ -48,6 +49,8 @@ for($i=0; $i<count($d); $i++){
 		}
 	}
 }
+
+$numberOfDesign = count($designed);
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -89,7 +92,7 @@ for($i=0; $i<count($d); $i++){
 
 			<div class="flex_box row">
 				<?php
-				$len = min(count($designed), 8);
+				$len = min($numberOfDesign, 8);
 				for ($i=0; $i<$len; $i++) {
 					echo $designed[$i];
 				}
@@ -97,7 +100,7 @@ for($i=0; $i<count($d); $i++){
 			</div>
 			
 			<?php
-			if ($len>8) {
+			if ($numberOfDesign>8) {
 				$btn = '<div class="bottom_btn">';
 				$btn .= '<button class="btn add_btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-angle-down mr-1" aria-hidden="true"></i>もっと見る</button>';
 				$btn .= '</div>';
@@ -108,7 +111,7 @@ for($i=0; $i<count($d); $i++){
 			<div class="collapse" id="collapseExample">
 				<div class="flex_box row">
 					<?php
-					for ($i=8; $i<count($designed); $i++) {
+					for ($i=8; $i<$numberOfDesign; $i++) {
 						echo $designed[$i];
 					}
 					?>
