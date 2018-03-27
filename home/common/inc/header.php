@@ -23,91 +23,106 @@ if( empty($_SESSION['me']) ){
 
 
 	<nav class="navbar navbar-toggleable-xl fixed-top navbar-light bg-faded">
-		<div class="wds_top">
-			<a class="navbar-brand" href="/">
+
+<?php
+		// 2018-04-02になったら表示する
+		if (time() >= strtotime('2018-04-02')) {
+			echo '<div class="wds_top">
+				<a class="navbar-brand" href="/">
 				<img alt="Brand" src="/common/img/header/top_logo1.png" class="hidden-xs-down" width="100%">
-				<img alt="Brand" src="/common/img/header/top_logo1.png" class="hidden-sm-up sp_logo top_logo_sp" width="100%">
-			</a>
-		</div>
-		<a class="navbar-brand" href="/">
+				<img alt="Brand" src="/common/img/header/top_logo1.png" class="hidden-sm-up sp_logo_1 top_logo_sp" width="100%">
+				</a>
+				</div>';
+		}
+
+		// 2018-04-02になったら非表示にする
+		if (time() < strtotime('2018-04-02')) {
+			echo '<a class="navbar-brand" href="/">
+				<img alt="Brand" src="/common/img/header/top_logo.png" class="hidden-xs-down">
+				<img alt="Brand" src="/common/img/header/sp_top_logo.png" class="hidden-sm-up sp_logo" width="100%">
+				</a>';
+		}
+		?>
+
+			<a class="navbar-brand" href="/">
 		<img alt="Brand" src="/common/img/header/top_boast.png" class="hidden-md-down">
 		<!--<img alt="Brand" src="/common/img/header/top_boast.png" class="hidden-sm-up">-->
 	</a>
-		<ul class="navbar-nav ml-auto">
-			<li class="nav-item hidden-sm-down">
-				<a href="tel:0120130428" class="nav-link">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item hidden-sm-down">
+					<a href="tel:0120130428" class="nav-link">
 				<i class="fa fa-phone" aria-hidden="true"></i>
 				<p>
 					<em>0120-130-428</em>
 					<span>営業時間：平日10:00-18:00</span>
 				</p>
 			</a>
-			</li>
-			<li class="nav-item hidden-md-up">
-				<a href="tel:0120130428" class="nav-link">
+				</li>
+				<li class="nav-item hidden-md-up">
+					<a href="tel:0120130428" class="nav-link">
 				<img class="img-fluid" alt="TEL" src="/common/img/header/sp_tel.jpg" width="90%">
 				<span>電話する</span>
 			</a>
-			</li>
-			<li class="nav-item">
-				<a href="/contact/" class="nav-link">
+				</li>
+				<li class="nav-item">
+					<a href="/contact/" class="nav-link">
 				<img class="img-fluid" alt="Contact us" src="/common/img/header/sp_mail.jpg" width="90%">
 				<span>お問合せ</span>
 			</a>
-			</li>
-			<li class="nav-item dropdown">
-				<div class="nav-link dropdown-toggle" id="navbarDropdownUserMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<img class="img-fluid" alt="Sign in" src="/common/img/header/sp_login.jpg" width="90%">
-					<span id="signin_state"><?php echo $signinState;?></span>
-				</div>
-				<div class="dropdown-menu header_login" aria-labelledby="navbarDropdownUserMenu" style="padding: 0.5em;">
-					<p id="signin_name">
-						<?php echo $signinName;?>
-					</p>
-					<div class="cart_a_t_box">
-						<p>商品枚数<span id="cart_amount">0</span>枚</p>
-						<p>商品金額<span id="cart_total">0</span>円</p>
+				</li>
+				<li class="nav-item dropdown">
+					<div class="nav-link dropdown-toggle" id="navbarDropdownUserMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<img class="img-fluid" alt="Sign in" src="/common/img/header/sp_login.jpg" width="90%">
+						<span id="signin_state"><?php echo $signinState;?></span>
 					</div>
-					<div class="dropdown_cart">
-						<div id="show_cart" class="dropdown-item cart_a">
-							<p style="color: white;"><img src="/common/img/header/sp_cart.png" class="img-fluid drop_img" width="100%" style="align-items: left;"><span>カートをみる</span></p>
+					<div class="dropdown-menu header_login" aria-labelledby="navbarDropdownUserMenu" style="padding: 0.5em;">
+						<p id="signin_name">
+							<?php echo $signinName;?>
+						</p>
+						<div class="cart_a_t_box">
+							<p>商品枚数<span id="cart_amount">0</span>枚</p>
+							<p>商品金額<span id="cart_total">0</span>円</p>
+						</div>
+						<div class="dropdown_cart">
+							<div id="show_cart" class="dropdown-item cart_a">
+								<p style="color: white;"><img src="/common/img/header/sp_cart.png" class="img-fluid drop_img" width="100%" style="align-items: left;"><span>カートをみる</span></p>
+							</div>
+						</div>
+						<div class="dropdown_mypage">
+							<a href="/user/login.php" class="dropdown-item mypage_a">
+								<p style="color: white;"><img src="/common/img/header/sp_mypage.png" class="img-fluid drop_img" width="100%" style="align-items: left;"><span id="mypage_button"><?php echo $buttonName;?></span></p>
+							</a>
+						</div>
+						<hr>
+						<div id="signout" class="dropdown_exit" <?php echo $isHidden;?> >
+							<p class="dropdown-item exit_a">
+								ログアウト
+							</p>
 						</div>
 					</div>
-					<div class="dropdown_mypage">
-						<a href="/user/login.php" class="dropdown-item mypage_a">
-							<p style="color: white;"><img src="/common/img/header/sp_mypage.png" class="img-fluid drop_img" width="100%" style="align-items: left;"><span id="mypage_button"><?php echo $buttonName;?></span></p>
-						</a>
+				</li>
+				<li class="nav-item dropdown">
+					<div class="nav-link dropdown-toggle pr-0" id="navbarDropdownLanguageMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<img class="img-fluid" alt="Language" src="/common/img/header/sp_language.jpg" width="90%">
+						<span>言語</span>
 					</div>
-					<hr>
-					<div id="signout" class="dropdown_exit" <?php echo $isHidden;?> >
-						<p class="dropdown-item exit_a">
-							ログアウト
-						</p>
-					</div>
-				</div>
-			</li>
-			<li class="nav-item dropdown">
-				<div class="nav-link dropdown-toggle pr-0" id="navbarDropdownLanguageMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<img class="img-fluid" alt="Language" src="/common/img/header/sp_language.jpg" width="90%">
-					<span>言語</span>
-				</div>
-				<div class="dropdown-menu header_language" aria-labelledby="navbarDropdownLanguageMenu">
-					<div class="dropdown-item" id="google_translate_element"></div>
-					<script type="text/javascript">
-						function googleTranslateElementInit() {
-							new google.translate.TranslateElement({
-								pageLanguage: 'ja',
-								includedLanguages: 'ja,en,ko',
-								layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-								autoDisplay: false
-							}, 'google_translate_element');
-						}
+					<div class="dropdown-menu header_language" aria-labelledby="navbarDropdownLanguageMenu">
+						<div class="dropdown-item" id="google_translate_element"></div>
+						<script type="text/javascript">
+							function googleTranslateElementInit() {
+								new google.translate.TranslateElement({
+									pageLanguage: 'ja',
+									includedLanguages: 'ja,en,ko',
+									layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+									autoDisplay: false
+								}, 'google_translate_element');
+							}
 
-					</script>
-					<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-				</div>
-			</li>
-		</ul>
+						</script>
+						<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+					</div>
+				</li>
+			</ul>
 	</nav>
 
 	<div class="navi_back">
@@ -116,109 +131,109 @@ if( empty($_SESSION['me']) ){
 				<button id="btnGroupDrop1" type="button" class="btn btn-info_glnavi" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				アイテム
 			</button>
-			<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-				<div class="dropdown-menu_in">
-					<div class="dropdown_ttl_box hidden-sm-down">
-						<p>アイテム</p>
-					</div>
-					<div class="menu_box">
-						<div class="item_1">
-							<div class="navi_inner">
-								<a class="dropdown-item" href="/items/category/t-shirts/"><img class="top3" src="/common/img/global/item/sp_item_01.png" width="100%"></a>
-								<a href="/items/category/t-shirts/">
-									<p class="item_txt"><img src="/common/img/global/go_btm_blue.png">Tシャツ</p>
-								</a>
-							</div>
-							<div class="navi_inner">
-								<a class="dropdown-item" href="/items/category/polo-shirts/"><img class="top3" src="/common/img/global/item/sp_item_02.png" width="100%"></a>
-								<a href="/items/category/polo-shirts/">
-									<p class="item_txt"><img src="/common/img/global/go_btm_blue.png">ポロシャツ</p>
-								</a>
-							</div>
-							<div class="navi_inner">
-								<a class="dropdown-item" href="/items/category/towel/"><img class="top3" src="/common/img/global/item/sp_item_03.png" width="100%"></a>
-								<a href="/items/category/towel/">
-									<p class="item_txt"><img src="/common/img/global/go_btm_blue.png">タオル</p>
-								</a>
-							</div>
+				<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+					<div class="dropdown-menu_in">
+						<div class="dropdown_ttl_box hidden-sm-down">
+							<p>アイテム</p>
 						</div>
-						<div class="item_2">
-							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/category/sweat/"><img class="item_under" src="/common/img/global/item/sp_item_04.png" width="100%"></a>
-								<a href="/items/category/sweat/">
-									<p class="item_txt_min">スウェット</p>
-								</a>
+						<div class="menu_box">
+							<div class="item_1">
+								<div class="navi_inner">
+									<a class="dropdown-item" href="/items/category/t-shirts/"><img class="top3" src="/common/img/global/item/sp_item_01.png" width="100%"></a>
+									<a href="/items/category/t-shirts/">
+										<p class="item_txt"><img src="/common/img/global/go_btm_blue.png">Tシャツ</p>
+									</a>
+								</div>
+								<div class="navi_inner">
+									<a class="dropdown-item" href="/items/category/polo-shirts/"><img class="top3" src="/common/img/global/item/sp_item_02.png" width="100%"></a>
+									<a href="/items/category/polo-shirts/">
+										<p class="item_txt"><img src="/common/img/global/go_btm_blue.png">ポロシャツ</p>
+									</a>
+								</div>
+								<div class="navi_inner">
+									<a class="dropdown-item" href="/items/category/towel/"><img class="top3" src="/common/img/global/item/sp_item_03.png" width="100%"></a>
+									<a href="/items/category/towel/">
+										<p class="item_txt"><img src="/common/img/global/go_btm_blue.png">タオル</p>
+									</a>
+								</div>
 							</div>
-							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/category/sportswear/"><img class="item_under" src="/common/img/global/item/sp_item_sports.png" width="100%"></a>
-								<a href="/items/category/sportswear/">
-									<p class="item_txt_min">スポーツ</p>
-								</a>
-							</div>
-							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/category/long-shirts/"><img class="item_under" src="/common/img/global/item/sp_item_longt.png" width="100%"></a>
-								<a href="/items/category/long-shirts/">
-									<p class="item_txt_min">長袖Tシャツ</p>
-								</a>
-							</div>
-							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/category/outer/"><img class="item_under" src="/common/img/global/item/sp_item_05.png" width="100%"></a>
-								<a href="/items/category/outer/">
-									<p class="item_txt_min">ブルゾン</p>
-								</a>
-							</div>
-							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/category/ladys/"><img class="item_under" src="/common/img/global/item/sp_item_lady.png" width="100%"></a>
-								<a href="/items/category/ladys/">
-									<p class="item_txt_min">レディース</p>
-								</a>
-							</div>
-							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/category/tote-bag/"><img class="item_under" src="/common/img/global/item/sp_item_bag.png" width="100%"></a>
-								<a href="/items/category/tote-bag/">
-									<p class="item_txt_min">バッグ</p>
-								</a>
-							</div>
-							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/category/apron/"><img class="item_under" src="/common/img/global/item/sp_item_07.png" width="100%"></a>
-								<a href="/items/category/apron/">
-									<p class="item_txt_min">エプロン</p>
-								</a>
-							</div>
-							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/category/baby/"><img class="item_under" src="/common/img/global/item/sp_item_baby.png" width="100%"></a>
-								<a href="/items/category/baby/">
-									<p class="item_txt_min">ベビー</p>
-								</a>
-							</div>
-							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/category/overall/"><img class="item_under" src="/common/img/global/item/sp_item_08.png" width="100%"></a>
-								<a href="/items/category/overall/">
-									<p class="item_txt_min">つなぎ</p>
-								</a>
-							</div>
-							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/category/workwear/"><img class="item_under" src="/common/img/global/item/item_work.png" width="100%"></a>
-								<a href="/items/category/workwear/">
-									<p class="item_txt_min">ワークウェア</p>
-								</a>
-							</div>
-							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/category/goods/"><img class="item_under" src="/common/img/global/item/sp_item_11.png" width="100%"></a>
-								<a href="/items/category/goods/">
-									<p class="item_txt_min">記念品</p>
-								</a>
-							</div>
-							<div class="navi_inner_2">
-								<a class="dropdown-item" href="/items/category/cap/"><img class="item_under" src="/common/img/global/item/sp_item_12.png" width="100%"></a>
-								<a href="/items/category/cap/">
-									<p class="item_txt_min">キャップ</p>
-								</a>
+							<div class="item_2">
+								<div class="navi_inner_2">
+									<a class="dropdown-item" href="/items/category/sweat/"><img class="item_under" src="/common/img/global/item/sp_item_04.png" width="100%"></a>
+									<a href="/items/category/sweat/">
+										<p class="item_txt_min">スウェット</p>
+									</a>
+								</div>
+								<div class="navi_inner_2">
+									<a class="dropdown-item" href="/items/category/sportswear/"><img class="item_under" src="/common/img/global/item/sp_item_sports.png" width="100%"></a>
+									<a href="/items/category/sportswear/">
+										<p class="item_txt_min">スポーツ</p>
+									</a>
+								</div>
+								<div class="navi_inner_2">
+									<a class="dropdown-item" href="/items/category/long-shirts/"><img class="item_under" src="/common/img/global/item/sp_item_longt.png" width="100%"></a>
+									<a href="/items/category/long-shirts/">
+										<p class="item_txt_min">長袖Tシャツ</p>
+									</a>
+								</div>
+								<div class="navi_inner_2">
+									<a class="dropdown-item" href="/items/category/outer/"><img class="item_under" src="/common/img/global/item/sp_item_05.png" width="100%"></a>
+									<a href="/items/category/outer/">
+										<p class="item_txt_min">ブルゾン</p>
+									</a>
+								</div>
+								<div class="navi_inner_2">
+									<a class="dropdown-item" href="/items/category/ladys/"><img class="item_under" src="/common/img/global/item/sp_item_lady.png" width="100%"></a>
+									<a href="/items/category/ladys/">
+										<p class="item_txt_min">レディース</p>
+									</a>
+								</div>
+								<div class="navi_inner_2">
+									<a class="dropdown-item" href="/items/category/tote-bag/"><img class="item_under" src="/common/img/global/item/sp_item_bag.png" width="100%"></a>
+									<a href="/items/category/tote-bag/">
+										<p class="item_txt_min">バッグ</p>
+									</a>
+								</div>
+								<div class="navi_inner_2">
+									<a class="dropdown-item" href="/items/category/apron/"><img class="item_under" src="/common/img/global/item/sp_item_07.png" width="100%"></a>
+									<a href="/items/category/apron/">
+										<p class="item_txt_min">エプロン</p>
+									</a>
+								</div>
+								<div class="navi_inner_2">
+									<a class="dropdown-item" href="/items/category/baby/"><img class="item_under" src="/common/img/global/item/sp_item_baby.png" width="100%"></a>
+									<a href="/items/category/baby/">
+										<p class="item_txt_min">ベビー</p>
+									</a>
+								</div>
+								<div class="navi_inner_2">
+									<a class="dropdown-item" href="/items/category/overall/"><img class="item_under" src="/common/img/global/item/sp_item_08.png" width="100%"></a>
+									<a href="/items/category/overall/">
+										<p class="item_txt_min">つなぎ</p>
+									</a>
+								</div>
+								<div class="navi_inner_2">
+									<a class="dropdown-item" href="/items/category/workwear/"><img class="item_under" src="/common/img/global/item/item_work.png" width="100%"></a>
+									<a href="/items/category/workwear/">
+										<p class="item_txt_min">ワークウェア</p>
+									</a>
+								</div>
+								<div class="navi_inner_2">
+									<a class="dropdown-item" href="/items/category/goods/"><img class="item_under" src="/common/img/global/item/sp_item_11.png" width="100%"></a>
+									<a href="/items/category/goods/">
+										<p class="item_txt_min">記念品</p>
+									</a>
+								</div>
+								<div class="navi_inner_2">
+									<a class="dropdown-item" href="/items/category/cap/"><img class="item_under" src="/common/img/global/item/sp_item_12.png" width="100%"></a>
+									<a href="/items/category/cap/">
+										<p class="item_txt_min">キャップ</p>
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 			</div>
 			<div class="btn-group dropdown global-menu" role="group">
 				<button id="btnGroupDrop1" type="button" class="btn btn-info_glnavi" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -411,7 +426,7 @@ if( empty($_SESSION['me']) ){
 										<p class="item_txt"><img src="/common/img/global/go_btm_orange.png">デザインサポート</p>
 									</a>
 								</div>
-<!--
+								<!--
 								<div class="navi_inner_3 hidden-sm-down">
 									<a class="dropdown-item" href="//takahama428.secure-decoration.com/create_products/5-6-T-?n=69818603"><img src="/common/img/global/design/sp_design_07.jpg" width="100%"></a>
 									<a href="//takahama428.secure-decoration.com/create_products/5-6-T-?n=69818603">

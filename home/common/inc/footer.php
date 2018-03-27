@@ -249,10 +249,25 @@
 
 <div class="call-to-action hidden-xs-down">
 	<div class="row">
-		<div class="col-sm-3 foot_logo">
-			<a href="/"><img alt="Brand" src="/common/img/header/top_logo1.png" width="100%"></a>
+		<?php
+		// 2018-04-02になったら表示する
+		if (time() >= strtotime('2018-04-02')) {
+			echo '<div class="col-sm-3 foot_logo_1">
+				<a href="/"><img alt="Brand" src="/common/img/header/top_logo1.png" width="100%"></a>
+				</div>';
+			}
+			
+		// 2018-04-02になったら非表示にする
+			if (time() < strtotime('2018-04-02')) {
+				echo '<div class="col-sm-3 foot_logo">
+					<a href="/"><img alt="Brand" src="/common/img/footer/top_logo_footer.png" width="100%"></a>
+					</div>';
+			}
+			?>
+
 			<p><span>全スタッフとお客様の幸せを、実現します。</span></p>
 		</div>
+
 		<!--<div class="col-sm-6">
 			<div class="row">
 				<p class="col text-left pl-3"><a href="tel:0120130428"><span><i class="fa fa-phone" aria-hidden="true"></i></span>0120-130-428</a></p>
@@ -263,7 +278,7 @@
 			</div>
 		</div>-->
 	</div>
-</div>
+
 
 <div class="footer-copyright">
 	<div class="container-fluid">

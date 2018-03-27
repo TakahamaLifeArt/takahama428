@@ -291,11 +291,11 @@ nav .list-group .list-group-item a {
 	border: 1px solid rgba(0, 0, 0, .15);
 	border-radius: .25rem;
 }
-/*
+
 .sp_logo{
 	width:89px;
 }
-*/
+
 .drop_img {
 	max-width: 16%;
 	display: inline-block;
@@ -1031,6 +1031,11 @@ footer .call-to-action .fa {
 }
 
 .foot_logo {
+	margin-left: 7%;
+	display: -webkit-inline-box;
+
+}
+.foot_logo_1{
 	margin-left: 7%;
 	display: -webkit-inline-box;
 	max-width: 158px;
