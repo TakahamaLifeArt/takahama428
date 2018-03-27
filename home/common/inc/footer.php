@@ -250,7 +250,7 @@
 <div class="call-to-action hidden-xs-down">
 	<div class="row">
 		<div class="col-sm-3 foot_logo">
-			<a href="/"><img alt="Brand" src="/common/img/footer/top_logo_footer.png" width="100%"></a>
+			<a href="/"><img alt="Brand" src="/common/img/header/top_logo1.png" width="100%"></a>
 			<p><span>全スタッフとお客様の幸せを、実現します。</span></p>
 		</div>
 		<!--<div class="col-sm-6">

@@ -23,10 +23,12 @@ if( empty($_SESSION['me']) ){
 
 
 	<nav class="navbar navbar-toggleable-xl fixed-top navbar-light bg-faded">
-		<a class="navbar-brand" href="/">
-		<img alt="Brand" src="/common/img/header/top_logo.png" class="hidden-xs-down">
-			<img alt="Brand" src="/common/img/header/sp_top_logo.png" class="hidden-sm-up sp_logo" width="100%">
-	</a>
+		<div class="wds_top">
+			<a class="navbar-brand" href="/">
+				<img alt="Brand" src="/common/img/header/top_logo1.png" class="hidden-xs-down" width="100%">
+				<img alt="Brand" src="/common/img/header/top_logo1.png" class="hidden-sm-up sp_logo top_logo_sp" width="100%">
+			</a>
+		</div>
 		<a class="navbar-brand" href="/">
 		<img alt="Brand" src="/common/img/header/top_boast.png" class="hidden-md-down">
 		<!--<img alt="Brand" src="/common/img/header/top_boast.png" class="hidden-sm-up">-->
