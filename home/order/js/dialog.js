@@ -157,7 +157,7 @@ $(function(){
 		msg += '<p class="txt_sml"><span class="red_txt"></span></p>';
 		msg += '<div class="print_rec">';
 		msg += '<ul>';
-		msg += '<li><p class="bldtxt">銀行名<span class="nortxt">三菱東京ＵＦＪ銀行</span></p></li>';
+		msg += '<li><p class="bldtxt">銀行名<span class="nortxt">三菱UFJ銀行</span></p></li>';
 		msg += '<li><p class="bldtxt">支店名<span class="nortxt">新小岩支店 744</span></li>';
 		msg += '<li><p class="bldtxt">口座種別<span class="nortxt">普通</span></li>';
 		msg += '<li><p class="bldtxt">口座番号<span class="nortxt">3716333</span></li>';
