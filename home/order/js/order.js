@@ -2321,6 +2321,7 @@ $(function () {
 		}).then(function(pass){
 			// メール送信
 			if (pass!='') {
+				document.forms.pass.newpass.value = pass;
 				eMailer.onChanged('#newpass');
 				$('#sendmail').click();
 			} else {
@@ -2431,7 +2432,7 @@ $(function () {
 				z[keys[index]] = $.getStorage(key);
 				f[key].value = JSON.stringify(z[keys[index]]);
 			});
-			$('#orderform').append(attach);
+			$('#orderform .attach').html(attach);
 
 			// 注文アイテムの枚数と金額
 			orderItem = $.itemPrice(z.items);

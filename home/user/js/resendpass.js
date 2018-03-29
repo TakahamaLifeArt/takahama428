@@ -37,6 +37,7 @@ $(function(){
 		}).then(function(pass){
 			// メール送信
 			if (pass!='') {
+				document.forms.pass.newpass.value = pass;
 				eMailer.onChanged('#newpass');
 				$('#sendmail').click();
 			} else {

@@ -19,8 +19,8 @@ $conndb = new Conndb($api_designed);
 
 // 注文別イメージ画表示
 $designed = [];
-$len = count($d);
-for($i=$len; $i>0; $i--){
+$len = count($d)-1;
+for($i=$len; $i>=0; $i--){
 	if($d[$i]['imagecheck']==1){
 		$orderId = $d[$i]['orderid'];
 		$desedImg = $conndb->getDesigned($orderId);

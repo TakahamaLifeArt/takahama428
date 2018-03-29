@@ -1206,6 +1206,7 @@ $_version = time();
 					<input type="hidden" name="detail" value="">
 					<input type="hidden" name="option" value="">
 					<input type="hidden" name="user" value="">
+					<div class="attach"></div>
 				</form>
 				<div class="transition_wrap align-items-center">
 					<button class="btn btn-info" id="order" disabled>この内容で申し込む</button>

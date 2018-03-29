@@ -1,7 +1,7 @@
 <?php
 require_once dirname(__FILE__).'/php_libs/funcs.php';
-
 setToken();
+$_version = time();
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -88,7 +88,7 @@ setToken();
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
 		<script src="//doozor.bitbucket.io/email/e-mailform.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
 		<script type="text/javascript" src="/common/js/api.js"></script>
-		<script type="text/javascript" src="./js/resendpass.js"></script>
+		<script type="text/javascript" src="./js/resendpass.js?v=<?php echo $_version;?>"></script>
 	</body>
 
 </html>
