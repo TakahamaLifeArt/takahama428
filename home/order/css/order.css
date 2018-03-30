@@ -11,7 +11,6 @@ log
 
 --------------------------------------------------------------*/
 
-
 /*		main
 ===============================================================*/
 
@@ -298,23 +297,23 @@ em {
 	text-align: center;
 }
 
-.cd-multi-steps li>*,
-.cd-multi-steps li.current>* {
+.cd-multi-steps li > *,
+.cd-multi-steps li.current > * {
 	position: relative;
 	display: inline-block;
 	font-size: .9rem;
 	color: #e2710a;
 }
 
-.cd-multi-steps.text-bottom.count li>* {
+.cd-multi-steps.text-bottom.count li > * {
 	padding-top: 40px;
 }
 
 
 /* Step counter */
 
-.cd-multi-steps.text-top li>*:before,
-.cd-multi-steps.text-bottom li>*:before {
+.cd-multi-steps.text-top li > *:before,
+.cd-multi-steps.text-bottom li > *:before {
 	content: '';
 	position: absolute;
 	z-index: 1;
@@ -333,12 +332,12 @@ em {
 	box-shadow: 1px 1px 1px #9f9f9f;
 }
 
-.cd-multi-steps.text-bottom li>*:before {
+.cd-multi-steps.text-bottom li > *:before {
 	top: 0;
 }
 
-.cd-multi-steps.text-top.count li>*:before,
-.cd-multi-steps.text-bottom.count li>*:before {
+.cd-multi-steps.text-top.count li > *:before,
+.cd-multi-steps.text-bottom.count li > *:before {
 	content: counter(steps);
 	height: 36px;
 	width: 36px;
@@ -347,16 +346,16 @@ em {
 	color: #fff;
 }
 
-.cd-multi-steps.text-top li.current>*:before,
-.cd-multi-steps.text-bottom li.current>*:before {
+.cd-multi-steps.text-top li.current > *:before,
+.cd-multi-steps.text-bottom li.current > *:before {
 	line-height: 30px;
 	font-weight: bold;
 	border: 4px solid #e2710a;
 	background-color: #e2710a;
 }
 
-.cd-multi-steps.text-top li.done>*:before,
-.cd-multi-steps.text-bottom li.done>*:before {
+.cd-multi-steps.text-top li.done > *:before,
+.cd-multi-steps.text-bottom li.done > *:before {
 	content: "\f00c";
 	line-height: 30px;
 	font-weight: bold;
@@ -474,8 +473,8 @@ em {
 
 .form-group {
 	display: flex;
-	padding: 2% 10%;
-	width: 100%;
+	padding: 2% 0%;
+	width: 85%;
 }
 
 .emb_only .form-group {
@@ -502,6 +501,7 @@ em {
 	border-radius: 2px;
 	box-shadow: 1px 1px 1px #a5a5a5;
 	padding: 2px 5px;
+	max-width: 330px;
 }
 
 .print_position img {
@@ -2079,19 +2079,23 @@ input[type="password"] {
 	margin-bottom: 4px;
 	margin-right: 3px;
 }
+
 .modal-body h4 {
 	font-size: 1rem;
 	font-weight: bold;
 	margin-top: 20px;
 }
+
 .modal-body h5 {
 	margin-top: 14px;
 	font-weight: bold;
 	font-size: .9rem;
 }
-.modal-body p{
+
+.modal-body p {
 	font-size: .8rem;
 }
+
 /*		responsive
 ===============================================================*/
 
