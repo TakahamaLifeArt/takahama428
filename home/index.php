@@ -74,13 +74,22 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 						</div>
 					</div>
 
-					<div class="carousel-item">
+					
+					
+					<!-- strtotime(日付)で日付を指定して、HTMLタグの表示を切り替える-->
+					<?php
+
+					// 2018-04-01になったら非表示にする
+if (time() < strtotime('2018-04-01')) {
+	echo '<div class="carousel-item">
 						<img class="img-fluid" id="pc_slide" src="/common/img/home/main/top_slide_graduation.jpg" alt="First slide" width="100%">
 						<img class="img-fluid" id="sp_slide" src="/common/img/home/main/sp_top_slide_graduation.jpg" alt="First slide" width="100%">
 						<div class="carousel-caption">
 							<a href="/scene/graduation/index.php" class="check"><button type="button" class="det_btn">詳細はこちら</button></a>
 						</div>
-					</div>
+					</div>';
+}
+					?>
 					
 					<div class="carousel-item">
 						<img class="img-fluid" id="pc_slide" src="/common/img/home/main/top_slide_extrabig.jpg" alt="First slide" width="100%">
@@ -198,14 +207,32 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							</div>
 						</div>
 						<div class="col-12 col-sm-4">
-							<div class="row btn-row">
+							<!-- strtotime(日付)で日付を指定して、HTMLタグの表示を切り替える-->
+							<?php
+							// 2018-04-01になったら表示する
+							if (time() >= strtotime('2018-04-01')) {
+								echo '<div class="row btn-row">
+								<div class="col col-item view overlay hm-white-slight">
+									<a href="https://www.instagram.com/takahamalifeart/" class="btn">
+								<img alt="Service" src="/common/img/home/service/top_ser_Insta.jpg" class="img-fluid">
+								<div class="mask"></div>
+							</a>
+								</div>
+							</div>';
+							}
+
+							// 2018-04-01になったら非表示にする
+							if (time() < strtotime('2018-04-01')) {
+								echo '<div class="row btn-row">
 								<div class="col col-item view overlay hm-white-slight">
 									<a href="/scene/graduation/index.php" class="btn">
 								<img alt="Service" src="/common/img/home/service/top_ser_graduation.jpg" class="img-fluid">
 								<div class="mask"></div>
 							</a>
 								</div>
-							</div>
+							</div>';
+							}
+							?>
 							<div class="row btn-row">
 								<div class="col col-item view overlay hm-white-slight">
 									<a href="/guide/discount.php" class="btn">
@@ -245,12 +272,28 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 						<div class="mask"></div>
 					</a>
 						</div>
-						<div class="col-6 col-item view overlay hm-white-slight">
+						<!-- strtotime(日付)で日付を指定して、HTMLタグの表示を切り替える-->
+						<?php
+						// 2018-04-01になったら表示する
+						if (time() >= strtotime('2018-04-01')) {
+							echo '<div class="col-6 col-item view overlay hm-white-slight">
+							<a href="https://www.instagram.com/takahamalifeart/" class="btn">
+						<img alt="Service" src="/common/img/home/service/sp_top_ser_Insta.jpg" class="img-fluid">
+						<div class="mask"></div>
+					</a>
+						</div>';
+						}
+
+						// 2018-04-01になったら非表示にする
+						if (time() < strtotime('2018-04-01')) {
+							echo '<div class="col-6 col-item view overlay hm-white-slight">
 							<a href="/scene/graduation/index.php" class="btn">
 						<img alt="Service" src="/common/img/home/service/sp_top_ser_graduation.jpg" class="img-fluid">
 						<div class="mask"></div>
 					</a>
-						</div>
+						</div>';
+						}
+						?>
 					</div>
 					<div class="row btn-row ">
 						<div class="col-6 col-item view overlay hm-white-slight">
