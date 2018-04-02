@@ -136,7 +136,7 @@
 												<th colspan="2" style="text-align: center;">
 													<p class="wh">スーパー</p>
 													<p class="wh">ジャンボ版</p>
-													<p class="gr">(W30×H52cm)</p>
+													<p class="gr">(W32×H52cm)</p>
 													<p class="re"> &yen;11,000</p>
 												</th>
 											</tr>
