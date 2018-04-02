@@ -1,0 +1,344 @@
+@charset "utf-8";
+
+/*------------------------------------------------------------
+
+2009 takahama web css
+
+	File_name    : overview.css
+	Description  : stylesheet for company overview
+	
+	log
+	2012.03.15	 : created
+	
+-------------------------------------------------------------- */
+
+
+/*		会社概要
+===============================================================*/
+
+#container {
+	width: 100%;
+	margin-top: 125px;
+}
+
+.contents {
+	width: 100%;
+	float: none;
+	margin-top: 20px;
+	overflow: hidden;
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 10px;
+}
+ul.pan {
+	height: auto;
+	margin: 0px 5px 0px 5px;
+	font-size: 0.8em;
+}
+
+ul.pan li {
+	display: inline;
+	padding-right: 4px;
+	line-height: 2em;
+}
+ul.pan li:before {
+	content: ">";
+	padding-right: 10px;
+	vertical-align: middle;
+}
+
+ul.pan li:first-child:before {
+	content: "";
+	padding-right: 0;
+}
+
+ul.pan li a,
+ul.pan li span {
+	vertical-align: middle;
+	text-decoration: none;
+}
+
+.pan {
+	display: block;
+}
+
+.heading1_wrapper {
+	width: 100%;
+	overflow: hidden;
+}
+
+.heading1_wrapper h1 {
+	font-size: 40px;
+	line-height: 1.8;
+	color: #383838;
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+h2.heading {
+	font-size: 20px;
+	padding-bottom: 3px;
+	background: url(/common/img/dotted.png) repeat-x left bottom;
+	margin: 10px 0px 15px;
+}
+
+h3.heading3 {
+	margin: 0 0 0.5em;
+	padding: 0 13px;
+	font-size: 125%;
+	font-weight: bold;
+	color: #666;
+	border-left: 7px solid #F60;
+}
+.h4, h4 {
+	font-size: 18px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.h5, h5 {
+	font-size: 14px;
+	margin-bottom: 10px;
+	font-family: inherit;
+	font-weight: 500;
+	line-height: 1.1;
+	color: inherit;
+}
+ol, ul {
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+
+.contents .inner {
+	clear: both;
+	overflow: hidden;
+	padding: 10px 10px 40px 0px;
+	position: relative;
+}
+p {
+	margin: 0 0 10px;
+}
+img {
+	vertical-align: middle;
+}
+table {
+	background-color: transparent;
+	border-spacing: 0;
+	border-collapse: collapse;
+	margin-bottom: 1em;
+	font-size: inherit;
+}
+tbody {
+	display: table-row-group;
+	vertical-align: middle;
+	border-color: inherit;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, input, button, textarea, select, p, blockquote, th, td {
+	margin: 0;
+	padding: 0;
+}
+dl.list {
+	margin-top: 20px;
+}
+dl.list dt {
+	clear: left;
+	float: left;
+	font-weight: bold;
+}
+dl.list dd {
+	margin-bottom: 1em;
+	color: #333;
+	border-bottom: 1px dotted #d8d8d8;
+}
+
+
+
+/* 会社情報 */
+
+.company_info {
+	margin: 40px;
+}
+
+.company_info table {
+	width: 100%;
+}
+
+.company_info table th,
+.company_info table td {
+	border: 1px solid #ddd;
+	background: #fff;
+	padding-left: 2%;
+}
+
+.company_info table th {
+	text-align: left;
+	font-weight: bold;
+	padding: 5px;
+}
+.logo {
+	display: flex;
+	justify-content: center;
+}
+.logo_1 {
+	padding: 25px;
+	width: 30%;
+}
+.logo_2 {
+	padding: 25px;
+	width: 20%;
+}
+.logo_2:hover {
+	opacity: .8;
+}
+.logo_2 a{
+	display: block
+}
+
+
+/* 事業内容 */
+
+dl.list dt {
+	width: 11em;
+}
+
+dl.list dd {
+	padding-left: 11em;
+}
+
+
+/* Google Map */
+
+.map_wrapper {
+	border: 1px solid #ddd;
+}
+
+#map {
+	width: 100%;
+	height: 400px;
+}
+
+
+/* 案内図 */
+
+.company_address {
+	width: 290px;
+	float: left;
+}
+
+.company_address h4 {
+	font-weight: bold;
+}
+
+.company_address h5 {
+	margin-top: 5px;
+}
+
+.company_address ol {
+	margin-bottom: 1em;
+}
+
+.company_address li {
+	list-style: disc;
+	margin-left: 1.5em;
+}
+
+.company_address .comapny_address01 {
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+
+.company_address .comapny_address02 {
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+
+.company_address .comapny_address01 span,
+.company_address .comapny_address02 span {
+	color: #ff0019;
+}
+
+.btn_infomap {
+	display: block;
+	width: 240px;
+	height: 31px;
+	margin-top: 10px;
+	background: url(../img/company_btn.png) no-repeat left top;
+}
+
+.btn_infomap:hover {
+	background-position: 0px -31px;
+}
+
+.company_map {
+	width: 424px;
+	float: right;
+	padding-top: 3px;
+	margin-top: 20px;
+}
+
+
+/*		お問合せ先
+===============================================================*/
+
+.box_c {
+	padding-top: 120px;
+	margin-top: 20px;
+	border: 1px solid #eae7d2;
+	background: #fff url(/common/img/banner1.jpg) no-repeat top center;
+	border-radius: 3px;
+}
+
+.box_c span {
+	padding-right: 30px;
+}
+
+.box_c .bg {
+	padding: 20px 20px 10px;
+}
+
+.box_c .bg img {
+	vertical-align: text-top;
+}
+@media screen and (max-width: 750px) {
+	.pan {
+		display: none;
+	}
+	.company_address {
+		width: 100%;
+		clear: both;
+	}
+	.company_map {
+		width: 100%;
+		clear: both;
+		padding-top: 3px;
+		margin-top: 20px;
+	}
+}
+@media screen and (max-width: 600px) {
+	table, tbody, thead, tfoot, tr, th, td {
+		display: block;
+	}
+	.company_info table {
+		width: 100%;
+		clear: both;
+	}
+	.company_info table td {
+		border: 1px solid #ddd;
+		background: #fff;
+		padding-left: 2%;
+		padding: 15px;
+	}
+	.logo_1 {
+		padding: 20px;
+		width: 55%;
+	}
+	.logo_2 {
+		padding: 20px;
+		width: 40%;
+	}
+}
+
+@media screen and (max-width: 500px) {
+.company_info {
+	margin: 20px;
+}
+}
