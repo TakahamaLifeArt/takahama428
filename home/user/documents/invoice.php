@@ -13,7 +13,8 @@
 
 		$orders = 			$data[0];
 		$curdate = 			$orders['schedule3'];
-		$bill = 			$orders['bill'];	// 1:都度請求、　2:月締め請求
+//		$bill = 			$orders['bill'];	// 1:都度請求、　2:月締め請求
+		$bill = 2;	// 固定
 		$maintitle = 		$orders['maintitle'];
 		$invoicenote = 		$orders['invoicenote'];
 		$ordertype = 		$orders['ordertype'];

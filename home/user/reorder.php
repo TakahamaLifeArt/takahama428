@@ -240,6 +240,11 @@ foreach($p as $category_name=>$val){
 					</table>
 				</div>
 			</div>
+			
+			<div class="btnfld_download">
+				<button class="btn_gr btn" id="btn_bill" data-order-id="<?php echo $orderId; ?>"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><span class="txtbld"><span style="font-size: 1.2rem;margin-right: .2rem;">請求書</span>ダウンロード(PDF)</span></button>
+				<button class="btn_gr btn" id="btn_invoice" data-order-id="<?php echo $orderId; ?>"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><span class="txtbld"><span style="font-size: 1.2rem;margin-right: .2rem;">納品書</span>ダウンロード(PDF)</span></button>
+			</div>
 
 			<div class="caution">
 				<h2>同じアイテムで追加・再注文する</h2>
@@ -255,6 +260,8 @@ foreach($p as $category_name=>$val){
 		</div>
 	</div>
 
+	<div id="printform_wrapper"><iframe id="printform" name="printform"></iframe></div>
+	
 	<footer class="page-footer">
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
 	</footer>
@@ -264,6 +271,7 @@ foreach($p as $category_name=>$val){
 	<div id="overlay-mask" class="fade"></div>
 
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
+	<script type="text/javascript" src="./js/history.js"></script>
 </body>
 
 </html>

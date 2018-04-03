@@ -4,6 +4,7 @@
 
 File_name	: my_reorder.css
 log			: 2017-12-18	created
+			: 2018-04-04 請求書と納品書のダウンドード機能追加
 
 -------------------------------------------------------------- */
 
@@ -296,6 +297,35 @@ td, th {
 }
 
 
+/*		納品書・請求書
+===============================================================*/
+#printform_wrapper {
+	display: none;
+	overflow: hidden;
+}
+
+.btnfld_download {
+	font-size: 1rem;
+	padding: 10px 0;
+	text-align: center;
+	width: 100%;
+	margin: 0 auto;
+	display: flex;
+}
+.btn_gr {
+	background-color: #e5e5e5;
+}
+.fa-file-pdf-o {
+	color: #dc0000;
+	background: #fff;
+	margin-right: 10px;
+}
+.txtbld {
+	color: #333;
+	font-weight: bold;
+}
+
+
 
 @media screen and (max-width: 768px) {
 	.navi_inner_2 {
@@ -416,6 +446,9 @@ td, th {
 		border: none;
 		word-break: break-all;
 		width: 100%;
+	}
+	.btnfld_download {
+		display: block;
 	}
 
 }
