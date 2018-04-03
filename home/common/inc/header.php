@@ -54,7 +54,7 @@ if( empty($_SESSION['me']) ){
 				<i class="fa fa-phone" aria-hidden="true"></i>
 				<p>
 					<em>0120-130-428</em>
-					<span>営業時間：平日10:00-18:00</span>
+					<span>月〜金 10:00〜18:00 (土日祝除く)</span>
 				</p>
 			</a>
 				</li>
