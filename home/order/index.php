@@ -450,63 +450,62 @@ $_version = time();
 
 						<!--デザインパターン 1-->
 						<div class="cart_box">
-							<div class="item_wrap">
-								<div class="item_name_box">
-									<p>アイテム：<span class="code">5001</span><span class="name"></span></p>
-								</div>
-								<div class="color_diff">
-									<div class="item_info_order">
-										<div class="item_color_cart">
-											<p class="cart_fb"></p>
-											<p class="color_name"></p>
-											<img src="" class="thumb">
+								<div class="item_wrap">
+									<div class="item_name_box">
+										<p>アイテム：<span class="code">5001</span><span class="name"></span></p>
+									</div>
+									<div class="color_diff">
+										<div class="item_info_order">
+											<div class="item_color_cart">
+												<p class="cart_fb"></p>
+												<p class="color_name"></p>
+												<img src="" class="thumb">
+											</div>
+											<table class="size_count">
+												<tbody>
+													<tr>
+														<td class="cart_fb line_lft">サイズ</td>
+														<td class="cart_fb">枚数</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td></td>
+													</tr>
+												</tbody>
+											</table>
+											<div class="ch_box">
+												<button class="btn btn-outline-warning waves-effect ch_btn">変更</button>
+												<button class="btn btn-outline-danger waves-effect del_btn">削除</button>
+											</div>
 										</div>
-										<table class="size_count">
-											<tbody>
-												<tr>
-													<td class="cart_fb">サイズ</td>
-													<td class="cart_fb">枚数</td>
-												</tr>
-												<tr>
-													<td></td>
-													<td></td>
-												</tr>
-											</tbody>
-										</table>
-										<div class="ch_box">
-											<button class="btn btn-outline-warning waves-effect ch_btn">変更</button>
-											<button class="btn btn-outline-danger waves-effect del_btn">削除</button>
-										</div>
+
 									</div>
 
+									<div class="item_info_order_3">
+										<button class="btn add_btn chg_btn alter_print btn-outline-warning"><i class="fa fa-plus mr-1" aria-hidden="true"></i> プリントの変更</button>
+									</div>
 								</div>
 
-								<div class="item_info_order_3">
-									<button class="btn add_btn alter_print"><i class="fa fa-plus mr-1" aria-hidden="true"></i> プリントの変更</button>
+								<div class="item_info_order_2">
+									<div>
+										<p class="cart_fb">プリント情報</p>
+									</div>
+									<table class="print_info">
+										<tbody>
+											<tr>
+												<td>前</td>
+												<td>2色</td>
+												<td>シルクスクリーン
+													<br>(通常サイズ)</td>
+											</tr>
+										</tbody>
+									</table>
 								</div>
-							</div>
 
-							<div class="item_info_order_2">
-								<div>
-									<p class="cart_fb">プリント情報</p>
+								<div class="cart_price_min">
+									<p>枚数:<span>0</span>枚</p>
+									<p class="txt_ps">小計金額:<span>0</span>円(税抜)</p>
 								</div>
-								<table class="print_info">
-									<tbody>
-										<tr>
-											<td>前</td>
-											<td>2色</td>
-											<td>シルクスクリーン
-												<br>(通常サイズ)</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-
-							<div class="cart_price_min">
-								<p>枚数:<span>0</span>枚</p>
-								<p>小計金額:<span>0</span>円(税抜)</p>
-							</div>
-
 							<button class="add_btn_or btn add_item">同じデザインで<br>別のアイテムを追加</button>
 						</div>
 
@@ -517,7 +516,7 @@ $_version = time();
 							<p class="note"><span class="red_mark">※</span>お見積もりは概算です。デザインの内容によって変更になる場合がございます。</p>
 						</div>
 
-						<button class="add_btn_gr btn" id="add_design">別のデザインで<br>アイテムを選ぶ</button>
+						<!--						<button class="add_btn_gr btn" id="add_design">別のデザインで<br>アイテムを選ぶ</button>-->
 
 						<section id="manuscript">
 							<h3>デザインデータ入稿</h3>

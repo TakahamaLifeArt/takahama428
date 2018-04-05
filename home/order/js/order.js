@@ -1826,7 +1826,7 @@ $(function () {
 							optName = printOption.hasOwnProperty(info.method)? '<br>'+printOption[info.method][info.option]: '',
 							inkCount = info.ink==4? '4色以上': info.ink+'色';
 						
-						printInfo += '<tr><td>'+info.area+'</td><td>'+inkCount+'</td>' +
+						printInfo += '<tr class="line_col"><td class="line_lft">位置</td><td class="line_lft">色数</td><td>プリント方法</td></tr><tr><td class="line_lft">'+info.area+'</td><td class="line_lft">'+inkCount+'</td>' +
 							'<td>'+printName[info.method]+'<br>'+printSize[info.method][info.size]+optName+'</td></tr>';
 					}, this[face]);
 				}, this[posId]);
@@ -1896,7 +1896,7 @@ $(function () {
 
 						Object.keys(this[itemId]['color'][i]['vol']).forEach(function (sizeName) {
 							sizeCount += '<tr>';
-							sizeCount += '<td>'+sizeName+'</td>';
+							sizeCount += '<td class="line_lft">'+sizeName+'</td>';
 							sizeCount += '<td>'+this[sizeName]['amount']+'枚</td>';
 							sizeCount += '</tr>';
 
@@ -2432,7 +2432,7 @@ $(function () {
 				z[keys[index]] = $.getStorage(key);
 				f[key].value = JSON.stringify(z[keys[index]]);
 			});
-			$('#orderform .attach').html(attach);
+			$('#orderform').append(attach);
 
 			// 注文アイテムの枚数と金額
 			orderItem = $.itemPrice(z.items);
