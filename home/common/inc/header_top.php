@@ -23,7 +23,7 @@ if( empty($_SESSION['me']) ){
 
 
 	<div class="bar_top">
-		<p class="top_ttl">オリジナルTシャツのプリント作成、最短即日発送！</p>
+		<h1 class="top_ttl">オリジナルTシャツのプリント作成、最短即日発送！</h1>
 	</div>
 
 	<nav class="navbar navbar-toggleable-xl fixed-top navbar-light bg-faded">

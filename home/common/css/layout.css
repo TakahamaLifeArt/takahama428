@@ -292,6 +292,25 @@ nav .list-group .list-group-item a {
 	border-radius: .25rem;
 }
 
+.top_ttl {
+	text-align: left;
+	font-size: 0.8rem;
+	font-weight: bold;
+	padding-top: 3px;
+	padding-left: 10px;
+	padding-bottom: 3px;
+	margin: 0 auto;
+	width: 100%;
+	max-width: 1050px;
+	color: #fff;
+}
+
+.bar_top {
+	width: 100%;
+	margin: 0 auto;
+	background: #F57C00;
+}
+
 .sp_logo{
 	width:89px;
 }
@@ -561,14 +580,6 @@ section,
 	width: 8%;
 	box-shadow: none;
 	margin: 2% 2% 4%;
-}
-
-.top_ttl {
-	text-align: center;
-	font-size: 20px;
-	font-weight: bold;
-	margin-bottom: 1%;
-	margin-top: 3%;
 }
 
 .rank_ttl {
@@ -1264,7 +1275,7 @@ footer.page-footer ul li .fa {
 	height: 42px;
 	display: flex;
 	position: absolute;
-	top: 85px;
+	top: 105px;
 	right: 0;
 	left: 0;
 	z-index: 1020;
