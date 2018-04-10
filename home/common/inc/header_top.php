@@ -2,9 +2,6 @@
 /**
  * カートの状態取得とセッション開始
  */
-require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/orders.php';
-$order = new Orders();
-
 if( empty($_SESSION['me']) ){
 	$signinState = 'ログイン';
 	$signinName = '';
