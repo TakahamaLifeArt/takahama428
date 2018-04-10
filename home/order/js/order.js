@@ -1996,7 +1996,9 @@ $(function () {
 
 				if (orderItem.amount==0) {
 					$.setStorage('sum', {'item':0, 'volume':0, 'mass':0, 'print':0, 'tax':0, 'total':0});
-					d.reject();
+					$.estimate().then(function(){
+						d.reject();
+					});
 				} else {
 					// 量販単価の適用を判定
 					if (sum.volume > 149 && sum.mass!=1) {
@@ -2432,7 +2434,7 @@ $(function () {
 				z[keys[index]] = $.getStorage(key);
 				f[key].value = JSON.stringify(z[keys[index]]);
 			});
-			$('#orderform').append(attach);
+			$('#orderform .attach').append(attach);
 
 			// 注文アイテムの枚数と金額
 			orderItem = $.itemPrice(z.items);
