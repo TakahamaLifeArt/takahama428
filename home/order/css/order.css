@@ -1757,12 +1757,6 @@ input[type="password"] {
 	margin: 0 auto;
 }
 
-.modal-body h3 {
-	font-size: 1.4rem;
-	font-weight: bold;
-	margin-bottom: 20px;
-}
-
 #item_left {
 	float: left;
 	margin-bottom: 40px;
@@ -1853,7 +1847,7 @@ input[type="password"] {
 	border-radius: 30px;
 	padding: 11px 20px;
 	font-weight: normal;
-	width: 230px;
+	width: 280px;
 	margin: 0 auto;
 	margin-bottom: 20px;
 }
@@ -2131,6 +2125,18 @@ input[type="password"] {
 .print_rec img {
 	margin-bottom: 4px;
 	margin-right: 3px;
+}
+
+.modal-body h2 {
+	font-size: 1.2rem;
+	font-weight: bold;
+	margin-top: 20px;
+}
+
+.modal-body h3 {
+	font-size: 1rem;
+	font-weight: bold;
+	margin-top: 20px;
 }
 
 .modal-body h4 {

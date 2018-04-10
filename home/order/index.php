@@ -1190,9 +1190,9 @@ $_version = time();
 							</div>
 
 							<div id="user_policy" class="modal_style">
-								<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>ご利用規約を見る
+								<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>ご利用規約・プライバシーポリシー
 							</div>
-							<label for="agree"><input type="checkbox" id="agree">ご利用規約を確認して同意しました。</label>
+							<label for="agree"><input type="checkbox" id="agree">ご利用規約・プライバシーポリシーを確認して同意しました。</label>
 						</div>
 
 					</section>

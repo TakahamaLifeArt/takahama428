@@ -2,56 +2,57 @@
 	<div class="row hidden-xs-down">
 		<div class="col">
 			<div class="row hidden-md-down">
-		<div class="col-6">
-			<h4 class="title item_ttl">アイテム</h4>
-			<div class="footer_item">
-			<ul class="item_ul">
-				<li><a href="/items/category/t-shirts/">Tシャツ</a></li>
-				<li><a href="/items/category/polo-shirts/">ポロシャツ</a></li>
-				<li><a href="/items/category/towel/">タオル</a></li>
-				<li><a href="/items/category/sportswear/">スポーツウェア</a></li>
-				<li><a href="/items/category/sweat/">パーカー</a></li>
-				<li><a href="/items/category/baby/">ベビー</a></li>
-				<li><a href="/items/category/goods/">記念品</a></li>
-			</ul>
-			<ul class="item_ul">
-				<li><a href="/items/category/outer/">ブルゾン</a></li>
-				<li><a href="/items/category/cap/">キャップ</a></li>
-				<li><a href="/items/category/long-shirts/">長袖Tシャツ</a></li>
-				<li><a href="/items/category/tote-bag/">トートバッグ</a></li>
-				<li><a href="/items/category/ladys/">レディース</a></li>
-				<li><a href="/items/category/overall/">つなぎ</a></li>
-				<li><a href="/items/category/apron/">エプロン</a></li>
-			</ul>
-		</div>
-		</div>
-		<div class="col-3">
-			<h4 class="title item_ttl_2">プリントについて</h4>
-			<div class="footer_print">
-			<ul>
-				<li><a href="/guide/orderflow.php">注文の流れ</a></li>
-				<li><a href="/price/estimate.php">10秒見積もり</a></li>
-				<li><a href="/design/designguide.php">デザイン入稿方法</a></li>
-				<li><a href="/design/printing.php">プリント方法</a></li>
-				<li><a href="/order/express/">お急ぎの方</a></li>
-				<li><a href="/delivery/">お届け日を調べる</a></li>
-			</ul>
+				<div class="col-6">
+					<h4 class="title item_ttl">アイテム</h4>
+					<div class="footer_item">
+						<ul class="item_ul">
+							<li><a href="/items/category/t-shirts/">Tシャツ</a></li>
+							<li><a href="/items/category/polo-shirts/">ポロシャツ</a></li>
+							<li><a href="/items/category/towel/">タオル</a></li>
+							<li><a href="/items/category/sportswear/">スポーツウェア</a></li>
+							<li><a href="/items/category/sweat/">パーカー</a></li>
+							<li><a href="/items/category/baby/">ベビー</a></li>
+							<li><a href="/items/category/goods/">記念品</a></li>
+						</ul>
+						<ul class="item_ul">
+							<li><a href="/items/category/outer/">ブルゾン</a></li>
+							<li><a href="/items/category/cap/">キャップ</a></li>
+							<li><a href="/items/category/long-shirts/">長袖Tシャツ</a></li>
+							<li><a href="/items/category/tote-bag/">トートバッグ</a></li>
+							<li><a href="/items/category/ladys/">レディース</a></li>
+							<li><a href="/items/category/overall/">つなぎ</a></li>
+							<li><a href="/items/category/apron/">エプロン</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-3">
+					<h4 class="title item_ttl_2">プリントについて</h4>
+					<div class="footer_print">
+						<ul>
+							<li><a href="/guide/orderflow.php">注文の流れ</a></li>
+							<li><a href="/price/estimate.php">10秒見積もり</a></li>
+							<li><a href="/design/designguide.php">デザイン入稿方法</a></li>
+							<li><a href="/design/printing.php">プリント方法</a></li>
+							<li><a href="/order/express/">お急ぎの方</a></li>
+							<li><a href="/delivery/">お届け日を調べる</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-3">
+					<h4 class="title item_ttl_2">会社について</h4>
+					<div class="footer_com">
+						<ul>
+							<li><a href="/corporate/overview.php">会社概要</a></li>
+							<li><a href="/app/WP/thanks-blog">お客様ブログ</a></li>
+							<li><a href="/app/WP">スタッフブログ</a></li>
+							<li><a href="/reason/speed.php">早い理由</a></li>
+							<li><a href="/corporate/transactions.php">特定商取引法</a></li>
+							<li><a href="/sitemap/">サイトマップ</a></li>
+							<li><a href="/corporate/privacy-policy.php">プライバシーポリシー</a></li>
+						</ul>
+					</div>
+				</div>
 			</div>
-		</div>
-		<div class="col-3">
-			<h4 class="title item_ttl_2">会社について</h4>
-			<div class="footer_com">
-			<ul>
-				<li><a href="/corporate/overview.php">会社概要</a></li>
-				<li><a href="/app/WP/thanks-blog">お客様ブログ</a></li>
-				<li><a href="/app/WP">スタッフブログ</a></li>
-				<li><a href="/reason/speed.php">早い理由</a></li>
-				<li><a href="/corporate/transactions.php">特定商取引法</a></li>
-				<li><a href="/sitemap/">サイトマップ</a></li>
-			</ul>
-			</div>
-		</div>
-		</div>
 		</div>
 		<div class="col-4 hidden-md-down footer_tel_fax">
 			<p class="tel_red"><a href="tel:0120130428">TEL : 0120-130-428</a><span class="min"><br>受付時間：平日10:00-18:00</span></p>
@@ -101,59 +102,60 @@
 			</ul>-->
 		</div>
 	</div>
-	
+
 	<div class="hidden-lg-up hidden-xs-down" style="display:flex;">
-	<div class="col-6">
-		<h4 class="title item_ttl">アイテム</h4>
-		<div class="footer_item">
-			<ul class="item_ul">
-				<li><a href="/items/category/t-shirts/">Tシャツ</a></li>
-				<li><a href="/items/category/polo-shirts/">ポロシャツ</a></li>
-				<li><a href="/items/category/towel/">タオル</a></li>
-				<li><a href="/items/category/sportswear/">スポーツウェア</a></li>
-				<li><a href="/items/category/sweat/">パーカー</a></li>
-				<li><a href="/items/category/baby/">ベビー</a></li>
-				<li><a href="/items/category/goods/">記念品</a></li>
-			</ul>
-			<ul class="item_ul">
-				<li><a href="/items/category/outer/">ブルゾン</a></li>
-				<li><a href="/items/category/cap/">キャップ</a></li>
-				<li><a href="/items/category/long-shirts/">長袖Tシャツ</a></li>
-				<li><a href="/items/category/tote-bag/">トートバッグ</a></li>
-				<li><a href="/items/category/ladys/">レディース</a></li>
-				<li><a href="/items/category/overall/">つなぎ</a></li>
-				<li><a href="/items/category/apron/">エプロン</a></li>
-			</ul>
+		<div class="col-6">
+			<h4 class="title item_ttl">アイテム</h4>
+			<div class="footer_item">
+				<ul class="item_ul">
+					<li><a href="/items/category/t-shirts/">Tシャツ</a></li>
+					<li><a href="/items/category/polo-shirts/">ポロシャツ</a></li>
+					<li><a href="/items/category/towel/">タオル</a></li>
+					<li><a href="/items/category/sportswear/">スポーツウェア</a></li>
+					<li><a href="/items/category/sweat/">パーカー</a></li>
+					<li><a href="/items/category/baby/">ベビー</a></li>
+					<li><a href="/items/category/goods/">記念品</a></li>
+				</ul>
+				<ul class="item_ul">
+					<li><a href="/items/category/outer/">ブルゾン</a></li>
+					<li><a href="/items/category/cap/">キャップ</a></li>
+					<li><a href="/items/category/long-shirts/">長袖Tシャツ</a></li>
+					<li><a href="/items/category/tote-bag/">トートバッグ</a></li>
+					<li><a href="/items/category/ladys/">レディース</a></li>
+					<li><a href="/items/category/overall/">つなぎ</a></li>
+					<li><a href="/items/category/apron/">エプロン</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-3">
+			<h4 class="title item_ttl_2">プリントについて</h4>
+			<div class="footer_print">
+				<ul>
+					<li><a href="/guide/orderflow.php">注文の流れ</a></li>
+					<li><a href="/price/estimate.php">10秒見積もり</a></li>
+					<li><a href="/design/designguide.php">デザイン入稿方法</a></li>
+					<li><a href="/design/printing.php">プリント方法</a></li>
+					<li><a href="/order/express/">お急ぎの方</a></li>
+					<li><a href="/delivery/">お届け日を調べる</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-3">
+			<h4 class="title item_ttl_2">会社について</h4>
+			<div class="footer_com">
+				<ul>
+					<li><a href="/corporate/overview.php">会社概要</a></li>
+					<li><a href="www.takahama428.com/app/WP/thanks-blog">お客様ブログ</a></li>
+					<li><a href="www.takahama428.com/app/WP">スタッフブログ</a></li>
+					<li><a href="/reason/speed.php">早い理由</a></li>
+					<li><a href="/corporate/transactions.php">特定商取引法</a></li>
+					<li><a href="/sitemap/">サイトマップ</a></li>
+					<li><a href="/corporate/privacy-policy.php">プライバシーポリシー</a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
-	<div class="col-3">
-		<h4 class="title item_ttl_2">プリントについて</h4>
-		<div class="footer_print">
-			<ul>
-				<li><a href="/guide/orderflow.php">注文の流れ</a></li>
-				<li><a href="/price/estimate.php">10秒見積もり</a></li>
-				<li><a href="/design/designguide.php">デザイン入稿方法</a></li>
-				<li><a href="/design/printing.php">プリント方法</a></li>
-				<li><a href="/order/express/">お急ぎの方</a></li>
-				<li><a href="/delivery/">お届け日を調べる</a></li>
-			</ul>
-		</div>
-	</div>
-	<div class="col-3">
-		<h4 class="title item_ttl_2">会社について</h4>
-		<div class="footer_com">
-			<ul>
-				<li><a href="/corporate/overview.php">会社概要</a></li>
-				<li><a href="www.takahama428.com/app/WP/thanks-blog">お客様ブログ</a></li>
-				<li><a href="www.takahama428.com/app/WP">スタッフブログ</a></li>
-				<li><a href="/reason/speed.php">早い理由</a></li>
-				<li><a href="/corporate/transactions.php">特定商取引法</a></li>
-				<li><a href="/sitemap/">サイトマップ</a></li>
-			</ul>
-		</div>
-	</div>
-	</div>
-	
+
 	<div class="hidden-lg-up hidden-xs-down mt-2 foot_sns_tel">
 		<h4 class="title item_ttl_3">SNS</h4>
 		<div class="row">
@@ -266,9 +268,9 @@
 			?>
 
 			<p><span>全スタッフとお客様の幸せを、実現します。</span></p>
-		</div>
+	</div>
 
-		<!--<div class="col-sm-6">
+	<!--<div class="col-sm-6">
 			<div class="row">
 				<p class="col text-left pl-3"><a href="tel:0120130428"><span><i class="fa fa-phone" aria-hidden="true"></i></span>0120-130-428</a></p>
 				<p class="col text-left pl-5"><span>受付時間：平日10:00-18:00</span></p>
@@ -277,7 +279,7 @@
 				<p class="col text-left pl-5"><span>受付時間：24時間受付</span></p>
 			</div>
 		</div>-->
-	</div>
+</div>
 
 
 <div class="footer-copyright">
