@@ -334,6 +334,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							</div>
 						</div>
 					</div>
+			</div>
 
 
 					<!--
