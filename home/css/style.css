@@ -85,8 +85,21 @@
 	font-weight: bold;
 	margin-bottom: 0rem;
 }
-
+.carousel-item .text_01_1 {
+	font-size: 60px;
+	font-weight: bold;
+	margin-bottom: 0rem;
+}
+.carousel-item .text_01_2 {
+	font-size: 60px;
+	font-weight: bold;
+	margin-bottom: 0rem;
+}
 .carousel-item .text_02 {
+	font-size: 30px;
+	font-weight: bold;
+}
+.carousel-item .text_02_1 {
 	font-size: 30px;
 	font-weight: bold;
 }
@@ -181,7 +194,7 @@
 
 /* top 2 */
 
-.item_category{
+.item_category {
 	margin-top: 30px;
 }
 
@@ -384,11 +397,13 @@
 	display: block;
 	margin-bottom: 5%;
 }
-.carousel-item .psn_btn{
+
+.carousel-item .psn_btn {
 	margin-top: 5%;
 }
 
-button, html [type=button] {
+button,
+html [type=button] {
 	-webkit-appearance: unset;
 }
 
@@ -490,11 +505,31 @@ button, html [type=button] {
 		font-size: 24px;
 		font-weight: bold;
 	}
+	.carousel-item .text_01_1 {
+		font-size: 24px;
+		font-weight: bold;
+	}
+	.carousel-item .text_01_2 {
+		font-size: 20px;
+		font-weight: bold;
+	}
 
 	.carousel-item .text_02 {
 		font-size: 14px;
 		font-weight: bold;
 	}
+
+	.carousel-item .text_02_1 {
+		font-size: 18px;
+		font-weight: bold;
+		margin-top: 23px;
+	}
+
+	.item_category .top_p {
+		text-align: center;
+		margin: 0 10px;
+	}
+
 	/* 告知文(sp) */
 	#option {
 		width: 98%;
@@ -589,6 +624,15 @@ button, html [type=button] {
 	.txt_space {
 		margin: 0px 0 10px 4rem;
 	}
+	.btn-info {
+		background: #33b5e5;
+		width: 260px;
+		text-align: center;
+		margin: 0 auto;
+		display: block;
+		margin-bottom: 5%;
+	}
+
 }
 
 @media (max-width: 670px) {
@@ -602,7 +646,7 @@ button, html [type=button] {
 	.bk_txt {
 		width: 70%;
 	}
-	
+
 	.top_3_wrap .col .top_3 p:first-child {
 		padding-top: 0rem;
 		margin-top: 50px;
@@ -634,7 +678,7 @@ button, html [type=button] {
 		margin: 3px;
 	}
 	.btn-info {
-		padding: 5%;
+		padding: 3%;
 	}
 
 }
