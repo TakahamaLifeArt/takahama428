@@ -303,6 +303,7 @@ nav .list-group .list-group-item a {
 	width: 100%;
 	max-width: 1050px;
 	color: #fff;
+	line-height: 1.2;
 }
 
 .bar_top {
@@ -1676,7 +1677,8 @@ footer.page-footer ul li .fa {
 
 @media screen and (max-width: 500px) {
 	.top_ttl {
-		font-size: 1rem;
+		font-size: .7rem;
+		line-height: 1.5;
 	}
 	.top_3 {
 		background: #fff;
