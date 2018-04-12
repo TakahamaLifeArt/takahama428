@@ -3,12 +3,6 @@
 
 	File_name	: ordermail.php
 	Description	: takahama428 web site send order mail class
-	Hash		: Session data
-					$_SESSION['orders']['items'];		商品（廃止）
-					$_SESSION['orders']['attach'];		添付ファイル（廃止）
-					$_SESSION['orders']['customer'];	ユーザー（廃止）
-					$_SESSION['orders']['options'];		オプション（廃止）
-					$_SESSION['orders']['sum'];			合計値（商品代、プリント代、枚数）（廃止）
 	Charset		: utf-8
 	Log			: 2011.03.26 created
 				  2012.03.14 プリント情報の本文生成を更新
@@ -21,6 +15,7 @@
 				  2017-11-07 注文データの登録処理を更新
 				  2017-11-10 日本語のアップロードファイル名のエスケープ処理を回避
 				  2017-12-19 注文フロー改修に伴う更新
+				  2018-04-01 アップロードファイル名の変更を廃止
 
 -------------------------------------------------------------- */
 require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/config.php';
@@ -62,7 +57,7 @@ class Ordermail extends Conndb{
 				$uploadDir = basename(dirname($uploadfilename[0], 1));
 			}
 			
-			// 受注システムから {orderid:受注番号, designfile[リネーム後のアップロードファイル名] } を受け取る
+			// 受注システムから {orderid:受注番号, customerid:顧客ID} を受け取る
 			$registered = $this->insertOrderToDB($obj, $uploadDir);
 			$systemData = $registered[0];
 			$order_id = $systemData['orderid'];
@@ -281,20 +276,18 @@ class Ordermail extends Conndb{
 				$order_info_admin = "";
 				$order_info_user = "";
 			} else {
-				$uploadCount = count($systemData['designfile']);
-				for ($a=0; $a<$uploadCount; $a++) {
-					$order_info_admin .= "◇ファイル名：　"._ORDER_DOMAIN."/system/attachfile/".$order_id."/".$systemData['designfile'][$a]."\n";
-				}
+				$uploadCount = count($uploadfilename);
 				if ($uploadCount===0) {
 					$order_info_admin .= "入稿データのアップロードが正常に完了していません。\n";
-				}
-				$order_info_admin .= "----------\n\n";
-				
-				for ($b=0; $b<count($uploadfilename); $b++) {
-					$fname = basename($uploadfilename[$b]);
-					$order_info_user .= "◇ファイル名：　".rawurldecode($fname)."\n";
-					$order_info_admin .= "◇元ファイル名：　".rawurldecode($fname)."\n";
-					$order_info_admin .= "------------------------------------------\n\n";
+					$order_info_admin .= "----------\n\n";
+				} else {
+					for ($a=0; $a<$uploadCount; $a++) {
+						$fname = basename($uploadfilename[$a]);
+						$order_info_user .= "◇ファイル名：　".rawurldecode($fname)."\n";
+						$order_info_admin .= "◇ファイル名：　"._ORDER_DOMAIN."/system/attachfile/".$order_id."/".$fname."\n";
+						$order_info_admin .= "◇元ファイル名：　".rawurldecode($fname)."\n";
+						$order_info_admin .= "------------------------------------------\n\n";
+					}
 				}
 				
 				if (empty($order_id)) {
@@ -324,13 +317,13 @@ class Ordermail extends Conndb{
 			$order_info_admin .= "┗━━━━━━━━┛\n";
 			if (count($registered)==1) {
 				$order_info_admin .= "◇受注No.：　なし\n";
-			}
-			for ($i=0; $i<count($registered); $i++) {
-				if ($order_id==$registered[$i]['orderid']) continue;
-				$order_info_admin .= "◇受注No.：　".$registered[$i]['orderid']."\n";
+			} else {
+				for ($i=0; $i<count($registered); $i++) {
+					if ($order_id==$registered[$i]['orderid']) continue;
+					$order_info_admin .= "◇受注No.：　".$registered[$i]['orderid']."\n";
+				}
 			}
 			$order_info_admin .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
-			
 			
 			$addition = array($order_info_admin, $order_info_user, $order_id);
 			
@@ -475,7 +468,7 @@ class Ordermail extends Conndb{
 	 * 受注システムに登録
 	 * @param {array} obj 注文情報 {$user, $design, $item, $option, $detail, $sum}
 	 * @param {array} uploadDir アップロードしたデザインファイルのディレクトリ
-	 * @return {array} [{orderid=>受注No. , designfile=>true|false}, ...]
+	 * @return {array} [{orderid=>受注No. , customerid=>顧客ID}, ...]
 	 */
 	private function insertOrderToDB($obj, $uploadDir){
 		$user = $obj['user'];
@@ -586,7 +579,7 @@ class Ordermail extends Conndb{
 		foreach ($designs as $designId=>$d1) {
 
 			// 同梱扱いで且つ新規ユーザーの場合、新規登録した顧客IDを使用
-			if (empty($customer_id) && $orderNumber===1) {
+			if (empty($customer_id) && $orderNumber>0) {
 				$customer_id = $res[0]['customerid'];
 				$data1 = array(
 					"customer_id"=>$customer_id,
@@ -990,7 +983,7 @@ class WebOrder {
 	 * @param {string} table テーブル名
 	 * @param {array} data 追加データの配列、若しくは注文伝票ID
 	 *
-	 * @return {array} {orderid=>受注No. , customerid=>顧客ID , designfile=>[ファイル名, ...]}
+	 * @return {array} {orderid=>受注No. , customerid=>顧客ID}
 	 */
 	private function insert($conn, $table, $data){
 		try{
@@ -1389,30 +1382,31 @@ class WebOrder {
 						$oldPath = $_SERVER['DOCUMENT_ROOT'].'/../../'._ORDER_VHOST.'/home/system/attachfile/'.$upDir;
 						$newPath = $_SERVER['DOCUMENT_ROOT'].'/../../'._ORDER_VHOST.'/home/system/attachfile/'.$orders_id;
 						
+						// 2018-04-01 廃止
 						// ファイル名を変更（design_受注ID_YYY-MM-DD_連番）
-						$fileName = array();
-						$up = 0;
-						$today = date('Y-m-d');
-						$root = $_SERVER['DOCUMENT_ROOT']."/";
-						if ($handle = opendir($oldPath)) {
-							setlocale(LC_ALL, 'ja_JP.UTF-8');
-							while (false !== ($f = readdir($handle))) {
-								if (is_dir($oldPath.'/'.$f)==false && $f != "." && $f != "..") {
-									$extension = pathinfo($f, PATHINFO_EXTENSION);
-									$newFileName = 'design_'.$orders_id.'_'.$today.'_'.$up.'.'.$extension;
-									if (rename($oldPath.'/'.$f, $oldPath.'/'.$newFileName)) {
-										$fileName[$up++] = $newFileName;
-									}
-								}
-							}
-							closedir($handle);
-						}
+//						$fileName = array();
+//						$up = 0;
+//						$today = date('Y-m-d');
+//						$root = $_SERVER['DOCUMENT_ROOT']."/";
+//						if ($handle = opendir($oldPath)) {
+//							setlocale(LC_ALL, 'ja_JP.UTF-8');
+//							while (false !== ($f = readdir($handle))) {
+//								if (is_dir($oldPath.'/'.$f)==false && $f != "." && $f != "..") {
+//									$extension = pathinfo($f, PATHINFO_EXTENSION);
+//									$newFileName = 'design_'.$orders_id.'_'.$today.'_'.$up.'.'.$extension;
+//									if (rename($oldPath.'/'.$f, $oldPath.'/'.$newFileName)) {
+//										$fileName[$up++] = $newFileName;
+//									}
+//								}
+//							}
+//							closedir($handle);
+//						}
 						
 						// ディレクトリ名を受注IDに変更
 						$isUpload = rename($oldPath, $newPath);
 					}
 					
-					return array('orderid'=>$orders_id, 'customerid'=>$customer_id, 'designfile'=>$fileName);
+					return array('orderid'=>$orders_id, 'customerid'=>$customer_id);
 					break;
 
 				case 'orderitem':

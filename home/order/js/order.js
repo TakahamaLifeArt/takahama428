@@ -2434,7 +2434,7 @@ $(function () {
 				z[keys[index]] = $.getStorage(key);
 				f[key].value = JSON.stringify(z[keys[index]]);
 			});
-			$('#orderform .attach').append(attach);
+			$('#orderform .attach').html(attach);
 
 			// 注文アイテムの枚数と金額
 			orderItem = $.itemPrice(z.items);
@@ -2606,6 +2606,7 @@ $(function () {
 		} else {
 			u.pass = $('#pass').val();
 			f.user.value = JSON.stringify(u);
+			sessionStorage.removeItem('attach');
 			f.submit();
 		}
 	});
@@ -2763,7 +2764,7 @@ $(function () {
 		// 合計値
 //		sessionStorage.removeItem('sum');
 		
-		// 他のページからの繊維でカートを表示
+		// 他のページからの遷移でカートを表示
 		function showCart() {
 			$.curr.designId = 0;
 			$.curr.category = {};
