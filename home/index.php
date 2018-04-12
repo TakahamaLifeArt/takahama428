@@ -508,10 +508,10 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 		<section class="review_wrap">
 
 			<div class="review_le" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating" class="totalRate">
-				<p>お客様の評価 <br><small class="review_total_number">( 口コミ総数：<span itemprop="ratingCount">1,045</span>件 )</small>small></p>
+				<p>お客様の評価 <br><small class="review_total_number">( 口コミ総数：<span itemprop="ratingCount">1,045</span>件 )</small></p>
 					<div>
 						<img src="/common/img/home/review/sp_review_040.png" style="width: 75%; vertical-align:baseline;">
-						<span class="review_total_score"><span class="emph" itemprop="ratingCount">4.3</span> / 5.0</span>
+						<span class="review_total_score" style="font-size:.2px"><span class="emph" itemprop="ratingCount">4.3</span> / 5.0</span>
 					</div>
 					<a href="/userreviews/">
 						<div class="method_button">詳しく見る</div>
