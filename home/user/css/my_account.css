@@ -285,7 +285,7 @@ input.edit_profile {
 		text-align: inherit;
 	}
 	.form_table.me tbody th {
-		width: 80px;
+		width: 100%;
 		font-size: 1rem;
 	}
 	.form_table.addr tbody th,
@@ -305,6 +305,11 @@ input.edit_profile {
 	#deli1_table tbody input {
 		font-size: 12px;
 		height: 18px;
+		margin: 3px;
+	}
+	#pass_table tbody input {
+		font-size: 12px;
+		height: 32px;
 		margin: 3px;
 	}
 

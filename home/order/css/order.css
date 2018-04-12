@@ -101,6 +101,7 @@ ul.pan li span {
 	text-align: left;
 }
 
+/*
 body,
 div,
 dl,
@@ -130,6 +131,7 @@ td {
 	padding: 0;
 	box-sizing: inherit;
 }
+*/
 
 .step {
 	padding-bottom: 2rem;
@@ -2639,4 +2641,32 @@ input[type="password"] {
 
 .hidden {
 	display: none;
+}
+
+/*		header footer 調整
+===============================================================*/
+
+.navbar-nav .nav-item:first-child {
+	margin-right: 1rem;
+	margin-top: 18px;
+}
+
+.navbar-nav .nav-item .fa-phone + p em + span {
+	font-size: 0.8rem;
+	color: #000;
+	line-height: 35px;
+}
+
+
+.tel_red {
+	color: #dc0000;
+	font-weight: bold;
+	font-size: 24px;
+}
+.tel_red a{
+	font-weight: bold;
+}
+.fax {
+	font-weight: bold;
+	font-size: 24px;
 }
