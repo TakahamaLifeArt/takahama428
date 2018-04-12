@@ -400,6 +400,10 @@
 	margin-bottom: 5%;
 }
 
+.carousel-caption .btn-info{
+	font-size: 1rem;
+}
+
 .carousel-item .psn_btn {
 	margin-top: 5%;
 }
@@ -658,6 +662,9 @@ html [type=button] {
 		margin: 0 auto;
 		display: block;
 		margin-bottom: 5%;
+	}
+	.carousel-caption .btn-info{
+		font-size: .8rem;
 	}
 
 }

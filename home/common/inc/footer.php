@@ -56,7 +56,7 @@
 		</div>
 		<div class="col-4 hidden-md-down footer_tel_fax">
 			<p class="tel_red"><a href="tel:0120130428">TEL : 0120-130-428</a><span class="min"><br>受付時間：平日10:00-18:00</span></p>
-			<p>FAX : 03-5670-0730 <span class="min"><br>受付時間：24時間受付</span></p>
+			<p class="fax">FAX : 03-5670-0730 <span class="min"><br>受付時間：24時間受付</span></p>
 			<ul>
 				<li>
 					<a class="button_contact" href="/contact/">お問い合わせ</a>
