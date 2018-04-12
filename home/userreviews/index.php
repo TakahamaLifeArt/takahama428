@@ -263,7 +263,7 @@ $avg['img'] = getStar($avg['ratio']);
 		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
 		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
 		<meta property="fb:app_id" content="1605142019732010" />
-		<title>お客様ご利用レビュー ｜ オリジナルTシャツ【タカハマライフアート】</title>
+		<title>お客様ご利用レビュー　|　オリジナルTシャツ【タカハマライフアート】</title>
 		<link rel="shortcut icon" href="/icon/favicon.ico">
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 		<link rel="stylesheet" type="text/css" href="css/userreviews.css" media="screen" />
@@ -287,23 +287,23 @@ $avg['img'] = getStar($avg['ratio']);
 					<p class="sub">タカハマライフアートの評判・口コミ</p>
 				</div>
 
-				<div id="total" class="clearfix">
-					<h2>現在の総合評価</h2>
+				<div id="total" class="clearfix" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating" class="totalRate">
+					<h2>現在の総合評価 <small>(<span itemprop="ratingCount"><?php echo number_format($len);?></span>件)</small></h2>
 					<div id="total_inner">
 						<p id="totalstar"><img src="img/<?php echo $avg['img'];?>_l.png" width="170" height="31" alt="">
-							<?php echo $avg['ratio'];?>
+							<span itemprop="ratingValue"><?php echo $avg['ratio'];?></span>
 						</p>
 						<ul id="totalstar_inner">
 							<?php
-								$li = '';
-								for($i=0; $i<count($vote); $i++){
-									$li .= '<li>';
-									$li .= '<span class="point">'.$vote[$i]['title'].'</span>';
-									$li .= '<span class="star"><img src="img/'.$vote[$i]['img'].'.png" width="130" height="33" alt="">'.$vote[$i]['ratio'].'</span>';
-									$li .= '</li>';
-								}
-								echo $li;
-								?>
+							$li = '';
+							for($i=0; $i<count($vote); $i++){
+								$li .= '<li>';
+								$li .= '<span class="point">'.$vote[$i]['title'].'</span>';
+								$li .= '<span class="star"><img src="img/'.$vote[$i]['img'].'.png" width="130" height="33" alt="">'.$vote[$i]['ratio'].'</span>';
+								$li .= '</li>';
+							}
+							echo $li;
+							?>
 						</ul>
 					</div>
 				</div>

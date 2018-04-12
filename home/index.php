@@ -507,13 +507,16 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 
 				<section class="review_wrap">
 
-					<div class="review_le">
-						<p>お客様の評価</p>
-						<div><img src="/common/img/home/review/sp_review_total.png" style="width: 100%;"></div>
-						<a href="/userreviews/">
-							<div class="method_button">詳しく見る</div>
-						</a>
-					</div>
+					<div class="review_le" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating" class="totalRate">
+						<p>お客様の評価 <br><small class="review_total_number">( 口コミ総数：<span itemprop="ratingCount">1,045</span>件 )<small></p>
+							<div>
+								<img src="/common/img/home/review/sp_review_040.png" style="width: 75%; vertical-align:baseline;">
+								<span class="review_total_score"><span class="emph" itemprop="ratingCount">4.3</span> / 5.0</span>
+							</div>
+							<a href="/userreviews/">
+								<div class="method_button">詳しく見る</div>
+							</a>
+							</div>
 
 					<!--Carousel Wrapper-->
 					<div id="multi-item-example" class="carousel slide carousel-multi-item slide_wrap" data-ride="carousel">
