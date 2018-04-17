@@ -224,7 +224,7 @@ if(isset($_GET['oi'])){
 	<div id="overlay-mask" class="fade"></div>
 
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
-	<script src="//doozor.bitbucket.io/calendar/datepick_calendar.js"></script>
+	<script src="https://doozor.bitbucket.io/calendar/datepick_calendar.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
 	<script src="//ajaxzip3.github.io/ajaxzip3.js"></script>
 	<script src="/common/js/api.js"></script>
 	<script src="./js/reorder_day.js"></script>
