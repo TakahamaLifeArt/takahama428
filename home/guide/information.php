@@ -41,7 +41,17 @@
 				</ul>
 				<section>
 					<h1 class="headLine01">お知らせ</h1>
-					
+
+					<p id="a01" class="headLine03">【GW休業のお知らせ】</p>
+					<ul class="textUl">
+						<li>
+							<p>5月3日(木)から5月6日(日)の間、休業とさせて頂きます。
+								<br>休業期間中に頂きましたお問合せにつきましては、5月7日(月)以降対応させて頂きます。
+								<br>お急ぎのお客様はご注意ください。何卒よろしくお願い致します。
+							</p>
+						</li>
+					</ul>
+
 					<p id="a01" class="headLine03">【価格改定のお知らせ】</p>
 					<ul class="textUl">
 						<li>
@@ -52,7 +62,7 @@
 							</p>
 						</li>
 					</ul>
-					
+
 					<p id="a01" class="headLine03">【価格改定のお知らせ】</p>
 					<ul class="textUl">
 						<li>
