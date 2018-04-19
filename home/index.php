@@ -511,7 +511,7 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 						<p>お客様の評価 <br><small class="review_total_number">( 口コミ総数：<span itemprop="ratingCount">1,045</span>件 )</small></p>
 						<div>
 							<img src="/common/img/home/review/sp_review_040.png" style="width: 75%; vertical-align:baseline;">
-							<span class="review_total_score" style="font-size:.2px"><span class="emph" itemprop="ratingCount">4.3</span> / 5.0</span>
+							<p class="review_total_score" style=""><span class="emph" itemprop="ratingCount">4.3</span> / 5.0</p>
 						</div>
 						<a href="/userreviews/" style="display:block;" class="userreviews">
 							<div class="method_button">詳しく見る</div>
