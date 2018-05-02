@@ -10,7 +10,7 @@
 .carousel {
 	margin: 0 auto;
 	padding-top: 42px;
-	max-width: 2000px;
+/*	max-width: 2000px;*/
 }
 
 .carousel-control-next,
@@ -405,7 +405,7 @@
 }
 
 .carousel-item .psn_btn {
-	margin-top: 5%;
+	margin-top: 2%;
 }
 
 button,
@@ -450,19 +450,20 @@ html [type=button] {
 #Line005 {
 	color: #473932;
 	text-indent: 0px;
-	padding-top: 10px;
-	margin-top: 0px;
+	padding-top: 6px;
+	margin-top: 3px;
 	text-align: center;
-	font-size: 1.3em;
+	font-size: 1em;
+	margin-bottom: -5px;
 }
 
 #option p {
-	margin-top: 10px;
+	margin-top: 0px;
 	padding-left: 55px;
 	padding-right: 25px;
-	padding-bottom: 10px;
+	padding-bottom: 0px;
 	text-align: center;
-	font-size: 14px;
+	font-size: 12px;
 }
 
 /*		991px未満
@@ -510,6 +511,9 @@ html [type=button] {
 	}
 	.txt_space {
 		margin: 20px 0 10px -2rem;
+	}
+	.carousel-item .psn_btn {
+		margin-top: 4%;
 	}
 }
 
@@ -575,7 +579,8 @@ html [type=button] {
 		padding-top: 10px;
 		margin-top: 0px;
 		text-align: center;
-		font-size: 1.2em;
+		font-size: 1em;
+		margin-bottom: 5px;
 	}
 
 	.navi_inner_2 {

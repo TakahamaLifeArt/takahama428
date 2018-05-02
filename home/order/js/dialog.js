@@ -104,9 +104,9 @@ $(function(){
 	$('#upload_link').on("TAP_EVENT", function () {
 		var msg = '<div class="sale_txt">';
 		msg += '<div class="sale_block">';
-		msg += '<h3>ファイル転送サービスについて</h3>';
-		msg += '<p>ファイルアップロードできない場合は、 下記のファイル転送サービスをご利用ください。</p>';
-		msg += '<a href="http://up300.net/" target="_blank"><button class="btn btn-success fileinput-button waves-effect waves-light">ファイル転送サービスへ</button></a>';
+		msg += '<h3 style="margin-bottom:30px;text-align:center;">下記ボタンからご利用くださいませ</h3>';
+		msg += '<p style="display: none;">ファイルアップロードできない場合は、 下記のファイル転送サービスをご利用ください。</p>';
+		msg += '<a href="http://up300.net/" target="_blank"><button class="btn btn-success fileinput-button waves-effect waves-light" style="margin:0 auto;display:block;">ファイル転送サービスへ</button></a>';
 		msg += '</div>';
 		msg += '<div class="sale_block">';
 		msg += '<h3>使い方</h3>';

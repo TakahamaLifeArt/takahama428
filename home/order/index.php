@@ -521,8 +521,13 @@ $_version = time();
 					<section id="manuscript">
 						<h3>デザインデータ入稿</h3>
 						<div class="cart_inner">
+							<p class="note">外部<span style="font-weight:bold;">ファイル転送サービス</span>をご利用くださいませ。</p>
 
-							<form id="fileupload" name="fileupload" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="POST" enctype="multipart/form-data">
+							<div id="upload_link" class="btn btn-success" style="margin-bottom: 50px;">
+								<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>ファイル転送サービス
+							</div>
+
+							<form id="fileupload" name="fileupload" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="POST" enctype="multipart/form-data" style="display:none;">
 								<div class="fileupload-buttonbar">
 									<div>
 										<!-- The fileinput-button span is used to style the file input field as button -->
@@ -626,11 +631,8 @@ $_version = time();
 							</script>
 
 
-							<p class="ri_txt">最大容量：100MB</p>
-							<p class="note">ファイルアップロードできない場合は、下記のファイル転送サービスをご利用ください。</p>
-							<div id="upload_link" class="modal_style_line">
-								<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>ファイル転送サービス
-							</div>
+							<p class="ri_txt" style="display:none;">最大容量：100MB</p>
+
 
 							<h3>デザインに関する要望</h3>
 							<textarea id="note_design" class="demand" name="note_design" placeholder="例:前のデザイン「TAKAHAMA」を極太ゴシックで打ち替え , 後ろのデザインC22ブラックで着色"></textarea>
