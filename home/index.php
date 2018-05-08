@@ -104,6 +104,14 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 		</div>
 
 		<main class="container">
+<!--
+			<div style="text-align:  center;padding-top:  20px;margin-bottom:  30px;color: #d71414;font-size:  14px;">
+				<p style="font-size:16px; font-weight:bold;">【システムの不具合に関するお知らせ】</p>
+				<p style="margin-bottom:.5rem;">現在、HPの一部が正常にご覧いただけない状況が発生しております。</p>
+				<p style="margin-bottom:.5rem;">お急ぎの方は、お電話もしくはお問合せメールにてご対応させて頂きますので、お問い合わせください。</p>
+				<p style="margin-bottom:.5rem;">お客様には多大なるご迷惑、ご不便をおかけしておりますことを深くお詫び申し上げます。</p>
+			</div>
+-->
 			<?php
 		if (!empty(_EXTRA_NOTICE)) {
 			$extNotice = (_EXTRA_NOTICE);
@@ -124,6 +132,44 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 		?>
 
 				<div class="item_category">
+				
+					<div class="top_02">
+						<h2 class="rank_ttl">お届け日・見積もり計算</h2>
+						<p class="top_p">WEB上で、すぐにお届け日とオリジナルTシャツの概算を調べることができます。</p>
+
+						<div class="row outer top_3_wrap">
+
+							<div class="col bk">
+								<a href="/delivery/" class="check btn_01 top_3 top_item_flex">
+									<div class="bk_area">
+										<p class="top3_bu_txt">今注文すると<br><span class="big_font">この日に届く</span></p>
+									</div>
+									<div class="bk_area">
+										<div id="date">
+											<p>
+												<?php echo $fin['Month'];?>/
+												<?php echo $fin['Day'];?><span class="min_txt">(<?php echo $fin['weekname'];?>)</span></p>
+										</div>
+										<div class="tri_base">
+											<p class="btn_arrea">お届け日を調べる</p><span class="triangle1"></span></div>
+									</div>
+								</a>
+							</div>
+
+							<div class="col bk">
+								<a href="/price/estimate.php" class="check btn_01 top_3 top_item_flex">
+									<div class="top_3_img bk_img"><img src="/common/img/home/main/sp_top_three_estimate.png" width="100%"></div>
+									<div class="bk_txt">
+										<p class="top3_bu_txt">かんたん10秒<span class="big_font">見積もり</span></p>
+										<div class="tri_base">
+											<p class="btn_arrea txt_space">見積もりをする</p><span class="triangle1"></span></div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+					
+					
 					<h2 class="rank_ttl">アイテムカテゴリー</h2>
 					<p class="top_p">400種類以上の豊富なアイテムにお客様のデザインをオリジナルプリントできます。</p>
 
@@ -278,42 +324,6 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 						</div>
 						<a class="btn_or btn waves-effect waves-light" href="/items/category.php" type="button">アイテム一覧へ</a>
 					</section>
-
-					<div class="top_02">
-						<h2 class="rank_ttl">お届け日・見積もり計算</h2>
-						<p class="top_p">WEB上で、すぐにお届け日とオリジナルTシャツの概算を調べることができます。</p>
-
-						<div class="row outer top_3_wrap">
-
-							<div class="col bk">
-								<a href="/delivery/" class="check btn_01 top_3 top_item_flex">
-									<div class="bk_area">
-										<p class="top3_bu_txt">今注文すると<br><span class="big_font">この日に届く</span></p>
-									</div>
-									<div class="bk_area">
-										<div id="date">
-											<p>
-												<?php echo $fin['Month'];?>/
-												<?php echo $fin['Day'];?><span class="min_txt">(<?php echo $fin['weekname'];?>)</span></p>
-										</div>
-										<div class="tri_base">
-											<p class="btn_arrea">お届け日を調べる</p><span class="triangle1"></span></div>
-									</div>
-								</a>
-							</div>
-
-							<div class="col bk">
-								<a href="/price/estimate.php" class="check btn_01 top_3 top_item_flex">
-									<div class="top_3_img bk_img"><img src="/common/img/home/main/sp_top_three_estimate.png" width="100%"></div>
-									<div class="bk_txt">
-										<p class="top3_bu_txt">かんたん10秒<span class="big_font">見積もり</span></p>
-										<div class="tri_base">
-											<p class="btn_arrea txt_space">見積もりをする</p><span class="triangle1"></span></div>
-									</div>
-								</a>
-							</div>
-						</div>
-					</div>
 				</div>
 
 
