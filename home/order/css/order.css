@@ -265,7 +265,7 @@ h4 {
 	padding: 5%;
 }
 
-.item_info_order_2 .cart_fb{
+.item_info_order_2 .cart_fb {
 	padding: 1%;
 }
 
@@ -556,6 +556,31 @@ em {
 }
 
 .pay_sel label {
+	text-align: center;
+	font-size: 16px;
+}
+
+.pay_sel {
+	margin-bottom: 20px;
+}
+
+.imega_sel .note {
+	text-indent: 10px;
+}
+
+.imega_sel_02 .note {
+	text-indent: 10px;
+}
+
+.imega_sel {
+	margin-bottom: 20px;
+}
+
+.imega_sel input {
+	margin-right: .5rem;
+}
+
+.imega_sel label {
 	text-align: center;
 	font-size: 16px;
 }
@@ -957,12 +982,12 @@ th {
 }
 */
 
-.item_wrap{
+.item_wrap {
 	border: 1px solid #a5a5a5;
 	border-bottom: none;
 }
 
-.line_lft{
+.line_lft {
 	border-right: 1px solid #a5a5a5;
 }
 
@@ -986,7 +1011,8 @@ th {
 	position: relative;
 	flex: 0 0 100%;
 }
-.color_name{
+
+.color_name {
 	padding: 2px;
 	background: #eceae8;
 	border-bottom: 1px solid #eceae8;
@@ -1028,7 +1054,7 @@ th {
 	border: none;
 }
 
-.size_count tr{
+.size_count tr {
 	border-bottom: 1px solid #ccc;
 }
 
@@ -1036,13 +1062,14 @@ th {
 	border: none;
 	width: 100%;
 }
-.print_info td{
+
+.print_info td {
 	text-align: center;
 	padding: 5px 20px;
 	font-size: 0.8rem;
 }
 
-.print_info .line_col{
+.print_info .line_col {
 	background: #eceae8;
 }
 
@@ -1117,8 +1144,15 @@ th {
 	font-weight: bold;
 	display: inline-block;
 }
+
 #express_info {
 	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 8px;
+}
+
+#imega_ahead {
+	font-size: 14px;
 	font-weight: bold;
 	margin-bottom: 8px;
 }
@@ -1192,9 +1226,19 @@ th {
 	margin-right: 10px;
 }
 
+.imega_select {
+	margin-top: 30px;
+}
+
 .cart_inner {
 	padding: 2%;
 	margin-bottom: 5%;
+}
+
+
+.imega {
+	margin-bottom: 0;
+	padding-bottom: 0;
 }
 
 .cart_inner input[type="checkbox"] {
@@ -2499,19 +2543,19 @@ input[type="password"] {
 		padding: 6% 0 8%;
 		text-align: center;
 	}
-	
+
 	.cart_price_min {
 		padding: 1% 10px;
 	}
-	
+
 	.txt_ps {
 		margin: 0 0 0 10px;
 	}
-	
+
 	.cart_price_min p {
 		display: block;
 	}
-	
+
 	.point_s {
 		font-weight: bold;
 		color: #C60;
@@ -2663,9 +2707,11 @@ input[type="password"] {
 	font-weight: bold;
 	font-size: 24px;
 }
-.tel_red a{
+
+.tel_red a {
 	font-weight: bold;
 }
+
 .fax {
 	font-weight: bold;
 	font-size: 24px;
