@@ -1,6 +1,7 @@
 <?php
-	require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/conndb.php';
-	require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/session_my_handler.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/conndb.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/config.php';
 
 /*
 	if(isset($_REQUEST['itemcode'], $_REQUEST['colorcode'], $_REQUEST['colorname'], $_REQUEST['amount'], $_REQUEST['sizeid'])){

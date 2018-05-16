@@ -25,7 +25,7 @@ class TlaMember extends HTTP {
 	 */
 	public function __construct($uid) {
 		// ゴールド会員
-		$this->Gold = new stdClass();
+		$this->_Gold = new stdClass();
 		$this->_Gold->name = 'ゴールド';
 		$this->_Gold->code = 'gold';
 		$this->_Gold->ratio = 7;
