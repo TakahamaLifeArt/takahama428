@@ -25,7 +25,7 @@ class Conndb extends HTTP {
 			$curdate = date('Y-m-d');
 		}
 		$res = parent::request('POST', array('act'=>'salestax', 'curdate'=>$curdate, 'ordertype'=>$mode));
-		$data = unserialize($res);		
+		$data = unserialize($res);
 		return $data;
 	}
 	
@@ -37,6 +37,22 @@ class Conndb extends HTTP {
 	public function categoryList(){
 		$res = parent::request('POST', array('act'=>'category'));
 		$data = unserialize($res);
+		return $data;
+	}
+	/**
+	 * 商品カテゴリー一覧 - API3
+	 *
+	 */
+	public function categoryListV3(){
+		$param = array();
+		$endPoint = '/categories/';
+		$headers = [
+			'X-TLA-Access-Token:'._ACCESS_TOKEN,
+			'Origin:'._DOMAIN
+		];
+		parent::setURL(_API_3.$endPoint);
+		$data = parent::request('GET', $param, $headers);
+		parent::setURL(_API);
 		return $data;
 	}
 
@@ -133,6 +149,7 @@ class Conndb extends HTTP {
 			$data[0]['item']='zip-parker-non-hood';
 		}
 		
+		$tmp = array();
 		$path = dirname(__FILE__).'/../common/txt/'.$data[0]['category'].'/'.$data[0]['item'].'/*.txt';
 		$posid = $data[0]['id'];
 		foreach (glob($path) as $filename) {
@@ -291,12 +308,12 @@ class Conndb extends HTTP {
 	}
 	
 	
-	/*
-	* アイテムタグ一覧 - API3
-	* @id			カテゴリID, カテゴリー指定なしの場合は０
-	* @tag			条件絞り込み用の複数のタグIDの配列
-	* @return タグ一覧の配列
-	*/
+	/**
+	 * アイテムタグ一覧 - API3
+	 * @id		カテゴリID, カテゴリー指定なしの場合は０
+	 * @tag		条件絞り込み用の複数のタグIDの配列
+	 * @return タグ一覧の配列
+	 */
 	public function itemTag($id=0, $tag=array()){
 		$param = array();
 		if (empty($id)) {
@@ -313,6 +330,70 @@ class Conndb extends HTTP {
 			'X-TLA-Access-Token:'._ACCESS_TOKEN,
 			'Origin:'._DOMAIN
 			];
+		parent::setURL(_API_3.$endPoint);
+		$data = parent::request('GET', $param, $headers);
+		parent::setURL(_API);
+		return $data;
+	}
+	
+	
+	/**
+	 * 納期計算 - API3
+	 * $baseSec		注文確定日（UNIXタイムスタンプの秒数）{@code 0 は今日}
+	 * $workday		作業日数の配列（発送日を含む）
+	 * $transport	配送日数（通常は１日、北海道、九州、本州離島、島根隠岐郡は配送に2日）
+	 * $extraday	作業日数に加算する日数
+	 * @return お届日付情報 {'year','month','day','weekname'}
+	 */
+	public function delidate($baseSec=0, $workday=array(4), $transport=1, $extraday=0){
+		$param = array('args' => array(
+				'basesec' => $baseSec,
+				'workday' => $workday,
+				'transport' => $transport,
+				'extraday' => $extraday,
+			)
+		);
+		$endPoint = '/delivery/';
+		$headers = [
+			'X-TLA-Access-Token:'._ACCESS_TOKEN,
+			'Origin:'._DOMAIN
+		];
+		parent::setURL(_API_3.$endPoint);
+		$data = parent::request('GET', $param, $headers);
+		parent::setURL(_API);
+		return $data;
+	}
+	
+	
+	/**
+	 * カテゴリー別のアイテムランキング - API3
+	 * @id		カテゴリID | タグID
+	 * @tag		タグの配列
+	 * @mode	@idの種類'  category', 'tag'
+	 * @sort	並び順
+	 * @limit	検索レコード数 {@code length|offset-length}
+	 *
+	 * @return 商品情報の配列
+	 * 			[category_key, category_name, item_id, item_name, item_code, cost, pos_id, maker_id, 
+	 * 			oz, colors, i_color_code, i_caption, reviews, sizename_from, sizename_to, range_id, screen_id]
+	 */
+	public function categoryInfo($id=0, $tag=array(), $mode='category', $sort='popular', $limit=''){
+		$param = array();
+		if ($mode != 'category') {
+			$endPoint = '/categories/0/'.$sort.'/'.$limit;
+			$param['args'][] = $id;
+		} else {
+			$endPoint = '/categories/'.$id.'/'.$sort.'/'.$limit;
+		}
+		if (!empty($tag)) {
+			for ($i=0; $i<count($tag); $i++) {
+				$param['args'][] = $tag[$i];
+			}
+		}
+		$headers = [
+			'X-TLA-Access-Token:'._ACCESS_TOKEN,
+			'Origin:'._DOMAIN
+		];
 		parent::setURL(_API_3.$endPoint);
 		$data = parent::request('GET', $param, $headers);
 		parent::setURL(_API);

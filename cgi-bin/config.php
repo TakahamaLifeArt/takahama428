@@ -38,14 +38,12 @@ define('_CREDIT_RATE', 0);	// カード手数料率 - 廃止2018-01-30
 if (strpos($_SERVER['HTTP_HOST'], 'test.')===false && strpos($_SERVER['HTTP_HOST'], 'sub.')===false) {
 	$_ORDER_DOMAIN = 'http://original-sweat.com';
 	$_API_DOMAIN = 'https://takahamalifeart.com/v1';
-	define('_API_3', 'https://takahamalifeart.com/v3');
 //	define('_VHOST_PATH', 'dev_takahama428.com');
 	define('_ORDER_VHOST', 'dev_original-sweat.com');
 	define('_DB_NAME', 'tladata1');
 } else {
 	$_ORDER_DOMAIN = 'http://test.original-sweat.com';
-	$_API_DOMAIN = 'http://test.takahamalifeart.com/v1';
-	define('_API_3', 'http://test.takahamalifeart.com/v3');
+	$_API_DOMAIN = 'https://takahamalifeart.com/v1';	// 本番環境のデータを使用のため
 	define('_ORDER_VHOST', 'dev_test.original-sweat.com');
 	define('_DB_NAME', 'tladata2');
 	if (strpos($_SERVER['HTTP_HOST'], 'test.')===0) {
@@ -58,9 +56,9 @@ define('_API', $_API_DOMAIN.'/api');
 define('_API_U', $_API_DOMAIN.'/apiu');
 define('_API_PSS', 'http://takahama428.co-site.jp/v1/api');		// Photo Sharing Service Member
 define('_IMG_PSS', 'https://takahamalifeart.com/weblib/img/');
+define('_API_3', 'https://takahamalifeart.com/v3');
 
 // 注文情報の登録
-//define('_ORDER_INFO', $_ORDER_DOMAIN.'/system/php_libs/ordersinfo.php');
 define('_DB_USER', 'tlauser');
 define('_DB_PASS', 'crystal428');
 define('_DB_HOST', 'localhost');
@@ -77,7 +75,12 @@ define('_FB_APP_SECRET', 'd9d6f330b795e81af0d875c0e5b0d9a3');
 
 // Instagram
 define('_INSTA_CLIENT_ID', '19a9042d525e46a79bb82c2d845b8f96');
-define('_INSTA_ACCESS_TOKEN', '5720606509.19a9042.fffaedf009704c1eb42a63bf0399ef17');
+//define('_INSTA_ACCESS_TOKEN', '5720606509.19a9042.fffaedf009704c1eb42a63bf0399ef17');
+define('_INSTA_ACCESS_TOKEN', '5720606509.b7dd96a.cacb2fafefdb439ea8c846d4a84ef465');
+
+// Doozor token
+define('_DZ_ACCESS_TOKEN', 'mAPeVU4uswAzakUpuqUwuvEFrewr22ep');
+define('_DZ_HTTP_HEADER_KEY', 'X-Doozor-Access-Token');
 
 // API Key
 define('_ACCESS_TOKEN', 'cuJ5yaqUqufruSPasePRazasUwrevawU');
