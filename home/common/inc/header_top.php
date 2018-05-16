@@ -17,6 +17,13 @@ if( empty($_SESSION['me']) ){
 	<!-- Google Tag Manager (noscript) -->
 	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T5NQFM" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<!-- End Google Tag Manager (noscript) -->
+	
+<!-- phone conversion -->
+<script>
+	gtag('config', 'AW-948060241/BV2ACPWH24IBENGAicQD', {
+		'phone_conversion_number': '0120130428'
+	});
+</script>
 
 
 	<div class="bar_top">
