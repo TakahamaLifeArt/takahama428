@@ -16,6 +16,7 @@
 				  2017-11-10 日本語のアップロードファイル名のエスケープ処理を回避
 				  2017-12-19 注文フロー改修に伴う更新
 				  2018-04-01 アップロードファイル名の変更を廃止
+				  2018-05-15 イメ画選択と後払いを追加
 
 -------------------------------------------------------------- */
 require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/config.php';
@@ -104,9 +105,9 @@ class Ordermail extends Conndb{
 			*/
 			/*
 			* attach: [ファイル名, ...]
-			* option: {publish:割引率, student:割引率, pack:単価, payment:bank|cod|credit|cash, delidate:希望納期, delitime:配達時間指定, express:0|1|2, transport:1|2}
+			* option: {publish:割引率, student:割引率, pack:単価, payment:bank|cod|credit|cash|later_payment, delidate:希望納期, delitime:配達時間指定, express:0|1|2, transport:1|2}
 			* sum: {item:商品代, print:プリント代, volume:注文枚数, tax:消費税額, total:見積合計, mass:0 通常単価 | 1 量販単価}
-			* detail: {discountfee, discountname, packfee, packname, carriage, codfee, expressfee, expressname, rankname}
+			* detail: {discountfee, discountname, packfee, packname, carriage, codfee, paymentfee, expressfee, expressname, rankname}
 			* user: {id:, email:, name:, ruby:, zipcode:, addr0:, addr1:, addr2:, tel:, rank:}
 			*/
 			
@@ -198,6 +199,17 @@ class Ordermail extends Conndb{
 			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
 			
 			
+			$order_info .= "┏━━━━━━━━━┓\n";
+			$order_info .= "◆　　イメージ画像\n";
+			$order_info .= "┗━━━━━━━━━┛\n";
+			if (empty($opts['imega'])) {
+				$order_info .= "◇イメ画：　作成しない\n";
+			} else {
+				$order_info .= "◇イメ画：　作成する\n";
+			}
+			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
+			
+			
 			$order_info .= "┏━━━━━┓\n";
 			$order_info .= "◆　　包装\n";
 			$order_info .= "┗━━━━━┛\n";
@@ -254,7 +266,7 @@ class Ordermail extends Conndb{
 			$order_info .= "------------------------------------------\n\n";
 			
 			
-			$payment = array('bank'=>'銀行振込', 'cod'=>'代金引換', 'credit'=>'カード決済');
+			$payment = array('bank'=>'銀行振込', 'cod'=>'代金引換', 'credit'=>'カード決済', 'later_payment'=>'後払い');
 			$order_info .= "◇お支払方法：　".$payment[$opts['payment']]."\n\n";
 			
 			
@@ -340,7 +352,216 @@ class Ordermail extends Conndb{
 		}
 	}
 
-	
+
+	/**
+	 * 追加注文メール本文を生成
+	 * @param {array} $args 注文データの配列
+	 * @return {boolean} true:成功
+	 *					 false:失敗
+	 */
+	public function sendReorder($args) {
+		try {
+			mb_internal_encoding("UTF-8");
+
+			$mailBody['tpl-title'] = "追加注文のお申し込み";
+			$mailBody['tpl-replyhead'] = "このたびは、タカハマライフアートをご利用いただき誠にありがとうございます。";
+			
+			// 本文生成
+			$order_info = "☆━━━━━━━━【　お申し込み内容　】━━━━━━━━☆\n\n";
+
+			$order_info .= "◆元受注No." . $args['ex-orderid'] . "\n\n";
+			
+			$order_info .= "┏━━━━━━━━┓\n";
+			$order_info .= "◆　　ご希望納期\n";
+			$order_info .= "┗━━━━━━━━┛\n";
+			if (empty($args['delidate'])) {
+				$order_info .= "◇　納期指定なし\n\n";
+			} else {
+				$order_info .= "◇　納期　：　".$args['delidate']."\n\n";
+			}
+
+			$order_info .= "◇　配達時間指定　：　".$args['delitime']."\n\n";
+			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n";
+
+			$order_info .= "┏━━━━━━━┓\n";
+			$order_info .= "◆　　商品情報\n";
+			$order_info .= "┗━━━━━━━┛\n\n";
+			for($i=0, $len=count($args['item']); $i<$len; $i++){
+				$order_info .= "◆アイテム：　".$args['item'][$i]['name']."\n";
+				$order_info .= "◇カラー：　".$args['item'][$i]['color']."\n";
+				$order_info .= "◇サイズ：　".$args['item'][$i]['size']."\n";
+				$order_info .= "◇枚数：　".$args['item'][$i]['amount']." 枚\n";
+				$order_info .= "--------------------\n\n";
+			}
+			$order_info .= "\n\n";
+
+			$order_info .= "◆枚数合計：　".number_format($args['order_amount'])." 枚\n";
+			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
+
+			$order_info .= "┏━━━━━┓\n";
+			$order_info .= "◆　　包装\n";
+			$order_info .= "┗━━━━━┛\n";
+			if (empty($args['pack'])) {
+				$order_info .= "◇たたみ・袋詰め：　まとめて包装\n";
+			} else if ($args['pack']==50){
+				$order_info .= "◇たたみ・袋詰め：　個別包装\n";
+			} else {
+				$order_info .= "◇たたみ・袋詰め：　袋を同封\n";
+			}
+			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
+
+			$order_info .= "┏━━━━━━━━┓\n";
+			$order_info .= "◆　　お客様情報\n";
+			$order_info .= "┗━━━━━━━━┛\n";
+			$order_info .= "◇顧客ID：　".$args['number']."\n";
+			$order_info .= "◇お名前：　".$args['name']."　様\n";
+			$order_info .= "◇ご住所：　〒".$args['zipcode']."\n";
+			$order_info .= "　　　　　　　　".$args['addr']."\n";
+			$order_info .= "◇TEL：　".$args['tel']."\n";
+			$order_info .= "◇E-Mail：　".$args['email']."\n";
+			$order_info .= "------------------------------------------\n\n";
+
+			$order_info .= "◇メッセージ：\n";
+			if(empty(args['message'])){
+				$order_info .= "なし\n\n";
+			}else{
+				$order_info .= $args['message']."\n\n";
+			}
+			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n";
+
+			// send mail
+			$res = $this->send_reorder_mail($order_info, $args['name'], $args['email']);
+			if (!$res) {
+				throw new Exception('Could not send e-mail.');
+			}
+
+			return array('send'=>'success');
+
+		}catch (Exception $e) {
+			$res = array('send'=>'error', 'message'=>$e->getMessage());
+		}
+	}
+
+
+	/**
+	 * 追加注文メール送信
+	 * @param {string} mail_text	顧客情報と注文内容
+	 * @param {string} name			お客様の名前
+	 * @param {string} to			返信先のメールアドレス
+	 * @param {array} attach		添付ファイル情報
+	 * @return {boolean} true:送信成功 , false:送信失敗
+	 */
+	protected function send_reorder_mail($mail_text, $name, $to, $attach=null){
+		mb_language("japanese");
+		mb_internal_encoding("UTF-8");
+		$sendto = _ORDER_EMAIL;
+
+		$subject = '追加注文のお申し込み【takahama428】';
+		$msg = "";
+		$boundary = md5(uniqid(rand()));
+
+		$fromname = "タカハマ428";
+		$from = mb_encode_mimeheader($fromname, "JIS")."<".$sendto.">";
+
+		$header = "From: $from\n";
+		$header .= "Reply-To: $from\n";
+		$header .= "X-Mailer: PHP/".phpversion()."\n";
+		$header .= "MIME-version: 1.0\n";
+
+		if(!empty($attach)){
+			$header .= "Content-Type: multipart/mixed;\n";
+			$header .= "\tboundary=\"$boundary\"\n";
+			$msg .= "This is a multi-part message in MIME format.\n\n";
+			$msg .= "--$boundary\n";
+			$msg .= "Content-Type: text/plain; charset=ISO-2022-JP\n";
+			$msg .= "Content-Transfer-Encoding: 7bit\n\n";
+		}else{
+			$header .= "Content-Type: text/plain; charset=ISO-2022-JP\n";
+			$header .= "Content-Transfer-Encoding: 7bit\n";
+		}
+
+		$msg .= mb_convert_encoding($mail_text, "JIS","UTF-8");
+
+		if(!empty($attach)){
+			for($i=0; $i<count($attach); $i++){
+
+				$msg_chunk_split = chunk_split($attach[$i]['img']['file']);
+				$msg .= "\n\n--$boundary\n";
+				$msg .= "Content-Type: " . $attach[$i]['img']['type'] . ";\n";
+				$msg .= "\tname=\"".$attach[$i]['img']['name']."\"\n";
+				$msg .= "Content-Transfer-Encoding: base64\n";
+				$msg .= "Content-Disposition: attachment;\n";
+				$msg .= "\tfilename=\"".$attach[$i]['img']['name']."\"\n\n";
+				$msg .= $msg_chunk_split."\n";
+			}
+			$msg .= "--$boundary--";
+		}
+
+		// 件名のマルチバイトをエンコード
+		$subject = mb_encode_mimeheader($subject, "JIS");
+
+		// メール送信
+		if(mail($sendto, $subject, $msg, $header)){
+
+			// 自動返信メール
+			$sendto = $to;
+			$subject = 'お申し込みありがとうございます';
+			$subject = mb_encode_mimeheader($subject,"JIS");
+			$from = _INFO_EMAIL;
+			$fromname = "タカハマライフアート";
+			$from = mb_encode_mimeheader($fromname,"JIS")."<".$from.">";
+
+			$header = "From: $from\n";
+			$header .= "Reply-To: $from\n";
+			$header .= "X-Mailer: PHP/".phpversion()."\n";
+			$header .= "MIME-version: 1.0\n";
+			$header .= "Content-Type: text/plain; charset=ISO-2022-JP\n";
+			$header .= "Content-Transfer-Encoding: 7bit\n";
+
+			$msg = $name."　様\n";
+			$msg .= "このたびは、タカハマライフアートをご利用いただき誠にありがとうございます。\n";
+			$msg .= "追加注文のお申し込みを承りました。\n";
+			$msg .= "このメールはお申し込みいただいたお客様へ、内容確認の自動返信となっております。\n\n";
+
+			$msg .= "《現時点ではご注文は確定しておりません》\n\n";
+			$msg .= "お申し込みいただいた内容でのお見積メールを改めてお送りいたしますので、お見積メール到着をお待ち下さい。\n";
+			$msg .= "お見積メールは営業時間内で順次お送りしておりますが、お急ぎの場合、また、なかなか届かない場合には、\n";
+			$msg .= "お手数ですが、フリーダイヤル"._TOLL_FREE."までご連絡ください。\n";
+			$msg .= "（営業時間：平日10：00～18：00 ※お急ぎの場合でも営業時間内での対応となります。予めご了承下さい。）\n\n\n";
+
+			$msg .= "《お支払いにつきまして》\n\n";
+			$msg .= "最終打ち合わせが終了し、ご注文が確定いたしましたら、ご注文内容の「確認メール」をお送りいたします。\n";
+			$msg .= "間違いが無いかご確認の上、確認メールに記載の方法でお支払いください。\n\n";
+			$msg .= "引き続き、どうぞよろしくお願いいたします。\n\n";
+
+			$msg .= $mail_text;
+
+			$msg .= _NOTICE_HOLIDAY;
+			$msg .= "\n";
+			$msg .= _EXTRA_NOTICE;
+			$msg .= "\n";
+
+			$msg .= "\n※ご不明な点やお気づきのことがございましたら、ご遠慮なくお問い合わせください。\n";
+			$msg .= "┏━━━━━━━━━━━━━━━━━━━\n";
+			$msg .= "┃タカハマライフアート\n";
+			$msg .= "┃　Phone：　　"._OFFICE_TEL."\n";
+			$msg .= "┃　E-Mail：　　"._INFO_EMAIL."\n";
+			$msg .= "┃　Web site：　"._DOMAIN."/\n";
+			$msg .= "┗━━━━━━━━━━━━━━━━━━━\n";
+
+			$msg = mb_convert_encoding($msg,"JIS","UTF-8");
+
+			$res = mail($sendto, $subject, $msg, $header);
+
+			return $res;	// 成功
+
+		}else{
+			return false;	// 失敗
+		}
+
+	}
+
+
 	/**
 	 * メール送信
 	 * @param {string} mail_text	顧客情報と注文内容
@@ -354,6 +575,7 @@ class Ordermail extends Conndb{
 		mb_language("japanese");
 		mb_internal_encoding("UTF-8");
 		$sendto = _ORDER_EMAIL;
+		
 		$suffix = "【takahama428】";
 		$subject = "お申し込み - No.".$addition[2].$suffix;		// 件名
 		$msg = "";
@@ -619,7 +841,7 @@ class Ordermail extends Conndb{
 			"discount1","discount2","reduction","reductionname","freeshipping","payment",
 
 			"phase","budget","deliver","purpose","designcharge","job","free_printfee",
-			"free_discount","additionalfee","extradiscount","rakuhan","completionimage",
+			"free_discount","additionalfee","extradiscount","rakuhan","completionimage","imega",
 			"staffdiscount","maintitle","customer_id","estimated","order_amount",
 
 			"purpose_text","reuse","applyto","repeater",
@@ -634,7 +856,7 @@ class Ordermail extends Conndb{
 			"inkjetprintfee","cuttingprintfee","embroideryprintfee","exchinkfee","additionalfee","packfee",
 
 			"expressfee","discountfee","reductionfee","carriagefee","extracarryfee",
-			"designfee","codfee","basefee","salestax","creditfee", "conbifee","repeatdesign","allrepeat");
+			"designfee","codfee","paymentfee","basefee","salestax","creditfee", "conbifee","repeatdesign","allrepeat");
 
 			$data3 = array
 			("","0","0",$strComment,"",
@@ -647,7 +869,7 @@ class Ordermail extends Conndb{
 			$discount1,$discount2,"0","","0",$payment,
 
 			"accept","0","2","","0","その他","0",
-			"0","0",$rank,"0","0",
+			"0","0",$rank,"0","0",$opts['imega'],
 			"0","",$customer_id,$total,$amounts[$designId],
 
 			"","0","0","0",
@@ -662,14 +884,14 @@ class Ordermail extends Conndb{
 			"0","0","0","0","0",$detail["packfee"],
 
 			 $detail["expressfee"],$detail["discountfee"],"0",$detail["carriage"],"0",
-			 "0", $detail["codfee"], $basefee, $salestax, $credit, "0","0","0");
+			 "0", $detail["codfee"], $detail["paymentfee"], $basefee, $salestax, $credit, "0","0","0");
 
 			/*
 			* attach: [ファイル名, ...]
-			* option: {publish:割引率, student:割引率, pack:単価, payment:bank|cod|credit|cash, delidate:希望納期, delitime:配達時間指定, 
+			* option: {publish:割引率, student:割引率, pack:単価, payment:bank|cod|credit|cash|later_payment, delidate:希望納期, delitime:配達時間指定, 
 			*			express:0|1|2, transport:1|2, note_design, note_user}
 			* sum: {item:商品代, print:プリント代, volume:注文枚数, tax:消費税額, total:見積合計, mass:0 通常単価 | 1 量販単価}
-			* detail: {discountfee, discountname, packfee, packname, carriage, codfee, expressfee, expressname, rankname}
+			* detail: {discountfee, discountname, packfee, packname, carriage, codfee, paymentfee, expressfee, expressname, rankname}
 			* user: {id:, email:, name:, ruby:, zipcode:, addr0:, addr1:, addr2:, tel:, rank:}
 			*/
 
@@ -1078,14 +1300,14 @@ class WebOrder {
 					lastmodified, estimated, order_amount, paymentdate, exchink_count, exchthread_count, deliver, deliverytime, manuscriptdate, purpose, 
 					purpose_text, job, designcharge, repeater, reuse, free_discount, free_printfee, completionimage, contact_number, additionalname, 
 					additionalfee, extradiscountname, extradiscount, shipfrom_id, package_yes, package_no, package_nopack, pack_yes_volume, pack_nopack_volume, boxnumber, 
-					factory, destcount, repeatdesign, allrepeat, staffdiscount)
+					factory, destcount, repeatdesign, allrepeat, staffdiscount, imega)
 								VALUES(%d,'%s',%d,'%s','%s','%s','%s','%s',%d,'%s',
 								'%s',%d,%d,'%s','%s','%s','%s',%d,'%s','%s',
 								%d,'%s','%s','%s','%s','%s',%d,%d,%d,'%s',
 								'%s',%d,%d,'%s',%d,%d,%d,%d,'%s','%s',
 								'%s','%s',%d,%d,%d,%d,%d,%d,'%s','%s',
 								%d,'%s',%d,%d,%d,%d,%d,%d,%d,%d,
-								%d,%d,%d,%d,%d)",
+								%d,%d,%d,%d,%d,%d)",
 								$info3["reception"],$info3["ordertype"],$info3["applyto"],$info3["maintitle"],$info3["schedule1"],
 								$info3["schedule2"],$info3["schedule3"],$info3["schedule4"],$info3["destination"],$info3["arrival"],
 								$info3["carriage"],$info3["check_amount"],$info3["noprint"],$info3["design"],$info3["manuscript"],
@@ -1098,7 +1320,7 @@ class WebOrder {
 								$info3["free_discount"],$info3["free_printfee"],$info3["completionimage"],$info3["contact_number"],$info3["additionalname"],
 								$info3["additionalfee"],$info3["extradiscountname"],$info3["extradiscount"],$info3["shipfrom_id"],$info3["package_yes"],
 								$info3["package_no"],$info3["package_nopack"],$info3["pack_yes_volume"],$info3["pack_nopack_volume"],$info3["boxnumber"],
-								$info3["factory"],$info3["destcount"],$info3["repeatdesign"],$info3["allrepeat"],$info3["staffdiscount"]
+								$info3["factory"],$info3["destcount"],$info3["repeatdesign"],$info3["allrepeat"],$info3["staffdiscount"],$info3["imega"]
 							);
 
 					if($this->exe_sql($conn, $sql)){
@@ -1312,8 +1534,8 @@ class WebOrder {
 							$sql = sprintf("INSERT INTO estimatedetails(productfee,printfee,
 								silkprintfee,colorprintfee,digitprintfee,inkjetprintfee,cuttingprintfee,embroideryprintfee,
 								exchinkfee,packfee,expressfee,discountfee,reductionfee,carriagefee,
-								extracarryfee,designfee,codfee,conbifee,basefee,salestax,creditfee,orders_id)
-							   VALUES(%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d)",
+								extracarryfee,designfee,codfee,paymentfee,conbifee,basefee,salestax,creditfee,orders_id)
+							   VALUES(%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d)",
 										   $info3["productfee"],
 										   $info3["printfee"],
 										   $info3["silkprintfee"],
@@ -1331,6 +1553,7 @@ class WebOrder {
 										   $info3["extracarryfee"],
 										   $info3["designfee"],
 										   $info3["codfee"],
+										   $info3["paymentfee"],
 										   $info3["conbifee"],
 										   $info3["basefee"],
 										   $info3["salestax"],
@@ -1871,7 +2094,7 @@ class WebOrder {
 								}
 								$rec = mysqli_fetch_assoc($result);
 								$payment = $rec['payment'];
-								if($payment=='cash' || $payment=='cod'){
+								if($payment=='cash' || $payment=='cod' || $payment=='later_payment'){
 									$readytoship=1;	// 発送可
 								}else{
 									$readytoship=0;	// 発送不可

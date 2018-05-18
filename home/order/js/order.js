@@ -2,6 +2,7 @@
  * Order form
  * log
  * 2017-10-21	Created
+ * 2018-05-16	 イメ画選択、後払い、納期選択の仕様変更
  */
 $(function () {
 	'use strict';
@@ -116,10 +117,10 @@ $(function () {
 	 *		  デザインID: {}
 	 *		 }
 	 * attach: [ファイル名, ...]
-	 * option: {publish:割引率, student:割引率, pack:単価, payment:bank|cod|credit|cash, delidate:希望納期, delitime:配達時間指定, transport:1|2, 
-	 *			note_design, note_user}
+	 * option: {publish:割引率, student:割引率, pack:単価, payment:bank|cod|credit|cash|later_payment, delidate:希望納期, delitime:配達時間指定, transport:1|2, 
+	 *			note_design, note_user, imega:0|1}
 	 * sum: {item:商品代, print:プリント代, volume:注文枚数, tax:消費税額, total:見積合計, mass:0 通常単価 | 1 量販単価}
-	 * detail: {discountfee, discountname, packfee, packname, carriage, codfee, expressfee, expressname, rankname, delitimename}
+	 * detail: {discountfee, discountname, packfee, packname, carriage, codfee, paymentfee, expressfee, expressname, rankname, delitimename}
 	 * user: {id:, email:, name:, ruby:, zipcode:, addr0:, addr1:, addr2:, tel:, rank:}
 	 *----------
 	 *
@@ -145,7 +146,7 @@ $(function () {
 	 * applyChange オプションの変更を適用する
 	 */
 	$.fn.extend({
-		applyChange: function() {
+		applyChange: function(callback) {
 			/**
 			 * 割引、袋詰め、支払い方法、お届け先（配達日数判定用）
 			 * name属性にStorageのキー
@@ -164,7 +165,7 @@ $(function () {
 
 				data[name] = val;
 				$.setStorage('option', data);
-
+				if (Object.prototype.toString.call(callback)==='[object Function]') callback();
 				$.estimate();
 			});
 			return this;
@@ -2101,6 +2102,7 @@ $(function () {
 		});
 	});
 	
+	
 	// アイテムカラーを削除
 	$('#cart').on("TAP_EVENT", '.cart_box .del_btn', function(){
 		var self = $(this),
@@ -2229,20 +2231,80 @@ $(function () {
 	});
 	
 	
+	// イメ画作成の選択
+	$('#imega input').applyChange(function(){
+		var date = '',
+			sum = $.getStorage('sum');
+		
+		if ($('#imega input[name="imega"]:checked').val()==1) {
+			if ($('#pack input[name="pack"]:checked').val()==50 && sum.volume>9) {
+				date = '+8day';
+			} else {
+				date = '+7day';
+			}
+			$('#imega_ahead').removeClass('hidden');
+		} else {
+			if ($('#pack input[name="pack"]:checked').val()==50 && sum.volume>9) {
+				date = '+3day';
+			} else {
+				date = '+2day';
+			}
+			$('#imega_ahead').addClass('hidden');
+		}
+		$('#datepick').datepickCalendar({
+			minDate: date
+		});
+	});
+	
+	
 	// 割引
-	$('#discount input').applyChange();
+	$('#discount input').applyChange(function(){
+		if ($('#discount input[name="student"]').is(':checked') && $('#discount input[name="school"]').val()!=='') {
+			$('#payment input[value="later_payment"]').prop('disabled', true);
+			if ($('#payment input[name="payment"]:checked').val()==='later_payment') {
+				$('#payment input[name="payment"]').val(['bank']);
+			}
+		} else {
+			$('#payment input[value="later_payment"]').prop('disabled', false);
+		}
+	});
+	
 	
 	// 袋詰め
-	$('#pack input').applyChange();
+	$('#pack input').applyChange(function(){
+		var date = '',
+			sum = $.getStorage('sum');
+		
+		if ($('#pack input[name="pack"]:checked').val()==50 && sum.volume>9) {
+			if ($('#imega input[name="imega"]:checked').val()==1) {
+				date = '+8day';
+			} else {
+				date = '+3day';
+			}
+		} else {
+			if ($('#imega input[name="imega"]:checked').val()==1) {
+				date = '+7day';
+			} else {
+				date = '+2day';
+			}
+		}
+		$('#datepick').datepickCalendar({
+			minDate: date
+		});
+	});
+	
 	
 	// 支払い方法
 	$('#payment input').applyChange();
 	
+	
 	// お届け先
 	$('#transport').applyChange();
 	
+	
 	// お届け時間
 	$('#deliverytime').applyChange();
+	
 	
 	// デザインについての要望
 	$('#note_design').applyChange();
@@ -2256,6 +2318,12 @@ $(function () {
 		// 学割の場合の学校名は必須
 		if ($('#discount input[name="student"]').is(':checked') && $('#discount input[name="school"]').val()=='') {
 			$.msgbox('学校名を入力してください');
+			return;
+		}
+		
+		// イメ画作成の選択は必須
+		if (!$('#imega input[name="imega"]').is(':checked')) {
+			$.msgbox('イメージ画像についてご指定ください');
 			return;
 		}
 		
@@ -2392,7 +2460,7 @@ $(function () {
 			printFee = 0,
 			subTotal = 0,
 			orderItem = {},
-			paymentName = {'bank':'銀行振込', 'cod':'代金引換', 'credit':'カード決済'},
+			paymentName = {'bank':'銀行振込', 'cod':'代金引換', 'credit':'カード決済', 'later_payment':'後払い'},
 			printName = {'silk':'シルクスクリーン',
 						 'digit':'デジタルコピー転写',
 						 'inkjet':'インクジェット',
@@ -2408,6 +2476,7 @@ $(function () {
 						 'recommend':['']},
 			printOption = { 'emb':['デザイン','ネーム']},
 			faceName = {'front': '前', 'back': '後', 'side': '横'},
+			sampleImage = ['作成しない', '作成する'],
 			address = '',
 			filename = '',	// アップロードファイル名
 			attach = "";	// 注文フォームに埋め込むinputタグ
@@ -2572,6 +2641,7 @@ $(function () {
 			$('#payment_name').text(paymentName[z.opts.payment]);
 			$('#delivery_date').text(z.opts.delidate);
 			$('#delivery_time').text(z.details.delitimename);
+			$('#sample_image').text(sampleImage[z.opts.imega]);
 
 			$('#final_email').text($('#conf_email').text());
 			$('#final_customername').text($('#conf_customername').text());
@@ -2629,27 +2699,15 @@ $(function () {
 			designs,
 			items,
 			opt,
+			sum = $.getStorage('sum'),
 			attach,
 			file,
 			qs = {},
-			tr = '';
+			tr = '',
+			date = '+1day';
 		
 		// プリント指定のdata属性値を設定
 		$('#printing .pane:first').data('idx', 0);
-		
-		// カレンダー
-		$('#datepick').datepickCalendar({
-			disableBeforeDate: '+1day',
-			onSelect: function(dateText){
-				var data = {'delidate': dateText};
-				var d = dateText.split('-');
-				$('#delivery .deli_date span').each(function(idx){
-					$(this).text(d[(idx+1)]);
-				});
-				$.setStorage('option', data);
-				$.estimate();
-			}
-		});
 		
 		// ページ遷移の設定
 		$.initPageTransition('.contents', '.step');
@@ -2660,6 +2718,9 @@ $(function () {
 		// 割引の初期化
 		$('#discount input[type="checkbox"]').prop('checked',false);
 		$('#discount input[name="school"]').val('');
+		
+		// イメ画指定のコメント非表示
+		$('#imega_ahead').addClass('hidden');
 		
 		// 袋詰め
 		$('#pack input[name="pack"]').val(['0']);
@@ -2702,7 +2763,7 @@ $(function () {
 		
 		// オプション指定
 		if (!sessionStorage.hasOwnProperty('option')) {
-			$.removeStorage('option', {'publish':0, 'student':0, 'pack':0, 'payment':'bank', 'delidate':'', 'delitime':0, 'express':0, 'transport':1, 'school':'', note_design:'', note_user:''});
+			$.removeStorage('option', {'publish':0, 'student':0, 'pack':0, 'payment':'bank', 'delidate':'', 'delitime':0, 'express':0, 'transport':1, 'school':'', 'note_design':'', 'note_user':'', 'imega':0});
 		} else {
 			opt = $.getStorage('option');
 			
@@ -2721,10 +2782,13 @@ $(function () {
 				$('#discount [name="publish"]').prop('checked', true);
 			}
 			
+			// イメ画指定
+			$('#imega [name="imega"][value="'+opt.imega+'"]').prop('checked', true);
+			
 			// 袋詰め
-			if (opt.pack != 0) {
+//			if (opt.pack != 0) {
 				$('#pack [name="pack"][value="'+opt.pack+'"]').prop('checked', true);
-			}
+//			}
 			
 			// 支払い方法
 			$('#payment [name="payment"][value="'+opt.payment+'"]').prop('checked', true);
@@ -2756,9 +2820,40 @@ $(function () {
 			}
 		}
 		
+		// カレンダー
+		if (opt) {
+			if (opt.imega==1) {
+				if (opt.pack==50 && sum.volume>9) {
+					date = '+8day';
+				} else {
+					date = '+7day';
+				}
+				$('#imega_ahead').removeClass('hidden');
+			} else {
+				if (opt.pack==50 && sum.volume>9) {
+					date = '+3day';
+				} else {
+					date = '+2day';
+				}
+				$('#imega_ahead').addClass('hidden');
+			}
+		}
+		$('#datepick').datepickCalendar({
+			minDate: date,
+			onSelect: function(dateText){
+				var data = {'delidate': dateText};
+				var d = dateText.split('-');
+				$('#delivery .deli_date span').each(function(idx){
+					$(this).text(d[(idx+1)]);
+				});
+				$.setStorage('option', data);
+				$.estimate();
+			}
+		});
+		
 		// 見積もり詳細
 		if (!sessionStorage.hasOwnProperty('detail')) {
-			$.removeStorage('detail', {'discountfee':0, 'discountname':'', 'packfee':0, 'packname':'', 'carriage':0, 'codfee':0, 'expressfee':0, 'expressname':'', 'rankname':''});
+			$.removeStorage('detail', {'discountfee':0, 'discountname':'', 'packfee':0, 'packname':'', 'carriage':0, 'codfee':0, 'paymentFee':0, 'expressfee':0, 'expressname':'', 'rankname':''});
 		}
 		
 		// 合計値

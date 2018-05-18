@@ -2,6 +2,7 @@
  * Order form
  * log
  * 2017-10-21	Created
+ * 2018-05-16	 イメ画選択、後払い、納期選択の仕様変更
  */
 $(function(){
 	const NO_PRINT_RATE = 1.1;	// プリントなしで商品単価を10％UPし1円単位以下を切り上げる
@@ -758,9 +759,9 @@ $(function(){
 			 *	p11 追加料金	（Web適用外）
 			 * 	p12 コンビニ手数料	（Web適用外）
 			 *----------
-			 * option: {publish:割引率, student:割引率, pack:単価, payment:bank|cod|credit|cash, delidate:希望納期, delitime:配達時間指定, 
-			 *			express:0|1|2, transport:1|2, note_design, note_user}
-			 * detail: {discountfee, discountname, packfee, packname, carriage, codfee, expressfee, expressname, rankname, delitimename}
+			 * option: {publish:割引率, student:割引率, pack:単価, payment:bank|cod|credit|cash|later_payment, delidate:希望納期, delitime:配達時間指定, 
+			 *			express:0|1|2, transport:1|2, note_design, note_user, imega:0|1}
+			 * detail: {discountfee, discountname, packfee, packname, carriage, codfee, paymentfee, expressfee, expressname, rankname, delitimename}
 			 * sum: {item:商品代, print:プリント代, volume:注文枚数, tax:消費税額, total:見積合計, mass:0 通常単価 | 1 量販単価}
 			 */
 			var d = $.Deferred(),
@@ -783,6 +784,7 @@ $(function(){
 				expressError = '',
 				expressInfo = '',
 				packFee = 0,
+				paymentFee = 0,
 				packName = {0:'まとめて包装', 10:'袋を同封', 50:'個別包装'},
 				deliTime = ['', '午前中', '12:00-14:00', '14:00-16:00', '16:00-18:00', '18:00-20:00', '19:00-21:00'],
 				timestamp = 0;
@@ -836,10 +838,15 @@ $(function(){
 			if(opt.delidate){
 				// ISO-8601書式でtimestamp
 				timestamp = Date.parse(opt.delidate+"T00:00:00+09:00") / 1000;	// 日付のみの場合UTCタイムゾーンとなるため(ES5)
-				$.api(['delivery', timestamp], 'GET', function(workday){
+				$.api(['delivery', timestamp], 'GET', function(workday) {
 					// 袋詰め作業で1日必要かどうか
-					if(opt.pack==50 && orderAmount>9){
+					if (opt.pack==50 && orderAmount>9) {
 						workday--;
+					}
+
+					// イメ画作成に要する３営業日
+					if (opt.imega==1) {
+						workday -= 3;
 					}
 
 					// 配達日数
@@ -850,41 +857,49 @@ $(function(){
 					} else if(workday==1) {
 						// 当日仕上げは対応しないため
 						expressError = '製作日数が足りません！';
+					} else if (opt.pack==50 && orderAmount>9 && workday<=3) {
+						// 袋詰めありの場合は特急不可のため
+						expressError = '製作日数が足りません！';
+					} else if (opt.imega==1 && workday<=3) {
+						// イメ画作成ありの場合は特急不可のため
+						expressError = '製作日数が足りません！';
 					}
 
-					switch(workday) {
-						case 1:	expressRatio = 10;
-							expressInfo = '当日仕上げ';
-							break;
-						case 2:	expressRatio = 5;
-							expressInfo = '翌日仕上げ';
-							break;
-						case 3:	expressRatio = 3;
-							expressInfo = '２日仕上げ';
-							break;
-					}
+					if (expressError==='') {
+						switch(workday) {
+							case 1:	expressRatio = 10;
+								expressInfo = '当日仕上げ';
+								break;
+							case 2:	expressRatio = 5;
+								expressInfo = '翌日仕上げ';
+								break;
+							case 3:	expressRatio = 3;
+								expressInfo = '２日仕上げ';
+								break;
+						}
 
-					// 特急料金適用
-					if (expressRatio>0) {
+						// 特急料金適用
+						if (expressRatio>0) {
 
-						// 特急の場合は学割不可のため割引を再計算（2018-01-31 併用可）
-//						if (discountStudentRatio>0) {
-//							discount = -1 * Math.ceil((subTotal * (discountRatio-discountStudentRatio))/100) + (rankFee);
-//						}
+							// 特急の場合は学割不可のため割引を再計算（2018-01-31 併用可）
+	//						if (discountStudentRatio>0) {
+	//							discount = -1 * Math.ceil((subTotal * (discountRatio-discountStudentRatio))/100) + (rankFee);
+	//						}
 
-						// 特急料金の計算対象項目はアイテム代、プリント代、割引、袋詰め代、インク色替え代（Web未使用）
-						tmpFee = (subTotal + discount + packFee + noPrintItem.price);
-						expressFee = Math.ceil((tmpFee * expressRatio) / 10);
+							// 特急料金の計算対象項目はアイテム代、プリント代、割引、袋詰め代、インク色替え代（Web未使用）
+							tmpFee = (subTotal + discount + packFee + noPrintItem.price);
+							expressFee = Math.ceil((tmpFee * expressRatio) / 10);
 
-						// 注釈
-						$('#express_info').removeClass('hidden').children('em').text(expressInfo);
-					}
+							// 注釈
+							$('#express_info').removeClass('hidden').children('em').text(expressInfo);
+						}
 
-					// 製作日数不足の場合
-					if (expressError!=='') {
+					} else {
+						// 製作日数不足の場合
 						$.msgbox(expressError);
 
 						// 日付表示の初期化と登録更新
+						$('#datepick').datepickCalendar('setDate', '');
 						$('#delivery .deli_date span').text('-');
 						opt.delidate = '';
 						opt = $.setStorage('option', opt);
@@ -903,7 +918,8 @@ $(function(){
 					salesTax = 0,
 					perone = 0,
 					carriage = 0,
-					codFee = opt.payment=='cod' ? 800 : 0;
+					codFee = opt.payment=='cod' ? 800 : 0,
+					paymentFee = opt.payment=='later_payment' ? 300 : 0;
 
 				// 割引、袋詰め、プリントなしアイテム代を合算
 				subTotal += (discount + packFee + noPrintItem.price);
@@ -918,6 +934,7 @@ $(function(){
 				detail.packname = packName[opt.pack];
 				detail.carriage = carriage;
 				detail.codfee = codFee;
+				detail.paymentFee = paymentFee;
 				detail.expressfee = expressFee;
 				detail.expressname = expressInfo;
 //				detail.rankfee = rankFee;
@@ -926,7 +943,7 @@ $(function(){
 				detail = $.setStorage('detail', detail);
 
 				// 見積もり合計を表示
-				subTotal += (expressFee + carriage + codFee);
+				subTotal += (expressFee + carriage + codFee + paymentFee);
 				salesTax = Math.floor(subTotal * $.tax);	// 消費税額
 				total = Math.floor(subTotal * (1+$.tax));	// 見積もり総額（税込）
 				perone = Math.ceil(total / orderAmount);
