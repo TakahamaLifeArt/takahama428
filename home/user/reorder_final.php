@@ -1,7 +1,5 @@
 <?php
 require_once dirname(__FILE__).'/php_libs/funcs.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/package/mail/Mailer.php';
-use package\mail\Mailer;
 
 // ログイン状態のチェック
 $me = checkLogin();
