@@ -232,6 +232,7 @@
 				'代引手数料'=>$orders['codfee'],
 				$orders['additionalname']=>$orders['additionalfee'],
 				'カード決済手数料'=>$orders['creditfee'],
+				'後払い手数料'=>$orders['paymentfee'],
 			);
 			
 			foreach($opt as $remarks=>$price){
@@ -256,7 +257,7 @@
 			}
 						
 			// オプション計
-			$optionfee += $orders['printfee']+$orders['exchinkfee']+$orders['packfee']+$orders['discountfee']+$orders['reductionfee']+$orders['expressfee']+$orders['carriagefee']+$orders['designfee']+$orders['codfee']+$orders['additionalfee'];
+			$optionfee += $orders['printfee']+$orders['exchinkfee']+$orders['packfee']+$orders['discountfee']+$orders['reductionfee']+$orders['expressfee']+$orders['carriagefee']+$orders['designfee']+$orders['codfee']+$orders['paymentfee']+$orders['additionalfee'];
 
 			$total = $productfee + $optionfee;	// 総合計
 			$tax = 0;							// 消費税
