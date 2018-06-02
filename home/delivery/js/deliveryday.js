@@ -15,27 +15,18 @@ $(function () {
 			$('#datepicker_deliday').val('');
 			var curDate = $('#datepicker_firmorder').datepickCalendar('getDate');
 			if (!curDate) return;
-			base = Date.parse(curDate) / 1000;
-			var transport = $('#destination option:selected').data('destination');
-			var postData = {
-				'act': 'deliverydays',
-				'base': base,
+			var base = Date.parse(curDate) / 1000,
+				transport = $('#destination option:selected').data('destination'),
+				param = {
+				'basesec': base,
+				'workday': [4],
 				'transport': transport,
-				'mode': 'simple'
+				'extraday': 0
 			};
-			$.ajax({
-				url: '/php_libs/orders.php',
-				type: 'post',
-				dataType: 'json',
-				async: true,
-				data: postData,
-				success: function (r) {
-					// r[通常納期, 2日仕上げ, 翌日仕上げ, 当日仕上げ, 注文確定日]
-					dt = new Date(r[0]);
-					var d = dt.getFullYear() + "-" + ("00" + (dt.getMonth() + 1)).slice(-2) + "-" + ("00" + dt.getDate()).slice(-2);
-					$('#datepicker_deliday').val(d);
-				}
-			});
+			$.api(['delivery'], 'GET', function (r) {
+				var d = r[0]['Year'] + "-" + r[0]['Month'] + "-" + r[0]['Day'];
+				$('#datepicker_deliday').val(d);
+			}, param);
 		}
 	});
 
