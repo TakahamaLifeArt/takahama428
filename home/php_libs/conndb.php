@@ -366,6 +366,28 @@ class Conndb extends HTTP {
 	
 	
 	/**
+	 * 休日と日付情報 - API3
+	 * $baseSec		UNIXタイムスタンプの秒数{@code 0 は今日}
+	 * @return 日付情報 {'year','month','day','weekname','holiday'}
+	 */
+	public function holiday($baseSec=0){
+		if (empty($baseSec)) {
+			$baseSec = time();
+		}
+		$param = array();
+		$endPoint = '/holiday/'.$baseSec;
+		$headers = [
+			'X-TLA-Access-Token:'._ACCESS_TOKEN,
+			'Origin:'._DOMAIN
+		];
+		parent::setURL(_API_3.$endPoint);
+		$data = parent::request('GET', $param, $headers);
+		parent::setURL(_API);
+		return $data;
+	}
+	
+	
+	/**
 	 * カテゴリー別のアイテムランキング - API3
 	 * @id		カテゴリID | タグID
 	 * @tag		タグの配列

@@ -5,16 +5,15 @@
 */
 	if(isset($_REQUEST['orderid'])){
 		$orders_id = htmlspecialchars($_REQUEST['orderid'], ENT_QUOTES);
+		$month = htmlspecialchars($_REQUEST['m'], ENT_QUOTES);
+		$day = htmlspecialchars($_REQUEST['d'], ENT_QUOTES);
+		$weekname = htmlspecialchars($_REQUEST['w'], ENT_QUOTES);
 		require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/config.php';
-		require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/jd/japaneseDate.php';
 		require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/conndb.php';
 		
 		$conndb = new Conndb(_API);
 		$data = $conndb->getPrintform($orders_id);
 		if(empty($data)) exit('No such printform data exists');
-		
-		$jd = new japaneseDate();
-		
 		$orders = 			$data[0];
 		$curdate = 			$orders['schedule3'];
 		$ordertype = 		$orders['ordertype'];
@@ -319,29 +318,8 @@
 
 		$pdf->WriteHTML($html);
 		if($ordertype=="general"){
-			$date	= explode('-',$orders['schedule3']);
-		    if($date[0]!="0000"){
-			    $baseSec = mktime(0, 0, 0, $date[1], $date[2]-1, $date[0]);
-			    $fin = $jd->makeDateArray($baseSec);							// 振込期日情報（発送日の前営業日）
-			    if( !(($fin['Weekday']>0 && $fin['Weekday']<6) && $fin['Holiday']==0) && ($baseSec<$_from_holiday || $_to_holiday<$baseSec) ){
-				    $isHoliday = true;
-				    $one_day = -86400;
-				    while($isHoliday){
-						$baseSec += $one_day;
-						$fin = $jd->makeDateArray($baseSec);
-						if( (($fin['Weekday']>0 && $fin['Weekday']<6) && $fin['Holiday']==0) && ($baseSec<$_from_holiday || $_to_holiday<$baseSec) ){
-							$isHoliday = false;
-						}
-					}
-			    }
-			    $expire = $fin;													// 振込期日の曜日を取得
-			    $expire['Weekname'] = $jd->viewWeekday($fin['Weekday']);
-		    }else{
-		    	$expire['Weekname'] = "-";
-		    }
-		    
 			$doc = '<div style="margin-top:1em;"><table><tbody><tr><td>振込先　三菱東京UFJ銀行　新小岩支店<br />普通預金 3716333　有限会社タカハマライフアート</td>';
-			$doc .= '<td>※ご入金確認後の発送となりますので、'.$expire['Month'].'月'.$expire['Day'].'日（'.$expire['Weekname'].'）午前中までに<br />';
+			$doc .= '<td>※ご入金確認後の発送となりますので、'.$month.'月'.$day.'日（'.$weekname.'）午前中までに<br />';
 			$doc .= '弊社指定口座にお振込みをお願いいたします。<br />';
 			$doc .= '依頼名の前にコードナンバー<span style="font-size:14pt;font-weight:bold;">'.$customer_id.'</span>を必ずご記入ください。</td></tr>';
 			$doc .= '</tbody></table></div>';
