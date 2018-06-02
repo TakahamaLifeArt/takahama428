@@ -422,7 +422,7 @@ class Ordermail extends Conndb{
 			$order_info .= "------------------------------------------\n\n";
 
 			$order_info .= "◇メッセージ：\n";
-			if(empty(args['message'])){
+			if(empty($args['message'])){
 				$order_info .= "なし\n\n";
 			}else{
 				$order_info .= $args['message']."\n\n";
