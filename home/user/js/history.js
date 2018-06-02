@@ -24,7 +24,7 @@ $(function(){
 				'extraday': 0
 			};
 		$.api(['delivery'], 'GET', function (r) {
-			url = './documents/bill.php?orderid='+ordersId+'&m='+r[0]['Month']+'&d='+r[0]['Day']+'&w='+r[0]['Weekname'];
+			var url = './documents/bill.php?orderid='+ordersId+'&m='+r[0]['Month']+'&d='+r[0]['Day']+'&w='+r[0]['Weekname'];
 			window.open(url,'printform');
 			$('#printform').on('load', function(){window.frames['printform'].print();});
 		}, param);
