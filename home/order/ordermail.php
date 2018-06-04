@@ -363,71 +363,123 @@ class Ordermail extends Conndb{
 		try {
 			mb_internal_encoding("UTF-8");
 
-			$mailBody['tpl-title'] = "追加注文のお申し込み";
-			$mailBody['tpl-replyhead'] = "このたびは、タカハマライフアートをご利用いただき誠にありがとうございます。";
-			
 			// 本文生成
-			$order_info = "☆━━━━━━━━【　お申し込み内容　】━━━━━━━━☆\n\n";
+			$order_info = "【　追加注文のお申し込み　】\n";
+			$order_info .= "Date: ".date('Y-m-d H:i:s')."\n\n";
 
-			$order_info .= "◆元受注No." . $args['ex-orderid'] . "\n\n";
+			$order_info .= "■元受注No.: " . $args['ex-orderid'] . "\n\n";
 			
-			$order_info .= "┏━━━━━━━━┓\n";
-			$order_info .= "◆　　ご希望納期\n";
-			$order_info .= "┗━━━━━━━━┛\n";
+			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
+			
+			$order_info .= "[ お客様情報 ]\n";
+			$order_info .= "■顧客ID： ".$args['number']."\n";
+			$order_info .= "■お名前： ".$args['name']."　様\n\n";
+			$order_info .= "■E-Mail： ".$args['email']."\n\n";
+			$order_info .= "■TEL： ".$args['tel']."\n\n";
+			$order_info .= "■お届け先： 〒".$args['zipcode']."　".$args['addr']."\n\n";
+			$order_info .= "■ご希望納期: ";
 			if (empty($args['delidate'])) {
-				$order_info .= "◇　納期指定なし\n\n";
+				$order_info .= "指定なし\n\n";
 			} else {
-				$order_info .= "◇　納期　：　".$args['delidate']."\n\n";
+				$order_info .= $args['delidate']."\n\n";
 			}
+			$order_info .= "■配達時間： ";
+			if (empty($args['delitime'])) {
+				$order_info .= "指定なし\n\n";
+			} else {
+				$order_info .= $args['delitime']."\n\n";
+			}
+			$order_info .= "■袋詰め: ";
+			if (empty($args['pack'])) {
+				$order_info .= "まとめて包装\n";
+			} else if ($args['pack']==50){
+				$order_info .= "個別包装\n\n";
+			} else {
+				$order_info .= "袋を同封\n\n";
+			}
+			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
 
-			$order_info .= "◇　配達時間指定　：　".$args['delitime']."\n\n";
-			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n";
-
-			$order_info .= "┏━━━━━━━┓\n";
-			$order_info .= "◆　　商品情報\n";
-			$order_info .= "┗━━━━━━━┛\n\n";
+			$order_info .= "[ 注文商品 ]\n";
 			for($i=0, $len=count($args['item']); $i<$len; $i++){
-				$order_info .= "◆アイテム：　".$args['item'][$i]['name']."\n";
-				$order_info .= "◇カラー：　".$args['item'][$i]['color']."\n";
-				$order_info .= "◇サイズ：　".$args['item'][$i]['size']."\n";
-				$order_info .= "◇枚数：　".$args['item'][$i]['amount']." 枚\n";
+				$order_info .= "■アイテム： ".$args['item'][$i]['name']."\n";
+				$order_info .= "■カラー： ".$args['item'][$i]['color']."\n";
+				$order_info .= "■サイズ： ".$args['item'][$i]['size']."\n";
+				$order_info .= "■枚数： ".$args['item'][$i]['amount']." 枚\n";
 				$order_info .= "--------------------\n\n";
 			}
-			$order_info .= "\n\n";
 
-			$order_info .= "◆枚数合計：　".number_format($args['order_amount'])." 枚\n";
+			$order_info .= "■枚数合計：　".number_format($args['order_amount'])." 枚\n";
 			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
-
-			$order_info .= "┏━━━━━┓\n";
-			$order_info .= "◆　　包装\n";
-			$order_info .= "┗━━━━━┛\n";
-			if (empty($args['pack'])) {
-				$order_info .= "◇たたみ・袋詰め：　まとめて包装\n";
-			} else if ($args['pack']==50){
-				$order_info .= "◇たたみ・袋詰め：　個別包装\n";
-			} else {
-				$order_info .= "◇たたみ・袋詰め：　袋を同封\n";
-			}
-			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
-
-			$order_info .= "┏━━━━━━━━┓\n";
-			$order_info .= "◆　　お客様情報\n";
-			$order_info .= "┗━━━━━━━━┛\n";
-			$order_info .= "◇顧客ID：　".$args['number']."\n";
-			$order_info .= "◇お名前：　".$args['name']."　様\n";
-			$order_info .= "◇ご住所：　〒".$args['zipcode']."\n";
-			$order_info .= "　　　　　　　　".$args['addr']."\n";
-			$order_info .= "◇TEL：　".$args['tel']."\n";
-			$order_info .= "◇E-Mail：　".$args['email']."\n";
-			$order_info .= "------------------------------------------\n\n";
-
-			$order_info .= "◇メッセージ：\n";
+			
+			$order_info .= "■メッセージ： ";
 			if(empty($args['message'])){
 				$order_info .= "なし\n\n";
 			}else{
-				$order_info .= $args['message']."\n\n";
+				$order_info .= "\n".$args['message']."\n\n";
 			}
-			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n";
+			
+			
+			
+			
+// 2018-06-05 本文フォーマット変更
+//			$order_info .= "┏━━━━━━━━┓\n";
+//			$order_info .= "◆　　ご希望納期\n";
+//			$order_info .= "┗━━━━━━━━┛\n";
+//			if (empty($args['delidate'])) {
+//				$order_info .= "◇　納期指定なし\n\n";
+//			} else {
+//				$order_info .= "◇　納期　：　".$args['delidate']."\n\n";
+//			}
+//
+//			$order_info .= "◇　配達時間指定　：　".$args['delitime']."\n\n";
+//			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n";
+//
+//			$order_info .= "┏━━━━━━━┓\n";
+//			$order_info .= "◆　　商品情報\n";
+//			$order_info .= "┗━━━━━━━┛\n\n";
+//			for($i=0, $len=count($args['item']); $i<$len; $i++){
+//				$order_info .= "◆アイテム：　".$args['item'][$i]['name']."\n";
+//				$order_info .= "◇カラー：　".$args['item'][$i]['color']."\n";
+//				$order_info .= "◇サイズ：　".$args['item'][$i]['size']."\n";
+//				$order_info .= "◇枚数：　".$args['item'][$i]['amount']." 枚\n";
+//				$order_info .= "--------------------\n\n";
+//			}
+//			$order_info .= "\n\n";
+//
+//			$order_info .= "◆枚数合計：　".number_format($args['order_amount'])." 枚\n";
+//			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
+//
+//			$order_info .= "┏━━━━━┓\n";
+//			$order_info .= "◆　　包装\n";
+//			$order_info .= "┗━━━━━┛\n";
+//			if (empty($args['pack'])) {
+//				$order_info .= "◇たたみ・袋詰め：　まとめて包装\n";
+//			} else if ($args['pack']==50){
+//				$order_info .= "◇たたみ・袋詰め：　個別包装\n";
+//			} else {
+//				$order_info .= "◇たたみ・袋詰め：　袋を同封\n";
+//			}
+//			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
+//
+//			$order_info .= "┏━━━━━━━━┓\n";
+//			$order_info .= "◆　　お客様情報\n";
+//			$order_info .= "┗━━━━━━━━┛\n";
+//			$order_info .= "◇顧客ID：　".$args['number']."\n";
+//			$order_info .= "◇お名前：　".$args['name']."　様\n";
+//			$order_info .= "◇ご住所：　〒".$args['zipcode']."\n";
+//			$order_info .= "　　　　　　　　".$args['addr']."\n";
+//			$order_info .= "◇TEL：　".$args['tel']."\n";
+//			$order_info .= "◇E-Mail：　".$args['email']."\n";
+//			$order_info .= "------------------------------------------\n\n";
+//
+//			$order_info .= "◇メッセージ：\n";
+//			if(empty($args['message'])){
+//				$order_info .= "なし\n\n";
+//			}else{
+//				$order_info .= $args['message']."\n\n";
+//			}
+//			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n";
+
 
 			// send mail
 			$res = $this->send_reorder_mail($order_info, $args['name'], $args['email']);
