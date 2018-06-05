@@ -28,6 +28,7 @@ for($i=0; $i<count($d); $i++){
 	if($d[$i]['orderid']!=$orderId) continue;
 	$idx = $i;
 	$orderDate = $d[$i]['schedule2'];
+	$shipDate = $d[$i]['schedule3'];
 	$delidate = explode('-', $d[$i]['schedule4']);
 	$status = $d[$i]['progressname'];
 	$contactNumber = $d[$i]['contact_number'];
@@ -53,9 +54,9 @@ $progress .= '<li class="'.$prog[1].'"><em><span class="sp_area">発送準備</s
 $progress .= '<li class="'.$prog[2].'"><em><span class="sp_area">発送完了</span></em></li>';
 
 // アイテム情報
-$d = $conndb->getOroderHistory($me['id']);
+$d = $conndb->getOroderHistory($me['id'], $orderId);
 for($i=0; $i<count($d); $i++){
-	if($d[$i]['orderid']!=$orderId) continue;
+//	if($d[$i]['orderid']!=$orderId) continue;
 	$idx = $i;
 	$itemPrice = 0;
 	$payment = $d[$i]['payment'];
@@ -443,7 +444,7 @@ foreach($p as $category_name=>$val){
 				</div>
 			</div>
 			<div class="btnfld_download">
-				<button class="btn_or btn" id="btn_bill" data-order-id="<?php echo $orderId; ?>"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><span class="txtbld"><span style="font-size: 1.2rem;margin-right: .2rem;">請求書</span>ダウンロード(PDF)</span></button>
+				<button class="btn_or btn" id="btn_bill" data-order-id="<?php echo $orderId; ?>" data-shipment="<?php echo $shipDate; ?>"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><span class="txtbld"><span style="font-size: 1.2rem;margin-right: .2rem;">請求書</span>ダウンロード(PDF)</span></button>
 				<button class="btn_or btn" id="btn_invoice" data-order-id="<?php echo $orderId; ?>"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><span class="txtbld"><span style="font-size: 1.2rem;margin-right: .2rem;">納品書</span>ダウンロード(PDF)</span></button>
 			</div>
 
@@ -472,6 +473,7 @@ foreach($p as $category_name=>$val){
 	<div id="overlay-mask" class="fade"></div>
 
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
+	<script src="/common/js/api.js"></script>
 	<script type="text/javascript" src="./js/history.js"></script>
 	<script src="./js/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
 </body>

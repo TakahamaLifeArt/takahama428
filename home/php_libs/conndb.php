@@ -612,10 +612,11 @@ class Conndb extends HTTP {
 	/**
 	*	注文履歴を取得（member）
 	*	@args		customer ID
+	*	@id			受注No.
 	*	@return		[注文情報]
 	*/
-	public function getOroderHistory($args){
-		$res = parent::request('POST', array('act'=>'getorderhistory', 'args'=>$args));
+	public function getOroderHistory($args, $id){
+		$res = parent::request('POST', array('act'=>'getorderhistory', 'args'=>$args, 'id'=>$id));
 		$data = unserialize($res);
 		return $data;
 	}

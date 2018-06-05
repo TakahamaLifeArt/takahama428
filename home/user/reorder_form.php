@@ -23,9 +23,9 @@ $rankName = $member->getRankName();
 // 注文情報
 $itemPrice = 0;
 $conndb = new Conndb(_API);
-$d = $conndb->getOroderHistory($me['id']);
+$d = $conndb->getOroderHistory($me['id'], $orderId);
 for($i=0; $i<count($d); $i++){
-	if($d[$i]['orderid']!=$orderId) continue;
+//	if($d[$i]['orderid']!=$orderId) continue;
 	$idx = $i;
 	$orderAmount = $d[$i]['order_amount'];
 	$grandTotal = $d[$i]['estimated'];

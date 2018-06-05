@@ -23,9 +23,9 @@ $rankName = $member->getRankName();
 // 注文情報
 $itemPrice = 0;
 $conndb = new Conndb(_API);
-$d = $conndb->getOroderHistory($me['id']);
+$d = $conndb->getOroderHistory($me['id'], $orderId);
 for($i=0; $i<count($d); $i++){
-	if($d[$i]['orderid']!=$orderId) continue;
+//	if($d[$i]['orderid']!=$orderId) continue;
 	$idx = $i;
 	$orderAmount = $d[$i]['order_amount'];
 	$grandTotal = $d[$i]['estimated'];
@@ -250,15 +250,15 @@ foreach($p as $category_name=>$val){
 
 			<div class="btn_fld_a">
 				<div class="btnfld_download">
-					<button class="btn_gr btn btn_hidden" id="btn_bill" data-order-id="<?php echo $orderId; ?>" data-shipment="<?php echo $shipDate; ?>"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><span class="txtbld"><span style="font-size: 1.2rem;margin-right: .2rem;">請求書</span>ダウンロード(PDF)</span></button>
+<!--					<button class="btn_gr btn btn_hidden" id="btn_bill" data-order-id="<?php echo $orderId; ?>" data-shipment="<?php echo $shipDate; ?>"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><span class="txtbld"><span style="font-size: 1.2rem;margin-right: .2rem;">請求書</span>ダウンロード(PDF)</span></button>-->
 					<button class="btn_gr btn" id="btn_invoice" data-order-id="<?php echo $orderId; ?>"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><span class="txtbld"><span style="font-size: 1.2rem;margin-right: .2rem;">納品書</span>ダウンロード(PDF)</span></button>
 				</div>
-<!--
+
 				<div class="sei_warning">
 					<p><span class="red_txt">※</span>現在、請求書がダウンロードできない状態となっております。</p>
 					<p>大変申し訳ございませんが、ご希望のお客様は直接スタッフにお問い合わせください。</p>
 				</div>
--->
+
 
 				<div class="caution">
 					<h2>同じアイテムで追加・再注文する</h2>
