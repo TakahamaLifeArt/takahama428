@@ -135,15 +135,6 @@ $(function(){
 			return false;
 		}
 
-		/**
-		 * 複数選択可のチェックボックス
-		 * @return {bool} 妥当であれば{@code true}を返す
-		 */
-		if ($('#q3 input[type="checkbox"]:checked').length==0) {
-			$.msgbox('Ｑ３に最低１つチェックをお願いします');
-			return false;
-		}
-
 		return true;
 	});
 
@@ -153,7 +144,6 @@ $(function(){
 	 */
 	eMailer.onComplete('#sendmail', function(){
 		$('#fileupload').submit();
-//		$.msgbox('<p>アンケートにお答えいただき、ありがとうございました。<br>またのご利用、心よりお待ち申し上げております。</p>');
 	});
 	
 });

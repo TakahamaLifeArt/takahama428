@@ -78,7 +78,7 @@ if( isset($_POST['ticket']) && !empty($_POST['ticket']) ) {
 
 					<div>
 						<p class="q">
-							<em>Q1 - <ins>1</ins></em>
+							<em>Q1</em>
 							<label>商品、プリントの品質には満足できましたか？</label>
 						</p>
 						<div class="a">
@@ -88,19 +88,11 @@ if( isset($_POST['ticket']) && !empty($_POST['ticket']) ) {
 							<p><label><input type="radio" name="a6" value="2" required>不満</label></p>
 							<p><label><input type="radio" name="a6" value="1" required>とても不満</label></p>
 						</div>
-						
-						<p class="q">
-							<em>Q1 - <ins>2</ins></em>
-							<label>その理由があればお聞かせください</label>
-						</p>
-						<p class="a">
-							<textarea name="a15"></textarea>
-						</p>
 					</div>
 
 					<div>
 						<p class="q">
-							<em>Q2 - <ins>1</ins></em>
+							<em>Q2</em>
 							<label>スタッフの対応には満足できましたか?</label>
 						</p>
 						<div class="a">
@@ -110,40 +102,71 @@ if( isset($_POST['ticket']) && !empty($_POST['ticket']) ) {
 							<p><label><input type="radio" name="a5" value="2" required>不満</label></p>
 							<p><label><input type="radio" name="a5" value="1" required>とても不満</label></p>
 						</div>
-						
-						<p class="q">
-							<em>Q2 - <ins>2</ins></em>
-							<label>その理由があればお聞かせください</label>
-						</p>
-						<p class="a">
-							<textarea name="a16"></textarea>
-						</p>
 					</div>
 
 					<div>
 						<p class="q">
 							<em>Q3</em>
-							<label>タカハマライフアートの「ここが使いづらい！」という点を教えてください</label><span>(複数回答可)</span>
+							<label>梱包状態には満足できましたか?</label>
 						</p>
-						<div class="a" id="q3">
-							<p><label><input type="checkbox" name="a17[]" value="1">注文確定の電話</label></p>
-							<p><label><input type="checkbox" name="a17[]" value="2">商品の選び方</label></p>
-							<p><label><input type="checkbox" name="a17[]" value="3">商品の素材や色</label></p>
-							<p><label><input type="checkbox" name="a17[]" value="4">お届け日</label></p>
-							<p><label><input type="checkbox" name="a17[]" value="5">商品の見積もり</label></p>
-							<p><label><input type="checkbox" name="a17[]" value="6">デザインの入稿の方法</label></p>
-							<p><label><input type="checkbox" name="a17[]" value="7">プリントサイズ</label></p>
-							<p><label><input type="checkbox" name="a17[]" value="8">プリント方法</label></p>
-							<p><label><input type="checkbox" name="a17[]" value="9">割引の内容や条件</label></p>
-							<p><label><input type="checkbox" name="a17[]" value="10">資料請求・商品サンプルの注文</label></p>
-							<p><label><input type="checkbox" name="a17[]" value="11">ホームページ全体</label></p>
-							<p><label><input type="checkbox" name="a17[]" value="0">特になし</label></p>
+						<div class="a">
+							<p><label><input type="radio" name="a7" value="5" required>とても満足</label></p>
+							<p><label><input type="radio" name="a7" value="4" required>満足</label></p>
+							<p><label><input type="radio" name="a7" value="3" required>普通</label></p>
+							<p><label><input type="radio" name="a7" value="2" required>不満</label></p>
+							<p><label><input type="radio" name="a7" value="1" required>とても不満</label></p>
 						</div>
 					</div>
 
 					<div>
 						<p class="q">
 							<em>Q4</em>
+							<label>ホームページは使いやすかったですか?</label>
+						</p>
+						<div class="a">
+							<p><label><input type="radio" name="a1" value="5" required>とても満足</label></p>
+							<p><label><input type="radio" name="a1" value="4" required>満足</label></p>
+							<p><label><input type="radio" name="a1" value="3" required>普通</label></p>
+							<p><label><input type="radio" name="a1" value="2" required>不満</label></p>
+							<p><label><input type="radio" name="a1" value="1" required>とても不満</label></p>
+						</div>
+					</div>
+
+					<div>
+						<p class="q">
+							<em>Q5</em>
+							<label>商品の着心地はいかがでしたでしょうか</label>
+						</p>
+						<p class="a">
+							<textarea name="a10"></textarea>
+						</p>
+					</div>
+
+					<div>
+						<p class="q">
+							<em>Q6</em>
+							<label>タカハマライフアートの「ここが使いづらい！」という点を教えてください</label><span>(複数回答可)</span>
+						</p>
+						<div class="a">
+							<fieldset>
+								<p><label><input type="checkbox" name="a17[]" value="1" required>注文確定の電話</label></p>
+								<p><label><input type="checkbox" name="a17[]" value="2" required>商品の選び方</label></p>
+								<p><label><input type="checkbox" name="a17[]" value="3" required>商品の素材や色</label></p>
+								<p><label><input type="checkbox" name="a17[]" value="4" required>お届け日</label></p>
+								<p><label><input type="checkbox" name="a17[]" value="5" required>商品の見積もり</label></p>
+								<p><label><input type="checkbox" name="a17[]" value="6" required>デザインの入稿の方法</label></p>
+								<p><label><input type="checkbox" name="a17[]" value="7" required>プリントサイズ</label></p>
+								<p><label><input type="checkbox" name="a17[]" value="8" required>プリント方法</label></p>
+								<p><label><input type="checkbox" name="a17[]" value="9" required>割引の内容や条件</label></p>
+								<p><label><input type="checkbox" name="a17[]" value="10" required>資料請求・商品サンプルの注文</label></p>
+								<p><label><input type="checkbox" name="a17[]" value="0" required>特になし</label></p>
+							</fieldset>
+						</div>
+					</div>
+
+					<div>
+						<p class="q">
+							<em>Q7</em>
 							<label>全体を通して、ご意見ご感想がありましたらご記入お願いします</label>
 						</p>
 						<p class="a">
@@ -153,7 +176,7 @@ if( isset($_POST['ticket']) && !empty($_POST['ticket']) ) {
 
 					<div>
 						<p class="q">
-							<em>Q5</em>
+							<em>Q8</em>
 							<label>写真掲載割をご利用のお客様は、商品到着後の感想やコメントをご入力ください</label>
 						</p>
 						<p class="a">
@@ -163,7 +186,7 @@ if( isset($_POST['ticket']) && !empty($_POST['ticket']) ) {
 
 					<div>
 						<p class="q">
-							<em>Q6</em>
+							<em>Q9</em>
 							<label>写真掲載割をご利用のお客様は、商品着用写真をお送りください</label>
 						</p>
 

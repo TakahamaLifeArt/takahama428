@@ -65,6 +65,12 @@ main {
 div.a {
 	padding-left: 2rem;
 }
+.a fieldset {
+	margin-bottom: 0;
+}
+.a legend {
+	font-size: 16px;
+}
 .a label {
 	padding-right: .5em;
 	font-size: inherit;
@@ -101,6 +107,10 @@ div.a {
 #fileupload textarea {
 	height: 5em;
 	background: #f6fbfd;
+}
+
+#fileupload #fileupload-table .btn-danger {
+	background: #C00;
 }
 
 /* アップロードされたファイル */
