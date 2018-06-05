@@ -15,12 +15,11 @@ $connDesign = new Conndb($api_designed);
 
 // 注文履歴
 $conndb = new Conndb(_API);
-$d = $conndb->getOroderHistory($me['id']);
+$d = $conndb->getOroderHistory($me['id'], 0, 1);
 $history = '';
 $histories = [];
 $cnt = count($d)-1;
 for($i=$cnt; $i>=0; $i--){
-	if ($d[$i]['shipped']==2) continue;
 
 	// イメ画
 	$desedImg = $connDesign->getDesigned($d[$i]['orderid']);
