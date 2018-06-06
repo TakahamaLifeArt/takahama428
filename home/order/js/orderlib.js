@@ -783,6 +783,7 @@ $(function(){
 				expressFee = 0,
 				expressError = '',
 				expressInfo = '',
+				expressDesc = '',
 				packFee = 0,
 				paymentFee = 0,
 				packName = {0:'まとめて包装', 10:'袋を同封', 50:'個別包装'},
@@ -791,6 +792,7 @@ $(function(){
 
 			// 特急の注釈を初期化
 			$('#express_info').addClass('hidden').children('em').text('');
+			$('#express_info .express_ratio').text('');
 
 			if(sum) {
 				// 小計
@@ -869,12 +871,15 @@ $(function(){
 						switch(workday) {
 							case 1:	expressRatio = 10;
 								expressInfo = '当日仕上げ';
+								expressDesc = '通常料金 x 2倍';
 								break;
 							case 2:	expressRatio = 5;
 								expressInfo = '翌日仕上げ';
+								expressDesc = '通常料金 x 1.5倍';
 								break;
 							case 3:	expressRatio = 3;
 								expressInfo = '２日仕上げ';
+								expressDesc = '通常料金 x 1.3倍';
 								break;
 						}
 
@@ -892,6 +897,7 @@ $(function(){
 
 							// 注釈
 							$('#express_info').removeClass('hidden').children('em').text(expressInfo);
+							$('#express_info .express_ratio').text(expressDesc);
 						}
 
 					} else {
