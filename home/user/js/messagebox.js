@@ -47,7 +47,7 @@ $(function(){
 					pre_sizeid = val['id'];
 					cost = val['cost'];
 					size_head = '<th></th><th>' + val['name'] + '</th>';
-					size_body = '<th>1枚単価<span class="inter">' + val['cost'].toLocaleString('ja-JP') + '</span> 円</th><td class="size_' + val['id'] + '_' + val['name'] + '_' + val['cost'] + '"><input id="size_' + val['id'] + '" type="number" value="' + amount + '" min="0" max="999"></td>';
+					size_body = '<th>1枚単価<span class="inter">' + parseInt(val['cost'],10).toLocaleString('ja-JP') + '</span> 円</th><td class="size_' + val['id'] + '_' + val['name'] + '_' + val['cost'] + '"><input id="size_' + val['id'] + '" type="number" value="' + amount + '" min="0" max="999"></td>';
 				} else if (cost != val['cost'] || (val['id'] > (++pre_sizeid) && val['id'] > 10)) { // 単価が違うかまたは、サイズ160以下を除きサイズが連続していない
 					size_table += '<tbody>';
 					size_table += '<tr class="heading">' + size_head + '</tr>';
@@ -57,7 +57,7 @@ $(function(){
 					pre_sizeid = val['id'];
 					cost = val['cost'];
 					size_head = '<th></th><th>' + val['name'] + '</th>';
-					size_body = '<th>1枚単価<span class="inter">' + val['cost'].toLocaleString('ja-JP') + '</span> 円</th><td class="size_' + val['id'] + '_' + val['name'] + '_' + val['cost'] + '"><input id="size_' + val['id'] + '" type="number" value="' + amount + '" min="0" max="999"></td>';
+					size_body = '<th>1枚単価<span class="inter">' + parseInt(val['cost'],10).toLocaleString('ja-JP') + '</span> 円</th><td class="size_' + val['id'] + '_' + val['name'] + '_' + val['cost'] + '"><input id="size_' + val['id'] + '" type="number" value="' + amount + '" min="0" max="999"></td>';
 				} else {
 					pre_sizeid = val['id'];
 					size_head += '<th>' + val['name'] + '</th>';

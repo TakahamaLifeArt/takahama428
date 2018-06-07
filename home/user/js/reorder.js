@@ -211,8 +211,8 @@ $(function(){
 				$('#print_fee').text(printFee.toLocaleString('ja-JP'));
 				
 				// 小計
-				subTotal = printFee + item.price;
-				$('#item_amount').text(item.amount.toLocaleString('ja-JP'));
+				subTotal = printFee + (item.price-0);
+				$('#item_amount').text(parseInt(item.amount, 10).toLocaleString('ja-JP'));
 				$('#item_fee').text(subTotal.toLocaleString('ja-JP'));
 				
 				// 会員割
@@ -570,9 +570,9 @@ $(function(){
 	// initialize
 	$.init();
 	
-	// IE
-	var userAgent = window.navigator.userAgent.toLowerCase();
-	if (userAgent.indexOf('msie') != -1 || userAgent.indexOf('trident') != -1) {
-		$.msgbox('ただいま、ご使用のブラウザではサービスのご利用が出来ませんので、お問い合わせをご利用くださいませ。<br><a href="/contact/">お問い合わせはこちら</a>');
-	}
+	// IE 2018-06-07 修正済み
+//	var userAgent = window.navigator.userAgent.toLowerCase();
+//	if (userAgent.indexOf('msie') != -1 || userAgent.indexOf('trident') != -1) {
+//		$.msgbox('ただいま、ご使用のブラウザではサービスのご利用が出来ませんので、お問い合わせをご利用くださいませ。<br><a href="/contact/">お問い合わせはこちら</a>');
+//	}
 });

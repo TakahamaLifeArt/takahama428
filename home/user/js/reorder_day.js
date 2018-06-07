@@ -73,7 +73,7 @@ $(function(){
 			// 初期化
 			sessionStorage.removeItem('redeli');
 			$.sum = $.getStorage('resum');
-			$.sum.pack  = 0;
+			$.sum.pack = 0;
 			$.sum.express = 0;
 			
 			// 追加商品のリスト生成
