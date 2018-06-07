@@ -48,6 +48,8 @@ for($i=$cnt; $i>=0; $i--){
 	$history .= '<div class="txtgrp">';
 	if ($d[$i]['deposit']!=2) {
 		$history .= '<p class="txt_btn"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>未決済</p>';
+	} else {
+		$history .= '<p class="txt_btn"><i class="fa fa-check-circle" aria-hidden="true"></i>決済完了</p>';
 	}
 	$history .= '<p class="txt_btn"><img src="/user/img/sp_m_history_progress_icon.png" class="btn_img" width="30px">'.$d[$i]['progressname'].'</p>';
 	$history .= '</div>';

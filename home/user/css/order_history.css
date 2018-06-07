@@ -83,6 +83,10 @@ h2 {
 	color: #dc0000;
 	padding: 1px 20px 1px 25px;
 }
+.fa-check-circle {
+	color: #00dc00;
+	padding: 1px 20px 1px 25px;
+}
 .txt_btn .btn_img{
 	margin: 1px 10px 1px 20px;
 }
