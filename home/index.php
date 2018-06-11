@@ -1,26 +1,92 @@
 <?php
 // Instagram Photo Slider
-require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/instaAPI.php';
-$idx = 1;
-$thumbType = array('thumbnail', 'low_resolution', 'standard_resolution');
-foreach($insta['data'] as $data){
-	$instaPhoto .= '<div class="pic photo'.$idx++.'">';
-	$instaPhoto .= '<a href="'.$data['link'].'" target="_brank"><img src="'.$data['images'][$thumbType[0]]['url'].'" alt=""></a>';
-	$instaPhoto .= '</div>';
-}
+//require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/instaAPI.php';
+//$idx = 1;
+//$thumbType = array('thumbnail', 'low_resolution', 'standard_resolution');
+//foreach($insta['data'] as $data){
+//	$instaPhoto .= '<div class="pic photo'.$idx++.'">';
+//	$instaPhoto .= '<a href="'.$data['link'].'" target="_brank"><img src="'.$data['images'][$thumbType[0]]['url'].'" alt=""></a>';
+//	$instaPhoto .= '</div>';
+//}
 
 /**
  * お届け日を取得
  * 月：$fin['Month']
  * 日：$fin['Day']
- * 曜日：$fin['weekname']
+ * 曜日：$fin['Weekname']
  */
+require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/conndb.php';
+$conn = new Conndb();
+$fin = json_decode($conn->delidate(0, array(1,2,3,4)), true);
+
+// お届け日
+for ($i=0, $len=count($fin); $i<$len; $i++) {
+	$fin[$i]['delidate'] = $fin[$i]['Year'].'-'.$fin[$i]['Month'].'-'.$fin[$i]['Day'];
+}
+
 require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/orders.php';
 $order = new Orders();
 $fin = $order->getDelidate(null, 1, 4, 'simple');
+
+/**
+ * アイテムランキング
+ */
+
+$tmp = json_decode($conn->categoryListV3(), true);
+$categoryIds = array_column($tmp, 'id', 'code');
+$itemRanking = array(
+	't-shirts' => null,
+	'polo-shirts' => null,
+	'sweat' => null,
+	'towel' => null,
+	'outer' => null,
+);
+$contentsLength = 4;
+foreach ($categoryIds as $categoryCode => $categoryId) {
+	if (!array_key_exists($categoryCode, $itemRanking)) {
+		continue;
+	} else if ($categoryCode=='sportswear') {
+		$_ID = 73;
+		$mode = "tag";
+	} else {
+		$_ID = $categoryId;
+		$mode = "category";
+	}
+	$itemRanking[$categoryCode] = json_decode($conn->categoryInfo($_ID, [], $mode, 'popular', $contentsLength), true);
+}
+
+// 評価を0.5単位に変換し画像パスを返す
+function getStar($args){
+	if($args<0.5){
+		$r = '00';
+	}else if($args>=0.5 && $args<1){
+		$r = '05';
+	}else if($args>=1 && $args<1.5){
+		$r = '10';
+	}else if($args>=1.5 && $args<2){
+		$r = '15';
+	}else if($args>=2 && $args<2.5){
+		$r = '20';
+	}else if($args>=2.5 && $args<3){
+		$r = '25';
+	}else if($args>=3 && $args<3.5){
+		$r = '30';
+	}else if($args>=3.5 && $args<4){
+		$r = '35';
+	}else if($args>=4 && $args<4.5){
+		$r = '40';
+	}else if($args>=4.5 && $args<5){
+		$r = '45';
+	}else{
+		$r = '50';
+	}
+	return $r;
+}
+
 ?>
+
 	<!DOCTYPE html>
-	<html lang="ja">
+	<html lang="ja" style="overflow: auto!important;">
 
 	<head prefix="og://ogp.me/ns# fb://ogp.me/ns/fb#  website: //ogp.me/ns/website#">
 		<meta charset="UTF-8">
@@ -39,544 +105,859 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 		<link rel=canonical href="https://www.takahama428.com/">
 		<link rel="shortcut icon" href="/icon/favicon.ico">
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
-		<link rel="stylesheet" href="./css/style.css">
+		<link rel="stylesheet" type="text/css" href="/common/js/dist/css/slider-pro.min.css" media="screen" />
+		<link rel="stylesheet" href="/common/js/dist/css/owl.carousel.min.css" media="screen" />
+		<link rel="stylesheet" href="/common/css/TimeCircles.css" media="screen" />
+		<link rel="stylesheet" href="./icon/style.css">
+		<link rel="stylesheet" type="text/css" href="/common/js/libs/fancybox/jquery.fancybox.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="/common/css/examples.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="/common/css/side_menu.css" media="screen" />
+		<link rel="stylesheet" href="/slick/slick.css">
+		<link rel="stylesheet" href="/slick/slick-theme.css">
+		<link rel="stylesheet" href="./css/style_k3.css">
+
+		<style>
+			.owl-item {
+				width: 100%!important;
+			}
+
+		</style>
+
 	</head>
 
 	<body>
 		<header>
-			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header_top.php"; ?>
+			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
 		</header>
 
 		<div class="container-fluid">
-			<div id="mainCarouselIndicators" class="carousel slide" data-ride="carousel">
-
-				<ol class="carousel-indicators">
-					<li data-target="#mainCarouselIndicators" data-slide-to="0" class="active"></li>
-					<li data-target="#mainCarouselIndicators" data-slide-to="1"></li>
-					<li data-target="#mainCarouselIndicators" data-slide-to="2"></li>
-				</ol>
-
-				<div class="carousel-inner justify-content-center" role="listbox">
-					<div class="carousel-item active hero-carousel__cell hero-carousel__cell--1">
-
-						<div class="carousel-caption">
-							<p class="text_02_1">1枚1枚、職人がプリントする</p>
-							<p class="text_01_1">オリジナルTシャツ</p>
-							<p class="psn_btn"><a href="/order/" class="check btn btn-info adj waves-effect waves-light orderbtn_01" type="button">
-							<img src="/common/img/home/main/sp_go_icon.png" width="40px" style="padding-right: 12px;padding-bottom: 5px;">お申し込み</a>
-							</p>
+			<div id="example2" class="slider-pro">
+				<div class="sp-slides">
+					<div class="sp-slide">
+						<div class="carousel-item active hero-carousel__cell hero-carousel__cell--1 carousel-item_02">
+							<div class="carousel-caption">
+								<p class="text_02_1">1枚1枚、職人がプリントする</p>
+								<p class="text_01_1">オリジナルTシャツ</p>
+								<p class="psn_btn"><a href="/order/" class="check btn btn-info adj waves-effect waves-light orderbtn_01" type="button">
+<img src="/common/img/home/main/sp_go_icon.png" width="40px" style="padding-right: 12px;padding-bottom: 5px;">お申し込み</a>
+								</p>
+							</div>
 						</div>
 					</div>
 
-					<div class="carousel-item hero-carousel__cell hero-carousel__cell--2">
-
-						<div class="carousel-caption">
-							<p class="text_01_2">業界最速!<br class="hidden-sm-up">今日届くオリジナルTシャツ</p>
-							<p class="text_02">最短6時間で即日発送!</p>
-							<p class="psn_btn"><a href="/order/" class="check btn btn-info adj waves-effect waves-light orderbtn_02" type="button">
-							<img src="/common/img/home/main/sp_go_icon.png" width="40px" style="padding-right: 12px;padding-bottom: 5px;">お申し込み</a>
-							</p>
+					<div class="sp-slide">
+						<div class="carousel-item hero-carousel__cell hero-carousel__cell--2 carousel-item_02">
+							<div class="carousel-caption">
+								<p class="text_01_2">業界最速!<br class="hidden-sm-up">今日届くオリジナルTシャツ</p>
+								<p class="text_02">最短6時間で即日発送!</p>
+								<p class="psn_btn"><a href="/order/" class="check btn btn-info adj waves-effect waves-light orderbtn_02" type="button">
+<img src="/common/img/home/main/sp_go_icon.png" width="40px" style="padding-right: 12px;padding-bottom: 5px;">お申し込み</a>
+								</p>
+							</div>
 						</div>
 					</div>
 
-					<div class="carousel-item hero-carousel__cell hero-carousel__cell--3">
-
-						<div class="carousel-caption">
-							<p class="text_01">Made in Tokyo</p>
-							<p class="text_02">顧客満足度94%!<br class="hidden-sm-up">安心のプリント実績200万枚以上</p>
-							<p class="psn_btn"><a href="/order/" class="check btn btn-info adj waves-effect waves-light orderbtn_03" type="button">
-							<img src="/common/img/home/main/sp_go_icon.png" width="40px" style="padding-right: 12px;padding-bottom: 5px;">お申し込み</a>
-							</p>
+					<div class="sp-slide">
+						<div class="carousel-item hero-carousel__cell hero-carousel__cell--3 carousel-item_02">
+							<div class="carousel-caption">
+								<p class="text_01">Made in Tokyo</p>
+								<p class="text_02">顧客満足度94%!<br class="hidden-sm-up">安心のプリント実績200万枚以上</p>
+								<p class="psn_btn"><a href="/order/" class="check btn btn-info adj waves-effect waves-light orderbtn_03" type="button">
+<img src="/common/img/home/main/sp_go_icon.png" width="40px" style="padding-right: 12px;padding-bottom: 5px;">お申し込み</a>
+								</p>
+							</div>
 						</div>
 					</div>
 
 				</div>
-				<a class="carousel-control-prev" href="#mainCarouselIndicators" role="button" data-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="sr-only">Previous</span>
-			</a>
-				<a class="carousel-control-next" href="#mainCarouselIndicators" role="button" data-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="sr-only">Next</span>
-			</a>
-
 			</div>
+
 		</div>
 
 		<main class="container">
-<!--
-			<div style="text-align:  center;padding-top:  20px;margin-bottom:  30px;color: #d71414;font-size:  14px;">
-				<p style="font-size:16px; font-weight:bold;">【システムの不具合に関するお知らせ】</p>
-				<p style="margin-bottom:.5rem;">現在、HPの一部が正常にご覧いただけない状況が発生しております。</p>
-				<p style="margin-bottom:.5rem;">お急ぎの方は、お電話もしくはお問合せメールにてご対応させて頂きますので、お問い合わせください。</p>
-				<p style="margin-bottom:.5rem;">お客様には多大なるご迷惑、ご不便をおかけしておりますことを深くお詫び申し上げます。</p>
-			</div>
+			<!--
+<div style="text-align:  center;padding-top:  20px;margin-bottom:  30px;color: #d71414;font-size:  14px;">
+<p style="font-size:16px; font-weight:bold;">【システムの不具合に関するお知らせ】</p>
+<p style="margin-bottom:.5rem;">現在、HPの一部が正常にご覧いただけない状況が発生しております。</p>
+<p style="margin-bottom:.5rem;">お急ぎの方は、お電話もしくはお問合せメールにてご対応させて頂きますので、お問い合わせください。</p>
+<p style="margin-bottom:.5rem;">お客様には多大なるご迷惑、ご不便をおかけしておりますことを深くお詫び申し上げます。</p>
+</div>
 -->
-			<?php
-		if (!empty(_EXTRA_NOTICE)) {
-			$extNotice = (_EXTRA_NOTICE);
-			$txt = explode(PHP_EOL, $extNotice);
-			echo '<div id="option">';
-			echo '<h3 id="Line005"><a href="/guide/information.php">'.$txt[0].'</a></h3>';
-			$message = str_replace($txt[0].PHP_EOL, '', $extNotice);
-			echo '<p>'.nl2br($message).'</p></div>';
-		}
-		if (!empty(_NOTICE_HOLIDAY)) {
-			$notice = (_NOTICE_HOLIDAY);
-			$txt = explode(PHP_EOL, $notice);
-			echo '<div id="option">';
-			echo '<h3 id="Line005"><a href="/guide/information.php">'.$txt[0].'</a></h3>';
-			$message = str_replace($txt[0].PHP_EOL, '', $notice);
-			echo '<p>'.nl2br($message).'</p></div>';
-		}
-		?>
 
-				<div class="item_category">
-				
-					<div class="top_02">
-						<h2 class="rank_ttl">お届け日・見積もり計算</h2>
-						<p class="top_p">WEB上で、すぐにお届け日とオリジナルTシャツの概算を調べることができます。</p>
+			<h2 class="rank_ttl">アイテムカテゴリー</h2>
+			<div class="wrap_h2_under">
+				<p class="h2_under">オリジナルTシャツだけでなく、様々なアイテムにプリントできます！</p>
+			</div>
+			<section class="hidden-sm-down">
 
-						<div class="row outer top_3_wrap">
+				<div class="owl-carousel owl-theme">
 
-							<div class="col bk">
-								<a href="/delivery/" class="check btn_01 top_3 top_item_flex">
-									<div class="bk_area">
-										<p class="top3_bu_txt">今注文すると<br><span class="big_font">この日に届く</span></p>
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item t-shirts_btn" href="/items/category/t-shirts/">
+<img src="/items/img/item_01.jpg" width="100%">
+<p class="item_txt_min">Tシャツ</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item polo-shirts_btn" href="/items/category/polo-shirts/">
+<img src="/items/img/item_03.jpg" width="100%">
+<p class="item_txt_min">ポロシャツ</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item sweat_btn" href="/items/category/sweat/">
+<img src="/items/img/item_02.jpg" width="100%">
+<p class="item_txt_min">スウェット</p>
+</a>
+					</div>
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item towel_btn" href="/items/category/towel/">
+<img src="/items/img/item_08.jpg" width="100%">
+<p class="item_txt_min">タオル</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item sportswear_btn" href="/items/category/sportswear/">
+<img src="/items/img/item_04.jpg" width="100%">
+<p class="item_txt_min">スポーツ</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item outer_btn" href="/items/category/outer/">
+<img src="/items/img/item_06.jpg" width="100%">
+<p class="item_txt_min">ブルゾン</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item long-shirts_btn" href="/items/category/long-shirts/">
+<img src="/items/img/item_05.jpg" width="100%">
+<p class="item_txt_min">長袖Tシャツ</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item tote-bag_btn" href="/items/category/tote-bag/">
+<img src="/items/img/item_09.jpg" width="100%">
+<p class="item_txt_min">バッグ</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item cap_btn" href="/items/category/cap/">
+<img src="/items/img/item_14.jpg" width="100%">
+<p class="item_txt_min">キャップ</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item apron_btn" href="/items/category/apron/">
+<img src="/items/img/item_10.jpg" width="100%">
+<p class="item_txt_min">エプロン</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item baby_btn" href="/items/category/baby/">
+<img src="/items/img/item_11.jpg" width="100%">
+<p class="item_txt_min">ベビー</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item overall_btn" href="/items/category/overall/">
+<img src="/items/img/item_12.jpg" width="100%">
+<p class="item_txt_min">つなぎ</p>
+</a>
+					</div>
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item ladys_btn" href="/items/category/ladys/">
+<img src="/items/img/item_07.jpg" width="100%">
+<p class="item_txt_min">レディース</p>
+</a>
+					</div>
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item goods_btn" href="/items/category/workwear/">
+<img src="/items/img/item_13.jpg" width="100%">
+<p class="item_txt_min">ワークウェア</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item goods_btn" href="/items/category/goods/">
+<img src="/items/img/item_15.jpg" width="100%">
+<p class="item_txt_min">記念品</p>
+</a>
+					</div>
+
+				</div>
+			</section>
+            
+            <section class="hidden-md-up sp_item_wrap">
+                <div class="sp_items">
+                    <div class="row">
+
+							<div class="navi_inner_2 btn">
+								<a class="dropdown-item t-shirts_btn" href="/items/category/t-shirts/">
+						<img src="/items/img/item_01.jpg" width="100%">
+							<p class="item_txt_min">Tシャツ</p>
+						</a>
+							</div>
+
+							<div class="navi_inner_2 btn">
+								<a class="dropdown-item polo-shirts_btn" href="/items/category/polo-shirts/">
+						<img src="/items/img/item_03.jpg" width="100%">
+							<p class="item_txt_min">ポロシャツ</p>
+						</a>
+							</div>
+
+							<div class="navi_inner_2 btn">
+								<a class="dropdown-item towel_btn" href="/items/category/towel/">
+						<img src="/items/img/item_08.jpg" width="100%">
+							<p class="item_txt_min">タオル</p>
+						</a>
+							</div>
+                        </div>
+                        
+                        <div class="row">
+							<div class="navi_inner_2 btn">
+								<a class="dropdown-item sweat_btn" href="/items/category/sweat/">
+						<img src="/items/img/item_02.jpg" width="100%">
+							<p class="item_txt_min">スウェット</p>
+						</a>
+							</div>
+
+							<div class="navi_inner_2 btn">
+								<a class="dropdown-item sportswear_btn" href="/items/category/sportswear/">
+						<img src="/items/img/item_04.jpg" width="100%">
+							<p class="item_txt_min">スポーツ</p>
+						</a>
+							</div>
+
+							<div class="navi_inner_2 btn">
+								<a class="dropdown-item long-shirts_btn" href="/items/category/long-shirts/">
+						<img src="/items/img/item_05.jpg" width="100%">
+							<p class="item_txt_min">長袖Tシャツ</p>
+						</a>
+							</div>
+                            </div>
+						</div>
+						<a class="btn_or btn waves-effect waves-light" href="/items/category.php" type="button">アイテム一覧へ</a>
+                
+                
+            </section>
+
+			<!--
+			<section class="hidden-sm-up">
+
+				<div class="owl-carousel owl-theme">
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item goods_btn" href="/items/category/workwear/">
+<img src="/items/img/item_15.jpg" width="100%">
+<p class="item_txt_min">ワークウェア</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item goods_btn" href="/items/category/goods/">
+<img src="/items/img/item_15.jpg" width="100%">
+<p class="item_txt_min">記念品</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item overall_btn" href="/items/category/overall/">
+<img src="/items/img/item_12.jpg" width="100%">
+<p class="item_txt_min">つなぎ</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item ladys_btn" href="/items/category/ladys/">
+<img src="/items/img/item_07.jpg" width="100%">
+<p class="item_txt_min">レディース</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item long-shirts_btn" href="/items/category/long-shirts/">
+<img src="/items/img/item_05.jpg" width="100%">
+<p class="item_txt_min">長袖Tシャツ</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item tote-bag_btn" href="/items/category/tote-bag/">
+<img src="/items/img/item_09.jpg" width="100%">
+<p class="item_txt_min">バッグ</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item t-shirts_btn" href="/items/category/t-shirts/">
+<img src="/items/img/item_01.jpg" width="100%">
+<p class="item_txt_min">Tシャツ</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item polo-shirts_btn" href="/items/category/polo-shirts/">
+<img src="/items/img/item_03.jpg" width="100%">
+<p class="item_txt_min">ポロシャツ</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item sweat_btn" href="/items/category/sweat/">
+<img src="/items/img/item_02.jpg" width="100%">
+<p class="item_txt_min">スウェット</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item towel_btn" href="/items/category/towel/">
+<img src="/items/img/item_08.jpg" width="100%">
+<p class="item_txt_min">タオル</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item sportswear_btn" href="/items/category/sportswear/">
+<img src="/items/img/item_04.jpg" width="100%">
+<p class="item_txt_min">スポーツ</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item outer_btn" href="/items/category/outer/">
+<img src="/items/img/item_06.jpg" width="100%">
+<p class="item_txt_min">ブルゾン</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item cap_btn" href="/items/category/cap/">
+<img src="/items/img/item_14.jpg" width="100%">
+<p class="item_txt_min">キャップ</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item apron_btn" href="/items/category/apron/">
+<img src="/items/img/item_10.jpg" width="100%">
+<p class="item_txt_min">エプロン</p>
+</a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item baby_btn" href="/items/category/baby/">
+<img src="/items/img/item_11.jpg" width="100%">
+<p class="item_txt_min">ベビー</p>
+</a>
+					</div>
+
+
+
+				</div>
+			</section>
+-->
+
+			<!--
+			<section class="block-content">
+				<div class="content-area left_area">
+					<h2 class="rank_ttl">お届け日</h2>
+                    <div class="wrap_h2_under">
+					<p class="h2_under">オリジナルTシャツ業界最速！4つのプランからご提案します。</p>
+                    </div>
+					<div class="tab-content">
+						<input type="radio" id="tab1" name="tab" checked><label for="tab1">3日<br>プラン<span class="tgl_after"></span></label>
+						<input type="radio" id="tab2" name="tab"><label for="tab2">2日<br>プラン<span class="tgl_after"></span></label>
+						<input type="radio" id="tab3" name="tab"><label for="tab3">1日<br>プラン<span class="tgl_after"></span></label>
+						<input type="radio" id="tab4" name="tab"><label for="tab4">当日特急<br>プラン<span class="tgl_after"></span></label>
+						<div class="tab-box">
+							<div id="tabView1">
+								<div class="plan" style="margin-top:0px;">
+									<h5>今、注文すると...この日にお届け！</h5>
+									<div id="date">
+										<p>
+											<?php echo $fin[4]['Month'].'/'.$fin[4]['Day'];?><span class="min_txt">(<?php echo $fin[4]['Weekname'];?>)</span>
+										</p>
 									</div>
-									<div class="bk_area">
+									<p class="fs20">3日プランは特急料金なし</p>
+									<a href="/delivery/" class="rgt_txt"><span>別の注文日で調べる</span></a>
+									<div class="bdr_dot"></div>
+									<p class="fs20"> 注文〆切り(13時)まであと&hellip;</p>
+									<div class="DateCountdown" data-date="<?php echo $fin[3]['delidate'];?> 13:00:00" style="width: 100%;"></div>
+									<p class="fs10">※時期や注文内容によっては上記のお届け日以上かかる場合がございます。</p>
+								</div>
+							</div>
+							<div id="tabView2">
+								<div class="plan" style="margin-top:0px;">
+									<h5>今、注文すると...この日にお届け！</h5>
 										<div id="date">
 											<p>
 												<?php echo $fin['Month'];?>/
-												<?php echo $fin['Day'];?><span class="min_txt">(<?php echo $fin['weekname'];?>)</span></p>
+												<?php echo $fin['Day'];?><span class="min_txt">(<?php echo $fin['Weekname'];?>)</span></p>
 										</div>
-										<div class="tri_base">
-											<p class="btn_arrea">お届け日を調べる</p><span class="triangle1"></span></div>
-									</div>
-								</a>
+									<p class="fs20">2日プランは特急料金1.3倍</p>
+									<a href="/delivery/" class="rgt_txt"><span>別の注文日で調べる</span></a>
+									<div class="bdr_dot"></div>
+									<p class="fs20"> 注文〆切り(13時)まであと&hellip;</p>
+									<div class="DateCountdown" data-date="<?php echo $fin[2]['delidate'];?> 13:00:00" style="width: 100%;"></div>
+									<p class="fs10">※時期や注文内容によっては上記のお届け日以上かかる場合がございます。</p>
+								</div>
 							</div>
-
-							<div class="col bk">
-								<a href="/price/estimate.php" class="check btn_01 top_3 top_item_flex">
-									<div class="top_3_img bk_img"><img src="/common/img/home/main/sp_top_three_estimate.png" width="100%"></div>
-									<div class="bk_txt">
-										<p class="top3_bu_txt">かんたん10秒<span class="big_font">見積もり</span></p>
-										<div class="tri_base">
-											<p class="btn_arrea txt_space">見積もりをする</p><span class="triangle1"></span></div>
+							<div id="tabView3">
+								<div class="plan" style="margin-top:0px;">
+									<h5>今、注文すると...この日にお届け！</h5>
+									<div id="date">
+										<p>
+											<?php echo $fin[1]['Month'].'/'.$fin[1]['Day'];?><span class="min_txt">(<?php echo $fin[1]['Weekname'];?>)</span>
+										</p>
 									</div>
-								</a>
+									<p class="fs20">翌日プランは特急料金1.5倍</p>
+									<a href="/delivery/" class="rgt_txt"><span>別の注文日で調べる</span></a>
+									<div class="bdr_dot"></div>
+									<p class="fs20"> 注文〆切り(13時)まであと&hellip;</p>
+									<div class="DateCountdown" data-date="<?php echo $fin[1]['delidate'];?> 13:00:00" style="width: 100%;"></div>
+									<p class="fs10">※時期や注文内容によっては上記のお届け日以上かかる場合がございます。</p>
+								</div>
+							</div>
+							<div id="tabView4">
+								<div class="plan" style="margin-top:0px;">
+									<h5>今、注文すると...この日にお届け！</h5>
+									<div id="date">
+										<p>
+											<?php echo $fin[0]['Month'].'/'.$fin[0]['Day'];?><span class="min_txt">(<?php echo $fin[0]['Weekname'];?>)</span>
+										</p>
+									</div>
+									<p class="fs20">翌日プランは特急料金2倍</p>
+									<a href="/delivery/" class="rgt_txt"><span>別の注文日で調べる</span></a>
+									<div class="bdr_dot"></div>
+									<p class="fs20"> 注文〆切り(12時)まであと&hellip;</p>
+									<div class="DateCountdown" data-date="<?php echo $fin[0]['delidate'];?> 12:00:00" style="width: 100%;"></div>
+									<p class="fs10">※時期や注文内容によっては上記のお届け日以上かかる場合がございます。</p>
+								</div>
 							</div>
 						</div>
 					</div>
-					
-					
-					<h2 class="rank_ttl">アイテムカテゴリー</h2>
-					<p class="top_p">400種類以上の豊富なアイテムにお客様のデザインをオリジナルプリントできます。</p>
-
-					<section class="hidden-xs-down">
-
-						<div>
-
-							<div class="navi_inner_2 btn">
-								<a class="dropdown-item t-shirts_btn" href="/items/category/t-shirts/">
-						<img src="/items/img/item_01.jpg" width="100%">
-							<p class="item_txt_min">Tシャツ</p>
-						</a>
+					<div class="cnt_txt">
+						<p class="clear">業界最速！今日、発送できます！</p>
+						<a href="/order/express/" class="btn_or btn waves-effect waves-light" type="button">
+<span>当日特急プランへ</span>
+</a>
+					</div>
+				</div>
+				<div class="content-area right_area">
+					<h2 class="rank_ttl">10秒見積もり</h2>
+					<p class="h2_under">オリジナルTシャツの概算の金額がすぐに計算できます！</p>
+					<div class="menulist">
+						<div class="blockmenu">
+							<div class="menublock">
+								<h3>アイテム</h3>
+								<select name="example1">
+<option value="Tシャツ">Tシャツ</option>
+<option value="ポロシャツ">ポロシャツ</option>
+<option value="スウェット">スウェット</option>
+<option value="タオル">タオル</option>
+<option value="スポーツ">スポーツ</option>
+<option value="ブルゾン">ブルゾン</option>
+<option value="長袖Tシャツ">長袖Tシャツ</option>
+<option value="バッグ">バッグ</option>
+<option value="キャップ">キャップ</option>
+<option value="エプロン">エプロン</option>
+<option value="ベビー">ベビー</option>
+<option value="つなぎ">つなぎ</option>
+<option value="レディース">レディース</option>
+<option value="ワークウェア">ワークウェア</option>
+<option value="記念品">記念品</option>
+</select>
 							</div>
-
-							<div class="navi_inner_2 btn">
-								<a class="dropdown-item polo-shirts_btn" href="/items/category/polo-shirts/">
-						<img src="/items/img/item_03.jpg" width="100%">
-							<p class="item_txt_min">ポロシャツ</p>
-						</a>
+							<div class="menublock">
+								<h3>プリント方法</h3>
+								<select name="example2">
+<option value="シルクスクリーン">シルクスクリーン</option>
+<option value="デジタル転写">デジタル転写</option>
+<option value="インクジェット">インクジェット</option>
+<option value="カッティングシート">カッティングシート</option>
+<option value="刺繍">刺繍</option>
+</select>
 							</div>
-
-							<div class="navi_inner_2 btn">
-								<a class="dropdown-item towel_btn" href="/items/category/towel/">
-						<img src="/items/img/item_08.jpg" width="100%">
-							<p class="item_txt_min">タオル</p>
-						</a>
-							</div>
-
-							<div class="navi_inner_2 btn">
-								<a class="dropdown-item sweat_btn" href="/items/category/sweat/">
-						<img src="/items/img/item_02.jpg" width="100%">
-							<p class="item_txt_min">スウェット</p>
-						</a>
-							</div>
-
-							<div class="navi_inner_2 btn">
-								<a class="dropdown-item sportswear_btn" href="/items/category/sportswear/">
-						<img src="/items/img/item_04.jpg" width="100%">
-							<p class="item_txt_min">スポーツ</p>
-						</a>
-							</div>
-
-							<div class="navi_inner_2 btn">
-								<a class="dropdown-item long-shirts_btn" href="/items/category/long-shirts/">
-						<img src="/items/img/item_05.jpg" width="100%">
-							<p class="item_txt_min">長袖Tシャツ</p>
-						</a>
-							</div>
-
-							<div class="navi_inner_2 btn">
-								<a class="dropdown-item outer_btn" href="/items/category/outer/">
-						<img src="/items/img/item_06.jpg" width="100%">
-							<p class="item_txt_min">ブルゾン</p>
-						</a>
-							</div>
-
-							<div class="navi_inner_2 btn">
-								<a class="dropdown-item ladys_btn" href="/items/category/ladys/">
-						<img src="/items/img/item_07.jpg" width="100%">
-							<p class="item_txt_min">レディース</p>
-						</a>
-							</div>
-
-							<div class="navi_inner_2 btn">
-								<a class="dropdown-item tote-bag_btn" href="/items/category/tote-bag/">
-						<img src="/items/img/item_09.jpg" width="100%">
-							<p class="item_txt_min">バッグ</p>
-						</a>
-							</div>
-
-							<div class="navi_inner_2 btn">
-								<a class="dropdown-item apron_btn" href="/items/category/apron/">
-						<img src="/items/img/item_10.jpg" width="100%">
-							<p class="item_txt_min">エプロン</p>
-						</a>
-							</div>
-
-							<div class="navi_inner_2 btn">
-								<a class="dropdown-item baby_btn" href="/items/category/baby/">
-						<img src="/items/img/item_11.jpg" width="100%">
-							<p class="item_txt_min">ベビー</p>
-						</a>
-							</div>
-
-							<div class="navi_inner_2 btn">
-								<a class="dropdown-item overall_btn" href="/items/category/overall/">
-						<img src="/items/img/item_12.jpg" width="100%">
-							<p class="item_txt_min">つなぎ</p>
-						</a>
-							</div>
-
-							<div class="navi_inner_2 btn">
-								<a class="dropdown-item goods_btn" href="/items/category/goods/">
-						<img src="/items/img/item_15.jpg" width="100%">
-							<p class="item_txt_min">記念品</p>
-						</a>
-							</div>
-
-							<div class="navi_inner_2 btn">
-								<a class="dropdown-item cap_btn" href="/items/category/cap/">
-						<img src="/items/img/item_14.jpg" width="100%">
-							<p class="item_txt_min">キャップ</p>
-						</a>
+							<div class="menublock">
+								<h3>プリント色数</h3>
+								<select name="example3">
+<option value="1色">1色</option>
+<option value="2色">2色</option>
+<option value="3色">3色</option>
+<option value="フルカラー">フルカラー</option>
+</select>
 							</div>
 						</div>
-					</section>
-
-					<section class="hidden-sm-up">
-
-						<div>
-
-							<div class="navi_inner_2 btn">
-								<a class="dropdown-item t-shirts_btn" href="/items/category/t-shirts/">
-						<img src="/items/img/item_01.jpg" width="100%">
-							<p class="item_txt_min">Tシャツ</p>
-						</a>
+						<div class="blockmenu">
+							<div class="menublock">
+								<h3>プリントサイズ</h3>
+								<select name="example4">
+<option value="">5つの選択肢を表示</option>
+<option value="選択肢2">選択肢2</option>
+<option value="選択肢3">選択肢3</option>
+<option value="選択肢4">選択肢4</option>
+<option value="選択肢5">選択肢5</option>
+<option value="選択肢6">選択肢6</option>
+<option value="選択肢7">選択肢7</option>
+</select>
 							</div>
-
-							<div class="navi_inner_2 btn">
-								<a class="dropdown-item polo-shirts_btn" href="/items/category/polo-shirts/">
-						<img src="/items/img/item_03.jpg" width="100%">
-							<p class="item_txt_min">ポロシャツ</p>
-						</a>
-							</div>
-
-							<div class="navi_inner_2 btn">
-								<a class="dropdown-item towel_btn" href="/items/category/towel/">
-						<img src="/items/img/item_08.jpg" width="100%">
-							<p class="item_txt_min">タオル</p>
-						</a>
-							</div>
-							<div class="navi_inner_2 btn">
-								<a class="dropdown-item sweat_btn" href="/items/category/sweat/">
-						<img src="/items/img/item_02.jpg" width="100%">
-							<p class="item_txt_min">スウェット</p>
-						</a>
-							</div>
-
-							<div class="navi_inner_2 btn">
-								<a class="dropdown-item sportswear_btn" href="/items/category/sportswear/">
-						<img src="/items/img/item_04.jpg" width="100%">
-							<p class="item_txt_min">スポーツ</p>
-						</a>
-							</div>
-
-							<div class="navi_inner_2 btn">
-								<a class="dropdown-item long-shirts_btn" href="/items/category/long-shirts/">
-						<img src="/items/img/item_05.jpg" width="100%">
-							<p class="item_txt_min">長袖Tシャツ</p>
-						</a>
+							<div class="menublock2">
+								<h3>枚数<span class="txt_min">150枚以上でお大幅値引き！</span></h3>
+								<p class="slidenum"><input type="number" id="jquery-ui-slider-value" name="slidenum" step="10"><span>枚</span></p>
 							</div>
 						</div>
-						<a class="btn_or btn waves-effect waves-light" href="/items/category.php" type="button">アイテム一覧へ</a>
-					</section>
+						<div class="amount_list">
+							<h3>最安値だと...</h3>
+							<div id="subtotaltxt">
+								<p>1枚：<span class="amount_txt">1,230</span>円</p>
+							</div>
+							<div id="totaltxt">
+								<p>1枚：<span class="amount_txt">1,2300</span>円</p>
+							</div>
+						</div>
+					</div>
+					<div class="cnt_txt">
+						<p class="clear">カンタンに全アイテムの見積もりが比較できます！</p>
+						<a href="/price/estimate.php" class="btn_or btn waves-effect waves-light" type="button">
+<span>10秒比較見積もりへ</span>
+</a>
+					</div>
+				</div>
+			</section>
+-->
+
+
+
+			<!--            ここから旧お届け日・見積-->
+
+
+			<div class="item_category">
+
+				<div class="top_02">
+					<h2 class="rank_ttl">お届け日・見積もり計算</h2>
+					<div class="wrap_h2_under">
+						<p class="h2_under">WEB上で、すぐにお届け日とオリジナルTシャツの概算を調べることができます。</p>
+					</div>
+
+					<div class="row outer top_3_wrap">
+
+						<div class="col bk">
+							<a href="/delivery/" class="check btn_01 top_3 top_item_flex">
+								<div class="bk_area">
+									<p class="top3_bu_txt">今注文すると<br><span class="big_font">この日に届く</span></p>
+								</div>
+								<div class="bk_area">
+									<div id="date">
+										<p>
+											<?php echo $fin['Month'];?><span class="slash_01">/</span>
+											<?php echo $fin['Day'];?><span class="min_txt youbi">(<?php echo $fin['weekname'];?>)</span></p>
+									</div>
+									<div class="tri_base">
+										<p class="btn_arrea">お届け日を調べる</p><span class="triangle1"></span></div>
+								</div>
+							</a>
+						</div>
+
+						<div class="col bk">
+							<a href="/price/estimate.php" class="check btn_01 top_3 top_item_flex">
+								<div class="top_3_img bk_img"><img src="/common/img/home/main/sp_top_three_estimate.png" width="100%"></div>
+								<div class="bk_txt">
+									<p class="top3_bu_txt">かんたん10秒<span class="big_font">見積もり</span></p>
+									<div class="tri_base tri_base_02">
+										<p class="btn_arrea txt_space">見積もりをする</p><span class="triangle1"></span></div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+			<!--            ここまで旧お届け日・見積--->
+
+
+
+
+
+
+			<!--            ここから新　仁神-->
+
+
+			<section class="print_result">
+				<h2 class="rank_ttl"> 製作実例</h2>
+				<div class="wrap_h2_under">
+					<p class="h2_under">お客様のご利用シーンと製作物を写真とコメントでご紹介します。オリジナルTシャツは様々なシーンで活躍しています。最近ではドライタイプのTシャツやポロシャツがスポーウェアやユニフォームに多く使われています。デザインも企業ロゴから手描デザインなど幅広く見ていて参考になります。Tシャツとインクの配色もご参考に！</p>
 				</div>
 
-
-				<!--
-<div class="row outer top_3_wrap">
-<div class="col">
-<a href="/delivery/" class="check">
-<button type="button" class="btn top_3 top_item_flex">
-<div id="date"><p><?php echo $fin['Month'];?>/<?php echo $fin['Day'];?><span class="min_txt">(<?php echo $fin['weekname'];?>)</span></p></div>
-<p class="top3_bu_txt">今注文すると<br><span class="big_font">この日に届く</span></p>
-</button>
-</a>
-<a href="/delivery/" class="check_txt">
-<p class="top3_txt"><img src="/common/img/global/go_btm_blue.png">お届け日・地域変更はこちら</p>
-</a>
-</div>
-<div class="col">
-<a href="/items/category.php" class="check">
-<button type="button" class="btn top_3 top_item_flex">
-<div class="top_3_img"><img src="/common/img/home/main/sp_top_three_item.png" width="30%"></div>
-<p class="top3_bu_txt">200種類以上！<br><span class="big_font">アイテム</span></p>
-</button>
-</a>
-<a href="/items/category.php" class="check_txt">
-<p class="top3_txt"><img src="/common/img/global/go_btm_blue.png">アイテム一覧はこちら</p>
-</a>
-</div>
-<div class="col">
-<a href="/price/estimate.php" class="check">
-<button type="button" class="btn top_3 top_item_flex">
-<div class="top_3_img"><img src="/common/img/home/main/sp_top_three_estimate.png" width="30%"></div>
-<p class="top3_bu_txt">かんたん10秒<br><span class="big_font">見積もり</span></p>
-</button>
-</a>
-<a href="/price/estimate.php" class="check_txt">
-<p class="top3_txt"><img src="/common/img/global/go_btm_blue.png">見積もりをする</p>
-</a>
-</div>
-</div>
--->
-				<!--
-<section class="hidden-sm-down">
-<div>
-<a href="//takahama428.secure-decoration.com/create_products/5-6-T-?n=69818603" class="check">
-<img class="img-fluid" id="pc_slide" src="/common/img/home/main/top_service_deco.jpg" alt="First slide" width="100%">
-</a>
-</div>
-</section>
--->
-				<section class="hidden-xs-down">
-
-					<div class="row no-gutters service">
-						<div class="col-12 col-sm-4">
-							<div class="row btn-row">
-								<div class="col col-item view overlay hm-white-slight">
-									<a href="/order/express/" class="btn">
-								<img alt="Service" src="/common/img/home/service/top_ser_hurry.jpg" class="img-fluid">
-								<div class="mask"></div>
+				<div class="slider_p-result">
+					<div class="p-result">
+						<div class="result_block">
+							<a href="/app/WP/thanks-blog/2018/02/12/オリジナルスタッフtシャツでイベントも大盛況！/">
+								<div class="result_image"><img src="/img/ex_01.jpg" width="100%"></div>
 							</a>
+							<p class="result_txt"> Tシャツありがとうございました♪ <br>急な依頼にもかかわらずいい感じに仕上げていただきました(^-^)/<br>おかげでイベントも盛り上がりました!!
+							</p>
+						</div>
+						<div class="result_block">
+							<a href="/app/WP/thanks-blog/2017/12/05/親身な対応に安心してお揃いtシャツ作れました♪/">
+								<div class="result_image"><img src="/img/ex_02.jpg" width="100%"></div>
+							</a>
+							<p class="result_txt"> 昨年タカハマさんで作ったという知人の紹介で、こちらを知りました。<br>他社さんも調べたのですが、タカハマさんのご対応が一番親切・丁寧だったので決めました！…
+							</p>
+						</div>
+						<div class="result_block">
+							<a href="/app/WP/thanks-blog/2017/12/01/オリジナルデザインのクラスtもスピーディ！/">
+								<div class="result_image"><img src="/img/ex_03.jpg" width="100%"></div>
+							</a>
+							<p class="result_txt"> 先日は、クラスTオリジナルデザイン作成～仕上がりまで丁寧な対応有難うございました。<br>スピーディな対応が神的でした^_^
+							</p>
+						</div>
+						<div class="result_block">
+							<a href="/app/WP/thanks-blog/2017/05/08/t_218/">
+								<div class="result_image"><img src="/img/ex_04.jpg" width="100%"></div>
+							</a>
+							<p class="result_txt"> 先日は、お忙しい中対応して頂き、誠にありがとうございました。<br>Ｔシャツの出来上がりに子どもたちも 大満足で、無事にイベントを過ごす事ができ、いい思い出作りができ…
+							</p>
+						</div>
+						<div class="result_block">
+							<a href="/app/WP/thanks-blog/2017/11/10/着心地もよく、仕上がりも大変満足なオリジナルt/">
+								<div class="result_image"><img src="/img/ex_05.jpg" width="100%"></div>
+							</a>
+							<p class="result_txt"> 初めて利用させていただきましたが、早い仕上がりと、完成度の良さに大変満足しております。<br>またぜひ、お願いいたします。
+							</p>
+						</div>
+						<div class="result_block">
+							<a href="/app/WP/thanks-blog/2017/11/08/大人数イベントの参加者用オリジナルtシャツ！/">
+								<div class="result_image"><img src="/img/ex_06.jpg" width="100%"></div>
+							</a>
+							<p class="result_txt">いつもTシャツの制作、ありがとうございます。<br>今回で何度目でしょう？？6回目くらいですかね？<br>毎回200人近い参加者用にTシャツを作っていただいております。…
+							</p>
+						</div>
+						<div class="result_block">
+							<a href="/app/WP/thanks-blog/2017/11/06/社内イベントにオリジナルのマフラータオル！/">
+								<div class="result_image"><img src="/img/ex_07.jpg" width="100%"></div>
+							</a>
+							<p class="result_txt"> この度は大変お世話になりました。<br>無事、社内イベントにて製作頂きましたタオルを使用することができました！<br>デザイン・質感とも大変喜んでおりました。
+							</p>
+						</div>
+						<div class="result_block">
+							<a href="/app/WP/thanks-blog/2017/11/08/ディズニーランドにお揃いtシャツで最高の思い出/">
+								<div class="result_image"><img src="/img/ex_08.jpg" width="100%"></div>
+							</a>
+							<p class="result_txt">みんなでTシャツを着てディズニーランドに！<br>とっても目立てて最高の思い出になりました??<br>先日は急な注文にもかかわらず、丁寧なご対応、また素敵なTシャツ本当…
+							</p>
+						</div>
+						<div class="result_block">
+							<a href="/app/WP/thanks-blog/2017/11/08/ホームステイ記念＆お土産に漢字名前プリントシ/">
+								<div class="result_image"><img src="/img/ex_09.jpg" width="100%"></div>
+							</a>
+							<p class="result_txt">今回ホームステイでサンディエゴから16歳の男の子が来ました。<br>その記念にお揃いのＴシャツを作りました。<br>デザインは、彼が日本の高校に行った時に 書道で書いた彼の名前…
+							</p>
+						</div>
+						<div class="result_block">
+							<a href="/app/WP/thanks-blog/2017/12/05/想像以上のきれいなデザインtシャツに満足♪/">
+								<div class="result_image"><img src="/img/ex_10.jpg" width="100%"></div>
+							</a>
+							<p class="result_txt"> きれいにデザインして頂いて、想像以上に素晴らしいTシャツになりました。<br>良い記念になりました。ありがとうございました！
+							</p>
+						</div>
+						<div class="result_block">
+							<a href="/app/WP/thanks-blog/2017/11/08/オーケストラのメンバーtシャツで練習も頑張れる/">
+								<div class="result_image"><img src="/img/ex_11.jpg" width="100%"></div>
+							</a>
+							<p class="result_txt"> 素敵なTシャツを作って頂きありがとうございました！<br>オーケストラの皆さんも気に入ってくれて演奏会に向けてよりいっそう頑張れます！
+							</p>
+						</div>
+						<div class="result_block">
+							<a href="/app/WP/thanks-blog/2017/11/06/サプライズプレゼントのオリジナルタオルで感涙/">
+								<div class="result_image"><img src="/img/ex_12.jpg" width="100%"></div>
+							</a>
+							<p class="result_txt"> サークルのみんなにサプライズでタオルをプレゼントすることができました！<br>泣いて喜んでくれたのでほんとに嬉しかったです。<br>最高のチームで最高のバスケしてき…</p>
+						</div>
+						<div class="result_block">
+							<a href="app/WP/thanks-blog/2017/11/02/__trashed-4/">
+								<div class="result_image"><img src="/img/ex_13.jpg" width="100%"></div>
+							</a>
+							<p class="result_txt"> この度は、ステキなTシャツを作っていただいて本当にありがとうございました！<br>みんなで同じTシャツを着ることで、団結力が強まりイベントを盛り上げ…
+							</p>
+						</div>
+						<div class="result_block">
+							<a href="/app/WP/thanks-blog/2017/05/08/t_217/">
+								<div class="result_image"><img src="/img/ex_14.jpg" width="100%"></div>
+							</a>
+							<p class="result_txt"> 今回マラソン大会に出るためにオリジナルＴシャツをタカハマライフアートさんで作成していただきました。<br>皆で一致団結して頑張ります！<br>タカハマライフアートさん、ありが…
+							</p>
+						</div>
+						<div class="result_block">
+							<a href="/app/WP/thanks-blog/2017/05/08/t_215/">
+								<div class="result_image"><img src="/img/ex_15.jpg" width="100%"></div>
+							</a>
+							<p class="result_txt"> イベント開催にともない、スタッフ用のTシャツを作成しました。<br>希望の納期が短かったので、Takahama Life Art様にお願いしました。<br>キレイで目立つ希望通りの鮮やかな…
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="button_01">
+					<a class="btn_or btn waves-effect waves-light" href="/app/WP/thanks-blog" type="button">製作実例をもっと見る</a>
+				</div>
+
+			</section>
+
+
+
+			<div class="review_block_bg">
+				<section class="review">
+					<h2 class="rank_ttl review_block_ttl">お客様レビュー</h2>
+					<div class="wrap_h2_under">
+						<p class="h2_under">1000件を超えるお客様の声をご紹介します。タカハマライフアートのオリジナルTシャツを作成して頂いた多くの方が受注スタッフの対応が良かったと評価頂いています。 なんと、94%の方が最高評価の5の評価でした。もちろん、商品の仕上がりやサイトの使いやすさも高評価頂いています！</p>
+					</div>
+
+					<p class="kindly">タカハマライフアートは<br class="hidden-sm-up"><span class="orange_txt">親切対応</span><br class="hidden-sm-up">で選ばれています！</p>
+					<p class="com_ev">総合評価(1,045件)</p>
+					<div class="com_ev_star">
+						<div class="com_ev_star_img">
+							<img src="/common/img/home/review/sp_review_040.png" width="100%">
+						</div>
+						<div class="com_ev_star_number"> 4.3</div>
+					</div>
+					<div class="r_four_block">
+						<div class="r_two_block">
+							<div class="r_star_block col-sm">
+								<div class="r_des_03">
+									商品の仕上がり
+								</div>
+								<div class="r_star_img">
+									<img src="/common/img/home/review/sp_review_040.png" width="100%">
+								</div>
+								<div class="r_star_number">
+									4.2
 								</div>
 							</div>
-							<div class="row btn-row">
-								<div class="col col-item view overlay hm-white-slight">
-									<a href="/design/emb.php " class="btn">
-								<img alt="Service" src="/common/img/home/service/top_ser_needle.jpg" class="img-fluid">
-								<div class="mask"></div>
-							</a>
+
+							<div class="r_star_block col-sm">
+								<div class="r_des_02">
+									梱包について
+								</div>
+								<div class="r_star_img">
+									<img src="/common/img/home/review/sp_review_040.png" width="100%">
+								</div>
+								<div class="r_star_number">
+									4.1
 								</div>
 							</div>
 						</div>
-						<div class="col-12 col-sm-4">
-							<!-- strtotime(日付)で日付を指定して、HTMLタグの表示を切り替える-->
-							<?php
-					// 2018-04-01になったら表示する
-					if (time() >= strtotime('2018-04-01')) {
-						echo '<div class="row btn-row">
-						<div class="col col-item view overlay hm-white-slight">
-							<a href="https://www.instagram.com/takahamalifeart/" class="btn">
-						<img alt="Service" src="/common/img/home/service/top_ser_Insta.jpg" class="img-fluid">
-						<div class="mask"></div>
-					</a>
-						</div>
-					</div>';
-					}
-
-					// 2018-04-01になったら非表示にする
-					if (time() < strtotime('2018-04-01')) {
-						echo '<div class="row btn-row">
-						<div class="col col-item view overlay hm-white-slight">
-							<a href="/scene/graduation/index.php" class="btn">
-						<img alt="Service" src="/common/img/home/service/top_ser_graduation.jpg" class="img-fluid">
-						<div class="mask"></div>
-					</a>
-						</div>
-					</div>';
-					}
-					?>
-								<div class="row btn-row">
-									<div class="col col-item view overlay hm-white-slight">
-										<a href="/guide/discount.php" class="btn">
-								<img alt="Service" src="/common/img/home/service/top_ser_off.jpg" class="img-fluid">
-								<div class="mask"></div>
-							</a>
-									</div>
+						<div class="r_two_block">
+							<div class="r_star_block col-sm">
+								<div class="r_des_03">
+									スタッフの対応
 								</div>
-						</div>
-						<div class="col-12 col-sm-4">
-							<div class="row btn-row">
-								<div class="col col-item view overlay hm-white-slight">
-									<a href="/contact/request.php" class="btn">
-								<img alt="Service" src="/common/img/home/service/top_ser_sample.jpg" class="img-fluid">
-								<div class="mask"></div>
-							</a>
+								<div class="r_star_img">
+									<img src="/common/img/home/review/sp_review_045.png" width="100%">
+								</div>
+								<div class="r_star_number">
+									4.7
 								</div>
 							</div>
-							<div class="row btn-row">
-								<div class="col col-item view overlay hm-white-slight">
-									<a href="/campaign/towel/" class="btn">
-								<img alt="Service" src="/common/img/home/service/top_ser_towel.jpg" class="img-fluid">
-								<div class="mask"></div>
-							</a>
+
+							<div class="r_star_block col-sm">
+								<div class="r_des">
+									サイトの使いやすさ
+								</div>
+								<div class="r_star_img">
+									<img src="/common/img/home/review/sp_review_040.png" width="100%">
+								</div>
+								<div class="r_star_number">
+									4.2
 								</div>
 							</div>
-						</div>
-					</div>
-				</section>
 
-				<section class="hidden-sm-up">
-
-					<div class="row btn-row ">
-						<div class="col-6 col-item view overlay hm-white-slight">
-							<a href="/order/express/" class="btn">
-						<img alt="Service" src="/common/img/home/service/sp_top_ser_hurry.jpg" class="img-fluid">
-						<div class="mask"></div>
-					</a>
-						</div>
-						<!-- strtotime(日付)で日付を指定して、HTMLタグの表示を切り替える-->
-						<?php
-				// 2018-04-01になったら表示する
-				if (time() >= strtotime('2018-04-01')) {
-					echo '<div class="col-6 col-item view overlay hm-white-slight">
-					<a href="https://www.instagram.com/takahamalifeart/" class="btn">
-				<img alt="Service" src="/common/img/home/service/sp_top_ser_Insta.jpg" class="img-fluid">
-				<div class="mask"></div>
-			</a>
-				</div>';
-				}
-
-				// 2018-04-01になったら非表示にする
-				if (time() < strtotime('2018-04-01')) {
-					echo '<div class="col-6 col-item view overlay hm-white-slight">
-					<a href="/scene/graduation/index.php" class="btn">
-				<img alt="Service" src="/common/img/home/service/sp_top_ser_graduation.jpg" class="img-fluid">
-				<div class="mask"></div>
-			</a>
-				</div>';
-				}
-				?>
-					</div>
-					<div class="row btn-row ">
-						<div class="col-6 col-item view overlay hm-white-slight">
-							<a href="/contact/request.php" class="btn">
-						<img alt="Service" src="/common/img/home/service/sp_top_ser_sample.jpg" class="img-fluid">
-						<div class="mask"></div>
-					</a>
-						</div>
-						<div class="col-6 col-item view overlay hm-white-slight">
-							<a href="/design/emb.php" class="btn">
-						<img alt="Service" src="/common/img/home/service/sp_top_ser_needle.jpg" class="img-fluid">
-						<div class="mask"></div>
-					</a>
-						</div>
-					</div>
-					<div class="row btn-row ">
-						<div class="col-6 col-item view overlay hm-white-slight">
-							<a href="/guide/discount.php" class="btn">
-						<img alt="Service" src="/common/img/home/service/sp_top_ser_off.jpg" class="img-fluid">
-						<div class="mask"></div>
-					</a>
-						</div>
-
-						<div class="col-6 col-item view overlay hm-white-slight">
-							<a href="/campaign/towel/" class="btn">
-						<img alt="Service" src="/common/img/home/service/sp_top_ser_towel.jpg" class="img-fluid">
-						<div class="mask"></div>
-					</a>
 						</div>
 					</div>
 
-				</section>
 
-				<section class="review_wrap">
 
-					<div class="review_le" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating" class="totalRate">
-						<p>お客様の評価 <br><small class="review_total_number">( 口コミ総数：<span itemprop="ratingCount">1,045</span>件 )</small></p>
-						<div>
-							<img src="/common/img/home/review/sp_review_040.png" style="width: 75%; vertical-align:baseline;">
-							<span class="review_total_score" style="font-size:.2px"><span class="emph" itemprop="ratingCount">4.3</span> / 5.0</span>
-						</div>
-						<a href="/userreviews/" style="display:block;" class="userreviews">
-							<div class="method_button">詳しく見る</div>
-						</a>
-					</div>
-
-					<!--Carousel Wrapper-->
-					<div id="multi-item-example" class="carousel slide carousel-multi-item slide_wrap" data-ride="carousel">
+					<!--Carousel Wrapper pc-->
+					<div id="multi-item-example_01" class="hidden-sm-down carousel slide carousel-multi-item slide_wrap" data-ride="carousel">
 
 						<!--Slides-->
-						<a class="btn-floating_review" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left review_arrow"></i></a>
+						<a class="btn-floating_review" href="#multi-item-example_01" data-slide="prev"><i class="fa fa-chevron-left review_arrow"></i></a>
 						<div class="carousel-inner" role="listbox">
 
 							<!--First slide-->
 							<div class="carousel-item active">
 
-								<div class="col-md-4">
+								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.5</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.7</span></li>
 											<li>
-												<h3>丁寧な対応で満足でした</h3>
-											</li>
-											<li>
-												<p>いつも、丁寧で対応の早さが素晴らしいと思います！私のようにパソコンを使ってのデザイン画を送れない人にとっては、本当に助かり...
+												<p>昨年秋に一度お世話になりました。<br>・低価格でいい商品を提供してくれている<br>・応対がよい…
+
 												</p>
 											</li>
 										</ul>
 									</div>
 								</div>
 
-								<div class="col-md-4 clearfix d-none d-md-block">
+								<div class="col review_comment clearfix d-none d-md-block">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.5</span></li>
+
+											<li>
+												<p>いつも、丁寧で対応の早さが素晴らしいと思います！<br>私のようにパソコンを使ってのデザイン画を送れない人にとっては、本当に助かります！…
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="col review_comment clearfix d-none d-md-block">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.7</span></li>
+											<li>
+												<p>最初から最後まで、一人の担当者が相談に乗ってくれるので発注までスムーズでした。<br>また宜しくお願い致します。
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
 											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price">4.2</span></li>
 											<li>
-												<h3>印刷色を確認したかった</h3>
-											</li>
-											<li>
-												<p>各商品名の印刷色を決める際に、全ての商品に対して、印刷色を確認できるページが欲しいです。 Tシャツだとそんなページがありましたが、...
+												<p>各商品名の印刷色を決める際に、全ての商品に対して、印刷色を確認できるページが欲しいです。<br>Tシャツだとそんなページがありましたが、ハンドタオル…
+
 												</p>
 											</li>
 										</ul>
 									</div>
 								</div>
 
-								<div class="col-md-4 clearfix d-none d-md-block">
+								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_050.png" width="100%" class="imgsz"><span class="rank_price">5.0</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price">4.0</span></li>
 											<li>
-												<h3>丁寧な対応ありがとう</h3>
-											</li>
-											<li>
-												<p>窓口のスタッフの対応が大変よく、ありがとうございました。 追加なども夏頃出るかと思いますが、また宜しくお願い致します。
+												<p>ネットでこれだけ注文に応じられるのは驚きました。<br>プリントもイメージ通りで大変満足しました。
 												</p>
 											</li>
 										</ul>
@@ -589,45 +970,60 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							<!--Second slide-->
 							<div class="carousel-item">
 
-								<div class="col-md-4">
+								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price">4.0</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.5</span></li>
 											<li>
-												<h3>ネット注文なのにイメージ通り！</h3>
-											</li>
-											<li>
-												<p>ネットでこれだけ注文に応じられるのは驚きました。プリントもイメージ通りで大変満足しました。
+												<p>安く、早く届き非常に助かりました。<br>ありがとうございました。
 												</p>
 											</li>
 										</ul>
 									</div>
 								</div>
 
-								<div class="col-md-4 clearfix d-none d-md-block">
+								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_050.png" width="100%" class="imgsz"><span class="rank_price">5.0</span></li>
 											<li>
-												<h3>電話対応がわかりやすい</h3>
-											</li>
-											<li>
-												<p>今回は追加注文だったのですが、電話での対応が良かった。金額の事や、デザインの微調整についてわかりやすかった。
+												<p>わがままばかりで色々とお手数おかけいたしましたが、優しく素早く対応して下さり感謝しております。<br>ありがとうございました。
 												</p>
 											</li>
 										</ul>
 									</div>
 								</div>
 
-								<div class="col-md-4 clearfix d-none d-md-block">
+								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price">4.2</span></li>
 											<li>
-												<h3>担当者へ相談できて安心</h3>
+												<p>今回は追加注文だったのですが、電話での対応が良かった。<br>金額の事や、デザインの微調整についてわかりやすかった。
+												</p>
 											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="col review_comment clearfix d-none d-md-block">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_035.png" width="100%" class="imgsz"><span class="rank_price">3.7</span></li>
 											<li>
-												<p>最初から最後まで、一人の担当者が相談に乗ってくれるので発注までスムーズでした。 また宜しくお願い致します。
+												<p>注文から発送まで本当にスムーズで時間がなかった私たちには嬉しい限りでした。
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="col review_comment clearfix d-none d-md-block">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_050.png" width="100%" class="imgsz"><span class="rank_price">5.0</span></li>
+											<li>
+												<p>窓口のスタッフの対応が大変よく、ありがとうございました。<br>追加なども夏頃出るかと思いますが、また宜しくお願い致します。
 												</p>
 											</li>
 										</ul>
@@ -640,45 +1036,62 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							<!--Third slide-->
 							<div class="carousel-item">
 
-								<div class="col-md-4">
+								<div class="col review_comment">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price">4.2</span></li>
+											<li>
+												<p>欲しかった通りの物が届いて嬉しかったです。<br>また何かオリジナルTシャツを作りたいときはお願いしたいと思います。
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="col review_comment clearfix d-none d-md-block">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price">4.0</span></li>
+											<li>
+												<p>・白インクの部分が、少しだけ明度が下がったように感じたましたが、イメージ通りに仕上がり良かったです。<br>・注文の最終確認の段階で、…
+
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="col review_comment clearfix d-none d-md-block">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.7</span></li>
+											<li>
+												<p>電話で確認した時に対応してくださった方が、とても感じがよかったです。<br>気持ちよくお話ができました。
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
 											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.5</span></li>
 											<li>
-												<h3>安くて、早い</h3>
-											</li>
-											<li>
-												<p>安く、早く届き非常に助かりました。ありがとうございました。
+												<p>この度は急ぎの注文に親切な、迅速な対応ありがとうございました。<br>お陰様でイベントに間に合わせることができ、楽しい時間…
+
 												</p>
 											</li>
 										</ul>
 									</div>
 								</div>
 
-								<div class="col-md-4 clearfix d-none d-md-block">
-									<div>
-										<ul>
-											<li><img src="/common/img/home/review/sp_review_050.png" width="100%" class="imgsz"><span class="rank_price">5.0</span></li>
-											<li>
-												<h3>優しく素早い対応でした。</h3>
-											</li>
-											<li>
-												<p>わがままばかりで色々とお手数おかけいたしましたが、優しく素早く対応して下さり感謝しております。 ありがとうございました。
-												</p>
-											</li>
-										</ul>
-									</div>
-								</div>
-
-								<div class="col-md-4 clearfix d-none d-md-block">
+								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
 											<li><img src="/common/img/home/review/sp_review_035.png" width="100%" class="imgsz"><span class="rank_price">3.7</span></li>
 											<li>
-												<h3>時間がなかったのにスムーズ</h3>
-											</li>
-											<li>
-												<p>注文から発送まで本当にスムーズで時間がなかった私たちには嬉しい限りでした。
+												<p>どのプリントがどの程度費用がかかるというのが分からず、予想以上に低価格で仕上がりました。<br>今回は時間がなかったので、再度変更はできませんでしたが…
 												</p>
 											</li>
 										</ul>
@@ -691,45 +1104,61 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 							<!--Third slide-->
 							<div class="carousel-item">
 
-								<div class="col-md-4">
+								<div class="col review_comment">
 									<div>
 										<ul>
 											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price">4.0</span></li>
 											<li>
-												<h3>イメージ通りに仕上がった</h3>
-											</li>
-											<li>
-												<p>白インクの部分が、少しだけ明度が下がったように感じたましたが、イメージ通りに仕上がり良かったです。 注文の最終確認の段階で、...
+												<p>Ｔシャツ作りが初めてだったので、とても不安でしたが、わかりやすく説明していただきました。<br>納期が早くて、とても助かりました。ありがとうございました。
 												</p>
 											</li>
 										</ul>
 									</div>
 								</div>
 
-								<div class="col-md-4 clearfix d-none d-md-block">
+								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
 											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price">4.2</span></li>
 											<li>
-												<h3>またお願いします。</h3>
-											</li>
-											<li>
-												<p>欲しかった通りの物が届いて嬉しかったです。 また何かオリジナルTシャツを作りたいときはお願いしたいと思います。
+												<p>電話対応も非常に丁寧でしたし、大変満足のいく仕上がりでした。<br>また利用させていただきたいと思います。<br>ありがとうございました。
 												</p>
 											</li>
 										</ul>
 									</div>
 								</div>
 
-								<div class="col-md-4 clearfix d-none d-md-block">
+								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
 											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.7</span></li>
 											<li>
-												<h3>感じのよい電話対応でした</h3>
+												<p>発注～入稿～領収証依頼、と、数回お電話でやりとりさせていただきましたが、どの方もとても気持ちよく対応していただきました。<br>ありがとうございます。
+												</p>
 											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="col review_comment clearfix d-none d-md-block">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.5</span></li>
 											<li>
-												<p>電話で確認した時に対応してくださった方が、とても感じがよかったです。 気持ちよくお話ができました。
+												<p>メールや電話での対応がとても丁寧で好感がもてました。<br>必ずしも同じ方がご対応ではないかと思いますが、一定のレベルが堅持されていて、安心感…
+
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="col review_comment clearfix d-none d-md-block">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.5</span></li>
+											<li>
+												<p>急な注文にもかかわらずご丁寧に対応していただけて嬉しかったです。<br>ありがとうございました！
 												</p>
 											</li>
 										</ul>
@@ -741,357 +1170,1547 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 
 						</div>
 						<!--/.Slides-->
+						<a class="btn-floating_review" href="#multi-item-example_01" data-slide="next"><i class="fa fa-chevron-right review_arrow"></i></a>
+					</div>
+					<!--/.Carousel Wrapper pc-->
+
+
+
+
+					<!--Carousel Wrapper sp-->
+					<div id="multi-item-example" class="hidden-md-up carousel slide carousel-multi-item slide_wrap" data-ride="carousel">
+
+						<!--Slides-->
+						<a class="btn-floating_review" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left review_arrow"></i></a>
+						<div class="carousel-inner" role="listbox">
+
+							<!---->
+							<div class="carousel-item active">
+
+								<div class="col review_comment">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.7</span></li>
+											<li>
+												<p>昨年秋に一度お世話になりました。<br>・低価格でいい商品を提供してくれている<br>・応対がよい…
+
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="col review_comment clearfix d-none d-sm-block">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.5</span></li>
+
+											<li>
+												<p>いつも、丁寧で対応の早さが素晴らしいと思います！<br>私のようにパソコンを使ってのデザイン画を送れない人にとっては、本当に助かります！…
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+							</div>
+
+							<!---->
+
+							<div class="carousel-item">
+								<div class="col review_comment">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.7</span></li>
+											<li>
+												<p>最初から最後まで、一人の担当者が相談に乗ってくれるので発注までスムーズでした。<br>また宜しくお願い致します。
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="col review_comment clearfix d-none d-sm-block">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price">4.2</span></li>
+											<li>
+												<p>各商品名の印刷色を決める際に、全ての商品に対して、印刷色を確認できるページが欲しいです。<br>Tシャツだとそんなページがありましたが、ハンドタオル…
+
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+							</div>
+							<!---->
+
+
+							<div class="carousel-item">
+								<div class="col review_comment">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price">4.0</span></li>
+											<li>
+												<p>ネットでこれだけ注文に応じられるのは驚きました。<br>プリントもイメージ通りで大変満足しました。
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="col review_comment clearfix d-none d-sm-block">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.5</span></li>
+											<li>
+												<p>安く、早く届き非常に助かりました。<br>ありがとうございました。
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<!---->
+
+							<div class="carousel-item">
+								<div class="col review_comment">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_050.png" width="100%" class="imgsz"><span class="rank_price">5.0</span></li>
+											<li>
+												<p>わがままばかりで色々とお手数おかけいたしましたが、優しく素早く対応して下さり感謝しております。<br>ありがとうございました。
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="col review_comment clearfix d-none d-sm-block">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price">4.2</span></li>
+											<li>
+												<p>今回は追加注文だったのですが、電話での対応が良かった。<br>金額の事や、デザインの微調整についてわかりやすかった。
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<!---->
+
+							<div class="carousel-item">
+								<div class="col review_comment">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_035.png" width="100%" class="imgsz"><span class="rank_price">3.7</span></li>
+											<li>
+												<p>注文から発送まで本当にスムーズで時間がなかった私たちには嬉しい限りでした。
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="col review_comment clearfix d-none d-sm-block">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_050.png" width="100%" class="imgsz"><span class="rank_price">5.0</span></li>
+											<li>
+												<p>窓口のスタッフの対応が大変よく、ありがとうございました。<br>追加なども夏頃出るかと思いますが、また宜しくお願い致します。
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!---->
+
+							<div class="carousel-item">
+								<div class="col review_comment">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price">4.2</span></li>
+											<li>
+												<p>欲しかった通りの物が届いて嬉しかったです。<br>また何かオリジナルTシャツを作りたいときはお願いしたいと思います。
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="col review_comment clearfix d-none d-sm-block">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price">4.0</span></li>
+											<li>
+												<p>・白インクの部分が、少しだけ明度が下がったように感じたましたが、イメージ通りに仕上がり良かったです。<br>・注文の最終確認の段階で、…
+
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!---->
+
+							<div class="carousel-item">
+								<div class="col review_comment">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.7</span></li>
+											<li>
+												<p>電話で確認した時に対応してくださった方が、とても感じがよかったです。<br>気持ちよくお話ができました。
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="col review_comment clearfix d-none d-sm-block">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.5</span></li>
+											<li>
+												<p>この度は急ぎの注文に親切な、迅速な対応ありがとうございました。<br>お陰様でイベントに間に合わせることができ、楽しい時間…
+
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<!---->
+
+							<div class="carousel-item">
+								<div class="col review_comment">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_035.png" width="100%" class="imgsz"><span class="rank_price">3.7</span></li>
+											<li>
+												<p>どのプリントがどの程度費用がかかるというのが分からず、予想以上に低価格で仕上がりました。<br>今回は時間がなかったので、再度変更はできませんでしたが…
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+
+								<div class="col review_comment clearfix d-none d-sm-block">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price">4.0</span></li>
+											<li>
+												<p>Ｔシャツ作りが初めてだったので、とても不安でしたが、わかりやすく説明していただきました。<br>納期が早くて、とても助かりました。ありがとうございました。
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<!---->
+
+							<div class="carousel-item">
+								<div class="col review_comment">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price">4.2</span></li>
+											<li>
+												<p>電話対応も非常に丁寧でしたし、大変満足のいく仕上がりでした。<br>また利用させていただきたいと思います。<br>ありがとうございました。
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="col review_comment clearfix d-none d-sm-block">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.7</span></li>
+											<li>
+												<p>発注～入稿～領収証依頼、と、数回お電話でやりとりさせていただきましたが、どの方もとても気持ちよく対応していただきました。<br>ありがとうございます。
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<!---->
+
+							<div class="carousel-item">
+								<div class="col review_comment">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.5</span></li>
+											<li>
+												<p>メールや電話での対応がとても丁寧で好感がもてました。<br>必ずしも同じ方がご対応ではないかと思いますが、一定のレベルが堅持されていて、安心感…
+
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="col review_comment clearfix d-none d-sm-block">
+									<div>
+										<ul>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price">4.5</span></li>
+											<li>
+												<p>急な注文にもかかわらずご丁寧に対応していただけて嬉しかったです。<br>ありがとうございました！
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<!---->
+						</div>
+
+						<!--/.Slides-->
 						<a class="btn-floating_review" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right review_arrow"></i></a>
 					</div>
 					<!--/.Carousel Wrapper-->
+
+
+					<div class="button_01">
+						<a class="btn_or btn waves-effect waves-light" href="/userreviews/" type="button">レビューをもっと見る</a>
+					</div>
+
+
 				</section>
 
-				<section class="hidden-xs-down">
-					<h2 class="rank_ttl">アイテムランキング　人気BEST５</h2>
-					<div class="row justify-content-around">
-						<div class="col-sm-2 col-md-offset-1 rank_box">
-							<a href="/items/item.php?code=085-cvt">
-								<div>
-									<div>
-										<img src="/common/img/home/ranking/ranking_01.jpg" style="width: 25%;">
-										<img src="/common/img/home/ranking/ap_ranking_085.png" style="width: 100%;">
-									</div>
-									<p class="rank_name">085-CVT<br>5.6オンスヘビーウエイトＴシャツ</p>
-									<p class="rank_price">¥500～</p>
-								</div>
-							</a>
-						</div>
-						<div class="col-sm-2 rank_box">
-							<a href="/items/item.php?code=302-ADP">
-								<div>
-									<div>
-										<img src="/common/img/home/ranking/ranking_02.jpg" style="width: 25%;">
-										<img src="/common/img/home/ranking/ap_ranking_302.png" style="width: 100%;">
-									</div>
-									<p class="rank_name">302-ADP<br>4.4オンスドライポロシャツ</p>
-									<p class="rank_price">¥750～</p>
-								</div>
-							</a>
-						</div>
-
-						<div class="col-sm-2 rank_box">
-							<a href="/items/item.php?code=537-FTC">
-								<div>
-									<div>
-										<img src="/common/img/home/ranking/ranking_03.jpg" style="width: 25%;">
-										<img src="/common/img/home/ranking/ap_ranking_537.png" style="width: 100%;">
-									</div>
-									<p class="rank_name">537-FTC<br>カラーフェイスタオル</p>
-									<p class="rank_price">¥380～</p>
-								</div>
-							</a>
-						</div>
-
-						<div class="col-sm-2 rank_box">
-							<a href="/items/item.php?code=300-ACT">
-								<div>
-									<div>
-										<img src="/common/img/home/ranking/ranking_04.jpg" style="width: 25%;">
-										<img src="/common/img/home/ranking/ap_ranking_300.png" style="width: 100%;">
-									</div>
-									<p class="rank_name">300-ACT<br>4.4オンスドライＴシャツ</p>
-									<p class="rank_price">¥450～</p>
-								</div>
-							</a>
-						</div>
-
-						<div class="col-sm-2 rank_box">
-							<a href="/items/item.php?code=185-NSZ">
-								<div>
-									<div>
-										<img src="/common/img/home/ranking/ranking_05.jpg" style="width: 25%;">
-										<img src="/common/img/home/ranking/ap_ranking_185.png" style="width: 100%;">
-									</div>
-									<p class="rank_name">185-NSZ<br>スタンダードジップパーカー</p>
-									<p class="rank_price">¥2,140～</p>
-								</div>
-							</a>
-						</div>
-					</div>
-				</section>
+			</div>
 
 
-				<section class="hidden-sm-up">
-					<h2 class="rank_ttl">アイテムランキング　人気BEST3</h2>
-					<div class="row justify-content-around">
-						<div class="col-4 col-md-offset-1 rank_box">
-							<a href="/items/item.php?code=085-cvt">
-								<div>
-									<div>
-										<img src="/common/img/home/ranking/ranking_01.jpg" style="width: 25%;">
-										<img src="/common/img/home/ranking/ap_ranking_085.png" style="width: 100%;">
-									</div>
-									<p class="rank_name">085-CVT<br>5.6オンスヘビーウエイトＴシャツ</p>
-									<p class="rank_price">¥500～</p>
-								</div>
-							</a>
-						</div>
 
-						<div class="col-4 rank_box">
-							<a href="/items/item.php?code=302-ADP">
-								<div>
-									<div>
-										<img src="/common/img/home/ranking/ranking_02.jpg" style="width: 25%;">
-										<img src="/common/img/home/ranking/ap_ranking_302.png" style="width: 100%;">
-									</div>
-									<p class="rank_name">302-ADP<br>4.4オンスドライポロシャツ</p>
-									<p class="rank_price">¥750～</p>
-								</div>
-							</a>
-						</div>
 
-						<div class="col-4 rank_box">
-							<a href="/items/item.php?code=537-FTC">
-								<div>
-									<div>
-										<img src="/common/img/home/ranking/ranking_03.jpg" style="width: 25%;">
-										<img src="/common/img/home/ranking/ap_ranking_537.png" style="width: 100%;">
-									</div>
-									<p class="rank_name">537-FTC<br>カラーフェイスタオル</p>
-									<p class="rank_price">¥380～</p>
-								</div>
-							</a>
-						</div>
-					</div>
-				</section>
 
-				<section>
-					<h2 class="mid_ttl_2"><img src="/common/img/home/main/Instagram.png">お客様インスタ画像
-						<div class="ball">
-							<p>デザイン実例が見れる！</p>
-						</div>
-					</h2>
-					<div class="stage">
-						<div class="photos">
-							<?php echo $instaPhoto;?>
-						</div>
-						<div class="slide-pane"></div>
-					</div>
-				</section>
+			<section class="itemcategory_01">
 
-				<div class="outer">
-					<div class="row ">
-						<div class="col-12 col-md-6 pb-sm-down">
-							<h2 class="mid_ttl">おすすめブランド</h2>
-							<table rules="all">
-								<tbody>
-									<tr>
-										<td>
-											<a href="/items/?tag=108"><img src="/common/img/home/brand/sp_brand_gildan.png" style="width: 100%;"></a>
-										</td>
-										<td>
-											<a href="/items/?tag=61"><img src="/common/img/home/brand/sp_brand_wundou.png" style="width: 100%;"></a>
-										</td>
-										<td>
-											<a href="/items/?tag=59"><img src="/common/img/home/brand/sp_brand_unitedathle.png" style="width: 100%;"></a>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<a href="/items/?tag=43"><img src="/common/img/home/brand/sp_brand_champion.png" style="width: 100%;"></a>
-										</td>
-										<td>
-											<a href="/items/?tag=58"><img src="/common/img/home/brand/sp_brand_printstar.png" style="width: 100%;"></a>
-										</td>
-										<td>
-											<a href="/items/?tag=60"><img src="/common/img/home/brand/sp_brand_glimmer.png" style="width: 100%;"></a>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-
-						</div>
-						<div class="col-12 col-md-6">
-							<h2 class="mid_ttl">お知らせ</h2>
-							<div class="list-group-wrap px-2">
-								<ul class="list-group">
-									<li class="list-group-item">
-										<div class="row">
-											<div class="col-12 col-lg-3 news_date">
-												2018.4.17
-											</div>
-											<a href="/guide/information.php">
-												<div class="col-12 col-lg news_ttl">
-													【GW休業のお知らせ】
-												</div>
-											</a>
-										</div>
-									</li>
-									<li class="list-group-item">
-										<div class="row">
-											<div class="col-12 col-lg-3 news_date">
-												2018.2.27
-											</div>
-											<a href="/guide/information.php">
-												<div class="col-12 col-lg news_ttl">
-													【価格改定のお知らせ】
-												</div>
-											</a>
-										</div>
-									</li>
-									<li class="list-group-item">
-										<div class="row">
-											<div class="col-12 col-lg-3 news_date">
-												2017.12.14
-											</div>
-											<a href="/guide/information.php">
-												<div class="col-12 col-lg news_ttl">
-													【冬季休業のお知らせ】
-												</div>
-											</a>
-										</div>
-									</li>
-									<li class="list-group-item">
-										<div class="row">
-											<div class="col-12 col-lg-3 news_date">
-												2017.11.22
-											</div>
-											<a href="/guide/information.php">
-												<div class="col-12 col-lg news_ttl">
-													【アイテム価格改定のお知らせ】
-												</div>
-											</a>
-										</div>
-									</li>
-									<li class="list-group-item">
-										<div class="row">
-											<div class="col-12 col-lg-3 news_date">
-												2017.10.24
-											</div>
-											<a href="/guide/information.php">
-												<div class="col-12 col-lg news_ttl">
-													【アイテム価格改定のお知らせ】
-												</div>
-											</a>
-										</div>
-									</li>
-									<li class="list-group-item">
-										<div class="row">
-											<div class="col-12 col-lg-3 news_date">
-												2017.8.11
-											</div>
-											<a href="/guide/information.php">
-												<div class="col-12 col-lg news_ttl">
-													【夏季休業のお知らせ】
-												</div>
-											</a>
-										</div>
-									</li>
-									<li class="list-group-item">
-										<div class="row">
-											<div class="col-12 col-lg-3 news_date">
-												2017.6.22
-											</div>
-											<a href="/guide/information.php">
-												<div class="col-12 col-lg news_ttl">
-													【アイテム価格改定のお知らせ】
-												</div>
-											</a>
-										</div>
-									</li>
-									<li class="list-group-item">
-										<div class="row">
-											<div class="col-12 col-lg-3 news_date">
-												2017.5.26
-											</div>
-											<a href="/guide/information.php">
-												<div class="col-12 col-lg news_ttl">
-													【初回追加価格終了のお知らせ】
-												</div>
-											</a>
-										</div>
-									</li>
-									<li class="list-group-item">
-										<div class="row">
-											<div class="col-12 col-lg-3 news_date">
-												2017.5.23
-											</div>
-											<a href="/guide/information.php">
-												<div class="col-12 col-lg news_ttl">
-													【価格改定のお知らせ】
-												</div>
-											</a>
-										</div>
-									</li>
-									<li class="list-group-item">
-										<div class="row">
-											<div class="col-12 col-lg-3 news_date">
-												2017.5.3
-											</div>
-											<a href="/guide/information.php">
-												<div class="col-12 col-lg news_ttl">
-													【GW休業のお知らせ】
-												</div>
-											</a>
-										</div>
-									</li>
-								</ul>
-							</div>
-							<a href="/guide/information.php">
-								<p class="news_txt"> >「お知らせ」一覧を見る</p>
-							</a>
-						</div>
-					</div>
+				<h2 class="rank_ttl itemcategory_ttl">アイテムランキング</h2>
+				<div class="wrap_h2_under">
+					<p class="h2_under">今、人気のアイテムをカテゴリーごとにご紹介します。オリジナルTシャツを作成するのが初めてでどのアイテムにしたら良いか迷っている方は是非このランキングを参考にしてください。 多くの方が選んでいる間違いないTシャツ、ポロシャツ、スウェット、タオル、ブルゾンの1位~4位の人気ランキングです！
+					</p>
 				</div>
 
-				<section class="hidden-xs-down">
-					<div class="outer">
-						<div class="row">
-							<div class="col-12 col-md-6 pb-sm-down blog_box">
-								<div><img src="/common/img/home/blog/top_customerblog.jpg" width="100%"></div>
-								<div class="blog_txt">
-									<p class="blog_ttl">お客様ブログ</p>
-									<p class="blog_com">タカハマの制作実績を紹介！ <br>掲載OKのお客様は<br>写真掲載割3％OFF！ <br>デザインの参考にどうぞ！</p>
-									<a href="/app/WP/thanks-blog">
-										<div class="method_button_blog">制作実績を見る</div>
-									</a>
-								</div>
-							</div>
-							<div class="col-12 col-md-6 pb-sm-down blog_box">
-								<div><img src="/common/img/home/blog/top_staffblog.jpg" width="100%"></div>
-								<div class="blog_txt">
-									<p class="blog_ttl">スタッフブログ</p>
-									<p class="blog_com_2">タカハマのスタッフの<br>様子を楽しく週1回更新<br>お得な情報も掲載中！</p>
-									<a href="/app/WP">
-										<div class="method_button_blog">タカハマの日常を見る</div>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
+				<div class="tabs">
 
-				<section class="hidden-sm-up">
-					<div class="outer">
-						<div class="row">
-							<div class="col-12 col-md-6 pb-sm-down blog_box">
-								<div><img src="/common/img/home/blog/sp_top_customerblog.jpg" width="100%"></div>
-								<div class="blog_txt">
-									<p class="blog_ttl">お客様ブログ</p>
-									<p class="blog_com">タカハマの制作実績を紹介！ <br>掲載OKのお客様は<br>写真掲載割3％OFF！ <br>デザインの参考にどうぞ！</p>
-									<a href="/app/WP/thanks-blog">
-										<div class="method_button_blog">制作実績を見る</div>
-									</a>
+					<input id="tab01" type="radio" name="tab_item" checked>
+					<label class="tab_item" for="tab01">Tシャツ</label>
+					<input id="tab02" type="radio" name="tab_item">
+					<label class="tab_item" for="tab02">ポロシャツ</label>
+					<input id="tab03" type="radio" name="tab_item">
+					<label class="tab_item" for="tab03">スウェット</label>
+					<input id="tab04" type="radio" name="tab_item">
+					<label class="tab_item" for="tab04">タオル</label>
+					<input id="tab05" type="radio" name="tab_item">
+					<label class="tab_item" for="tab05">ブルゾン</label>
+
+
+					<?php
+					foreach ($itemRanking as $categoryKey => $val) {
+						$html .= '<div class="tab_content" id="'.$categoryKey.'">';
+						$html .= '<div class="ranking_four">';
+						for ($i = 0, $len = count($val); $i < $len; $i++) {
+							$html .= '<div class="block_ranking">
+                                    <p class="rank_number_01"><span class="icon-uniF100"></span>'.($i+1).'位</p>
+                                    <div class="ranking_body">
+										<p class="catch">'.$val[$i]['i_caption'].'</p>
+                                        <div class="border_tab_b"></div>
+                                        <div class="ranking_con">
+                                        <div class="ranking_con_01">
+											<a href="/items/item.php?code='.$val[$i]['item_code'].'">
+												<div class="logo_ons">
+													<div class="logo"><img src="/img/brand/logo_'.$val[$i]['brand_id'].'.png" width="100%"></div>';
+							if (intval($val[$i]['oz'], 10) > 0) {
+								$html .= '<div class="ons">'.$val[$i]['oz'].'oz</div>';
+							}
+							$html .= '</div>
+												<div class="ranking_item_img"><img src="'._IMG_PSS.'items/list/'.$categoryKey.'/'.$val[$i]['item_code'].'/'.$val[$i]['item_code'].'_'.$val[$i]['i_color_code'].'.jpg" width="100%" alt="品番：'.$val[$i]['item_code'].'"></div>
+												<p class="number">'.strtoupper($val[$i]['item_code']).'</p>
+												<div class="name_wrap">
+													<p class="name">'.$val[$i]['item_name'].'</p>
+												</div>
+												<div class="spec">
+													<div class="spec_l">全'.$val[$i]['colors'].'色</div>
+													<div class="spec_r">サイズ：'.$val[$i]['sizename_from'].'&sim;'.$val[$i]['sizename_to'].'</div>
+												</div>
+												<p class="price"><span class="price_number">'.number_format($val[$i]['cost']).'</span><span class="price_yen">円&sim;</span></p>
+											</a>
+                                            </div>
+                                            <div class="border_dotted_01"></div>
+                                            <a href="/itemreviews/?item='.$val[$i]['item_id'].'">
+                                                <div class="review_star">
+                                                    <div class="review_star_img">
+														<img src="/common/img/home/review/sp_review_0'.getStar($val[$i]['avg_votes']).'.png" width="100%">
+                                                    </div>
+													<div class="review_star_number">'.round($val[$i]['avg_votes'], 1).'</div>
+                                                </div>
+												<p class="i_review_link">レビューを見る（'.number_format($val[$i]['reviews']).'）</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>';
+						}
+						$html .= '<div class="seo">オリジナルTシャツ作成に人気なアイテムです！上位に入ってくるのはカラーとサイズ展開が多く、どんなシーンにも合うTシャツです。価格を安くおさえたい方も多く、生地が薄めのTシャツも人気です。最近のTシャツは、生地が薄くても丈夫なものばかりなので薄いから低品質ということはありませんので是非ご活用ください。近年、ドライタイプの需要が高まり価格もリーズナブルになってのでドライがランキングに入るようになりました！</div>';
+						$html .= '</div></div>';
+					}
+					echo $html;
+					?>
+				</div>
+
+
+
+
+
+			</section>
+
+
+
+
+
+			<!--
+			<section class="itemcategory_01">
+
+				<h2 class="rank_ttl itemcategory_ttl">アイテムランキング</h2>
+				<p class="bland_txt">今、人気のアイテムをカテゴリーごとにご紹介します。</p>
+
+				<div class="tabs">
+
+					<input id="tab01" type="radio" name="tab_item" checked>
+					<label class="tab_item" for="tab01">Tシャツ</label>
+					<input id="tab02" type="radio" name="tab_item">
+					<label class="tab_item" for="tab02">ポロシャツ</label>
+					<input id="tab03" type="radio" name="tab_item">
+					<label class="tab_item" for="tab03">スウェット</label>
+					<input id="tab04" type="radio" name="tab_item">
+					<label class="tab_item" for="tab04">タオル</label>
+					<input id="tab05" type="radio" name="tab_item">
+					<label class="tab_item" for="tab05">ブルゾン</label>
+
+
+					<div class="tab_content" id="t-shirts">
+
+						<div class="ranking_four">
+
+							<div class="block_ranking">
+								<p class="rank_number_01"><span class="icon-uniF100"></span>1位</p>
+								<div class="ranking_body">
+									<p class="catch">定番品。業界売上No.1</p>
+									<div class="border_tab_b"></div>
+									<div class="ranking_con">
+										<div class="logo_ons">
+											<div class="logo"><img src="img/image_dammi.jpg" width="100%"></div>
+											<div class="ons">10.0oz</div>
+										</div>
+
+										<div class="ranking_item_img"><img src="img/image.jpg" width="100%" alt="品番：085-CVT"></div>
+										<p class="number">085-CVT</p>
+										<div class="name_wrap">
+											<p class="name">7.1オンスオーセンティックスーパーヘヴィーウェイトTシャツ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+										</div>
+										<div class="spec">
+											<div class="spec_l">全50色</div>
+											<div class="spec_r">サイズ：100?XXL</div>
+										</div>
+										<p class="price"><span class="price_number">2,000</span><span class="price_yen">円?</span></p>
+										<div class="border_dotted_01"></div>
+										<a href="/itemreviews/?item=4">
+											<div class="review_star">
+												<div class="review_star_img">
+													<img src="/common/img/home/review/sp_review_050.png" width="100%">
+												</div>
+												<div class="review_star_number">5.0</div>
+											</div>
+											<p class="i_review_link">レビューを見る（367）</p>
+										</a>
+									</div>
 								</div>
 							</div>
-							<div class="col-12 col-md-6 pb-sm-down blog_box">
-								<div><img src="/common/img/home/blog/sp_top_staffblog.jpg" width="100%"></div>
-								<div class="blog_txt">
-									<p class="blog_ttl">スタッフブログ</p>
-									<p class="blog_com_2">タカハマのスタッフの<br>様子を楽しく週1回更新<br>お得な情報も掲載中！</p>
-									<a href="/app/WP">
-										<div class="method_button_blog">タカハマの日常を見る</div>
-									</a>
+
+							<div class="block_ranking">
+								<p class="rank_number_02"><span class="icon-uniF100"></span>2位</p>
+								<div class="ranking_body">
+									<p class="catch">定番品。業界売上No.1</p>
+									<div class="border_tab_b"></div>
+									<div class="ranking_con">
+										<div class="logo_ons">
+											<div class="logo"><img src="img/image_dammi.jpg" width="100%"></div>
+											<div class="ons">10.0oz</div>
+										</div>
+
+										<div class="ranking_item_img"><img src="img/image.jpg" width="100%" alt="品番：085-CVT"></div>
+										<p class="number">085-CVT</p>
+										<div class="name_wrap">
+											<p class="name">7.1オンスオーセンティックスーパーヘヴィーウェイトTシャツ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+										</div>
+										<div class="spec">
+											<div class="spec_l">全50色</div>
+											<div class="spec_r">サイズ：100?XXL</div>
+										</div>
+										<p class="price"><span class="price_number">2,000</span><span class="price_yen">円?</span></p>
+										<div class="border_dotted_01"></div>
+										<a href="/itemreviews/?item=4">
+											<div class="review_star">
+												<div class="review_star_img">
+													<img src="/common/img/home/review/sp_review_050.png" width="100%">
+												</div>
+												<div class="review_star_number">5.0</div>
+											</div>
+											<p class="i_review_link">レビューを見る（367）</p>
+										</a>
+									</div>
 								</div>
 							</div>
+
+							<div class="block_ranking">
+								<p class="rank_number_02"><span class="icon-uniF100"></span>3位</p>
+								<div class="ranking_body">
+									<p class="catch">定番品。業界売上No.1</p>
+									<div class="border_tab_b"></div>
+									<div class="ranking_con">
+										<div class="logo_ons">
+											<div class="logo"><img src="img/image_dammi.jpg" width="100%"></div>
+											<div class="ons">10.0oz</div>
+										</div>
+
+										<div class="ranking_item_img"><img src="img/image.jpg" width="100%" alt="品番：085-CVT"></div>
+										<p class="number">085-CVT</p>
+										<div class="name_wrap">
+											<p class="name">7.1オンスオーセンティックスーパーヘヴィーウェイトTシャツ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+										</div>
+										<div class="spec">
+											<div class="spec_l">全50色</div>
+											<div class="spec_r">サイズ：100?XXL</div>
+										</div>
+										<p class="price"><span class="price_number">2,000</span><span class="price_yen">円?</span></p>
+										<div class="border_dotted_01"></div>
+										<a href="/itemreviews/?item=4">
+											<div class="review_star">
+												<div class="review_star_img">
+													<img src="/common/img/home/review/sp_review_050.png" width="100%">
+												</div>
+												<div class="review_star_number">5.0</div>
+											</div>
+											<p class="i_review_link">レビューを見る（367）</p>
+										</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="block_ranking">
+								<p class="rank_number_02"><span class="icon-uniF100"></span>4位</p>
+								<div class="ranking_body">
+									<p class="catch">定番品。業界売上No.1</p>
+									<div class="border_tab_b"></div>
+									<div class="ranking_con">
+										<div class="logo_ons">
+											<div class="logo"><img src="img/image_dammi.jpg" width="100%"></div>
+											<div class="ons">10.0oz</div>
+										</div>
+
+										<div class="ranking_item_img"><img src="img/image.jpg" width="100%" alt="品番：085-CVT"></div>
+										<p class="number">085-CVT</p>
+										<div class="name_wrap">
+											<p class="name">7.1オンスオーセンティックスーパーヘヴィーウェイトTシャツ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+										</div>
+										<div class="spec">
+											<div class="spec_l">全50色</div>
+											<div class="spec_r">サイズ：100?XXL</div>
+										</div>
+										<p class="price"><span class="price_number">2,000</span><span class="price_yen">円?</span></p>
+										<div class="border_dotted_01"></div>
+										<a href="/itemreviews/?item=4">
+											<div class="review_star">
+												<div class="review_star_img">
+													<img src="/common/img/home/review/sp_review_050.png" width="100%">
+												</div>
+												<div class="review_star_number">5.0</div>
+											</div>
+											<p class="i_review_link">レビューを見る（367）</p>
+										</a>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<div class="tab_content" id="polo-shirts">
+
+						<div class="ranking_four">
+
+							<div class="block_ranking">
+								<p class="rank_number_01"><span class="icon-uniF100"></span>1位</p>
+								<div class="ranking_body">
+									<p class="catch">定番品。業界売上No.1</p>
+									<div class="border_tab_b"></div>
+									<div class="ranking_con">
+										<div class="logo_ons">
+											<div class="logo"><img src="img/image_dammi.jpg" width="100%"></div>
+											<div class="ons">10.0oz</div>
+										</div>
+
+										<div class="ranking_item_img"><img src="img/image.jpg" width="100%" alt="品番：085-CVT"></div>
+										<p class="number">085-CVT</p>
+										<div class="name_wrap">
+											<p class="name">7.1オンスオーセンティックスーパーヘヴィーウェイトTシャツ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+										</div>
+										<div class="spec">
+											<div class="spec_l">全50色</div>
+											<div class="spec_r">サイズ：100?XXL</div>
+										</div>
+										<p class="price"><span class="price_number">2,000</span><span class="price_yen">円?</span></p>
+										<div class="border_dotted_01"></div>
+										<a href="/itemreviews/?item=4">
+											<div class="review_star">
+												<div class="review_star_img">
+													<img src="/common/img/home/review/sp_review_050.png" width="100%">
+												</div>
+												<div class="review_star_number">5.0</div>
+											</div>
+											<p class="i_review_link">レビューを見る（367）</p>
+										</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="block_ranking">
+								<p class="rank_number_02"><span class="icon-uniF100"></span>2位</p>
+								<div class="ranking_body">
+									<p class="catch">定番品。業界売上No.1</p>
+									<div class="border_tab_b"></div>
+									<div class="ranking_con">
+										<div class="logo_ons">
+											<div class="logo"><img src="img/image_dammi.jpg" width="100%"></div>
+											<div class="ons">10.0oz</div>
+										</div>
+
+										<div class="ranking_item_img"><img src="img/image.jpg" width="100%" alt="品番：085-CVT"></div>
+										<p class="number">085-CVT</p>
+										<div class="name_wrap">
+											<p class="name">7.1オンスオーセンティックスーパーヘヴィーウェイトTシャツ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+										</div>
+										<div class="spec">
+											<div class="spec_l">全50色</div>
+											<div class="spec_r">サイズ：100?XXL</div>
+										</div>
+										<p class="price"><span class="price_number">2,000</span><span class="price_yen">円?</span></p>
+										<div class="border_dotted_01"></div>
+										<a href="/itemreviews/?item=4">
+											<div class="review_star">
+												<div class="review_star_img">
+													<img src="/common/img/home/review/sp_review_050.png" width="100%">
+												</div>
+												<div class="review_star_number">5.0</div>
+											</div>
+											<p class="i_review_link">レビューを見る（367）</p>
+										</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="block_ranking">
+								<p class="rank_number_02"><span class="icon-uniF100"></span>3位</p>
+								<div class="ranking_body">
+									<p class="catch">定番品。業界売上No.1</p>
+									<div class="border_tab_b"></div>
+									<div class="ranking_con">
+										<div class="logo_ons">
+											<div class="logo"><img src="img/image_dammi.jpg" width="100%"></div>
+											<div class="ons">10.0oz</div>
+										</div>
+
+										<div class="ranking_item_img"><img src="img/image.jpg" width="100%" alt="品番：085-CVT"></div>
+										<p class="number">085-CVT</p>
+										<div class="name_wrap">
+											<p class="name">7.1オンスオーセンティックスーパーヘヴィーウェイトTシャツ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+										</div>
+										<div class="spec">
+											<div class="spec_l">全50色</div>
+											<div class="spec_r">サイズ：100?XXL</div>
+										</div>
+										<p class="price"><span class="price_number">2,000</span><span class="price_yen">円?</span></p>
+										<div class="border_dotted_01"></div>
+										<a href="/itemreviews/?item=4">
+											<div class="review_star">
+												<div class="review_star_img">
+													<img src="/common/img/home/review/sp_review_050.png" width="100%">
+												</div>
+												<div class="review_star_number">5.0</div>
+											</div>
+											<p class="i_review_link">レビューを見る（367）</p>
+										</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="block_ranking">
+								<p class="rank_number_02"><span class="icon-uniF100"></span>4位</p>
+								<div class="ranking_body">
+									<p class="catch">定番品。業界売上No.1</p>
+									<div class="border_tab_b"></div>
+									<div class="ranking_con">
+										<div class="logo_ons">
+											<div class="logo"><img src="img/image_dammi.jpg" width="100%"></div>
+											<div class="ons">10.0oz</div>
+										</div>
+
+										<div class="ranking_item_img"><img src="img/image.jpg" width="100%" alt="品番：085-CVT"></div>
+										<p class="number">085-CVT</p>
+										<div class="name_wrap">
+											<p class="name">7.1オンスオーセンティックスーパーヘヴィーウェイトTシャツ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+										</div>
+										<div class="spec">
+											<div class="spec_l">全50色</div>
+											<div class="spec_r">サイズ：100?XXL</div>
+										</div>
+										<p class="price"><span class="price_number">2,000</span><span class="price_yen">円?</span></p>
+										<div class="border_dotted_01"></div>
+										<a href="/itemreviews/?item=4">
+											<div class="review_star">
+												<div class="review_star_img">
+													<img src="/common/img/home/review/sp_review_050.png" width="100%">
+												</div>
+												<div class="review_star_number">5.0</div>
+											</div>
+											<p class="i_review_link">レビューを見る（367）</p>
+										</a>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="tab_content" id="sweat">
+
+						<div class="ranking_four">
+
+							<div class="block_ranking">
+								<p class="rank_number_01"><span class="icon-uniF100"></span>1位</p>
+								<div class="ranking_body">
+									<p class="catch">定番品。業界売上No.1</p>
+									<div class="border_tab_b"></div>
+									<div class="ranking_con">
+										<div class="logo_ons">
+											<div class="logo"><img src="img/image_dammi.jpg" width="100%"></div>
+											<div class="ons">10.0oz</div>
+										</div>
+
+										<div class="ranking_item_img"><img src="img/image.jpg" width="100%" alt="品番：085-CVT"></div>
+										<p class="number">085-CVT</p>
+										<div class="name_wrap">
+											<p class="name">7.1オンスオーセンティックスーパーヘヴィーウェイトTシャツ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+										</div>
+										<div class="spec">
+											<div class="spec_l">全50色</div>
+											<div class="spec_r">サイズ：100?XXL</div>
+										</div>
+										<p class="price"><span class="price_number">2,000</span><span class="price_yen">円?</span></p>
+										<div class="border_dotted_01"></div>
+										<a href="/itemreviews/?item=4">
+											<div class="review_star">
+												<div class="review_star_img">
+													<img src="/common/img/home/review/sp_review_050.png" width="100%">
+												</div>
+												<div class="review_star_number">5.0</div>
+											</div>
+											<p class="i_review_link">レビューを見る（367）</p>
+										</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="block_ranking">
+								<p class="rank_number_02"><span class="icon-uniF100"></span>2位</p>
+								<div class="ranking_body">
+									<p class="catch">定番品。業界売上No.1</p>
+									<div class="border_tab_b"></div>
+									<div class="ranking_con">
+										<div class="logo_ons">
+											<div class="logo"><img src="img/image_dammi.jpg" width="100%"></div>
+											<div class="ons">10.0oz</div>
+										</div>
+
+										<div class="ranking_item_img"><img src="img/image.jpg" width="100%" alt="品番：085-CVT"></div>
+										<p class="number">085-CVT</p>
+										<div class="name_wrap">
+											<p class="name">7.1オンスオーセンティックスーパーヘヴィーウェイトTシャツ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+										</div>
+										<div class="spec">
+											<div class="spec_l">全50色</div>
+											<div class="spec_r">サイズ：100?XXL</div>
+										</div>
+										<p class="price"><span class="price_number">2,000</span><span class="price_yen">円?</span></p>
+										<div class="border_dotted_01"></div>
+										<a href="/itemreviews/?item=4">
+											<div class="review_star">
+												<div class="review_star_img">
+													<img src="/common/img/home/review/sp_review_050.png" width="100%">
+												</div>
+												<div class="review_star_number">5.0</div>
+											</div>
+											<p class="i_review_link">レビューを見る（367）</p>
+										</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="block_ranking">
+								<p class="rank_number_02"><span class="icon-uniF100"></span>3位</p>
+								<div class="ranking_body">
+									<p class="catch">定番品。業界売上No.1</p>
+									<div class="border_tab_b"></div>
+									<div class="ranking_con">
+										<div class="logo_ons">
+											<div class="logo"><img src="img/image_dammi.jpg" width="100%"></div>
+											<div class="ons">10.0oz</div>
+										</div>
+
+										<div class="ranking_item_img"><img src="img/image.jpg" width="100%" alt="品番：085-CVT"></div>
+										<p class="number">085-CVT</p>
+										<div class="name_wrap">
+											<p class="name">7.1オンスオーセンティックスーパーヘヴィーウェイトTシャツ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+										</div>
+										<div class="spec">
+											<div class="spec_l">全50色</div>
+											<div class="spec_r">サイズ：100?XXL</div>
+										</div>
+										<p class="price"><span class="price_number">2,000</span><span class="price_yen">円?</span></p>
+										<div class="border_dotted_01"></div>
+										<a href="/itemreviews/?item=4">
+											<div class="review_star">
+												<div class="review_star_img">
+													<img src="/common/img/home/review/sp_review_050.png" width="100%">
+												</div>
+												<div class="review_star_number">5.0</div>
+											</div>
+											<p class="i_review_link">レビューを見る（367）</p>
+										</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="block_ranking">
+								<p class="rank_number_02"><span class="icon-uniF100"></span>4位</p>
+								<div class="ranking_body">
+									<p class="catch">定番品。業界売上No.1</p>
+									<div class="border_tab_b"></div>
+									<div class="ranking_con">
+										<div class="logo_ons">
+											<div class="logo"><img src="img/image_dammi.jpg" width="100%"></div>
+											<div class="ons">10.0oz</div>
+										</div>
+
+										<div class="ranking_item_img"><img src="img/image.jpg" width="100%" alt="品番：085-CVT"></div>
+										<p class="number">085-CVT</p>
+										<div class="name_wrap">
+											<p class="name">7.1オンスオーセンティックスーパーヘヴィーウェイトTシャツ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+										</div>
+										<div class="spec">
+											<div class="spec_l">全50色</div>
+											<div class="spec_r">サイズ：100?XXL</div>
+										</div>
+										<p class="price"><span class="price_number">2,000</span><span class="price_yen">円?</span></p>
+										<div class="border_dotted_01"></div>
+										<a href="/itemreviews/?item=4">
+											<div class="review_star">
+												<div class="review_star_img">
+													<img src="/common/img/home/review/sp_review_050.png" width="100%">
+												</div>
+												<div class="review_star_number">5.0</div>
+											</div>
+											<p class="i_review_link">レビューを見る（367）</p>
+										</a>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="tab_content" id="towel">
+
+						<div class="ranking_four">
+
+							<div class="block_ranking">
+								<p class="rank_number_01"><span class="icon-uniF100"></span>1位</p>
+								<div class="ranking_body">
+									<p class="catch">定番品。業界売上No.1</p>
+									<div class="border_tab_b"></div>
+									<div class="ranking_con">
+										<div class="logo_ons">
+											<div class="logo"><img src="img/image_dammi.jpg" width="100%"></div>
+											<div class="ons">10.0oz</div>
+										</div>
+
+										<div class="ranking_item_img"><img src="img/image.jpg" width="100%" alt="品番：085-CVT"></div>
+										<p class="number">085-CVT</p>
+										<div class="name_wrap">
+											<p class="name">7.1オンスオーセンティックスーパーヘヴィーウェイトTシャツ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+										</div>
+										<div class="spec">
+											<div class="spec_l">全50色</div>
+											<div class="spec_r">サイズ：100?XXL</div>
+										</div>
+										<p class="price"><span class="price_number">2,000</span><span class="price_yen">円?</span></p>
+										<div class="border_dotted_01"></div>
+										<a href="/itemreviews/?item=4">
+											<div class="review_star">
+												<div class="review_star_img">
+													<img src="/common/img/home/review/sp_review_050.png" width="100%">
+												</div>
+												<div class="review_star_number">5.0</div>
+											</div>
+											<p class="i_review_link">レビューを見る（367）</p>
+										</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="block_ranking">
+								<p class="rank_number_02"><span class="icon-uniF100"></span>2位</p>
+								<div class="ranking_body">
+									<p class="catch">定番品。業界売上No.1</p>
+									<div class="border_tab_b"></div>
+									<div class="ranking_con">
+										<div class="logo_ons">
+											<div class="logo"><img src="img/image_dammi.jpg" width="100%"></div>
+											<div class="ons">10.0oz</div>
+										</div>
+
+										<div class="ranking_item_img"><img src="img/image.jpg" width="100%" alt="品番：085-CVT"></div>
+										<p class="number">085-CVT</p>
+										<div class="name_wrap">
+											<p class="name">7.1オンスオーセンティックスーパーヘヴィーウェイトTシャツ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+										</div>
+										<div class="spec">
+											<div class="spec_l">全50色</div>
+											<div class="spec_r">サイズ：100?XXL</div>
+										</div>
+										<p class="price"><span class="price_number">2,000</span><span class="price_yen">円?</span></p>
+										<div class="border_dotted_01"></div>
+										<a href="/itemreviews/?item=4">
+											<div class="review_star">
+												<div class="review_star_img">
+													<img src="/common/img/home/review/sp_review_050.png" width="100%">
+												</div>
+												<div class="review_star_number">5.0</div>
+											</div>
+											<p class="i_review_link">レビューを見る（367）</p>
+										</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="block_ranking">
+								<p class="rank_number_02"><span class="icon-uniF100"></span>3位</p>
+								<div class="ranking_body">
+									<p class="catch">定番品。業界売上No.1</p>
+									<div class="border_tab_b"></div>
+									<div class="ranking_con">
+										<div class="logo_ons">
+											<div class="logo"><img src="img/image_dammi.jpg" width="100%"></div>
+											<div class="ons">10.0oz</div>
+										</div>
+
+										<div class="ranking_item_img"><img src="img/image.jpg" width="100%" alt="品番：085-CVT"></div>
+										<p class="number">085-CVT</p>
+										<div class="name_wrap">
+											<p class="name">7.1オンスオーセンティックスーパーヘヴィーウェイトTシャツ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+										</div>
+										<div class="spec">
+											<div class="spec_l">全50色</div>
+											<div class="spec_r">サイズ：100?XXL</div>
+										</div>
+										<p class="price"><span class="price_number">2,000</span><span class="price_yen">円?</span></p>
+										<div class="border_dotted_01"></div>
+										<a href="/itemreviews/?item=4">
+											<div class="review_star">
+												<div class="review_star_img">
+													<img src="/common/img/home/review/sp_review_050.png" width="100%">
+												</div>
+												<div class="review_star_number">5.0</div>
+											</div>
+											<p class="i_review_link">レビューを見る（367）</p>
+										</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="block_ranking">
+								<p class="rank_number_02"><span class="icon-uniF100"></span>4位</p>
+								<div class="ranking_body">
+									<p class="catch">定番品。業界売上No.1</p>
+									<div class="border_tab_b"></div>
+									<div class="ranking_con">
+										<div class="logo_ons">
+											<div class="logo"><img src="img/image_dammi.jpg" width="100%"></div>
+											<div class="ons">10.0oz</div>
+										</div>
+
+										<div class="ranking_item_img"><img src="img/image.jpg" width="100%" alt="品番：085-CVT"></div>
+										<p class="number">085-CVT</p>
+										<div class="name_wrap">
+											<p class="name">7.1オンスオーセンティックスーパーヘヴィーウェイトTシャツ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+										</div>
+										<div class="spec">
+											<div class="spec_l">全50色</div>
+											<div class="spec_r">サイズ：100?XXL</div>
+										</div>
+										<p class="price"><span class="price_number">2,000</span><span class="price_yen">円?</span></p>
+										<div class="border_dotted_01"></div>
+										<a href="/itemreviews/?item=4">
+											<div class="review_star">
+												<div class="review_star_img">
+													<img src="/common/img/home/review/sp_review_050.png" width="100%">
+												</div>
+												<div class="review_star_number">5.0</div>
+											</div>
+											<p class="i_review_link">レビューを見る（367）</p>
+										</a>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="tab_content" id="outer">
+
+						<div class="ranking_four">
+
+							<div class="block_ranking">
+								<p class="rank_number_01"><span class="icon-uniF100"></span>1位</p>
+								<div class="ranking_body">
+									<p class="catch">定番品。業界売上No.1</p>
+									<div class="border_tab_b"></div>
+									<div class="ranking_con">
+										<div class="logo_ons">
+											<div class="logo"><img src="img/image_dammi.jpg" width="100%"></div>
+											<div class="ons">10.0oz</div>
+										</div>
+
+										<div class="ranking_item_img"><img src="img/image.jpg" width="100%" alt="品番：085-CVT"></div>
+										<p class="number">085-CVT</p>
+										<div class="name_wrap">
+											<p class="name">7.1オンスオーセンティックスーパーヘヴィーウェイトTシャツ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+										</div>
+										<div class="spec">
+											<div class="spec_l">全50色</div>
+											<div class="spec_r">サイズ：100?XXL</div>
+										</div>
+										<p class="price"><span class="price_number">2,000</span><span class="price_yen">円?</span></p>
+										<div class="border_dotted_01"></div>
+										<a href="/itemreviews/?item=4">
+											<div class="review_star">
+												<div class="review_star_img">
+													<img src="/common/img/home/review/sp_review_050.png" width="100%">
+												</div>
+												<div class="review_star_number">5.0</div>
+											</div>
+											<p class="i_review_link">レビューを見る（367）</p>
+										</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="block_ranking">
+								<p class="rank_number_02"><span class="icon-uniF100"></span>2位</p>
+								<div class="ranking_body">
+									<p class="catch">定番品。業界売上No.1</p>
+									<div class="border_tab_b"></div>
+									<div class="ranking_con">
+										<div class="logo_ons">
+											<div class="logo"><img src="img/image_dammi.jpg" width="100%"></div>
+											<div class="ons">10.0oz</div>
+										</div>
+
+										<div class="ranking_item_img"><img src="img/image.jpg" width="100%" alt="品番：085-CVT"></div>
+										<p class="number">085-CVT</p>
+										<div class="name_wrap">
+											<p class="name">7.1オンスオーセンティックスーパーヘヴィーウェイトTシャツ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+										</div>
+										<div class="spec">
+											<div class="spec_l">全50色</div>
+											<div class="spec_r">サイズ：100?XXL</div>
+										</div>
+										<p class="price"><span class="price_number">2,000</span><span class="price_yen">円?</span></p>
+										<div class="border_dotted_01"></div>
+										<a href="/itemreviews/?item=4">
+											<div class="review_star">
+												<div class="review_star_img">
+													<img src="/common/img/home/review/sp_review_050.png" width="100%">
+												</div>
+												<div class="review_star_number">5.0</div>
+											</div>
+											<p class="i_review_link">レビューを見る（367）</p>
+										</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="block_ranking">
+								<p class="rank_number_02"><span class="icon-uniF100"></span>3位</p>
+								<div class="ranking_body">
+									<p class="catch">定番品。業界売上No.1</p>
+									<div class="border_tab_b"></div>
+									<div class="ranking_con">
+										<div class="logo_ons">
+											<div class="logo"><img src="img/image_dammi.jpg" width="100%"></div>
+											<div class="ons">10.0oz</div>
+										</div>
+
+										<div class="ranking_item_img"><img src="img/image.jpg" width="100%" alt="品番：085-CVT"></div>
+										<p class="number">085-CVT</p>
+										<div class="name_wrap">
+											<p class="name">7.1オンスオーセンティックスーパーヘヴィーウェイトTシャツ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+										</div>
+										<div class="spec">
+											<div class="spec_l">全50色</div>
+											<div class="spec_r">サイズ：100?XXL</div>
+										</div>
+										<p class="price"><span class="price_number">2,000</span><span class="price_yen">円?</span></p>
+										<div class="border_dotted_01"></div>
+										<a href="/itemreviews/?item=4">
+											<div class="review_star">
+												<div class="review_star_img">
+													<img src="/common/img/home/review/sp_review_050.png" width="100%">
+												</div>
+												<div class="review_star_number">5.0</div>
+											</div>
+											<p class="i_review_link">レビューを見る（367）</p>
+										</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="block_ranking">
+								<p class="rank_number_02"><span class="icon-uniF100"></span>4位</p>
+								<div class="ranking_body">
+									<p class="catch">定番品。業界売上No.1</p>
+									<div class="border_tab_b"></div>
+									<div class="ranking_con">
+										<div class="logo_ons">
+											<div class="logo"><img src="img/image_dammi.jpg" width="100%"></div>
+											<div class="ons">10.0oz</div>
+										</div>
+
+										<div class="ranking_item_img"><img src="img/image.jpg" width="100%" alt="品番：085-CVT"></div>
+										<p class="number">085-CVT</p>
+										<div class="name_wrap">
+											<p class="name">7.1オンスオーセンティックスーパーヘヴィーウェイトTシャツ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+										</div>
+										<div class="spec">
+											<div class="spec_l">全50色</div>
+											<div class="spec_r">サイズ：100?XXL</div>
+										</div>
+										<p class="price"><span class="price_number">2,000</span><span class="price_yen">円?</span></p>
+										<div class="border_dotted_01"></div>
+										<a href="/itemreviews/?item=4">
+											<div class="review_star">
+												<div class="review_star_img">
+													<img src="/common/img/home/review/sp_review_050.png" width="100%">
+												</div>
+												<div class="review_star_number">5.0</div>
+											</div>
+											<p class="i_review_link">レビューを見る（367）</p>
+										</a>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+
+
+
+
+				</div>
+
+
+
+
+
+			</section>
+-->
+
+
+
+			<div class="tla_bland_bg">
+
+				<section class="tla_bland">
+					<h2 class="rank_ttl bland_ttl">取扱ブランド</h2>
+					<div class="wrap_h2_under">
+						<p class="h2_under">オリジナルTシャツを中心としたブランド豊富に取り揃えています。日本のブランドから海外のブランドまで幅広く扱うことで様々なジャンルのお客様のご要望に対応しています。<br> アパレルで使用されるTシャツから企業の販促品に使用されるタオルやトートバッグや学生に流行に合わせたクラスTシャツなど400種類以上のアイテムを展開中です！
+						</p>
+					</div>
+
+
+					<div class="cont">
+						<!-- flexboxのコンテナ -->
+						<div class="item btn waves-effect waves-light">
+							<a href="/items/?tag=58">
+								<div class="bland_a">
+									<img src="img/brand/logo_58.png" width="100%">
+								</div>
+
+								<div class="sen_dotted"></div>
+								<p>
+									Printstar<br>プリントスター
+								</p>
+							</a>
+						</div>
+
+						<div class="item btn waves-effect waves-light">
+							<a href="/items/?tag=59">
+								<div class="bland_a">
+									<img src="img/brand/logo_59.png" width="100%">
+								</div>
+
+								<div class="sen_dotted"></div>
+								<p>
+									United Athle<br>ユナイテッドアスレ
+								</p>
+							</a>
+						</div>
+
+						<div class="item btn waves-effect waves-light">
+							<a href="/items/?tag=108">
+								<div class="bland_a">
+									<img src="img/brand/logo_108.png" width="100%">
+								</div>
+
+								<div class="sen_dotted"></div>
+								<p>
+									GILDAN<br>ギルダン
+								</p>
+							</a>
+						</div>
+
+						<div class="item btn waves-effect waves-light">
+							<a href="/items/?tag=60">
+								<div class="bland_a">
+									<img src="img/brand/logo_60.png" width="100%">
+								</div>
+
+								<div class="sen_dotted"></div>
+								<p>
+									glimmer<br>グリマー
+								</p>
+							</a>
+						</div>
+
+						<div class="item btn waves-effect waves-light">
+							<a href="/items/?tag=54">
+								<div class="bland_d">
+									<img src="img/bland_05.png" width="100%">
+								</div>
+								<div class="sen_dotted"></div>
+								<p>
+									TRUSS<br>トラス
+								</p>
+							</a>
+						</div>
+
+						<div class="item btn waves-effect waves-light">
+							<a href="/items/?tag=55">
+								<div class="bland_b">
+									<img src="img/bland_06.png" width="100%">
+								</div>
+								<div class="sen_dotted"></div>
+								<p>
+									CROSS&nbsp;&amp;&nbsp;STTCH<br>クロスアンドステッチ
+								</p>
+							</a>
+						</div>
+
+						<div class="item btn waves-effect waves-light">
+							<a href="/items/?tag=62">
+								<div class="bland_a">
+									<img src="img/bland_07.png" width="100%">
+								</div>
+								<div class="sen_dotted"></div>
+								<p>
+									CROSS<br>クロス
+								</p>
+							</a>
+						</div>
+
+						<div class="item btn waves-effect waves-light">
+							<a href="/items/?tag=61">
+								<div class="bland_c">
+									<img src="img/bland_08.png" width="100%">
+								</div>
+								<div class="sen_dotted"></div>
+								<p>
+									wundou<br>ウンドウ
+								</p>
+							</a>
+						</div>
+
+						<div class="item btn waves-effect waves-light">
+							<a href="/items/?tag=67">
+								<div class="bland_a">
+									<img src="img/bland_09.png" width="100%">
+								</div>
+
+								<div class="sen_dotted"></div>
+								<p>
+									rucca<br>ルッカ
+								</p>
+							</a>
+						</div>
+
+						<div class="item btn waves-effect waves-light">
+							<a href="/items/?tag=66">
+								<div class="bland_a">
+									<img src="img/bland_10.png" width="100%">
+								</div>
+
+								<div class="sen_dotted"></div>
+								<p>
+									AIMY<br>エイミー
+								</p>
+							</a>
+						</div>
+
+						<div class="item btn waves-effect waves-light">
+							<a href="/items/?tag=68">
+								<div class="bland_d">
+									<img src="img/bland_11.png" width="100%">
+								</div>
+								<div class="sen_dotted"></div>
+								<p>
+									DALUC<br>ダルク
+								</p>
+							</a>
+						</div>
+
+						<div class="item btn waves-effect waves-light">
+							<a href="/items/?tag=69">
+								<div class="bland_d">
+									<img src="img/bland_12.png" width="100%">
+								</div>
+								<div class="sen_dotted"></div>
+								<p>
+									Touch&nbsp;AND&nbsp;Go<br>タッチアンドゴー
+								</p>
+							</a>
+						</div>
+
+						<div class="item btn waves-effect waves-light">
+							<a href="/items/?tag=56">
+								<div class="bland_a">
+									<img src="img/bland_13.png" width="100%">
+								</div>
+
+								<div class="sen_dotted"></div>
+								<p>
+									BEES&nbsp;BEAM<br>ビーズビーム
+								</p>
+							</a>
+						</div>
+
+						<div class="item btn waves-effect waves-light">
+							<a href="/items/?tag=65">
+								<div class="bland_d">
+									<img src="img/bland_14.png" width="100%">
+								</div>
+								<div class="sen_dotted"></div>
+								<p>
+									SOWA<br>ソウワ
+								</p>
+							</a>
+						</div>
+
+						<div class="item btn waves-effect waves-light">
+							<a href="/items/?tag=43">
+								<div class="bland_a">
+									<img src="img/bland_15.png" width="100%">
+								</div>
+
+								<div class="sen_dotted"></div>
+								<p>
+									Champion<br>チャンピオン
+								</p>
+							</a>
+						</div>
+
+						<div class="item btn waves-effect waves-light">
+							<a href="/items/?tag=109">
+								<div class="bland_d">
+									<img src="img/bland_16.png" width="100%">
+								</div>
+								<div class="sen_dotted"></div>
+								<p>
+									ANVIL<br>アンビル
+								</p>
+							</a>
+						</div>
+
+						<div class="item btn waves-effect waves-light">
+							<a href="/items/?tag=110">
+								<div class="bland_a">
+									<img src="img/bland_17.png" width="100%">
+								</div>
+
+								<div class="sen_dotted"></div>
+								<p>
+									COMFORT&nbsp;COLORS<br>コンフォートカラーズ
+								</p>
+							</a>
 						</div>
 					</div>
 				</section>
+			</div>
+
+
+
+
+			<!--            インスタ-->
+			<section class="tla_insta">
+				<h2 class="rank_ttl bland_ttl">Instagram</h2>
+				<div class="wrap_h2_under">
+					<p class="h2_under">タカハマライフアートのプリントスタッフがオリジナルTシャツをプリントしている様子やオリジナルプリントの注文に役立つアイテムやサービスなどを発信しています。<br> オリジナルデザインがシルクスクリーンや刺繍などの加工がどんな工場でどんな雰囲気で作成されているか見ることができるのでオリジナルプリントファンは必見です！
+					</p>
+				</div>
+
+
+				<div class="loopSlider">
+					<ul>
+						<li><a href="https://www.instagram.com/takahamalifeart/"><img src="/img/insta_01.jpg" width="100%" alt=""></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/"><img src="/img/insta_02.jpg" width="100%" alt=""></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/"><img src="/img/insta_03.jpg" width="100%" alt=""></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/"><img src="/img/insta_04.jpg" width="100%" alt=""></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/"><img src="/img/insta_05.jpg" width="100%" alt=""></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/"><img src="/img/insta_06.jpg" width="100%" alt=""></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/"><img src="/img/insta_07.jpg" width="100%" alt=""></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/"><img src="/img/insta_08.jpg" width="100%" alt=""></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/"><img src="/img/insta_09.jpg" width="100%" alt=""></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/"><img src="/img/insta_10.jpg" width="100%" alt=""></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/"><img src="/img/insta_11.jpg" width="100%" alt=""></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/"><img src="/img/insta_12.jpg" width="100%" alt=""></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/"><img src="/img/insta_13.jpg" width="100%" alt=""></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/"><img src="/img/insta_14.jpg" width="100%" alt=""></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/"><img src="/img/insta_15.jpg" width="100%" alt=""></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/"><img src="/img/insta_16.jpg" width="100%" alt=""></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/"><img src="/img/insta_17.jpg" width="100%" alt=""></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/"><img src="/img/insta_18.jpg" width="100%" alt=""></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/"><img src="/img/insta_19.jpg" width="100%" alt=""></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/"><img src="/img/insta_20.jpg" width="100%" alt=""></a></li>
+					</ul>
+				</div>
+
+				<div class="button_01">
+					<a class="btn_or btn waves-effect waves-light" href="https://www.instagram.com/takahamalifeart/" type="button" style="text-transform: none;">Instagramを見る</a>
+				</div>
+
+
+			</section>
+
+
+
+			<div class="news_block_bg">
+				<section class="news_block">
+
+
+					<h2 class="rank_ttl news_block_ttl">お知らせ</h2>
+					<div class="wrap_h2_under">
+						<p class="h2_under">タカハマライフアートからオリジナルTシャツ作成に関わる最新のお知らせやお得な情報です。<br>オリジナルプリントを楽しめる新アイテム・サービスを発信していきます。どんどん発信していくのでお見逃しなく！</p>
+					</div>
+
+					<div class="list-group-wrap news_list">
+						<ul class="list-group">
+							<li class="list-group-item">
+								<div class="row news_set">
+									<div class="new_tag">NEW</div>
+									<div class="news_date">
+										2018.04.17
+									</div>
+									<a href="/guide/information.php">
+										<div class="news_ttl">
+											【GW休業のお知らせ】
+										</div>
+									</a>
+
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="row">
+									<div class="new_tag">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+									<div class="news_date">
+										2018.02.27
+									</div>
+									<a href="/guide/information.php">
+										<div class="news_ttl">
+											【価格改定のお知らせ】
+										</div>
+									</a>
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="row">
+									<div class="new_tag">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+									<div class="news_date">
+										2017.12.14
+									</div>
+									<a href="/guide/information.php">
+										<div class="news_ttl">
+											【冬季休業のお知らせ】
+										</div>
+									</a>
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="row">
+									<div class="new_tag">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+									<div class="news_date">
+										2017.11.22
+									</div>
+									<a href="/guide/information.php">
+										<div class="news_ttl">
+											【アイテム価格改定のお知らせ】
+										</div>
+									</a>
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="row">
+									<div class="new_tag">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+									<div class="news_date">
+										2017.10.24
+									</div>
+									<a href="/guide/information.php">
+										<div class="news_ttl">
+											【アイテム価格改定のお知らせ】
+										</div>
+									</a>
+								</div>
+							</li>
+
+						</ul>
+					</div>
+
+
+
+				</section>
+			</div>
+
+
+
+			<!--            ここまで新　仁神-->
+
 
 		</main>
 
@@ -1103,7 +2722,217 @@ $fin = $order->getDelidate(null, 1, 4, 'simple');
 
 		<div id="overlay-mask" class="fade"></div>
 
-		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
+		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js_2.php"; ?>
+		<script type="text/javascript" src="/common/js/dist/js/jquery.sliderPro.min.js"></script>
+		<script type="text/javascript" src="/common/js/dist/js/owl.carousel.min.js"></script>
+		<script type="text/javascript" src="/common/js/TimeCircles.js"></script>
+		<script type="text/javascript" src="/common/js/libs/fancybox/jquery.fancybox.pack.js"></script>
+		<script type="text/javascript">
+			$(function($) {
+				$('#example2').sliderPro({
+					width: 300,
+					height: 300,
+					visibleSize: '100%',
+					forceSize: 'fullWidth',
+					autoSlideSize: true
+				});
+
+				// instantiate fancybox when a link is clicked
+				$(".slider-pro").each(function() {
+					var slider = $(this);
+
+					slider.find(".sp-image").parent("a").on("click", function(event) {
+						event.preventDefault();
+
+						if (slider.hasClass("sp-swiping") === false) {
+							var sliderInstance = slider.data("sliderPro"),
+								isAutoplay = sliderInstance.settings.autoplay;
+
+							$.fancybox.open(slider.find(".sp-image").parent("a"), {
+								index: $(this).parents(".sp-slide").index(),
+								afterShow: function() {
+									if (isAutoplay === true) {
+										sliderInstance.settings.autoplay = false;
+										sliderInstance.stopAutoplay();
+									}
+								},
+								afterClose: function() {
+									if (isAutoplay === true) {
+										sliderInstance.settings.autoplay = true;
+										sliderInstance.startAutoplay();
+									}
+								}
+
+							});
+						}
+					});
+				});
+				
+				
+				//共通のjsに移動
+				
+//				$('.drawer_button').click(function() {
+//					$(this).toggleClass('active');
+//					$('.drawer_bg').fadeToggle();
+//					$('nav').toggleClass('open');
+//				})
+//				$('.drawer_bg').click(function() {
+//					$(this).fadeOut();
+//					$('.drawer_button').removeClass('active');
+//					$('nav').removeClass('open');
+//				});
+				//			$(document).ready(function(){
+				//				$('.owl-carousel').owlCarousel();
+				//			});
+
+				var owl = $('.owl-carousel');
+				owl.owlCarousel({
+					//				margin: 10,
+					loop: false,
+					responsive: {
+						//					0: {
+						//						items: 15,
+						//						loop:true,
+						//					},
+						//					600: {
+						//						items: 15,
+						//						loop:true,
+
+						//					},
+						//					1000: {
+						//						items: 15,
+						//						loop:true,
+
+						//					}
+					}
+				})
+
+
+				$('.tab-content > .tab-box > div').css('display', 'block');
+				$(".DateCountdown").TimeCircles({
+					"animation": "smooth",
+					"bg_width": 1,
+					"fg_width": 0.04,
+					"circle_bg_color": "#EEEEEE",
+					"time": {
+						"Days": {
+							"text": "Days",
+							"color": "#F18B1A",
+							"show": true
+						},
+						"Hours": {
+							"text": "Hours",
+							"color": "#F18B1A",
+							"show": true
+						},
+						"Minutes": {
+							"text": "Minutes",
+							"color": "#F18B1A",
+							"show": true
+						},
+						"Seconds": {
+							"text": "Seconds",
+							"color": "#F18B1A",
+							"show": true
+						}
+					}
+				});
+				$('.tab-content > .tab-box > div').css('display', '');
+			});
+
+		</script>
+
+		<!--   インスタ  スライダー-->
+		<script src="/common/js/jquery.pause.min.js"></script>
+		<script>
+			$(function() {
+				var setElm = $('.loopSlider'),
+					slideSpeed = 3000;
+
+				setElm.each(function() {
+					var self = $(this),
+						selfWidth = self.innerWidth(),
+						findUl = self.find('ul'),
+						findLi = findUl.find('li'),
+						listWidth = findLi.outerWidth(),
+						listCount = findLi.length,
+						loopWidth = listWidth * listCount;
+
+					findUl.wrapAll('<div class="loopSliderWrap" />');
+					var selfWrap = self.find('.loopSliderWrap');
+
+					if (loopWidth > selfWidth) {
+						findUl.css({
+							width: loopWidth
+						}).clone().appendTo(selfWrap);
+
+						selfWrap.css({
+							width: loopWidth * 3
+						});
+
+						function loopMove() {
+							selfWrap.animate({
+								left: '-' + (loopWidth) + 'px'
+							}, slideSpeed * listCount, 'linear', function() {
+								selfWrap.css({
+									left: '0'
+								});
+								loopMove();
+							});
+						};
+						loopMove();
+
+						setElm.hover(function() {
+							selfWrap.pause();
+						}, function() {
+							selfWrap.resume();
+						});
+					}
+				});
+			});
+
+		</script>
+		<!--   インスタ  スライダー-->
+
+		<!--      制作実績  スライダー-->
+		<script type="text/javascript" src="slick/slick.min.js"></script>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+
+				var $slider_container = $('.slider_p-result'),
+					$slider = $('.print_result');
+
+				$('.p-result').slick({
+					arrows: true,
+					slidesToShow: 4,
+					slidesToScroll: 1,
+					autoplay: true,
+					autoplaySpeed: 4000,
+					appendArrows: $slider_container,
+					// FontAwesomeのクラスを追加
+					prevArrow: '<div class="slider-arrow slider-prev fa fa-angle-left"></div>',
+					nextArrow: '<div class="slider-arrow slider-next fa fa-angle-right"></div>',
+
+					responsive: [{
+							breakpoint: 768, // 767px以下のサイズに適用
+							settings: {
+								slidesToShow: 2,
+							}
+						},
+
+					],
+
+				});
+
+			});
+
+		</script>
+		<!--      制作実績  スライダー-->
+
+
+
 	</body>
 
 	</html>
