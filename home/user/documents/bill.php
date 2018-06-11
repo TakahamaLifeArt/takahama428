@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*
 	請求書のPDF変換と印刷処理
 	charset UTF-8
@@ -326,7 +326,7 @@
 			$pdf->WriteHTML($doc);
 		}
 		
-		$pdf->Output();
+		$pdf->Output('bill-'.$orders_id.'.pdf', 'D');
 		
 	}
 ?>

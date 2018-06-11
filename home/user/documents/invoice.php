@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*
 	納品書のPDF変換と印刷処理
 	charset UTF-8
@@ -349,7 +349,7 @@
 			for($i=0; $i<$count; $i++){
 				$tot_amount += $data[$i]['amount'];
 				$subtotal = $data[$i]['price']*$data[$i]['amount'];
-				$tot_price += $subtotal;				
+				$tot_price += $subtotal;
 			}
 			
 			$tbl = '<tbody>';
@@ -493,10 +493,9 @@
 		$doc .= '<td style="height:3em; border:1px solid #666; line-height:1.1;">'.nl2br($invoicenote).'</td></tr>';
 		$doc .= '</tbody></table></div>';
 		$pdf->WriteHTML($doc);
-				
-		$pdf->Output();	
-				
-					
+		
+		$pdf->Output('invoice-'.$orders_id.'.pdf', 'D');
+		
 		/* 2012-02-18 廃止
 		if($ordertype=="general"){
 			$doc = '<div style="margin-top: 1em;"><table><tbody><tr><td>振込先　三菱東京UFJ銀行　新小岩支店<br />普通預金 3716333　有限会社タカハマライフアート</td>';
