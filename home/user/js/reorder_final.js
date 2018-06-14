@@ -175,7 +175,7 @@ $(function(){
 				'addr': $.deli.addr0 + $.deli.addr1,
 				'delidate': $.deli.delidate,
 				'delitime': $.deliTimeName[$.deli.delitime],
-				'pack': $.packing[$.deli.pack],
+				'pack': $.deli.pack,
 				'message': $.deli.message
 			},
 			param = {
