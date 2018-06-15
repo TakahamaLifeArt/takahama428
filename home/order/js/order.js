@@ -743,7 +743,7 @@ $(function () {
 					pre_sizeid = val['id'];
 					cost = val['cost'];
 					size_head = '<th></th><th>' + val['name'] + '</th>';
-					size_body = '<th>1枚単価<span class="inter">' + val['cost'].toLocaleString('ja-JP') + '</span> 円</th><td class="size_' + val['id'] + '_' + val['name'] + '_' + val['cost'] + '"><input id="size_' + val['id'] + '" type="number" value="' + amount + '" min="0" max="999"></td>';
+					size_body = '<th>1枚単価<span class="inter">' + val['cost'].toLocaleString('ja-JP') + '</span> 円</th><td class="size_' + val['id'] + '_' + val['name'] + '_' + val['cost'] + '"><input id="size_' + val['id'] + '" type="number" value="' + amount + '" min="0"></td>';
 				} else if (cost != val['cost'] || (val['id'] > (++pre_sizeid) && val['id'] > 10)) { // 単価が違うかまたは、サイズ160以下を除きサイズが連続していない
 					size_table += '<tr class="heading">' + size_head + '</tr>';
 					size_table += '<tr>' + size_body + '<td>枚</td></tr>';
@@ -751,11 +751,11 @@ $(function () {
 					pre_sizeid = val['id'];
 					cost = val['cost'];
 					size_head = '<th></th><th>' + val['name'] + '</th>';
-					size_body = '<th>1枚単価<span class="inter">' + val['cost'].toLocaleString('ja-JP') + '</span> 円</th><td class="size_' + val['id'] + '_' + val['name'] + '_' + val['cost'] + '"><input id="size_' + val['id'] + '" type="number" value="' + amount + '" min="0" max="999"></td>';
+					size_body = '<th>1枚単価<span class="inter">' + val['cost'].toLocaleString('ja-JP') + '</span> 円</th><td class="size_' + val['id'] + '_' + val['name'] + '_' + val['cost'] + '"><input id="size_' + val['id'] + '" type="number" value="' + amount + '" min="0"></td>';
 				} else {
 					pre_sizeid = val['id'];
 					size_head += '<th>' + val['name'] + '</th>';
-					size_body += '<td class="size_' + val['id'] + '_' + val['name'] + '_' + val['cost'] + '"><input id="size_' + val['id'] + '" type="number" value="' + amount + '" min="0" max="999"></td>';
+					size_body += '<td class="size_' + val['id'] + '_' + val['name'] + '_' + val['cost'] + '"><input id="size_' + val['id'] + '" type="number" value="' + amount + '" min="0"></td>';
 				}
 			});
 			size_table += '<tr class="heading">' + size_head + '</tr>';
@@ -766,7 +766,7 @@ $(function () {
 			
 			// 合計枚数を更新
 			$('#item_info').children('.pane').each(function () {
-				tot += $(this).find('.cur_amount').text() - 0;
+				tot += $(this).find('.cur_amount').text().replace(',','') - 0;
 			});
 			$('#tot_amount').text(tot.toLocaleString('ja-JP'));
 		};
@@ -853,7 +853,7 @@ $(function () {
 
 		// 合計
 		$('#item_info').children('.pane').each(function () {
-			tot += $(this).find('.cur_amount').text() - 0;
+			tot += $(this).find('.cur_amount').text().replace(',','') - 0;
 		});
 		$('#tot_amount').text(tot.toLocaleString('ja-JP'));
 	});
@@ -1715,14 +1715,18 @@ $(function () {
 			return;
 		}
 		
-		// 量販単価の適用判定を更新
-		sum = $.setStorage('sum', sum);
-		
 		// 商品単価の確認
 		$.when(
 			$.setMassCost(items, sum.volume)
 		).then(function(items){
 			items = $.setStorage('item', items);
+			
+			// 注文商品の金額と枚数及び量販単価の適用判定を更新
+			orderItem = $.itemPrice(items);
+			sum.item = orderItem.price;
+			sum.volume = orderItem.amount;
+			sum = $.setStorage('sum', sum);
+			
 			return setCart(designs, items);
 		}).then(function(totPrintFee){
 			// プリント代合計を更新
@@ -2007,13 +2011,19 @@ $(function () {
 					} else if (sum.volume < 150 && sum.mass==1){
 						sum.mass = 0;		// 通常単価
 					}
-					sum = $.setStorage('sum', {'mass':sum.mass});
 
 					// 商品単価を確認してカート表示を更新
 					$.when(
 						$.setMassCost(items, sum.volume)
 					).then(function(items){
 						items = $.setStorage('item', items);
+						
+						// 注文商品の金額と枚数及び量販単価の適用判定を更新
+						orderItem = $.itemPrice(items);
+						sum.item = orderItem.price;
+						sum.volume = orderItem.amount;
+						sum = $.setStorage('sum', sum);
+						
 						return setCart(designs, items);
 					}).then(function(totPrintFee){
 						// プリント代合計を更新
