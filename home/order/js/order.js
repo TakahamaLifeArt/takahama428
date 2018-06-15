@@ -2605,7 +2605,7 @@ $(function () {
 
 				// 注文枚数とアイテムとプリント代の合計
 				subTotal = (orderItem.price-0) + printFee;
-				$('#order_amount').text(orderItem.amount.toLocaleString('ja-JP'));
+				$('#order_amount').text((orderItem.amount).toLocaleString('ja-JP'));
 				$('#sub_total').text(subTotal.toLocaleString('ja-JP'));
 			});
 
@@ -2613,19 +2613,19 @@ $(function () {
 			tbody = $('#confirm_order .print_info_final tbody');
 			tbody.children('tr:gt(0)').remove();
 
-			$('#discount_fee').text(z.details.discountfee.toLocaleString('ja-JP'));
+			$('#discount_fee').text((z.details.discountfee).toLocaleString('ja-JP'));
 //			$('#rank_name').text(z.details.rankname);
-//			$('#rank_fee').text(z.details.rankfee.toLocaleString('ja-JP'));
-			$('#carriage').text(z.details.carriage.toLocaleString('ja-JP'));
+//			$('#rank_fee').text((z.details.rankfee).toLocaleString('ja-JP'));
+			$('#carriage').text((z.details.carriage).toLocaleString('ja-JP'));
 			if (z.details.expressfee!=0) {
 				$('#expressfee_wrap').removeClass('hidden');
 			} else {
 				$('#expressfee_wrap').addClass('hidden');
 			}
-			$('#express_fee').text(z.details.expressfee.toLocaleString('ja-JP'));
+			$('#express_fee').text((z.details.expressfee).toLocaleString('ja-JP'));
 			$('#base_price').text(base.toLocaleString('ja-JP'));
-			$('#salestax').text(z.sum.tax.toLocaleString('ja-JP'));
-			$('#total_estimation').text(z.sum.total.toLocaleString('ja-JP'));
+			$('#salestax').text((z.sum.tax).toLocaleString('ja-JP'));
+			$('#total_estimation').text((z.sum.total).toLocaleString('ja-JP'));
 			$('#perone').text(perone.toLocaleString('ja-JP'));
 
 			// 特急と学割不可の表記（2018-01-31 併用可）

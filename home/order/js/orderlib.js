@@ -1083,8 +1083,8 @@ $(function(){
 						$('#signin_name').text(me.customername + ' 様');
 						$('#mypage_button').text('マイページ');
 						$('#signout').prop('hidden', false);
-						$('#cart_total').text(sum.total.toLocaleString('ja-JP'));
-						$('#cart_amount').text(sum.volume.toLocaleString('ja-JP'));
+						$('#cart_total').text((sum.total).toLocaleString('ja-JP'));
+						$('#cart_amount').text((sum.volume).toLocaleString('ja-JP'));
 
 						// 顧客情報の確認ページへ
 						$('#conf_email span').text(me.email);
