@@ -758,10 +758,11 @@ if(isset($_REQUEST['act'])){
 	list($sizeid, $mincost) = each($cost);
 	$res['mincost'] = $mincost;
 	$amount = 30;
-	$args[] = array('itemid'=>$data['itemid'], 'amount'=>$amount, 'ink'=>1, 'pos'=>'f', 'size'=>0);
-	$price = $pageinfo->printfee($args);
-	$base = $price['printfee'] + $mincost*$amount;
-	$tax = 1+($price['tax']/100);
+	$args = array('itemid'=>$data['itemid'], 'amount'=>$amount, 'ink'=>1, 'pos'=>'f', 'size'=>0);
+	$price = json_decode($pageinfo->printfee($args), true);
+	$base = $price['tot'] + $mincost*$amount;
+	$tax = json_decode($pageinfo->salesTax(), true);
+	$tax = 1+($tax/100);
 	$res['perone'] = ceil(floor($base*$tax)/$amount);
 	
 	// モデル着用写真のポップアップ

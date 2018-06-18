@@ -309,6 +309,24 @@ class Conndb extends HTTP {
 	
 	
 	/**
+	 * 消費税 - API3
+	 * @return 現在の消費税率
+	 */
+	public function salesTax(){
+		$param = array();
+		$endPoint = '/taxes/';
+		$headers = [
+			'X-TLA-Access-Token:'._ACCESS_TOKEN,
+			'Origin:'._DOMAIN
+		];
+		parent::setURL(_API_3.$endPoint);
+		$data = parent::request('GET', $param, $headers);
+		parent::setURL(_API);
+		return $data;
+	}
+	
+	
+	/**
 	 * アイテムタグ一覧 - API3
 	 * @id		カテゴリID, カテゴリー指定なしの場合は０
 	 * @tag		条件絞り込み用の複数のタグIDの配列
@@ -445,14 +463,48 @@ class Conndb extends HTTP {
 	
 	
 	/*
-	*	シルクとデジタル転写で最安のプリント代合計を返す
+	*	シルクとデジタル転写で最安のプリント代合計を返す - API3
 	*	@args		['itemid'=>itemid, 'amount'=>amount, 'ink'=>inkcount, 'pos'=>posname][][]
 	*	@sheetsize	転写のデザインサイズ　default:1
-	*	@return		['printfee':プリント代, 'volume':枚数, 'tax':消費税率]　引数に配列以外を設定した時はNULL
+	*	@return		['tot':プリント代, 'volume':枚数, 'tax':消費税率]　引数に配列以外を設定した時はNULL
 	*/
 	public function printfee($args, $sheetsize='1'){
-		$res = parent::request('POST', array('act'=>'printfee', 'sheetsize'=>$sheetsize, 'args'=>$args, 'show_site'=>_SITE));
-		$data = unserialize($res);
+		//		$res = parent::request('POST', array('act'=>'printfee', 'sheetsize'=>$sheetsize, 'args'=>$args, 'show_site'=>_SITE));
+		//		$data = unserialize($res);
+		//		return $data;
+
+		$recommendType = ['silk', 'digit', 'inkjet'];
+		$param = [];
+		$endPoint = '/items/' . $args['itemid'] . '/details';
+		$headers = [
+			'X-TLA-Access-Token:'._ACCESS_TOKEN,
+			'Origin:'._DOMAIN
+		];
+		parent::setURL(_API_3.$endPoint);
+		$r = json_decode(parent::request('GET', $param, $headers), true);
+		$printable = [];
+		$ary = [$r[0]['silk'],$r[0]['digit'],$r[0]['inkjet']];
+		for ($i=0; $i<count($ary); $i++){
+			if ($ary[$i]===1) $printable[] = $recommendType[$i];
+		}
+
+		$param['args'] = json_encode(array(
+			'amount' => 0,
+			'items' => [$args['itemid'] => $args['amount']],
+			'size' => 0,
+			'ink' => 1,
+			'option' => 0,
+			'repeat' => ['silk' => 0, 'digit' => 0, 'emb' => 0],
+			'printable' => $printable
+		));
+		$endPoint = '/printcharges/recommend';
+		$headers = [
+			'X-TLA-Access-Token:'._ACCESS_TOKEN,
+			'Origin:'._DOMAIN
+		];
+		parent::setURL(_API_3.$endPoint);
+		$data = parent::request('GET', $param, $headers);
+		parent::setURL(_API);
 		return $data;
 	}
 	
