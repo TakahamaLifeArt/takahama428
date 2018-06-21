@@ -761,8 +761,10 @@ $(function () {
 			size_table += '<tr class="heading">' + size_head + '</tr>';
 			size_table += '<tr>' + size_body + '<td>枚</td></tr>';
 			pane.find('.size_table tbody').html(size_table);
-			pane.find('.size_table').data('masterId', r[0]["master_id"])
-				.siblings('.btmline').children('.cur_amount').text(sum.toLocaleString('ja-JP'));
+			
+			var sizeTable = pane.find('.size_table')[0];
+			sizeTable.setAttribute('masterid', r[0]["master_id"]);
+			pane.find('.size_table').siblings('.btmline').children('.cur_amount').text(sum.toLocaleString('ja-JP'));
 			
 			// 合計枚数を更新
 			$('#item_info').children('.pane').each(function () {
@@ -875,11 +877,12 @@ $(function () {
 			var self = $(this),
 				colorCode = self.find('.item_image_big').children('img').attr('alt'),
 				colorName = self.find('.note_color').text(),
-				masterId = self.find('.size_table').data('masterId'),
 				colors = $.curr.item[$.curr.designId][$.curr.itemId]['color'],
 				len = Object.keys(colors).length,
-				hash = {};
-
+				hash = {},
+				sizeTable = self.find('.size_table')[0],
+				masterId = sizeTable.getAttribute('masterid');
+			
 			// サイズ毎の枚数をチェック {サイズ名: 枚数}
 			self.find('.size_table').find('tbody tr:not(".heading") td[class*="size_"] input').each(function () {
 				var amount = $(this).val() - 0;
