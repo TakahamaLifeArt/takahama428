@@ -19,7 +19,7 @@ $(function(){
 			 *		タグIDの配列、量販単価の枚数
 			 * @return jqXHR object
 			 */
-			if (Array.isArray(args) !== true) reurn;
+			if (Array.isArray(args) !== true) return;
 			var resource = '',
 				param = {},
 				len = args.length,
