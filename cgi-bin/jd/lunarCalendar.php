@@ -10,6 +10,7 @@
  * @since 1.6
  */
 
+declare(strict_types=1);
 
 /**
  * 旧暦定数

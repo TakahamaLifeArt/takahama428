@@ -3,6 +3,7 @@
 *	Calendar Class
 *
 */
+declare(strict_types=1);
 require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/jd/japaneseDate.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/config.php';
 

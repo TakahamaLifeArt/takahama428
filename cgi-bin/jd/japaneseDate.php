@@ -9,6 +9,7 @@
  * @version 1.7
  * @since 0.1
  */
+declare(strict_types=1);
 
 /**
  * 旧暦クラス名
