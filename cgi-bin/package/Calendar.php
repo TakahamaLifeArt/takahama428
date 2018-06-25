@@ -61,7 +61,7 @@ class Calendar extends HTTP
 	private function getCalendar(int $year = 0, int $month = 0): array
 	{
 		$param = array();
-		$endPoint = '/calendar/'.$year.'/'.$month;
+		$endPoint = '/calendars/'.$year.'/'.$month;
 		$headers = [
 			'X-TLA-Access-Token:'._ACCESS_TOKEN,
 			'Origin:'._DOMAIN

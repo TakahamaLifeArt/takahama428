@@ -371,7 +371,7 @@ class Conndb extends HTTP {
 				'extraday' => $extraday,
 			)
 		);
-		$endPoint = '/delivery/';
+		$endPoint = '/deliveries/';
 		$headers = [
 			'X-TLA-Access-Token:'._ACCESS_TOKEN,
 			'Origin:'._DOMAIN
@@ -466,7 +466,7 @@ class Conndb extends HTTP {
 	*	シルクとデジタル転写で最安のプリント代合計を返す - API3
 	*	@args		['itemid'=>itemid, 'amount'=>amount, 'ink'=>inkcount, 'pos'=>posname][][]
 	*	@sheetsize	転写のデザインサイズ　default:1
-	*	@return		['tot':プリント代, 'volume':枚数, 'tax':消費税率]　引数に配列以外を設定した時はNULL
+	*	@return		['tot':プリント代, 'volume':枚数, 'tax':消費税率] 引数に配列以外を設定した時はNULL
 	*/
 	public function printfee($args, $sheetsize='1'){
 		//		$res = parent::request('POST', array('act'=>'printfee', 'sheetsize'=>$sheetsize, 'args'=>$args, 'show_site'=>_SITE));
@@ -547,6 +547,25 @@ class Conndb extends HTTP {
 	public function setEnquete($args){
 		$res = parent::request('POST', array('act'=>'enquete', 'args'=>$args));
 		$data = unserialize($res);
+		return $data;
+	}
+	
+	
+	
+	/*
+	*	アンケートページ生成用データを取得 - API3
+	*	@return		{'enquete':{}, 'question':[], 'choice':[]}
+	*/
+	public function getEnquete() {
+		$param = array();
+		$endPoint = '/enquetes/forms';
+		$headers = [
+			'X-TLA-Access-Token:'._ACCESS_TOKEN,
+			'Origin:'._DOMAIN
+		];
+		parent::setURL(_API_3.$endPoint);
+		$data = parent::request('GET', $param, $headers);
+		parent::setURL(_API);
 		return $data;
 	}
 	

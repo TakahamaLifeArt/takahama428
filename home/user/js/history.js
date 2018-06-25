@@ -23,7 +23,7 @@ $(function(){
 				'transport': 1,
 				'extraday': 0
 			};
-		$.api(['delivery'], 'GET', function (r) {
+		$.api(['deliveries'], 'GET', function (r) {
 			var url = './documents/bill.php?orderid='+ordersId+'&m='+r[0]['Month']+'&d='+r[0]['Day']+'&w='+r[0]['Weekname'];
 			window.open(url,'printform');
 			$('#printform').on('load', function(){window.frames['printform'].print();});

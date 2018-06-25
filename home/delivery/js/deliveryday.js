@@ -23,7 +23,7 @@ $(function () {
 				'transport': transport,
 				'extraday': 0
 			};
-			$.api(['delivery'], 'GET', function (r) {
+			$.api(['deliveries'], 'GET', function (r) {
 				var d = r[0]['Year'] + "-" + r[0]['Month'] + "-" + r[0]['Day'];
 				$('#datepicker_deliday').val(d);
 			}, param);

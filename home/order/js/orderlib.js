@@ -840,7 +840,7 @@ $(function(){
 			if(opt.delidate){
 				// ISO-8601書式でtimestamp
 				timestamp = Date.parse(opt.delidate+"T00:00:00+09:00") / 1000;	// 日付のみの場合UTCタイムゾーンとなるため(ES5)
-				$.api(['delivery', timestamp], 'GET', function(workday) {
+				$.api(['deliveries', timestamp], 'GET', function(workday) {
 					// 袋詰め作業で1日必要かどうか
 					if (opt.pack==50 && orderAmount>9) {
 						workday--;
