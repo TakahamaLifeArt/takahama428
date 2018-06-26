@@ -136,7 +136,7 @@ class Ordermail extends Conndb{
 			$methodName = array('silk'=>'シルクスクリーン', 'digit'=>'デジタルコピー転写', 'inkjet'=>'インクジェット', 'cutting'=>'カッティング', 'emb'=>'刺繍', 'recommend'=>'おまかせ');
 			$silkSizeName = array('通常版', 'ジャンボ版', 'スーパージャンボ版');
 			$embOptionName = array('デザイン', 'ネーム');
-			$printSizeName = array('大', '中', '小');
+			$printSizeName = array('大', '中', '小', '極小');
 			$inks = ['','','','', '以上'];
 			$orderAmount = 0;
 			$pattern = 1;
