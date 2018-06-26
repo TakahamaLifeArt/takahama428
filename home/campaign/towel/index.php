@@ -1,51 +1,7 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/config.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/jd/japaneseDate.php';
-for($cnt=1,$idx=0; $cnt<5; $cnt++,$idx++){
-	$fin = getDelidate(null, 1, $cnt, 'simple');
-	$main_month[$idx] = $fin['Month'];
-	$main_day[$idx] = $fin['Day'];
-}
-function getDelidate($baseSec=null, $transport=1, $count_days=4, $mode=null){	
-	$orderAmount = 0;	// 注文枚数
-	$isPack = false;	// 袋詰めの有無
-	$jd = new japaneseDate();
-	$one_day = 86400;										// 一日の秒数
-
-	if(empty($baseSec)){
-		$time_stamp = time()+39600;							// 13:00からは翌日扱いのため11時間の秒数分を足す
-		$year  = date("Y", $time_stamp);
-		$month = date("m", $time_stamp);
-		$day   = date("d", $time_stamp);
-		$baseSec = mktime(0, 0, 0, $month, $day, $year);	// 注文確定日の00:00のtimestampを取得
-	}
-	$workday=0;												// 作業に要する日数をカウント
-	if(is_null($mode)){
-		if($isPack && $orderAmount>=10){					// 袋詰めありで且つ10枚以上のときは作業日数がプラス1日
-			$count_days++;
-		}
-	}
-	$_from_holiday = strtotime(_FROM_HOLIDAY);				// お休み開始日
-	$_to_holiday = strtotime(_TO_HOLIDAY);				// お休み最終日
-	while($workday<$count_days){
-		$fin = $jd->makeDateArray($baseSec);
-		if( (($fin['Weekday']>0 && $fin['Weekday']<6) && $fin['Holiday']==0) && ($baseSec<$_from_holiday || $_to_holiday<$baseSec) ){
-			$workday++;
-		}
-		$baseSec += $one_day;
-	}
-
-	// 配送日数は曜日に関係しないため、2日かかる地域の場合に1日分を足す
-	if($transport==2){
-		$baseSec += $one_day;
-	}
-
-	$fin = $jd->makeDateArray($baseSec);
-	$weekday = $jd->viewWeekday($fin['Weekday']);
-	$fin['weekname'] = $weekday;
-	$fin['timestamp'] = $baseSec;
-	return $fin;
-}
+require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/conndb.php';
+$conn = new Conndb();
+$fin = json_decode($conn->delidate(0, array(1)), true);
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -98,7 +54,7 @@ function getDelidate($baseSec=null, $transport=1, $count_days=4, $mode=null){
 						<div class="plan_box">
 							<p class="plan_ttl">当日特急プラン</p>
 							<div class="plan_date">
-								<p><span class="mm"><?php echo $main_month[0]; ?>/</span><span class="dd"><?php echo $main_day[0]; ?></span></p>
+								<p><span class="mm"><?php echo $fin[0]['Month']; ?>/</span><span class="dd"><?php echo $fin[0]['Day']; ?></span></p>
 							</div>
 						</div>
 						<p class="txt_right">にお届け可能！</p>

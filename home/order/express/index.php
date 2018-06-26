@@ -1,9 +1,8 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/orders.php';
-$order = new Orders();
-for ($i=0,$t=1; $i<4; $i++,$t++) {
-	$fin[$i] = $order->getDelidate(null, 1, $t);
-}
+require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/conndb.php';
+$conn = new Conndb();
+$fin = json_decode($conn->delidate(0, array(1,2,3,4)), true);
+
 $_version = time();
 ?>
 <!DOCTYPE html>

@@ -1,4 +1,6 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/session_my_handler.php';
+
 /**
  * カートの状態取得とセッション開始
  */

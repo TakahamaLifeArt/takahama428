@@ -22,7 +22,7 @@ if( empty($_SESSION['me']) ){
 
 
 
-	
+	<!--
 	<div class="bar_top">
 		<?php
 		if (!empty(_EXTRA_NOTICE)) {
@@ -43,12 +43,12 @@ if( empty($_SESSION['me']) ){
 		}
 		?>
 			<div id="option">
-				<h3 id="Line005"><a href="/guide/information.php"><i class="fas fa-exclamation-triangle"></i>地震による配送遅延のお知らせ</a></h3>
-				<p>詳しく見る></p>
+				<h3 id="Line005"><a href="/guide/information.php"><i class="fas fa-exclamation-triangle"></i>GW休業のお知らせ</a></h3>
+				<p>5月3日(木)から5月6日(日)の間、休業とさせて頂きます。5月7日(月)より通常営業行います。</p>
 			</div>
 
 	</div>
-
+-->
 
 	<div class="header_nav_top">
 		<h1>オリジナルTシャツのプリント作成、最短即日発送！</h1>
@@ -136,7 +136,7 @@ if( empty($_SESSION['me']) ){
 
 			<li class="hidden-sm-down  header_icon">
 				<a href="/user/login.php" class="icon_a">
-					<p class="icon_wrap"><i class="fa fa-user-circle-o" aria-hidden="true"></i></p>
+					<p class="icon_wrap"><i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 33px;"></i></p>
 					<p class="icon_p"><span id="mypage_button" class="icon_sapn"><?php echo $buttonName;?></span></p>
 				</a>
 			</li>
@@ -273,7 +273,7 @@ if( empty($_SESSION['me']) ){
 				</div>
 				<div class="side_btn waves-effect waves-light">
 					<a href="/user/login.php" class="mypage_a">
-						<p style="color: #000;"><i class="fa fa-user-circle-o" aria-hidden="true"></i></p>
+						<p style="color: #000;"><i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 33px;"></i></p>
 					</a>
 					<p class="nav-link"><span id="mypage_button"><?php echo $buttonName;?></span></p>
 				</div>
@@ -346,7 +346,7 @@ if( empty($_SESSION['me']) ){
 					<div class="list_block">
 						<div class="list_ttl"><a href="/order/" class="list_munu order"><span class="bluettl">申し込み</span></a></div>
 						<div class="list_ttl"><a href="/order/reorder.php" class="list_munu order"><span class="bluettl">追加再注文</span></a></div>
-						<!--						<div class="list_ttl"><a href="/delivery/" class="list_munu">お届け日を調べる</a></div>-->
+												<div class="list_ttl"><a href="/delivery/" class="list_munu">お届け日を調べる</a></div>
 						<div class="list_ttl"><a href="/guide/orderflow.php" class="list_munu">注文の流れ</a></div>
 						<div class="list_ttl"><a href="/order/bigorder/" class="list_munu">大口注文について</a></div>
 						<div class="list_ttl"><a href="/guide/bring.php" class="list_munu">持ち込み注文について</a></div>
@@ -568,7 +568,7 @@ if( empty($_SESSION['me']) ){
 			</li>
 			<li class="gnavi_title"><div class="gnavi_ttl">料金</div>
 				<ul>
-					<li><a href="/price/estimate.php">10秒見積り</a></li>
+					<li><a href="/price/estimate.php">カンタン比較見積もり</a></li>
 					<li><a href="/guide/">お支払い方法</a></li>
 					<li><a href="/price/fee/">プリント価格表</a></li>
 					<li><a href="/guide/discount.php">割引プラン一覧</a></li>
@@ -921,6 +921,10 @@ if( empty($_SESSION['me']) ){
 				z-index: 1;
 				right: 404%;
 			}
+			#nav_sample ul li .gnavi_ttl {
+				font-size: 12px;
+				line-height: 41px;
+			}
 		}
 		@media screen and (max-width:570px) {
 			#nav_sample ul li:nth-child(1) ul li a {
@@ -1109,7 +1113,7 @@ if( empty($_SESSION['me']) ){
 				料金
 			</button>
 				<div class="dropdown-menu dropdown-list">
-					<a class="dropdown-item list-area" href="/price/estimate.php">10秒見積もり</a>
+					<a class="dropdown-item list-area" href="/price/estimate.php">カンタン比較見積もり</a>
 					<a class="dropdown-item list-area" href="/guide/">お支払い方法</a>
 					<a class="dropdown-item list-area" href="/price/fee/">プリント価格表</a>
 					<a class="dropdown-item list-area" href="/guide/discount.php">割引プラン一覧</a>

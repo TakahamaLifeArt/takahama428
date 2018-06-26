@@ -1,10 +1,10 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/orders.php';
-$order = new Orders();
-for($cnt=1,$idx=0; $cnt<5; $cnt++,$idx++){
-	$fin = $order->getDelidate(null, 1, $cnt, 'simple');
-	$main_month[$idx] = $fin['Month'];
-	$main_day[$idx] = $fin['Day'];
+require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/conndb.php';
+$conn = new Conndb();
+$fin = json_decode($conn->delidate(0, array(1,2,3,4)), true);
+for ($i=0, $len=count($fin); $i<$len; $i++) {
+	$main_month[$i] = $fin[$i]['Month'];
+	$main_day[$i] = $fin[$i]['Day'];
 }
 ?>
 <!DOCTYPE html>
