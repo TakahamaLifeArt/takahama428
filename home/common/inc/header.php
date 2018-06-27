@@ -42,10 +42,12 @@ if( empty($_SESSION['me']) ){
 			echo '<p>'.nl2br($message).'</p></div>';
 		}
 		?>
+<!--
 			<div id="option">
 				<h3 id="Line005"><a href="/guide/information.php"><i class="fas fa-exclamation-triangle"></i>地震による配送遅延のお知らせ</a></h3>
 				<p>詳しく見る></p>
 			</div>
+-->
 
 	</div>
 
