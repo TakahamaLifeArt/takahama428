@@ -88,7 +88,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/package/Calendar.php';
 					<h4 class="title_bdr title item_ttl_2">料金・納期</h4>
 					<div class="footer_print">
 						<ul>
-							<li><a href="/price/estimate.php">10秒見積もり</a></li>
+							<li><a href="/price/estimate.php">カンタン比較見積もり</a></li>
 							<li><a href="/guide/">お支払い方法</a></li>
 							<li><a href="/delivery/">お届け日を調べる</a></li>
 							<li><a href="/order/express/">当日特急プラン</a></li>

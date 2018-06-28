@@ -42,12 +42,10 @@ if( empty($_SESSION['me']) ){
 			echo '<p>'.nl2br($message).'</p></div>';
 		}
 		?>
-<!--
 			<div id="option">
-				<h3 id="Line005"><a href="/guide/information.php"><i class="fas fa-exclamation-triangle"></i>地震による配送遅延のお知らせ</a></h3>
-				<p>詳しく見る></p>
+				<div id="Line005"><a href="/guide/information.php"><i class="fas fa-exclamation-triangle"></i>価格改定のお知らせ</a></div>
+				<p>&nbsp;&nbsp;詳しく見る></p>
 			</div>
--->
 
 	</div>
 
@@ -376,6 +374,7 @@ if( empty($_SESSION['me']) ){
 						<div class="list_ttl"><a href="/design/printing.php" class="list_munu">プリント方法</a></div>
 						<div class="list_ttl"><a href="/design/printsize.php" class="list_munu">参考プリントサイズ</a></div>
 						<div class="list_ttl"><a href="/design/position.php" class="list_munu">参考プリント位置</a></div>
+						<div class="list_ttl"><a href="/campaign/towel/" class="list_munu">タオルプリント位置</a></div>
 						<div class="list_ttl"><a href="/design/emb.php" class="list_munu">刺繍</a></div>
 					</div>
 				</div>
@@ -581,6 +580,7 @@ if( empty($_SESSION['me']) ){
 					<li><a href="/design/printing.php">プリント方法</a></li>
 					<li><a href="/design/printsize.php">参考プリントサイズ</a></li>
 					<li><a href="/design/position.php">参考プリント位置</a></li>
+					<li><a href="/campaign/towel/">タオルプリント位置</a></li>
 					<li><a href="/design/emb.php">刺繍</a></li>
 				</ul>
 			</li>
