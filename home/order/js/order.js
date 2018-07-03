@@ -2251,9 +2251,9 @@ $(function () {
 		
 		if ($('#imega input[name="imega"]:checked').val()==1) {
 			if ($('#pack input[name="pack"]:checked').val()==50 && sum.volume>9) {
-				date = '+8day';
+				date = '+6day';
 			} else {
-				date = '+7day';
+				date = '+5day';
 			}
 			$('#imega_ahead').removeClass('hidden');
 		} else {
@@ -2290,13 +2290,13 @@ $(function () {
 		
 		if ($('#pack input[name="pack"]:checked').val()==50 && sum.volume>9) {
 			if ($('#imega input[name="imega"]:checked').val()==1) {
-				date = '+8day';
+				date = '+6day';
 			} else {
 				date = '+3day';
 			}
 		} else {
 			if ($('#imega input[name="imega"]:checked').val()==1) {
-				date = '+7day';
+				date = '+5day';
 			} else {
 				date = '+2day';
 			}
@@ -2340,6 +2340,13 @@ $(function () {
 			return;
 		}
 		
+		// 納期指定
+		let selectDate = $('#datepick').datepickCalendar('getDate'),
+			selectMonth = $('#delivery .deli_date span:eq(0)').text();
+		if (!selectDate || selectMonth==='-') {
+			$.msgbox('納期をご指定ください');
+			return;
+		}
 		
 		$('#customer > div').addClass('hidden');
 		
@@ -2837,9 +2844,9 @@ $(function () {
 		if (opt) {
 			if (opt.imega==1) {
 				if (opt.pack==50 && sum.volume>9) {
-					date = '+8day';
+					date = '+6day';
 				} else {
-					date = '+7day';
+					date = '+5day';
 				}
 				$('#imega_ahead').removeClass('hidden');
 			} else {
@@ -2853,9 +2860,10 @@ $(function () {
 		}
 		$('#datepick').datepickCalendar({
 			minDate: date,
+			pick: (opt && opt.delidate)? opt.delidate: '',
 			onSelect: function(dateText){
-				var data = {'delidate': dateText};
-				var d = dateText.split('-');
+				var data = {'delidate': dateText},
+					d = dateText===''? ['','-','-']: dateText.split('-');
 				$('#delivery .deli_date span').each(function(idx){
 					$(this).text(d[(idx+1)]);
 				});

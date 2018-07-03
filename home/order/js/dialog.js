@@ -139,10 +139,6 @@ $(function(){
 		msg += '<p>購入後のお客様アンケートご回答と、商品写真と感想コメントのHP掲載にご協力いただける方を対象とした割引です。</p>';
 		msg += '<p class="txt_sml"><span class="red_txt">※</span>商品到着後にマイページからアンケートと写真を送信していただきます。</p>';
 		msg += '</div>';
-		msg += '<div class="sale_block">';
-		msg += '<h3>そのままプリント割<span class="red_txt">(1000円OFF)</span></h3>';
-		msg += '<p>お客様のデザインデータを、弊社で修正せずにそのままプリントに使用した場合に適用される割引です。</p>';
-		msg += '</div>';
 		msg += '</div>';
 		msg += '<button class="pop_btn_close btn waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times-circle mr-1" aria-hidden="true"></i>閉じる</button>';
 		$.msgbox(msg, '<h2>割引の説明</h2>');
@@ -181,6 +177,22 @@ $(function(){
 		msg += '</div>';
 		msg += '<button class="pop_btn_close btn waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times-circle mr-1" aria-hidden="true"></i>閉じる</button>';
 		$.msgbox(msg, '<h2>ご利用方法</h2>');
+	});
+    
+    //	イメージ画像について
+	$('#imega_desc').on("TAP_EVENT", function () {
+		var msg = '<div class="payflow">';
+		msg += '<div class="paylist">';
+		msg += '<div class="cardimg"><img src="  /design/support/img/template/ds_img_01.jpg" width="100%"></div>';
+		msg += '<p class="payttl">事前にデザインのお打ち合わせをし、イメージ画像をご覧いただいてから注文確定する安心のサービスです。</p>';
+        msg += '<p class="payttl">イメージ画像作成には3営業日いただいております。</p>';
+        msg += '<p class="payttl">なお、イメージ画像を作成しないお客様には、ご注文確定後に完成イメージ図を作成しております。</p>';
+        msg += '<p class="payttl">お客様専用のマイページでご確認いただけます。</p>';
+        msg += '<p class="payttl">詳しくは、<a href="/design/support.php#imega" target="_blank">デザインサポートページ＞イメージ画像作成</a>をご覧ください。</p>';
+		msg += '</div>';
+		msg += '</div>';
+		msg += '<button class="pop_btn_close btn waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times-circle mr-1" aria-hidden="true"></i>閉じる</button>';
+		$.msgbox(msg, '<h2>イメージ画像について</h2>');
 	});
 
 	// ご利用規約

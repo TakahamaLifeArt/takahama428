@@ -138,17 +138,17 @@ $_version = time();
 					<div class="search_box">
 						<!-- Button trigger modal -->
 						<button class="btn search_btn" id="modal_search">
-				<i class="fa fa-search" aria-hidden="true"></i>絞り込む
-			</button>
+							<i class="fa fa-search" aria-hidden="true"></i>絞り込む
+						</button>
 						<p class="display_res" id="tag"></p>
 					</div>
 					<div class="item_cond">
 						<select id="sort" class="down_cond">
-				<option value="popular" selected>人気順</option>
-				<option value="low">価格の低い順</option>
-				<option value="high">価格の高い順</option>
-				<option value="desc">レビューが多い順</option>
-			</select>
+							<option value="popular" selected>人気順</option>
+							<option value="low">価格の低い順</option>
+							<option value="high">価格の高い順</option>
+							<option value="desc">レビューが多い順</option>
+						</select>
 						<p class="txt_min">表示件数：<span id="item_count"></span> アイテム</p>
 					</div>
 
@@ -275,21 +275,21 @@ $_version = time();
 							<form method="post" action="" class="form-group">
 								<div class="emb">
 									<label>
-							<img src="/order/img/flow/shi_type_01.jpg">
-							<p>ネーム刺繍</p>
-							<p class="four_t">弊社所有書体の中から 1行で刺繍します。
-							</p>
-							<input type="radio" value="1" name="emb_opt[]" class="design_opt">
-						</label>
+										<img src="/order/img/flow/shi_type_01.jpg">
+										<p>ネーム刺繍</p>
+										<p class="four_t">弊社所有書体の中から 1行で刺繍します。
+										</p>
+										<input type="radio" value="1" name="emb_opt[]" class="design_opt">
+									</label>
 								</div>
 								<div class="emb">
 									<label>
-							<img src="/order/img/flow/shi_type_02.jpg">
-							<p>デザイン刺繍</p>
-							<p class="four_t">オリジナルのデザイン・ 文字を刺繍します。
-							</p>
-							<input type="radio" value="0" name="emb_opt[]" class="design_opt">
-						</label>
+										<img src="/order/img/flow/shi_type_02.jpg">
+										<p>デザイン刺繍</p>
+										<p class="four_t">オリジナルのデザイン・ 文字を刺繍します。
+										</p>
+										<input type="radio" value="0" name="emb_opt[]" class="design_opt">
+									</label>
 								</div>
 							</form>
 							<p class="note"><span class="red_mark">※</span>3D刺繍の場合は、一箇所＋400円の追加料金をいただきます。</p>
@@ -301,19 +301,19 @@ $_version = time();
 						<form method="post" action="" class="form-group silk print_cond">
 							<div class="print_size">
 								<label>
-						<img src="/order/img/flow/sp_order_printsize_silk_01.png">
-						<p>通常</p>
-						<p class="four_t">w27×H35cm以内</p>
-						<input type="radio" value="0" name="silk_size[]" class="design_size">
-					</label>
+									<img src="/order/img/flow/sp_order_printsize_silk_01.png">
+									<p>通常</p>
+									<p class="four_t">w27×H35cm以内</p>
+									<input type="radio" value="0" name="silk_size[]" class="design_size">
+								</label>
 							</div>
 							<div class="print_size">
 								<label>
-						<img src="/order/img/flow/sp_order_printsize_silk_02.png">
-						<p>ジャンボ</p>
-						<p class="four_t">w32×H43cm以内</p>
-						<input type="radio" value="1" name="silk_size[]" class="design_size">
-					</label>
+									<img src="/order/img/flow/sp_order_printsize_silk_02.png">
+									<p>ジャンボ</p>
+									<p class="four_t">w32×H43cm以内</p>
+									<input type="radio" value="1" name="silk_size[]" class="design_size">
+								</label>
 							</div>
 						</form>
 
@@ -321,27 +321,27 @@ $_version = time();
 						<form method="post" action="" class="form-group other_print print_cond">
 							<div class="print_size">
 								<label>
-						<img src="/order/img/flow/sp_order_printsize_dic_01.png">
-						<p>小</p>
-						<p class="four_t">w10×H10cm以内</p>
-						<input type="radio" value="2" name="other_size[]" class="design_size">
-					</label>
+									<img src="/order/img/flow/sp_order_printsize_dic_01.png">
+									<p>小</p>
+									<p class="four_t">w10×H10cm以内</p>
+									<input type="radio" value="2" name="other_size[]" class="design_size">
+								</label>
 							</div>
 							<div class="print_size">
 								<label>
-						<img src="/order/img/flow/sp_order_printsize_dic_02.png">
-						<p>中</p>
-						<p class="four_t">w18×H27cm以内</p>
-						<input type="radio" value="1" name="other_size[]" class="design_size">
-					</label>
+									<img src="/order/img/flow/sp_order_printsize_dic_02.png">
+									<p>中</p>
+									<p class="four_t">w18×H27cm以内</p>
+									<input type="radio" value="1" name="other_size[]" class="design_size">
+								</label>
 							</div>
 							<div class="print_size">
 								<label>
-						<img src="/order/img/flow/sp_order_printsize_dic_03.png">
-						<p>大</p>
-						<p class="four_t">w27×H38cm以内</p>
-						<input type="radio" value="0" name="other_size[]" class="design_size">
-					</label>
+									<img src="/order/img/flow/sp_order_printsize_dic_03.png">
+									<p>大</p>
+									<p class="four_t">w27×H38cm以内</p>
+									<input type="radio" value="0" name="other_size[]" class="design_size">
+								</label>
 							</div>
 						</form>
 
@@ -349,27 +349,35 @@ $_version = time();
 						<form method="post" action="" class="form-group embroidery print_cond">
 							<div class="print_size">
 								<label>
-						<img src="/order/img/flow/sp_order_printsize_shi_01.png">
-						<p>小</p>
-						<p class="four_t">w10×H10cm以内</p>
-						<input type="radio" value="2" name="emb_size[]" class="design_size">
-					</label>
+									<img src="/order/img/flow/sp_order_printsize_shi_00.png">
+									<p>極小</p>
+									<p class="four_t">w5×H5cm以内</p>
+									<input type="radio" value="3" name="emb_size[]" class="design_size">
+								</label>
 							</div>
 							<div class="print_size">
 								<label>
-						<img src="/order/img/flow/sp_order_printsize_shi_02.png">
-						<p>中</p>
-						<p class="four_t">w18×H18cm以内</p>
-						<input type="radio" value="1" name="emb_size[]" class="design_size">
-					</label>
+									<img src="/order/img/flow/sp_order_printsize_shi_01.png">
+									<p>小</p>
+									<p class="four_t">w10×H10cm以内</p>
+									<input type="radio" value="2" name="emb_size[]" class="design_size">
+								</label>
 							</div>
 							<div class="print_size">
 								<label>
-						<img src="/order/img/flow/sp_order_printsize_shi_03.png">
-						<p>大</p>
-						<p class="four_t">w25×H25cm以内</p>
-						<input type="radio" value="0" name="emb_size[]" class="design_size">
-					</label>
+									<img src="/order/img/flow/sp_order_printsize_shi_02.png">
+									<p>中</p>
+									<p class="four_t">w18×H18cm以内</p>
+									<input type="radio" value="1" name="emb_size[]" class="design_size">
+								</label>
+							</div>
+							<div class="print_size">
+								<label>
+									<img src="/order/img/flow/sp_order_printsize_shi_03.png">
+									<p>大</p>
+									<p class="four_t">w25×H25cm以内</p>
+									<input type="radio" value="0" name="emb_size[]" class="design_size">
+								</label>
 							</div>
 						</form>
 
@@ -377,27 +385,27 @@ $_version = time();
 						<form method="post" action="" class="form-group silk_towel print_cond">
 							<div class="print_size">
 								<label>
-						<img src="/order/img/flow/sp_order_printsize_silk_01.png">
-						<p>通常</p>
-						<p class="four_t">w27×H35cm以内</p>
-						<input type="radio" value="0" name="silk_towel_size[]" class="design_size">
-					</label>
+									<img src="/order/img/flow/sp_order_printsize_silk_01.png">
+									<p>通常</p>
+									<p class="four_t">w27×H35cm以内</p>
+									<input type="radio" value="0" name="silk_towel_size[]" class="design_size">
+								</label>
 							</div>
 							<div class="print_size">
 								<label>
-						<img src="/order/img/flow/sp_order_printsize_silk_02.png">
-						<p>ジャンボ</p>
-						<p class="four_t">w32×H43cm以内</p>
-						<input type="radio" value="1" name="silk_towel_size[]" class="design_size">
-					</label>
+									<img src="/order/img/flow/sp_order_printsize_silk_02.png">
+									<p>ジャンボ</p>
+									<p class="four_t">w32×H43cm以内</p>
+									<input type="radio" value="1" name="silk_towel_size[]" class="design_size">
+								</label>
 							</div>
 							<div class="print_size">
 								<label>
-						<img src="/order/img/flow/sp_order_printsize_silk_03.png">
-						<p>スーパージャンボ</p>
-						<p class="four_t">w32×H52cm以内</p>
-						<input type="radio" value="2" name="silk_towel_size[]" class="design_size">
-					</label>
+									<img src="/order/img/flow/sp_order_printsize_silk_03.png">
+									<p>スーパージャンボ</p>
+									<p class="four_t">w32×H52cm以内</p>
+									<input type="radio" value="2" name="silk_towel_size[]" class="design_size">
+								</label>
 							</div>
 						</form>
 
@@ -496,7 +504,8 @@ $_version = time();
 										<td>前</td>
 										<td>2色</td>
 										<td>シルクスクリーン
-											<br>(通常サイズ)</td>
+											<br>(通常サイズ)
+										</td>
 									</tr>
 								</tbody>
 							</table>
@@ -532,16 +541,16 @@ $_version = time();
 									<div>
 										<!-- The fileinput-button span is used to style the file input field as button -->
 										<span class="btn btn-success fileinput-button">
-								<i class="fa fa-plus" aria-hidden="true"></i>
-								<span>ファイルを選択...</span>
-										<input type="file" name="files[]" multiple>
+											<i class="fa fa-plus" aria-hidden="true"></i>
+											<span>ファイルを選択...</span>
+											<input type="file" name="files[]" multiple>
 										</span>
 										<!--
-							<button type="submit" class="btn btn-primary start fade">
-							<i class="fa fa-cloud-upload" aria-hidden="true"></i>
-							<span>入稿する</span>
-							</button>
-							-->
+										<button type="submit" class="btn btn-primary start fade">
+											<i class="fa fa-cloud-upload" aria-hidden="true"></i>
+											<span>入稿する</span>
+										</button>
+										-->
 										<!-- The global file processing state -->
 										<span class="fileupload-process"></span>
 									</div>
@@ -580,13 +589,13 @@ $_version = time();
 									<td>
 										{% if (!i && !o.options.autoUpload) { %}
 										<button class="btn btn-primary start" hidden disabled>
-							<i class="fa fa-cloud-upload" aria-hidden="true"></i>
-							<span>アップロード</span>
-					</button> {% } %} {% if (!i) { %}
+											<i class="fa fa-cloud-upload" aria-hidden="true"></i>
+											<span>アップロード</span>
+										</button> {% } %} {% if (!i) { %}
 										<button class="btn btn-warning cancel">
-							<i class="fa fa-ban" aria-hidden="true"></i>
-							<span>キャンセル</span>
-					</button> {% } %}
+											<i class="fa fa-ban" aria-hidden="true"></i>
+											<span>キャンセル</span>
+										</button> {% } %}
 									</td>
 								</tr>
 								{% } %}
@@ -597,10 +606,10 @@ $_version = time();
 								<tr class="template-download fade">
 									<td>
 										<span class="preview">
-					{% if (file.thumbnailUrl) { %}
+										{% if (file.thumbnailUrl) { %}
 
-					{% } %}
-					</span>
+										{% } %}
+										</span>
 									</td>
 									<td>
 										<p class="name">
@@ -618,13 +627,13 @@ $_version = time();
 									<td>
 										{% if (file.deleteUrl) { %}
 										<button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
-							<i class="fa fa-trash" aria-hidden="true"></i>
-							<span>削除</span>
-					</button> {% } else { %}
+											<i class="fa fa-trash" aria-hidden="true"></i>
+											<span>削除</span>
+										</button> {% } else { %}
 										<button class="btn btn-warning cancel">
-							<i class="fa fa-ban" aria-hidden="true"></i>
-							<span>キャンセル</span>
-					</button> {% } %}
+											<i class="fa fa-ban" aria-hidden="true"></i>
+											<span>キャンセル</span>
+										</button> {% } %}
 									</td>
 								</tr>
 								{% } %}
@@ -638,30 +647,16 @@ $_version = time();
 							<textarea id="note_design" class="demand" name="note_design" placeholder="例:前のデザイン「TAKAHAMA」を極太ゴシックで打ち替え , 後ろのデザインC22ブラックで着色"></textarea>
 							<p class="note"><span class="red_mark">※</span>文字の打ち替え希望の方はテキストを入力して ください。
 							</p>
+							
+							<div class="disc_chi">
+								<div class="print_dis">そのままプリント割<span class="red_txt">（1000円 OFF）</span></div>
+								<div class="left_comment">
+									<p class="note comment_kome"><span class="red_mark">※</span>お客様の入稿したデータが、修正無しで使用できる場合に適用されるプランです。<br> お客様が修正した場合は、再入稿でも利用可能となっております。 データの拡大縮小は無料で行います。</p>
 
-							<div id="imega" class="imega_select">
-								<h3>イメージ画像について</h3>
-								<div class="cart_inner imega">
-									<div class="form-group_2 block">
-										<div class="imega_sel">
-											<label>
-											<input type="radio" value="1" name="imega">
-											イメージ画像を確認してから注文を確定する
-										</label>
-											<p class="note"><span class="red_mark">※</span>イメージ画像作成に３営業日いただいております。特急でのご対応は出来ませんのでご了承ください。</p>
-										</div>
-
-
-										<div class="imega_sel_02">
-											<label>
-											<input type="radio" value="0" name="imega">
-											イメージ画像を作成しないで注文する
-										</label>
-											<p class="note"><span class="red_mark">※</span>ご注文確定後に、完成図をお送りいたします。変更は出来ませんのでご了承ください。</p>
-										</div>
-									</div>
+									<p class="note"><span class="bold_txt">使用方法：注文確定のお電話にて、デザインのお打ち合わせを致します。</span>(割引ご希望のお客様は、お打ち合わせ時にお伝えください。)</p>
 								</div>
 							</div>
+
 						</div>
 					</section>
 
@@ -674,8 +669,8 @@ $_version = time();
 							<div class="disc_chi">
 								<label>
 								<input type="checkbox" value="3" name="student">
-								学割<span class="red_txt">(3%OFF)</span>
-							</label>
+									学割<span class="red_txt">(3%OFF)</span>
+								</label>
 								<div class="school_name_form">
 									<p class="note school_name"><span class="red_mark">※</span>学校名を入力してください。<span class="req">必須</span></p>
 									<input type="text" value="" name="school" placeholder="例：〇〇区△△中学校">
@@ -683,13 +678,14 @@ $_version = time();
 							</div>
 							<div class="disc_chi">
 								<label>
-								<input type="checkbox" value="3" name="publish">
-								写真掲載割<span class="red_txt">(3%OFF)</span>
-							</label>
+									<input type="checkbox" value="3" name="publish">
+									写真掲載割<span class="red_txt">(3%OFF)</span>
+								</label>
 							</div>
 							<p class="note"><span class="red_mark">※</span>WEBに掲載可能な方が対象です。</p>
 							<p class="note"><span class="red_mark">※</span>購入後のお客様アンケートご回答と商品写真と感想コメントの投稿が必須となります。</p>
 						</div>
+						
 					</section>
 
 					<section id="pack">
@@ -700,24 +696,24 @@ $_version = time();
 								<div class="form-group flexwrap">
 									<div class="print_position">
 										<label>
-								<img src="/order/img/flow/sp_order_cart_packing_01.jpg">
-								<p>まとめて包装 (<span class="red_txt">無料</span>)</p>
-								<input type="radio" value="0" name="pack" checked>
-							</label>
+											<img src="/order/img/flow/sp_order_cart_packing_01.jpg">
+											<p>まとめて包装 (<span class="red_txt">無料</span>)</p>
+											<input type="radio" value="0" name="pack" checked>
+										</label>
 									</div>
 									<div class="print_position">
 										<label>
-								<img src="/order/img/flow/sp_order_cart_packing_02.jpg">
-								<p>個別包装 (<span class="red_txt">50円/1枚</span>)</p>
-								<input type="radio" value="50" name="pack">
-							</label>
+											<img src="/order/img/flow/sp_order_cart_packing_02.jpg">
+											<p>個別包装 (<span class="red_txt">50円/1枚</span>)</p>
+											<input type="radio" value="50" name="pack">
+										</label>
 									</div>
 									<div class="print_position">
 										<label>
-								<img src="/order/img/flow/sp_order_cart_packing_03.jpg">
-								<p>個別袋を同封 (<span class="red_txt">10円/1枚</span>)</p>
-								<input type="radio" value="10" name="pack">
-							</label>
+											<img src="/order/img/flow/sp_order_cart_packing_03.jpg">
+											<p>個別袋を同封 (<span class="red_txt">10円/1枚</span>)</p>
+											<input type="radio" value="10" name="pack">
+										</label>
 									</div>
 								</div>
 							</form>
@@ -733,34 +729,61 @@ $_version = time();
 							<div class="form-group_2 block">
 								<div class="pay_sel">
 									<label>
-							<input type="radio" value="bank" name="payment" checked>
-							銀行振込
-						</label>
+										<input type="radio" value="bank" name="payment" checked>
+										銀行振込
+									</label>
 								</div>
 								<div class="pay_sel">
 									<label>
-							<input type="radio" value="cod" name="payment">
-							代金引換 (手数料800円)
-						</label>
+										<input type="radio" value="cod" name="payment">
+										代金引換 (手数料800円)
+									</label>
 								</div>
 								<div class="pay_sel">
 									<label>
-							<input type="radio" value="credit" name="payment">
-							カード決済
-						</label>
+										<input type="radio" value="credit" name="payment">
+										カード決済
+									</label>
 								</div>
 
 								<div class="pay_sel">
 									<label>
-							<input type="radio" value="later_payment" name="payment">
-							後払い (手数料300円)
-						</label>
+										<input type="radio" value="later_payment" name="payment">
+										後払い (手数料300円)
+									</label>
 									<p class="note"><span class="red_mark">※</span>本支払方法は法人および個人事業主の方対象です。学生の方はご利用頂けません</p>
 								</div>
 
 							</div>
 						</div>
 					</section>
+					
+					<div id="imega" class="imega_select">
+						<h3>イメージ画像について</h3>
+						<div class="cart_inner imega">
+                            <div id="imega_desc" class="modal_style_line">
+								<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>イメージ画像について
+							</div>
+							<div class="form-group_2 block">
+								<div class="imega_sel">
+									<label>
+										<input type="radio" value="1" name="imega">
+										イメージ画像を確認してから注文を確定する
+									</label>
+									<p class="note"><span class="red_mark">※</span>イメージ画像作成に３営業日いただいております。</p>
+								</div>
+
+
+								<div class="imega_sel_02">
+									<label>
+										<input type="radio" value="0" name="imega">
+										イメージ画像を作成しないで注文する
+									</label>
+									<p class="note"><span class="red_mark">※</span>ご注文確定後に、完成図をお送りいたします。変更は出来ませんのでご了承ください。</p>
+								</div>
+							</div>
+						</div>
+					</div>
 
 					<section id="delivery">
 						<h3>ご希望納期</h3>
@@ -779,7 +802,7 @@ $_version = time();
 								</p>
 
 								<!-- イメージ画像選択により表示 -->
-								<p class="note hidden" id="imega_ahead"><span class="red_mark">※</span>イメージ画像作成に３営業日いただいております。特急でのご対応は出来ませんのでご了承ください。</p>
+								<p class="note hidden" id="imega_ahead"><span class="red_mark">※</span>イメージ画像作成に３営業日いただいております。</p>
 
 								<label for="transport"><input type="checkbox" value="2" name="transport" id="transport">お届け先が、北海道、九州、沖縄、東京離島、島根隠岐郡のいずれかとなる場合はチェックして下さい。</label>
 							</div>
@@ -788,13 +811,13 @@ $_version = time();
 							<div class="pull_down">
 								<div class="btn-group">
 									<select id="deliverytime" name="delitime" class="down_cond">
-							<option value="0" selected>指定なし</option>
-							<option value="1">午前中</option>
-							<option value="3">14:00-16:00</option>
-							<option value="4">16:00-18:00</option>
-							<option value="5">18:00-20:00</option>
-							<option value="6">19:00-21:00</option>
-						</select>
+										<option value="0" selected>指定なし</option>
+										<option value="1">午前中</option>
+										<option value="3">14:00-16:00</option>
+										<option value="4">16:00-18:00</option>
+										<option value="5">18:00-20:00</option>
+										<option value="6">19:00-21:00</option>
+									</select>
 								</div>
 							</div>
 
@@ -1044,12 +1067,12 @@ $_version = time();
 										<td class="txt_righ"><span class="red_txt" id="discount_fee">0</span>円</td>
 									</tr>
 									<!--
-						<tr>
-						<td><span id="rank_name"></span>会員割</td>
-						<td></td>
-						<td class="txt_righ"><span class="red_txt" id="rank_fee"></span>円</td>
-						</tr>
-						-->
+									<tr>
+										<td><span id="rank_name"></span>会員割</td>
+										<td></td>
+										<td class="txt_righ"><span class="red_txt" id="rank_fee"></span>円</td>
+									</tr>
+									-->
 									<tr>
 										<td>送料</td>
 										<td class="note"><span class="red_mark">※</span>30,000円以上で送料無料</td>
@@ -1213,8 +1236,7 @@ $_version = time();
 
 					<div class="order_caution">
 						<p class="red_big">まだご注文は確定しておりません。</p>
-						<p>制作開始にあたり、お電話でデザインの確認をさせていただきます。<br> 弊社よりお送りする御見積りメールをご確認いただいた後、お電話ください。
-						</p>
+						<p>制作開始にあたり、お電話でデザインの確認をさせていただきます。<br> 弊社よりお送りする御見積りメールをご確認いただいた後、お電話ください。</p>
 
 						<div class="mail_img">
 							<div>
@@ -1262,8 +1284,8 @@ $_version = time();
 
 			<div class="smooth-scroll-btn">
 				<a href="#top" class="btn-floating btn-large red">
-		<i class="fa fa-arrow-up"></i>
-	</a>
+					<i class="fa fa-arrow-up"></i>
+				</a>
 			</div>
 		</div>
 	</main>
@@ -1282,7 +1304,6 @@ $_version = time();
 		var _CATEGORY_ID = <?php echo $_CATEGORY_ID; ?>;
 		var _UPDATED = <?php echo $_UPDATED; ?>;
 		var IMG_PATH = '<?php echo _IMG_PSS; ?>';
-
 	</script>
 	<script src="https://ajaxzip3.github.io/ajaxzip3.js" async></script>
 	<script src="https://doozor.bitbucket.io/calendar/datepick_calendar.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>

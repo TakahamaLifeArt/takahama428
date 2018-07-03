@@ -39,6 +39,9 @@ log
 	color: #e1630e;
 }
 
+.red {
+	background: none!important;
+}
 del,
 ins {
 	text-decoration: none;
@@ -456,6 +459,10 @@ em {
 	margin-top: 0.5em;
 }
 
+.listitems_top3 .listitems .row {
+    margin: 0!important;
+}
+
 .down_cond {
 	font-size: 14px;
 	margin-right: 8px;
@@ -799,6 +806,7 @@ em {
 .listitems_other {
 	padding: 10px 0 30px;
 	justify-content: start;
+    margin-top: 0;
 }
 
 .listitems_top3 .listitems {
@@ -1227,7 +1235,7 @@ th {
 }
 
 .imega_select {
-	margin-top: 30px;
+	margin-top: -60px;
 }
 
 .cart_inner {
@@ -1250,6 +1258,12 @@ th {
 	border: 3px dotted #a5a5a5;
 	background-color: #f6f6f6;
 	text-align: center;
+}
+
+.sonomama_txt {
+    text-align: left;
+    font-size: 14px;
+    margin-bottom: 60px;
 }
 
 .ri_txt {
@@ -1908,7 +1922,7 @@ input[type="password"] {
 	border-radius: 30px;
 	padding: 10px 24px;
 	float: right;
-	margin-right: 20%;
+/*	margin-right: 20%;*/
 }
 
 .print_type {
@@ -2715,4 +2729,50 @@ input[type="password"] {
 .fax {
 	font-weight: bold;
 	font-size: 24px;
+}
+
+/*下層調整*//*-------------------------------------*/
+
+.field-item p {
+	font-size: inherit;
+}
+.field_area .linettl {
+	position: relative;
+	top: -72px;
+	left: 106px;
+	font-size: 1.4rem;
+	text-align: left;
+	line-height: 1.5;
+	margin: 7px 0 0;
+}
+#signout .exit_a {
+	padding: 0rem;
+}
+.side_log #signout .exit_a {
+	padding: .3rem 1rem 0.3rem;
+}
+.side_log #signout .exit_a:hover {
+	padding: .3rem 1rem 0.3rem;
+}
+
+.cal_red p{
+	font-size: 12px;
+}
+.header_icon {
+	padding: 12px 0;
+}
+.navbar-nav .nav-item:first-child {
+	padding-top: 17px;
+}
+.icon_wrap {
+	font-size: 2rem;
+	text-align: center;
+	margin-bottom: 0px;
+}
+/*-------------------------------------*/
+/*下層調整*//*-------------------------------------*/
+@media screen and (max-width: 500px){
+	.field_area .linettl {
+		left: 94px;
+	}
 }

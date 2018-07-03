@@ -864,7 +864,8 @@ $(function(){
 						expressError = '製作日数が足りません！';
 					} else if (opt.imega==1 && workday<=3) {
 						// イメ画作成ありの場合は特急不可のため
-						expressError = '製作日数が足りません！';
+						// 2018-07-03 特急可に仕様変更
+//						expressError = '製作日数が足りません！';
 					}
 
 					if (expressError==='') {
