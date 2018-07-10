@@ -2869,7 +2869,8 @@ $(function () {
 				});
 				$.setStorage('option', data);
 				$.estimate();
-			}
+			},
+			holiday: ['2018-08-13', '2018-08-14']
 		});
 		
 		// 見積もり詳細
