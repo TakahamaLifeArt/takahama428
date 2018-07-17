@@ -19,7 +19,7 @@ $fin = json_decode($conn->delidate(0, array(1)), true);
 	<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
 	<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
 	<meta property="fb:app_id" content="1605142019732010" />
-	<title>オリジナルタオルの作成・プリントが早い ｜ オリジナルTシャツ【タカハマライフアート】</title>
+	<title>タオルプリント位置 ｜ オリジナルTシャツ【タカハマライフアート】</title>
 	<link rel="shortcut icon" href="/icon/favicon.ico">
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 	<link rel="stylesheet" type="text/css" href="/common/js/lightbox/jquery.lightbox-0.5.css" media="all" />
@@ -33,18 +33,21 @@ $fin = json_decode($conn->delidate(0, array(1)), true);
 		<div class="contents" width="100%">
 			<ul class="pan hidden-sm-down">
 				<li><a href="/">オリジナルＴシャツ屋ＴＯＰ</a></li>
-				<li>最速オリジナルタオル</li>
+				<li>タオルプリントサイズ</li>
 			</ul>
 			<div class="towel_header">
-				<h1>最速オリジナルタオル</h1> <img src="./img/towel_img.jpg" class="hidden-xs-down" width="100%" alt="最速オリジナルタオル"> <img src="./img/sp_towel_img.jpg" class="hidden-sm-up" width="100%" alt="最速オリジナルタオル">
-				<div class="towel_title"><span class="red_bold">当日特急プラン</span>が適用できるタオルがあります！</div>
+				<h1>タオルプリントサイズ</h1> 
+<!--				<div class="towel_title"><span class="red_bold">当日特急プラン</span>が適用できるタオルがあります！</div>-->
 
 			</div>
 			<div class="wrap">
+<!--
 				<div class="speed_plan">
 					<h2>当日特急プランとは..</h2>
 					<p><span class="red_new">12時まで</span>にお電話での注文確定をして頂ければ、最短で<span class="red_new">当日のお届けが可能</span>なプランです！</p>
 				</div>
+-->
+<!--
 				<div class="heading"></div>
 				<h2 class="lines-on-sides">お届けプラン早見表</h2>
 				<div class="plan_day">
@@ -63,7 +66,9 @@ $fin = json_decode($conn->delidate(0, array(1)), true);
 						</a>
 					</div>
 				</div>
+-->
 
+<!--
 				<div class="can_item">
 					<div class="balloon1">
 						<p>当日発送可能なアイテムはこちら</p>
@@ -81,9 +86,10 @@ $fin = json_decode($conn->delidate(0, array(1)), true);
 				<div class="order">
 					<a class="order_btn" href="/items/item.php?code=522-ft"><img src="/common/img/home/main/sp_go_icon.png" width="40px" style="padding-right: 12px;padding-bottom: 2px;">このアイテムで注文する</a>
 				</div>
-				<h2 class="lines-on-sides">プリントについて</h2>
+-->
+<!--				<h2 class="lines-on-sides">プリントについて</h2>-->
 				<div>
-					<p class="sub_ttl">プリント可能範囲</p>
+					<h2 class="sub_ttl">プリント可能範囲</h2>
 					<div class="ok_item_inner_2">
 						<div class="towel_size">
 							<p>通常版</p> <img src="./img/sp_towel_printsize_01.png" width="100%"> </div>
@@ -94,9 +100,58 @@ $fin = json_decode($conn->delidate(0, array(1)), true);
 				</div>
 
 				<div>
-					<p class="sub_ttl">サイズとプリントイメージ</p>
+					<h2 class="sub_ttl">サイズとプリントイメージ</h2>
 					<div class="ok_item_inner_3">
+                        <div class="image_inner">
+							<p class="image_ttl">522-FT フェイスタオル</p>
+							<div class="image_in_in">
+								<p>プリントイメージ</p>
+								<div class="posi_02"><img src="./img/sp_towel_ft_01_01.png" width="100%"></div>
+								<p class="red_new posi_01">プリント範囲（ 版のサイズ ）</p>
+								<div class="img_Adj posi_01"><img src="./img/sp_towel_ft_01_02.png" width="100%"></div>
+								<p class="item_cau_2 posi_3">※スーパージャンボ版を使用しております。</p>
+								<div class="model_3"><img src="./img/sp_towel_ft_05.png" width="100%"></div>
+								<a href="/items/item.php?code=522-ft">
+									<div class="method_button">522-FT フェイスタオルページを見る</div>
+								</a>
+							</div>
+						</div>
+                        <div class="image_inner">
+							<p class="image_ttl">519-HT　ハンドタオル</p>
+							<div class="image_in_in">
+								<div>
+									<p>プリントイメージ</p>
+									
+								</div>
+								<div class="hkht_img"><img src="./img/sp_towel_ht_01_01.png" width="100%"></div>
+                                <p class="red_new posi_01">プリント範囲（ 版のサイズ ）</p>
+                                <div class="hkht_img"><img src="./img/sp_towel_ht_01_02.png" width="100%"></div>
+								<div class="model_2"><img src="./img/sp_towel_hkt_03.jpg" width="100%"></div>
+								<a href="/items/item.php?code=519-ht">
+									<div class="method_button">519-HT　ハンドタオルページを見る</div>
+								</a>
+							</div>
+						</div>
 						<div class="image_inner">
+							<p class="image_ttl">540-HKT　ハンカチタオル</p>
+							<div class="image_in_in">
+								<div>
+									<p>プリントイメージ</p>
+								</div>
+								<div class="hkht_img"><img src="./img/sp_towel_hkt_01_01.png" width="100%"></div>
+                                <p class="red_new posi_01">プリント範囲（ 版のサイズ ）</p>
+                                <div class="hkht_img"><img src="./img/sp_towel_hkt_01_02.png" width="100%"></div>
+								<div class="model_2"><img src="./img/sp_towel_ht_03.jpg" width="100%"></div>
+								<a href="/items/item.php?code=540-hkt">
+									<div class="method_button">540-HKT　ハンカチタオルページを見る</div>
+								</a>
+							</div>
+						</div>
+						
+						
+					</div>
+					<div class="ok_item_inner_3">
+                        <div class="image_inner">
 							<p class="image_ttl">524-MT　マフラータオル</p>
 							<div class="image_in_in">
 								<p>プリントイメージ</p>
@@ -128,7 +183,7 @@ $fin = json_decode($conn->delidate(0, array(1)), true);
 								</a>
 							</div>
 						</div>
-						<div class="image_inner">
+                        <div class="image_inner">
 							<p class="image_ttl">526-ST　スポーツタオル</p>
 							<div class="image_in_in">
 								<p>プリントイメージ</p>
@@ -144,43 +199,14 @@ $fin = json_decode($conn->delidate(0, array(1)), true);
 								</a>
 							</div>
 						</div>
-					</div>
-					<div class="ok_item_inner_3">
-						<div class="image_inner">
-							<p class="image_ttl">519-HT　ハンドタオル</p>
-							<div class="image_in_in">
-								<div style="display:flex">
-									<p>プリントイメージ</p>
-									<p class="red_new">プリント範囲（ 版のサイズ ）</p>
-								</div>
-								<div><img src="./img/sp_towel_ht_01.png" width="100%"></div>
-								<div class="model_2"><img src="./img/sp_towel_hkt_03.jpg" width="100%"></div>
-								<a href="/items/item.php?code=519-ht">
-									<div class="method_button">519-HT　ハンドタオルページを見る</div>
-								</a>
-							</div>
-						</div>
-						<div class="image_inner">
-							<p class="image_ttl">540-HKT　ハンカチタオル</p>
-							<div class="image_in_in">
-								<div style="display:flex">
-									<p>プリントイメージ</p>
-									<p class="red_new">プリント範囲（ 版のサイズ ）</p>
-								</div>
-								<div><img src="./img/sp_towel_ht_01.png" width="100%"></div>
-								<div class="model_2"><img src="./img/sp_towel_ht_03.jpg" width="100%"></div>
-								<a href="/items/item.php?code=540-hkt">
-									<div class="method_button">540-HKT　ハンカチタオルページを見る</div>
-								</a>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 				<div class="material">
-					<h2 class="lines-on-sides">素材について</h2>
+					<h2 class="sub_ttl">素材について</h2>
 					<div>
 						<div class="material_box">
-							<p class="material_ttl">シャーリング</p>
+							<h3 class="material_ttl">シャーリング</h3>
 							<div class="ok_item_inner_3">
 								<div><img src="./img/sp_towel_cloth_01.jpg" width="100%"></div>
 								<div class="mate_top_txt">
@@ -201,7 +227,7 @@ $fin = json_decode($conn->delidate(0, array(1)), true);
 							</div>
 						</div>
 						<div class="material_box">
-							<p class="material_ttl">フラット織り</p>
+							<h3 class="material_ttl">フラット織り</h3>
 							<div class="ok_item_inner_3">
 								<div><img src="./img/sp_towel_cloth_02.jpg" width="100%"></div>
 								<div class="mate_top_txt">
