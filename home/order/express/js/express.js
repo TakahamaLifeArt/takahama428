@@ -129,13 +129,13 @@ $(function(){
 			 */
 			var isResult = false;
 			$.when(
-				$.ajax({url:'/php_libs/orders.php', async:true, type:'POST', dataType:'text', data:{'act':'orderposition', 'itemid':4, 'catid':1}}),
-				$.ajax({url:'/php_libs/orders.php', async:true, type:'POST', dataType:'text', data:{'act':'orderposition', 'itemid':167, 'catid':8}})
+				$.ajax({url:'/php_libs/pageinfo.php', async:true, type:'POST', dataType:'text', data:{'act':'position', 'itemid':4, 'express':true}}),
+				$.ajax({url:'/php_libs/pageinfo.php', async:true, type:'POST', dataType:'text', data:{'act':'position', 'itemid':167, 'express':true}})
 			).then(function(r1,r2){
 				isResult = true;
-				var val1 = r1[0].split('|')[0];
-				var val2 = r2[0].split('|')[0];
-				$('#pos_wrap').html(val1+val2);
+//				var val1 = r1[0].split('|')[0];
+//				var val2 = r2[0].split('|')[0];
+				$('#pos_wrap').html(r1[0]+r2[0]);
 				$.setPrintposEvent();
 			});
 			return isResult;
@@ -247,4 +247,5 @@ $(function(){
 	
 	// init
 	$.showPrintPosition();
+	
 });

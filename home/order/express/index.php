@@ -94,7 +94,7 @@ $_version = time();
 
 					<div class="blockgrp2_1">
 						<p class="texorg">当日特急プラン対応アイテム！</p>
-						<p class="txt2">厳選した人気アイテムで対応！</p>
+						<h2>厳選した人気アイテムで即日対応！</h2>
 					</div>
 					<div class="blockgrp2">
 						<div class="blocktxt2">
@@ -140,7 +140,7 @@ $_version = time();
 				</div>
 				<div class="delivery_date1">
 					<p class="texorg">「早く届けてほしい」に答える！</p>
-					<h2>他のプラン</h2>
+					<h2>お客様のご都合に合わせた3つのプラン</h2>
 					<div class="time">
 						<p class="textc">お電話での確認まで完了した場合のお届け日</p>
 						<div class="blockgrp6">
@@ -256,7 +256,7 @@ $_version = time();
 				</div>
 				<div class="delivery_date1">
 					<p class="texorg">お見積りご希望の方へ！</p>
-					<h2>お見積りについて</h2>
+					<h2>オリジナルTシャツの見積もりについて</h2>
 					<p class="textc">お見積もりには以下の情報が必須となります。</p>
 					<div class="blockgrp4">
 						<div class="blocktxt5">
@@ -279,7 +279,7 @@ $_version = time();
 				</div>
 				<div class="delivery_date1">
 					<p class="texorg">タカハマライフアートが早い理由！</p>
-					<h2>なぜ早くお届けできるのか？</h2>
+					<h2>即日対応ができる理由</h2>
 					<div class="blockgrp">
 						<div class="blocktxt">
 							<p class="texorg3">1. 日本一のプリントスピード</p>
@@ -302,13 +302,13 @@ $_version = time();
 						<div class="order_img hidden-sm-down"><img src="/delivery/img/deli/go_pattern.jpg" width="100%;"></div>
 					</div>
 					<div class="order_bubble">
-						<a href="/order/" class="order_btn"><img src="/delivery/img/deli/sp_go_icon.png" width="20%;">お申し込み</a>
+						<a href="/order/order_entrace.php" class="order_btn"><img src="/delivery/img/deli/sp_go_icon.png" width="20%;">お申し込み</a>
 						<img class="bubble_img" src="/delivery/img/deli/sp_go_min.png" width="100%;">
 					</div>
 				</div>
 
 				<div class="inner">
-					<h3 id="overtime">当日特急専用　お申し込みフォーム</h3>
+					<h2 id="overtime">当日特急専用　お申し込みフォーム</h2>
 					<div class="bdrline">
 						<p class="lbl">■データを添付や詳細を下記にて記載して、お問い合わせ下さい。</p>
 						<p class="point">「※」 は必須です。</p>

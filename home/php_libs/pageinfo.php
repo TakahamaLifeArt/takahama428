@@ -280,6 +280,45 @@ if(isset($_REQUEST['act'])){
 			$res .= '</td>';
 			$res .= '</tr>';
 			$res .= '<tr>'.$ink.'</tr>';
+		} else if (isset($_REQUEST['express'])) {
+			// お急ぎの方ページの絵型
+			$ppData = $files[0]['ppdata'];
+			for($i=0; $i<count($files); $i++){
+				$base_name = $files[$i]['base_name'];
+				$posname_key = basename($files[$i]['filename'], '.txt');
+				$imgfile = file_get_contents($files[$i]['filename']);
+				$f = preg_replace('/\.\/img\//', _IMG_PSS, $imgfile);
+				$res .= '<div class="ppid_'.$posid.'">';
+
+				$tmp = explode('/>', $f);
+				$tmp = explode(' ', $tmp[1]);
+				$first_posname = preg_replace('/(alt=|")/','', $tmp[1]);
+
+				$res .= '<div class="posimg">'.$f.'</div>';
+				$res .= '<div class="inkbox">';
+				$res .= '<table><caption>'.$base_name.'</caption>';
+				$res .= '<thead><tr><th>プリント位置</th><th colspan="2">デザインの色数</th></tr></thead>';
+				$res .= '<tfoot><tr><td>'.$ppData['category'].'</td><td>'.$ppData['item'].'</td><td>'.$posname_key.'</td></tr></tfoot>';
+				$res .= '<tbody>';
+				$res .= '<tr>';
+				$res .= '<th>'.$first_posname.'</th>';
+				$res .= '<td colspan="2">';
+				if($posid!=46){
+					$res .= '<select class="ink e-none">';
+					$res .= '<option value="0" selected="selected">選択してください</option>';
+					$res .= '<option value="1">1色</option><option value="2">2色</option><option value="3">3色</option>';
+					$res .= '<option value="9">4色以上</option>';
+					$res .= '</select>';
+				}else{
+					$res .= '<p class="note"><span>※</span>プリントなしの商品です。</p>';
+				}
+				$res .= '</td>';
+				$res .= '</tr>';
+				$res .= '</tbody></table>';
+				$res .= '</div>';
+				$res .= '</div>';
+			}
+			
 		}else{
 			$posdiv = "";
 			for($i=0; $i<count($files); $i++){
