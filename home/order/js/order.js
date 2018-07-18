@@ -2344,8 +2344,9 @@ $(function () {
 		let selectDate = $('#datepick').datepickCalendar('getDate'),
 			selectMonth = $('#delivery .deli_date span:eq(0)').text();
 		if (!selectDate || selectMonth==='-') {
-			$.msgbox('納期をご指定ください');
-			return;
+			// 2018-07-18 必須確認を一時廃止
+//			$.msgbox('納期をご指定ください');
+//			return;
 		}
 		
 		$('#customer > div').addClass('hidden');
