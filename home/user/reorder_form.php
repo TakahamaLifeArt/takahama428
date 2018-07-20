@@ -102,7 +102,7 @@ foreach($p as $category_name=>$val){
 		}
 		$printing .= '<tr class="tabl_txt"';
 		$printing .= ' data-prn-pos="'.$val[$i]['printposition_id'].'"';
-		$printing .= ' data-prn-face="'.$val[$i]['area_name'].'"';
+		$printing .= ' data-prn-face="'.$val[$i]['select_key'].'"';
 		$printing .= ' data-prn-size="'.$val[$i]['size'].'"';
 		$printing .= ' data-prn-option="'.$val[$i]['option'].'"';
 		$printing .= ' data-prn-method="'.$val[$i]['method'].'"';
