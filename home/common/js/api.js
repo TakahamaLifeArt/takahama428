@@ -69,7 +69,7 @@ $(function(){
 						alert("405 Method Not Allowed");
 					},
 					0: function() {
-						alert("通信状況が不安定なためリソースの読み込みができませんでした");
+						alert("通信状況が不安定なためリソースの読み込みができませんでした。ページをリロードをしてください。");
 						window.location.href = 'https://www.takahama428.com/err/error400.php';
 					}
 				}
@@ -77,7 +77,7 @@ $(function(){
 				if (Object.prototype.toString.call(callback)==='[object Function]') callback(response);
 			}).fail(function (jqXHR, textStatus, errorThrown) {
 				if (jqXHR.status != 0) {
-					alert(textStatus+": ネットワークでエラーが発生しました");
+					alert(textStatus+": ネットワークでエラーが発生しました。ページをリロードをしてください。");
 					window.location.href = 'https://www.takahama428.com/err/error400.php';
 				}
 			}).always(function (data_or_jqXHR, textStatus, jqXHR_or_errorThrown) {
