@@ -442,6 +442,13 @@ if(isset($_REQUEST['act'])){
 	if(!empty($prm)){
 		// 検索結果の表示
 		if (isset($prm['cat'])) {
+			
+			// 旧アイテム一覧ページ（/items/?cat=）廃止に伴いエラーページへ遷移
+			if (!$_PAGE_CATEGORIES) {
+				header("Location: "._DOMAIN."/err/");
+				exit;
+			}
+			
 			$_ID = $prm['cat'];
 			$_IS_TAG = 0;
 			$mode = "category";

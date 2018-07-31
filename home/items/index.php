@@ -1,5 +1,5 @@
 <?php
-$_PAGE_CATEGORIES=true;
+$_PAGE_CATEGORIES=false;
 require_once $_SERVER['DOCUMENT_ROOT']. '/php_libs/pageinfo.php';
 ?>
 <!DOCTYPE html>
