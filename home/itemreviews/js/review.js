@@ -1,14 +1,13 @@
 /**
 *	Takahama Life Art
-*	¥ì¥Ó¥å¡¼¥Ú¡¼¥¸
-*	charset euc-jp
+*	ã‚¢ã‚¤ãƒ†ãƒ ãƒ¬ãƒ“ãƒ¥ãƒ¼
 */
 
 $(function(){
 	
-	// ÊÂ¤ÓÂØ¤¨
+	// ä¸¦ã³æ›¿ãˆ
 	$('#cond_sortby').change( function(){
 		var sort = $(this).val();
-		location.href = 'http://www.takahama428.com/itemreviews/index.php?sort='+sort+'&item='+$("#item").val();
+		location.href = '/itemreviews/?sort='+sort+'&item='+$("#item").val();
 	});
 });

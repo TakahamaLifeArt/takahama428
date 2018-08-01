@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT']."/php_libs/conndb.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/php_libs/conndb.php";
 define('_MAX_LIST_LENGTH', 20);
 $conn = new Conndb();
 
@@ -55,7 +55,7 @@ $len = count($data);
 $page = ceil($len/_MAX_LIST_LENGTH);
 
 if(isset($_GET['pg'])){
-	if(preg_match('/^[1-9]+$/', $_GET['pg'])){
+	if(preg_match('/^[1-9][0-9]*$/', $_GET['pg'])){
 		$curr = $_GET['pg'];
 	}else{
 		$curr = 1;
@@ -94,9 +94,9 @@ if($curr-ceil($nums/2)>0){
 }
 
 if($first>1){
-	$paging .= '<p class="pagination-parts"><a href="'.$_SERVER['SCRIPT_NAME'].'?pg='.$prev.'">前へ</a></p>';
+	$paging .= '<p class="pagination-parts"><a href="'.dirname($_SERVER['SCRIPT_NAME']).'/?pg='.$prev.'&sort='.$sort.'">前へ</a></p>';
 	$paging .= '<ol class="pagination-parts">';
-	$paging .= '<li><a href="'.$_SERVER['SCRIPT_NAME'].'?pg=1">1</a></li>';
+	$paging .= '<li><a href="'.dirname($_SERVER['SCRIPT_NAME']).'/?pg=1&sort='.$sort.'">1</a></li>';
 	$paging .= '<li>...</li>';
 }else{
 	$paging .= '<ol class="pagination-parts">';
@@ -104,7 +104,7 @@ if($first>1){
 if($first+$nums<=$last){
 	for($i=$first; $i<$first+$nums; $i++){
 		if($i!=$curr){
-			$paging .= '<li><a href="'.$_SERVER['SCRIPT_NAME'].'?pg='.$i.'">'.$i.'</a></li>';
+			$paging .= '<li><a href="'.dirname($_SERVER['SCRIPT_NAME']).'/?pg='.$i.'&sort='.$sort.'">'.$i.'</a></li>';
 		}else{
 			$paging .= '<li><span>'.$curr.'</span></li>';
 		}
@@ -112,7 +112,7 @@ if($first+$nums<=$last){
 }else{
 	for($i=$first; $i<=$last; $i++){
 		if($i!=$curr){
-			$paging .= '<li><a href="'.$_SERVER['SCRIPT_NAME'].'?pg='.$i.'">'.$i.'</a></li>';
+			$paging .= '<li><a href="'.dirname($_SERVER['SCRIPT_NAME']).'/?pg='.$i.'&sort='.$sort.'">'.$i.'</a></li>';
 		}else{
 			$paging .= '<li><span>'.$curr.'</span></li>';
 		}
@@ -120,12 +120,23 @@ if($first+$nums<=$last){
 }
 if($i<=$last){
 	$paging .= '<li>...</li>';
-	$paging .= '<li><a href="'.$_SERVER['SCRIPT_NAME'].'?pg='.$last.'">'.$last.'</a></li>';
+	$paging .= '<li><a href="'.dirname($_SERVER['SCRIPT_NAME']).'/?pg='.$last.'&sort='.$sort.'">'.$last.'</a></li>';
 	$paging .= '</ol>';
-	$paging .= '<p class="pagination-parts"><a href="'.$_SERVER['SCRIPT_NAME'].'?pg='.$next.'">次へ</a></p>';
+	$paging .= '<p class="pagination-parts"><a href="'.dirname($_SERVER['SCRIPT_NAME']).'/?pg='.$next.'&sort='.$sort.'">次へ</a></p>';
 }else{
 	$paging .= '</ol>';
 }
+
+
+// linkタグのrel属性でコンテンツページを指定
+$contentsPage = '';
+if (1 < $curr) {
+	$contentsPage .= '<link rel="prev" href="'.dirname($_SERVER['SCRIPT_NAME']).'/?pg='.$prev.'&sort='.$sort.'">';
+}
+if ($curr < $last) {
+	$contentsPage .= '<link rel="next" href="'.dirname($_SERVER['SCRIPT_NAME']).'/?pg='.$next.'&sort='.$sort.'">';
+}
+
 
 // レビュー
 $v = array(0,0,0,0);
@@ -264,6 +275,7 @@ $avg['img'] = getStar($avg['ratio']);
 		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
 		<meta property="fb:app_id" content="1605142019732010" />
 		<title>お客様ご利用レビュー　|　オリジナルTシャツ【タカハマライフアート】</title>
+		<?php echo $contentsPage; ?>
 		<link rel="shortcut icon" href="/icon/favicon.ico">
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 		<link rel="stylesheet" type="text/css" href="css/userreviews.css" media="screen" />

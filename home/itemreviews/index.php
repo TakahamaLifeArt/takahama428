@@ -88,7 +88,7 @@ $len = count($data);
 $page = ceil($len/_MAX_LIST_LENGTH);
 
 if(isset($_GET['pg'])){
-	if(preg_match('/^[1-9]+$/', $_GET['pg'])){
+	if(preg_match('/^[1-9][0-9]*$/', $_GET['pg'])){
 		$curr = $_GET['pg'];
 	}else{
 		$curr = 1;
@@ -114,7 +114,7 @@ $next = $curr+1;
 $last = $page;
 $first = 1;
 $nums = 5;		// ページ番号を表示する数
-							
+
 // スタートのページ番号を設定
 if($curr-ceil($nums/2)>0){
 	$first = $curr-floor($nums/2);		// 中央をカレントページにする
@@ -127,9 +127,9 @@ if($curr-ceil($nums/2)>0){
 }
 
 if($first>1){
-	$paging .= '<p class="pagination-parts"><a href="'.$_SERVER['SCRIPT_NAME'].'?pg='.$prev.'&item='.$item_id.'">前へ</a></p>';
+	$paging .= '<p class="pagination-parts"><a href="'.dirname($_SERVER['SCRIPT_NAME']).'/?pg='.$prev.'&item='.$item_id.'&sort='.$sort.'">前へ</a></p>';
 	$paging .= '<ol class="pagination-parts">';
-	$paging .= '<li><a href="'.$_SERVER['SCRIPT_NAME'].'?pg=1&item='.$item_id.'">1</a></li>';
+	$paging .= '<li><a href="'.dirname($_SERVER['SCRIPT_NAME']).'/?pg=1&item='.$item_id.'&sort='.$sort.'">1</a></li>';
 	$paging .= '<li>...</li>';
 }else{
 	$paging .= '<ol class="pagination-parts">';
@@ -137,7 +137,7 @@ if($first>1){
 if($first+$nums<=$last){
 	for($i=$first; $i<$first+$nums; $i++){
 		if($i!=$curr){
-			$paging .= '<li><a href="'.$_SERVER['SCRIPT_NAME'].'?pg='.$i.'&item='.$item_id.'">'.$i.'</a></li>';
+			$paging .= '<li><a href="'.dirname($_SERVER['SCRIPT_NAME']).'/?pg='.$i.'&item='.$item_id.'&sort='.$sort.'">'.$i.'</a></li>';
 		}else{
 			$paging .= '<li><span>'.$curr.'</span></li>';
 		}
@@ -145,7 +145,7 @@ if($first+$nums<=$last){
 }else{
 	for($i=$first; $i<=$last; $i++){
 		if($i!=$curr){
-			$paging .= '<li><a href="'.$_SERVER['SCRIPT_NAME'].'?pg='.$i.'&item='.$item_id.'">'.$i.'</a></li>';
+			$paging .= '<li><a href="'.dirname($_SERVER['SCRIPT_NAME']).'/?pg='.$i.'&item='.$item_id.'&sort='.$sort.'">'.$i.'</a></li>';
 		}else{
 			$paging .= '<li><span>'.$curr.'</span></li>';
 		}
@@ -153,12 +153,23 @@ if($first+$nums<=$last){
 }
 if($i<=$last){
 	$paging .= '<li>...</li>';
-	$paging .= '<li><a href="'.$_SERVER['SCRIPT_NAME'].'?pg='.$last.'&item='.$item_id.'">'.$last.'</a></li>';
+	$paging .= '<li><a href="'.dirname($_SERVER['SCRIPT_NAME']).'/?pg='.$last.'&item='.$item_id.'&sort='.$sort.'">'.$last.'</a></li>';
 	$paging .= '</ol>';
-	$paging .= '<p class="pagination-parts"><a href="'.$_SERVER['SCRIPT_NAME'].'?pg='.$next.'&item='.$item_id.'">次へ</a></p>';
+	$paging .= '<p class="pagination-parts"><a href="'.dirname($_SERVER['SCRIPT_NAME']).'/?pg='.$next.'&item='.$item_id.'&sort='.$sort.'">次へ</a></p>';
 }else{
 	$paging .= '</ol>';
 }
+
+
+// linkタグのrel属性でコンテンツページを指定
+$contentsPage = '';
+if (1 < $curr) {
+	$contentsPage .= '<link rel="prev" href="'.dirname($_SERVER['SCRIPT_NAME']).'/?pg='.$prev.'&item='.$item_id.'&sort='.$sort.'">';
+}
+if ($curr < $last) {
+	$contentsPage .= '<link rel="next" href="'.dirname($_SERVER['SCRIPT_NAME']).'/?pg='.$next.'&item='.$item_id.'&sort='.$sort.'">';
+}
+
 
 // レビュー
 for($i=$start; $i<$end; $i++){
@@ -229,8 +240,8 @@ $avg['img'] = getStar($avg['ratio']);
 		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
 		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
 		<meta property="fb:app_id" content="1605142019732010" />
-		<title>アイテムレビュー：
-			<?php echo strtoupper($item_code).' '.$item_name;?>　|　オリジナルTシャツ【タカハマライフアート】</title>
+		<title>アイテムレビュー：<?php echo strtoupper($item_code).' '.$item_name;?>　|　オリジナルTシャツ【タカハマライフアート】</title>
+		<?php echo $contentsPage; ?>
 		<link rel="shortcut icon" href="/icon/favicon.ico" />
 		<link rel="stylesheet" type="text/css" href="css/itemreviews.css" media="screen" />
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
@@ -319,7 +330,6 @@ $avg['img'] = getStar($avg['ratio']);
 		</footer>
 
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
-		<script type="text/javascript" src="../common/js/jquery.js"></script>
 		<script type="text/javascript" src="./js/review.js"></script>
 	</body>
 
