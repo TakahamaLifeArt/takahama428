@@ -897,8 +897,7 @@ if(isset($_REQUEST['act'])){
 	// 右側列
 	$itemDetail = $pageinfo->getItemDetail($itemcode);
 	$right_column = '<div id="item_title">';
-		$right_column .= '<h2><span id="item_code">'.strtoupper($itemcode).'</span></h2>';
-		$right_column .= '<h1>'.$itemname.'</h1>';
+		$right_column .= '<h1><span id="item_code">'.strtoupper($itemcode).'</span>'.$itemname.'</h1>';
 		$right_column .= '<div id="price">Takahama価格：<span id="price_detail">'.number_format($res['mincost']).'円&#65374;/１枚</span></div>';
 		$right_column .= '<div id="priceex">';
 			$right_column .= '例えば、<br>注文枚数<span>30</span>枚&nbsp;プリント位置<span>1</span>ヶ所&nbsp;インク<span>1</span>色で、<br>';
