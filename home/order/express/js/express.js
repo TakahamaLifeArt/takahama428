@@ -50,6 +50,21 @@ $(function(){
 		 */
 		var minimumNumber = 1; // 最低枚数
 		
+		let elem = document.querySelectorAll('[required]'),
+			isValid = true;
+			
+		for (let n=0, len=elem.length; n<len; n++) {
+			if (elem[n].value.trim() == '') {
+				isValid = false;
+				break;
+			}
+		}
+		if (!isValid) {
+			$.msgbox('必須項目の入力をご確認ください');
+			return false;
+		}
+
+		
 		$('#size_table').find('textarea').val('');
 		if ($.makeArray($('#size_table input[type="number"]')).reduce(function (prev, curr, index, ary) {
 			// 注文商品
