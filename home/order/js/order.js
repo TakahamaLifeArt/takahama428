@@ -1315,7 +1315,7 @@ $(function () {
 
 
 	// プリントなしチェック
-	$('#noprint').on('TAP_EVENT', function () {
+	$('#noprint').on('click', function () {
 		var val = $(this).prop('checked') ? 0 : 1,
 			p = $.Deferred().resolve().promise();
 
