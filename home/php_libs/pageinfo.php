@@ -456,6 +456,7 @@ if(isset($_REQUEST['act'])){
 			$_ID = $prm['tag'];
 			$_IS_TAG = 1;
 			$mode = "tag";
+			$dirName = 'tag_' . $prm['tag'];
 		}
 
 		// 絞り込み検索条件チェックボックス
@@ -503,6 +504,8 @@ if(isset($_REQUEST['act'])){
 	// カテゴリ毎の説明文
 	if (is_file($_SERVER['DOCUMENT_ROOT'].'/items/txt/'.$dirName.'.txt')) {
 		$description = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/items/txt/'.$dirName.'.txt');
+	} else {
+		$description = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/items/txt/default.txt');
 	}
 
 	// カテゴリ一覧情報を取得
