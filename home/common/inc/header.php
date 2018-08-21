@@ -22,14 +22,33 @@ if( empty($_SESSION['me']) ){
 
 
 
-
+<!--お知らせ-->
+<!--
 	<div class="bar_top">
 		<div id="option">
-			<div id="Line005"><a href="/guide/information.php"><i class="fas fa-exclamation-triangle"></i>【夏季休業のお知らせ】</a></div>
+			<div id="Line005"><a href="/guide/information.php"><i class="fas fa-exclamation-triangle"></i>【お急ぎの納期に関するお知らせ】</a></div>
 			<p class="Line006"><a href="/guide/information.php">&nbsp;&nbsp;詳しく見る></a></p>
 		</div>
 
 	</div>
+	
+-->
+	
+<!--お知らせがないとき-->
+<div class="bar_top_white" height="22.33px" width="100%" background-color="#FFF"></div>
+<!--お知らせがないとき-->
+<style>
+	.bar_top_white {
+		height:22.33px;
+		width: 100%;
+		background-color:white;
+	}
+</style>
+
+	
+	
+	
+	
 
 	<div class="header_nav_top">
 		<p>オリジナルTシャツのプリント作成、最短即日発送！</p>
@@ -354,11 +373,11 @@ autoDisplay: false
 				<label for="label4">プリント</label>
 				<div class="accshow">
 					<div class="list_block">
-						<div class="list_ttl"><a href="/design/printing.php" class="list_munu">プリント方法</a></div>
+						<div class="list_ttl"><a href="/print/" class="list_munu">プリント方法一覧</a></div>
 						<div class="list_ttl"><a href="/design/printsize.php" class="list_munu">参考プリントサイズ</a></div>
 						<div class="list_ttl"><a href="/design/position.php" class="list_munu">参考プリント位置</a></div>
 						<div class="list_ttl"><a href="/campaign/towel/" class="list_munu">タオルプリントサイズ</a></div>
-						<div class="list_ttl"><a href="/design/emb.php" class="list_munu">刺繍</a></div>
+						<div class="list_ttl"><a href="/design/emb.php" class="list_munu">刺繍・名入れサービス</a></div>
 					</div>
 				</div>
 				<!--//ラベル4-->
@@ -568,11 +587,11 @@ autoDisplay: false
 			<li class="gnavi_title">
 				<div class="gnavi_ttl">プリント</div>
 				<ul>
-					<li><a href="/design/printing.php">プリント方法</a></li>
+					<li><a href="/print/">プリント方法一覧</a></li>
 					<li><a href="/design/printsize.php">参考プリントサイズ</a></li>
 					<li><a href="/design/position.php">参考プリント位置</a></li>
 					<li><a href="/campaign/towel/">タオルプリントサイズ</a></li>
-					<li><a href="/design/emb.php">刺繍</a></li>
+					<li><a href="/design/emb.php">刺繍・名入れサービス</a></li>
 				</ul>
 			</li>
 			<li class="gnavi_title">
@@ -1146,11 +1165,11 @@ autoDisplay: false
 				プリント
 			</button>
 				<div class="dropdown-menu dropdown-list">
-					<a class="dropdown-item list-area" href="/design/printing.php">プリント方法</a>
+					<a class="dropdown-item list-area" href="/print/">プリント方法一覧</a>
 					<a class="dropdown-item list-area" href="/design/printsize.php">参考プリントサイズ</a>
 					<a class="dropdown-item list-area" href="/design/position.php">参考プリント位置</a>
 					<a class="dropdown-item list-area" href="/campaign/towel/">タオルプリントサイズ</a>
-					<a class="dropdown-item list-area" href="/design/emb.php">刺繍</a>
+					<a class="dropdown-item list-area" href="/design/emb.php">刺繍・名入れサービス</a>
 				</div>
 			</div>
 			<div class="btn-group dropdown global-menu" role="group">
