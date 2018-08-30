@@ -171,12 +171,14 @@ class PageInfo extends Conndb {
 			} else { 
 				$suffix = '_'.$data[$i]['i_color_code']; 
 			}
+//			ul li 1行目 ブランド画像の表示
 			$html .= '<li class="listitems_ex'.$firstlist.'">
 				<a href="/items/item.php?code='.$data[$i]['item_code'].'">
 					<ul>
 						<li class="point_s">'.$data[$i]['i_caption'].'</li>
 						<li class="item_name_s">
 							<ul>
+								<li class="logo"><img src="/img/brand/logo_'.$data[$i]['brand_id'].'.png" height="24"></li>
 								<li class="item_name_kata">'.strtoupper($data[$i]['item_code']).'</li>
 								<li class="item_name_name">'.$data[$i]['item_name'].'</li>
 							</ul>
@@ -186,7 +188,6 @@ class PageInfo extends Conndb {
 			if ($i<3 && $isStart) {
 				$html .= '<img class="rankno" src="/items/img/index/no'.($i+1).'.png" width="60" height="34" alt="No'.($i+1).'">';
 			}
-
 			$html .= '<img src="'._IMG_PSS.'items/list/'.$data[$i]['category_key'].'/'.$data[$i]['item_code'].'/'.$data[$i]['item_code'].$suffix.'.jpg" width="90%" height="auto" alt="'.strtoupper($data[$i]['item_code']).'">
 						</li>
 						<li class="item_info_s clearfix">
