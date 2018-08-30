@@ -2117,6 +2117,7 @@ ul.pan_2 li:first-child {
 
 .logo {
 	margin: 0;
+	padding-bottom: 3px;
 	line-height: 24px;
 }
 
