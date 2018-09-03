@@ -1,6 +1,6 @@
 /**
  * Takahama Life Art
- * 見積　（単一商品）
+ * 見積（単一商品）
  * log
  * 2018-03-05 アイテム一覧ページ「その場で見積もり」の仕様変更
  */
@@ -793,10 +793,10 @@ $(function(){
 			});
 			return d.promise();
 		},
-		hasDuplicated: function(curColor=null) {
+		hasDuplicated: function() {
 		/**
 		 * アイテムカラー指定の重複確認
-		 * @param {string} curColor 確認するカラーを指定する場合
+		 * @param {string} arguments[0] 確認するカラーを指定する場合
 		 * @return {bool} 重複している場合{@code false}、そうでない場合{@code true}を返す
 		 */
 			var colors = {},
@@ -805,8 +805,8 @@ $(function(){
 			$('#item_info .pane').each(function(){
 				var colorName = $(this).find('.note_color').text();
 
-				if (curColor) {
-					if (curColor == colorName) {
+				if (arguments.length>0) {
+					if (arguments[0] == colorName) {
 						isDuplicate = true;
 						return false;
 					}
