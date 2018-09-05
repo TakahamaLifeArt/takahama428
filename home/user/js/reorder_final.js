@@ -62,8 +62,10 @@ $(function(){
 			$.deli = $.getStorage('redeli');
 			
 			// 見積り金額
-			$('#total').text(sum.total.toLocaleString('ja-JP'));
-			$('#perone').text(perone.toLocaleString('ja-JP'));
+			// 2018-09-04 見積もり保留
+//			$('#total').text(sum.total.toLocaleString('ja-JP'));
+//			$('#perone').text(perone.toLocaleString('ja-JP'));
+			
 			
 			// 追加商品のリスト生成
 			/*
@@ -153,11 +155,12 @@ $(function(){
 			$('#message').text($.deli.message.replace(/\r|\n|\r\n/g, '<br>'));
 			
 			// 量販単価適用の表記
-			if (sum.volume >= 150) {
-				$('#discount_notice').removeClass('hidden');
-			} else {
-				$('#discount_notice').addClass('hidden');
-			}
+			// 2018-09-04 見積もり保留
+//			if (sum.volume >= 150) {
+//				$('#discount_notice').removeClass('hidden');
+//			} else {
+//				$('#discount_notice').addClass('hidden');
+//			}
 		}
 	});
 	

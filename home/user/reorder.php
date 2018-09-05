@@ -138,6 +138,11 @@ foreach($p as $category_name=>$val){
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 	<link rel="stylesheet" type="text/css" media="screen" href="./css/common.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="./css/my_reorder_2.css" />
+	
+	<style>
+		.delete-for-now {display:none;}
+	</style>
+	
 </head>
 
 <body>
@@ -174,10 +179,12 @@ foreach($p as $category_name=>$val){
 						<?php echo $items; ?>
 					</table>
 				</div>
-
+				<div class="delete-for-now">
 				<div class="item_info_final_2">
 					<table class="print_info_final">
 						<tbody>
+									
+						
 							<tr class="tabl_ttl_2">
 								<td class="print_total">プリント代</td>
 								<td class="print_total_p">
@@ -186,13 +193,13 @@ foreach($p as $category_name=>$val){
 							<?php echo $printing; ?>
 						</tbody>
 					</table>
-				</div>
-
+					</div> </div>
+				<div class="delete-for-now">
 				<div class="subtotal">
 					<p>小計<span class="inter"><?php echo number_format($orderAmount); ?></span>枚<span class="inter_2"><?php echo number_format($subTotal); ?></span>円</p>
 				</div>
 			</div>
-
+				<div class="delete-for-now">
 			<div class="final_confir">
 				<div class="item_info_final_2">
 					<table class="discount_t">
@@ -245,10 +252,18 @@ foreach($p as $category_name=>$val){
 						</tbody>
 					</table>
 				</div>
-			</div>
+					</div></div>
+<!--			ここまで一時的に消す-->
 
+				<p style="margin: 0 auto; text-align:  center;padding-top: 40px;font-weight: bold;">アイテムの料金で、プリント代は含まれておりません。合計金額は内容を確認後、メールにてお見積もりをお送りいたします。</p>
+		
+		
 			<div class="btn_fld_a">
-				<div class="btnfld_download">
+				<div class="hidden-md-up" style="font-size:14px;font-weight:bold;text-align:center;margin-top: 40px;border-top: 1px solid #d5d5d5;padding-top: 10px;color: #dc0000;">
+				※請求書・納品書はPCからダウンロードできます。<br>是非ご利用くださいませ。
+					<div class="hidden-md-up" style="margin-top: 15px;"><img src="img/mypage_download.jpg" width="85%" height="auto"></div>
+				</div>
+				<div class="btnfld_download hidden-sm-down">
 					<button class="btn_gr btn btn_hidden" id="btn_bill" data-order-id="<?php echo $orderId; ?>" data-shipment="<?php echo $shipDate; ?>"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><span class="txtbld"><span style="font-size: 1.2rem;margin-right: .2rem;">請求書</span>ダウンロード(PDF)</span></button>
 					<button class="btn_gr btn" id="btn_invoice" data-order-id="<?php echo $orderId; ?>"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><span class="txtbld"><span style="font-size: 1.2rem;margin-right: .2rem;">納品書</span>ダウンロード(PDF)</span></button>
 				</div>

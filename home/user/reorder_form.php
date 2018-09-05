@@ -115,6 +115,7 @@ foreach($p as $category_name=>$val){
 	}
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -137,6 +138,11 @@ foreach($p as $category_name=>$val){
 	<link rel="stylesheet" type="text/css" media="screen" href="./css/common.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="./css/size_table.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="./css/my_reorder.css" />
+	
+	<style>
+		.delete-for-now {display:none;}
+	</style>
+	
 </head>
 
 <body>
@@ -171,25 +177,29 @@ foreach($p as $category_name=>$val){
 					</table>
 
 				</div>
-
+				<div class="delete-for-now">
 				<div class="item_info_final_2">
 					<table class="print_info_final">
 						<tbody>
+			
+
 							<tr class="tabl_ttl_2">
 								<td class="print_total">プリント代</td>
 								<td class="print_total_p"><span id="print_fee">0</span>円</td>
 							</tr>
+							
+							
 							<?php echo $printing; ?>
 						</tbody>
 					</table>
-				</div>
-
+					</div></div>
+				<div class="delete-for-now">
 				<div class="subtotal">
 					<p>小計<span class="inter" id="item_amount">0</span>枚<span class="inter_2" id="item_fee">0</span>円</p>
 					<p class="note fontred hidden">※ 大口注文割引きが適用されました。</p>
 				</div>
-			</div>
-
+				</div></div>
+				<div class="delete-for-now">
 			<div class="final_confir">
 				<div class="item_info_final_2">
 					<table class="discount_t">
@@ -235,15 +245,33 @@ foreach($p as $category_name=>$val){
 								<td class="txt_righ"><span id="perone">0</span>円</td>
 							</tr>
 
+						
+							<p style="margin: 0 auto; text-align:  center;padding-top: 40px;font-weight: bold;">アイテムの料金で、プリント代は含まれておりません。合計金額は内容を確認後、メールにてお見積もりをお送りいたします。</p>
+						
+<!--
 							<tr class="reorder_btn">
 								<td colspan="3">
 									<button id="add_list" data-order-id="<?php echo $orderId; ?>" class="btn btn-info">申し込みリストへ追加</button>
 								</td>
 							</tr>
+-->
 						</tbody>
 					</table>
 				</div>
+					</div>
 			</div>
+					
+				<p style="margin: 0 auto; text-align:  center;padding-top: 40px;font-weight: bold;">アイテムの料金で、プリント代は含まれておりません。合計金額は内容を確認後、メールにてお見積もりをお送りいたします。</p>
+
+		
+			<tbody>
+				<tr class="reorder_btn">
+					<td colspan="3">
+						<button id="add_list" data-order-id="<?php echo $orderId; ?>" class="btn btn-info" style=" margin-top: 30px;
+																												  margin-bottom: 25px;">申し込みリストへ追加</button>
+					</td>
+				</tr>
+							</tbody>
 
 			<div class="caution">
 				<p><span class="red_txt">※</span>別のアイテムでご注文をご希望の場合は新規注文扱いとなりますので、<a href="/order/">お申し込みページ</a>へお進みください。</p>
@@ -254,7 +282,7 @@ foreach($p as $category_name=>$val){
 			<div class="transition_wrap d-flex justify-content-between align-items-center">
 				<a href="./order_history.php"><div class="step_prev hoverable waves-effect"><i class="fa fa-chevron-left mr-1"></i>戻る</div></a>
 			</div>
-		</div>
+		
 	</div>
 
 	<footer class="page-footer">
@@ -269,7 +297,7 @@ foreach($p as $category_name=>$val){
 	<script type="text/javascript" src="/common/js/api.js"></script>
 	<script type="text/javascript" src="./js/messagebox.js"></script>
 	<script type="text/javascript" src="./js/reorder.js"></script>
-
+	</div>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 <?php
 require_once dirname(__FILE__).'/php_libs/funcs.php';
 
+
 // ログイン状態のチェック
 $me = checkLogin();
 if(!$me){
@@ -41,11 +42,19 @@ $rankName = $member->getRankName();
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 	<link rel="stylesheet" type="text/css" media="screen" href="./css/common.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="./css/reorder_final.css" />
+	
+	<style>
+		.delete-for-now {display:none;}
+	</style>
+	
 </head>
 
 <body>
 	<header>
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/header.php"; ?>
+		
+	
+		
 	</header>
 
 	<div id="container">
@@ -74,13 +83,15 @@ $rankName = $member->getRankName();
 					
 				</tbody>
 			</table>
+			
+			<div class="delete-for-now">
 			<div class="price_box">
 				<p class="result">合計：￥<span id="total">0</span> (税込)</p>
 				<p class="one">1枚あたり：￥<span id="perone">0</span> (税込)</p>
 				<p id="discount_notice" class="fontred hidden"><span>※</span>大口注文割引きが適用されました。</p>
 				<p><small><span>※</span>デザインや条件が変わると値段が変わる場合もございます。</small></p>
 				<p><small> <span>※</span>割引は適用できません</small></p>
-			</div>
+				</div></div>
 
 			<table class="order_list cust">
 				<thead>

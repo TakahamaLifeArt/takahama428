@@ -39,7 +39,8 @@ $(function(){
 		},
 		init: function(){
 			// 消費税
-			$.api(['taxes'], 'GET', function (r) { $.tax = r/100; });
+			// 2018-09-04 見積もり保留
+//			$.api(['taxes'], 'GET', function (r) { $.tax = r/100; });
 			
 			// 初期化
 			sessionStorage.removeItem('redesign');
@@ -202,52 +203,54 @@ $(function(){
 					estimation = 0,
 					perone = 0;
 				
+				// 2018-09-04 見積もり保留
+				
 				// プリント方法ごとのプリント代を集計
-				Object.keys(print.price).forEach(function(method){
-					printFee += this[method]-0;
-				}, print.price);
-				
-				// プリント代
-				$('#print_fee').text(printFee.toLocaleString('ja-JP'));
-				
-				// 小計
-				subTotal = printFee + (item.price-0);
-				$('#item_amount').text(parseInt(item.amount, 10).toLocaleString('ja-JP'));
-				$('#item_fee').text(subTotal.toLocaleString('ja-JP'));
-				
-				// 会員割
-				if ($('#rank_fee').length===1) {
-					rank = $('#rank_fee').data('rank') - 0;
-					rankFee = -1 * Math.ceil((subTotal * rank)/100);
-					$('#rank_fee').text(rankFee.toLocaleString('ja-JP'));
-				}
-				
-				// 送料
-				carriage = subTotal<30000 && subTotal>0 ? 700 : 0;
-				$('#carriage').text(carriage.toLocaleString('ja-JP'));
-				
-				// 計
-				base = subTotal + rankFee + carriage;
-				$('#base').text(base.toLocaleString('ja-JP'));
-				
-				// 消費税
-				tax = Math.floor(base * $.tax);
-				$('#tax').text(tax.toLocaleString('ja-JP'));
-				
-				// 見積り合計
-				estimation = Math.floor(base * (1+$.tax));
-				$('#estimation').text(estimation.toLocaleString('ja-JP'));
-				
-				// １枚あたり
-				perone = Math.ceil(estimation / $.orderAmount);
-				$('#perone').text(perone.toLocaleString('ja-JP'));
-				
-				// 量販単価適用の表記
-				if ($.orderAmount >= 150) {
-					$('.subtotal .note').removeClass('hidden');
-				} else {
-					$('.subtotal .note').addClass('hidden');
-				}
+//				Object.keys(print.price).forEach(function(method){
+//					printFee += this[method]-0;
+//				}, print.price);
+//				
+//				// プリント代
+//				$('#print_fee').text(printFee.toLocaleString('ja-JP'));
+//				
+//				// 小計
+//				subTotal = printFee + (item.price-0);
+//				$('#item_amount').text(parseInt(item.amount, 10).toLocaleString('ja-JP'));
+//				$('#item_fee').text(subTotal.toLocaleString('ja-JP'));
+//				
+//				// 会員割
+//				if ($('#rank_fee').length===1) {
+//					rank = $('#rank_fee').data('rank') - 0;
+//					rankFee = -1 * Math.ceil((subTotal * rank)/100);
+//					$('#rank_fee').text(rankFee.toLocaleString('ja-JP'));
+//				}
+//				
+//				// 送料
+//				carriage = subTotal<30000 && subTotal>0 ? 700 : 0;
+//				$('#carriage').text(carriage.toLocaleString('ja-JP'));
+//				
+//				// 計
+//				base = subTotal + rankFee + carriage;
+//				$('#base').text(base.toLocaleString('ja-JP'));
+//				
+//				// 消費税
+//				tax = Math.floor(base * $.tax);
+//				$('#tax').text(tax.toLocaleString('ja-JP'));
+//				
+//				// 見積り合計
+//				estimation = Math.floor(base * (1+$.tax));
+//				$('#estimation').text(estimation.toLocaleString('ja-JP'));
+//				
+//				// １枚あたり
+//				perone = Math.ceil(estimation / $.orderAmount);
+//				$('#perone').text(perone.toLocaleString('ja-JP'));
+//				
+//				// 量販単価適用の表記
+//				if ($.orderAmount >= 150) {
+//					$('.subtotal .note').removeClass('hidden');
+//				} else {
+//					$('.subtotal .note').addClass('hidden');
+//				}
 				
 				// Storageを更新
 				$.setStorage('reitem', $.items);

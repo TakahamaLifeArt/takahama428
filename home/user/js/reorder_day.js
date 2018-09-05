@@ -139,20 +139,22 @@ $(function(){
 			$('.deli_date span').text('-');
 			
 			// 量販単価適用の表記
-			if ($.sum.volume >= 150) {
-				$('#discount_notice').removeClass('hidden');
-			} else {
-				$('#discount_notice').addClass('hidden');
-			}
+			// 2018-09-04 見積もり保留
+//			if ($.sum.volume >= 150) {
+//				$('#discount_notice').removeClass('hidden');
+//			} else {
+//				$('#discount_notice').addClass('hidden');
+//			}
 
 			// 見積り金額
-			$.api(['taxes'], 'GET', function (r) {
-				$.tax = r/100; 
-				$.estimate();
-				perone = Math.ceil($.sum.total / $.sum.volume);
-				$('#estimation .total_p span').text($.sum.total.toLocaleString('ja-JP'));
-				$('#estimation .solo_p span').text(perone.toLocaleString('ja-JP'));
-			});
+			// 2018-09-04 見積もり保留
+//			$.api(['taxes'], 'GET', function (r) {
+//				$.tax = r/100; 
+//				$.estimate();
+//				perone = Math.ceil($.sum.total / $.sum.volume);
+//				$('#estimation .total_p span').text($.sum.total.toLocaleString('ja-JP'));
+//				$('#estimation .solo_p span').text(perone.toLocaleString('ja-JP'));
+//			});
 		},
 		estimate: function(){
 			var transport = $('#transport').is(':checked')? 2: 1,
@@ -224,27 +226,29 @@ $(function(){
 						$.sum.express = Math.ceil((subTotal*expressRatio)/10);
 					}
 					
-					subTotal += $.sum.express;
-					$.sum.carriage = subTotal<30000 && subTotal>0 ? 700 : 0;
-					subTotal += $.sum.carriage;
-					$.sum.tax = Math.floor(subTotal * $.tax);
-					$.sum.total = Math.floor(subTotal * (1+$.tax));
-					perone = Math.ceil($.sum.total / $.sum.volume);
-					$('#estimation .total_p span').text($.sum.total.toLocaleString('ja-JP'));
-					$('#estimation .solo_p span').text(perone.toLocaleString('ja-JP'));
+					// 2018-09-04 見積もり保留
+//					subTotal += $.sum.express;
+//					$.sum.carriage = subTotal<30000 && subTotal>0 ? 700 : 0;
+//					subTotal += $.sum.carriage;
+//					$.sum.tax = Math.floor(subTotal * $.tax);
+//					$.sum.total = Math.floor(subTotal * (1+$.tax));
+//					perone = Math.ceil($.sum.total / $.sum.volume);
+//					$('#estimation .total_p span').text($.sum.total.toLocaleString('ja-JP'));
+//					$('#estimation .solo_p span').text(perone.toLocaleString('ja-JP'));
 				});
 			} else {
 				// 日付表示の初期化
 				$('.deli_date span').text('-');
 				
-				$.sum.express = 0;
-				$.sum.carriage = subTotal<30000 && subTotal>0 ? 700 : 0;
-				subTotal += $.sum.carriage;
-				$.sum.tax = Math.floor(subTotal * $.tax);
-				$.sum.total = Math.floor(subTotal * (1+$.tax));
-				perone = Math.ceil($.sum.total / $.sum.volume);
-				$('#estimation .total_p span').text($.sum.total.toLocaleString('ja-JP'));
-				$('#estimation .solo_p span').text(perone.toLocaleString('ja-JP'));
+				// 2018-09-04 見積もり保留
+//				$.sum.express = 0;
+//				$.sum.carriage = subTotal<30000 && subTotal>0 ? 700 : 0;
+//				subTotal += $.sum.carriage;
+//				$.sum.tax = Math.floor(subTotal * $.tax);
+//				$.sum.total = Math.floor(subTotal * (1+$.tax));
+//				perone = Math.ceil($.sum.total / $.sum.volume);
+//				$('#estimation .total_p span').text($.sum.total.toLocaleString('ja-JP'));
+//				$('#estimation .solo_p span').text(perone.toLocaleString('ja-JP'));
 			}
 			
 			$.sum = $.setStorage('resum', $.sum);

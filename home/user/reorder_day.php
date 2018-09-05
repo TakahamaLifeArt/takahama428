@@ -37,6 +37,12 @@ if(isset($_GET['oi'])){
 	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/flick/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="./css/common.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="./css/reorder_day.css" />
+	
+	<style>
+		.delete-for-now {display:none;}
+	</style>
+	
+	
 </head>
 
 <body>
@@ -200,8 +206,13 @@ if(isset($_GET['oi'])){
 				</div>
 
 				<div class="price_box" id="estimation">
+					<p style="margin: 0 auto; text-align:  center;font-weight: bold;">アイテムの料金で、プリント代は含まれておりません。<br>合計金額は内容を確認後、メールにてお見積もりをお送りいたします。</p>
+					
+					<div class="delete-for-now">
 					<p class="total_p">合計：<span>0</span>円(税込)</p>
 					<p class="solo_p">1枚あたり: <span>0</span>円(税込)</p>
+					</div>
+					
 					<button class="btn btn-info" id="confirmation" data-order-id="<?php echo $orderId; ?>">お申し込み内容を確認</button>
 					<p id="discount_notice" class="note hidden"><span class="red_mark">※</span>大口注文割引きが適用されました。</p>
 					<p class="note"><span class="red_mark">※</span>条件によって値段が変わる場合がございます。</p>
