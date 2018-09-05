@@ -178,7 +178,7 @@ class PageInfo extends Conndb {
 						<li class="point_s">'.$data[$i]['i_caption'].'</li>
 						<li class="item_name_s">
 							<ul>
-								<li class="logo"><img src="/img/brand/logo_'.$data[$i]['brand_id'].'.png" height="24"></li>
+								<li class="logo"><img src="/img/brand/logo_'.$data[$i]['brand_id'].'.png" height="50"></li>
 								<li class="item_name_kata">'.strtoupper($data[$i]['item_code']).'</li>
 								<li class="item_name_name">'.$data[$i]['item_name'].'</li>
 							</ul>
