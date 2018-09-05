@@ -774,8 +774,8 @@ class Ordermail extends Conndb{
 			);
 		}
 
-		// お届け先情報
-		$data2 = array();
+		// お届け先情報は無し
+		$data2 = null;
 
 		// 写真掲載割（旧ブログ割）
 		if(empty($opts['publish'])){
