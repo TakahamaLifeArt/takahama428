@@ -49,8 +49,9 @@ $_version = time();
 		</div>
 
 		<div class="contents">
-
+            
 			<div class="step">
+                
 				<nav>
 					<ol class="cd-multi-steps text-bottom count">
 						<li class="current"><em>アイテム</em></li>
@@ -125,13 +126,25 @@ $_version = time();
 			</div>
 
 			<div class="step">
+				<div class="o_top_fl">
+            <div class="step_prev hoverable waves-effect hidden-sm-down">
+						<i class="fa fa-chevron-left"></i>戻る
+					</div>
+                    <div class="o_top_step">
 				<nav>
+                    
 					<ol class="cd-multi-steps text-bottom count">
 						<li class="current"><em>アイテム</em></li>
 						<li><em>プリント</em></li>
 						<li><em>カート</em></li>
 					</ol>
 				</nav>
+                    </div>
+                    
+                   <div class="step_prev hoverable waves-effect hidden-md-up">
+						<i class="fa fa-chevron-left"></i>戻る
+					</div> 
+                </div>
 
 				<section>
 					<h2><strong id="category_name"></strong></h2>
@@ -165,13 +178,25 @@ $_version = time();
 			</div>
 
 			<div class="step">
+				<div class="o_top_fl">
+            <div class="step_prev hoverable waves-effect hidden-sm-down">
+						<i class="fa fa-chevron-left"></i>戻る
+					</div>
+                    <div class="o_top_step">
 				<nav>
+                    
 					<ol class="cd-multi-steps text-bottom count">
 						<li class="current"><em>アイテム</em></li>
 						<li><em>プリント</em></li>
 						<li><em>カート</em></li>
 					</ol>
 				</nav>
+                    </div>
+                    
+                   <div class="step_prev hoverable waves-effect hidden-md-up">
+						<i class="fa fa-chevron-left"></i>戻る
+					</div> 
+                </div>
 				<section id="item_info">
 					<h2>カラー・枚数</h2>
 					<h3><ins>1.</ins>アイテムカラーの指定</h3>
@@ -216,34 +241,49 @@ $_version = time();
 			</div>
 
 			<div class="step">
-				<nav>
-					<ol class="cd-multi-steps text-bottom count">
-						<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
-						<li class="current"><em>プリント</em></li>
-						<li><em>カート</em></li>
-					</ol>
-				</nav>
+				<div class="o_top_fl">
+            <div class="step_prev hoverable waves-effect hidden-sm-down">
+						<i class="fa fa-chevron-left"></i>戻る
+					</div>
+                    <div class="o_top_step">
+						<nav>
+							<ol class="cd-multi-steps text-bottom count">
+								<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
+								<li class="current"><em>プリント</em></li>
+								<li><em>カート</em></li>
+							</ol>
+						</nav>
+                    </div>
+                    
+                   <div class="step_prev hoverable waves-effect hidden-md-up">
+						<i class="fa fa-chevron-left"></i>戻る
+					</div> 
+                </div>
 
 				<section id="printing">
 					<h2>プリント</h2>
 					<div class="form-group_top">
-						<p class="print_none"><label><input type="checkbox" name="noprint" id="noprint" value="1"> プリントなしで購入する</label></p>
+						<p class="print_none"><label><input type="checkbox" id="noprint" value="1" name="noprint">プリントなしで購入する</label></p>
+
 						<p class="note"><span class="red_mark">※</span>プリントなしの場合1割増の料金です。</p>
 					</div>
 					<div class="pane">
-						<h3><ins>1.</ins>プリントする面を選択</h3>
+						<h3><ins>1.</ins>プリント位置を選択</h3>
+                        <div class="p_po">
 						<form method="post" action="">
-							<div class="form-group pos">
+                            
+<!--                            nikami-->
+							<div class="form-group form-group_02 pos">
 
 							</div>
 						</form>
 
-						<h3><ins>2.</ins>プリント位置を選択</h3>
 						<div class="form-group_2 area">
 
 						</div>
+                            </div>
 
-						<h3><ins>3.</ins>プリント色数を選択</h3>
+						<h3><ins>2.</ins>プリント色数を選択</h3>
 						<form method="post" action="">
 							<div class="form-group_2">
 								<div class="print_color">
@@ -261,7 +301,7 @@ $_version = time();
 							</div>
 						</form>
 
-						<h3><ins>4.</ins>プリント方法を選択</h3>
+						<h3><ins>3.</ins>プリント方法を選択</h3>
 						<p class="print_link modal_style_line">
 							<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>プリント方法の説明を見る
 						</p>
@@ -445,13 +485,24 @@ $_version = time();
 			</div>
 
 			<div class="step">
-				<nav>
-					<ol class="cd-multi-steps text-bottom count">
-						<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
-						<li class="done"><em class="fa fa-check" aria-hidden="true">プリント</em></li>
-						<li class="current"><em>カート</em></li>
-					</ol>
-				</nav>
+				<div class="o_top_fl">
+            <div class="step_prev hoverable waves-effect hidden-sm-down">
+						<i class="fa fa-chevron-left"></i>戻る
+					</div>
+                    <div class="o_top_step">
+						<nav>
+							<ol class="cd-multi-steps text-bottom count">
+								<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
+								<li class="done"><em class="fa fa-check" aria-hidden="true">プリント</em></li>
+								<li class="current"><em>カート</em></li>
+							</ol>
+						</nav>
+                    </div>
+                    
+                   <div class="step_prev hoverable waves-effect hidden-md-up">
+						<i class="fa fa-chevron-left"></i>戻る
+					</div> 
+                </div>
 
 				<section id="cart">
 					<h2>カート</h2>
@@ -660,6 +711,119 @@ $_version = time();
 						</div>
 					</section>
 
+<!--				安永-->
+					<div class="nouki_option">
+						<div class="nouki_option_text">
+							納期に関わるオプション
+						</div>
+						<div class="nouki_option_inside">
+							<div id="imega" class="imega_select">
+								<h3>イメージ画像について</h3>
+								<div class="cart_inner imega">
+									<div id="imega_desc" class="modal_style_line">
+										<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>イメージ画像について
+									</div>
+									<div class="form-group_2 block">
+										<div class="imega_sel">
+											<label>
+												<input type="radio" value="1" name="imega">
+												イメージ画像を確認してから注文を確定する
+											</label>
+											<p class="note"><span class="red_mark">※</span>イメージ画像作成に３営業日いただいております。</p>
+										</div>
+
+
+										<div class="imega_sel_02">
+											<label>
+												<input type="radio" value="0" name="imega">
+												イメージ画像を作成しないで注文する
+											</label>
+											<p class="note"><span class="red_mark">※</span>ご注文確定後に、完成図をお送りいたします。変更は出来ませんのでご了承ください。</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+
+							<section id="pack">
+								<h3>袋詰め</h3>
+								<div class="cart_inner">
+									<p class="note"><span class="red_mark">※</span>個別包装10枚以上で制作日数にプラス1日いただきます。</p>
+									<form method="post" action="">
+										<div class="form-group flexwrap">
+											<div class="print_position">
+												<label>
+													<img src="/order/img/flow/sp_order_cart_packing_01.jpg">
+													<p>まとめて包装 (<span class="red_txt">無料</span>)</p>
+													<input type="radio" value="0" name="pack" checked>
+												</label>
+											</div>
+											<div class="print_position">
+												<label>
+													<img src="/order/img/flow/sp_order_cart_packing_02.jpg">
+													<p>個別包装 (<span class="red_txt">50円/1枚</span>)</p>
+													<input type="radio" value="50" name="pack">
+												</label>
+											</div>
+											<div class="print_position">
+												<label>
+													<img src="/order/img/flow/sp_order_cart_packing_03.jpg">
+													<p>個別袋を同封 (<span class="red_txt">10円/1枚</span>)</p>
+													<input type="radio" value="10" name="pack">
+												</label>
+											</div>
+										</div>
+									</form>
+								</div>
+							</section>
+
+							<section id="delivery">
+						
+								<h3>ご希望納期</h3>
+							
+								<div class="cart_inner">
+									<div id="ex_form" class="modal_style_line">
+										<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>当日発送をご希望の方はこちら
+									</div>
+									<div class="date_sel">
+										<h4>カレンダーから選択してください。</h4>
+										<div id="datepick" class="cale_box"></div>
+
+										<!-- 特急料金が計上される場合に表示 -->
+										<p class="note hidden" id="express_info">
+											<span class="red_mark">※</span> 特急料金がかかります。（
+											<em>翌日仕上げ</em>）<span class="express_ratio"></span>
+										</p>
+
+										<!-- イメージ画像選択により表示 -->
+										<p class="note hidden" id="imega_ahead"><span class="red_mark">※</span>イメージ画像作成に３営業日いただいております。</p>
+
+										<label for="transport"><input type="checkbox" value="2" name="transport" id="transport">お届け先が、北海道、九州、沖縄、東京離島、島根隠岐郡のいずれかとなる場合はチェックして下さい。</label>
+									</div>
+
+									<h4>お届時間帯の指定</h4>
+									<div class="pull_down">
+										<div class="btn-group">
+											<select id="deliverytime" name="delitime" class="down_cond">
+												<option value="0" selected>指定なし</option>
+												<option value="1">午前中</option>
+												<option value="3">14:00-16:00</option>
+												<option value="4">16:00-18:00</option>
+												<option value="5">18:00-20:00</option>
+												<option value="6">19:00-21:00</option>
+											</select>
+										</div>
+									</div></div>
+
+								<div class="deli_date">
+									ご希望納期：<span>-</span>月<span>-</span>日
+								</div></section>
+						</div>
+					</div>
+
+
+
 					<section id="discount">
 						<h3>割引</h3>
 						<div id="sale_link" class="modal_style_line">
@@ -668,7 +832,7 @@ $_version = time();
 						<div class="cart_inner">
 							<div class="disc_chi">
 								<label>
-								<input type="checkbox" value="3" name="student">
+									<input type="checkbox" value="3" name="student">
 									学割<span class="red_txt">(3%OFF)</span>
 								</label>
 								<div class="school_name_form">
@@ -685,39 +849,7 @@ $_version = time();
 							<p class="note"><span class="red_mark">※</span>WEBに掲載可能な方が対象です。</p>
 							<p class="note"><span class="red_mark">※</span>購入後のお客様アンケートご回答と商品写真と感想コメントの投稿が必須となります。</p>
 						</div>
-						
-					</section>
 
-					<section id="pack">
-						<h3>袋詰め</h3>
-						<div class="cart_inner">
-							<p class="note"><span class="red_mark">※</span>個別包装10枚以上で制作日数にプラス1日いただきます。</p>
-							<form method="post" action="">
-								<div class="form-group flexwrap">
-									<div class="print_position">
-										<label>
-											<img src="/order/img/flow/sp_order_cart_packing_01.jpg">
-											<p>まとめて包装 (<span class="red_txt">無料</span>)</p>
-											<input type="radio" value="0" name="pack" checked>
-										</label>
-									</div>
-									<div class="print_position">
-										<label>
-											<img src="/order/img/flow/sp_order_cart_packing_02.jpg">
-											<p>個別包装 (<span class="red_txt">50円/1枚</span>)</p>
-											<input type="radio" value="50" name="pack">
-										</label>
-									</div>
-									<div class="print_position">
-										<label>
-											<img src="/order/img/flow/sp_order_cart_packing_03.jpg">
-											<p>個別袋を同封 (<span class="red_txt">10円/1枚</span>)</p>
-											<input type="radio" value="10" name="pack">
-										</label>
-									</div>
-								</div>
-							</form>
-						</div>
 					</section>
 
 					<section id="payment">
@@ -757,74 +889,14 @@ $_version = time();
 							</div>
 						</div>
 					</section>
-					
-					<div id="imega" class="imega_select">
-						<h3>イメージ画像について</h3>
-						<div class="cart_inner imega">
-                            <div id="imega_desc" class="modal_style_line">
-								<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>イメージ画像について
-							</div>
-							<div class="form-group_2 block">
-								<div class="imega_sel">
-									<label>
-										<input type="radio" value="1" name="imega">
-										イメージ画像を確認してから注文を確定する
-									</label>
-									<p class="note"><span class="red_mark">※</span>イメージ画像作成に３営業日いただいております。</p>
-								</div>
 
 
-								<div class="imega_sel_02">
-									<label>
-										<input type="radio" value="0" name="imega">
-										イメージ画像を作成しないで注文する
-									</label>
-									<p class="note"><span class="red_mark">※</span>ご注文確定後に、完成図をお送りいたします。変更は出来ませんのでご了承ください。</p>
-								</div>
-							</div>
-						</div>
-					</div>
+
+
+
 
 					<section id="delivery">
-						<h3>ご希望納期</h3>
 						<div class="cart_inner">
-							<div id="ex_form" class="modal_style_line">
-								<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>当日発送をご希望の方はこちら
-							</div>
-							<div class="date_sel">
-								<h4>カレンダーから選択してください。</h4>
-								<div id="datepick" class="cale_box"></div>
-
-								<!-- 特急料金が計上される場合に表示 -->
-								<p class="note hidden" id="express_info">
-									<span class="red_mark">※</span> 特急料金がかかります。（
-									<em>翌日仕上げ</em>）<span class="express_ratio"></span>
-								</p>
-
-								<!-- イメージ画像選択により表示 -->
-								<p class="note hidden" id="imega_ahead"><span class="red_mark">※</span>イメージ画像作成に３営業日いただいております。</p>
-
-								<label for="transport"><input type="checkbox" value="2" name="transport" id="transport">お届け先が、北海道、九州、沖縄、東京離島、島根隠岐郡のいずれかとなる場合はチェックして下さい。</label>
-							</div>
-
-							<h4>お時間帯の指定</h4>
-							<div class="pull_down">
-								<div class="btn-group">
-									<select id="deliverytime" name="delitime" class="down_cond">
-										<option value="0" selected>指定なし</option>
-										<option value="1">午前中</option>
-										<option value="3">14:00-16:00</option>
-										<option value="4">16:00-18:00</option>
-										<option value="5">18:00-20:00</option>
-										<option value="6">19:00-21:00</option>
-									</select>
-								</div>
-							</div>
-
-							<div class="deli_date">
-								ご希望納期：<span>-</span>月<span>-</span>日
-							</div>
-
 							<div id="estimation" class="price_box">
 								<p class="total_p">合計：<span></span>円(税込)</p>
 								<p class="solo_p">1枚あたり: <span></span>円(税込)</p>
@@ -837,14 +909,26 @@ $_version = time();
 				</section>
 			</div>
 
+
 			<div class="step">
-				<nav>
-					<ol class="cd-multi-steps text-bottom count">
-						<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
-						<li class="done"><em class="fa fa-check" aria-hidden="true">プリント</em></li>
-						<li class="done"><em class="fa fa-check" aria-hidden="true">カート</em></li>
-					</ol>
-				</nav>
+				<div class="o_top_fl">
+            <div class="step_prev hoverable waves-effect hidden-sm-down">
+						<i class="fa fa-chevron-left"></i>戻る
+					</div>
+                    <div class="o_top_step">
+						<nav>
+							<ol class="cd-multi-steps text-bottom count">
+								<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
+								<li class="done"><em class="fa fa-check" aria-hidden="true">プリント</em></li>
+								<li class="done"><em class="fa fa-check" aria-hidden="true">カート</em></li>
+							</ol>
+						</nav>
+                    </div>
+                    
+                   <div class="step_prev hoverable waves-effect hidden-md-up">
+						<i class="fa fa-chevron-left"></i>戻る
+					</div> 
+                </div>
 
 				<section>
 					<h2>お客様情報</h2>
@@ -860,14 +944,24 @@ $_version = time();
 			</div>
 
 			<div class="step">
-				<nav>
-					<ol class="cd-multi-steps text-bottom count">
-						<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
-						<li class="done"><em class="fa fa-check" aria-hidden="true">プリント</em></li>
-						<li class="done"><em class="fa fa-check" aria-hidden="true">カート</em></li>
-					</ol>
-
-				</nav>
+				<div class="o_top_fl">
+            <div class="step_prev hoverable waves-effect hidden-sm-down">
+						<i class="fa fa-chevron-left"></i>戻る
+					</div>
+                    <div class="o_top_step">
+						<nav>
+							<ol class="cd-multi-steps text-bottom count">
+								<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
+								<li class="done"><em class="fa fa-check" aria-hidden="true">プリント</em></li>
+								<li class="done"><em class="fa fa-check" aria-hidden="true">カート</em></li>
+							</ol>
+						</nav>
+                    </div>
+                    
+                   <div class="step_prev hoverable waves-effect hidden-md-up">
+						<i class="fa fa-chevron-left"></i>戻る
+					</div> 
+                </div>
 
 				<section id="customer">
 					<h2>お客様情報</h2>
@@ -961,13 +1055,24 @@ $_version = time();
 			</div>
 
 			<div class="step">
-				<nav>
-					<ol class="cd-multi-steps text-bottom count">
-						<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
-						<li class="done"><em class="fa fa-check" aria-hidden="true">プリント</em></li>
-						<li class="done"><em class="fa fa-check" aria-hidden="true">カート</em></li>
-					</ol>
-				</nav>
+				<div class="o_top_fl">
+            <div class="step_prev hoverable waves-effect hidden-sm-down">
+						<i class="fa fa-chevron-left"></i>戻る
+					</div>
+                    <div class="o_top_step">
+						<nav>
+							<ol class="cd-multi-steps text-bottom count">
+								<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
+								<li class="done"><em class="fa fa-check" aria-hidden="true">プリント</em></li>
+								<li class="done"><em class="fa fa-check" aria-hidden="true">カート</em></li>
+							</ol>
+						</nav>
+                    </div>
+                    
+                   <div class="step_prev hoverable waves-effect hidden-md-up">
+						<i class="fa fa-chevron-left"></i>戻る
+					</div> 
+                </div>
 
 				<section id="confirm_user">
 					<h2>お客様情報</h2>
@@ -1023,13 +1128,24 @@ $_version = time();
 			</div>
 
 			<div class="step">
-				<nav>
-					<ol class="cd-multi-steps text-bottom count">
-						<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
-						<li class="done"><em class="fa fa-check" aria-hidden="true">プリント</em></li>
-						<li class="done"><em class="fa fa-check" aria-hidden="true">カート</em></li>
-					</ol>
-				</nav>
+				<div class="o_top_fl">
+            <div class="step_prev hoverable waves-effect hidden-sm-down">
+						<i class="fa fa-chevron-left"></i>戻る
+					</div>
+                    <div class="o_top_step">
+						<nav>
+							<ol class="cd-multi-steps text-bottom count">
+								<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
+								<li class="done"><em class="fa fa-check" aria-hidden="true">プリント</em></li>
+								<li class="done"><em class="fa fa-check" aria-hidden="true">カート</em></li>
+							</ol>
+						</nav>
+                    </div>
+                    
+                   <div class="step_prev hoverable waves-effect hidden-md-up">
+						<i class="fa fa-chevron-left"></i>戻る
+					</div> 
+                </div>
 
 				<section id="confirm_order">
 					<h2>内容確認</h2>
@@ -1322,7 +1438,7 @@ $_version = time();
 	<script src="/common/js/api.js"></script>
 	<script src="./js/pagetransition.js"></script>
 	<script src="./js/orderlib.js?v=<?php echo $_version;?>"></script>
-	<script src="./js/order.js?v=<?php echo $_version;?>"></script>
+	<script src="./js/order_0807.js?v=<?php echo $_version;?>"></script>
 	<script src="./js/dialog.js"></script>
 </body>
 
