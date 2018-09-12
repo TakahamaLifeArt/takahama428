@@ -571,7 +571,7 @@ $(function(){
 				// 絵型ID毎
 				Object.keys(this[designId]).forEach(function (posId) {
 					var screenGroup = {}, // {同版分類ID: 0|2} 0:版代計上する、2:版代計上しない
-						volumeRange = {}; // {枚数レンジID: {itemId:枚数, ...} }
+						volumeRange = {}; // {枚数レンジID: {itemId:{カラー名:枚数, ...} }
 
 					// 同じ絵型のアイテムの枚数を枚数レンジ別で集計
 					Object.keys(items[designId]).forEach(function (itemId) {
@@ -580,13 +580,14 @@ $(function(){
 							if (!volumeRange.hasOwnProperty(this[itemId]['rangeId'])) {
 								// 初めての枚数レンジIDの場合
 								volumeRange[this[itemId]['rangeId']] = {};
-								volumeRange[this[itemId]['rangeId']][itemId] = 0;
+								volumeRange[this[itemId]['rangeId']][itemId] ={};
 							}
 
 							// 枚数レンジ別のアイテム毎
 							for (let i in this[itemId]['color']) {
+								let colorName = this[itemId]['color'][i]['name'];
 								Object.keys(this[itemId]['color'][i]['vol']).forEach(function (sizeName) {
-									volumeRange[items[designId][itemId]['rangeId']][itemId] += this[sizeName]['amount'] - 0;
+									volumeRange[items[designId][itemId]['rangeId']][itemId][colorName] = this[sizeName]['amount'] - 0;
 								}, this[itemId]['color'][i]['vol']);
 							}
 
@@ -709,7 +710,7 @@ $(function(){
 							p = p.then(function(cond){
 								var jsonData = JSON.stringify({
 									'amount': 0,
-									'items': this[rangeId],	// アイテムIDをキーにした枚数の連装配列
+									'items': this[rangeId],	// アイテムIDをキーにしたカラー毎の枚数の連装配列
 									'size': param[1],
 									'ink': param[2],
 									'option': param[3],
