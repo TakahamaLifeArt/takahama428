@@ -156,6 +156,12 @@ if($_SERVER['REQUEST_METHOD']!='POST'){
 						</tr>
 					</tbody>
 				</table>
+				<input type="hidden" name="part-" value="変更前の顧客情報">
+				<input type="hidden" name="name" value="<?php echo $me['customername']; ?>">
+				<input type="hidden" name="ruby" value="<?php echo $me['customerruby']; ?>">
+				<input type="hidden" name="zip" value="<?php echo $me['zipcode']; ?>">
+				<input type="hidden" name="addr" value="<?php echo $me['addr0'].$me['addr1'].$me['addr2']; ?>">
+				<input type="hidden" name="phone" value="<?php echo $me['tel']; ?>">
 			</form>
 
 			<form class="section e-mailer" name="pass" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" onSubmit="return false;">
