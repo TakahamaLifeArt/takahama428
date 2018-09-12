@@ -915,7 +915,7 @@ if(isset($_REQUEST['act'])){
 				$right_column .= '<div id="btnOrder_up" onclick="ga([\'send\',\'event\',\'order\',\'click\',\''.$itemcode.'\']);">お申込みフォームへ</div>';
 			$right_column .= '</form>';
 		$right_column .= '</div>';
-		$right_column .= '<ul id="blue_btns"><li id="calbtn"><a href="#howmuch" onclick="ga([\'send\',\'event\',\'howmuch\',\'click\',\''.$itemcode.'\']);"></a></li></ul>';
+		$right_column .= '<ul id="blue_btns"><li id="calbtn"><a href="?code='.$itemcode.'#howmuch" onclick="ga([\'send\',\'event\',\'howmuch\',\'click\',\''.$itemcode.'\']);"></a></li></ul>';
 		$right_column .= '</div>';
 	$right_column .= '<div class="contents-lv3">'.$itemreview.'</div>';
 	$right_column .= '<div class="contents-lv3">';
