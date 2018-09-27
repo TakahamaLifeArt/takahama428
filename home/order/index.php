@@ -699,6 +699,17 @@ $_version = time();
 							<p class="note"><span class="red_mark">※</span>文字の打ち替え希望の方はテキストを入力して ください。
 							</p>
 							
+							
+<!--							デザインキー安永-->
+							<h3>デザインキーを添付</h3>
+							<p class="note">
+								デザインシミュレーターで簡単にデザインが作成できます。作成したい方は<a href="/design/designsimulator.php">こちら</a> <br>
+								デザインシミュレーターでデザインを作成されたお客様はデザインキー(URL)を下記にご記入(コピー&amp;ペースト)下さい。
+							</p>
+							<textarea id="designkey_text" class="design-key-class" name="designkey_text"></textarea>
+						
+
+							
 							<div class="disc_chi">
 								<div class="print_dis">そのままプリント割<span class="red_txt">（1000円 OFF）</span></div>
 								<div class="left_comment">
@@ -1242,6 +1253,14 @@ $_version = time();
 									<tr>
 										<td>イメージ画像について</td>
 										<td id="sample_image">作成しない</td>
+										
+								
+										
+									</tr>
+									
+									<tr>
+									<td>デザインキー</td>
+									<td id="final_designkey_text"></td>
 									</tr>
 								</tbody>
 							</table>
@@ -1438,7 +1457,7 @@ $_version = time();
 	<script src="/common/js/api.js"></script>
 	<script src="./js/pagetransition.js"></script>
 	<script src="./js/orderlib.js?v=<?php echo $_version;?>"></script>
-	<script src="./js/order_0807.js?v=<?php echo $_version;?>"></script>
+	<script src="./js/order_0818.js?v=<?php echo $_version;?>"></script>
 	<script src="./js/dialog.js"></script>
 </body>
 
