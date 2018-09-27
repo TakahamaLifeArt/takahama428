@@ -586,8 +586,9 @@ $(function(){
 							// 枚数レンジ別のアイテム毎
 							for (let i in this[itemId]['color']) {
 								let colorName = this[itemId]['color'][i]['name'];
+								volumeRange[items[designId][itemId]['rangeId']][itemId][colorName] = 0;
 								Object.keys(this[itemId]['color'][i]['vol']).forEach(function (sizeName) {
-									volumeRange[items[designId][itemId]['rangeId']][itemId][colorName] = this[sizeName]['amount'] - 0;
+									volumeRange[items[designId][itemId]['rangeId']][itemId][colorName] += this[sizeName]['amount'] - 0;
 								}, this[itemId]['color'][i]['vol']);
 							}
 
@@ -771,8 +772,10 @@ $(function(){
 				user = $.getStorage('user'),
 				items = $.getStorage('item'),
 				noPrintItem = $.itemPrice(items, 'id_0'),
+				itemFee = sum.item || 0,
+				printFee = sum.print || 0,
 				orderAmount = 0,
-				subTotal = 0,
+				subTotal = itemFee + printFee,
 				tmpFee = 0,
 				discountName = [],
 				discountRatio = 0,
@@ -797,9 +800,9 @@ $(function(){
 
 			if(sum) {
 				// 小計
-				if (sum.item && sum.print) {
-					subTotal = sum.item + sum.print;
-				}
+//				if (sum.item && sum.print) {
+//					subTotal = sum.item + sum.print;
+//				}
 				
 				// 注文枚数
 				orderAmount = sum.volume;
