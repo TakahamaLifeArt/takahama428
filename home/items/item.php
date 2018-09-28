@@ -149,7 +149,25 @@ $_version = time();
 						<p class="note"><span class="red_mark">※</span>プリントなしの場合1割増の料金です。</p>
 					</div>
 					<div class="pane">
-						<h3><ins>1.</ins>プリントする面を選択</h3>
+					
+					
+					
+						<h3><ins>1.</ins>プリント位置を選択</h3>
+						<div class="p_po">
+							<form method="post" action="">
+
+								<!--                            nikami-->
+								<div class="form-group_location form-group_02 pos">
+
+								</div>
+							</form>
+
+							<div class="form-group_2 area">
+
+							</div>
+						</div>
+						
+<!--
 						<form method="post" action="">
 							<div class="form-group pos">
 								<div class="print_position"><label><img src="https://takahamalifeart.com/weblib/img/printpattern/t-shirts/normal-tshirts/base_front.svg"><p>前面</p><input type="radio" name="face[]" class="face" value="front" checked=""></label></div>
@@ -162,8 +180,9 @@ $_version = time();
 						<div class="form-group_2 area"><img alt="front" src="https://takahamalifeart.com/weblib/img/printpattern/t-shirts/normal-tshirts/base_front.svg">
 							<p class="pos_selector_wrap"><select class="down_cond"><option value="前" selected="">前</option><option value="右胸">右胸</option><option value="左胸">左胸</option><option value="右すそ">右すそ</option><option value="左すそ">左すそ</option><option value="前すそ">前すそ</option></select></p>
 						</div>
+-->
 
-						<h3><ins>3.</ins>プリント色数を選択</h3>
+						<h3><ins>2.</ins>プリント色数を選択</h3>
 						<form method="post" action="">
 							<div class="form-group_2">
 								<div class="print_color">
@@ -181,7 +200,7 @@ $_version = time();
 							</div>
 						</form>
 
-						<h3><ins>4.</ins>プリント方法を選択</h3>
+						<h3><ins>3.</ins>プリント方法を選択</h3>
 						<p class="print_link modal_style_line">
 							<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>プリント方法の説明を見る
 						</p>
@@ -271,6 +290,15 @@ $_version = time();
 
 						<!--刺繍-->
 						<form method="post" action="" class="form-group embroidery print_cond">
+                            
+                            <div class="print_size">
+								<label>
+									<img src="/order/img/flow/sp_order_printsize_shi_00.png">
+									<p>極小</p>
+									<p class="four_t">w5×H5cm以内</p>
+									<input type="radio" value="3" name="emb_size[]" class="design_size">
+								</label>
+							</div>
 							<div class="print_size">
 								<label>
 									<img src="/order/img/flow/sp_order_printsize_shi_01.png">

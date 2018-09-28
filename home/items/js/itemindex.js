@@ -1,3 +1,4 @@
+//2018.8.30 条件レイアウト変更にともない更新
 $(function () {
 
 	// 条件で探すのチェック
@@ -20,13 +21,13 @@ $(function () {
 		if ($(this).is('.act')) return;
 		$('#sort p').removeClass('act');
 		$(this).addClass('act');
-		$('#container .listitems').data('ScrollPagination').restart();
+		$('#container_2 .listitems').data('ScrollPagination').restart();
 	});
 
 
 	// スクロールで指定位置に来たら次のコンテンツを読み込む
-	$('#container .listitems').ScrollPagination({
-		adjustHeight: ($('.des_txt').height() + $('footer').height() + 200),
+	$('#container_2 .listitems').ScrollPagination({
+		adjustHeight: ($('.des_txt').height() + $('footer').height() + 1000),
 		offsetPoint: 12
 	});
 

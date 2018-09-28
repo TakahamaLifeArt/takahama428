@@ -19,7 +19,7 @@ require_once $_SERVER['DOCUMENT_ROOT']. '/php_libs/pageinfo.php';
 		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
 		<meta property="fb:app_id" content="1605142019732010" />
 		<title>
-			<?php echo $category_name;?>一覧 ｜オリジナルTシャツ作成が早いタカハマライフアート！
+			オリジナルTシャツ | タカハマライフアート
 		</title>
 		<link rel="preconnect" href="https://takahamalifeart.com">
 		<link rel="shortcut icon" href="/icon/favicon.ico">
@@ -36,17 +36,45 @@ require_once $_SERVER['DOCUMENT_ROOT']. '/php_libs/pageinfo.php';
 		
 		<div id="container">
 			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/sidenavi.php"; ?>
-			<div class="contents">
 				<ul class="pan hidden-sm-down">
 					<li><a href="/">オリジナルＴシャツ屋ＴＯＰ</a></li>
 					<?php echo $pan_navi;?>
 				</ul>
+			<div class="contents">
 
-				<h1><strong><?php echo $category_name;?></strong>にオリジナルプリント！</h1>
+				<h1>オリジナルTシャツ</h1>
 				<p class="note min"><span>※</span>アイテムメーカーの在庫状況によってはご希望に沿えない場合がございます。</p>
-				<?php echo $tagList; ?>
+				
+
+		<!--アイテム条件検索 押したら開く-->
+				<div id="accordion" class="accordionbox">
+					<dl class="accordionlist">
+						<dt class="clearfix">
+							<div>
+								<img src="/items/img/mushimegane.png" alt="虫眼鏡" height="20px" width="20px">
+							</div>
+							<p style="width:100%;">アイテム条件検索</p>
+							<p class="accordion_icon"><span></span><span></span></p>
+							<p class="circle2"></p>
+						</dt>
+						<dd><?php echo $tagList; ?></dd>
+					</dl>
+				</div>
+				
+				<div class="sel_req">
+					<p>選択した条件</p>
+				</div>
+				<ul class="pan_2">
+				<?php echo $pan_navi;?>
+				</ul>
+			</div>
+
+				
+				<div id="container_2">
+
 				<div class="contents-lv2" id="tag_wrap">
-					<h3 id="sortbtn" class="list tokucho">並べ替え</h3>
+					<p id="sortbtn" class="list tokucho">並べ替え</p>
+					
 					<div class="tag" id="sort">
 						<div class="tag_btn">
 							<p id="sort_price_low">価格の低い順</p>
@@ -102,6 +130,27 @@ require_once $_SERVER['DOCUMENT_ROOT']. '/php_libs/pageinfo.php';
 		<script type="text/javascript" src="/items/js/itemindex.js"></script>
 		<script type="text/javascript" src="/items/js/ScrollPagination.min.js"></script>
 
+		<!--アイテム条件検索 押したら開く-->
+		<script>
+			$(function(){
+				$(".accordionbox dt").on("click", function() {
+					$(this).next().slideToggle();
+					// activeが存在する場合
+					if ($(this).children(".accordion_icon").hasClass('active')) {
+						// activeを削除
+						$(this).children(".accordion_icon").removeClass('active');
+					}
+					else {
+						// activeを追加
+						$(this).children(".accordion_icon").addClass('active');;
+					}
+				});
+			});
+		</script>
+
 	</body>
+	
+	
+
 
 </html>

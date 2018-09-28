@@ -35,7 +35,7 @@ if( empty($_SESSION['me']) ){
 -->
 	
 <!--お知らせがないとき-->
-<div class="bar_top_white" height="22.33px" width="100%" background-color="#FFF"></div>
+<!--<div class="bar_top_white" height="22.33px" width="100%" background-color="#FFF"></div>-->
 <!--お知らせがないとき-->
 <style>
 	.bar_top_white {
@@ -92,7 +92,11 @@ if( empty($_SESSION['me']) ){
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item hidden-sm-down">
 				<a href="tel:0120130428" class="nav-link">
-					<p><i class="fa fa-phone" aria-hidden="true"></i>
+					<p>
+<!--					<i class="fa fa-phone" aria-hidden="true"></i>-->
+					
+						<svg aria-hidden="true" style="width: 24px; height: 24px;" data-prefix="fas" data-icon="phone-volume" class="svg-inline--fa fa-phone-volume fa-w-12 fa-phone" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M97.333 506.966c-129.874-129.874-129.681-340.252 0-469.933 5.698-5.698 14.527-6.632 21.263-2.422l64.817 40.513a17.187 17.187 0 0 1 6.849 20.958l-32.408 81.021a17.188 17.188 0 0 1-17.669 10.719l-55.81-5.58c-21.051 58.261-20.612 122.471 0 179.515l55.811-5.581a17.188 17.188 0 0 1 17.669 10.719l32.408 81.022a17.188 17.188 0 0 1-6.849 20.958l-64.817 40.513a17.19 17.19 0 0 1-21.264-2.422zM247.126 95.473c11.832 20.047 11.832 45.008 0 65.055-3.95 6.693-13.108 7.959-18.718 2.581l-5.975-5.726c-3.911-3.748-4.793-9.622-2.261-14.41a32.063 32.063 0 0 0 0-29.945c-2.533-4.788-1.65-10.662 2.261-14.41l5.975-5.726c5.61-5.378 14.768-4.112 18.718 2.581zm91.787-91.187c60.14 71.604 60.092 175.882 0 247.428-4.474 5.327-12.53 5.746-17.552.933l-5.798-5.557c-4.56-4.371-4.977-11.529-.93-16.379 49.687-59.538 49.646-145.933 0-205.422-4.047-4.85-3.631-12.008.93-16.379l5.798-5.557c5.022-4.813 13.078-4.394 17.552.933zm-45.972 44.941c36.05 46.322 36.108 111.149 0 157.546-4.39 5.641-12.697 6.251-17.856 1.304l-5.818-5.579c-4.4-4.219-4.998-11.095-1.285-15.931 26.536-34.564 26.534-82.572 0-117.134-3.713-4.836-3.115-11.711 1.285-15.931l5.818-5.579c5.159-4.947 13.466-4.337 17.856 1.304z"></path></svg>
+					
 						<em>0120-130-428</em>
 						<span style="font-size: 0.7rem;margin-top: 4px;">月&#126;金 10:00&#126;18:00 (土日祝除く)</span>
 					</p>
@@ -100,13 +104,22 @@ if( empty($_SESSION['me']) ){
 			</li>
 			<li class="nav-item hidden-md-up">
 				<a href="tel:0120130428" class="nav-link btn waves-effect waves-light sam_btn">
-				<i class="fa fa-phone" aria-hidden="true"></i>
+<!--				<i class="fa fa-phone" aria-hidden="true"></i>-->
+			
+					<svg aria-hidden="true" style="width: 22.5px; height: 23px; margin: 0px 3px -1px 6px;" data-prefix="fas" data-icon="phone-volume" class="svg-inline--fa fa-phone-volume fa-w-12 fa-phone" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M97.333 506.966c-129.874-129.874-129.681-340.252 0-469.933 5.698-5.698 14.527-6.632 21.263-2.422l64.817 40.513a17.187 17.187 0 0 1 6.849 20.958l-32.408 81.021a17.188 17.188 0 0 1-17.669 10.719l-55.81-5.58c-21.051 58.261-20.612 122.471 0 179.515l55.811-5.581a17.188 17.188 0 0 1 17.669 10.719l32.408 81.022a17.188 17.188 0 0 1-6.849 20.958l-64.817 40.513a17.19 17.19 0 0 1-21.264-2.422zM247.126 95.473c11.832 20.047 11.832 45.008 0 65.055-3.95 6.693-13.108 7.959-18.718 2.581l-5.975-5.726c-3.911-3.748-4.793-9.622-2.261-14.41a32.063 32.063 0 0 0 0-29.945c-2.533-4.788-1.65-10.662 2.261-14.41l5.975-5.726c5.61-5.378 14.768-4.112 18.718 2.581zm91.787-91.187c60.14 71.604 60.092 175.882 0 247.428-4.474 5.327-12.53 5.746-17.552.933l-5.798-5.557c-4.56-4.371-4.977-11.529-.93-16.379 49.687-59.538 49.646-145.933 0-205.422-4.047-4.85-3.631-12.008.93-16.379l5.798-5.557c5.022-4.813 13.078-4.394 17.552.933zm-45.972 44.941c36.05 46.322 36.108 111.149 0 157.546-4.39 5.641-12.697 6.251-17.856 1.304l-5.818-5.579c-4.4-4.219-4.998-11.095-1.285-15.931 26.536-34.564 26.534-82.572 0-117.134-3.713-4.836-3.115-11.711 1.285-15.931l5.818-5.579c5.159-4.947 13.466-4.337 17.856 1.304z"></path></svg>
+			
+			
 				<span>電話する</span>
 			</a>
 			</li>
 			<li class="nav-item">
 				<a href="/contact/" class="btn_or_btn btn waves-effect waves-light" type="button">
-				<i class="fa fa-envelope-o" aria-hidden="true"></i>
+<!--				<i class="fa fa-envelope-o" aria-hidden="true"></i>-->
+			
+			
+					<svg aria-hidden="true" data-prefix="far" style="width: 20px;" data-icon="envelope" class="fa fa-envelope-o svg-inline--fa fa-envelope fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"></path></svg>
+			
+			
 				<span class="head_contact">お問い合わせ</span>
 			</a>
 			</li>
@@ -129,21 +142,37 @@ if( empty($_SESSION['me']) ){
 			</li>
 			<li class="hidden-sm-down header_icon">
 				<a href="/guide/faq.php" class="icon_a">
-					<p class="icon_wrap"><i class="fa fa-question-circle-o" aria-hidden="true" alt="クエスチョンマーク"></i></p>
+					<p class="icon_wrap">
+					
+<!--					<i class="fa fa-question-circle-o" aria-hidden="true" alt="クエスチョンマーク"></i>-->
+				
+						<svg aria-hidden="true" data-prefix="far" style="width: 31px;" data-icon="question-circle" class="fa fa-question-circle-o svg-inline--fa fa-question-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z"></path></svg>
+				
+					</p>
 					<p class="icon_p"><span class="icon_sapn">よくある質問</span></p>
 				</a>
 			</li>
 
 			<li class="hidden-sm-down  header_icon">
 				<a href="/user/login.php" class="icon_a">
-					<p class="icon_wrap"><i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 33px;" alt="ユーザーマーク"></i></p>
+					<p class="icon_wrap">
+<!--					<i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 33px;" alt="ユーザーマーク"></i>-->
+				
+						<svg aria-hidden="true" data-prefix="far" style="width: 31px;" data-icon="user-circle" class="fa fa-user-circle-o svg-inline--fa fa-user-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M248 104c-53 0-96 43-96 96s43 96 96 96 96-43 96-96-43-96-96-96zm0 144c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm0-240C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 448c-49.7 0-95.1-18.3-130.1-48.4 14.9-23 40.4-38.6 69.6-39.5 20.8 6.4 40.6 9.6 60.5 9.6s39.7-3.1 60.5-9.6c29.2 1 54.7 16.5 69.6 39.5-35 30.1-80.4 48.4-130.1 48.4zm162.7-84.1c-24.4-31.4-62.1-51.9-105.1-51.9-10.2 0-26 9.6-57.6 9.6-31.5 0-47.4-9.6-57.6-9.6-42.9 0-80.6 20.5-105.1 51.9C61.9 339.2 48 299.2 48 256c0-110.3 89.7-200 200-200s200 89.7 200 200c0 43.2-13.9 83.2-37.3 115.9z"></path></svg>
+				
+					</p>
 					<p class="icon_p"><span id="mypage_button" class="icon_sapn"><?php echo $buttonName;?></span></p>
 				</a>
 			</li>
 
 			<li class="hidden-sm-down  header_icon" style="margin: 0 -7px;">
 				<a href="/order/?update=1" class="icon_a">
-					<p class="icon_wrap"><i class="fa fa-shopping-cart" aria-hidden="true" alt="カートマーク"></i></p>
+					<p class="icon_wrap">
+<!--					<i class="fa fa-shopping-cart" aria-hidden="true" alt="カートマーク"></i>-->
+				
+						<svg aria-hidden="true" data-prefix="fas" style="width: 34.88px; height: 31px;" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18 fa" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg>
+					
+					</p>
 					<p class="icon_p"><span class="icon_sapn">カート</span></p>
 				</a>
 			</li>
@@ -167,61 +196,6 @@ if( empty($_SESSION['me']) ){
 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
 <p class="nav-link"><span class="ps_ttl">カート</span></p>
 </a>
-</li>
--->
-
-			<!--
-<li class="nav-item dropdown">
-<div class="nav-link dropdown-toggle" id="navbarDropdownUserMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<img class="img-fluid" alt="Sign in" src="/common/img/header/sp_login.jpg" width="90%">
-<span id="signin_state"><?php echo $signinState;?></span>
-</div>
-<div class="dropdown-menu header_login" aria-labelledby="navbarDropdownUserMenu" style="padding: 0.5em;">
-<p id="signin_name">
-<?php echo $signinName;?>
-</p>
-<div class="cart_a_t_box">
-<p>商品枚数<span id="cart_amount">0</span>枚</p>
-<p>商品金額<span id="cart_total">0</span>円</p>
-</div>
-<div class="dropdown_cart">
-<div id="show_cart" class="dropdown-item cart_a">
-<p style="color: white;"><img src="/common/img/header/sp_cart.png" class="img-fluid drop_img" width="100%" style="align-items: left;"><span>カートをみる</span></p>
-</div>
-</div>
-<div class="dropdown_mypage">
-<a href="/user/login.php" class="dropdown-item mypage_a">
-<p style="color: white;"><img src="/common/img/header/sp_mypage.png" class="img-fluid drop_img" width="100%" style="align-items: left;"><span id="mypage_button"><?php echo $buttonName;?></span></p>
-</a>
-</div>
-<hr>
-<div id="signout" class="dropdown_exit" <?php echo $isHidden;?> >
-<p class="dropdown-item exit_a">
-ログアウト
-</p>
-</div>
-</div>
-</li>
-<li class="nav-item dropdown">
-<div class="nav-link dropdown-toggle pr-0" id="navbarDropdownLanguageMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<img class="img-fluid" alt="Language" src="/common/img/header/sp_language.jpg" width="90%">
-<span>言語</span>
-</div>
-<div class="dropdown-menu header_language" aria-labelledby="navbarDropdownLanguageMenu">
-<div class="dropdown-item" id="google_translate_element"></div>
-<script type="text/javascript">
-function googleTranslateElementInit() {
-new google.translate.TranslateElement({
-pageLanguage: 'ja',
-includedLanguages: 'ja,en,ko',
-layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-autoDisplay: false
-}, 'google_translate_element');
-}
-
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-</div>
 </li>
 -->
 		</ul>
@@ -266,19 +240,30 @@ autoDisplay: false
 				</a>
 					<p class="nav-link"><span style="color: #289dda;">申し込み</span></p>
 				</div>
-				<div class="side_btn waves-effect waves-light"><a href="/guide/faq.php" class="btn-float-large">
-				<i class="fa fa-question-circle-o" aria-hidden="true" alt="クエスチョンマーク"></i>
+				<div class="side_btn waves-effect waves-light"><a href="/guide/faq.php" class="btn-float-large" style="line-height: 17px;">
+<!--				<i class="fa fa-question-circle-o" aria-hidden="true" alt="クエスチョンマーク"></i>-->
+			
+					<svg aria-hidden="true" style="width: 37.5px; height: 38px; padding-top: 3px;" data-prefix="far" data-icon="question-circle" class="fa fa-question-circle-o svg-inline--fa fa-question-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z"></path></svg>
 				</a>
 					<p class="nav-link"><span>よくある質問</span></p>
 				</div>
 				<div class="side_btn waves-effect waves-light">
 					<a href="/user/login.php" class="mypage_a">
-						<p style="color: #000;"><i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 33px;" alt="ユーザーマーク"></i></p>
+						<p style="color: #000;">
+						
+<!--						<i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 33px;" alt="ユーザーマーク"></i>-->
+						
+							<svg aria-hidden="true" data-prefix="far" style="width: 31.97px; height: 33px;" data-icon="user-circle" class="fa fa-user-circle-o svg-inline--fa fa-user-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M248 104c-53 0-96 43-96 96s43 96 96 96 96-43 96-96-43-96-96-96zm0 144c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm0-240C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 448c-49.7 0-95.1-18.3-130.1-48.4 14.9-23 40.4-38.6 69.6-39.5 20.8 6.4 40.6 9.6 60.5 9.6s39.7-3.1 60.5-9.6c29.2 1 54.7 16.5 69.6 39.5-35 30.1-80.4 48.4-130.1 48.4zm162.7-84.1c-24.4-31.4-62.1-51.9-105.1-51.9-10.2 0-26 9.6-57.6 9.6-31.5 0-47.4-9.6-57.6-9.6-42.9 0-80.6 20.5-105.1 51.9C61.9 339.2 48 299.2 48 256c0-110.3 89.7-200 200-200s200 89.7 200 200c0 43.2-13.9 83.2-37.3 115.9z"></path></svg>
+						
+						</p>
 					</a>
 					<p class="nav-link"><span id="mypage_button"><?php echo $buttonName;?></span></p>
 				</div>
-				<div class="side_btn waves-effect waves-light"><a href="/order/?update=1" class="btn-float-large">
-				<i class="fa fa-shopping-cart" aria-hidden="true" alt="カートマーク"></i>
+				<div class="side_btn waves-effect waves-light"><a href="/order/?update=1" class="btn-float-large" style="line-height: 17px;">
+<!--				<i class="fa fa-shopping-cart" aria-hidden="true" alt="カートマーク"></i>-->
+			
+					<svg aria-hidden="true" data-prefix="fas" style="width: 42.19px; height: 38px; padding-top: 5px;" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18 fa" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg>
+			
 				</a>
 					<p class="nav-link"><span class="ps_ttl">カート</span></p>
 				</div>
@@ -286,13 +271,21 @@ autoDisplay: false
 			<div class="side_log_2">
 				<div class="btn_list">
 					<a href="tel:0120130428" class="nav-link btn waves-effect waves-light sam_btn">
-					<i class="fa fa-phone fa-2x phone_top" aria-hidden="true"></i>
+<!--					<i class="fa fa-phone fa-2x phone_top" aria-hidden="true"></i>-->
+				
+						<svg aria-hidden="true" data-prefix="fas" style="width: 27px; height: 27px; margin: -9px -4px 2px 7px;" data-icon="phone-volume" class="svg-inline--fa fa-phone-volume fa-w-12 phone_top fa-phone" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M97.333 506.966c-129.874-129.874-129.681-340.252 0-469.933 5.698-5.698 14.527-6.632 21.263-2.422l64.817 40.513a17.187 17.187 0 0 1 6.849 20.958l-32.408 81.021a17.188 17.188 0 0 1-17.669 10.719l-55.81-5.58c-21.051 58.261-20.612 122.471 0 179.515l55.811-5.581a17.188 17.188 0 0 1 17.669 10.719l32.408 81.022a17.188 17.188 0 0 1-6.849 20.958l-64.817 40.513a17.19 17.19 0 0 1-21.264-2.422zM247.126 95.473c11.832 20.047 11.832 45.008 0 65.055-3.95 6.693-13.108 7.959-18.718 2.581l-5.975-5.726c-3.911-3.748-4.793-9.622-2.261-14.41a32.063 32.063 0 0 0 0-29.945c-2.533-4.788-1.65-10.662 2.261-14.41l5.975-5.726c5.61-5.378 14.768-4.112 18.718 2.581zm91.787-91.187c60.14 71.604 60.092 175.882 0 247.428-4.474 5.327-12.53 5.746-17.552.933l-5.798-5.557c-4.56-4.371-4.977-11.529-.93-16.379 49.687-59.538 49.646-145.933 0-205.422-4.047-4.85-3.631-12.008.93-16.379l5.798-5.557c5.022-4.813 13.078-4.394 17.552.933zm-45.972 44.941c36.05 46.322 36.108 111.149 0 157.546-4.39 5.641-12.697 6.251-17.856 1.304l-5.818-5.579c-4.4-4.219-4.998-11.095-1.285-15.931 26.536-34.564 26.534-82.572 0-117.134-3.713-4.836-3.115-11.711 1.285-15.931l5.818-5.579c5.159-4.947 13.466-4.337 17.856 1.304z"></path></svg>
+				
+				
 					<span>電話する</span>
 				</a>
 				</div>
 				<div class="btn_list">
 					<a href="/contact/" class="nav-link btn_or_btn btn waves-effect waves-light" type="button">
-					<i class="fa fa-envelope-o" aria-hidden="true"></i>
+<!--					<i class="fa fa-envelope-o" aria-hidden="true"></i>-->
+				
+						<svg aria-hidden="true" data-prefix="far" style="width: 27px;" data-icon="envelope" class="fa fa-envelope-o svg-inline--fa fa-envelope fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"></path></svg>
+				
+				
 					<span>お問い合わせ</span>
 				</a>
 				</div>
@@ -388,6 +381,7 @@ autoDisplay: false
 					<div class="list_block">
 						<div class="list_ttl"><a href="/design/designguide.php" class="list_munu">デザインの入稿・作り方</a></div>
 						<div class="list_ttl"><a href="/design/template_illust.php" class="list_munu">イラレ入稿テンプレート</a></div>
+<!--                        <div class="list_ttl"><a href="/design/designsimulator.php" class="list_munu">デザインシミュレーター</a></div>-->
 						<div class="list_ttl"><a href="/design/designtemp.php" class="list_munu">無料デザイン素材</a></div>
 						<div class="list_ttl"><a href="/design/gallery.php" class="list_munu">デザインギャラリー</a></div>
 						<div class="list_ttl"><a href="/design/fontcolor.php" class="list_munu">インク・フォント</a></div>
@@ -599,6 +593,7 @@ autoDisplay: false
 				<ul>
 					<li><a href="/design/designguide.php">デザインの入稿・作り方</a></li>
 					<li><a href="/design/template_illust.php">イラレ入稿テンプレート</a></li>
+<!--                    <li><a href="/design/designsimulator.php">デザインシミュレーター</a></li>-->
 					<li><a href="/design/designtemp.php">無料デザイン集</a></li>
 					<li><a href="/design/gallery.php">デザインギャラリー</a></li>
 					<li><a href="/design/fontcolor.php">インク・フォント</a></li>
@@ -1179,6 +1174,7 @@ autoDisplay: false
 				<div class="dropdown-menu dropdown-list lastlist">
 					<a class="dropdown-item list-area" href="/design/designguide.php">デザインの入稿・作り方</a>
 					<a class="dropdown-item list-area" href="/design/template_illust.php">イラレ入稿テンプレート</a>
+<!--                    <a class="dropdown-item list-area" href="/design/designsimulator.php">デザインシミュレーター</a>-->
 					<a class="dropdown-item list-area" href="/design/designtemp.php">無料デザイン素材</a>
 					<a class="dropdown-item list-area" href="/design/gallery.php">デザインギャラリー</a>
 					<a class="dropdown-item list-area" href="/design/fontcolor.php">インク・フォント</a>
@@ -1223,7 +1219,7 @@ autoDisplay: false
 				left: 0;
 				z-index: 1020;
 				box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
-				top: 146px;
+				top: 123px;
 			}
 			body>.container-fluid {
 				margin-top: -41px;
@@ -1243,7 +1239,7 @@ autoDisplay: false
 
 		@media screen and (max-width: 670px) {
 			.navi_back {
-				top: 134px;
+				top: 110px;
 			}
 		}
 
