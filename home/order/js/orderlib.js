@@ -88,6 +88,7 @@ $(function(){
 	 */
 	$.extend({
 		tax: 0,		// 消費税率
+		carriage: 700,
 		categories: {},	// {カテゴリID: {id, code, name}, ...}
 		curr: {
 			designId: '',
@@ -430,6 +431,7 @@ $(function(){
 			 * @param pane				計算結果を表示する親要素
 			 * @param obj	{price: プリント代 {silk, digit, inkjet, cutting, emb} }
 			 *				{recommend: おまかせプリントの場合のプリント名の配列 }
+			 * @param arguments[2]	追加金額（送料など）
 			 */
 			var orderItem = $.itemPrice($.curr.item, $.curr.designId, $.curr.itemId),
 				price = orderItem.price-0,
@@ -440,12 +442,20 @@ $(function(){
 			Object.keys(obj.price).forEach(function(method){
 				price += this[method]-0;
 			}, obj.price);
+			if (arguments.length > 2) {
+				price += arguments[2] - 0;
+			}
 			price = Math.floor(price * (1 + $.tax));
 			perone = amount==0? 0: Math.ceil(price / amount);
 			pane.find('.price_box .total_p span').text(price.toLocaleString('ja-JP'));
 			pane.find('.price_box .solo_p span').text(perone.toLocaleString('ja-JP'));
 			if (obj.recommend.length>0){
-				pane.find('.price_box_2 .print_re span').text(obj.recommend.join('、'));	
+				var n = 0;
+				pane.find('.price_box_2').each(function(){
+					if ($(this).is('.hidden')) return true;	// continue
+					$(this).find('.print_re span').text(obj.recommend[n++]);
+				});
+//				pane.find('.price_box_2 .print_re span').text(obj.recommend.join('、'));
 			}
 			
 			// インクジェットの濃淡色の違いによりプリント代が違う旨を表示
@@ -772,10 +782,8 @@ $(function(){
 				user = $.getStorage('user'),
 				items = $.getStorage('item'),
 				noPrintItem = $.itemPrice(items, 'id_0'),
-				itemFee = sum.item || 0,
-				printFee = sum.print || 0,
 				orderAmount = 0,
-				subTotal = itemFee + printFee,
+				subTotal = 0,
 				tmpFee = 0,
 				discountName = [],
 				discountRatio = 0,
@@ -800,9 +808,9 @@ $(function(){
 
 			if(sum) {
 				// 小計
-//				if (sum.item && sum.print) {
-//					subTotal = sum.item + sum.print;
-//				}
+				if (sum.hasOwnProperty('item') && sum.hasOwnProperty('print')) {
+					subTotal = sum.item + sum.print;
+				}
 				
 				// 注文枚数
 				orderAmount = sum.volume;
