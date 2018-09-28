@@ -150,8 +150,6 @@ $_version = time();
 					</div>
 					<div class="pane">
 					
-					
-					
 						<h3><ins>1.</ins>プリント位置を選択</h3>
 						<div class="p_po">
 							<form method="post" action="">
@@ -355,14 +353,12 @@ $_version = time();
 
 						<p class="note print_cond_note hidden"><span class="red_mark">※</span>プリント箇所やアイテムサイズにより、ご希望のサイズに対応できない場合もございます。</p>
 
-						<div class="price_box">
-							<p class="total_p">合計：<span>0</span>円(税込)</p>
-							<p class="solo_p">1枚あたり: <span>0</span>円(税込)</p>
-							<p class="note mb-1 inkjet_notice" hidden="hidden"><span class="red_mark">※</span>プリント色が生地より薄い色の場合、記載金額より高くなりますのでご了承ください</p>
-							<p class="note"><span class="red_mark">※</span>お見積もりは概算です。デザインの内容によって変更になる場合がございます。</p>
+						<div class="btn_box flex_add">
+							<button class="btn add_btn add_print_area waves-effect waves-light"><i class="fa fa-plus mr-1" aria-hidden="true"></i> プリント箇所を追加</button>
+							<button class="hidden btn del_print_area btn-outline-danger waves-effect del_btn_2">上記プリント情報を削除</button>
 						</div>
 
-						<!--プリント方法をおまかせで選択した場合、合計料金下に表示-->
+						<!--プリント方法をおまかせで選択した場合に表示-->
 						<div class="price_box_2">
 							<p class="print_re">合計金額は<span></span>で計算されました</p>
 							<p class="solo_p">お客様のプリント条件に最適な最安価のプリント方法を適用しています。</p>
@@ -372,12 +368,13 @@ $_version = time();
 							<p class="note mb-1 inkjet_notice" hidden="hidden"><span class="red_mark">※</span>プリント色が生地より薄い色の場合、記載金額より高くなりますのでご了承ください</p>
 							<p class="note"><span class="red_mark">※</span>お見積もりは概算です。デザインの内容によって変更になる場合がございます。</p>
 						</div>
-						
-						<div class="btn_box flex_add">
-							<button class="btn add_btn add_print_area waves-effect waves-light"><i class="fa fa-plus mr-1" aria-hidden="true"></i> プリント箇所を追加</button>
-							<button class="hidden btn del_print_area btn-outline-danger waves-effect del_btn_2">上記プリント情報を削除</button>
-						</div>
+					</div>
 
+					<div class="price_box">
+						<p class="total_p">合計：<span>0</span>円(税込)</p>
+						<p class="solo_p">1枚あたり: <span>0</span>円(税込)</p>
+						<p class="note mb-1 inkjet_notice" hidden="hidden"><span class="red_mark">※</span>プリント色が生地より薄い色の場合、記載金額より高くなりますのでご了承ください</p>
+						<p class="note"><span class="red_mark">※</span>お見積もりは概算です。デザインの内容によって変更になる場合がございます。</p>
 					</div>
 				</section>
 

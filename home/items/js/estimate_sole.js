@@ -117,7 +117,8 @@ $(function(){
 			tbl = $(this).closest('table'),
 			masterId = tbl.data('masterId'),
 			hash = {},
-			p = $.Deferred().resolve().promise();
+			pane = $('#printing');
+//			p = $.Deferred().resolve().promise();
 
 		if (!$.hasDuplicated()) {
 			$(this).val(0);
@@ -148,17 +149,22 @@ $(function(){
 		});
 
 		// 見積もり再計算
-		$('#printing .pane').each(function(){
-			var self = $(this),
-				index = self.data('idx'),
-				face = self.find('.area img').attr('alt');
-
-			p = p.then(function(self, face, index){
-				return $.printCharge($.curr, [face, index]);
-			}.bind(null, self, face, index)).then(function(printFee){
-				$.showPrintPrice(self, printFee);
-			});
+		$.printCharge($.curr).then(function(printFee){
+			$.showPrintPrice(pane, printFee, $.carriage);
 		});
+		
+//		2018-09-20 仕様変更
+//		$('#printing .pane').each(function(){
+//			var self = $(this),
+//				index = self.data('idx'),
+//				face = self.find('.area img').attr('alt');
+//
+//			p = p.then(function(self, face, index){
+//				return $.printCharge($.curr, [face, index]);
+//			}.bind(null, self, face, index)).then(function(printFee){
+//				$.showPrintPrice(self, printFee);
+//			});
+//		});
 	});
 
 
@@ -198,11 +204,12 @@ $(function(){
 	// アイテムカラーを削除
 	$('#item_info').on("TAP_EVENT", '.del_item_color', function () {
 		var pane = $(this).closest('.pane'),
-			idx = pane.data('idx'),
-			p = $.Deferred().resolve().promise();
+			idx = pane.data('idx');
+//			p = $.Deferred().resolve().promise();
 
 		pane.slideUp('normal', function () {
-			var tot = 0;
+			var tot = 0,
+				wrap = $('#printing');
 
 			$(this).remove();
 
@@ -216,17 +223,22 @@ $(function(){
 			$('#tot_amount').text(tot.toLocaleString('ja-JP'));
 
 			// 見積もり再計算
-			$('#printing .pane').each(function(){
-				var self = $(this),
-					index = self.data('idx'),
-					face = self.find('.area img').attr('alt');
-
-				p = p.then(function(self, face, index){
-					return $.printCharge($.curr, [face, index]);
-				}.bind(null, self, face, index)).then(function(printFee){
-					$.showPrintPrice(self, printFee);
-				});
+			$.printCharge($.curr).then(function(printFee){
+				$.showPrintPrice(wrap, printFee, $.carriage);
 			});
+			
+//			2018-09-20 仕様変更
+//			$('#printing .pane').each(function(){
+//				var self = $(this),
+//					index = self.data('idx'),
+//					face = self.find('.area img').attr('alt');
+//
+//				p = p.then(function(self, face, index){
+//					return $.printCharge($.curr, [face, index]);
+//				}.bind(null, self, face, index)).then(function(printFee){
+//					$.showPrintPrice(self, printFee);
+//				});
+//			});
 		});
 	});
 
@@ -236,7 +248,7 @@ $(function(){
 	$('#printing .pane').find('.print_selector').val('recommend');
 	$('#printing .pane').find('.ink').val(['1']);
 	$('#printing .pane').find('.print_cond').addClass('hidden').find('input').val(['0']);
-	$('#printing .pane').find('.price_box_2').addClass('hidden');
+	$('#printing').find('.price_box_2').addClass('hidden');
 	$('#printing .pane').find('.print_cond_note').addClass('hidden');
 	$('.price_box .total_p span, price_box .solo_p span').text('0');
 
@@ -248,28 +260,36 @@ $(function(){
 	// プリントなし
 	$('#noprint').on('TAP_EVENT', function () {
 		var val = $(this).prop('checked') ? 0 : 1,
-			p = $.Deferred().resolve().promise();
+			pane = $('#printing');
+//			p = $.Deferred().resolve().promise();
 
 		// 選択項目の表示・非表示を切り替え
 		if (val !== 1) {
 			$('#printing .pane').hide();
-			$('#add_print').hide();
+			$('#add_print').hide
+			$('#printing .price_box').hide();
 		} else {
 			$('#printing .pane').show();
 			$('#add_print').show();
+			 $('#printing .price_box').show();
 
 			// 見積もり再計算
-			$('#printing .pane').each(function(){
-				var self = $(this),
-					index = self.data('idx'),
-					face = self.find('.area img').attr('alt');
-
-				p = p.then(function(self, face, index){
-					return $.printCharge($.curr, [face, index]);
-				}.bind(null, self, face, index)).then(function(printFee){
-					$.showPrintPrice(self, printFee);
-				});
+			$.printCharge($.curr).then(function(printFee){
+				$.showPrintPrice(pane, printFee, $.carriage);
 			});
+			
+//			2018-09-20 仕様変更
+//			$('#printing .pane').each(function(){
+//				var self = $(this),
+//					index = self.data('idx'),
+//					face = self.find('.area img').attr('alt');
+//
+//				p = p.then(function(self, face, index){
+//					return $.printCharge($.curr, [face, index]);
+//				}.bind(null, self, face, index)).then(function(printFee){
+//					$.showPrintPrice(self, printFee);
+//				});
+//			});
 		}
 	});
 
@@ -278,6 +298,7 @@ $(function(){
 	$('#printing').on('change', '.pane .face', function () {
 		var face = $(this).val(),
 			pane = $(this).closest('.pane'),
+			wrap = $('#printing'),
 			index = pane.data('idx'),
 			img = pane.find('.area img'),
 			preFace = img.attr('alt'),
@@ -334,9 +355,14 @@ $(function(){
 		}
 
 		// 見積もり再計算
-		$.printCharge($.curr, [face, newIndex]).then(function(printFee){
-			$.showPrintPrice(pane, printFee);
+		$.printCharge($.curr).then(function(printFee){
+			$.showPrintPrice(wrap, printFee, $.carriage);
 		});
+		
+//		2018-09-20 仕様変更
+//		$.printCharge($.curr, [face, newIndex]).then(function(printFee){
+//			$.showPrintPrice(pane, printFee);
+//		});
 	});
 
 
@@ -345,6 +371,7 @@ $(function(){
 		var self = $(this),
 			area = self.val(),
 			pane = self.closest('.pane'),
+			wrap = $('#printing'),
 			index = pane.data('idx'),
 			face = pane.find('.area img').attr('alt'),
 			obj = $.curr.design[$.curr.designId][$.curr.posId][face],
@@ -364,9 +391,14 @@ $(function(){
 			obj[index]['area'] = area;
 
 			// 見積もり再計算
-			$.printCharge($.curr, [face, index]).then(function(printFee){
-				$.showPrintPrice(pane, printFee);
+			$.printCharge($.curr).then(function(printFee){
+				$.showPrintPrice(wrap, printFee, $.carriage);
 			});
+			
+//			2018-09-20 仕様変更
+//			$.printCharge($.curr, [face, index]).then(function(printFee){
+//				$.showPrintPrice(pane, printFee);
+//			});
 		}
 	});
 
@@ -376,6 +408,7 @@ $(function(){
 		var self = $(this),
 			ink = self.val(),
 			pane = self.closest('.pane'),
+			wrap = $('#printing'),
 			index = pane.data('idx'),
 			face = pane.find('.area img').attr('alt'),
 			obj = $.curr.design[$.curr.designId][$.curr.posId][face][index];
@@ -392,9 +425,14 @@ $(function(){
 		obj['ink'] = ink;
 
 		// 見積もり再計算
-		$.printCharge($.curr, [face, index]).then(function(printFee){
-			$.showPrintPrice(pane, printFee);
+		$.printCharge($.curr).then(function(printFee){
+			$.showPrintPrice(wrap, printFee, $.carriage);
 		});
+
+//		2018-09-20 仕様変更
+//		$.printCharge($.curr, [face, index]).then(function(printFee){
+//			$.showPrintPrice(pane, printFee);
+//		});
 	});
 
 
@@ -402,6 +440,7 @@ $(function(){
 	$('#printing').on('change', '.print_selector', function () {
 		var val = $(this).val(),
 			pane = $(this).closest('.pane'),
+			wrap = $('#printing'),
 			index = pane.data('idx'),
 			face = pane.find('.area img').attr('alt'),
 			obj = $.curr.design[$.curr.designId][$.curr.posId][face][index];
@@ -411,6 +450,14 @@ $(function(){
 		pane.find('.price_box_2').addClass('hidden');
 		pane.find('.print_cond_note').removeClass('hidden');
 
+		// おまかせプリントのメッセージ
+//		$('#printing .print_selector').each(function(){
+//			if ($(this).val() == 'recommend') {
+//				$('#printing').find('.price_box_2').removeClass('hidden');
+//				return false;	// break
+//			}
+//		})
+		
 		// 表示切り替え
 		switch (val) {
 			case 'recommend':
@@ -440,15 +487,21 @@ $(function(){
 		obj['method'] = val;
 
 		// 見積もり再計算
-		$.printCharge($.curr, [face, index]).then(function(printFee){
-			$.showPrintPrice(pane, printFee);
+		$.printCharge($.curr).then(function(printFee){
+			$.showPrintPrice(wrap, printFee, $.carriage);
 		});
+
+//		2018-09-20 仕様変更
+//		$.printCharge($.curr, [face, index]).then(function(printFee){
+//			$.showPrintPrice(pane, printFee);
+//		});
 	});
 
 
 	// プリントサイズ変更
 	$('#printing').on('change', '.pane .design_size', function () {
 		var pane = $(this).closest('.pane'),
+			wrap = $('#printing'),
 			index = pane.data('idx'),
 			face = pane.find('.area img').attr('alt');
 
@@ -456,15 +509,21 @@ $(function(){
 		$.curr.design[$.curr.designId][$.curr.posId][face][index]['size'] = $(this).val();
 
 		// 見積もり再計算
-		$.printCharge($.curr, [face, index]).then(function(printFee){
-			$.showPrintPrice(pane, printFee);
+		$.printCharge($.curr).then(function(printFee){
+			$.showPrintPrice(wrap, printFee, $.carriage);
 		});
+
+//		2018-09-20 仕様変更
+//		$.printCharge($.curr, [face, index]).then(function(printFee){
+//			$.showPrintPrice(pane, printFee);
+//		});
 	});
 
 
 	// プリントオプション変更（刺繍）
 	$('#printing').on('change', '.pane .design_opt', function () {
 		var pane = $(this).closest('.pane'),
+			wrap = $('#printing'),
 			index = pane.data('idx'),
 			face = pane.find('.area img').attr('alt');
 
@@ -478,20 +537,22 @@ $(function(){
 		$.curr.design[$.curr.designId][$.curr.posId][face][index]['option'] = $(this).val();
 
 		// 見積もり再計算
-		$.printCharge($.curr, [face, index]).then(function(printFee){
-			$.showPrintPrice(pane, printFee);
+		$.printCharge($.curr).then(function(printFee){
+			$.showPrintPrice(wrap, printFee, $.carriage);
 		});
+
+//		2018-09-20 仕様変更
+//		$.printCharge($.curr, [face, index]).then(function(printFee){
+//			$.showPrintPrice(pane, printFee);
+//		});
 	});
 	
 
 
 	// プリント箇所を追加（２箇所まで可）
-	/**
-	 * TODO:
-	 * 同じプリント箇所が指定できる
-	 */
 	$('#printing').on("TAP_EVENT", '.pane .btn_box .add_print_area', function(){
 		var pane = $(this).closest('.pane'),
+			wrap = $('#printing'),
 			face = pane.find('.area img').attr('alt'),
 			obj = $.curr.design[$.curr.designId][$.curr.posId],
 			aryFace = Object.keys(obj[face]),
@@ -541,11 +602,11 @@ $(function(){
 		clone.data('idx', index);
 
 		// プリント箇所をコピー元と違う箇所に設定
-		pane.children('.area').children('.pos_selector_wrap').children('select').children('option').each(function(){
+		pane.children('.p_po').children('.area').find('.pos_selector_wrap').children('select').children('option').each(function(){
 			var areaName = $(this).val();
 			if (areaName!=area) {
 				obj[face][index]['area'] = areaName;
-				clone.children('.area').children('.pos_selector_wrap').children('select').val(areaName);
+				clone.find('.area').children('.pos_selector_wrap').children('select').val(areaName);
 				return false;	// break;
 			}
 		});
@@ -556,18 +617,34 @@ $(function(){
 		// 要素を追加
 		pane.after(clone);
 
+
+		// おまかせプリントのメッセージ
+//		$('#printing .print_selector').each(function(){
+//			if ($(this).val() == 'recommend') {
+//				$('#printing').find('.price_box_2').removeClass('hidden');
+//				return false;	// break
+//			}
+//		});
+		
 		// 見積もり再計算
-		$.printCharge($.curr, [face, index]).then(function(printFee){
-			$.showPrintPrice(pane.next(), printFee);
+		$.printCharge($.curr).then(function(printFee){
+			$.showPrintPrice(wrap, printFee, $.carriage);
 		});
+
+//		2018-09-20 仕様変更
+//		$.printCharge($.curr, [face, index]).then(function(printFee){
+//			$.showPrintPrice(pane.next(), printFee);
+//		});
 	});
 	
 	// プリント箇所を削除
 	$('#printing').on("TAP_EVENT", '.pane .btn_box .del_print_area', function () {
 		var pane = $(this).closest('.pane'),
+			wrap = $('#printing'),
 			index = pane.data('idx'),
 			face = pane.find('.area img').attr('alt'),
 			obj = $.curr.design[$.curr.designId][$.curr.posId][face];
+		
 		pane.slideUp('normal', function () {
 			$(this).remove();
 			delete $.curr.design[$.curr.designId][$.curr.posId][face][index];	// deleteは参照先は削除されない
@@ -576,9 +653,14 @@ $(function(){
 			}
 
 			// 見積もり再計算
-			$.printCharge($.curr, [face, index]).then(function(printFee){
-				$.showPrintPrice(pane, printFee);
+			$.printCharge($.curr).then(function(printFee){
+				$.showPrintPrice(wrap, printFee, $.carriage);
 			});
+
+//			2018-09-20 仕様変更
+//			$.printCharge($.curr, [face, index]).then(function(printFee){
+//				$.showPrintPrice(pane, printFee);
+//			});
 		});
 	});
 
@@ -696,19 +778,25 @@ $(function(){
 			// サイズテーブル更新
 			$.showSizeform(_ITEM_ID, colorCode, tmp, currentIdx).then(function(){
 				// 見積もり再計算
-				var p = $.Deferred().resolve().promise();
+//				var p = $.Deferred().resolve().promise();
+				var wrap = $('#printing');
 
-				$('#printing .pane').each(function(){
-					var self = $(this),
-						index = self.data('idx'),
-						face = self.find('.area img').attr('alt');
-
-					p = p.then(function(self, face, index){
-						return $.printCharge($.curr, [face, index]);
-					}.bind(null, self, face, index)).then(function(printFee){
-						$.showPrintPrice(self, printFee);
-					});
+				$.printCharge($.curr).then(function(printFee){
+					$.showPrintPrice(wrap, printFee, $.carriage);
 				});
+
+//				2018-09-20 仕様変更
+//				$('#printing .pane').each(function(){
+//					var self = $(this),
+//						index = self.data('idx'),
+//						face = self.find('.area img').attr('alt');
+//
+//					p = p.then(function(self, face, index){
+//						return $.printCharge($.curr, [face, index]);
+//					}.bind(null, self, face, index)).then(function(printFee){
+//						$.showPrintPrice(self, printFee);
+//					});
+//				});
 			});
 		},
 		showSizeform: function(itemId, colorCode, volume, currentIdx) {
@@ -1091,7 +1179,10 @@ $(function(){
 					list += '<option value="recommend"';
 					if (method=='recommend') {
 						list += ' selected';
-						$(target[i]).find('.price_box_2').removeClass('hidden');	// 初めてのStepはおまかせプリントが初期値
+						
+						// 初めてのStepはおまかせプリントが初期値
+//						$('#printing').find('.price_box_2').removeClass('hidden');
+						$(target[i]).find('.price_box_2').removeClass('hidden');
 					}
 					list += '>おまかせ</option>';
 					if (r[0]['silk'] == 1) {

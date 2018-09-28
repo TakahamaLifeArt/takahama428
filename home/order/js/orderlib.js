@@ -442,7 +442,7 @@ $(function(){
 			Object.keys(obj.price).forEach(function(method){
 				price += this[method]-0;
 			}, obj.price);
-			if (arguments.length > 2) {
+			if (arguments.length > 2 && price > 0 && price < 30000) {
 				price += arguments[2] - 0;
 			}
 			price = Math.floor(price * (1 + $.tax));
