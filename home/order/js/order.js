@@ -174,7 +174,7 @@ $(function () {
 
 
 	// 戻るボタン
-	$('.step_prev').on("TAP_EVENT", function(){
+	$('.step_prev').on("click", function(){
 		var self = $(this);
 		if (self.is('.cart')) {
 			// カート
@@ -210,7 +210,7 @@ $(function () {
 	 * {@code $.curr.designId}が未指定の場合は{@code $.curr.design}を初期化
 	 * アイテムを生成してページ遷移
 	 */
-	$('.top3_inner, .other_inner').on("TAP_EVENT", function () {
+	$('.top3_inner, .other_inner').on("click", function () {
 		var len,
 			categoryId = $(this).data('categoryId'),
 			args = ['categories', categoryId],
@@ -367,7 +367,7 @@ $(function () {
 
 
 	// 絞り込み条件を表示
-	$('#modal_search').on("TAP_EVENT", function () {
+	$('#modal_search').on("click", function () {
 		var categoryId = Object.keys($.curr.category)[0],
 			args = ['itemtags'],
 			tags = [];
@@ -512,7 +512,7 @@ $(function () {
 	 * Step1 -2
 	 * アイテム選択でカラー、サイズ、枚数選択を表示
 	 */
-	$('.listitems_top3, .listitems_other').on("TAP_EVENT", '.listitems', function(e){ 
+	$('.listitems_top3, .listitems_other').on("click", '.listitems', function(e){ 
 		// レビューを見る場合
 		if (e.target.className=='show_review') return;
 		
@@ -801,7 +801,7 @@ $(function () {
 
 	
 	// サムネイルの変更で商品写真とサイズテーブルの変更
-	$('#item_info').on("TAP_EVENT", '.color_sele_thumb li img', function () {
+	$('#item_info').on("click", '.color_sele_thumb li img', function () {
 		if ($(this).parent().is('.nowimg')) return;
 		
 		var colors = $.curr.item[$.curr.designId][$.curr.itemId]['color'],
@@ -832,7 +832,7 @@ $(function () {
 
 
 	// 別のアイテムカラーを追加
-	$('#add_item_color').on("TAP_EVENT", function () {
+	$('#add_item_color').on("click", function () {
 		var clone = $('#item_info .pane:first').clone();
 
 		// サイズテーブルと枚数小計を初期化
@@ -847,7 +847,7 @@ $(function () {
 
 
 	// アイテムカラーを削除
-	$('#item_info').on("TAP_EVENT", '.del_item_color', function () {
+	$('#item_info').on("click", '.del_item_color', function () {
 		$(this).closest('.pane').slideUp('normal', function () {
 			var totAmount = 0;
 			
@@ -949,7 +949,7 @@ $(function () {
 	 * -----
 	 * カートの変更の場合はプリント指定を通らずカートへ遷移
 	 */
-	$('#goto_printing').on("TAP_EVENT", function(){
+	$('#goto_printing').on("click", function(){
 		var self = $('#goto_printing');
 		if (self.next('.step_prev').is('.hidden')) {
 			showPrinting(false).then(function(){
@@ -1610,7 +1610,7 @@ $(function () {
 
 
 	// プリント箇所を追加（２箇所まで可）
-	$('#printing').on("TAP_EVENT", '.pane .btn_box .add_print_area', function(){
+	$('#printing').on("click", '.pane .btn_box .add_print_area', function(){
 		var pane = $(this).closest('.pane'),
 			face = pane.find('.area img').attr('alt'),
 			obj = $.curr.design[$.curr.designId][$.curr.posId],
@@ -1692,7 +1692,7 @@ $(function () {
 	
 	
 	// プリント箇所を削除
-	$('#printing').on("TAP_EVENT", '.pane .btn_box .del_print_area', function () {
+	$('#printing').on("click", '.pane .btn_box .del_print_area', function () {
 		var pane = $(this).closest('.pane'),
 			index = pane.data('idx'),
 			face = pane.find('.area img').attr('alt'),
@@ -1716,7 +1716,7 @@ $(function () {
 	 * Step3
 	 * カートに入れる
 	 */
-	$('#goto_cart').on("TAP_EVENT", function(){
+	$('#goto_cart').on("click", function(){
 		var i = 0,
 			newId = 0,
 			ids = [],
@@ -2162,7 +2162,7 @@ $(function () {
 	
 	
 	// アイテムのカラー、サイズ、枚数を編集
-	$('#cart').on("TAP_EVENT", '.cart_box .ch_btn', function(){
+	$('#cart').on("click", '.cart_box .ch_btn', function(){
 		var self = $(this),
 			itemId = self.closest('.item_wrap').data('itemId');
 		
@@ -2177,7 +2177,7 @@ $(function () {
 	
 	
 	// アイテムカラーを削除
-	$('#cart').on("TAP_EVENT", '.cart_box .del_btn', function(){
+	$('#cart').on("click", '.cart_box .del_btn', function(){
 		var self = $(this),
 			cartBox = self.closest('.cart_box'),
 			itemWrap = self.closest('.item_wrap'),
@@ -2256,7 +2256,7 @@ $(function () {
 	
 	
 	// プリントの変更
-	$('#cart').on("TAP_EVENT", '.cart_box .alter_print', function(){
+	$('#cart').on("click", '.cart_box .alter_print', function(){
 		var self = $(this),
 			itemId = self.closest('.item_wrap').data('itemId');
 
@@ -2272,14 +2272,14 @@ $(function () {
 	
 	
 	// 同じデザインで別アイテムを追加
-	$('#cart').on("TAP_EVENT", '.cart_box .add_item', function(){
+	$('#cart').on("click", '.cart_box .add_item', function(){
 		setCurrent($(this));	// 現在の選択情報を更新
 		$.prev(0);	// Step1 カテゴリー選択へ
 	});
 	
 	
 	// 別デザインで追加
-	$('#add_design').on("TAP_EVENT", function(){
+	$('#add_design').on("click", function(){
 		var designs = $.getStorage('design'),
 			items = $.getStorage('item'),
 			designId = '0';
@@ -2390,7 +2390,7 @@ $(function () {
 	
 	
 	// 会員と初めての方の表示切り替え
-	$('#goto_customer').on("TAP_EVENT", function(){
+	$('#goto_customer').on("click", function(){
 		// 学割の場合の学校名は必須
 		if ($('#discount input[name="student"]').is(':checked') && $('#discount input[name="school"]').val()=='') {
 			$.msgbox('学校名を入力してください');
@@ -2434,7 +2434,7 @@ $(function () {
 	 * Step3 - 1
 	 * 会員ログイン画面へ
 	 */
-	$('#goto_member').on("TAP_EVENT", function(){
+	$('#goto_member').on("click", function(){
 		$('#customer .member').removeClass('hidden');
 		$('#customer .first_time').addClass('hidden');
 		$('#customer .member input[type!="hidden"]').val('');
@@ -2445,13 +2445,13 @@ $(function () {
 	
 	
 	// ログイン
-	$('#login_btn').on("TAP_EVENT", function(){
+	$('#login_btn').on("click", function(){
 		$.login();
 	});
 	
 	
 	// パスワード再発行
-	$('#resend_pass').on("TAP_EVENT", function(){
+	$('#resend_pass').on("click", function(){
 		var email = $('#login_email').val().trim(),
 			msg = '<p>'+email+'宛にパスワードを再発行いたします。</p>';
 
@@ -2495,7 +2495,7 @@ $(function () {
 	 * Step3 - 1
 	 * 始めての方は顧客情報登録へ
 	 */
-	$('#goto_firsttime').on("TAP_EVENT", function(){
+	$('#goto_firsttime').on("click", function(){
 		$('#customer .member').addClass('hidden');
 		$('#customer .first_time').removeClass('hidden');
 		$('#customer .first_time input').val('');
@@ -2506,7 +2506,7 @@ $(function () {
 	
 	
 	// 顧客情報の入力内容を確認
-	$('#confirm_customer').on("TAP_EVENT", function(){
+	$('#confirm_customer').on("click", function(){
 		$.confirmUser().then(function(){
 			var data = {};
 
@@ -2528,7 +2528,7 @@ $(function () {
 	
 	
 	// 注文情報の最終確認へ
-	$('#confirm_order').on("TAP_EVENT", function(){
+	$('#confirm_order').on("click", function(){
 		var i = 0,
 			f = document.forms.orderform,
 			stores = ['design', 'item', 'sum', 'detail', 'option'],
@@ -2753,7 +2753,7 @@ $(function () {
 	
 	
 	// 注文する
-	$('#order').on("TAP_EVENT", function(){
+	$('#order').on("click", function(){
 		var u = $.getStorage('user'),
 			f = document.forms.orderform;
 		if (!$('#agree').prop('checked')) {

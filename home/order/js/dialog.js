@@ -5,7 +5,7 @@ $(function(){
 	'use strict';
 
 	//	プリント方法
-	$('.print_link').on("TAP_EVENT", function () {
+	$('.print_link').on("click", function () {
 		var msg = '';
 		msg += '<div class="print_type">';
 		msg += '<h3 class="print_ttl">シルクスクリーン</h3>';
@@ -69,7 +69,7 @@ $(function(){
 	});
 
 	//お支払ご利用方法（未使用）
-	$('#pop_payment').on("TAP_EVENT", function () {
+	$('#pop_payment').on("click", function () {
 		var msg = '<h3 class="syousai">銀行振込</h3><hr>';
 		msg += '<p>下記の口座にお振込ください。</p>';
 		msg += '<p>ご希望の納品日より2日前までにお振込をお願い致します。（土日祝は入金確認ができないのでご注意ください）お振込手数料は、お客様のご負担とさせていただいております。</p>';
@@ -101,7 +101,7 @@ $(function(){
 	});
 	
 	//	ファイル転送サービス説明を見る
-	$('#upload_link').on("TAP_EVENT", function () {
+	$('#upload_link').on("click", function () {
 		var msg = '<div class="sale_txt">';
 		msg += '<div class="sale_block">';
 		msg += '<h3 style="margin-bottom:30px;text-align:center;">下記ボタンからご利用くださいませ</h3>';
@@ -127,7 +127,7 @@ $(function(){
 	});
 	
 	//	割引　説明を見る
-	$('#sale_link').on("TAP_EVENT", function () {
+	$('#sale_link').on("click", function () {
 		var msg = '<div class="sale_txt">';
 		msg += '<div class="sale_block">';
 		msg += '<h3>学割<span class="red_txt">(3%OFF)</span></h3>';
@@ -145,7 +145,7 @@ $(function(){
 	});
 
 	//	お支払い　ご利用方法
-	$('.cashflow').on("TAP_EVENT", function () {
+	$('.cashflow').on("click", function () {
 		var msg = '<div class="payflow">';
 		msg += '<div class="paylist">';
 		msg += '<h3>銀行振込</h3>';
@@ -174,13 +174,27 @@ $(function(){
 		msg += '<p class="txt_sml"><span class="red_txt">※</span>お支払い期日を過ぎた後、再三の催促・督促にもかかわらず、何のご連絡もなくお支払いのないお客様は、法的手段を含め対応させて頂きます。この場合に発生する手数料等の諸費用、法的手続きにかかった諸費用のすべてを、未払い代金に加算して請求致します。</p>';
 		msg += '<div class="cardimg"><img src="  /order/img/card.png" width="100%"></div>';
 		msg += '</div>';
+		msg += '<div class="bdr_line"></div>';
+		msg += '<div class="paylist">';
+		msg += '<h3>後払い</h3>';
+		msg += '<p class="payttl">商品の到着を確認してから後払いができる、安心・簡単な決済方法です。<br>後払い手数料は一律¥300（税抜）かかります。<br>後払い希望のお客様は、注文の際に「後払い希望」とお伝えください。<br><span class="red_txt">※</span>法人のお客様のみのご対応となります。</p>';
+		msg += '<p class="payttl"><詳細><br>●ご請求方法<br>請求書は原則毎月4営業日目に、MF KESSAI株式会社よりメール送信されます。</p>';
+		msg += '<p class="payttl">●お支払い方法<br>お支払期日：　原則、商品発送日の翌月末<br>お支払方法：　銀行振込または口座振替<br>お支払先口座：　請求書に記載（MF KESSAI株式会社の名義となります）<br><span class="red_txt">※</span>銀行振込手数料はお客様でのご負担をお願いいたします。</p>';
+		msg += '<p class="payttl">●注意事項<br>MF KESSAIはMF KESSAI株式会社<a href="https://mfkessai.co.jp/buyer/">（https://mfkessai.co.jp/buyer/）</a>が運営しております。</p>';
+		msg += '<p class="txt_sml">当サービスではMF KESSAI株式会社が、請求業務の受託及び代金債権の収受権限の付与を受け、又は、販売元から当該債権の債権譲渡を受けて、請求書の発行や代金の回収、管理を行っております。</p>';
+		msg += '<p class="txt_sml">また金額によっては審査が必要な場合があり、審査期間は一営業日です。</p>';
+		msg += '<p class="txt_sml">ご希望納期や審査の結果、別のお支払方法をご提案する可能性がございます。予めご了承ください。</p>';
+		msg += '<p class="txt_sml">請求書の発行元およびご入金先口座名義は、MF KESSAI株式会社となります。お間違えのないようご注意ください。</p>';
+		msg += '<p class="txt_sml">「MF KESSAI」でご注文の場合、領収証の発行を承っておりません。銀行での振込票（ご利用明細）または通帳の記載を支払証跡としてご利用ください。</p>';
+		msg += '<p class="payttl">●お支払いに関するお問い合わせ先<br>support@mfkessai.co.jp<br><span class="red_txt">※</span>ご請求の内容（お宛名、明細、金額を含む）に関するお問い合わせにつきましては、タカハマライフアート宛てにご連絡ください</p>';
+		msg += '</div>';
 		msg += '</div>';
 		msg += '<button class="pop_btn_close btn waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times-circle mr-1" aria-hidden="true"></i>閉じる</button>';
 		$.msgbox(msg, '<h2>ご利用方法</h2>');
 	});
     
     //	イメージ画像について
-	$('#imega_desc').on("TAP_EVENT", function () {
+	$('#imega_desc').on("click", function () {
 		var msg = '<div class="payflow">';
 		msg += '<div class="paylist">';
 		msg += '<div class="cardimg"><img src="  /design/support/img/template/ds_img_01.jpg" width="100%"></div>';
@@ -196,7 +210,7 @@ $(function(){
 	});
 
 	// ご利用規約
-	$('#user_policy').on("TAP_EVENT", function(){
+	$('#user_policy').on("click", function(){
 		var msg = '<p>この利用規約（以下、「本規約」といいます。）は、有限会社タカハマライフアート（以下、「当社」といいます。）がこのウェブサイト上で提供するサービス（以下「本サービス」といいます。）の利用条件を定めるものです。登録ユーザーの皆様（以下、「ユーザー」といいます。）には、本規約に従って、本サービスをご利用いただきます。</p>' +
 			'<h3>第１条　＜適用＞</h3>' +
 			'<p>本規約は、ユーザーと当社との間の本サービスの利用に関わる一切の関係に適用されるものとします。</p>' +
@@ -414,7 +428,7 @@ $(function(){
 	});
 
 	//	会員ランク（未使用）
-	$('#bronze').on("TAP_EVENT", function () {
+	$('#bronze').on("click", function () {
 		var msg = '<div class="cust_rank_b">';
 		msg += '<div class="rank_img"><img src="/order/img/flow/sp_customer_rank_bronze.png" width="100%"></div>';
 		msg += '<div class="rank_inner">合計金額から</div>';
@@ -424,7 +438,7 @@ $(function(){
 		msg += '</div>';
 		$.msgbox(msg, '<h2>会員ランク特典</h2>');
 	});
-	$('#silver').on("TAP_EVENT", function () {
+	$('#silver').on("click", function () {
 		var msg = '<div class="cust_rank_s">';
 		msg += '<div class="rank_img"><img src="/order/img/flow/sp_customer_rank_silver.png" width="100%"></div>';
 		msg += '<div class="rank_inner">合計金額から</div>';
@@ -434,7 +448,7 @@ $(function(){
 		msg += '</div>';
 		$.msgbox(msg, '<h2>会員ランク特典</h2>');
 	});
-	$('#gold').on("TAP_EVENT", function () {
+	$('#gold').on("click", function () {
 		var msg = '<div class="cust_rank_g">';
 		msg += '<div class="rank_img"><img src="/order/img/flow/sp_customer_rank_gold.png" width="100%"></div>';
 		msg += '<div class="rank_inner">合計金額から</div>';
@@ -446,7 +460,7 @@ $(function(){
 	});
 
 	//	カレンダーの当日特急の納期を選択した場合の表示
-	$('#ex_form').on("TAP_EVENT", function () {
+	$('#ex_form').on("click", function () {
 		var msg = '<div class="date_ex">';
 		msg += '<h3><i class="fa fa-exclamation-triangle red_mark" aria-hidden="true"></i>「当日特急プランについて」</h3>';
 		msg += '<p class="txt_sml"><span class="red_mark">カレンダーで選択できないお日にちは当日特急プランとなります。ご希望の方は恐れ入りますが、当日特急フォームからお問い合わせください。</span></p>';

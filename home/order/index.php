@@ -696,18 +696,27 @@ $_version = time();
 
 							<h3>デザインに関する要望</h3>
 							<textarea id="note_design" class="demand" name="note_design" placeholder="例:前のデザイン「TAKAHAMA」を極太ゴシックで打ち替え , 後ろのデザインC22ブラックで着色"></textarea>
-							<p class="note"><span class="red_mark">※</span>文字の打ち替え希望の方はテキストを入力して ください。
+							<p class="note"><span class="red_mark">※</span>文字の打ち替え希望の方はテキストを入力してください。
 							</p>
 							
 							
 <!--							デザインキー安永-->
+                            <div class="de_si_none">
+							<div class="nouki_option">
+								<div class="nouki_option_text">
+								デザインシミュレーターをご利用の方
+								</div>
+								<div class="nouki_option_inside">
+
 							<h3>デザインキーを添付</h3>
 							<p class="note">
-								デザインシミュレーターで簡単にデザインが作成できます。作成したい方は<a href="/design/designsimulator.php">こちら</a> <br>
+								デザインシミュレーターで簡単にデザインが作成できます。作成したい方は<a class="de_simu_a" href="/design/designsimulator.php" target="_blank">こちら</a> <br>
 								デザインシミュレーターでデザインを作成されたお客様はデザインキー(URL)を下記にご記入(コピー&amp;ペースト)下さい。
 							</p>
-							<textarea id="designkey_text" class="design-key-class" name="designkey_text"></textarea>
-						
+							<textarea id="designkey_text" class="design-key-class" name="designkey_text" placeholder="デザインキーをこちらに貼り付けてください"></textarea>
+							</div>
+							</div>
+                                </div>
 
 							
 							<div class="disc_chi">
