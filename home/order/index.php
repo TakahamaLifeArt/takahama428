@@ -451,14 +451,9 @@ $_version = time();
 
 						<p class="note print_cond_note hidden"><span class="red_mark">※</span>プリント箇所やアイテムサイズにより、ご希望のサイズに対応できない場合もございます。</p>
 
-						<div class="price_box">
-							<p class="total_p">合計：<span>0</span>円(税込)</p>
-							<p class="solo_p">1枚あたり: <span>0</span>円(税込)</p>
-							<p class="note mb-1 inkjet_notice" hidden="hidden"><span class="red_mark">※</span>プリント色が生地より薄い色の場合、記載金額より高くなりますのでご了承ください</p>
-							<p class="note"><span class="red_mark">※</span>お見積もりは概算です。デザインの内容によって変更になる場合がございます。</p>
-						</div>
-
-						<!--プリント方法をおまかせで選択した場合、合計料金下に表示-->
+						
+						
+						<!--プリント方法をおまかせで選択した場合に表示-->
 						<div class="price_box_2">
 							<p class="print_re">合計金額は<span></span>で計算されました</p>
 							<p class="solo_p">お客様のプリント条件に最適な最安価のプリント方法を適用しています。</p>
@@ -468,12 +463,24 @@ $_version = time();
 							<p class="note mb-1 inkjet_notice" hidden="hidden"><span class="red_mark">※</span>プリント色が生地より薄い色の場合、記載金額より高くなりますのでご了承ください</p>
 							<p class="note"><span class="red_mark">※</span>お見積もりは概算です。デザインの内容によって変更になる場合がございます。</p>
 						</div>
-
+						
+						
+						
 						<div class="btn_box flex_add">
 							<button class="btn add_btn add_print_area"><i class="fa fa-plus mr-1" aria-hidden="true"></i> プリント箇所を追加</button>
 							<button class="hidden btn del_print_area btn-outline-danger waves-effect del_btn_2">上記プリント情報を削除</button>
 						</div>
+						
+						
 					</div>
+
+					<div class="price_box">
+						<p class="total_p">合計：<span>0</span>円(税込)</p>
+						<p class="solo_p">1枚あたり: <span>0</span>円(税込)</p>
+						<p class="note mb-1 inkjet_notice" hidden="hidden"><span class="red_mark">※</span>プリント色が生地より薄い色の場合、記載金額より高くなりますのでご了承ください</p>
+						<p class="note"><span class="red_mark">※</span>お見積もりは概算です。デザインの内容によって変更になる場合がございます。</p>
+					</div>
+
 				</section>
 
 				<div class="transition_wrap align-items-center">
@@ -563,13 +570,13 @@ $_version = time();
 						</div>
 
 						<div class="cart_price_min">
-							<p>枚数:<span>0</span>枚</p>
-							<p class="txt_ps">小計金額:<span>0</span>円(税抜)</p>
+							<p class="txt_ps">小計枚数:<span>0</span>枚</p>
+<!--							<p class="txt_ps">小計金額:<span>0</span>円(税抜)</p>-->
 						</div>
 						<button class="add_btn_or btn add_item">同じデザインで<br>別のアイテムを追加</button>
 					</div>
 
-					<div class="price_box">
+					<div class="price_box" hidden>
 						<p class="total_p">合計：<span>0</span>円(税込)</p>
 						<p class="note red_txt hidden"><span class="red_mark">※</span>大口注文割引きが適用されました。</p>
 						<p class="note mb-1 inkjet_notice" hidden="hidden"><span class="red_mark">※</span>プリント色が生地より薄い色の場合、記載金額より高くなりますのでご了承ください</p>
@@ -696,27 +703,27 @@ $_version = time();
 
 							<h3>デザインに関する要望</h3>
 							<textarea id="note_design" class="demand" name="note_design" placeholder="例:前のデザイン「TAKAHAMA」を極太ゴシックで打ち替え , 後ろのデザインC22ブラックで着色"></textarea>
-							<p class="note"><span class="red_mark">※</span>文字の打ち替え希望の方はテキストを入力してください。
+							<p class="note"><span class="red_mark">※</span>文字の打ち替え希望の方はテキストを入力して ください。
 							</p>
 							
 							
-<!--							デザインキー安永-->
-                            <div class="de_si_none">
-							<div class="nouki_option">
-								<div class="nouki_option_text">
-								デザインシミュレーターをご利用の方
-								</div>
-								<div class="nouki_option_inside">
+							<div class="de_si_none">
+								<div class="nouki_option">
+									<div class="nouki_option_text">
+										デザインシミュレーターをご利用の方
+									</div>
+									<div class="nouki_option_inside">
 
-							<h3>デザインキーを添付</h3>
-							<p class="note">
-								デザインシミュレーターで簡単にデザインが作成できます。作成したい方は<a class="de_simu_a" href="/design/designsimulator.php" target="_blank">こちら</a> <br>
-								デザインシミュレーターでデザインを作成されたお客様はデザインキー(URL)を下記にご記入(コピー&amp;ペースト)下さい。
-							</p>
-							<textarea id="designkey_text" class="design-key-class" name="designkey_text" placeholder="デザインキーをこちらに貼り付けてください"></textarea>
+										<h3>デザインキーを添付</h3>
+										<p class="note">
+											デザインシミュレーターで簡単にデザインが作成できます。作成したい方は<a class="de_simu_a" href="/design/designsimulator.php" target="_blank">こちら</a> <br>
+											デザインシミュレーターでデザインを作成されたお客様はデザインキー(URL)を下記にご記入(コピー&amp;ペースト)下さい。
+										</p>
+										<textarea id="designkey_text" class="design-key-class" name="designkey_text" placeholder="デザインキーをこちらに貼り付けてください"></textarea>
+									</div>
+								</div>
 							</div>
-							</div>
-                                </div>
+						
 
 							
 							<div class="disc_chi">
@@ -1267,10 +1274,12 @@ $_version = time();
 										
 									</tr>
 									
+<!--
 									<tr>
 									<td>デザインキー</td>
 									<td id="final_designkey_text"></td>
 									</tr>
+-->
 								</tbody>
 							</table>
 						</div>
@@ -1466,7 +1475,7 @@ $_version = time();
 	<script src="/common/js/api.js"></script>
 	<script src="./js/pagetransition.js"></script>
 	<script src="./js/orderlib.js?v=<?php echo $_version;?>"></script>
-	<script src="./js/order_0818.js?v=<?php echo $_version;?>"></script>
+	<script src="./js/order.js?v=<?php echo $_version;?>"></script>
 	<script src="./js/dialog.js"></script>
 </body>
 
