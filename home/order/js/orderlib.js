@@ -591,6 +591,9 @@ $(function(){
 								// 初めての枚数レンジIDの場合
 								volumeRange[this[itemId]['rangeId']] = {};
 								volumeRange[this[itemId]['rangeId']][itemId] ={};
+							} else if (!volumeRange[this[itemId]['rangeId']].hasOwnProperty(itemId)) {
+								// 初めてのアイテムIDの場合
+								volumeRange[this[itemId]['rangeId']][itemId] ={};
 							}
 
 							// 枚数レンジ別のアイテム毎
