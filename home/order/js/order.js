@@ -952,14 +952,14 @@ $(function () {
 	$('#goto_printing').on("click", function(){
 		var self = $('#goto_printing');
 		if (self.next('.step_prev').is('.hidden')) {
-			showPrinting(false).then(function(){
+			showPrinting(1).then(function(){
 				$.resetCart();
 			}).then(function(){
 				self.next('.step_prev').removeClass('hidden');
 				$.next(2);	// カートへ遷移
 			});
 		} else {
-			showPrinting(false).then(function(){
+			showPrinting(0).then(function(){
 				$.next();	// プリント指定ページ遷移
 			});
 		}
@@ -968,8 +968,7 @@ $(function () {
 	
 	/**
 	 * プリント指定ページの生成
-	 * @param isCart	true: カートの変更
-	 *					false:通常フロー
+	 * @param isCart	0: 通常フロー、それ以外:カートの変更
 	 */
 	var showPrinting = function (isCart) {
 		var d = $.Deferred(),
@@ -977,7 +976,7 @@ $(function () {
 			designs = {},
 			target;
 
-		// カートの変更以外は初期化
+		// カラー・枚数指定からの遷移の場合は初期化
 		if (!isCart) {
 			if (!isDetailOfCurrentItem()) {
 				return d.reject().promise();
@@ -1004,8 +1003,8 @@ $(function () {
 		}
 		
 		// プリント指定ページへ
-		if (Object.keys($.curr.design[$.curr.designId]).length===0 || isCart) {
-			// 初めてのStep通過と戻るボタンでアイテム変更、またはカート内の変更の場合
+		if (Object.keys($.curr.design[$.curr.designId]).length===0 || isCart!==1) {
+			// 初めてのStep通過と戻るボタンでアイテム変更している、またはカート内の変更以外の場合
 			
 			// プリント指定項目と金額表示を初期化
 			$('#printing .pane:gt(0)').remove();
@@ -2264,7 +2263,7 @@ $(function () {
 		setCurrent(self, itemId);
 		
 		// プリント指定へ
-		showPrinting(true).then(function(){
+		showPrinting(2).then(function(){
 			$('#goto_cart').next('.step_prev').addClass('hidden');
 			$.prev();	// ページ遷移
 		});
