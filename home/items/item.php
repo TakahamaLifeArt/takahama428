@@ -57,6 +57,7 @@ $_version = time();
 					<?php echo $curthumb; ?>
 					<div class="dotted"></div>
 					<a class="info_icon" href="#size">サイズ目安</a>
+					
 					<ul id="item_image_notes">
 						<li id="notes_color">
 							<?php echo $curcolor; ?>
@@ -92,10 +93,69 @@ $_version = time();
 			<div class="contents-lv2">
 				<h2 id="size">サイズ目安</h2>
 				<div class="dotted"></div>
+				
+				<?php if($itemcode=="085-cvt") {?>
+				<script type="text/javascript" id ="unisize_tag">
+					document.cookie = "cl4unstagck=true;";
+					var getCookie = function(cookieName) {
+						var l = cookieName.length + 1;
+						var cookieAry = document.cookie.split("; ");
+						var str = "";
+						for (i = 0; i < cookieAry.length; i++) {
+							if (cookieAry[i].substr(0, l) === cookieName + "=") {
+								str = cookieAry[i].substr(l, cookieAry[i].length);
+								break;
+							}
+						}
+						return str;
+					}
+					var CKA = getCookie('cl4unstagck') ? true : false;
+					document.cookie = "cl4unstagck=; max-age=0";
+					var uniprot = "https://";
+					var scriptel = document.createElement("script");
+					var CID = "iZCKLimEHIXrDe";
+					var GE = "";
+					var ITM = "085-CVT";
+					var bnw = 300;
+					var bnh = 60;
+					var bnrtype = 10;
+					var CUID = "";
+					var component = "pc_tag_startPage";
+					var ua = navigator.userAgent.toLowerCase();
+					if (ua.indexOf('iphone') > 0 || ua.indexOf('ipad') > 0 || ua.indexOf('ipod') > 0 || ua.indexOf('android') > 0 ||ua.indexOf('windows phone') > 0) {
+						component = "sp_tag_startPage";
+					} else {
+						component = "pc_tag_startPage";
+					}
+					scriptel.type = "text/javascript";
+					scriptel.src = uniprot +"cl.unisize.makip.co.jp/unisize/unisize.api?component=" + component + "&action=ajaxGetContents";      
+					scriptel.src += "&CID="+CID;
+					scriptel.src += "&GE="+GE;
+					scriptel.src += "&ITM="+ITM;
+					scriptel.src += "&CUID="+CUID;
+					scriptel.src += "&CKA="+CKA;
+					scriptel.src += "&EX=false";
+					var s0 = document.getElementById('unisize_tag');
+					if (component) s0.parentNode.insertBefore(scriptel, s0);
+					var DST;
+					var RSZ;
+					function parse(json) {
+						var scriptel = document.createElement("script");
+						scriptel.setAttribute('type', 'text/javascript');
+						scriptel.setAttribute('src', json.src);
+						DST = json.DST;
+						RSZ = json.RSZ;
+						var s0 = document.getElementById('unisize_tag');
+						s0.parentNode.insertBefore(scriptel, s0);
+					}
+				</script>
+				<?php } ?>
+				
 				<div id="size_detail">
 					<?php echo $itemsize_table; ?>
 				</div>
 			</div>
+			
 
 			<div class="contents-lv2 printarea_wrap">
 				<h2 id="printarea">プリント可能範囲</h2>
@@ -353,10 +413,7 @@ $_version = time();
 
 						<p class="note print_cond_note hidden"><span class="red_mark">※</span>プリント箇所やアイテムサイズにより、ご希望のサイズに対応できない場合もございます。</p>
 
-						<div class="btn_box flex_add">
-							<button class="btn add_btn add_print_area waves-effect waves-light"><i class="fa fa-plus mr-1" aria-hidden="true"></i> プリント箇所を追加</button>
-							<button class="hidden btn del_print_area btn-outline-danger waves-effect del_btn_2">上記プリント情報を削除</button>
-						</div>
+						
 
 						<!--プリント方法をおまかせで選択した場合に表示-->
 						<div class="price_box_2">
@@ -368,6 +425,14 @@ $_version = time();
 							<p class="note mb-1 inkjet_notice" hidden="hidden"><span class="red_mark">※</span>プリント色が生地より薄い色の場合、記載金額より高くなりますのでご了承ください</p>
 							<p class="note"><span class="red_mark">※</span>お見積もりは概算です。デザインの内容によって変更になる場合がございます。</p>
 						</div>
+						
+						
+						<div class="btn_box flex_add">
+							<button class="btn add_btn add_print_area waves-effect waves-light"><i class="fa fa-plus mr-1" aria-hidden="true"></i> プリント箇所を追加</button>
+							<button class="hidden btn del_print_area btn-outline-danger waves-effect del_btn_2">上記プリント情報を削除</button>
+						</div>
+						
+						
 					</div>
 
 					<div class="price_box">
