@@ -266,6 +266,15 @@ class Ordermail extends Conndb{
 			$order_info .= "------------------------------------------\n\n";
 			
 			
+			$order_info .= "◇デザインキー：\n";
+			if(empty($opts['designkey_text'])){
+				$order_info .= "なし\n";
+			}else{
+				$order_info .= $opts['designkey_text']."\n";
+			}
+			$order_info .= "------------------------------------------\n\n";
+			
+			
 			$payment = array('bank'=>'銀行振込', 'cod'=>'代金引換', 'credit'=>'カード決済', 'later_payment'=>'後払い');
 			$order_info .= "◇お支払方法：　".$payment[$opts['payment']]."\n\n";
 			
