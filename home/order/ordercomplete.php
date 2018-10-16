@@ -8,6 +8,7 @@ if ($_POST['user']) {
 	$user = json_decode($_POST['user'], true);
 	$userName = $user['name'];
 	$email = $user['email'];
+	$purchaseId = $user['number'];
 }
 
 if ( isset($userName, $_POST['ticket'], $_SESSION['ticket']) ) {
@@ -20,10 +21,33 @@ if ( isset($userName, $_POST['ticket'], $_SESSION['ticket']) ) {
 		'sum'=>$_POST['sum'],
 	);
 	
+	$items = json_decode($_POST['item'], true);
+	foreach ($items as $designId => $item) {
+		foreach ($item as $itemId=>$itemInfo) {
+			for ($i=0; $i<count($itemInfo['color']); $i++) {
+				foreach ($itemInfo['color'][$i]['vol'] as $sizeName=>$v2) {
+					$itemNums[] = $v2['amount'];
+					$itemIds[] = $itemInfo['code'];
+					$prices[] = $v2['cost'];
+					$sizes[] = $sizeName;
+				}
+			}
+		}
+	}
+	$itemNum = rawurlencode(implode('#', $itemNums));
+	$itemId = rawurlencode(implode('#', $itemIds));
+	$price = rawurlencode(implode('#', $prices));
+	$size = rawurlencode(implode('#', $sizes));
+	
 	$ordermail = new Ordermail();
 	$isSend = $ordermail->send($obj, $_POST['uploadfilename']);
 } else {
 	$isSend = false;
+	
+	$itemNum = '';
+	$itemId = '';
+	$price = '';
+	$size = '';
 }
 
 /* セッションを破棄 */
@@ -153,6 +177,39 @@ DOC;
 
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
 
+		<script type="text/javascript" id ="unisize_tracking_tag">
+			// Recommend System
+			// 2018-10-16
+			
+			var uniprot = "https://";
+			var CID = "iZCKLimEHIXrDe";
+			var purchaseId = "<?php echo $purchaseId;?>";
+			var itemNum = "<?php echo $itemNum;?>";
+			var itemId = "<?php echo $itemId;?>";
+			var price = "<?php echo $price;?>";
+			var size = "<?php echo $size;?>";
+			var reg = “1";
+			var CUID = "";
+			var component = "pc_tag_pcTrackingPage";
+			var ua = navigator.userAgent.toLowerCase();
+			
+			if (ua.indexOf('iphone') > 0 || ua.indexOf('ipad') > 0 || ua.indexOf('ipod') > 0 || ua.indexOf('android') > 0 || ua.indexOf('windows phone') > 0) {
+				component = "sp_tag_spTrackingPage";
+			} else {
+				component = "pc_tag_pcTrackingPage";
+			}
+			var imgel = "<img width='0' height='0' src='"+uniprot +"cl.unisize.makip.co.jp/unisize/unisize.api?component=" + component + "&action=ajaxTrack";
+			imgel += "&CID="+CID;
+			imgel += "&purchaseId="+purchaseId;
+			imgel += "&itemNum="+itemNum;
+			imgel += "&itemId="+itemId;
+			imgel += "&price="+price;
+			imgel += "&size="+size;
+			imgel += "&reg="+reg;
+			imgel += "&CUID="+CUID;
+			imgel += "'/>";
+			document.write(imgel);
+		</script>
 		<script>
 			;(function(){
 				sessionStorage.removeItem('design');

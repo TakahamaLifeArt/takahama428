@@ -189,6 +189,7 @@ class Ordermail extends Conndb{
 									$order_info .= $embOptionName[$designInfo['option']];
 								}
 								$order_info .= "\n";
+								$order_info .= "------------------------------------------\n\n";
 							}
 						}
 					}

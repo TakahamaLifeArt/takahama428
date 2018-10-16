@@ -1050,6 +1050,7 @@ $(function(){
 						}
 						data = {
 							'id':me.id,
+							'number':me.customer_num,
 							'rank':rank,
 							'email':me.email,
 							'name':me.customername,
@@ -1125,6 +1126,7 @@ $(function(){
 							}
 							data = {
 								'id':me.id,
+								'number':me.customer_num,
 								'rank':rank,
 								'email':me.email,
 								'name':me.customername,
