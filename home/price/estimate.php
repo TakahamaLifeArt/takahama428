@@ -18,7 +18,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/pageinfo.php';
 		<meta property="og:site_name" content="オリジナルTシャツ屋｜タカハマライフアート" />
 		<meta property="og:image" content="https://www.takahama428.com/common/img/header/Facebook_main.png" />
 		<meta property="fb:app_id" content="1605142019732010" />
-		<title>10秒見積もり ｜ オリジナルTシャツ【タカハマライフアート】</title>
+		<title>カンタン比較見積もり ｜ オリジナルTシャツ【タカハマライフアート】</title>
 		<link rel="shortcut icon" href="/icon/favicon.ico">
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 		<link rel="stylesheet" type="text/css" href="/common/css/printposition_responsive.css" media="screen" />
@@ -57,18 +57,18 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/pageinfo.php';
 
 				<ul class="pan hidden-sm-down">
 					<li><a href="/">オリジナルＴシャツ屋ＴＯＰ</a></li>
-					<li>10秒見積もり</li>
+					<li>カンタン比較見積もり</li>
 				</ul>
 
 				<div class="heading1_wrapper">
 					<div class="title_box">
-						<h1 id="toptxt">10秒見積もり</h1>
+						<h1 id="toptxt">カンタン比較見積もり</h1>
 					</div>
 
 				</div>
 			</div>
-			<div class="banner hidden-sm-down"><img src="img/estimate_main.jpg" width="100%" alt="10秒見積もりバナー"></div>
-			<div class="banner hidden-md-up"><img src="img/sp_estimate_main.jpg" width="100%" alt="10秒見積もりバナー"></div>
+			<div class="banner hidden-sm-down"><img src="img/estimate_main.jpg" width="100%" alt="10秒見積もりバナー" alt="そのまま申し込み可能！カンタン比較見積もり"></div>
+			<div class="banner hidden-md-up"><img src="img/estimate_main.jpg" width="100%" alt="10秒見積もりバナー" alt="そのまま申し込み可能！カンタン比較見積もり"></div>
 			<div id="item_wrap">
 				<h2>1.カテゴリーをお選びください</h2>
 				<table>
