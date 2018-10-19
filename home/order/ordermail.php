@@ -500,7 +500,7 @@ class Ordermail extends Conndb{
 			return array('send'=>'success');
 
 		}catch (Exception $e) {
-			$res = array('send'=>'error', 'message'=>$e->getMessage());
+			return array('send'=>'error', 'message'=>$e->getMessage());
 		}
 	}
 

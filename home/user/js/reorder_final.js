@@ -198,6 +198,8 @@ $(function(){
 		}).done(function(r){
 			if (r.send == 'success') {
 				window.location.href = './thanks.php';
+			} else if (r.send == 'error') {
+				$.msgbox('Error: メールの送信ができませんでした（' + r.message + '）');
 			} else {
 				$.msgbox('Error: メールの送信ができませんでした');
 			}
