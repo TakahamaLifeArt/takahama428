@@ -845,7 +845,7 @@ $tax = json_decode($conn->salesTax(), true);
                                         <div class="ranking_con_01">
 											<a href="/items/item.php?code='.$val[$i]['item_code'].'">
 												<div class="logo_ons">
-													<div class="logo"><img src="/img/brand/logo_'.$val[$i]['brand_id'].'.png" width="100%"></div>';
+													<div class="logo"><img src="/img/brand/logo_'.$val[$i]['brand_id'].'.png" alt="'.$val[$i]['brand_name'].'のロゴ" width="100%"></div>';
 								if (intval($val[$i]['oz'], 10) > 0) {
 									$html .= '<div class="ons">'.$val[$i]['oz'].'oz</div>';
 								}
@@ -862,16 +862,23 @@ $tax = json_decode($conn->salesTax(), true);
 												<p class="price"><span class="price_number">'.number_format($val[$i]['cost']).'</span><span class="price_yen">円&sim;</span></p>
 											</a>
                                             </div>
-                                            <div class="border_dotted_01"></div>
-                                            <a href="/itemreviews/?item='.$val[$i]['item_id'].'">
-                                                <div class="review_star">
-                                                    <div class="review_star_img">
-														<img src="/common/img/home/review/sp_review_0'.getStar($val[$i]['avg_votes']).'.png" width="100%">
-                                                    </div>
+                                           <div class="border_dotted_01"></div>
+											<a href="/itemreviews/?item='.$val[$i]['item_id'].'">
+												<div class="review_star">
+													<div class="review_star_img">';
+
+								if (empty($val[$i]['avg_votes'])) {
+									$vote = '評価無し';
+								} else {
+									$vote = '評価' . round($val[$i]['avg_votes'], 1) . '点';
+								}
+
+								$html .= '<img src="/common/img/home/review/sp_review_0'.getStar($val[$i]['avg_votes']).'.png" alt="'.$vote.'" width="100%">
+													</div>
 													<div class="review_star_number">'.round($val[$i]['avg_votes'], 1).'</div>
-                                                </div>
+												</div>
 												<p class="i_review_link">レビューを見る（'.number_format($val[$i]['reviews']).'）</p>
-                                            </a>
+											</a>
                                         </div>
                                     </div>
                                 </div>';
@@ -1053,7 +1060,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.7点">4.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.7点"><span class="rank_price">4.7</span></li>
 											<li>
 												<p>昨年秋に一度お世話になりました。<br>・低価格でいい商品を提供してくれている<br>・応対がよい…
 
@@ -1066,7 +1073,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.5点">4.5</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
 
 											<li>
 												<p>いつも、丁寧で対応の早さが素晴らしいと思います！<br>私のようにパソコンを使ってのデザイン画を送れない人にとっては、本当に助かります！…
@@ -1079,7 +1086,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.7点">4.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.7点"><span class="rank_price">4.7</span></li>
 											<li>
 												<p>最初から最後まで、一人の担当者が相談に乗ってくれるので発注までスムーズでした。<br>また宜しくお願い致します。
 												</p>
@@ -1091,7 +1098,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.2点">4.2</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.2点"><span class="rank_price">4.2</span></li>
 											<li>
 												<p>各商品名の印刷色を決める際に、全ての商品に対して、印刷色を確認できるページが欲しいです。<br>Tシャツだとそんなページがありましたが、ハンドタオル…
 
@@ -1104,7 +1111,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.0点">4.0</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.0点"><span class="rank_price">4.0</span></li>
 											<li>
 												<p>ネットでこれだけ注文に応じられるのは驚きました。<br>プリントもイメージ通りで大変満足しました。
 												</p>
@@ -1122,7 +1129,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.5点">4.5</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
 											<li>
 												<p>安く、早く届き非常に助かりました。<br>ありがとうございました。
 												</p>
@@ -1134,7 +1141,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_050.png" width="100%" class="imgsz"><span class="rank_price" alt="評価5.0点">5.0</span></li>
+											<li><img src="/common/img/home/review/sp_review_050.png" width="100%" class="imgsz" alt="評価5.0点"><span class="rank_price">5.0</span></li>
 											<li>
 												<p>わがままばかりで色々とお手数おかけいたしましたが、優しく素早く対応して下さり感謝しております。<br>ありがとうございました。
 												</p>
@@ -1146,7 +1153,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.3点">4.2</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.3点"><span class="rank_price">4.2</span></li>
 											<li>
 												<p>今回は追加注文だったのですが、電話での対応が良かった。<br>金額の事や、デザインの微調整についてわかりやすかった。
 												</p>
@@ -1158,7 +1165,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_035.png" width="100%" class="imgsz"><span class="rank_price" alt="評価3.7点">3.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_035.png" width="100%" class="imgsz" alt="評価3.7点"><span class="rank_price">3.7</span></li>
 											<li>
 												<p>注文から発送まで本当にスムーズで時間がなかった私たちには嬉しい限りでした。
 												</p>
@@ -1170,7 +1177,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_050.png" width="100%" class="imgsz"><span class="rank_price" alt="評価5.0点">5.0</span></li>
+											<li><img src="/common/img/home/review/sp_review_050.png" width="100%" class="imgsz" alt="評価5.0点"><span class="rank_price">5.0</span></li>
 											<li>
 												<p>窓口のスタッフの対応が大変よく、ありがとうございました。<br>追加なども夏頃出るかと思いますが、また宜しくお願い致します。
 												</p>
@@ -1188,7 +1195,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.2点">4.2</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.2点"><span class="rank_price">4.2</span></li>
 											<li>
 												<p>欲しかった通りの物が届いて嬉しかったです。<br>また何かオリジナルTシャツを作りたいときはお願いしたいと思います。
 												</p>
@@ -1200,7 +1207,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.0点">4.0</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.0点"><span class="rank_price">4.0</span></li>
 											<li>
 												<p>・白インクの部分が、少しだけ明度が下がったように感じたましたが、イメージ通りに仕上がり良かったです。<br>・注文の最終確認の段階で、…
 
@@ -1213,7 +1220,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.7点">4.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.7点"><span class="rank_price">4.7</span></li>
 											<li>
 												<p>電話で確認した時に対応してくださった方が、とても感じがよかったです。<br>気持ちよくお話ができました。
 												</p>
@@ -1225,7 +1232,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.5点">4.5</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
 											<li>
 												<p>この度は急ぎの注文に親切な、迅速な対応ありがとうございました。<br>お陰様でイベントに間に合わせることができ、楽しい時間…
 
@@ -1238,7 +1245,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_035.png" width="100%" class="imgsz"><span class="rank_price" alt="評価3.7点">3.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_035.png" width="100%" class="imgsz" alt="評価3.7点"><span class="rank_price">3.7</span></li>
 											<li>
 												<p>どのプリントがどの程度費用がかかるというのが分からず、予想以上に低価格で仕上がりました。<br>今回は時間がなかったので、再度変更はできませんでしたが…
 												</p>
@@ -1256,7 +1263,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.0点">4.0</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.0点"><span class="rank_price">4.0</span></li>
 											<li>
 												<p>Ｔシャツ作りが初めてだったので、とても不安でしたが、わかりやすく説明していただきました。<br>納期が早くて、とても助かりました。ありがとうございました。
 												</p>
@@ -1268,7 +1275,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.2点">4.2</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.2点"><span class="rank_price">4.2</span></li>
 											<li>
 												<p>電話対応も非常に丁寧でしたし、大変満足のいく仕上がりでした。<br>また利用させていただきたいと思います。<br>ありがとうございました。
 												</p>
@@ -1280,7 +1287,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.7点">4.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.7点"><span class="rank_price">4.7</span></li>
 											<li>
 												<p>発注～入稿～領収証依頼、と、数回お電話でやりとりさせていただきましたが、どの方もとても気持ちよく対応していただきました。<br>ありがとうございます。
 												</p>
@@ -1292,7 +1299,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.5点">4.5</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
 											<li>
 												<p>メールや電話での対応がとても丁寧で好感がもてました。<br>必ずしも同じ方がご対応ではないかと思いますが、一定のレベルが堅持されていて、安心感…
 
@@ -1305,7 +1312,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.5点">4.5</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
 											<li>
 												<p>急な注文にもかかわらずご丁寧に対応していただけて嬉しかったです。<br>ありがとうございました！
 												</p>
@@ -1352,7 +1359,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-sm-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.5点">4.5</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
 
 											<li>
 												<p>いつも、丁寧で対応の早さが素晴らしいと思います！<br>私のようにパソコンを使ってのデザイン画を送れない人にとっては、本当に助かります！…
@@ -1370,7 +1377,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.7点">4.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.7点"><span class="rank_price">4.7</span></li>
 											<li>
 												<p>最初から最後まで、一人の担当者が相談に乗ってくれるので発注までスムーズでした。<br>また宜しくお願い致します。
 												</p>
@@ -1382,7 +1389,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-sm-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.2点">4.2</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.2点"><span class="rank_price">4.2</span></li>
 											<li>
 												<p>各商品名の印刷色を決める際に、全ての商品に対して、印刷色を確認できるページが欲しいです。<br>Tシャツだとそんなページがありましたが、ハンドタオル…
 
@@ -1400,7 +1407,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.0点">4.0</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.0点"><span class="rank_price">4.0</span></li>
 											<li>
 												<p>ネットでこれだけ注文に応じられるのは驚きました。<br>プリントもイメージ通りで大変満足しました。
 												</p>
@@ -1412,7 +1419,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-sm-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.5点">4.5</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
 											<li>
 												<p>安く、早く届き非常に助かりました。<br>ありがとうございました。
 												</p>
@@ -1428,7 +1435,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_050.png" width="100%" class="imgsz"><span class="rank_price" alt="評価5.0点">5.0</span></li>
+											<li><img src="/common/img/home/review/sp_review_050.png" width="100%" class="imgsz" alt="評価5.0点"><span class="rank_price">5.0</span></li>
 											<li>
 												<p>わがままばかりで色々とお手数おかけいたしましたが、優しく素早く対応して下さり感謝しております。<br>ありがとうございました。
 												</p>
@@ -1440,7 +1447,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-sm-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.2点">4.2</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.2点"><span class="rank_price">4.2</span></li>
 											<li>
 												<p>今回は追加注文だったのですが、電話での対応が良かった。<br>金額の事や、デザインの微調整についてわかりやすかった。
 												</p>
@@ -1456,7 +1463,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_035.png" width="100%" class="imgsz"><span class="rank_price" alt="評価3.7点">3.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_035.png" width="100%" class="imgsz" alt="評価3.7点"><span class="rank_price">3.7</span></li>
 											<li>
 												<p>注文から発送まで本当にスムーズで時間がなかった私たちには嬉しい限りでした。
 												</p>
@@ -1468,7 +1475,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-sm-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_050.png" width="100%" class="imgsz"><span class="rank_price" alt="評価5.0点">5.0</span></li>
+											<li><img src="/common/img/home/review/sp_review_050.png" width="100%" class="imgsz" alt="評価5.0点"><span class="rank_price">5.0</span></li>
 											<li>
 												<p>窓口のスタッフの対応が大変よく、ありがとうございました。<br>追加なども夏頃出るかと思いますが、また宜しくお願い致します。
 												</p>
@@ -1483,7 +1490,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.2点">4.2</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.2点"><span class="rank_price">4.2</span></li>
 											<li>
 												<p>欲しかった通りの物が届いて嬉しかったです。<br>また何かオリジナルTシャツを作りたいときはお願いしたいと思います。
 												</p>
@@ -1495,7 +1502,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-sm-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.0点">4.0</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.0点"><span class="rank_price">4.0</span></li>
 											<li>
 												<p>・白インクの部分が、少しだけ明度が下がったように感じたましたが、イメージ通りに仕上がり良かったです。<br>・注文の最終確認の段階で、…
 
@@ -1511,7 +1518,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.7点">4.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.7点"><span class="rank_price">4.7</span></li>
 											<li>
 												<p>電話で確認した時に対応してくださった方が、とても感じがよかったです。<br>気持ちよくお話ができました。
 												</p>
@@ -1523,7 +1530,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-sm-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.5点">4.5</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
 											<li>
 												<p>この度は急ぎの注文に親切な、迅速な対応ありがとうございました。<br>お陰様でイベントに間に合わせることができ、楽しい時間…
 
@@ -1540,7 +1547,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_035.png" width="100%" class="imgsz"><span class="rank_price" alt="評価3.7点">3.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_035.png" width="100%" class="imgsz" alt="評価3.7点"><span class="rank_price">3.7</span></li>
 											<li>
 												<p>どのプリントがどの程度費用がかかるというのが分からず、予想以上に低価格で仕上がりました。<br>今回は時間がなかったので、再度変更はできませんでしたが…
 												</p>
@@ -1553,7 +1560,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-sm-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.0点">4.0</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.0点"><span class="rank_price">4.0</span></li>
 											<li>
 												<p>Ｔシャツ作りが初めてだったので、とても不安でしたが、わかりやすく説明していただきました。<br>納期が早くて、とても助かりました。ありがとうございました。
 												</p>
@@ -1569,7 +1576,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.2点">4.2</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.2点"><span class="rank_price">4.2</span></li>
 											<li>
 												<p>電話対応も非常に丁寧でしたし、大変満足のいく仕上がりでした。<br>また利用させていただきたいと思います。<br>ありがとうございました。
 												</p>
@@ -1581,7 +1588,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-sm-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.7点">4.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.7点"><span class="rank_price">4.7</span></li>
 											<li>
 												<p>発注～入稿～領収証依頼、と、数回お電話でやりとりさせていただきましたが、どの方もとても気持ちよく対応していただきました。<br>ありがとうございます。
 												</p>
@@ -1597,7 +1604,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.5点">4.5</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
 											<li>
 												<p>メールや電話での対応がとても丁寧で好感がもてました。<br>必ずしも同じ方がご対応ではないかと思いますが、一定のレベルが堅持されていて、安心感…
 
@@ -1610,7 +1617,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-sm-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz"><span class="rank_price" alt="評価4.5点">4.5</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
 											<li>
 												<p>急な注文にもかかわらずご丁寧に対応していただけて嬉しかったです。<br>ありがとうございました！
 												</p>
