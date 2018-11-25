@@ -438,6 +438,8 @@ if(isset($_REQUEST['act'])){
 	$_IS_TAG = 0;
 	$mode = "category";
 	$tag = array();
+	$fileName = basename($_SERVER['SCRIPT_NAME']);
+	$fileName = $fileName !== 'index.php' ? $fileName: '';
 	$dirName = basename(dirname($_SERVER['SCRIPT_NAME'], 1));
 	parse_str(urldecode($_SERVER['QUERY_STRING']), $prm);
 	if(!empty($prm)){
@@ -487,6 +489,12 @@ if(isset($_REQUEST['act'])){
 		}
 
 	} else if (!isset($prm['cat'], $prm['tag'])) {
+		// 旧アイテム一覧ページ（/items/）廃止に伴いエラーページへ遷移
+		if (!$_PAGE_CATEGORIES) {
+			header("Location: "._DOMAIN."/err/");
+			exit;
+		}
+		
 		// 初期表示
 		$tmp = $pageinfo->categoryList();
 		$categoryIds = array_column($tmp, 'id', 'code');
@@ -590,24 +598,42 @@ if(isset($_REQUEST['act'])){
 	$size_tag = empty($size_tag)? "": '<div class="tag_list"><div class="tag_list_title">サイズ</div>'.$size_tag."</div><hr>";
 
 	// パンナビを生成
+	$current_path = dirname($_SERVER['SCRIPT_NAME']).'/'.$fileName;
 	if(!empty($_IS_TAG)){
+		$formAction = $current_path;
 		$category_name = $label_pannavi;
-		$current_path = $_SERVER['SCRIPT_NAME'];
+		$navi_querystring = ['tag=' . $_ID];
+		$current_path .= '?tag='. $_ID;
 	}else{
+		$formAction = $current_path;
 		$label_pannavi = 'オリジナル'.$category_name;
-		$current_path = $_SERVER['SCRIPT_NAME'];
+		$navi_querystring = array();
 	}
 	$pan_navi = "";
-	$navi_querystring = array();
-	if(count($tag)>0){
-		$len = count($tag)-1;
-		$pan_navi = '<li><a href="'.$current_path.'">'.$label_pannavi.'</a></li>';
-		for($i=0; $i<$len; $i++){
-			if (empty($searchTag[$tag[$i]]['tag_name'])) continue;
-			$navi_querystring[] = urlencode($searchTag[$tag[$i]]['tagtype_key']."[]")."=".$tag[$i];
-			$pan_navi .= '<li><a href="'.$current_path.'?'.implode("&", $navi_querystring).'">'.$searchTag[$tag[$i]]['tag_name'].'</a></li>';
+	$len = count($tag);
+	if($len > 0){
+		$len--;
+		if(!empty($_IS_TAG)){
+			if ($len === 0) {
+				$pan_navi .= '<li>'.$label_pannavi.'</li>';
+			} else {
+				$pan_navi = '<li><a href="'.$current_path.'">'.$label_pannavi.'</a></li>';
+				for($i=1; $i<$len; $i++){
+					if (empty($searchTag[$tag[$i]]['tag_name'])) continue;
+					$navi_querystring[] = urlencode($searchTag[$tag[$i]]['tagtype_key']."[]")."=".$tag[$i];
+					$pan_navi .= '<li><a href="'.$current_path.implode("&", $navi_querystring).'">'.$searchTag[$tag[$i]]['tag_name'].'</a></li>';
+				}
+				$pan_navi .= '<li>'.$searchTag[$tag[$i]]['tag_name'].'</li>';
+			}
+		} else {
+			$pan_navi = '<li><a href="'.$current_path.'">'.$label_pannavi.'</a></li>';
+			for($i=0; $i<$len; $i++){
+				if (empty($searchTag[$tag[$i]]['tag_name'])) continue;
+				$navi_querystring[] = urlencode($searchTag[$tag[$i]]['tagtype_key']."[]")."=".$tag[$i];
+				$pan_navi .= '<li><a href="'.$current_path.'?'.implode("&", $navi_querystring).'">'.$searchTag[$tag[$i]]['tag_name'].'</a></li>';
+			}
+			$pan_navi .= '<li>'.$searchTag[$tag[$i]]['tag_name'].'</li>';
 		}
-		$pan_navi .= '<li>'.$searchTag[$tag[$i]]['tag_name'].'</li>';
 	}else{
 		$pan_navi = '<li>'.$label_pannavi.'</li>';
 	}
@@ -619,7 +645,7 @@ if(isset($_REQUEST['act'])){
 	$tagCheckBox .= $cloth_tag;
 	$tagCheckBox .= $size_tag;
 
-	$tagList = '<form name="form_tag_search" id="form_tag_search" action="'.dirname($_SERVER['SCRIPT_NAME']).'/" method="get">';
+	$tagList = '<form name="form_tag_search" id="form_tag_search" action="'.$formAction.'" method="get">';
 	$tagList .= $tag_data;
 	if(empty($_IS_TAG)){
 		$tagList .= '<input type="hidden" name="cat" value="'.$_ID.'" class="def"></form>';
