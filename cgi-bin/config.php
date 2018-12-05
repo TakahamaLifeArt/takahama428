@@ -82,6 +82,10 @@ define('_INSTA_ACCESS_TOKEN', '5720606509.b7dd96a.cacb2fafefdb439ea8c846d4a84ef4
 define('_DZ_ACCESS_TOKEN', 'mAPeVU4uswAzakUpuqUwuvEFrewr22ep');
 define('_DZ_HTTP_HEADER_KEY', 'X-Doozor-Access-Token');
 
+// Questally
+define('_API_SECRET', 'T26rAqav2BrePrlswafIgazlt@EK_F2L');
+define('_API_ENDPOINT', 'https://www.alesteq.com/questally/api/surveys');
+
 // API Key
 define('_ACCESS_TOKEN', 'cuJ5yaqUqufruSPasePRazasUwrevawU');
 
