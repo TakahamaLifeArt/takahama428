@@ -683,6 +683,11 @@ ul.pan li span {
 	padding-top: 8px;
 }
 
+h2 {
+    margin-bottom: 20px;
+}
+
+
 #overtime p {
 	padding: 0 10px;
 }
@@ -781,7 +786,7 @@ input.place {
 	font-size: 12px;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: normal;
-	padding: 3px;
+/*	padding: 3px;*/
 	color: #555;
 	/*
 	background: url('../../../common/js/uniform/images/bg-input-focus.png') repeat-x 0px 0px;
@@ -1376,8 +1381,10 @@ input[type="file"] {
 input[type="text"] {
 	width: 350px;
 	max-width: 300px;
+/*
 	height: 18px;
 	padding: 3px;
+*/
 	border: 1px solid #aaa;
 	background-color: #ffffff;
 }
@@ -1395,8 +1402,10 @@ input[type="text"]:focus {
 
 * html input {
 	width: 350px;
+/*
 	height: 24px;
 	padding: 3px;
+*/
 	border: 1px solid #aaa;
 	background-color: #ffffff;
 }
@@ -1620,6 +1629,45 @@ form p.txt.confirmation {
 }
 
 
+
+
+.field-item p {
+	font-size: inherit;
+}
+
+#signout .exit_a {
+	padding: 0rem;
+}
+.side_log #signout .exit_a {
+	padding: .3rem 1rem 0.3rem;
+}
+.side_log #signout .exit_a:hover {
+	padding: .3rem 1rem 0.3rem;
+}
+
+.cal_red p{
+	font-size: 12px;
+}
+.header_icon {
+	padding: 12px 0;
+}
+.navbar-nav .nav-item:first-child {
+	padding-top: 17px;
+}
+.icon_wrap {
+	font-size: 2rem;
+	text-align: center;
+	margin-bottom: 0px;
+}
+
+
+.field_area svg {
+    vertical-align: baseline;
+    }
+
+
+
+
 /* Hides from IE-mac \*/
 
 * html #pos_wrap > div {
@@ -1700,6 +1748,69 @@ form p.txt.confirmation {
 	list-style-type: circle;
 }
 
+/*安永プラスここから*/
+
+
+.fade.in {
+	opacity: 1;
+}
+
+.btn-new {
+	font-size: .8rem;
+	padding: .85rem 2.13rem;
+	border-radius: 2px;
+	border: 0;
+	color: #fff!important;
+	margin: 6px;
+	white-space: normal!important;
+}
+
+/*
+.fa, .fas {
+	font-weight: 900;
+}
+*/
+
+
+.fileinput-button input {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	opacity: 0;
+	-ms-filter: 'alpha(opacity=0)';
+	direction: ltr;
+	cursor: pointer;
+	font-size: 1rem !important;
+	height: 50px;
+}
+
+
+/*
+.fileupload-buttonbar .note {
+	margin-top: 30px;
+	
+}
+.fileupload-buttonbar {
+	width: 660px;
+	margin: 0 auto 30px;
+}
+*/
+.modal_style_line {
+	font-size: 13px;
+	color: #000;
+	display: inline-block;
+	border: 1px solid #000;
+	cursor: pointer;
+	background: #fff;
+	border-radius: 30px;
+	padding: 10px 24px;
+	margin: 1%;
+}
+
+
+
+
 @media screen and (min-width: 768px) {
 	.e-mailer input[class*="e-mailer"], .e-mailer textarea[class*="e-mailer"], .e-mailer select[class*="e-mailer"] {
 		margin: 0 .5rem 0;
@@ -1774,8 +1885,10 @@ form p.txt.confirmation {
 	#express_table th,
 	td {
 		padding: 10px 0;
+/*
 		vertical-align: middle;
 		width: 100%;
+*/
 	}
 	.ptxt {
 		font-size: 1.2em;
@@ -1992,4 +2105,24 @@ form p.txt.confirmation {
 	button {
 		font-size: .8rem;
 	}
+}
+
+.pop_btn_close {
+    display: inline-block;
+    padding: 2.5%;
+    width: 35%;
+    background-color: #e5e5e5;
+    box-shadow: 1px 1px 1px #a5a5a5;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    color: #000!important;
+    margin: 0 auto;
+    display: block;
+}
+
+.modal h3 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
