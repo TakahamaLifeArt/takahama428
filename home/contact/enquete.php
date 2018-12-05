@@ -1,22 +1,71 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/conndb.php';
+$conn = new ConnDB();
+define('_SEND_TO', 'info@takahama428.com');
+$with = 'with';
+function with($constant){
+	return $constant;
+}
 
 $isSend = null;
-if( isset($_POST['ticket']) && !empty($_POST['ticket']) ) {
-	require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/conndb.php';
-	$data = $_POST;
-	$data['customername'] = '';
-	$data['zipcode'] = '';
-	$data['addr'] ='';
-	$conn = new ConnDB();
-	$conn->setEnquete($data);
+if ( $_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['ticket']) && !empty($_POST['ticket']) && isset($_REQUEST['enq']) && !empty($_REQUEST['enq']) ) {
+	if (isset($_POST['choice_id'][1])) {
+		$check = ['', 5,4,3,2,1];
+		$dat['a6'] = $check[$_POST['choice_id'][1][0]];
+		$dat['a5'] = $check[$_POST['choice_id'][2][0]-5];
+		$dat['a7'] = $check[$_POST['choice_id'][3][0]-10];
+		$dat['a1'] = $check[$_POST['choice_id'][4][0]-15];
+		$dat['a10'] = $_POST['sentence'][5];
+		foreach ($_POST['choice_id'][6] as $key=>$val) {
+			$dat['a17'][] = $val==31? 0: $val-20;
+		}
+		$dat['a9'] = $_POST['sentence'][7];
+		$dat['a18'] = $_POST['sentence'][8];
+		$dat['number'] = $_POST['number'];
+		$dat['customername'] = '';
+		$dat['zipcode'] = '';
+		$dat['addr'] ='';
+		$conn->setEnquete($dat);
+	}
+	
+	// 回答送信
+	$headers = [
+		'X-Questally-Access-Token:'._API_SECRET,
+		'Origin:'._DOMAIN,
+	];
+	$conn->setURL(_API_ENDPOINT);
+	$res = json_decode($conn->request('POST', $_POST, $headers), true);
+	if ($res['code'] != 200) {
+		$isSend = false;
+	} else {
+		// 二重送信防止
+		header('Location: ' . $_SERVER['SCRIPT_NAME'].'?fin='.$_REQUEST['enq']); 
+		exit;
+//		$isSend = true;
+	}
+} else if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_REQUEST['fin'])) {
+	// 送信完了
 	$isSend = true;
-}else if(isset($_REQUEST['enq']) && !empty($_REQUEST['enq'])){
+	$ticket = '';
+	$action = '';
+} else if (isset($_REQUEST['enq']) && !empty($_REQUEST['enq'])) {
+	// アンケートページ表示
 	$ticket = htmlspecialchars(md5(uniqid().mt_rand()), ENT_QUOTES);
 	$enq = preg_replace('/^\D/', '', $_REQUEST['enq']);
 	if (empty($enq)) header("Location: "._DOMAIN);
-	$customer_id = sprintf("%d", $enq);
-	$number = 'K'.str_pad($customer_id, 6, '0', STR_PAD_LEFT);
-}else{
+	$action = $_SERVER['SCRIPT_NAME'].'?enq='.$enq;
+	$customerId = sprintf("%d", $enq);
+	$number = 'K'.str_pad($customerId, 6, '0', STR_PAD_LEFT);
+	
+	$param = array();
+	$headers = [
+		'X-Questally-Access-Token:'._API_SECRET,
+		'Origin:'._DOMAIN
+	];
+	$conn->setURL(_API_ENDPOINT);
+	$data = json_decode($conn->request('GET', $param, $headers), true);
+} else {
+	// その他アクセスはホームへ
 	header("Location: "._DOMAIN);
 }
 ?>
@@ -40,8 +89,8 @@ if( isset($_POST['ticket']) && !empty($_POST['ticket']) ) {
 		<link rel="stylesheet" type="text/css" media="screen" href="/user/js/upload/jquery.fileupload.css">
 		<link rel="stylesheet" type="text/css" media="screen" href="/user/js/upload/jquery.fileupload-ui.css">
 		<link rel="stylesheet" type="text/css" media="screen" href="/user/css/uploader.css">
-		<link rel="stylesheet" type="text/css" href="./css/custom_responsive.css" media="screen">
-		<link rel="stylesheet" type="text/css" href="./css/enquete.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="/contact/css/custom_responsive.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="/contact/css/enquete.css" media="screen">
 	</head>
 
 	<body>
@@ -54,139 +103,72 @@ if( isset($_POST['ticket']) && !empty($_POST['ticket']) ) {
 
 <?php
 	if(is_null($isSend)){
+		$desc = nl2br($data['enquete']['description']);
+		$enqueteId = $data['enquete']['id'];
 		$html = <<<DOC
 			<div class="heading1_wrapper">
-				<h1>アンケートのお願い</h1>
+				<h1>{$data['enquete']['title']}</h1>
 				<p class="comment"></p>
 				<p class="sub">Enquete</p>
 			</div>
 			
 			<div class="firstmessage">
-				<p>この度のタカハマライフアートへのご注文、誠にありがとうございました。</p>
-				<p>
-					弊社では、更なるお客様サービスの向上のため、下記のアンケートを実施しておりますので、<br>
-					ぜひともご協力をお願いいたします。
-				</p>
+				<p>{$desc}</p>
 			</div>
 			
 			<main>
-				<form id="fileupload" class="e-mailer" action="{$_SERVER['SCRIPT_NAME']}" method="POST" enctype="multipart/form-data">
+				<form id="fileupload" class="e-mailer" action="{$action}" method="POST" enctype="multipart/form-data">
 					<div>
 						<label id="number">顧客ID： <ins>{$number}</ins></label>
-						<input type="hidden" value="{$customer_id}" name="number" class="e-none">
+						<input type="hidden" value="{$customerId}" name="number" class="e-none">
+						<input type="hidden" value="{$enqueteId}" name="enquete_id" class="e-none">
 					</div>
+DOC;
+		echo $html;
+		
+		$html = '';
+		$val = $data['question'];
+		for ($i=0, $len=count($val); $i<$len; $i++) {
+			$qId = $val[$i]['id'];
+			$html .= '<div>';
+				$html .= '<p class="q">';
+					$html .= '<em>Q'.($i+1).'</em>';
+					$html .= '<label>'.$val[$i]['sentence'].'</label>';
+					$html .= '<input type="hidden" value="'.$qId.'" name="question_id[]" class="e-none">';
+				$html .= '</p>';
+				$html .= '<div class="a">';
+				switch ($val[$i]['format_id']) {
+					case '1':
+						$html .= '<input type="hidden" name="choice_id['.$qId.'][]" value="0" class="e-none">';
+						$html .= '<textarea name="sentence['.$qId.']"></textarea>';
+						break;
+					case '2':
+						$choice = $data['choice'][$qId];
+						for ($n=0, $cnt=count($choice); $n<$cnt; $n++) {
+							$html .= '<p><label><input type="radio" name="choice_id['.$qId.'][]" value="'.$choice[$n]['id'].'" required>'.$choice[$n]['sentence'].'</label></p>';
+						}
+						$html .= '<textarea name="sentence['.$qId.']" class="e-none" hidden></textarea>';
+						break;
+					case '3':
+						$choice = $data['choice'][$val[$i]['id']];
+						$html .= '<fieldset>';
+						for ($n=0, $cnt=count($choice); $n<$cnt; $n++) {
+							$html .= '<p><label><input type="checkbox" name="choice_id['.$qId.'][]" value="'.$choice[$n]['id'].'" required>'.$choice[$n]['sentence'].'</label></p>';
+						}
+						$html .= '</fieldset>';
+						$html .= '<textarea name="sentence['.$qId.']" class="e-none" hidden></textarea>';
+						break;
+				}
+				$html .= '</div>';
+			$html .= '</div>';
+		}
+		echo $html;
 
+		$len++;
+		$html = <<<DOC
 					<div>
 						<p class="q">
-							<em>Q1</em>
-							<label>商品、プリントの品質には満足できましたか？</label>
-						</p>
-						<div class="a">
-							<p><label><input type="radio" name="a6" value="5" required>とても満足</label></p>
-							<p><label><input type="radio" name="a6" value="4" required>満足</label></p>
-							<p><label><input type="radio" name="a6" value="3" required>普通</label></p>
-							<p><label><input type="radio" name="a6" value="2" required>不満</label></p>
-							<p><label><input type="radio" name="a6" value="1" required>とても不満</label></p>
-						</div>
-					</div>
-
-					<div>
-						<p class="q">
-							<em>Q2</em>
-							<label>スタッフの対応には満足できましたか?</label>
-						</p>
-						<div class="a">
-							<p><label><input type="radio" name="a5" value="5" required>とても満足</label></p>
-							<p><label><input type="radio" name="a5" value="4" required>満足</label></p>
-							<p><label><input type="radio" name="a5" value="3" required>普通</label></p>
-							<p><label><input type="radio" name="a5" value="2" required>不満</label></p>
-							<p><label><input type="radio" name="a5" value="1" required>とても不満</label></p>
-						</div>
-					</div>
-
-					<div>
-						<p class="q">
-							<em>Q3</em>
-							<label>梱包状態には満足できましたか?</label>
-						</p>
-						<div class="a">
-							<p><label><input type="radio" name="a7" value="5" required>とても満足</label></p>
-							<p><label><input type="radio" name="a7" value="4" required>満足</label></p>
-							<p><label><input type="radio" name="a7" value="3" required>普通</label></p>
-							<p><label><input type="radio" name="a7" value="2" required>不満</label></p>
-							<p><label><input type="radio" name="a7" value="1" required>とても不満</label></p>
-						</div>
-					</div>
-
-					<div>
-						<p class="q">
-							<em>Q4</em>
-							<label>ホームページは使いやすかったですか?</label>
-						</p>
-						<div class="a">
-							<p><label><input type="radio" name="a1" value="5" required>とても満足</label></p>
-							<p><label><input type="radio" name="a1" value="4" required>満足</label></p>
-							<p><label><input type="radio" name="a1" value="3" required>普通</label></p>
-							<p><label><input type="radio" name="a1" value="2" required>不満</label></p>
-							<p><label><input type="radio" name="a1" value="1" required>とても不満</label></p>
-						</div>
-					</div>
-
-					<div>
-						<p class="q">
-							<em>Q5</em>
-							<label>商品の着心地はいかがでしたでしょうか</label>
-						</p>
-						<p class="a">
-							<textarea name="a10"></textarea>
-						</p>
-					</div>
-
-					<div>
-						<p class="q">
-							<em>Q6</em>
-							<label>タカハマライフアートの「ここが使いづらい！」という点を教えてください</label><span>(複数回答可)</span>
-						</p>
-						<div class="a">
-							<fieldset>
-								<p><label><input type="checkbox" name="a17[]" value="1" required>注文確定の電話</label></p>
-								<p><label><input type="checkbox" name="a17[]" value="2" required>商品の選び方</label></p>
-								<p><label><input type="checkbox" name="a17[]" value="3" required>商品の素材や色</label></p>
-								<p><label><input type="checkbox" name="a17[]" value="4" required>お届け日</label></p>
-								<p><label><input type="checkbox" name="a17[]" value="5" required>商品の見積もり</label></p>
-								<p><label><input type="checkbox" name="a17[]" value="6" required>デザインの入稿の方法</label></p>
-								<p><label><input type="checkbox" name="a17[]" value="7" required>プリントサイズ</label></p>
-								<p><label><input type="checkbox" name="a17[]" value="8" required>プリント方法</label></p>
-								<p><label><input type="checkbox" name="a17[]" value="9" required>割引の内容や条件</label></p>
-								<p><label><input type="checkbox" name="a17[]" value="10" required>資料請求・商品サンプルの注文</label></p>
-								<p><label><input type="checkbox" name="a17[]" value="0" required>特になし</label></p>
-							</fieldset>
-						</div>
-					</div>
-
-					<div>
-						<p class="q">
-							<em>Q7</em>
-							<label>全体を通して、ご意見ご感想がありましたらご記入お願いします</label>
-						</p>
-						<p class="a">
-							<textarea name="a9"></textarea>
-						</p>
-					</div>
-
-					<div>
-						<p class="q">
-							<em>Q8</em>
-							<label>写真掲載割をご利用のお客様は、商品到着後の感想やコメントをご入力ください</label>
-						</p>
-						<p class="a">
-							<textarea name="a18"></textarea>
-						</p>
-					</div>
-
-					<div>
-						<p class="q">
-							<em>Q9</em>
+							<em>Q{$len}</em>
 							<label>写真掲載割をご利用のお客様は、商品着用写真をお送りください</label>
 						</p>
 
@@ -231,7 +213,7 @@ if( isset($_POST['ticket']) && !empty($_POST['ticket']) ) {
 					</p>
 
 					<input type="hidden" name="ticket" class="e-none" value="{$ticket}">
-					<input type="hidden" name="sendto" value="order@takahama428.com">
+					<input type="hidden" name="sendto" value="{$with(_SEND_TO)}">
 					<input type="hidden" name="subject" value="お客様アンケート">
 					<input type="hidden" name="title" value="お客様アンケート">
 				</form>
@@ -262,7 +244,7 @@ DOC;
 			<div class="heading1_wrapper">
 				<h1>送信エラー</h1>
 				<p class="comment"></p>
-				<p class="sub">Error</p>
+				<p class="sub">Error: {$res['message']}</p>
 			</div>
 			<main>
 				<p>
@@ -373,7 +355,7 @@ DOC;
 		<script src="/user/js/upload/jquery.fileupload-image.js"></script>
 		<script src="/user/js/upload/jquery.fileupload-validate.js"></script>
 		<script src="/user/js/upload/jquery.fileupload-ui.js"></script>
-		<script type="text/javascript" src="./js/enquete.js"></script>
+		<script type="text/javascript" src="/contact/js/enquete.js"></script>
 
 	</body>
 
