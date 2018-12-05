@@ -53,6 +53,11 @@ $(function(){
 		let elem = document.querySelectorAll('[required]'),
 			isValid = true;
 			
+
+		// 郵便番号からの自動入力を反映
+		eMailer.onChanged('#addr0');
+		eMailer.onChanged('#addr1');
+		
 		for (let n=0, len=elem.length; n<len; n++) {
 			if (elem[n].value.trim() == '') {
 				isValid = false;
@@ -126,14 +131,8 @@ $(function(){
 				elem.classList.add('is_invalid');
 			}
 			eMailer.onChanged('#datepick');
-		}
-	});
-
-
-	// 郵便番号
-	$('#zipcode').on('change', function () {
-		eMailer.onChanged('#addr0');
-		eMailer.onChanged('#addr1');
+		},
+		holiday: [{'from':'2018-12-27', 'to':'2019-01-04'}]
 	});
 
 

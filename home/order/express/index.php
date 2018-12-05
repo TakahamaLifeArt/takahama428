@@ -42,7 +42,7 @@ $_version = time();
 
 			<h1>お急ぎの方へ</h1>
 
-			<div id="delivery_date"><img src="img/express_top.jpg" alt="最短明日お届け" width="100%" class="upimg"><img src="img/sp_express_top.jpg" alt="最短明日お届け" width="100%" class="dwnimg">
+			<div id="delivery_date"><img src="img/express_top.jpg" alt="最短当日届きます！お急ぎの方へ" width="100%" class="upimg"><img src="img/sp_express_top.jpg" alt="最短当日届きます！お急ぎの方へ" width="100%" class="dwnimg">
 			</div>
 
 			<div id="delivery_date_wrapper">
@@ -261,19 +261,19 @@ $_version = time();
 					<div class="blockgrp4">
 						<div class="blocktxt5">
 							<p class="text">希望納期</p>
-							<img src="img/sp_hurry_link_01.jpg" alt="納期" width="100%">
+							<img src="img/sp_hurry_link_01.jpg" alt="納期" width="100%" alt="納期カレンダー">
 						</div>
 						<div class="blocktxt5">
 							<p class="text">アイテム</p>
-							<img src="img/sp_hurry_link_02.png" alt="納期" width="100%">
+							<img src="img/sp_hurry_link_02.png" alt="納期" width="100%" alt="Tシャツとポロシャツとパーカー">
 						</div>
 						<div class="blocktxt5">
 							<p class="text">デザインデータ</p>
-							<img src="img/sp_hurry_link_03.png" alt="納期" width="100%">
+							<img src="img/sp_hurry_link_03.png" alt="納期" width="100%" alt="イラストレーターとフォトショップと手描きイラストと画像データ">
 						</div>
 						<div class="blocktxt5">
 							<p class="text">お客様情報</p>
-							<img src="img/sp_hurry_link_04.jpg" alt="納期" width="100%">
+							<img src="img/sp_hurry_link_04.jpg" alt="納期" width="100%" alt="PCで作業するお客様">
 						</div>
 					</div>
 				</div>
@@ -333,9 +333,9 @@ $_version = time();
 										<th><label>ご住所</label></th>
 										<td class="point">※</td>
 										<td>
-											<p>〒<input name="zipcode" id="zipcode" class="forZip" type="text" onkeyup="AjaxZip3.zip2addr(this,'','addr0','addr1');" required></p>
-											<p><input name="addr0" id="addr0" type="text" placeholder="都道府県" maxlength="4" required></p>
-											<p><input name="addr1" id="addr1" type="text" placeholder="文字数は全角28文字、半角56文字です" maxlength="56" required></p>
+											<p><input name="zipcode" id="zipcode" class="forZip p-zip" type="text" required></p>
+											<p><input name="addr0" id="addr0" class="p-region" type="text" placeholder="都道府県" maxlength="4" required></p>
+											<p><input name="addr1" id="addr1" class="p-locality p-street-address" type="text" placeholder="文字数は全角28文字、半角56文字です" maxlength="56" required></p>
 											<p><input name="addr2" id="addr2" type="text" placeholder="文字数は全角16文字、半角32文字です" maxlength="32"></p>
 										</td>
 									</tr>
@@ -373,6 +373,57 @@ $_version = time();
 										<td>&nbsp;</td>
 										<td><input type="file" name="attachfile" multiple></td>
 									</tr>
+<!--                                    new-->
+                                    
+                                    <tr>
+										<th><label>ファイル転送<br>サービス</label></th>
+										<td>&nbsp;</td>
+										<td>
+										
+											<div class="fileupload-buttonbar">
+												<div class="">
+													<!-- The fileinput-button span is used to style the file input field as button -->
+                                                    
+                                                    
+<!--
+													<span class="btn btn-new btn-success fileinput-button fade in">
+														<i class="fa fa-plus" aria-hidden="true"></i>
+														<span>ファイルを選択...</span>
+														<input type="file" name="files[]" class="e-none" multiple>
+													</span>
+-->
+													<!--
+<button type="submit" class="btn btn-primary start fade e-none" hidden>
+<i class="fa fa-cloud-upload" aria-hidden="true"></i>
+<span>アップロード</span>
+</button>
+-->
+
+													<!-- The global file processing state -->
+													<span class="fileupload-process"></span>
+												</div>
+												<p class="note">ファイルアップロードできない場合は、下記のファイル転送サービスをご利用ください。</p>
+												<div id="upload_link" class="modal_style_line">
+													<!--												<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>-->
+
+													<svg aria-hidden="true" data-prefix="fas" style="width: 13px;" data-icon="question-circle" class="svg-inline--fa fa-question-circle fa-w-16 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zM262.655 90c-54.497 0-89.255 22.957-116.549 63.758-3.536 5.286-2.353 12.415 2.715 16.258l34.699 26.31c5.205 3.947 12.621 3.008 16.665-2.122 17.864-22.658 30.113-35.797 57.303-35.797 20.429 0 45.698 13.148 45.698 32.958 0 14.976-12.363 22.667-32.534 33.976C247.128 238.528 216 254.941 216 296v4c0 6.627 5.373 12 12 12h56c6.627 0 12-5.373 12-12v-1.333c0-28.462 83.186-29.647 83.186-106.667 0-58.002-60.165-102-116.531-102zM256 338c-25.365 0-46 20.635-46 46 0 25.364 20.635 46 46 46s46-20.636 46-46c0-25.365-20.635-46-46-46z"></path></svg>
+
+													ファイル転送サービス
+												</div>
+
+
+
+											</div>
+
+
+
+
+										
+										</td>
+									</tr>
+                                    
+<!--                                    new-->
+                                    
 								</tbody>
 							</table>
 
@@ -392,7 +443,7 @@ $_version = time();
 								<tbody>
 									<tr>
 										<td>
-											<img src="<?php echo _IMG_PSS?>/items/list/t-shirts/085-cvt/085-cvt_001.jpg" width="100">
+											<img src="<?php echo _IMG_PSS?>/items/list/t-shirts/085-cvt/085-cvt_001.jpg" width="100" alt="085-cvtヘビーウェイトTシャツの白">
 											<input type="hidden" name="part-whitetshirts" value="Tシャツ白">
 											<textarea hidden></textarea>
 										</td>
@@ -410,7 +461,7 @@ $_version = time();
 									</tr>
 									<tr>
 										<td>
-											<img src="<?php echo _IMG_PSS?>/items/list/t-shirts/085-cvt/085-cvt_005.jpg" width="100" data-color="ブラック">
+											<img src="<?php echo _IMG_PSS?>/items/list/t-shirts/085-cvt/085-cvt_005.jpg" width="100" data-color="ブラック" alt="085-cvtヘビーウェイトTシャツの黒">
 											<input type="hidden" name="part-whitetshirts" value="Tシャツ黒">
 											<textarea hidden></textarea>
 										</td>
@@ -421,12 +472,12 @@ $_version = time();
 									</tr>
 									<tr>
 										<th>色</th>
-										<th>Free (&yen;380~)</th>
+										<th>Free (&yen;380)</th>
 										<th colspan="3"></th>
 									</tr>
 									<tr>
 										<td>
-											<img src="<?php echo _IMG_PSS?>/items/list/towel/522-ft/522-ft_001.jpg" width="100" data-color="ホワイト">
+											<img src="<?php echo _IMG_PSS?>/items/list/towel/522-ft/522-ft_001.jpg" width="100" data-color="ホワイト" alt="522-FTフェイスタオルの白">
 											<input type="hidden" name="part-whitetshirts" value="タオル白">
 											<textarea hidden></textarea>
 										</td>
@@ -472,11 +523,13 @@ $_version = time();
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
 	</footer>
 
+    
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
+    <script src="./js/dialog.js"></script>
 	<script src="https://doozor.bitbucket.io/email/e-mailform.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
 	<script src="https://doozor.bitbucket.io/calendar/datepick_calendar.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
-	<script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="utf-8"></script>
 	<script type="text/javascript" src="./js/express.js?v=<?php echo $_version;?>"></script>
+    
 
 </body>
 
