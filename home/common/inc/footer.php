@@ -4,8 +4,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/package/Calendar.php';
 ?>
 <div class="container-fluid">
 	<div class="footer_info">
-		<h2>お問い合わせ</h2>
-		<h3>親切対応 日本一を目指します!</h3>
+		<p class="footer_contact">お問い合わせ</p>
+		<p class="footer_kindly">親切対応 日本一を目指します!</p>
 		<ul class="footer_field">
 			<li class="field_area">
 				<ul class="field_block">
@@ -61,31 +61,31 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/package/Calendar.php';
 		<div class="col">
 			<div class="blockmenu">
 				<div class="area_a">
-					<h4 class="title_bdr title item_ttl">アイテム</h4>
+					<p class="title_bdr title item_ttl">アイテム</p>
 					<div class="footer_item">
 						<ul class="item_ul">
-							<li><a href="/items/category/t-shirts/">Tシャツ</a></li>
-							<li><a href="/items/category/polo-shirts/">ポロシャツ</a></li>
-							<li><a href="/items/category/sweat/">スウェット</a></li>
-							<li><a href="/items/category/outer/">ブルゾン</a></li>
-							<li><a href="/items/category/long-shirts/">長袖Tシャツ</a></li>
-							<li><a href="/items/category/towel/">タオル</a></li>
-							<li><a href="/items/category/cap/">キャップ</a></li>
-							<li><a href="/items/category/sportswear/">スポーツ</a></li>
+							<li><a href="/items/t-shirts/">Tシャツ</a></li>
+							<li><a href="/items/polo-shirts/">ポロシャツ</a></li>
+							<li><a href="/items/sweat/">スウェット</a></li>
+							<li><a href="/items/outer/">ブルゾン</a></li>
+							<li><a href="/items/long-shirts/">長袖Tシャツ</a></li>
+							<li><a href="/items/towel/">タオル</a></li>
+							<li><a href="/items/cap/">キャップ</a></li>
+							<li><a href="/items/sportswear/">スポーツ</a></li>
 						</ul>
 						<ul class="item_ul">
-							<li><a href="/items/category/apron/">エプロン</a></li>
-							<li><a href="/items/category/tote-bag/">バッグ</a></li>
-							<li><a href="/items/category/workwear/">ワークウェア</a></li>
-							<li><a href="/items/category/ladys/">レディース</a></li>
-							<li><a href="/items/category/overall/">つなぎ</a></li>
-							<li><a href="/items/category/baby/">ベビー</a></li>
-							<li><a href="/items/category/goods/">記念品</a></li>
+							<li><a href="/items/apron/">エプロン</a></li>
+							<li><a href="/items/tote-bag/">バッグ</a></li>
+							<li><a href="/items/workwear/">ワークウェア</a></li>
+							<li><a href="/items/ladys/">レディース</a></li>
+							<li><a href="/items/overall/">つなぎ</a></li>
+							<li><a href="/items/baby/">ベビー</a></li>
+							<li><a href="/items/goods/">記念品</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="area_b">
-					<h4 class="title_bdr title item_ttl_2">料金・納期</h4>
+					<p class="title_bdr title item_ttl_2">料金・納期</p>
 					<div class="footer_print">
 						<ul>
 							<li><a href="/price/estimate.php">カンタン比較見積もり</a></li>
@@ -97,26 +97,30 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/package/Calendar.php';
 					</div>
 				</div>
 				<div class="area_b">
-					<h4 class="title_bdr title item_ttl_2">デザイン・プリント</h4>
+					<p class="title_bdr title item_ttl_2">デザイン・プリント</p>
 					<div class="footer_print">
 						<ul>
 							<li><a href="/design/designguide.php">デザインの入稿・作り方</a></li>
+							<li><a href="/design/designsimulator.php">デザインシミュレーター</a></li>
 							<li><a href="/design/template_illust.php">イラレ入稿テンプレート</a></li>
 							<li><a href="/design/support.php">デザインサポート</a></li>
 							<li><a href="/design/designtemp.php">無料デザイン素材</a></li>
 <!--								<li><a href="/design/gallery.php">製作実例</a></li>-->
-							<li><a href="/design/printing.php">プリント方法</a></li>
+							<li><a href="/print/">プリント方法</a></li>
+							<li><a href="/campaign/towel/noshi.php">短納期粗品タオル</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="area_b">
-					<h4 class="title_bdr title item_ttl_2">会社紹介</h4>
+					<p class="title_bdr title item_ttl_2">会社紹介</p>
 					<div class="footer_com">
 						<ul>
 							<li><a href="/corporate/overview.php">会社概要</a></li>
+							<li><a href="https://www.takahama428.com/app/WP/reservation/">来社予約</a></li>
 							<li><a href="/userreviews/">お客様レビュー</a></li>
 							<li><a href="/app/WP">スタッフブログ</a></li>
 							<li><a href="/app/WP/thanks-blog/">製作実例</a></li>
+							<li><a href="/app/WP/topic/">プリント豆知識</a></li>
 							<li><a href="/reason/speed.php">短納期の理由</a></li>
 							<li><a href="/corporate/transactions.php">特定商取引法</a></li>
 							<li><a href="/corporate/privacy-policy.php">プライバシーポリシー</a></li>
@@ -134,7 +138,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/package/Calendar.php';
 		?>
 		<div class="area_c footer_tel_fax">
 			<div class="workday_calendar_wrap">
-				<h4 class="title item_ttl">営業カレンダー</h4>
+				<p class="title item_ttl">営業カレンダー</p>
 				<p><span class="min">月~金 10:00~18:00（土日祝休み）</span></p>
 				<div class="blockcalendar">
 					<table class="workday_calendar">
@@ -179,12 +183,12 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/package/Calendar.php';
 
 	<nav class="footer_sp hidden-lg-up">
 		<div class="col-10">
-			<h5>Follow me!!</h5>
+			<p class="f_follow">Follow me!!</p>
 			<div class="foot_logo">
-				<a href="//www.instagram.com/takahamalifeart/" class="btn-floating btn-large btn-ins"><i class="fa fa-instagram"></i></a>
-				<a href="//ja-jp.facebook.com/takahamalifeart" class="btn-floating btn-large btn-fb"><i class="fa fa-facebook"></i></a>
-				<a href="//twitter.com/takahamalifeart" class="btn-floating btn-large btn-tw"><i class="fa fa-twitter"></i></a>
-				<a href="/contact/line/" class="btn-floating btn-large btn-line2">
+				<a href="//www.instagram.com/takahamalifeart/" class="btn-floating btn-large btn-ins" target="_blank"><i class="fa fa-instagram"></i></a>
+				<a href="//ja-jp.facebook.com/takahamalifeart" class="btn-floating btn-large btn-fb" target="_blank"><i class="fa fa-facebook"></i></a>
+				<a href="//twitter.com/takahamalifeart" class="btn-floating btn-large btn-tw" target="_blank"><i class="fa fa-twitter"></i></a>
+				<a href="/contact/line/" class="btn-floating btn-large btn-line2" target="_blank">
 					<svg xmlns="//www.w3.org/2000/svg" xmlns:xlink="//www.w3.org/1999/xlink" width="43px" height="57px" style="margin-left:8px;" viewBox="0 0 315 300">
 						<defs>
 							<style>
@@ -202,34 +206,79 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/package/Calendar.php';
 				</a>
 			</div>
 		</div>
+
+		<div style="display:block;">
 		<div class="col-10 foot_logo">
-			<a href="/"><img alt="Brand" src="/common/img/footer/footer_jota.jpg" width="100%"></a>
+			<a href="/"><img alt="タカハマライフアート" src="/common/img/footer/footer_jota.jpg" width="100%"></a>
 			<p>一般社団法人<br>日本オリジナルTシャツ協会会員</p>
 		</div>
-		<div class="col-10 foot_logo1">
-			<a href="/"><img alt="Brand" src="/common/img/footer/428logo.jpg" width="100%"></a>
-			<h3>全スタッフとお客様の幸せを、実現します。</h3>
+			<div class="koshien"><a href="https://www.jota.or.jp/school_2018.html" target="_blank"><img src="/img/banner_school2018.jpg" alt="親子オリジナルＴシャツ教室2018のバナー"></a></div>
 		</div>
+		
+		
+		<!--甲子園の画像掲載終了したらこっちアップ-->
+<!--
+			<div class="col-10 foot_logo">
+				<a href="/"><img alt="タカハマライフアート" src="/common/img/footer/footer_jota.jpg" width="100%"></a>
+				<p>一般社団法人<br>日本オリジナルTシャツ協会会員</p>
+			</div>
+-->
+
+
+		<div class="col-10 foot_logo1">
+			<a href="/"><img alt="タカハマライフアート" src="/common/img/footer/428logo.jpg" width="100%"></a>
+			<p class="footer_happy">全スタッフとお客様の幸せを、実現します。</p>
+		</div>
+		
+
 	</nav>
 </div>
 
 <div class="call-to-action hidden-md-down">
 	<div class="row">
+	<div style="display:block;">
 		<div class="foot_logo">
-			<a href="http://www.jota.or.jp/" target="_blank" class="icon_wth"><img alt="Brand" src="/common/img/footer/footer_jota.jpg" width="100%"></a>
+			<a href="http://www.jota.or.jp/" target="_blank" class="icon_wth"><img alt="日本オリジナルTシャツ協会のロゴ" src="/common/img/footer/footer_jota.jpg" width="100%"></a>
 			<p>一般社団法人<br>日本オリジナルTシャツ協会会員</p>
 		</div>
+		<div class="koshien"><a href="https://www.jota.or.jp/school_2018.html" target="_blank"><img src="/img/banner_school2018.jpg" alt="親子オリジナルＴシャツ教室2018のバナー"></a></div>
+	</div>
+	
+		<!--甲子園の画像掲載終了したらこっちアップ-->
+<!--
+			<div class="foot_logo">
+				<a href="http://www.jota.or.jp/" target="_blank" class="icon_wth"><img alt="Brand" src="/common/img/footer/footer_jota.jpg" width="100%"></a>
+				<p>一般社団法人<br>日本オリジナルTシャツ協会会員</p>
+			</div>
+-->
+	
+	<!--甲子園の画像掲載終了したら削除css-->
+		<style>
+			@media screen and (max-width: 769px){
+			.koshien {
+				margin: 30px 0;
+				text-align: center;
+			}
+			}
+			
+			@media screen and (max-width: 991px){
+				.footer_sp {
+					height: auto;
+			}
+			}
+		</style>
+
 		<div class="foot_logo1">
-			<a href="/"><img alt="Brand" src="/common/img/footer/428logo.jpg" width="100%"></a>
-			<h3>全スタッフとお客様の幸せを、実現します。</h3>
+			<a href="/"><img alt="タカハマライフアート" src="/common/img/footer/428logo.jpg" width="100%"></a>
+			<p class="footer_happy">全スタッフとお客様の幸せを、実現します。</p>
 		</div>
 		<div>
-			<h5>Follow me!!</h5>
+			<p class="footer_follow">Follow me!!</p>
 			<div class="foot_logo">
-				<a href="//www.instagram.com/takahamalifeart/" class="btn-floating btn-large btn-ins"><i class="fa fa-instagram"></i></a>
-				<a href="//ja-jp.facebook.com/takahamalifeart" class="btn-floating btn-large btn-fb"><i class="fa fa-facebook"></i></a>
-				<a href="//twitter.com/takahamalifeart" class="btn-floating btn-large btn-tw"><i class="fa fa-twitter"></i></a>
-				<a href="/contact/line/" class="btn-floating btn-large btn-line2">
+				<a href="//www.instagram.com/takahamalifeart/" class="btn-floating btn-large btn-ins" target="_blank"><i class="fa fa-instagram"></i></a>
+				<a href="//ja-jp.facebook.com/takahamalifeart" class="btn-floating btn-large btn-fb" target="_blank"><i class="fa fa-facebook"></i></a>
+				<a href="//twitter.com/takahamalifeart" class="btn-floating btn-large btn-tw" target="_blank"><i class="fa fa-twitter"></i></a>
+				<a href="/contact/line/" class="btn-floating btn-large btn-line2" target="_blank">
 			<svg xmlns="//www.w3.org/2000/svg" xmlns:xlink="//www.w3.org/1999/xlink" width="43px" height="57px" style="margin-left: 8px;" viewBox="0 0 315 300">
 				<defs>
 					<style>
