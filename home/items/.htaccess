@@ -3,7 +3,12 @@ AddType application/x-httpd-php .php .htm .html
 DirectoryIndex index.php
 order deny,allow
 
-// 2018-11-26
-// ブランド一覧のファイル名変更
+# 2018-11-26
+# ブランド一覧のファイル名変更
 RewriteCond %{QUERY_STRING} (^|&)tag=([^&]+)($|&)
 RewriteRule ^$ /items/brand.php?tag=%2 [R=302]
+
+# 2018-11-27
+# アイテム一覧のディレクトリ変更
+RewriteCond %{REQUEST_URI} ^/items/category/(.*)/(index\.php|)$
+RewriteRule ^category/ /items/%1/ [R=302]
