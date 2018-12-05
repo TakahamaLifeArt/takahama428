@@ -219,27 +219,25 @@ $tax = json_decode($conn->salesTax(), true);
 						</div>
 					</div>
 					
+					<div class="sp-slide">
+						<div class="carousel-item hero-carousel__cell hero-carousel__cell--3 carousel-item_02">
+
+							<a class="slide-seo-parka" href="/original-parker-fast/"> 
+
+								<img class="sp-image slide_link_02" 
+									 data-src="/common/img/home/main/slide_parka.jpg"
+									 data-small="/common/img/home/main/slide_parka.jpg"
+									 data-medium="/common/img/home/main/slide_parka.jpg"
+									 data-large="/common/img/home/main/slide_parka.jpg" alt="こだわりのオリジナルパーカーが早く届く！"/>
+							</a>
+
+						</div>
+					</div>
+					
 
 
-					<?php
-					/*** strtotime(日付)で日付を指定して、HTMLタグの表示を切り替える**/
-					// 2018-09-29になったら、echo''を非表示にする
-					if (time() < strtotime('2018-09-29 0:00:00')) {
-						echo '<div class="sp-slide">';
-						echo '<div class="carousel-item hero-carousel__cell hero-carousel__cell--3 carousel-item_02">';
-						echo '<a class="slide-seo-anvil" href="/items/?tag=109">';
-						echo '<img class="sp-image slide_link_02"
-									 data-src="/common/img/home/main/anvil10off_pc.jpg" 
-									 data-small="/common/img/home/main/anvil10off_sp.jpg" 
-									 data-medium="/common/img/home/main/anvil10off_sp.jpg" 
-									 data-large="/common/img/home/main/anvil10off_pc.jpg" alt="anvil10%" />';
-						echo '</a>';
-						echo '</div>';
-						echo '</div>';
-					}
-					?>
+			
                     
-<!--
                      <div class="sp-slide">
 						<div class="carousel-item hero-carousel__cell hero-carousel__cell--3 carousel-item_02">
 
@@ -254,8 +252,21 @@ $tax = json_decode($conn->salesTax(), true);
 
 						</div>
 					</div>
--->
                     
+					<div class="sp-slide">
+						<div class="carousel-item hero-carousel__cell hero-carousel__cell--3 carousel-item_02">
+
+							<a class="slide-seo-noshi" href="/campaign/towel/noshi.php">
+
+								<img class="sp-image slide_link_02"
+									 data-src="/common/img/home/main/newyear_main-new.jpg" 
+									 data-small="/common/img/home/main/newyear_main-new.jpg" 
+									 data-medium="/common/img/home/main/newyear_main-new.jpg" 
+									 data-large="/common/img/home/main/newyear_main-new.jpg" alt="お年賀タオルの作成が今からでも間に合う！" />
+							</a>
+
+						</div>
+					</div>
 					
 				</div>
 			</div>
@@ -309,102 +320,102 @@ $tax = json_decode($conn->salesTax(), true);
 				<div class="owl-carousel owl-theme">
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item t-shirts_btn" href="/items/category/t-shirts/" alt="Tシャツ">
+						<a class="dropdown-item t-shirts_btn" href="/items/t-shirts/" alt="Tシャツ">
 							<img src="/items/img/item_01.jpg" width="100%" alt="Tシャツ">
 <p class="item_txt_min">Tシャツ</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item polo-shirts_btn" href="/items/category/polo-shirts/" alt="ポロシャツ">
+						<a class="dropdown-item polo-shirts_btn" href="/items/polo-shirts/" alt="ポロシャツ">
 							<img src="/items/img/item_03.jpg" width="100%" alt="ポロシャツ">
 <p class="item_txt_min">ポロシャツ</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item sweat_btn" href="/items/category/sweat/" alt="スウェット">
+						<a class="dropdown-item sweat_btn" href="/items/sweat/" alt="スウェット">
 							<img src="/items/img/item_02.jpg" width="100%" alt="スウェット">
 <p class="item_txt_min">スウェット</p>
 </a>
 					</div>
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item towel_btn" href="/items/category/towel/" alt="タオル">
+						<a class="dropdown-item towel_btn" href="/items/towel/" alt="タオル">
 							<img src="/items/img/item_08.jpg" width="100%" alt="タオル">
 <p class="item_txt_min">タオル</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item sportswear_btn" href="/items/category/sportswear/" alt="スポーツ">
+						<a class="dropdown-item sportswear_btn" href="/items/sportswear/" alt="スポーツ">
 							<img src="/items/img/item_04.jpg" width="100%" alt="スポーツ">
 <p class="item_txt_min">スポーツ</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item outer_btn" href="/items/category/outer/" alt="ブルゾン">
+						<a class="dropdown-item outer_btn" href="/items/outer/" alt="ブルゾン">
 							<img src="/items/img/item_06.jpg" width="100%" alt="ブルゾン">
 <p class="item_txt_min">ブルゾン</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item long-shirts_btn" href="/items/category/long-shirts/" alt="長袖Tシャツ">
+						<a class="dropdown-item long-shirts_btn" href="/items/long-shirts/" alt="長袖Tシャツ">
 							<img src="/items/img/item_05.jpg" width="100%" alt="長袖Tシャツ">
 <p class="item_txt_min">長袖Tシャツ</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item tote-bag_btn" href="/items/category/tote-bag/" alt="バッグ">
+						<a class="dropdown-item tote-bag_btn" href="/items/tote-bag/" alt="バッグ">
 							<img src="/items/img/item_09.jpg" width="100%" alt="バッグ">
 <p class="item_txt_min">バッグ</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item cap_btn" href="/items/category/cap/" alt="キャップ">
+						<a class="dropdown-item cap_btn" href="/items/cap/" alt="キャップ">
 							<img src="/items/img/item_14.jpg" width="100%" alt="キャップ">
 <p class="item_txt_min">キャップ</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item apron_btn" href="/items/category/apron/" alt="エプロン">
+						<a class="dropdown-item apron_btn" href="/items/apron/" alt="エプロン">
 							<img src="/items/img/item_10.jpg" width="100%" alt="エプロン">
 <p class="item_txt_min">エプロン</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item baby_btn" href="/items/category/baby/" alt="ベビー">
+						<a class="dropdown-item baby_btn" href="/items/baby/" alt="ベビー">
 							<img src="/items/img/item_11.jpg" width="100%" alt="ベビー">
 <p class="item_txt_min">ベビー</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item overall_btn" href="/items/category/overall/" alt="つなぎ">
+						<a class="dropdown-item overall_btn" href="/items/overall/" alt="つなぎ">
 							<img src="/items/img/item_12.jpg" width="100%" alt="つなぎ">
 <p class="item_txt_min">つなぎ</p>
 </a>
 					</div>
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item ladys_btn" href="/items/category/ladys/" alt="レディース">
+						<a class="dropdown-item ladys_btn" href="/items/ladys/" alt="レディース">
 							<img src="/items/img/item_07.jpg" width="100%" alt="レディース">
 <p class="item_txt_min">レディース</p>
 </a>
 					</div>
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item goods_btn" href="/items/category/workwear/" alt="ワークウェア">
+						<a class="dropdown-item goods_btn" href="/items/workwear/" alt="ワークウェア">
 							<img src="/items/img/item_13.jpg" width="100%" alt="ワークウェア">
 <p class="item_txt_min">ワークウェア</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item goods_btn" href="/items/category/goods/" alt="記念品">
+						<a class="dropdown-item goods_btn" href="/items/goods/" alt="記念品">
 							<img src="/items/img/item_15.jpg" width="100%" alt="記念品">
 <p class="item_txt_min">記念品</p>
 </a>
@@ -418,21 +429,21 @@ $tax = json_decode($conn->salesTax(), true);
 					<div class="row">
 
 						<div class="navi_inner_2 btn">
-							<a class="dropdown-item t-shirts_btn" href="/items/category/t-shirts/" alt="Tシャツ">
+							<a class="dropdown-item t-shirts_btn" href="/items/t-shirts/" alt="Tシャツ">
 								<img src="/items/img/item_01.jpg" width="100%" alt="Tシャツ">
 							<p class="item_txt_min">Tシャツ</p>
 						</a>
 						</div>
 
 						<div class="navi_inner_2 btn">
-							<a class="dropdown-item polo-shirts_btn" href="/items/category/polo-shirts/" alt="ポロシャツ">
+							<a class="dropdown-item polo-shirts_btn" href="/items/polo-shirts/" alt="ポロシャツ">
 								<img src="/items/img/item_03.jpg" width="100%" alt="ポロシャツ">
 							<p class="item_txt_min">ポロシャツ</p>
 						</a>
 						</div>
 
 						<div class="navi_inner_2 btn">
-							<a class="dropdown-item towel_btn" href="/items/category/towel/" alt="タオル">
+							<a class="dropdown-item towel_btn" href="/items/towel/" alt="タオル">
 								<img src="/items/img/item_08.jpg" width="100%" alt="タオル">
 							<p class="item_txt_min">タオル</p>
 						</a>
@@ -441,21 +452,21 @@ $tax = json_decode($conn->salesTax(), true);
 
 					<div class="row">
 						<div class="navi_inner_2 btn">
-							<a class="dropdown-item sweat_btn" href="/items/category/sweat/" alt="スウェット">
+							<a class="dropdown-item sweat_btn" href="/items/sweat/" alt="スウェット">
 								<img src="/items/img/item_02.jpg" width="100%" alt="スウェット">
 							<p class="item_txt_min">スウェット</p>
 						</a>
 						</div>
 
 						<div class="navi_inner_2 btn">
-							<a class="dropdown-item sportswear_btn" href="/items/category/sportswear/" alt="スポーツ">
+							<a class="dropdown-item sportswear_btn" href="/items/sportswear/" alt="スポーツ">
 								<img src="/items/img/item_04.jpg" width="100%" alt="スポーツ">
 							<p class="item_txt_min">スポーツ</p>
 						</a>
 						</div>
 
 						<div class="navi_inner_2 btn">
-							<a class="dropdown-item long-shirts_btn" href="/items/category/long-shirts/" alt="長袖Tシャツ">
+							<a class="dropdown-item long-shirts_btn" href="/items/long-shirts/" alt="長袖Tシャツ">
 								<img src="/items/img/item_05.jpg" width="100%" alt="長袖Tシャツ">
 							<p class="item_txt_min">長袖Tシャツ</p>
 						</a>
@@ -1781,7 +1792,7 @@ $tax = json_decode($conn->salesTax(), true);
 					<div class="cont">
 						<!-- flexboxのコンテナ -->
 						<div class="item btn waves-effect waves-light">
-							<a href="/items/?tag=58">
+							<a href="/items/brand.php.php?tag=58">
 								<div class="bland_a">
 									<img src="img/bland_01.png" width="100%" alt="Printstarのロゴ">
 								</div>
@@ -1794,7 +1805,7 @@ $tax = json_decode($conn->salesTax(), true);
 						</div>
 
 						<div class="item btn waves-effect waves-light">
-							<a href="/items/?tag=59">
+							<a href="/items/brand.php?tag=59">
 								<div class="bland_a">
 									<img src="img/bland_02.png" width="100%" alt="United Athleのロゴ">
 								</div>
@@ -1807,7 +1818,7 @@ $tax = json_decode($conn->salesTax(), true);
 						</div>
 
 						<div class="item btn waves-effect waves-light">
-							<a href="/items/?tag=108">
+							<a href="/items/brand.php?tag=108">
 								<div class="bland_a">
 									<img src="img/bland_03.png" width="100%" alt="GILDANのロゴ">
 								</div>
@@ -1820,7 +1831,7 @@ $tax = json_decode($conn->salesTax(), true);
 						</div>
 
 						<div class="item btn waves-effect waves-light">
-							<a href="/items/?tag=60">
+							<a href="/items/brand.php?tag=60">
 								<div class="bland_a">
 									<img src="img/bland_04.png" width="100%" alt="Glimmerのロゴ">
 								</div>
@@ -1833,7 +1844,7 @@ $tax = json_decode($conn->salesTax(), true);
 						</div>
 
 						<div class="item btn waves-effect waves-light">
-							<a href="/items/?tag=54">
+							<a href="/items/brand.php?tag=54">
 								<div class="bland_d">
 									<img src="img/bland_05.png" width="100%" alt="TRUSSのロゴ">
 								</div>
@@ -1845,7 +1856,7 @@ $tax = json_decode($conn->salesTax(), true);
 						</div>
 
 						<div class="item btn waves-effect waves-light">
-							<a href="/items/?tag=55">
+							<a href="/items/brand.php?tag=55">
 								<div class="bland_b">
 									<img src="img/bland_06.png" width="100%" alt="CROSS&STITCHのロゴ">
 								</div>
@@ -1857,7 +1868,7 @@ $tax = json_decode($conn->salesTax(), true);
 						</div>
 
 						<div class="item btn waves-effect waves-light">
-							<a href="/items/?tag=62">
+							<a href="/items/brand.php?tag=62">
 								<div class="bland_a">
 									<img src="img/bland_07.png" width="100%" alt="CROSSのロゴ">
 								</div>
@@ -1869,7 +1880,7 @@ $tax = json_decode($conn->salesTax(), true);
 						</div>
 
 						<div class="item btn waves-effect waves-light">
-							<a href="/items/?tag=61">
+							<a href="/items/brand.php?tag=61">
 								<div class="bland_c">
 									<img src="img/bland_08.png" width="100%" alt="wundouのロゴ">
 								</div>
@@ -1881,7 +1892,7 @@ $tax = json_decode($conn->salesTax(), true);
 						</div>
 
 						<div class="item btn waves-effect waves-light">
-							<a href="/items/?tag=67">
+							<a href="/items/brand.php?tag=67">
 								<div class="bland_a">
 									<img src="img/bland_09.png" width="100%" alt="ruccaのロゴ">
 								</div>
@@ -1894,7 +1905,7 @@ $tax = json_decode($conn->salesTax(), true);
 						</div>
 
 						<div class="item btn waves-effect waves-light">
-							<a href="/items/?tag=66">
+							<a href="/items/brand.php?tag=66">
 								<div class="bland_a">
 									<img src="img/bland_10.png" width="100%" alt="AIMYのロゴ">
 								</div>
@@ -1907,7 +1918,7 @@ $tax = json_decode($conn->salesTax(), true);
 						</div>
 
 						<div class="item btn waves-effect waves-light">
-							<a href="/items/?tag=68">
+							<a href="/items/brand.php?tag=68">
 								<div class="bland_d">
 									<img src="img/bland_11.png" width="100%" alt="DALUCのロゴ">
 								</div>
@@ -1919,7 +1930,7 @@ $tax = json_decode($conn->salesTax(), true);
 						</div>
 
 						<div class="item btn waves-effect waves-light">
-							<a href="/items/?tag=69">
+							<a href="/items/brand.php?tag=69">
 								<div class="bland_d">
 									<img src="img/bland_12.png" width="100%" alt="TouchandGoのロゴ">
 								</div>
@@ -1931,7 +1942,7 @@ $tax = json_decode($conn->salesTax(), true);
 						</div>
 
 						<div class="item btn waves-effect waves-light">
-							<a href="/items/?tag=56">
+							<a href="/items/brand.php?tag=56">
 								<div class="bland_a">
 									<img src="img/bland_13.png" width="100%" alt="BEES&BEAMのロゴ">
 								</div>
@@ -1944,7 +1955,7 @@ $tax = json_decode($conn->salesTax(), true);
 						</div>
 
 						<div class="item btn waves-effect waves-light">
-							<a href="/items/?tag=124">
+							<a href="/items/brand.php?tag=124">
 								<div class="bland_b">
 									<img src="img/brand/logo_272.png" width="100%" alt="Fruit of the Loom のロゴ">
 								</div>
@@ -1957,7 +1968,7 @@ $tax = json_decode($conn->salesTax(), true);
 						</div>
 
 						<div class="item btn waves-effect waves-light">
-							<a href="/items/?tag=65">
+							<a href="/items/brand.php?tag=65">
 								<div class="bland_d">
 									<img src="img/bland_14.png" width="100%" alt="SOWAのロゴ">
 								</div>
@@ -1969,7 +1980,7 @@ $tax = json_decode($conn->salesTax(), true);
 						</div>
 
 						<div class="item btn waves-effect waves-light">
-							<a href="/items/?tag=43">
+							<a href="/items/brand.php?tag=43">
 								<div class="bland_a">
 									<img src="img/bland_15.png" width="100%" alt="Championのロゴ">
 								</div>
@@ -1982,7 +1993,7 @@ $tax = json_decode($conn->salesTax(), true);
 						</div>
 
 						<div class="item btn waves-effect waves-light">
-							<a href="/items/?tag=125">
+							<a href="/items/brand.php?tag=125">
 								<div class="bland_a">
 									<img src="img/brand/logo_273.png" width="100%" alt="LIFEMAXのロゴ">
 								</div>
@@ -1995,7 +2006,7 @@ $tax = json_decode($conn->salesTax(), true);
 						</div>
 
 						<div class="item btn waves-effect waves-light">
-							<a href="/items/?tag=126">
+							<a href="/items/brand.php?tag=126">
 								<div class="bland_b">
 									<img src="img/brand/logo_274.png" width="100%" alt="NEWHATTANのロゴ">
 								</div>
@@ -2022,7 +2033,7 @@ American&nbsp;Apparel<br>アメリカンアパレル
 -->
 
 						<div class="item btn waves-effect waves-light">
-							<a href="/items/?tag=109">
+							<a href="/items/brand.php?tag=109">
 								<div class="bland_d">
 									<img src="img/bland_16.png" width="100%" alt="ANVILのロゴ">
 								</div>
@@ -2034,7 +2045,7 @@ American&nbsp;Apparel<br>アメリカンアパレル
 						</div>
 
 						<div class="item btn waves-effect waves-light">
-							<a href="/items/?tag=110">
+							<a href="/items/brand.php?tag=110">
 								<div class="bland_a">
 									<img src="img/bland_17.png" width="100%" alt="COMFORTCOLORSのロゴ">
 								</div>
@@ -2047,7 +2058,7 @@ American&nbsp;Apparel<br>アメリカンアパレル
 						</div>
 
 						<div class="item btn waves-effect waves-light">
-							<a href="/items/?tag=127">
+							<a href="/items/brand.php?tag=127">
 								<div class="bland_d">
 									<img src="img/brand/logo_275.png" width="100%" alt="OTTOのロゴ">
 								</div>
@@ -2059,7 +2070,7 @@ American&nbsp;Apparel<br>アメリカンアパレル
 						</div>
 
 						<div class="item btn waves-effect waves-light">
-							<a href="/items/?tag=130">
+							<a href="/items/brand.php?tag=130">
 								<div class="bland_a">
 									<img src="img/brand/logo_278.png" width="100%" alt="dyenomite apparelのロゴ">
 								</div>
@@ -2072,7 +2083,7 @@ American&nbsp;Apparel<br>アメリカンアパレル
 						</div>
 
 						<div class="item btn waves-effect waves-light">
-							<a href="/items/?tag=128">
+							<a href="/items/brand.php?tag=128">
 								<div class="bland_b">
 									<img src="img/brand/logo_276.png" width="100%" alt="RABBIT SKINSのロゴ">
 								</div>
@@ -2199,7 +2210,7 @@ American&nbsp;Apparel<br>アメリカンアパレル
 							<a href="/contact/line/">LINE</a>等でプリントのイメージをお伝えください。
 							（例 ： 胸○色、～とフォントを打つ。背中に○色でイラストが入るなど。）
 							その後こちらで予算に合わせたプリント方法を算出いたしますのでご参考ください。
-							（安価で仕上げる場合、いろいろなデメリットが出てくることをご了承ください。）
+						
 							また当WEBサイトでは<a href="/price/estimate.php">自動で見積り金額</a>を算出するサービスがありますので、ぜひご活用下さい。
 						</p>
 
@@ -2211,7 +2222,7 @@ American&nbsp;Apparel<br>アメリカンアパレル
 							インクジェットの濃色と淡色の金額の違いは？
 						</h3>
 						<p class="sub">
-							淡色のほうが濃色より2,000円程高い金額です。<br>
+							濃色のほうが淡色より2,000円程高い金額です。<br>
 							淡色は白や薄い色の生地に使用できる加工で、濃色は黒など濃い色の生地に使用できる加工方法です。<br>
 							詳しくは<a href="/print/inkjet.php">インクジェットプリントの説明ページ</a>をご参照下さい。
 						</p>

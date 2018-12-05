@@ -314,21 +314,21 @@ if( empty($_SESSION['me']) ){
 				<label for="label1">アイテム</label>
 				<div class="accshow">
 					<div class="list_block">
-						<div class="list_ttl"><a href="/items/category/t-shirts/" class="item_munu">Tシャツ</a></div>
-						<div class="list_ttl"><a href="/items/category/sweat/" class="item_munu">スウェット</a></div>
-						<div class="list_ttl"><a href="/items/category/polo-shirts/" class="item_munu">ポロシャツ</a></div>
-						<div class="list_ttl"><a href="/items/category/outer/" class="item_munu">ブルゾン</a></div>
-						<div class="list_ttl"><a href="/items/category/towel/" class="item_munu">タオル</a></div>
-						<div class="list_ttl"><a href="/items/category/workwear/" class="item_munu">ワークウェア</a></div>
-						<div class="list_ttl"><a href="/items/category/tote-bag/" class="item_munu">バッグ</a></div>
-						<div class="list_ttl"><a href="/items/category/ladys/" class="item_munu">レディース</a></div>
-						<div class="list_ttl"><a href="/items/category/long-shirts/" class="item_munu">長袖Tシャツ</a></div>
-						<div class="list_ttl"><a href="/items/category/overall/" class="item_munu">つなぎ</a></div>
-						<div class="list_ttl"><a href="/items/category/apron/" class="item_munu">エプロン</a></div>
-						<div class="list_ttl"><a href="/items/category/baby/" class="item_munu">ベビー</a></div>
-						<div class="list_ttl"><a href="/items/category/cap/" class="item_munu">キャップ</a></div>
-						<div class="list_ttl"><a href="/items/category/goods/" class="item_munu">記念品</a></div>
-						<div class="list_ttl"><a href="/items/category/sportswear/" class="item_munu">スポーツ</a></div>
+						<div class="list_ttl"><a href="/items/t-shirts/" class="item_munu">Tシャツ</a></div>
+						<div class="list_ttl"><a href="/items/sweat/" class="item_munu">スウェット</a></div>
+						<div class="list_ttl"><a href="/items/polo-shirts/" class="item_munu">ポロシャツ</a></div>
+						<div class="list_ttl"><a href="/items/outer/" class="item_munu">ブルゾン</a></div>
+						<div class="list_ttl"><a href="/items/towel/" class="item_munu">タオル</a></div>
+						<div class="list_ttl"><a href="/items/workwear/" class="item_munu">ワークウェア</a></div>
+						<div class="list_ttl"><a href="/items/tote-bag/" class="item_munu">バッグ</a></div>
+						<div class="list_ttl"><a href="/items/ladys/" class="item_munu">レディース</a></div>
+						<div class="list_ttl"><a href="/items/long-shirts/" class="item_munu">長袖Tシャツ</a></div>
+						<div class="list_ttl"><a href="/items/overall/" class="item_munu">つなぎ</a></div>
+						<div class="list_ttl"><a href="/items/apron/" class="item_munu">エプロン</a></div>
+						<div class="list_ttl"><a href="/items/baby/" class="item_munu">ベビー</a></div>
+						<div class="list_ttl"><a href="/items/cap/" class="item_munu">キャップ</a></div>
+						<div class="list_ttl"><a href="/items/goods/" class="item_munu">記念品</a></div>
+						<div class="list_ttl"><a href="/items/sportswear/" class="item_munu">スポーツ</a></div>
 					</div>
 				</div>
 				<!--//ラベル1-->
@@ -371,6 +371,7 @@ if( empty($_SESSION['me']) ){
 						<div class="list_ttl"><a href="/design/position.php" class="list_munu">参考プリント位置</a></div>
 						<div class="list_ttl"><a href="/campaign/towel/" class="list_munu">タオルプリントサイズ</a></div>
 						<div class="list_ttl"><a href="/design/emb.php" class="list_munu">刺繍・名入れサービス</a></div>
+						<div class="list_ttl"><a href="/campaign/towel/noshi.php" class="list_munu">短納期粗品タオル</a></div>
 					</div>
 				</div>
 				<!--//ラベル4-->
@@ -381,7 +382,7 @@ if( empty($_SESSION['me']) ){
 					<div class="list_block">
 						<div class="list_ttl"><a href="/design/designguide.php" class="list_munu">デザインの入稿・作り方</a></div>
 						<div class="list_ttl"><a href="/design/template_illust.php" class="list_munu">イラレ入稿テンプレート</a></div>
-<!--                        <div class="list_ttl"><a href="/design/designsimulator.php" class="list_munu">デザインシミュレーター</a></div>-->
+                        <div class="list_ttl"><a href="/design/designsimulator.php" class="list_munu">デザインシミュレーター</a></div>
 						<div class="list_ttl"><a href="/design/designtemp.php" class="list_munu">無料デザイン素材</a></div>
 						<div class="list_ttl"><a href="/design/gallery.php" class="list_munu">デザインギャラリー</a></div>
 						<div class="list_ttl"><a href="/design/fontcolor.php" class="list_munu">インク・フォント</a></div>
@@ -395,6 +396,7 @@ if( empty($_SESSION['me']) ){
 				<div class="accshow">
 					<div class="list_block">
 						<div class="list_ttl"><a href="/corporate/overview.php" class="list_munu">会社概要</a></div>
+						<div class="list_ttl"><a href="https://www.takahama428.com/app/WP/reservation/" class="list_munu">来社予約</a></div>
 						<div class="list_ttl"><a href="/userreviews/" class="list_munu">お客様レビュー</a></div>
 						<div class="list_ttl"><a href="/app/WP/" class="list_munu">スタッフブログ</a></div>
 						<div class="list_ttl"><a href="/app/WP/thanks-blog/" class="list_munu">製作実例</a></div>
@@ -424,7 +426,7 @@ if( empty($_SESSION['me']) ){
 					<div class="g-nav_item_wrap">
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/category/t-shirts/" type="button">
+								<a class="" href="/items/t-shirts/" type="button">
 									<img src="/items/img/item_01.jpg" width="100%" alt="Tシャツ">
 									<p class="g-nav_item_txt_min">Tシャツ</p>
 								</a>
@@ -432,7 +434,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/category/polo-shirts/" type="button">
+								<a class="" href="/items/polo-shirts/" type="button">
 									<img src="/items/img/item_03.jpg" width="100%" alt="ポロシャツ">
 									<p class="g-nav_item_txt_min">ポロシャツ</p>
 								</a>
@@ -440,7 +442,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/category/sweat/" type="button">
+								<a class="" href="/items/sweat/" type="button">
 									<img src="/items/img/item_02.jpg" width="100%" alt="スウェット">
 									<p class="g-nav_item_txt_min">スウェット</p>
 								</a>
@@ -448,7 +450,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/category/towel/" type="button">
+								<a class="" href="/items/towel/" type="button">
 									<img src="/items/img/item_08.jpg" width="100%" alt="タオル">
 									<p class="g-nav_item_txt_min">タオル</p>
 								</a>
@@ -456,7 +458,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/category/sportswear/" type="button">
+								<a class="" href="/items/sportswear/" type="button">
 									<img src="/items/img/item_04.jpg" width="100%" alt="スポーツ">
 									<p class="g-nav_item_txt_min">スポーツ</p>
 								</a>
@@ -464,7 +466,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/category/outer/" type="button">
+								<a class="" href="/items/outer/" type="button">
 									<img src="/items/img/item_06.jpg" width="100%" alt="ブルゾン">
 									<p class="g-nav_item_txt_min">ブルゾン</p>
 								</a>
@@ -472,7 +474,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/category/long-shirts/" type="button">
+								<a class="" href="/items/long-shirts/" type="button">
 									<img src="/items/img/item_05.jpg" width="100%" alt="長袖Tシャツ">
 									<p class="g-nav_item_txt_min">長袖Tシャツ</p>
 								</a>
@@ -480,7 +482,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/category/tote-bag/" type="button">
+								<a class="" href="/items/tote-bag/" type="button">
 									<img src="/items/img/item_09.jpg" width="100%" alt="バッグ">
 									<p class="g-nav_item_txt_min">バッグ</p>
 								</a>
@@ -488,7 +490,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/category/cap/" type="button">
+								<a class="" href="/items/cap/" type="button">
 									<img src="/items/img/item_14.jpg" width="100%" alt="キャップ">
 									<p class="g-nav_item_txt_min">キャップ</p>
 								</a>
@@ -496,7 +498,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/category/apron/" type="button">
+								<a class="" href="/items/apron/" type="button">
 									<img src="/items/img/item_10.jpg" width="100%" alt="エプロン">
 									<p class="g-nav_item_txt_min">エプロン</p>
 								</a>
@@ -504,7 +506,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/category/baby/" type="button">
+								<a class="" href="/items/baby/" type="button">
 									<img src="/items/img/item_11.jpg" width="100%" alt="ベビー">
 									<p class="g-nav_item_txt_min">ベビー</p>
 								</a>
@@ -512,7 +514,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/category/overall/" type="button">
+								<a class="" href="/items/overall/" type="button">
 									<img src="/items/img/item_12.jpg" width="100%" alt="つなぎ">
 									<p class="g-nav_item_txt_min">つなぎ</p>
 								</a>
@@ -520,7 +522,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/category/ladys/" type="button">
+								<a class="" href="/items/ladys/" type="button">
 									<img src="/items/img/item_07.jpg" width="100%" alt="レディース">
 									<p class="g-nav_item_txt_min">レディース</p>
 								</a>
@@ -528,7 +530,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/category/workwear/" type="button">
+								<a class="" href="/items/workwear/" type="button">
 									<img src="/items/img/item_13.jpg" width="100%" alt="ワークウェア">
 									<p class="g-nav_item_txt_min">ワークウェア</p>
 								</a>
@@ -536,7 +538,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/category/goods/" type="button">
+								<a class="" href="/items/goods/" type="button">
 									<img src="/items/img/item_15.jpg" width="100%" alt="記念品">
 									<p class="g-nav_item_txt_min">記念品</p>
 								</a>
@@ -586,6 +588,7 @@ if( empty($_SESSION['me']) ){
 					<li><a href="/design/position.php">参考プリント位置</a></li>
 					<li><a href="/campaign/towel/">タオルプリントサイズ</a></li>
 					<li><a href="/design/emb.php">刺繍・名入れサービス</a></li>
+					<li><a href="/campaign/towel/noshi.php">短納期粗品タオル</a></li>
 				</ul>
 			</li>
 			<li class="gnavi_title">
@@ -593,7 +596,7 @@ if( empty($_SESSION['me']) ){
 				<ul>
 					<li><a href="/design/designguide.php">デザインの入稿・作り方</a></li>
 					<li><a href="/design/template_illust.php">イラレ入稿テンプレート</a></li>
-<!--                    <li><a href="/design/designsimulator.php">デザインシミュレーター</a></li>-->
+                    <li><a href="/design/designsimulator.php">デザインシミュレーター</a></li>
 					<li><a href="/design/designtemp.php">無料デザイン集</a></li>
 					<li><a href="/design/gallery.php">デザインギャラリー</a></li>
 					<li><a href="/design/fontcolor.php">インク・フォント</a></li>
@@ -604,6 +607,7 @@ if( empty($_SESSION['me']) ){
 				<div class="gnavi_ttl">会社紹介</div>
 				<ul>
 					<li><a href="/corporate/overview.php">会社概要</a></li>
+					<li><a href="https://www.takahama428.com/app/WP/reservation/">来社予約</a></li>
 					<li><a href="/userreviews/">お客様レビュー</a></li>
 					<li><a href="/app/WP/">スタッフブログ</a></li>
 					<li><a href="/app/WP/thanks-blog/">製作実例</a></li>
@@ -1010,105 +1014,105 @@ if( empty($_SESSION['me']) ){
 						<div class="menu_box">
 							<div>
 								<div class="navi_inner_3">
-									<a class="dropdown-item t-shirts_btn" href="/items/category/t-shirts/" type="button">
+									<a class="dropdown-item t-shirts_btn" href="/items/t-shirts/" type="button">
 										<img src="/items/img/item_01.jpg" width="100%" alt="Tシャツ">
 										<p class="item_txt_min">Tシャツ</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item polo-shirts_btn" href="/items/category/polo-shirts/" type="button">
+									<a class="dropdown-item polo-shirts_btn" href="/items/polo-shirts/" type="button">
 										<img src="/items/img/item_03.jpg" width="100%" alt="ポロシャツ">
 										<p class="item_txt_min">ポロシャツ</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item sweat_btn" href="/items/category/sweat/" type="button">
+									<a class="dropdown-item sweat_btn" href="/items/sweat/" type="button">
 										<img src="/items/img/item_02.jpg" width="100%" alt="スウェット">
 										<p class="item_txt_min">スウェット</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item towel_btn" href="/items/category/towel/" type="button">
+									<a class="dropdown-item towel_btn" href="/items/towel/" type="button">
 										<img src="/items/img/item_08.jpg" width="100%" alt="タオル">
 										<p class="item_txt_min">タオル</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item sportswear_btn" href="/items/category/sportswear/" type="button">
+									<a class="dropdown-item sportswear_btn" href="/items/sportswear/" type="button">
 										<img src="/items/img/item_04.jpg" width="100%" alt="スポーツ">
 										<p class="item_txt_min">スポーツ</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item outer_btn" href="/items/category/outer/" type="button">
+									<a class="dropdown-item outer_btn" href="/items/outer/" type="button">
 										<img src="/items/img/item_06.jpg" width="100%" alt="ブルゾン">
 										<p class="item_txt_min">ブルゾン</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item long-shirts_btn" href="/items/category/long-shirts/" type="button">
+									<a class="dropdown-item long-shirts_btn" href="/items/long-shirts/" type="button">
 										<img src="/items/img/item_05.jpg" width="100%" alt="長袖Tシャツ">
 										<p class="item_txt_min">長袖Tシャツ</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item tote-bag_btn" href="/items/category/tote-bag/" type="button">
+									<a class="dropdown-item tote-bag_btn" href="/items/tote-bag/" type="button">
 										<img src="/items/img/item_09.jpg" width="100%" alt="バッグ">
 										<p class="item_txt_min">バッグ</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item cap_btn" href="/items/category/cap/" type="button">
+									<a class="dropdown-item cap_btn" href="/items/cap/" type="button">
 										<img src="/items/img/item_14.jpg" width="100%" alt="キャップ">
 										<p class="item_txt_min">キャップ</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item apron_btn" href="/items/category/apron/" type="button">
+									<a class="dropdown-item apron_btn" href="/items/apron/" type="button">
 										<img src="/items/img/item_10.jpg" width="100%" alt="エプロン">
 										<p class="item_txt_min">エプロン</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item baby_btn" href="/items/category/baby/" type="button">
+									<a class="dropdown-item baby_btn" href="/items/baby/" type="button">
 										<img src="/items/img/item_11.jpg" width="100%" alt="ベビー">
 										<p class="item_txt_min">ベビー</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item overall_btn" href="/items/category/overall/" type="button">
+									<a class="dropdown-item overall_btn" href="/items/overall/" type="button">
 										<img src="/items/img/item_12.jpg" width="100%" alt="つなぎ">
 										<p class="item_txt_min">つなぎ</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item ladys_btn" href="/items/category/ladys/" type="button">
+									<a class="dropdown-item ladys_btn" href="/items/ladys/" type="button">
 										<img src="/items/img/item_07.jpg" width="100%" alt="レディース">
 										<p class="item_txt_min">レディース</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item work_btn" href="/items/category/workwear/" type="button">
+									<a class="dropdown-item work_btn" href="/items/workwear/" type="button">
 										<img src="/items/img/item_13.jpg" width="100%" alt="ワークウェア">
 										<p class="item_txt_min">ワークウェア</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item goods_btn" href="/items/category/goods/" type="button">
+									<a class="dropdown-item goods_btn" href="/items/goods/" type="button">
 										<img src="/items/img/item_15.jpg" width="100%" alt="記念品">
 										<p class="item_txt_min">記念品</p>
 									</a>
@@ -1165,6 +1169,7 @@ if( empty($_SESSION['me']) ){
 					<a class="dropdown-item list-area" href="/design/position.php">参考プリント位置</a>
 					<a class="dropdown-item list-area" href="/campaign/towel/">タオルプリントサイズ</a>
 					<a class="dropdown-item list-area" href="/design/emb.php">刺繍・名入れサービス</a>
+					<a class="dropdown-item list-area" href="/campaign/towel/noshi.php">短納期粗品タオル</a>
 				</div>
 			</div>
 			<div class="btn-group dropdown global-menu" role="group">
@@ -1174,7 +1179,7 @@ if( empty($_SESSION['me']) ){
 				<div class="dropdown-menu dropdown-list lastlist">
 					<a class="dropdown-item list-area" href="/design/designguide.php">デザインの入稿・作り方</a>
 					<a class="dropdown-item list-area" href="/design/template_illust.php">イラレ入稿テンプレート</a>
-<!--                    <a class="dropdown-item list-area" href="/design/designsimulator.php">デザインシミュレーター</a>-->
+                    <a class="dropdown-item list-area" href="/design/designsimulator.php">デザインシミュレーター</a>
 					<a class="dropdown-item list-area" href="/design/designtemp.php">無料デザイン素材</a>
 					<a class="dropdown-item list-area" href="/design/gallery.php">デザインギャラリー</a>
 					<a class="dropdown-item list-area" href="/design/fontcolor.php">インク・フォント</a>
@@ -1188,6 +1193,7 @@ if( empty($_SESSION['me']) ){
 			</button>
 				<div class="dropdown-menu dropdown-list">
 					<a class="dropdown-item list-area" href="/corporate/overview.php">会社概要</a>
+					<a class="dropdown-item list-area" href="https://www.takahama428.com/app/WP/reservation/">来社予約</a>
 					<a class="dropdown-item list-area" href="/userreviews/">お客様レビュー</a>
 					<a class="dropdown-item list-area" href="/app/WP/">スタッフブログ</a>
 					<a class="dropdown-item list-area" href="/app/WP/thanks-blog/">製作実例</a>
