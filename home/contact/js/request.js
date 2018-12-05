@@ -1,7 +1,9 @@
-/*
-*	Takahama Life Art
-*	request module
-*/
+/**
+ * Takahama Life Art
+ * request module
+ * log
+ * 2018-11-02 郵便番号検索後の住所変更イベント発火を修正
+ */
 	
 $(function(){
 
@@ -12,10 +14,12 @@ $(function(){
 		window.location.href = '/contact/thanks.php?title=request';
 	});
 
-	// 郵便番号
-	$('#zipcode').on('change', function () {
+	eMailer.onValidate('#sendmail', function(){
+		// 郵便番号からの自動入力を反映
 		eMailer.onChanged('#addr0');
 		eMailer.onChanged('#addr1');
+		
+		return true;
 	});
 
 	// お名前にフォーカス

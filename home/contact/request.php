@@ -39,17 +39,18 @@ $_version = time();
 				<h1>資料請求も早い！</h1>
 			</div>
 			<div>
-				<img class="pc" src="/contact/img/sample_main.jpg" width="100%">
+				<img class="pc" src="/contact/img/sample_main.jpg" width="100%" alt="無料でサンプル貸出し！">
 			</div>
 			<div>
-				<img class="sp" src="/contact/img/sp_sample_main.jpg" width="100%">
+				<img class="sp" src="/contact/img/sp_sample_main.jpg" width="100%" alt="無料でサンプル貸出し！">
 			</div>
 
 			<h2 class="heading">無料でサンプルを貸出</h2>
 			<p>
-				&ldquo;ホームページだけじゃ分りにくい&rdquo;&ldquo;実際にTシャツを見たり触ったりしたい&rdquo;&ldquo;どんな感じにプリントされるのか確かめたい&rdquo;とお嘆きのあなたに朗報！<br>
-				<span class="fontred">無料</span>（ご返却送料はお客様ご負担）でサンプルをご確認いただけます。資料はお気軽にお申込み下さい。
-			</p>
+				&ldquo;ホームページだけじゃ分かりにくい&rdquo;<br> &ldquo;実際にTシャツを見たり触ったりしたい&rdquo;<br> &ldquo;どんな感じにプリントされるのか確かめたい&rdquo;<br>とお嘆きのあなたに朗報！</p>
+
+			<p class="samplefree"><span class="fontred">無料</span>（ご返却送料はお客様ご負担）でサンプルをご確認いただけます。資料はお気軽にお申込み下さい。</p>
+
 			<h3 class="heading3">資料の内容</h3>
 			<ul class="msg">
 				<li>メーカーの商品小冊子 ※返却不要</li>
@@ -78,9 +79,9 @@ $_version = time();
 								<tr>
 									<th><label>ご住所</label><span class="point">※</span></th>
 									<td>
-										<p>〒<input name="zipcode" id="zipcode" class="forZip" type="text" onkeyup="AjaxZip3.zip2addr(this,'','addr0','addr1');" required></p>
-										<p><input name="addr0" id="addr0" type="text" placeholder="都道府県" maxlength="4" required></p>
-										<p><input name="addr1" id="addr1" type="text" maxlength="56" required></p>
+										<p><input name="zipcode" id="zipcode" class="forZip p-zip" type="text" required></p>
+										<p><input name="addr0" id="addr0" class="p-region" type="text" placeholder="都道府県" maxlength="4" required></p>
+										<p><input name="addr1" id="addr1" class="p-locality p-street-address" type="text" maxlength="56" required></p>
 										<p><input name="addr2" id="addr2" type="text" maxlength="32"></p>
 									</td>
 								</tr>
@@ -131,7 +132,6 @@ $_version = time();
 	<div id="overlay-mask" class="fade"></div>
 
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
-	<script src="//ajaxzip3.github.io/ajaxzip3.js" defer></script>
 	<script src="//doozor.bitbucket.io/email/e-mailform.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
 	<script type="text/javascript" src="./js/request.js?v=<?php echo $_version;?>"></script>
 </body>
