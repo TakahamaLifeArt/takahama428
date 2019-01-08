@@ -39,8 +39,14 @@ if ( isset($userName, $_POST['ticket'], $_SESSION['ticket']) ) {
 	$price = rawurlencode(implode('#', $prices));
 	$size = rawurlencode(implode('#', $sizes));
 	
+	if (empty($_POST['attach'])) {
+		$attach = [];
+	} else {
+		$attach = json_decode($_POST['attach'], true);
+	}
+	
 	$ordermail = new Ordermail();
-	$isSend = $ordermail->send($obj, $_POST['uploadfilename']);
+	$isSend = $ordermail->send($obj, $attach);
 } else {
 	$isSend = false;
 	
@@ -188,7 +194,7 @@ DOC;
 			var itemId = "<?php echo $itemId;?>";
 			var price = "<?php echo $price;?>";
 			var size = "<?php echo $size;?>";
-			var reg = “1";
+			var reg = "1";
 			var CUID = "";
 			var component = "pc_tag_pcTrackingPage";
 			var ua = navigator.userAgent.toLowerCase();

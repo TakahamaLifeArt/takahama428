@@ -17,6 +17,7 @@
 				  2017-12-19 注文フロー改修に伴う更新
 				  2018-04-01 アップロードファイル名の変更を廃止
 				  2018-05-15 イメ画選択と後払いを追加
+				  2019-01-08 アップロードの仕様変更
 
 -------------------------------------------------------------- */
 require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/config.php';
@@ -28,11 +29,12 @@ class Ordermail extends Conndb{
 	/**
 	 * 注文メール本文を生成
 	 * @param {array} $args 注文データの配列 [$user, $design, $item, $option, $detail, $sum]
-	 * @param {array} uploadfilename アップロードしたデザインファイルのパス
+	 * @param {array} $uploadfilename アップロードしたデザインファイルのIDをキーにしたファイル名の配列
 	 * @return {boolean} true:成功
 	 *					 false:失敗
 	 */
-	public function send($args, $uploadfilename) {
+	public function send($args, $uploadfilename)
+	{
 		try {
 			mb_internal_encoding("UTF-8");
 			
@@ -52,16 +54,15 @@ class Ordermail extends Conndb{
 				'sum'=>$sum,
 			);
 			
-			// 受注システムに注文データを登録
-			if (!empty($uploadfilename)) {
-				// アップロードファイルのディレクトリ名を取得
-				$uploadDir = basename(dirname($uploadfilename[0], 1));
-			}
-			
 			// 受注システムから {orderid:受注番号, customerid:顧客ID} を受け取る
-			$registered = $this->insertOrderToDB($obj, $uploadDir);
+			$registered = $this->insertOrderToDB($obj);
 			$systemData = $registered[0];
 			$order_id = $systemData['orderid'];
+			
+			// 入稿データがある場合、受注番号を登録
+			if (!empty($uploadfilename) && !empty($order_id)) {
+				$this->setOrderId($uploadfilename, $order_id);
+			}
 			
 			/*
 			* design: {
@@ -298,18 +299,9 @@ class Ordermail extends Conndb{
 				$order_info_admin = "";
 				$order_info_user = "";
 			} else {
-				$uploadCount = count($uploadfilename);
-				if ($uploadCount===0) {
-					$order_info_admin .= "入稿データのアップロードが正常に完了していません。\n";
-					$order_info_admin .= "----------\n\n";
-				} else {
-					for ($a=0; $a<$uploadCount; $a++) {
-						$fname = basename($uploadfilename[$a]);
-						$order_info_user .= "◇ファイル名：　".rawurldecode($fname)."\n";
-						$order_info_admin .= "◇ファイル名：　"._ORDER_DOMAIN."/system/attachfile/".$order_id."/".$fname."\n";
-						$order_info_admin .= "◇元ファイル名：　".rawurldecode($fname)."\n";
-						$order_info_admin .= "------------------------------------------\n\n";
-					}
+				foreach ($uploadfilename as $id => $fileName) {
+					$order_info_user .= "◇ファイル名：　".$fileName."\n";
+					$order_info_admin .= "◇ファイル名：　".$fileName."\n";
 				}
 				
 				if (empty($order_id)) {
@@ -318,11 +310,10 @@ class Ordermail extends Conndb{
 					$order_info_admin .= "\n===\n\n";
 					
 					$order_info_admin .= "【 入稿ファイル 】\n";
-					for ($b=0; $b<count($uploadfilename); $b++) {
-						$fname = basename($uploadfilename[$b]);
-						$order_info_admin .= "◇URL：　".$_ORDER_DOMAIN."/system/attachfile/".$uploadDir."/".$fname."\n\n";
-						$order_info_admin .= "------------------------------------------\n\n";
+					foreach ($uploadfilename as $id => $fileName) {
+						$order_info_admin .= "◇ID： ".$id." - ".$fileName."\n";
 					}
+					$order_info_admin .= "------------------------------------------\n\n";
 				}
 				$order_info_admin .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
 				$order_info_user .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
@@ -364,12 +355,34 @@ class Ordermail extends Conndb{
 
 
 	/**
+	 * 入稿ファイルのデータテーブルに受注番号を登録する
+	 * @param {array} $uploadfilename  アップロードしたデザインファイルのIDをキーにしたファイル名の配列
+	 * @param {int}   $orderId  受注番号
+	 */
+	private function setOrderId($uploadfilename, $orderId)
+	{
+		$data['order_id'] = $orderId;
+		$data['id'] = [];
+		
+		foreach ($uploadfilename as $id => $fileName) {
+			$data['id'][] = $id;
+		}
+		
+		if (empty($data['id'])) return;
+		
+		$orders = new WebOrder();
+		$orders->db('update', 'uploads', $data);
+	}
+
+
+	/**
 	 * 追加注文メール本文を生成
 	 * @param {array} $args 注文データの配列
 	 * @return {boolean} true:成功
 	 *					 false:失敗
 	 */
-	public function sendReorder($args) {
+	public function sendReorder($args)
+	{
 		try {
 			mb_internal_encoding("UTF-8");
 
@@ -513,7 +526,8 @@ class Ordermail extends Conndb{
 	 * @param {array} attach		添付ファイル情報
 	 * @return {boolean} true:送信成功 , false:送信失敗
 	 */
-	protected function send_reorder_mail($mail_text, $name, $to, $attach=null){
+	protected function send_reorder_mail($mail_text, $name, $to, $attach=null)
+	{
 		mb_language("japanese");
 		mb_internal_encoding("UTF-8");
 		$sendto = _ORDER_EMAIL;
@@ -633,7 +647,8 @@ class Ordermail extends Conndb{
 	 * @param {array} addition		本文への追加[注文メール, 顧客への返信, 受注No.]
 	 * @return {boolean} true:送信成功 , false:送信失敗
 	 */
-	protected function send_mail($mail_text, $name, $to, $attach, $addition){
+	protected function send_mail($mail_text, $name, $to, $attach, $addition)
+	{
 		mb_language("japanese");
 		mb_internal_encoding("UTF-8");
 		$sendto = _ORDER_EMAIL;
@@ -751,10 +766,11 @@ class Ordermail extends Conndb{
 	/**
 	 * 受注システムに登録
 	 * @param {array} obj 注文情報 {$user, $design, $item, $option, $detail, $sum}
-	 * @param {array} uploadDir アップロードしたデザインファイルのディレクトリ
+	 * @param {array} uploadDir アップロードしたデザインファイルのディレクトリ (2018-12-26 廃止)
 	 * @return {array} [{orderid=>受注No. , customerid=>顧客ID}, ...]
 	 */
-	private function insertOrderToDB($obj, $uploadDir){
+	private function insertOrderToDB($obj)
+	{
 		$user = $obj['user'];
 		$designs = $obj['design'];
 		$items = $obj['item'];
@@ -1082,12 +1098,6 @@ class Ordermail extends Conndb{
 			$field12 = array();
 			$data12 = array();
 
-			// アップロードファイル
-			$upDir = '';
-			if (!empty($uploadDir) && $orderNumber===0) {
-				$upDir = $uploadDir;
-			}
-
 			// hash 1
 			$data3 = $this->hash1($field3, $data3);
 			$data12 = $this->hash1($field12, $data12);
@@ -1101,7 +1111,7 @@ class Ordermail extends Conndb{
 			$data9 = $this->hash2($field9, $orderink);
 			$data10 = $this->hash2($field10, $exchink);
 
-			$data = array($data1,$data2,$data3,$data4,$data5,$data6,$data7,$data8,$data9,$data10,$data12,$upDir,_SITE);
+			$data = array($data1,$data2,$data3,$data4,$data5,$data6,$data7,$data8,$data9,$data10,$data12,_SITE);
 
 			// 受注システムに登録
 			$res[] = $orders->db('insert', 'order', $data);
@@ -1269,7 +1279,8 @@ class WebOrder {
 	 *
 	 * @return {array} {orderid=>受注No. , customerid=>顧客ID}
 	 */
-	private function insert($conn, $table, $data){
+	private function insert($conn, $table, $data)
+	{
 		try{
 			switch($table){
 				case 'order':
@@ -1288,11 +1299,13 @@ class WebOrder {
 				 *	-----2016-12-07-------
 				 *	2017-11-09 添付ファイルの廃止に伴い仮引数を変更
 				 *	2017-11-17 アップロード先の変更に伴い仮引数で親ディレクトを指定
+				 *	2019-01-08 アップロードの仕様変更に伴い廃止
 				 *  upDir	アップロードされたファイルのあるディレクトリ
+				 *	-----------------------
 				 *  site 	注文サイト
 				 *	return	受注ID, 顧客ID, 顧客Number | プリント位置ID,, | インクID,, | インク色替えID,, | 見積追加行ID,,
 				 */
-					list($data1, $data2, $data3, $data4, $data5, $data6, $data7, $data8, $data9, $data10, $data12, $upDir, $site) = $data;
+					list($data1, $data2, $data3, $data4, $data5, $data6, $data7, $data8, $data9, $data10, $data12, $site) = $data;
 					$customer_id = 0;
 					$deli_id = 0;
 					$ship_id=0;
@@ -1661,36 +1674,6 @@ class WebOrder {
 						return null;
 					}
 
-					// 入稿データがアップロードされている場合
-					$isUpload = true;
-					if($upDir != ""){
-						$oldPath = $_SERVER['DOCUMENT_ROOT'].'/../../'._ORDER_VHOST.'/home/system/attachfile/'.$upDir;
-						$newPath = $_SERVER['DOCUMENT_ROOT'].'/../../'._ORDER_VHOST.'/home/system/attachfile/'.$orders_id;
-						
-						// 2018-04-01 廃止
-						// ファイル名を変更（design_受注ID_YYY-MM-DD_連番）
-//						$fileName = array();
-//						$up = 0;
-//						$today = date('Y-m-d');
-//						$root = $_SERVER['DOCUMENT_ROOT']."/";
-//						if ($handle = opendir($oldPath)) {
-//							setlocale(LC_ALL, 'ja_JP.UTF-8');
-//							while (false !== ($f = readdir($handle))) {
-//								if (is_dir($oldPath.'/'.$f)==false && $f != "." && $f != "..") {
-//									$extension = pathinfo($f, PATHINFO_EXTENSION);
-//									$newFileName = 'design_'.$orders_id.'_'.$today.'_'.$up.'.'.$extension;
-//									if (rename($oldPath.'/'.$f, $oldPath.'/'.$newFileName)) {
-//										$fileName[$up++] = $newFileName;
-//									}
-//								}
-//							}
-//							closedir($handle);
-//						}
-						
-						// ディレクトリ名を受注IDに変更
-						$isUpload = rename($oldPath, $newPath);
-					}
-					
 					return array('orderid'=>$orders_id, 'customerid'=>$customer_id);
 					break;
 
@@ -2031,7 +2014,8 @@ class WebOrder {
 	 *
 	 * @return 更新されたレコード数
 	 */
-	private function update($conn, $table, $data){
+	private function update($conn, $table, $data)
+	{
 		try{
 			$flg= true;
 			switch($table){
@@ -2214,6 +2198,19 @@ class WebOrder {
 									  $id);
 					}
 					break;
+				
+				case 'uploads':
+					if(count($data['id']) === 1){
+						$sql = sprintf("UPDATE uploads SET order_id=%d WHERE id=%d", $data["order_id"],$data['id'][0]);
+						$rs = $this->exe_sql($conn, $sql);
+					}else{
+						foreach($data['id'] as $id){
+							$sql = sprintf("UPDATE uploads SET order_id=%d WHERE id=%d", $data["order_id"],$id);
+							$rs = $this->exe_sql($conn, $sql);
+						}
+					}
+					$flg = false;
+					break;
 
 			}
 
@@ -2240,7 +2237,8 @@ class WebOrder {
 	 *
 	 * @return 検索結果の配列
 	 */
-	private function search($conn, $table, $data){
+	private function search($conn, $table, $data)
+	{
 		try{
 			if(isset($data) && !is_array($data)){
 				foreach($data as $key=>$val){

@@ -25,9 +25,7 @@ $_version = time();
 	<meta property="fb:app_id" content="1605142019732010">
 	<title>お申し込みフォーム ｜ オリジナルTシャツ【タカハマライフアート】</title>
 	<link rel="shortcut icon" href="/icon/favicon.ico">
-	<link rel="stylesheet" type="text/css" href="/user/js/upload/jquery.fileupload.css" media="screen">
-	<link rel="stylesheet" type="text/css" href="/user/js/upload/jquery.fileupload-ui.css" media="screen">
-	<link rel="stylesheet" type="text/css" href="/user/css/uploader.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="/user/css/uploader.css?v=<?php echo $_version;?>" media="screen">
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 	<link rel="stylesheet" type="text/css" href="./css/animations.css" media="screen">
 	<link rel="stylesheet" type="text/css" href="./css/order.css" media="screen">
@@ -49,9 +47,9 @@ $_version = time();
 		</div>
 
 		<div class="contents">
-            
+
 			<div class="step">
-                
+
 				<nav>
 					<ol class="cd-multi-steps text-bottom count">
 						<li class="current"><em>アイテム</em></li>
@@ -127,24 +125,24 @@ $_version = time();
 
 			<div class="step">
 				<div class="o_top_fl">
-            <div class="step_prev hoverable waves-effect hidden-sm-down">
+					<div class="step_prev hoverable waves-effect hidden-sm-down">
 						<i class="fa fa-chevron-left"></i>戻る
 					</div>
-                    <div class="o_top_step">
-				<nav>
-                    
-					<ol class="cd-multi-steps text-bottom count">
-						<li class="current"><em>アイテム</em></li>
-						<li><em>プリント</em></li>
-						<li><em>カート</em></li>
-					</ol>
-				</nav>
-                    </div>
-                    
-                   <div class="step_prev hoverable waves-effect hidden-md-up">
+					<div class="o_top_step">
+						<nav>
+
+							<ol class="cd-multi-steps text-bottom count">
+								<li class="current"><em>アイテム</em></li>
+								<li><em>プリント</em></li>
+								<li><em>カート</em></li>
+							</ol>
+						</nav>
+					</div>
+
+					<div class="step_prev hoverable waves-effect hidden-md-up">
 						<i class="fa fa-chevron-left"></i>戻る
-					</div> 
-                </div>
+					</div>
+				</div>
 
 				<section>
 					<h2><strong id="category_name"></strong></h2>
@@ -179,24 +177,24 @@ $_version = time();
 
 			<div class="step">
 				<div class="o_top_fl">
-            <div class="step_prev hoverable waves-effect hidden-sm-down">
+					<div class="step_prev hoverable waves-effect hidden-sm-down">
 						<i class="fa fa-chevron-left"></i>戻る
 					</div>
-                    <div class="o_top_step">
-				<nav>
-                    
-					<ol class="cd-multi-steps text-bottom count">
-						<li class="current"><em>アイテム</em></li>
-						<li><em>プリント</em></li>
-						<li><em>カート</em></li>
-					</ol>
-				</nav>
-                    </div>
-                    
-                   <div class="step_prev hoverable waves-effect hidden-md-up">
+					<div class="o_top_step">
+						<nav>
+
+							<ol class="cd-multi-steps text-bottom count">
+								<li class="current"><em>アイテム</em></li>
+								<li><em>プリント</em></li>
+								<li><em>カート</em></li>
+							</ol>
+						</nav>
+					</div>
+
+					<div class="step_prev hoverable waves-effect hidden-md-up">
 						<i class="fa fa-chevron-left"></i>戻る
-					</div> 
-                </div>
+					</div>
+				</div>
 				<section id="item_info">
 					<h2>カラー・枚数</h2>
 					<h3><ins>1.</ins>アイテムカラーの指定</h3>
@@ -242,10 +240,10 @@ $_version = time();
 
 			<div class="step">
 				<div class="o_top_fl">
-            <div class="step_prev hoverable waves-effect hidden-sm-down">
+					<div class="step_prev hoverable waves-effect hidden-sm-down">
 						<i class="fa fa-chevron-left"></i>戻る
 					</div>
-                    <div class="o_top_step">
+					<div class="o_top_step">
 						<nav>
 							<ol class="cd-multi-steps text-bottom count">
 								<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
@@ -253,12 +251,12 @@ $_version = time();
 								<li><em>カート</em></li>
 							</ol>
 						</nav>
-                    </div>
-                    
-                   <div class="step_prev hoverable waves-effect hidden-md-up">
+					</div>
+
+					<div class="step_prev hoverable waves-effect hidden-md-up">
 						<i class="fa fa-chevron-left"></i>戻る
-					</div> 
-                </div>
+					</div>
+				</div>
 
 				<section id="printing">
 					<h2>プリント</h2>
@@ -269,19 +267,19 @@ $_version = time();
 					</div>
 					<div class="pane">
 						<h3><ins>1.</ins>プリント位置を選択</h3>
-                        <div class="p_po">
-						<form method="post" action="">
-                            
-<!--                            nikami-->
-							<div class="form-group form-group_02 pos">
+						<div class="p_po">
+							<form method="post" action="">
+
+								<!--                            nikami-->
+								<div class="form-group form-group_02 pos">
+
+								</div>
+							</form>
+
+							<div class="form-group_2 area">
 
 							</div>
-						</form>
-
-						<div class="form-group_2 area">
-
 						</div>
-                            </div>
 
 						<h3><ins>2.</ins>プリント色数を選択</h3>
 						<form method="post" action="">
@@ -451,8 +449,8 @@ $_version = time();
 
 						<p class="note print_cond_note hidden"><span class="red_mark">※</span>プリント箇所やアイテムサイズにより、ご希望のサイズに対応できない場合もございます。</p>
 
-						
-						
+
+
 						<!--プリント方法をおまかせで選択した場合に表示-->
 						<div class="price_box_2">
 							<p class="print_re">合計金額は<span></span>で計算されました</p>
@@ -463,15 +461,15 @@ $_version = time();
 							<p class="note mb-1 inkjet_notice" hidden="hidden"><span class="red_mark">※</span>プリント色が生地より薄い色の場合、記載金額より高くなりますのでご了承ください</p>
 							<p class="note"><span class="red_mark">※</span>お見積もりは概算です。デザインの内容によって変更になる場合がございます。</p>
 						</div>
-						
-						
-						
+
+
+
 						<div class="btn_box flex_add">
 							<button class="btn add_btn add_print_area"><i class="fa fa-plus mr-1" aria-hidden="true"></i> プリント箇所を追加</button>
 							<button class="hidden btn del_print_area btn-outline-danger waves-effect del_btn_2">上記プリント情報を削除</button>
 						</div>
-						
-						
+
+
 					</div>
 
 					<div class="price_box">
@@ -493,10 +491,10 @@ $_version = time();
 
 			<div class="step">
 				<div class="o_top_fl">
-            <div class="step_prev hoverable waves-effect hidden-sm-down">
+					<div class="step_prev hoverable waves-effect hidden-sm-down">
 						<i class="fa fa-chevron-left"></i>戻る
 					</div>
-                    <div class="o_top_step">
+					<div class="o_top_step">
 						<nav>
 							<ol class="cd-multi-steps text-bottom count">
 								<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
@@ -504,12 +502,12 @@ $_version = time();
 								<li class="current"><em>カート</em></li>
 							</ol>
 						</nav>
-                    </div>
-                    
-                   <div class="step_prev hoverable waves-effect hidden-md-up">
+					</div>
+
+					<div class="step_prev hoverable waves-effect hidden-md-up">
 						<i class="fa fa-chevron-left"></i>戻る
-					</div> 
-                </div>
+					</div>
+				</div>
 
 				<section id="cart">
 					<h2>カート</h2>
@@ -571,7 +569,7 @@ $_version = time();
 
 						<div class="cart_price_min">
 							<p class="txt_ps">小計枚数:<span>0</span>枚</p>
-<!--							<p class="txt_ps">小計金額:<span>0</span>円(税抜)</p>-->
+							<!--							<p class="txt_ps">小計金額:<span>0</span>円(税抜)</p>-->
 						</div>
 						<button class="add_btn_or btn add_item">同じデザインで<br>別のアイテムを追加</button>
 					</div>
@@ -588,125 +586,53 @@ $_version = time();
 					<section id="manuscript">
 						<h3>デザインデータ入稿</h3>
 						<div class="cart_inner">
-							<p class="note">外部<span style="font-weight:bold;">ファイル転送サービス</span>をご利用くださいませ。</p>
+							<p class="mb-0">『ファイルを選択』をクリックした後、『入稿データをアップロード』をクリックしてください。</p>
+							<p class="red-text">※『入稿データをアップロード』をクリックしないと選択したファイルはアップロードされないのでご注意ください。</p>
 
-							<div id="upload_link" class="btn btn-success" style="margin-bottom: 50px;">
-								<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>ファイル転送サービス
-							</div>
-
-							<form id="fileupload" name="fileupload" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="POST" enctype="multipart/form-data" style="display:none;">
-								<div class="fileupload-buttonbar">
-									<div>
-										<!-- The fileinput-button span is used to style the file input field as button -->
-										<span class="btn btn-success fileinput-button">
-											<i class="fa fa-plus" aria-hidden="true"></i>
-											<span>ファイルを選択...</span>
-											<input type="file" name="files[]" multiple>
+							<p class="mb-0">アップロード上限サイズ：300MB（アップロード可能なファイル形式：jpeg, png, gif, ai, psd, zip）</p>
+							<form id="upload_form" action="https://takahamalifeart.com/uploader/api" method="POST" enctype="multipart/form-data">
+								<div class="input-group">
+									<label class="input-group-btn">
+										<span class="btn">
+											ファイルを選択
+											<input type="file" class="form-control" name="files[]" id="files" style="display:none" multiple>
 										</span>
-										<!--
-										<button type="submit" class="btn btn-primary start fade">
-											<i class="fa fa-cloud-upload" aria-hidden="true"></i>
-											<span>入稿する</span>
-										</button>
-										-->
-										<!-- The global file processing state -->
-										<span class="fileupload-process"></span>
-									</div>
-									<!-- The global progress state -->
-									<div class="fileupload-progress fade">
-										<!-- The global progress bar -->
-										<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-											<div class="progress-bar progress-bar-success" style="width:0%;"></div>
-										</div>
-										<!-- The extended global progress state -->
-										<div class="progress-extended">&nbsp;</div>
-									</div>
+									</label>
+									<input type="text" class="form-control filenames" readonly="">
 								</div>
-								<!-- The table listing the files available for upload/download -->
-								<table role="presentation" class="table table-striped" id="fileupload-table">
-									<tbody class="files"></tbody>
+								<table id="upload_list">
+									<thead><th colspan="2">入稿データ</th></thead>
+									<tbody>
+										<tr><td class="red-text">なし</td><td></td></tr>
+									</tbody>
 								</table>
+								
+								<button id="upload" type="submit" class="btn btn-success"> 入稿データをアップロード </button>
+								<div class="progress" style="display:none;">
+									<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
 							</form>
 
-							<script id="template-upload" type="text/x-tmpl">
-								{% for (var i=0, file; file=o.files[i]; i++) { %}
-								<tr class="template-upload fade">
-									<td>
-										<span class="preview"></span>
-									</td>
-									<td>
-										<p class="name">{%=file.name%}</p>
-										<strong class="error text-danger"></strong>
-									</td>
-									<td>
-										<p class="size">Processing...</p>
-										<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-											<div class="progress-bar progress-bar-success" style="width:0%;"></div>
-										</div>
-									</td>
-									<td>
-										{% if (!i && !o.options.autoUpload) { %}
-										<button class="btn btn-primary start" hidden disabled>
-											<i class="fa fa-cloud-upload" aria-hidden="true"></i>
-											<span>アップロード</span>
-										</button> {% } %} {% if (!i) { %}
-										<button class="btn btn-warning cancel">
-											<i class="fa fa-ban" aria-hidden="true"></i>
-											<span>キャンセル</span>
-										</button> {% } %}
-									</td>
-								</tr>
-								{% } %}
-							</script>
-							<!-- The template to display files available for download -->
-							<script id="template-download" type="text/x-tmpl">
-								{% for (var i=0, file; file=o.files[i]; i++) { %}
-								<tr class="template-download fade">
-									<td>
-										<span class="preview">
-										{% if (file.thumbnailUrl) { %}
-
-										{% } %}
-										</span>
-									</td>
-									<td>
-										<p class="name">
-											<span>{%=file.name%}</span>
-										</p>
-										<span class="path" hidden>{%=file.url%}</span> {% if (file.error) { %}
-										<div><span class="label label-danger">Error</span> {%=file.error%}</div>
-										{% } else { %}
-										<div><span class="label" style="font-size:1.2rem;font-weight:bold;color:#0275d8;">完了</span></div>
-										{% } %}
-									</td>
-									<td>
-										<span class="size">{%=o.formatFileSize(file.size)%}</span>
-									</td>
-									<td>
-										{% if (file.deleteUrl) { %}
-										<button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
-											<i class="fa fa-trash" aria-hidden="true"></i>
-											<span>削除</span>
-										</button> {% } else { %}
-										<button class="btn btn-warning cancel">
-											<i class="fa fa-ban" aria-hidden="true"></i>
-											<span>キャンセル</span>
-										</button> {% } %}
-									</td>
-								</tr>
-								{% } %}
-							</script>
-
-
-							<p class="ri_txt" style="display:none;">最大容量：100MB</p>
-
+							<p class="note">ファイルアップロードできない場合は、下記の<span style="font-weight:bold;">ファイル転送サービス</span>をご利用ください。</p>
+							<div id="upload_link" class="modal_style_line" style="margin-bottom:50px; float:none;">
+								<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>ファイル転送サービス
+							</div>
 
 							<h3>デザインに関する要望</h3>
 							<textarea id="note_design" class="demand" name="note_design" placeholder="例:前のデザイン「TAKAHAMA」を極太ゴシックで打ち替え , 後ろのデザインC22ブラックで着色"></textarea>
 							<p class="note"><span class="red_mark">※</span>文字の打ち替え希望の方はテキストを入力して ください。
 							</p>
-							
-							
+
+							<div class="disc_chi">
+								<div class="print_dis">そのままプリント割<span class="red_txt">（1000円 OFF）</span></div>
+								<div class="left_comment">
+									<p class="note comment_kome"><span class="red_mark">※</span>お客様の入稿したデータが、修正無しで使用できる場合に適用されるプランです。<br> お客様が修正した場合は、再入稿でも利用可能となっております。 データの拡大縮小は無料で行います。</p>
+
+									<p class="note" style="margin-bottom: 30px;"><span class="bold_txt">使用方法：注文確定のお電話にて、デザインのお打ち合わせを致します。</span>(割引ご希望のお客様は、お打ち合わせ時にお伝えください。)</p>
+								</div>
+							</div>
+
+
 							<div class="de_si_none">
 								<div class="nouki_option">
 									<div class="nouki_option_text">
@@ -723,22 +649,10 @@ $_version = time();
 									</div>
 								</div>
 							</div>
-						
-
-							
-							<div class="disc_chi">
-								<div class="print_dis">そのままプリント割<span class="red_txt">（1000円 OFF）</span></div>
-								<div class="left_comment">
-									<p class="note comment_kome"><span class="red_mark">※</span>お客様の入稿したデータが、修正無しで使用できる場合に適用されるプランです。<br> お客様が修正した場合は、再入稿でも利用可能となっております。 データの拡大縮小は無料で行います。</p>
-
-									<p class="note"><span class="bold_txt">使用方法：注文確定のお電話にて、デザインのお打ち合わせを致します。</span>(割引ご希望のお客様は、お打ち合わせ時にお伝えください。)</p>
-								</div>
-							</div>
-
 						</div>
 					</section>
 
-<!--				安永-->
+					<!--				安永-->
 					<div class="nouki_option">
 						<div class="nouki_option_text">
 							納期に関わるオプション
@@ -770,8 +684,6 @@ $_version = time();
 									</div>
 								</div>
 							</div>
-
-
 
 							<section id="pack">
 								<h3>袋詰め</h3>
@@ -806,9 +718,9 @@ $_version = time();
 							</section>
 
 							<section id="delivery">
-						
+
 								<h3>ご希望納期</h3>
-							
+
 								<div class="cart_inner">
 									<div id="ex_form" class="modal_style_line">
 										<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>当日発送をご希望の方はこちら
@@ -841,15 +753,15 @@ $_version = time();
 												<option value="6">19:00-21:00</option>
 											</select>
 										</div>
-									</div></div>
+									</div>
+								</div>
 
 								<div class="deli_date">
 									ご希望納期：<span>-</span>月<span>-</span>日
-								</div></section>
+								</div>
+							</section>
 						</div>
 					</div>
-
-
 
 					<section id="discount">
 						<h3>割引</h3>
@@ -917,11 +829,6 @@ $_version = time();
 						</div>
 					</section>
 
-
-
-
-
-
 					<section id="delivery">
 						<div class="cart_inner">
 							<div id="estimation" class="price_box">
@@ -936,13 +843,12 @@ $_version = time();
 				</section>
 			</div>
 
-
 			<div class="step">
 				<div class="o_top_fl">
-            <div class="step_prev hoverable waves-effect hidden-sm-down">
+					<div class="step_prev hoverable waves-effect hidden-sm-down">
 						<i class="fa fa-chevron-left"></i>戻る
 					</div>
-                    <div class="o_top_step">
+					<div class="o_top_step">
 						<nav>
 							<ol class="cd-multi-steps text-bottom count">
 								<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
@@ -950,12 +856,12 @@ $_version = time();
 								<li class="done"><em class="fa fa-check" aria-hidden="true">カート</em></li>
 							</ol>
 						</nav>
-                    </div>
-                    
-                   <div class="step_prev hoverable waves-effect hidden-md-up">
+					</div>
+
+					<div class="step_prev hoverable waves-effect hidden-md-up">
 						<i class="fa fa-chevron-left"></i>戻る
-					</div> 
-                </div>
+					</div>
+				</div>
 
 				<section>
 					<h2>お客様情報</h2>
@@ -972,10 +878,10 @@ $_version = time();
 
 			<div class="step">
 				<div class="o_top_fl">
-            <div class="step_prev hoverable waves-effect hidden-sm-down">
+					<div class="step_prev hoverable waves-effect hidden-sm-down">
 						<i class="fa fa-chevron-left"></i>戻る
 					</div>
-                    <div class="o_top_step">
+					<div class="o_top_step">
 						<nav>
 							<ol class="cd-multi-steps text-bottom count">
 								<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
@@ -983,12 +889,12 @@ $_version = time();
 								<li class="done"><em class="fa fa-check" aria-hidden="true">カート</em></li>
 							</ol>
 						</nav>
-                    </div>
-                    
-                   <div class="step_prev hoverable waves-effect hidden-md-up">
+					</div>
+
+					<div class="step_prev hoverable waves-effect hidden-md-up">
 						<i class="fa fa-chevron-left"></i>戻る
-					</div> 
-                </div>
+					</div>
+				</div>
 
 				<section id="customer">
 					<h2>お客様情報</h2>
@@ -1025,46 +931,48 @@ $_version = time();
 						<p>下記フォームに必要事項をご入力ください。<br>ご入力いただいた情報はSSL暗号通信により保護されています。</p>
 
 						<div class="new_user_pass">
-							<ul>
-								<li>
-									<h3>メールアドレス<span class="req">必須</span></h3>
-									<input type="text" id="email" name="email" value="" placeholder="例:aaa@gmail.com" />
-								</li>
-								<li>
-									<h3>新規パスワード<span class="req">必須</span></h3>
-									<input type="password" id="pass" name="pass" value="" />
-								</li>
-								<li>
-									<h3>パスワード確認用<span class="req">必須</span></h3>
-									<input type="password" id="pass_conf" name="pass_conf" value="" />
-									<p class="note"><span class="red_mark">※</span>半角英数字4文字以上16文字以内で、パスワードを設定してください。</p>
-								</li>
-								<li>
-									<h3>お名前<span class="req">必須</span></h3>
-									<input type="text" id="customername" name="customername" value="<?php echo $user['customername']; ?>" placeholder="例:高濱　太郎">様
-								</li>
-								<li>
-									<h3>フリガナ<span class="req">必須</span></h3>
-									<input type="text" id="customerruby" name="customerruby" value="<?php echo $user['customerruby']; ?>" placeholder="例:タカハマ　タロウ">様
-								</li>
-								<li>
-									<h3>お電話番号<span class="req">必須</span></h3>
-									<input type="text" id="tel" name="tel" value="<?php echo $user['tel']; ?>" placeholder="例:08012345678" />
-								</li>
-							</ul>
+							<form name="form1" class="e-mailer">
+								<ul>
+									<li>
+										<h3>メールアドレス<span class="req">必須</span></h3>
+										<input type="text" id="email" name="email" value="" placeholder="例:aaa@gmail.com" />
+									</li>
+									<li>
+										<h3>新規パスワード<span class="req">必須</span></h3>
+										<input type="password" id="pass" name="pass" value="" />
+									</li>
+									<li>
+										<h3>パスワード確認用<span class="req">必須</span></h3>
+										<input type="password" id="pass_conf" name="pass_conf" value="" />
+										<p class="note"><span class="red_mark">※</span>半角英数字4文字以上16文字以内で、パスワードを設定してください。</p>
+									</li>
+									<li>
+										<h3>お名前<span class="req">必須</span></h3>
+										<input type="text" id="customername" name="customername" value="<?php echo $user['customername']; ?>" placeholder="例:高濱　太郎">様
+									</li>
+									<li>
+										<h3>フリガナ<span class="req">必須</span></h3>
+										<input type="text" id="customerruby" name="customerruby" value="<?php echo $user['customerruby']; ?>" placeholder="例:タカハマ　タロウ">様
+									</li>
+									<li>
+										<h3>お電話番号<span class="req">必須</span></h3>
+										<input type="text" id="tel" name="tel" value="<?php echo $user['tel']; ?>" placeholder="例:08012345678" />
+									</li>
+								</ul>
 
-							<ul>
-								<li>
-									<h3 class="login_display">ご住所<span class="req">必須</span></h3>
-								</li>
+								<ul>
+									<li>
+										<h3 class="login_display">ご住所<span class="req">必須</span></h3>
+									</li>
 
-								<li>
-									<p>〒<input type="text" name="zipcode" id="zipcode" value="<?php echo $user['zipcode']; ?>" onChange="AjaxZip3.zip2addr(this,'','addr0','addr1');" placeholder="郵便番号" /></p>
-									<p><input type="text" name="addr0" id="addr0" value="<?php echo $user['addr0']; ?>" placeholder="都道府県" maxlength="4" /></p>
-									<p><input type="text" name="addr1" id="addr1" value="<?php echo $user['addr1']; ?>" placeholder="葛飾区西新小岩1-23-456" maxlength="56" class="restrict" /></p>
-									<p><input type="text" name="addr2" id="addr2" value="<?php echo $user['addr2']; ?>" placeholder="マンション・ビル名" maxlength="32" class="restrict" /></p>
-								</li>
-							</ul>
+									<li>
+										<p><input type="text" name="zipcode" id="zipcode" class="p-zip" value="<?php echo $user['zipcode']; ?>" placeholder="郵便番号" /></p>
+										<p><input type="text" name="addr0" id="addr0" class="p-region" value="<?php echo $user['addr0']; ?>" placeholder="都道府県" maxlength="4" /></p>
+										<p><input type="text" name="addr1" id="addr1" class="p-locality p-street-address" value="<?php echo $user['addr1']; ?>" placeholder="葛飾区西新小岩1-23-456" maxlength="56" class="restrict" /></p>
+										<p><input type="text" name="addr2" id="addr2" value="<?php echo $user['addr2']; ?>" placeholder="マンション・ビル名" maxlength="32" class="restrict" /></p>
+									</li>
+								</ul>
+							</form>
 						</div>
 
 						<div class="transition_wrap align-items-center">
@@ -1083,10 +991,10 @@ $_version = time();
 
 			<div class="step">
 				<div class="o_top_fl">
-            <div class="step_prev hoverable waves-effect hidden-sm-down">
+					<div class="step_prev hoverable waves-effect hidden-sm-down">
 						<i class="fa fa-chevron-left"></i>戻る
 					</div>
-                    <div class="o_top_step">
+					<div class="o_top_step">
 						<nav>
 							<ol class="cd-multi-steps text-bottom count">
 								<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
@@ -1094,12 +1002,12 @@ $_version = time();
 								<li class="done"><em class="fa fa-check" aria-hidden="true">カート</em></li>
 							</ol>
 						</nav>
-                    </div>
-                    
-                   <div class="step_prev hoverable waves-effect hidden-md-up">
+					</div>
+
+					<div class="step_prev hoverable waves-effect hidden-md-up">
 						<i class="fa fa-chevron-left"></i>戻る
-					</div> 
-                </div>
+					</div>
+				</div>
 
 				<section id="confirm_user">
 					<h2>お客様情報</h2>
@@ -1156,10 +1064,10 @@ $_version = time();
 
 			<div class="step">
 				<div class="o_top_fl">
-            <div class="step_prev hoverable waves-effect hidden-sm-down">
+					<div class="step_prev hoverable waves-effect hidden-sm-down">
 						<i class="fa fa-chevron-left"></i>戻る
 					</div>
-                    <div class="o_top_step">
+					<div class="o_top_step">
 						<nav>
 							<ol class="cd-multi-steps text-bottom count">
 								<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
@@ -1167,12 +1075,12 @@ $_version = time();
 								<li class="done"><em class="fa fa-check" aria-hidden="true">カート</em></li>
 							</ol>
 						</nav>
-                    </div>
-                    
-                   <div class="step_prev hoverable waves-effect hidden-md-up">
+					</div>
+
+					<div class="step_prev hoverable waves-effect hidden-md-up">
 						<i class="fa fa-chevron-left"></i>戻る
-					</div> 
-                </div>
+					</div>
+				</div>
 
 				<section id="confirm_order">
 					<h2>内容確認</h2>
@@ -1269,17 +1177,15 @@ $_version = time();
 									<tr>
 										<td>イメージ画像について</td>
 										<td id="sample_image">作成しない</td>
-										
-								
-										
+
+
+
 									</tr>
-									
-<!--
+
 									<tr>
-									<td>デザインキー</td>
-									<td id="final_designkey_text"></td>
+										<td>デザインキー</td>
+										<td id="final_designkey_text"></td>
 									</tr>
--->
 								</tbody>
 							</table>
 						</div>
@@ -1425,7 +1331,7 @@ $_version = time();
 					<input type="hidden" name="detail" value="">
 					<input type="hidden" name="option" value="">
 					<input type="hidden" name="user" value="">
-					<div class="attach"></div>
+					<input type="hidden" name="attach" value="">
 				</form>
 				<div class="transition_wrap align-items-center">
 					<button class="btn btn-info" id="order" disabled>この内容で申し込む</button>
@@ -1457,26 +1363,16 @@ $_version = time();
 		var _CATEGORY_ID = <?php echo $_CATEGORY_ID; ?>;
 		var _UPDATED = <?php echo $_UPDATED; ?>;
 		var IMG_PATH = '<?php echo _IMG_PSS; ?>';
+
 	</script>
-	<script src="https://ajaxzip3.github.io/ajaxzip3.js" async></script>
 	<script src="https://doozor.bitbucket.io/calendar/datepick_calendar.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
 	<script src="https://doozor.bitbucket.io/email/e-mailform.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
-	<script src="https://blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
-	<script src="https://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
-	<script src="https://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
-	<script src="/user/js/upload/vendor/jquery.ui.widget.js"></script>
-	<script src="/user/js/upload/jquery.iframe-transport.js?v=<?php echo $_version;?>"></script>
-	<script src="/user/js/upload/jquery.fileupload.js?v=<?php echo $_version;?>"></script>
-	<script src="/user/js/upload/jquery.fileupload-process.js?v=<?php echo $_version;?>"></script>
-	<script src="/user/js/upload/jquery.fileupload-image.js?v=<?php echo $_version;?>"></script>
-	<script src="/user/js/upload/jquery.fileupload-validate.js?v=<?php echo $_version;?>"></script>
-	<script src="/user/js/upload/jquery.fileupload-ui.js?v=<?php echo $_version;?>"></script>
-	<script src="./js/upload/main.js?v=<?php echo $_version;?>"></script>
 	<script src="/common/js/api.js"></script>
 	<script src="./js/pagetransition.js"></script>
-	<script src="./js/orderlib.js?v=<?php echo $_version;?>"></script>
+	<script src="./js/orderlib.js"></script>
 	<script src="./js/order.js?v=<?php echo $_version;?>"></script>
 	<script src="./js/dialog.js"></script>
+	<script src="./js/uploader.min.js?v=<?php echo $_version;?>"></script>
 </body>
 
 </html>

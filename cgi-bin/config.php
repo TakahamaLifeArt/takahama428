@@ -89,6 +89,10 @@ define('_API_ENDPOINT', 'https://www.alesteq.com/questally/api/surveys');
 // API Key
 define('_ACCESS_TOKEN', 'cuJ5yaqUqufruSPasePRazasUwrevawU');
 
+// Upload API
+define('_UPLOAD_ENDPOINT', 'https://takahamalifeart.com/uploader/');
+define('_UPLOAD_TOKEN', '_Ru-/DOjUkuC5etraQaw1LwRA.R7SIMu_19o3t0S0F3_CRe+OPHoj723MlS3');
+
 // アイテム一覧ページで当日特急用サムネイルを使用する場合は 1、使用しない場合は 0 を設定
 define('_IS_THUMB_FOR_EXPRESS', '1');
 

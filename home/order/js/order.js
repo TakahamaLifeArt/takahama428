@@ -2,7 +2,8 @@
  * Order form
  * log
  * 2017-10-21	Created
- * 2018-05-16	 イメ画選択、後払い、納期選択の仕様変更
+ * 2018-05-16	イメ画選択、後払い、納期選択の仕様変更
+ * 2019-01-08	アップロード仕様変更
  */
 $(function () {
 	'use strict';
@@ -984,12 +985,12 @@ $(function () {
 		}
 		
 		// プリントなしのアイテムが既にカートにある場合は、プリント有無の変更不可
-		designs = $.getStorage('design');
-		if (designs && (designs.hasOwnProperty('id_0') || designs.hasOwnProperty($.curr.designId))) {
-			$('#noprint').closest('.form-group_top').addClass('invisible');
-		} else {
-			$('#noprint').closest('.form-group_top').removeClass('invisible');
-		}
+//		designs = $.getStorage('design');
+//		if (designs && (designs.hasOwnProperty('id_0') || designs.hasOwnProperty($.curr.designId))) {
+//			$('#noprint').closest('.form-group_top').addClass('invisible');
+//		} else {
+//			$('#noprint').closest('.form-group_top').removeClass('invisible');
+//		}
 		
 		// プリント指定の表示切り替え
 		if ($.curr.designId!='id_0') {
@@ -2562,20 +2563,20 @@ $(function () {
 			sampleImage = ['作成しない', '作成する'],
 			address = '',
 			filename = '',	// アップロードファイル名
-			attach = "";	// 注文フォームに埋め込むinputタグ
+			attach = "";	// アップロードファイルのセッション情報
 		
 		// アップロードファイルの確認と表示
-		$('#fileupload-table tbody tr').each(function(){
-			var self = $(this),
-				path = self.find('.path').text(),
-				name = self.find('.name').children().text();
-
-			if (self.is('.template-download')) {
-				attach += '<input type="hidden" name="uploadfilename[]" class="attach" value="'+path+'">';
-				filename += '<p>'+name+'</p>';
-			}
-		});
-		if (filename=="") filename = "<p>なし</p>";
+		attach = $.getStorage('attach');
+		if (attach) {
+			$.each(attach, function(id, fileName){
+				filename += '<p>'+fileName+'</p>';
+			});
+			
+			f['attach'].value = JSON.stringify(attach);
+		} else {
+			filename = "<p>なし</p>";
+			f['attach'].value = '';
+		}
 		$('#design_file').html(filename);
 
 		$.estimate().then(function(){
@@ -2586,7 +2587,6 @@ $(function () {
 				z[keys[index]] = $.getStorage(key);
 				f[key].value = JSON.stringify(z[keys[index]]);
 			});
-			$('#orderform .attach').html(attach);
 
 			// 注文アイテムの枚数と金額
 			orderItem = $.itemPrice(z.items);
@@ -2787,7 +2787,7 @@ $(function () {
 			attach,
 			file,
 			qs = {},
-			tr = '',
+			li = '',
 			date = '+1day';
 		
 		// プリント指定のdata属性値を設定
@@ -2940,7 +2940,7 @@ $(function () {
 				$.setStorage('option', data);
 				$.estimate();
 			},
-			holiday: ['2018-08-13', '2018-08-14']
+			holiday: [{'from':'2018-12-27', 'to':'2019-01-04'}]
 		});
 		
 		// 見積もり詳細
@@ -3044,32 +3044,16 @@ $(function () {
 
 		// アップロードファイルの再表示
 		attach = $.getStorage('attach');
-		if (attach) {
-			for (i=0, file; file=attach[i]; i++) {
-				tr += '<tr class="template-download fade in">';
-				tr += '<td><span class="preview"></span></td>';
-				tr += '<td>';
-				tr += '<p class="name">';
-				tr += '<span>'+file.name+'</span>';
-				tr += '</p>';
-				tr += '<span class="path" hidden>'+file.url+'</span>';
-				tr += '<div><span class="label" style="font-size:1.2rem;font-weight:bold;color:#0275d8;">完了</span></div>';
-				tr += '</td>';
-				tr += '<td>';
-				tr += '<span class="size">'+file.size+'</span>';
-				tr += '</td>';
-				tr += '<td>';
-				tr += '<button class="btn btn-danger delete" data-type="DELETE" data-url="'+file.deleteUrl+'">';
-				tr += '<i class="fa fa-trash" aria-hidden="true"></i>';
-				tr += '<span>削除</span>';
-				tr += '</button>';
-				tr += '</td>';
-				tr += '</tr>';
-			}
-			
-			$('#fileupload-table .files').html(tr);
+		if (Object.keys(Object(attach)).length > 0) {
+			$.each(attach, function(upid, fileName){
+				li += '<tr><td>'+fileName+'</td><td><button class="btn btn-outline-danger btn-sm del" data-upid="'+upid+'">削除</button></td></tr>';
+			});
+			$('#upload_list tbody').html(li);
 		}
 		
+		// 選択ファイルの表示クリア
+		document.querySelector('#upload_form .input-group .filenames').value = '';
+
 	})();
 
 });
