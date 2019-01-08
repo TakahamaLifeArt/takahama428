@@ -23,10 +23,10 @@ for($i=$cnt; $i>=0; $i--){
 
 	// イメ画
 	$desedImg = $connDesign->getDesigned($d[$i]['orderid']);
-	if (empty($desedImg[2])) {
+	if (empty($desedImg[0])) {
 		$dataURL = '/user/img/noprint.svg';
 	} else {
-		$encodedFileName = rawurlencode($desedImg[2]);	// 最初のファイル
+		$encodedFileName = rawurlencode($desedImg[0]);	// 最初のファイル
 		$img_href = $url_designed.'imgfile/'.$d[$i]['orderid'].'/'.$encodedFileName;
 		$dataURL = 'data:'.finfo_file($finfo, $img_href).';base64,'.base64_encode(file_get_contents($img_href));
 	}
@@ -52,7 +52,7 @@ for($i=$cnt; $i>=0; $i--){
 		// 製作中
 		$history .= '<div class="txtgrp">';
 		if ($d[$i]['deposit']!=2) {
-			$history .= '<p class="txt_btn"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>未決済</p>';
+			$history .= '<p class="txt_btn"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>未決済 <br><span class="kessai-text"><span class="kessai-red">※</span>決済の反映までお時間がかかることがあります</span></p>';
 		} else {
 			$history .= '<p class="txt_btn"><i class="fa fa-check-circle" aria-hidden="true"></i>決済完了</p>';
 		}
@@ -94,6 +94,8 @@ for($i=$cnt; $i>=0; $i--){
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 	<link rel="stylesheet" type="text/css" media="screen" href="./css/common.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="./css/order_history.css" />
+	
+
 </head>
 
 <body>

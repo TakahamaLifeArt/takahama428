@@ -26,9 +26,8 @@ for($i=$len; $i>=0; $i--){
 		$desedImg = $conndb->getDesigned($orderId);
 
 		// イメージ画像テーブル
-		for ($t=0; $t<(count($desedImg)-2); $t++) {
+		for ($idx=0; $idx<(count($desedImg)); $idx++) {
 			$designedWrap = "";
-			$idx = $t+2;
 
 			if (empty($desedImg[$idx])) continue;
 			

@@ -23,10 +23,10 @@ for($i=$cnt; $i>=0; $i--){
 
 	// イメ画
 	$desedImg = $connDesign->getDesigned($d[$i]['orderid']);
-	if (empty($desedImg[2])) {
+	if (empty($desedImg[0])) {
 		$dataURL = '/user/img/noprint.svg';
 	} else {
-		$encodedFileName = rawurlencode($desedImg[2]);	// 最初のファイル
+		$encodedFileName = rawurlencode($desedImg[0]);	// 最初のファイル
 		$img_href = $url_designed.'imgfile/'.$d[$i]['orderid'].'/'.$encodedFileName;
 		$dataURL = 'data:'.finfo_file($finfo, $img_href).';base64,'.base64_encode(file_get_contents($img_href));
 	}
@@ -47,7 +47,7 @@ for($i=$cnt; $i>=0; $i--){
 
 	$history .= '<div class="txtgrp">';
 	if ($d[$i]['deposit']!=2) {
-		$history .= '<p class="txt_btn"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>未決済</p>';
+		$history .= '<p class="txt_btn"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>未決済 <br><span class="kessai-text"><span class="kessai-red">※</span>決済の反映までお時間がかかることがあります</span></p>';
 	} else {
 		$history .= '<p class="txt_btn"><i class="fa fa-check-circle" aria-hidden="true"></i>決済完了</p>';
 	}
@@ -69,7 +69,7 @@ for($i=$cnt; $i>=0; $i--){
 	<meta charset="UTF-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="Description" content="タカハマライフアートのマイページ、制作状況一覧画面です。こちらから、現在制作進行中のオリジナルTシャツの状況を確認することができます。宅配便の荷物追跡サービスとも連携しているので、いつ届くか確認したいお客様は是非ご活用ください。">
+	<meta name="Description" content="タカハマライフアートのマイページ、製作状況一覧画面です。こちらから、現在製作進行中のオリジナルTシャツの状況を確認することができます。宅配便の荷物追跡サービスとも連携しているので、いつ届くか確認したいお客様は是非ご活用ください。">
 	<meta name="keywords" content="オリジナル,tシャツ,メンバー">
 	<meta property="og:title" content="世界最速！？オリジナルTシャツを当日仕上げ！！" />
 	<meta property="og:type" content="article" />
@@ -96,7 +96,7 @@ for($i=$cnt; $i>=0; $i--){
 			<div class="toolbar">
 				<div class="toolbar_inner clearfix">
 					<div class="pagetitle">
-						<h1>お支払い・制作状況</h1>
+						<h1>お支払い・製作状況</h1>
 					</div>
 				</div>
 			</div>
