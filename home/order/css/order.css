@@ -212,9 +212,6 @@ h4 {
 	font-size: 1.2rem;
 }
 
-.pull_down {
-	padding: 4% 0 4% 2%;
-}
 
 
 /*		btn
@@ -222,8 +219,10 @@ h4 {
 
 .btn_box {
 	text-align: center;
+/*
 	border-bottom: 1px solid #e5e5e5;
 	border-top: 1px solid #e5e5e5;
+*/
 	padding: 20px;
 	margin: 20px;
 }
@@ -459,6 +458,8 @@ em {
 	margin-top: 0.5em;
 }
 
+
+
 .listitems_top3 .listitems .row {
     margin: 0!important;
 }
@@ -506,7 +507,7 @@ em {
 }
 
 .form-group_2 {
-	padding: 2% 3%;
+	padding: 0% 16%;
 	margin-bottom: 1rem;
 	display: inline-block;
 }
@@ -904,7 +905,7 @@ ul.color_sele_thumb li.nowimg:hover {
 
 .size_table tr.heading th {
 	padding: 15px 4.5% 0px;
-	text-align: left;
+	text-align: center;
 	border-bottom: 0px;
 	border: none;
 }
@@ -919,8 +920,23 @@ ul.color_sele_thumb li.nowimg:hover {
 
 .size_table td {
 	padding-bottom: 2px;
-	border-bottom: 1px solid #eae7d2;
+	/* border-bottom: 1px solid #eae7d2; */
+	text-align: center;
 }
+
+
+.size_table td.stocking {
+	padding-bottom: 2px;
+	border-bottom: none;
+        margin: 0 auto;
+     font-size: 12px;
+ color: #888888;
+    /* font-weight: bold; */
+    text-align: center;
+}
+
+   
+    
 
 .size_table input[type=number] {
 	width: 5em;
@@ -1234,13 +1250,9 @@ th {
 	margin-right: 10px;
 }
 
-.imega_select {
-	margin-top: -60px;
-}
 
 .cart_inner {
 	padding: 2%;
-	margin-bottom: 5%;
 }
 
 
@@ -1333,6 +1345,46 @@ th {
 .disc_chi {
 	margin-bottom: 1.2rem;
 }
+
+/*安永*/
+.nouki_option {
+	border: 1px solid #e2710a;
+	padding: 0 0 .85rem;
+/*	margin-bottom: 35px;*/
+}
+.nouki_option_text {
+	background-color: #EF6C00;
+	color: #FFF;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	padding: 5px;
+}
+.nouki_option_inside {
+	padding-top: 40px;
+	padding-left: 40px;
+	padding-right: 40px;
+}
+#delivery .cart_inner .price_box {
+	padding: 1%;
+	text-align: center;
+	margin: -5% 20%;
+	font-weight: bold;
+	background: #eceae8;
+}
+#delivery .cart_inner #goto_customer {
+	background: #33b5e5;
+	width: 300px;
+	text-align: center;
+	margin: 80px auto;
+	display: block;
+	padding: 2%;
+}
+
+
+/*安永終わり*/
+
+
 
 .req {
 	color: #dc0000;
@@ -1746,11 +1798,16 @@ input[type="password"] {
 	background: #eceae8;
 }
 
+
+
+
+
 .price_box_2 {
 	border: 1px solid #a5a5a5;
 	padding: 2%;
 	text-align: center;
 	margin: 0 20%;
+	margin-top: 50px;
 }
 
 .print_re {
@@ -2215,6 +2272,16 @@ input[type="password"] {
 	font-size: .8rem;
 }
 
+/*
+ .de_si_none {
+        display: none;
+    }
+*/
+
+.modal-body-bold {
+	font-weight: bold;
+}
+
 /*		responsive
 ===============================================================*/
 
@@ -2287,17 +2354,17 @@ input[type="password"] {
 		width: auto;
 		display: block;
 		position: relative;
-		left: 30px;
+		left: 0;
 		top: 4px;
 	}
 	.size_table .heading {
 		clear: both;
-		width: auto;
+		width:  10%;
 		display: block;
 	}
 	.sizeprice .size_table tr.heading th {
 		padding: 15px 0px 7px;
-		text-align: left;
+		text-align: center;
 		border-bottom: 0px;
 		font-size: 1em;
 		width: auto;
@@ -2305,11 +2372,52 @@ input[type="password"] {
 		margin-top: 5px;
 	}
 	.size_table tr {
-		width: 87%;
+		width: 60%;
 		float: left;
 		text-align: right;
 		padding-top: 1rem;
+        position: relative;
+    top: 20px;
 	}
+    
+    .size_table tr:nth-child(2) {
+		    width: 30%;
+        float: left;
+        text-align: right;
+        padding-top: 1rem;
+        padding-left: 3%;
+/*        left: 20px;*/
+        font-size: 10px;
+        position: relative;
+    top: 26px;
+	}
+    
+     .size_table tr:nth-child(5) {
+		    width: 30%;
+        float: left;
+        text-align: right;
+        padding-top: 1rem;
+        padding-left: 3%;
+/*        left: 20px;*/
+        font-size: 10px;
+        position: relative;
+    top: 26px;
+	}
+    
+     .size_table tr:nth-child(8) {
+		    width: 30%;
+        float: left;
+        text-align: right;
+        padding-top: 1rem;
+        padding-left: 3%;
+/*        left: 20px;*/
+        font-size: 10px;
+        position: relative;
+    top: 26px;
+	}
+    
+    
+    
 	.sizeprice .size_table th {
 		padding-right: 0px;
 		font-size: .9em;
@@ -2318,13 +2426,27 @@ input[type="password"] {
 	.sizeprice .size_table td {
 		display: block;
 		padding-bottom: 2px;
-		border-bottom: 1px dotted #eae7d2;
+		/* border-bottom: 1px dotted #eae7d2; */
 		font-size: 1rem;
 		padding: 0;
 		height: auto;
 		width: auto;
 		margin-bottom: 10px;
+		text-align: right;
 	}
+    
+    .sizeprice .size_table td.stocking {
+		display: block;
+		padding-bottom: 2px;
+		border-bottom: none;
+		font-size: 11px;
+		padding: 18px 0 5px;
+		height: auto;
+		width: 100%;
+		margin-bottom: 10px;
+	}
+    
+    
 	.sizeprice .size_table input[type=number] {
 		width: 10em;
 		padding: 2px 0 0 0px;
@@ -2332,7 +2454,7 @@ input[type="password"] {
 		font-size: 1.1em;
 	}
 	.sizeprice .size_table input[type=number] {
-		width: 8em;
+		width: 10em;
 		padding: 2px 6px 0 0px;
 		text-align: right;
 		font-size: 1.1em;
@@ -2340,6 +2462,22 @@ input[type="password"] {
 	.price_box {
 		margin: 10% 0%;
 	}
+	
+	#delivery .cart_inner .price_box {
+		margin: 10% 0%;
+	}
+
+	#delivery .cart_inner #goto_customer {
+		padding: 5%;
+	}
+	.nouki_option_inside {
+		padding-top: 20px;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	
+   
+	
 	.price_box_2 {
 		margin: 7% 0%;
 	}
@@ -2693,6 +2831,39 @@ input[type="password"] {
 	}
 }
 
+@media (max-width: 450px) {
+
+.sizeprice .size_table input[type=number] {
+		width: 6.2em;
+		padding: 2px 6px 0 0px;
+		text-align: right;
+		font-size: 1.1em;
+	}
+    
+    
+.size_table tr:nth-child(2) {
+    width: 38%;
+    }
+    
+     .size_table tr:nth-child(5) {
+    width: 38%;
+    }
+    
+    
+    .size_table tr:nth-child(8) {
+    width: 38%;
+    }
+    
+    
+    
+    
+    .size_table tr {
+    width: 52%;
+        }
+    
+    }
+    
+    
 
 /*		Utilities
 ===============================================================*/
@@ -2775,4 +2946,200 @@ input[type="password"] {
 	.field_area .linettl {
 		left: 94px;
 	}
+}
+
+
+
+
+/*nikami*/
+
+.o_top_fl {
+    display: flex;
+}
+
+.o_top_step {
+    width:79%;
+}
+
+.o_top_fl .step_prev {
+    width:20%;
+}
+
+.o_top_fl .step_prev {
+    padding: 0.5rem;
+    border: 1.5px solid #e2710a;
+    cursor: pointer;
+    font-size: 14px;
+    color: #e2710a;
+    box-shadow: 1px 1px 1px #a4a4a4;
+    width: 151px;
+    text-align: center;
+        height: 40px;
+    margin: 1.5em 0;
+}
+
+.cd-multi-steps {
+	max-width: 768px;
+	margin: 1em auto;
+	padding: 0;
+	text-align: center;
+	/*	background-color: #edeff0;*/
+	/*	border-radius: .25em;*/
+	background-color: transparent;
+    position: relative;
+    left: -49px;
+}
+
+
+
+.form-group_02 {
+    display: block;
+}
+
+.p_po {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.p_po .print_position input {
+    display: none;
+}
+
+.print_position {
+    flex: 1 0 20%;
+    margin: 8% 2%;
+    word-break: keep-all;
+    border: 1px solid #dedede;
+    border-radius: 2px;
+    box-shadow: 1px 1px 1px #a5a5a5;
+    padding: 2px 5px;
+    max-width: 180px;
+}
+
+
+.p_po .print_position:hover,
+.p_po .print_position:active {
+     -webkit-filter: brightness(0.8);
+    -moz-filter: brightness(0.8);
+    -o-filter: brightness(0.8);
+    -ms-filter: brightness(0.8);
+    filter: brightness(0.8);
+    background: #FFF;
+}
+
+/*
+
+.p_po .btn-primary.active {
+    -webkit-filter: brightness(0.8);
+    -moz-filter: brightness(0.8);
+    -o-filter: brightness(0.8);
+    -ms-filter: brightness(0.8);
+    filter: brightness(0.8);
+    background: #FFF;
+}
+*/
+
+.p_po .print_position p {
+    margin-bottom: 0;
+}
+
+.p_po .print_position label {
+       margin-bottom: 0;
+}
+
+
+@media screen and (max-width: 768px){
+    
+    .o_top_fl {
+    display: block;
+}
+    
+    .o_top_step {
+    width:100%;
+}
+    
+    .cd-multi-steps {
+	max-width: 768px;
+	margin: 1em auto;
+	padding: 0;
+	text-align: center;
+	/*	background-color: #edeff0;*/
+	/*	border-radius: .25em;*/
+	background-color: transparent;
+    position: static;
+    left: 0px;
+}
+    
+    
+    
+    
+	.form-group_02 {
+    display: flex;
+}
+    
+    .p_po {
+    display: block;
+}
+    
+    .cd-multi-steps {
+	max-width: 768px;
+	margin: 1em auto;
+	padding: 0;
+	text-align: center;
+	/*	background-color: #edeff0;*/
+	/*	border-radius: .25em;*/
+	background-color: transparent;
+}
+
+}
+
+@media screen and (max-width: 655px)
+.print_position {
+    margin: 1% 1%;
+    width: 142px;
+    word-break: keep-all;
+}
+
+
+/*デザインキー　安永*/
+
+.design-key-class {
+	width: 100%;
+	margin-bottom: 35px;
+	font-size: 12px;
+}
+.de_simu_a {
+	color: #EF6C00;
+	cursor: pointer;
+	font-weight: bold;
+}
+.de_simu_a:hover {
+	text-decoration: underline;
+	color: #EF6C00;
+}
+
+
+/* 入稿データアップロードのファイル選択要素 */
+.input-group .btn-base,
+.input-group .btn-base:hover,
+.input-group .btn-base:focus {
+	background-color: #d97109;
+	border-color: #d97109;
+	color: #fff;
+}
+
+.input-group .form-control {
+	margin: 6px 0;
+}
+
+.upload_form .btn-primary {
+	font-size: 14px;
+	background: #00C851;
+}
+
+.upload_form .btn-primary:hover,
+.upload_form .btn-primary:active,
+.upload_form .btn-primary:focus {
+	background-color: #00d255!important;
+	border-color: #419641;
 }

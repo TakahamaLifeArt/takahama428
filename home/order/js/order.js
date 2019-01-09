@@ -991,7 +991,7 @@ $(function () {
 //		} else {
 //			$('#noprint').closest('.form-group_top').removeClass('invisible');
 //		}
-		
+//		
 		// プリント指定の表示切り替え
 		if ($.curr.designId!='id_0') {
 			$('#noprint').prop('checked', false);
