@@ -3048,11 +3048,13 @@ $(function () {
 			$.each(attach, function(upid, fileName){
 				li += '<tr><td>'+fileName+'</td><td><button class="btn btn-outline-danger btn-sm del" data-upid="'+upid+'">削除</button></td></tr>';
 			});
-			$('#upload_list tbody').html(li);
+			$('.upload_list tbody').html(li);
 		}
 		
 		// 選択ファイルの表示クリア
-		document.querySelector('#upload_form .input-group .filenames').value = '';
+		if ($('.upload_form .filenames').length > 0) {
+			document.querySelector('.upload_form .input-group .filenames').value = '';
+		}
 
 	})();
 

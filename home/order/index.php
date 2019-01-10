@@ -25,7 +25,6 @@ $_version = time();
 	<meta property="fb:app_id" content="1605142019732010">
 	<title>お申し込みフォーム ｜ オリジナルTシャツ【タカハマライフアート】</title>
 	<link rel="shortcut icon" href="/icon/favicon.ico">
-	<link rel="stylesheet" type="text/css" href="/user/css/uploader.css?v=<?php echo $_version;?>" media="screen">
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
 	<link rel="stylesheet" type="text/css" href="./css/animations.css" media="screen">
 	<link rel="stylesheet" type="text/css" href="./css/order.css" media="screen">
@@ -586,32 +585,8 @@ $_version = time();
 					<section id="manuscript">
 						<h3>デザインデータ入稿</h3>
 						<div class="cart_inner">
-							<p class="mb-0">『ファイルを選択』をクリックした後、『入稿データをアップロード』をクリックしてください。</p>
-							<p class="red-text">※『入稿データをアップロード』をクリックしないと選択したファイルはアップロードされないのでご注意ください。</p>
-
 							<p class="mb-0">アップロード上限サイズ：300MB（アップロード可能なファイル形式：jpeg, png, gif, ai, psd, zip）</p>
-							<form id="upload_form" action="https://takahamalifeart.com/uploader/api" method="POST" enctype="multipart/form-data">
-								<div class="input-group">
-									<label class="input-group-btn">
-										<span class="btn">
-											ファイルを選択
-											<input type="file" class="form-control" name="files[]" id="files" style="display:none" multiple>
-										</span>
-									</label>
-									<input type="text" class="form-control filenames" readonly="">
-								</div>
-								<table id="upload_list">
-									<thead><th colspan="2">入稿データ</th></thead>
-									<tbody>
-										<tr><td class="red-text">なし</td><td></td></tr>
-									</tbody>
-								</table>
-								
-								<button id="upload" type="submit" class="btn btn-success"> 入稿データをアップロード </button>
-								<div class="progress" style="display:none;">
-									<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-								</div>
-							</form>
+							<form class="upload_form"></form>
 
 							<p class="note">ファイルアップロードできない場合は、下記の<span style="font-weight:bold;">ファイル転送サービス</span>をご利用ください。</p>
 							<div id="upload_link" class="modal_style_line" style="margin-bottom:50px; float:none;">
@@ -1367,12 +1342,12 @@ $_version = time();
 	</script>
 	<script src="https://doozor.bitbucket.io/calendar/datepick_calendar.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
 	<script src="https://doozor.bitbucket.io/email/e-mailform.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
+	<script src="https://doozor.bitbucket.io/uploader/file_uploader.min.js?m=drop&a=https://takahamalifeart.com/uploader/api"></script>
 	<script src="/common/js/api.js"></script>
 	<script src="./js/pagetransition.js"></script>
+	<script src="./js/dialog.js"></script>
 	<script src="./js/orderlib.js"></script>
 	<script src="./js/order.js?v=<?php echo $_version;?>"></script>
-	<script src="./js/dialog.js"></script>
-	<script src="./js/uploader.min.js?v=<?php echo $_version;?>"></script>
 </body>
 
 </html>
