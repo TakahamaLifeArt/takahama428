@@ -586,7 +586,7 @@ $_version = time();
 						<h3>デザインデータ入稿</h3>
 						<div class="cart_inner">
 							<p class="mb-0">アップロード上限サイズ：300MB（アップロード可能なファイル形式：jpeg, png, gif, ai, psd, zip）</p>
-							<form class="upload_form"></form>
+							<div id="file-uploader"></div>
 
 							<p class="note">ファイルアップロードできない場合は、下記の<span style="font-weight:bold;">ファイル転送サービス</span>をご利用ください。</p>
 							<div id="upload_link" class="modal_style_line" style="margin-bottom:50px; float:none;">
@@ -1342,7 +1342,7 @@ $_version = time();
 	</script>
 	<script src="https://doozor.bitbucket.io/calendar/datepick_calendar.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
 	<script src="https://doozor.bitbucket.io/email/e-mailform.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
-	<script src="https://doozor.bitbucket.io/uploader/file_uploader.min.js?m=drop&a=https://takahamalifeart.com/uploader/api"></script>
+	<script src="https://doozor.bitbucket.io/uploader/file_uploader.min.js?m=drop&ci=_rugec3a!l&a=https://takahamalifeart.com/uploader/api"></script>
 	<script src="/common/js/api.js"></script>
 	<script src="./js/pagetransition.js"></script>
 	<script src="./js/dialog.js"></script>
