@@ -887,7 +887,7 @@ $(function () {
 	});
 
 
-	/** 
+	/**
 	 * アイテムカラー別にサイズ毎の枚数の選択情報を更新
 	 * @return {bool} 枚数の指定が０枚若しくはカラー指定に重複がある場合{@code false}、それ以外は{@code true}を返す
 	 */
@@ -977,11 +977,9 @@ $(function () {
 			designs = {},
 			target;
 
-		// カラー・枚数指定からの遷移の場合は初期化
-		if (!isCart) {
-			if (!isDetailOfCurrentItem()) {
-				return d.reject().promise();
-			}
+		// カラー・枚数の指定内容を更新
+		if (!isDetailOfCurrentItem()) {
+			return d.reject().promise();
 		}
 		
 		// プリントなしのアイテムが既にカートにある場合は、プリント有無の変更不可
@@ -2761,6 +2759,7 @@ $(function () {
 			u.pass = $('#pass').val();
 			f.user.value = JSON.stringify(u);
 			sessionStorage.removeItem('attach');
+			sessionStorage.removeItem('dl_token');
 			f.submit();
 		}
 	});
