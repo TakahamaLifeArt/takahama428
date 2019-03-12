@@ -940,9 +940,12 @@ $(function(){
 					salesTax = 0,
 					perone = 0,
 					carriage = 0,
-					codFee = opt.payment=='cod' ? 800 : 0,
-					paymentFee = opt.payment=='later_payment' ? 300 : 0;
+					codFee = opt.payment=='cod' ? 800 : 0;
+				
+				// 2019-03-12 後払い手数料を廃止
+//				var paymentFee = opt.payment=='later_payment' ? 300 : 0;
 
+				
 				// 割引、袋詰め、プリントなしアイテム代を合算
 				subTotal += (discount + packFee + noPrintItem.price);
 

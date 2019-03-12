@@ -795,7 +795,7 @@ $_version = time();
 								<div class="pay_sel">
 									<label>
 										<input type="radio" value="later_payment" name="payment">
-										後払い (手数料300円)
+										後払い
 									</label>
 									<p class="note"><span class="red_mark">※</span>本支払方法は法人および個人事業主の方対象です。学生の方はご利用頂けません</p>
 								</div>
