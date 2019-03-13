@@ -37,6 +37,8 @@ $(function(){
 		disableBeforeDate: '+1day',
 		onSelect: function(dateText){
 			eMailer.onChanged('#datepick');
-		}
+		},
+		holiday: [{'from':'2018-12-27', 'to':'2019-01-04'}]
+
 	});
 });

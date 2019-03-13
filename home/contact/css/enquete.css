@@ -12,6 +12,7 @@
 	2012.08.10 created
 	2017-11-16 リニューアル後のレイアウト
 	2018-03-01 項目変更
+	2019-02-26 注釈の表記
 
 --------------------------------------------------------------*/
 
@@ -88,13 +89,13 @@ div.a {
 }
 
 .note {
-	padding-left: 4rem;
-	text-indent: -1rem;
-	margin-bottom: 1rem;
 	font-size: 90%;
+	color: rgba(0,0,0,.58);
 }
 .note ins {
+	margin-right: .3rem;
 	color: #c33;
+	text-decoration: none;
 }
 .req {
 	margin-top: -1.5em;

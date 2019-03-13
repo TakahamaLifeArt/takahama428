@@ -31,7 +31,7 @@
 		<div class="contents" width="100%">
 			<ul class="pan hidden-sm-down">
 				<li><a href="/">オリジナルＴシャツ屋ＴＯＰ</a></li>
-				<li><a href="/campaign/towel/">最速オリジナルタオル</a></li>
+				
 				<li>特大プリントタオル</li>
 			</ul>
 			<div class="towel_header">
@@ -57,7 +57,7 @@
 						<p><span class="comments"><span class="red_new">※</span>10枚以上からのご注文になります。</span>
 						</p>
 					</div>
-					<h4>サイズ</h4>
+					<h3>サイズ</h3>
 					<p class="sub_ttl">タオルのサイズは全６種類から選ぶことができます。</p>
 					<div class="item_top3 row">
 						<div class="top3_inner col-6 col-sm-4">
@@ -85,8 +85,8 @@
 							<img class="top3_o second_item" src="img/extrabig_kind_06.png" alt="タオルの種類" width="100%">
 						</div>
 					</div>
-					<h4>素材</h4>
-					<h5>綿100%<br>シャーリング加工</h5>
+					<h3>素材</h3>
+					<h4>綿100%<br>シャーリング加工</h4>
 					<div class="material">
 						<p class="material_ex">肌触りが良く、高級感がある素材です。表面のパイル(糸のループ)を刈る事によりデザインをきれいに表現することができます。</p>
 						<p class="sozai">
@@ -95,7 +95,7 @@
 						</p>
 					</div>
 
-					<h4>アイテムカラー</h4>
+					<h3>アイテムカラー</h3>
 					<p class="sub_ttl">アイテムカラーは全5種類から選ぶことができます。</p>
 					<div class="material">
 						<div class="sub_ttl">
@@ -113,31 +113,31 @@
 
 						<img class="print_img" src="img/extrabig_print_01.png" alt="プリントされたタオル" width="100%">
 						<div class="print_right">
-							<h4>シルクプリント：</h4>
+							<h3>シルクプリント：</h3>
 							<p class="print_nex">にじみが少なく、デザインをキレイに表現できます。 ソフトに仕上がる顔料インクを使用しています。
 							</p>
-							<h4>プリント色数：</h4>
+							<h3>プリント色数：</h3>
 							<p>全44色の中より6色の指定ができます。
 								<p class="right_txt"><span class="red_new">※</span>ホワイト、ゴールド、シルバー、蛍光色は使用できません。</p>
 								<p class="link"><a href="/design/fontcolor.php">色の種類を見る</a></p>
 						</div>
 					</div>
-					<h4>ワンポイントアドバイス</h4>
+					<h3>ワンポイントアドバイス</h3>
 					<div class="material">
 						<div class="detail">
-							<h5>線幅、隙間は1mm以上推奨</h5>
+							<h4>線幅、隙間は1mm以上推奨</h4>
 							<p>細かいデザイン(線や柄)が潰れてしまう事があります。</p>
 							<p class="interval"><span class="txtspc">&lt;元データ&gt;</span><span class="txtspc">&lt;仕上がり&gt;</span></p>
 							<img src="img/extrabig_print_02.png" alt="プリント仕上がり" width="100%">
 						</div>
 						<div class="detail impact_01">
-							<h5>カラータオルのプリント</h5>
+							<h4>カラータオルのプリント</h4>
 							<p>本体色がカラーの場合、生地の色の影響を受けプリント色が違って見えます。</p>
 							<p>生地よりも濃い色のプリントをおすすめしています。</p>
 							<img src="img/extrabig_print_03.png" alt="生地の影響" width="100%">
 						</div>
 						<div class="detail impact_02">
-							<h5></h5>
+							<h4></h4>
 							<p><span class="txtspc">&lt;参考例&gt;</span></p>
 							<img src="img/extrabig_print_04.png" alt="参考例" width="100%">
 							<p class="right_txt"><span class="red_new">※</span>本体色より薄い色は不可です。</p>

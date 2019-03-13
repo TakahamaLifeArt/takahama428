@@ -93,7 +93,8 @@ $category_selector .= '</select>';
 					<td colspan="2" class="btbdr">要相談</td>
 				</tr>
 			</table>
-			<p class="ac mb20"><span class="fontred">※</span>時期やプリント方法によって上記の納期より前後する場合がございます。お急ぎの方はご相談ください！</p>
+			<p class="ac mb20"><span class="fontred">※</span>時期や<a href="https://www.takahama428.com/design/printing.php">プリント方法</a>によって上記の納期より前後する場合がございます。
+				<a href="https://www.takahama428.com/order/express/">即日発送</a>をご希望の方はご相談ください！</p>
 			<p class="ac"><img src="img/high_img_02.png" alt="まとめて買うと150枚以上から安くなる！" width="100%"></p>
 			<!--
 			<p class="ac fs28 fontred"><strong>他にもこんなサービスあります！</strong></p>
@@ -106,7 +107,7 @@ $category_selector .= '</select>';
 -->
 			<div class="orangebdr clear">
 				<p class="ac fs20 mb20"><strong>法人・学校・団体・個人様！どなたでもOK !!</strong></p>
-				<p class="ml40 mb20">どなたでも対応させていただきます。短納期のご相談も承りますので、<br> お気軽にお問い合わせください。
+				<p class="ml40 mb20">どなたでも対応させていただきます。<a href="https://www.takahama428.com/order/express/">短納期</a>のご相談も承りますので、<br> お気軽にお問い合わせください。
 				</p>
 				<p class="ac fs28"><strong>まずはお気軽にご相談！</strong></p>
 			</div>
