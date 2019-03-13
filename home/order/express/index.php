@@ -310,6 +310,79 @@ $_version = time();
 				<div class="inner">
 					<h2 id="overtime">当日特急専用　お申し込みフォーム</h2>
 					<div class="bdrline">
+						<p class="lbl">■<label>カラーとサイズ</label></p>
+						<p class="select_cs">サイズの中に必要な枚数を選択ください(複数可)</p>
+
+						<table id="size_table">
+							<thead>
+								<tr>
+									<th>色</th>
+									<th>S (&yen;480)</th>
+									<th>M (&yen;480)</th>
+									<th>L (&yen;480)</th>
+									<th>XL (&yen;480)</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<img src="<?php echo _IMG_PSS?>/items/list/t-shirts/085-cvt/085-cvt_001.jpg" width="100" alt="085-cvtヘビーウェイトTシャツの白">
+										<input type="hidden" name="part-whitetshirts" value="Tシャツ白">
+<!--										<textarea hidden></textarea>-->
+									</td>
+									<td><input type="number" value="0" min="0" step="1" name="S" class="e-none">枚</td>
+									<td><input type="number" value="0" min="0" step="1" name="M" class="e-none">枚</td>
+									<td><input type="number" value="0" min="0" step="1" name="L" class="e-none">枚</td>
+									<td><input type="number" value="0" min="0" step="1" name="XL" class="e-none">枚</td>
+								</tr>
+								<tr>
+									<th>色</th>
+									<th>S (&yen;560)</th>
+									<th>M (&yen;560)</th>
+									<th>L (&yen;560)</th>
+									<th>XL (&yen;560)</th>
+								</tr>
+								<tr>
+									<td>
+										<img src="<?php echo _IMG_PSS?>/items/list/t-shirts/085-cvt/085-cvt_005.jpg" width="100" data-color="ブラック" alt="085-cvtヘビーウェイトTシャツの黒">
+										<input type="hidden" name="part-whitetshirts" value="Tシャツ黒">
+<!--										<textarea hidden></textarea>-->
+									</td>
+									<td><input type="number" value="0" min="0" step="1" name="S" class="e-none">枚</td>
+									<td><input type="number" value="0" min="0" step="1" name="M" class="e-none">枚</td>
+									<td><input type="number" value="0" min="0" step="1" name="L" class="e-none">枚</td>
+									<td><input type="number" value="0" min="0" step="1" name="XL" class="e-none">枚</td>
+								</tr>
+								<tr>
+									<th>色</th>
+									<th>Free (&yen;380)</th>
+									<th colspan="3"></th>
+								</tr>
+								<tr>
+									<td>
+										<img src="<?php echo _IMG_PSS?>/items/list/towel/522-ft/522-ft_001.jpg" width="100" data-color="ホワイト" alt="522-FTフェイスタオルの白">
+										<input type="hidden" name="part-whitetshirts" value="タオル白">
+<!--										<textarea hidden></textarea>-->
+									</td>
+									<td><input type="number" value="0" min="0" step="1" name="Free" class="e-none">枚</td>
+									<td colspan="3"></td>
+								</tr>
+							</tbody>
+						</table>
+
+						<p class="lbl">■<label>プリントする位置とデザインの色数を指定してください</label></p>
+						<div class="noprint_wrap">
+							<p><label><input type="checkbox" name="noprint" id="noprint" value="1"> プリントなしで購入する</label></p>
+							<p class="note"><span>※</span>プリントなしの場合1割増しになります。</p>
+						</div>
+						<div id="pos_wrap"></div>
+						
+						<p class="lbl">
+							■デザインデータ入稿<br>
+							アップロード上限サイズ：300MB（アップロード可能なファイル形式：jpeg, png, gif, ai, psd, zip）
+						</p>
+						<div id="file-uploader"></div>
+
 						<p class="lbl">■データを添付や詳細を下記にて記載して、お問い合わせ下さい。</p>
 						<p class="point">「※」 は必須です。</p>
 						<form name="express_form" class="e-mailer" method="post">
@@ -365,139 +438,22 @@ $_version = time();
 											<textarea name="message" id="message" cols="40" rows="7"></textarea>
 										</td>
 									</tr>
-									<tr>
-										<td colspan="3" class="comment">デザインデータなどのファイルを送信される方は、こちらから添付できます。</td>
-									</tr>
-									<tr>
-										<th><label>添付ファイル</label></th>
-										<td>&nbsp;</td>
-										<td><input type="file" name="attachfile" multiple></td>
-									</tr>
-<!--                                    new-->
-                                    
-                                    <tr>
-										<th><label>ファイル転送<br>サービス</label></th>
-										<td>&nbsp;</td>
-										<td>
-										
-											<div class="fileupload-buttonbar">
-												<div class="">
-													<!-- The fileinput-button span is used to style the file input field as button -->
-                                                    
-                                                    
-<!--
-													<span class="btn btn-new btn-success fileinput-button fade in">
-														<i class="fa fa-plus" aria-hidden="true"></i>
-														<span>ファイルを選択...</span>
-														<input type="file" name="files[]" class="e-none" multiple>
-													</span>
--->
-													<!--
-<button type="submit" class="btn btn-primary start fade e-none" hidden>
-<i class="fa fa-cloud-upload" aria-hidden="true"></i>
-<span>アップロード</span>
-</button>
--->
-
-													<!-- The global file processing state -->
-													<span class="fileupload-process"></span>
-												</div>
-												<p class="note">ファイルアップロードできない場合は、下記のファイル転送サービスをご利用ください。</p>
-												<div id="upload_link" class="modal_style_line">
-													<!--												<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>-->
-
-													<svg aria-hidden="true" data-prefix="fas" style="width: 13px;" data-icon="question-circle" class="svg-inline--fa fa-question-circle fa-w-16 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zM262.655 90c-54.497 0-89.255 22.957-116.549 63.758-3.536 5.286-2.353 12.415 2.715 16.258l34.699 26.31c5.205 3.947 12.621 3.008 16.665-2.122 17.864-22.658 30.113-35.797 57.303-35.797 20.429 0 45.698 13.148 45.698 32.958 0 14.976-12.363 22.667-32.534 33.976C247.128 238.528 216 254.941 216 296v4c0 6.627 5.373 12 12 12h56c6.627 0 12-5.373 12-12v-1.333c0-28.462 83.186-29.647 83.186-106.667 0-58.002-60.165-102-116.531-102zM256 338c-25.365 0-46 20.635-46 46 0 25.364 20.635 46 46 46s46-20.636 46-46c0-25.365-20.635-46-46-46z"></path></svg>
-
-													ファイル転送サービス
-												</div>
-
-
-
-											</div>
-
-
-
-
-										
-										</td>
-									</tr>
-                                    
-<!--                                    new-->
-                                    
 								</tbody>
 							</table>
-
-							<p class="lbl">■<label>カラーとサイズ</label></p>
-							<p class="select_cs">サイズの中に必要な枚数を選択ください(複数可)</p>
-
-							<table id="size_table">
-								<thead>
-									<tr>
-										<th>色</th>
-										<th>S (&yen;480)</th>
-										<th>M (&yen;480)</th>
-										<th>L (&yen;480)</th>
-										<th>XL (&yen;480)</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>
-											<img src="<?php echo _IMG_PSS?>/items/list/t-shirts/085-cvt/085-cvt_001.jpg" width="100" alt="085-cvtヘビーウェイトTシャツの白">
-											<input type="hidden" name="part-whitetshirts" value="Tシャツ白">
-											<textarea hidden></textarea>
-										</td>
-										<td><input type="number" value="0" min="0" step="1" name="S" class="e-none">枚</td>
-										<td><input type="number" value="0" min="0" step="1" name="M" class="e-none">枚</td>
-										<td><input type="number" value="0" min="0" step="1" name="L" class="e-none">枚</td>
-										<td><input type="number" value="0" min="0" step="1" name="XL" class="e-none">枚</td>
-									</tr>
-									<tr>
-										<th>色</th>
-										<th>S (&yen;560)</th>
-										<th>M (&yen;560)</th>
-										<th>L (&yen;560)</th>
-										<th>XL (&yen;560)</th>
-									</tr>
-									<tr>
-										<td>
-											<img src="<?php echo _IMG_PSS?>/items/list/t-shirts/085-cvt/085-cvt_005.jpg" width="100" data-color="ブラック" alt="085-cvtヘビーウェイトTシャツの黒">
-											<input type="hidden" name="part-whitetshirts" value="Tシャツ黒">
-											<textarea hidden></textarea>
-										</td>
-										<td><input type="number" value="0" min="0" step="1" name="S" class="e-none">枚</td>
-										<td><input type="number" value="0" min="0" step="1" name="M" class="e-none">枚</td>
-										<td><input type="number" value="0" min="0" step="1" name="L" class="e-none">枚</td>
-										<td><input type="number" value="0" min="0" step="1" name="XL" class="e-none">枚</td>
-									</tr>
-									<tr>
-										<th>色</th>
-										<th>Free (&yen;380)</th>
-										<th colspan="3"></th>
-									</tr>
-									<tr>
-										<td>
-											<img src="<?php echo _IMG_PSS?>/items/list/towel/522-ft/522-ft_001.jpg" width="100" data-color="ホワイト" alt="522-FTフェイスタオルの白">
-											<input type="hidden" name="part-whitetshirts" value="タオル白">
-											<textarea hidden></textarea>
-										</td>
-										<td><input type="number" value="0" min="0" step="1" name="Free" class="e-none">枚</td>
-										<td colspan="3"></td>
-									</tr>
-								</tbody>
-							</table>
-
-							<p class="lbl">■<label>プリントする位置とデザインの色数を指定してください</label></p>
-							<div class="noprint_wrap">
-								<p><label><input type="checkbox" name="noprint" id="noprint" value="1"> プリントなしで購入する</label></p>
-								<p class="note"><span>※</span>プリントなしの場合1割増しになります。</p>
-							</div>
-							<div id="pos_wrap"></div>
+							
+							<label hidden>デザインデータ</label>
+							<div><textarea id="filename" hidden></textarea></div>
+							
+							<label hidden>ダウンロードURL</label>
+							<input id="deownload_link" type="hidden" name="deownload_link" value="">
+							
+							<label hidden>カラーとサイズ</label>
+							<div><textarea id="quantity" hidden></textarea></div>
+							
+							<label hidden>プリントする位置とデザインの色数を指定してください</label>
 							<div id="pos_info"><textarea hidden></textarea></div>
 							<div class="button_area">
 								<p class="msg">入力内容をご確認の上、よろしければ[ 送信 ]ボタンを押してください。</p>
-<!--								<div id="validation" class="order_btn">送信</div>-->
-								
 								<input type="hidden" name="sendto" value="<?php echo _INFO_EMAIL;?>">
 								<input type="hidden" name="subject" value="当日特急プラン">
 								<input type="hidden" name="title" value="当日特急プラン">
@@ -506,6 +462,7 @@ $_version = time();
 								<button type="submit" id="sendmail" class="order_btn">送信</button>
 							</div>
 						</form>
+						
 					</div>
 				</div>
 				<div>
@@ -528,6 +485,7 @@ $_version = time();
     <script src="./js/dialog.js"></script>
 	<script src="https://doozor.bitbucket.io/email/e-mailform.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
 	<script src="https://doozor.bitbucket.io/calendar/datepick_calendar.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
+	<script src="https://doozor.bitbucket.io/uploader/file_uploader.min.js?m=drop&ci=phl57jus0l"></script>
 	<script type="text/javascript" src="./js/express.js?v=<?php echo $_version;?>"></script>
     
 

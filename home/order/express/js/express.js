@@ -1,7 +1,10 @@
-/*
-*	Takahama Life Art
-*	an urgent order
-*/
+/**
+ * Takahama Life Art
+ * an urgent order
+ *
+ * log
+ * 2019-03-13 アップロード機能を実装
+ */
 
 $(function(){
 	'use strict';
@@ -48,8 +51,8 @@ $(function(){
 		 * ---
 		 * @return {bool} 妥当であれば{@code true}を返す
 		 */
-		var minimumNumber = 1; // 最低枚数
-		
+		var info = '',
+			minimumNumber = 1; // 最低枚数
 		let elem = document.querySelectorAll('[required]'),
 			isValid = true;
 			
@@ -68,31 +71,26 @@ $(function(){
 			$.msgbox('必須項目の入力をご確認ください');
 			return false;
 		}
-
 		
-		$('#size_table').find('textarea').val('');
+		$('#quantity').val('');
 		if ($.makeArray($('#size_table input[type="number"]')).reduce(function (prev, curr, index, ary) {
 			// 注文商品
 			var val = curr.value-0,
-				textarea = '',
-				text = '',
-				info = '';
+				text = '';
+				
 			if (val>0) {
-				textarea = $(curr).closest('tr').children('td:first').children('textarea')
-				info = textarea.val();
 				info += "サイズ：　 "+ $(curr).attr('name') +"\n";
 				info += "　　枚数：　 " + val + " 枚\n";
 				info += "-------------------------\n\n　　";
-				textarea.val(info);
 			}
 			return prev + val;
 		}, 0) < minimumNumber) {
-			$('#size_table').find('textarea').val("　枚数：　 0 枚\n-------------------------\n\n");
 			$.msgbox('ご注文枚数をご入力ください');
 			return false;
 		}
+		$('#quantity').val(info);
 
-		eMailer.onChanged('#size_table textarea');
+		eMailer.onChanged('#quantity');
 
 		// 希望納期
 		if ($('#datepick').is('.is_invalid')) {
@@ -107,6 +105,26 @@ $(function(){
 		}
 		$.updatePosition();
 		
+		// アップロードファイル
+		let dlToken = JSON.parse(sessionStorage.getItem('dl_token')),
+			downURL = document.getElementById('deownload_link'),
+			store = $.getSessStorage('attach'),
+			fileName = '';
+
+		if (Object.keys(Object(store)).length > 0) {
+			$.each(store, function(upid, fName){
+				fileName += fName + "\r\n";		// form submission value
+			});
+		}
+		document.getElementById('filename').value = fileName;
+		eMailer.onChanged('#filename');
+
+		downURL.value = '';
+		if (Object.keys(Object(dlToken)).length > 0) {
+			downURL.value = 'https://www.alesteq.com/itemmanager/files/uploader/' + dlToken[0];
+		}
+		eMailer.onChanged('#deownload_link');
+		
 		return true;
 	});
 
@@ -115,6 +133,8 @@ $(function(){
 	 * 送信完了時の処理
 	 */
 	eMailer.onComplete('#sendmail', function(){
+		sessionStorage.removeItem('attach');
+		sessionStorage.removeItem('dl_token');
 		window.location.href = '/contact/thanks.php?title=expresstoday';
 	});
 
@@ -263,5 +283,4 @@ $(function(){
 	
 	// init
 	$.showPrintPosition();
-	
 });
