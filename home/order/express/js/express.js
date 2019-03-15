@@ -4,6 +4,7 @@
  *
  * log
  * 2019-03-13 アップロード機能を実装
+ * 2019-03-15 注文メール本文にアイテム名とカラーを記載
  */
 
 $(function(){
@@ -75,11 +76,11 @@ $(function(){
 		$('#quantity').val('');
 		if ($.makeArray($('#size_table input[type="number"]')).reduce(function (prev, curr, index, ary) {
 			// 注文商品
-			var val = curr.value-0,
-				text = '';
+			var val = curr.value - 0;
 				
 			if (val>0) {
-				info += "サイズ：　 "+ $(curr).attr('name') +"\n";
+				info += "カラー：　 "+ $(curr).closest('tr').find('img').attr('alt') +"\n";
+				info += "　　サイズ：　 "+ $(curr).attr('name') +"\n";
 				info += "　　枚数：　 " + val + " 枚\n";
 				info += "-------------------------\n\n　　";
 			}
