@@ -46,7 +46,7 @@ $itemRanking = array(
 	'towel' => null,
 	'outer' => null,
 );
-$contentsLength = 8;
+$contentsLength = 4;//201812 tane Add
 foreach ($categoryIds as $categoryCode => $categoryId) {
 	if (!array_key_exists($categoryCode, $itemRanking)) {
 		continue;
@@ -100,10 +100,10 @@ function getStar($args){
  */
 $tax = json_decode($conn->salesTax(), true);
 ?>
-
 	<!DOCTYPE html>
+	<html lang="ja">
 
-	<head prefix="og://ogp.me/ns# fb://ogp.me/ns/fb#  website: //ogp.me/ns/website#">
+	<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/website#" lang="ja">
 		<meta charset="UTF-8">
 		<title>オリジナルTシャツのプリント作成 ｜ タカハマライフアート</title>
 		<meta name="Description" content="オリジナルTシャツ作成が早い！即納可能の業界最速！クラスTシャツの文字入れも最短即日で短納期プリント。1枚からでも安い・お急ぎ製作・印刷は東京都内のタカハマライフアート！10秒で簡単・早いオリジナルTシャツ比較お見積もりも承ります。">
@@ -111,7 +111,7 @@ $tax = json_decode($conn->salesTax(), true);
 		<link rel=canonical href="https://www.takahama428.com/">
 		<link rel="shortcut icon" href="/icon/favicon.ico">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=0">
 		<meta name="google-site-verification" content="PfzRZawLwE2znVhB5M7mPaNOKFoRepB2GO83P73fe5M">
 		<meta property="og:title" content="オリジナルウェアを通常3日で製作！">
 		<meta property="og:type" content="website">
@@ -125,25 +125,45 @@ $tax = json_decode($conn->salesTax(), true);
 		<link rel="stylesheet" href="/common/js/dist/css/owl.carousel.min.css" media="screen" />
 		<link rel="stylesheet" href="/common/css/TimeCircles.css" media="screen" />
 		<link rel="stylesheet" href="./icon/style.css">
-        <link rel="stylesheet" href="./icon/add180803/style.css">
+		<link rel="stylesheet" href="./icon/add180803/style.css">
 		<!--		<link rel="stylesheet" type="text/css" href="/common/js/libs/fancybox/jquery.fancybox.css" media="screen" />-->
 		<link rel="stylesheet" type="text/css" href="/common/css/examples.css" media="screen" />
 		<link rel="stylesheet" type="text/css" href="/common/css/side_menu.css" media="screen" />
 		<link rel="stylesheet" href="/slick/slick.css">
 		<link rel="stylesheet" href="/slick/slick-theme.css">
-		<link rel="stylesheet" href="./css/style.css">
-
-		<style>
-			.owl-item {
-				width: 100% !important;
-			}
-
-		</style>
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/style_home_201901.css">
 
 		<script>
 			var _TAX = <?php echo $tax;?>;
 
 		</script>
+
+		<style>
+			.an_box {
+				text-align: center;
+				padding: 7px 0 3px;
+				margin-bottom: 30px;
+				font-size: 12px;
+				border: 1px solid #000;
+			}
+
+			.an_min {
+				margin-bottom: .5rem;
+			}
+
+			@media screen and (max-width: 768px) {
+				.an_box {
+					padding: 10px;
+					margin: 10px;
+				}
+				.an_min {
+					margin-bottom: .5rem;
+					font-size: 10px;
+				}
+			}
+
+		</style>
 	</head>
 
 	<body>
@@ -152,122 +172,70 @@ $tax = json_decode($conn->salesTax(), true);
 		</header>
 
 		<div class="container-fluid">
+			<div class="slide_size"><img src="/common/img/home/main/slide_size_pc.gif" width="622" height="280" alt=""></div>
 			<div id="example2" class="slider-pro">
 				<div class="sp-slides">
-				
-<!--				和田さんのseo関連でクラスを作った-->
-				
-					<div class="sp-slide">
-					
-						<div class="carousel-item active hero-carousel__cell hero-carousel__cell--1 carousel-item_02">
-							<img class="sp-image" id="slide-seo-originalprint" src="/common/img/home/main/top_slide_originalwear.jpg" data-small="/common/img/home/main/sp_top_slide_originalwear.jpg" data-medium="/common/img/home/main/sp_top_slide_originalwear.jpg" data-large="/common/img/home/main/top_slide_originalwear.jpg" alt="オリジナルTシャツ通常3日で製作、年間27万枚納品" />
-						</div>
-						
-					</div>
-				
 
-					
+					<!--				和田さんのseo関連でクラスを作った-->
+
+					<div class="sp-slide">
+						<div class="carousel-item active hero-carousel__cell hero-carousel__cell--1 carousel-item_02">
+							<a class="slide-estimate-20181205" href="/price/estimate.php">
+                            <img class="sp-image" id="slide-seo-originalprint" src="/common/img/home/main/top_slide_originalwear.jpg" data-small="/common/img/home/main/sp_top_slide_originalwear.jpg" data-medium="/common/img/home/main/sp_top_slide_originalwear.jpg" data-large="/common/img/home/main/top_slide_originalwear.jpg" alt="オリジナルTシャツ通常3日で製作、年間27万枚納品" />
+                        </a>
+						</div>
+					</div>
+
 					<div class="sp-slide">
 						<div class="carousel-item hero-carousel__cell hero-carousel__cell--2 carousel-item_02">
-							<a class="slide-seo-sameday" href="/order/express/"> 
-                            
-                            <img class="sp-image slide_link_02"
-                                 data-src="/common/img/home/main/top_slide_samedayplan.jpg"
-                                 data-small="/common/img/home/main/sp_top_slide_samedayplan.jpg"
-                                 data-medium="/common/img/home/main/sp_top_slide_samedayplan.jpg"
-								 data-large="/common/img/home/main/top_slide_samedayplan.jpg" alt="当日特急プラン今日仕上げます。業界最速6時間で即日発送！"/>
-                            </a>
-
-
-						
-					</div>
-					</div>
-					
-					
-					
-					
-					<div class="sp-slide">
-						<div class="carousel-item hero-carousel__cell hero-carousel__cell--3 carousel-item_02">
-
-							<a class="slide-seo-kindly" href="/userreviews/"> 
-
-								<img class="sp-image slide_link_02" 
-									 data-src="/common/img/home/main/top_slide_kindly_cs.jpg"
-									 data-small="/common/img/home/main/sp_top_slide_kindly_cs.jpg"
-									 data-medium="/common/img/home/main/sp_top_slide_kindly_cs.jpg"
-									 data-large="/common/img/home/main/top_slide_kindly_cs.jpg" alt="親切対応で選ばれています。レビュー総数1000件以上、対応満足度94%"/>
-							</a>
-
-						</div>
-				
-					</div>
-					
-					
-				
-					<div class="sp-slide">
-						<div class="carousel-item hero-carousel__cell hero-carousel__cell--3 carousel-item_02">
-
-							<a class="slide-seo-bigorder" href="/order/bigorder/"> 
-
-								<img class="sp-image slide_link_02" 
-									 data-src="/common/img/home/main/large-orders_pc.jpg"
-									 data-small="/common/img/home/main/large-orders_sp.jpg"
-									 data-medium="/common/img/home/main/large-orders_sp.jpg"
-									 data-large="/common/img/home/main/large-orders_pc.jpg" alt="大口注文も超早い！200枚を3日仕上げの実績！"/>
-							</a>
-
+							<a class="slide-seo-sameday" href="/order/express/">
+                            <img class="sp-image slide_link_02" data-src="/common/img/home/main/top_slide_samedayplan.jpg" data-small="/common/img/home/main/sp_top_slide_samedayplan.jpg" data-medium="/common/img/home/main/sp_top_slide_samedayplan.jpg" data-large="/common/img/home/main/top_slide_samedayplan.jpg" alt="当日特急プラン今日仕上げます。業界最速6時間で即日発送！" src="/common/img/home/main/top_slide_samedayplan.jpg" />
+                        </a>
 						</div>
 					</div>
-					
+
 					<div class="sp-slide">
 						<div class="carousel-item hero-carousel__cell hero-carousel__cell--3 carousel-item_02">
-
-							<a class="slide-seo-parka" href="/original-parker-fast/"> 
-
-								<img class="sp-image slide_link_02" 
-									 data-src="/common/img/home/main/slide_parka.jpg"
-									 data-small="/common/img/home/main/slide_parka.jpg"
-									 data-medium="/common/img/home/main/slide_parka.jpg"
-									 data-large="/common/img/home/main/slide_parka.jpg" alt="こだわりのオリジナルパーカーが早く届く！"/>
-							</a>
-
+							<a class="slide-kindly-20181205" href="/userreviews/">
+                            <img class="sp-image slide_link_02" data-src="/common/img/home/main/top_slide_kindly_cs.jpg" data-small="/common/img/home/main/sp_top_slide_kindly_cs.jpg" data-medium="/common/img/home/main/sp_top_slide_kindly_cs.jpg" data-large="/common/img/home/main/top_slide_kindly_cs.jpg" alt="親切対応で選ばれています。レビュー総数1000件以上、対応満足度94%" src="/common/img/home/main/sp_top_slide_kindly_cs.jpg" />
+                        </a>
 						</div>
 					</div>
-					
 
-
-			
-                    
-                     <div class="sp-slide">
+					<div class="sp-slide">
 						<div class="carousel-item hero-carousel__cell hero-carousel__cell--3 carousel-item_02">
+							<a class="slide-seo-bigorder" href="/order/bigorder/">
+                            <img class="sp-image slide_link_02" data-src="/common/img/home/main/large-orders_pc.jpg" data-small="/common/img/home/main/large-orders_sp.jpg" data-medium="/common/img/home/main/large-orders_sp.jpg" data-large="/common/img/home/main/large-orders_pc.jpg" alt="大口注文も超早い！200枚を3日仕上げの実績！" src="/common/img/home/main/large-orders_pc.jpg" />
+                        </a>
+						</div>
+					</div>
 
+					<div class="sp-slide">
+						<div class="carousel-item hero-carousel__cell hero-carousel__cell--3 carousel-item_02">
+							<a class="slide-seo-parka" href="/original-parker-fast/">
+                            <img class="sp-image slide_link_02" data-src="/common/img/home/main/slide_parka.jpg" data-small="/common/img/home/main/slide_parka.jpg" data-medium="/common/img/home/main/slide_parka.jpg" data-large="/common/img/home/main/slide_parka.jpg" alt="こだわりのオリジナルパーカーが早く届く！" src="/common/img/home/main/slide_parka.jpg" />
+                        </a>
+						</div>
+					</div>
+
+					<div class="sp-slide">
+						<div class="carousel-item hero-carousel__cell hero-carousel__cell--3 carousel-item_02">
 							<a class="slide-seo-designsimulator" href="/design/designsimulator.php">
-
-								<img class="sp-image slide_link_02"
-									 data-src="/common/img/home/main/simulator-banner.jpg" 
-									 data-small="/common/img/home/main/simulator-banner.jpg" 
-									 data-medium="/common/img/home/main/simulator-banner.jpg" 
-									 data-large="/common/img/home/main/simulator-banner.jpg" alt="designsimulator" />
-							</a>
-
+                            <img class="sp-image slide_link_02" data-src="/common/img/home/main/simulator-banner.jpg" data-small="/common/img/home/main/simulator-banner.jpg" data-medium="/common/img/home/main/simulator-banner.jpg" data-large="/common/img/home/main/simulator-banner.jpg" alt="designsimulator" src="/common/img/home/main/simulator-banner.jpg" />
+                        </a>
 						</div>
 					</div>
-                    
-					<div class="sp-slide">
-						<div class="carousel-item hero-carousel__cell hero-carousel__cell--3 carousel-item_02">
 
-							<a class="slide-seo-noshi" href="/campaign/towel/noshi.php">
+					<!--
+            <div class="sp-slide">
+              <div class="carousel-item hero-carousel__cell hero-carousel__cell--3 carousel-item_02">
+                <a class="slide-seo-noshi" href="/campaign/towel/noshi.php">
+                  <img class="sp-image slide_link_02" data-src="/common/img/home/main/newyear_main-new.jpg" data-small="/common/img/home/main/newyear_main-new.jpg" data-medium="/common/img/home/main/newyear_main-new.jpg" data-large="/common/img/home/main/newyear_main-new.jpg" alt="お年賀タオルの作成が今からでも間に合う！" src="/common/img/home/main/newyear_main-new.jpg" />
+                </a>
+              </div>
+            </div>
+-->
 
-								<img class="sp-image slide_link_02"
-									 data-src="/common/img/home/main/newyear_main-new.jpg" 
-									 data-small="/common/img/home/main/newyear_main-new.jpg" 
-									 data-medium="/common/img/home/main/newyear_main-new.jpg" 
-									 data-large="/common/img/home/main/newyear_main-new.jpg" alt="お年賀タオルの作成が今からでも間に合う！" />
-							</a>
-
-						</div>
-					</div>
-					
 				</div>
 			</div>
 
@@ -277,206 +245,188 @@ $tax = json_decode($conn->salesTax(), true);
 
 		<main class="container">
 			<!--お知らせ表示-->
+
+
+
 <!--
 			<div class="an_box">
-				<p style="font-size:16px; font-weight:bold;">【配送遅延のお知らせ】</p>
-				<p class="an_min">台風21号及び北海道で発生した地震の影響により、配送の遅延が発生しております。</p>
-				<p class="an_min">何卒ご理解いただきますよう、お願い申し上げます。被害にあわれました皆様にお見舞い申し上げます。</p>
-				<p class="an_min">お届けの遅延が発生している詳細な地域に関しては、<a href="http://www.kuronekoyamato.co.jp/">ヤマト運輸ホームページ内</a>のお荷物のお届け遅延状況についてをご参照ください。</p>
+				<p style="font-size:16px; font-weight:bold;">＜システム障害のお知らせ＞</p>
+				<p class="an_min">只今システム障害が発生しており、ご連絡が遅れる可能性があります。</p>
+				<p class="an_min">ご不便、ご迷惑をお掛けいたしますが、復旧まで今しばらくお待ちください。</p>
 			</div>
 -->
-			<style>
-				.an_box {
-					text-align: center;
-					padding: 7px 0 3px;
-					margin-bottom: 30px;
-					font-size: 12px;
-					border: 1px solid #000;
-				}
-				.an_min {
-					margin-bottom: .5rem;
-				}
-				@media screen and (max-width: 768px) {
-					.an_box {
-						padding: 10px;
-						margin: 10px;
-					}
-					.an_min {
-						margin-bottom: .5rem;
-						font-size: 10px;
-					}
-				}
-			</style>
-			<section class="hidden-md-up" style="padding:0 1rem;">
-				<a href="/contact/line/" class="line_banner"><img src="/contact/line/img/line_img_01.jpg" width="100%" alt="LINEでやりとりラクチンのバナー"></a>
-			</section>
+
+
+			<div class="hidden-md-up" style="padding:0 1rem;">
+				<a href="/contact/line/" class="line_banner"><img src="/contact/line/img/line_img_01.jpg" width="100" height="100" class="img100" alt="LINEでやりとりラクチンのバナー"></a>
+			</div>
 
 			<h2 class="rank_ttl">アイテムカテゴリー</h2>
 			<div class="wrap_h2_under">
 				<p class="h2_under">オリジナルTシャツだけでなく、様々なアイテムにプリントできます！</p>
 			</div>
-			<section class="hidden-sm-down">
+			<div class="hidden-sm-down item_carousel_cont">
 
 				<div class="owl-carousel owl-theme">
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item t-shirts_btn" href="/items/t-shirts/" alt="Tシャツ">
-							<img src="/items/img/item_01.jpg" width="100%" alt="Tシャツ">
-<p class="item_txt_min">Tシャツ</p>
-</a>
+						<a class="dropdown-item t-shirts_btn" href="/items/t-shirts/" title="Tシャツ">
+                        <img src="/items/img/item_01.jpg" width="100" height="100" class="img100" alt="Tシャツ">
+                        <p class="item_txt_min">Tシャツ</p>
+                    </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item polo-shirts_btn" href="/items/polo-shirts/" alt="ポロシャツ">
-							<img src="/items/img/item_03.jpg" width="100%" alt="ポロシャツ">
-<p class="item_txt_min">ポロシャツ</p>
-</a>
+						<a class="dropdown-item polo-shirts_btn" href="/items/polo-shirts/" title="ポロシャツ">
+                        <img src="/items/img/item_03.jpg" width="100" height="100" class="img100" alt="ポロシャツ">
+                        <p class="item_txt_min">ポロシャツ</p>
+                    </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item sweat_btn" href="/items/sweat/" alt="スウェット">
-							<img src="/items/img/item_02.jpg" width="100%" alt="スウェット">
-<p class="item_txt_min">スウェット</p>
-</a>
+						<a class="dropdown-item sweat_btn" href="/items/sweat/" title="スウェット">
+                        <img src="/items/img/item_02.jpg" width="100" height="100" class="img100" alt="スウェット">
+                        <p class="item_txt_min">スウェット</p>
+                    </a>
 					</div>
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item towel_btn" href="/items/towel/" alt="タオル">
-							<img src="/items/img/item_08.jpg" width="100%" alt="タオル">
-<p class="item_txt_min">タオル</p>
-</a>
-					</div>
-
-					<div class="navi_inner_2 btn">
-						<a class="dropdown-item sportswear_btn" href="/items/sportswear/" alt="スポーツ">
-							<img src="/items/img/item_04.jpg" width="100%" alt="スポーツ">
-<p class="item_txt_min">スポーツ</p>
-</a>
+						<a class="dropdown-item towel_btn" href="/items/towel/" title="タオル">
+                        <img src="/items/img/item_08.jpg" width="100" height="100" class="img100" alt="タオル">
+                        <p class="item_txt_min">タオル</p>
+                    </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item outer_btn" href="/items/outer/" alt="ブルゾン">
-							<img src="/items/img/item_06.jpg" width="100%" alt="ブルゾン">
-<p class="item_txt_min">ブルゾン</p>
-</a>
+						<a class="dropdown-item sportswear_btn" href="/items/sportswear/" title="スポーツ">
+                        <img src="/items/img/item_04.jpg" width="100" height="100" class="img100" alt="スポーツ">
+                        <p class="item_txt_min">スポーツ</p>
+                    </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item long-shirts_btn" href="/items/long-shirts/" alt="長袖Tシャツ">
-							<img src="/items/img/item_05.jpg" width="100%" alt="長袖Tシャツ">
-<p class="item_txt_min">長袖Tシャツ</p>
-</a>
+						<a class="dropdown-item outer_btn" href="/items/outer/" title="ブルゾン">
+                        <img src="/items/img/item_06.jpg" width="100" height="100" class="img100" alt="ブルゾン">
+                        <p class="item_txt_min">ブルゾン</p>
+                    </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item tote-bag_btn" href="/items/tote-bag/" alt="バッグ">
-							<img src="/items/img/item_09.jpg" width="100%" alt="バッグ">
-<p class="item_txt_min">バッグ</p>
-</a>
+						<a class="dropdown-item long-shirts_btn" href="/items/long-shirts/" title="長袖Tシャツ">
+                        <img src="/items/img/item_05.jpg" width="100" height="100" class="img100" alt="長袖Tシャツ">
+                        <p class="item_txt_min">長袖Tシャツ</p>
+                    </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item cap_btn" href="/items/cap/" alt="キャップ">
-							<img src="/items/img/item_14.jpg" width="100%" alt="キャップ">
-<p class="item_txt_min">キャップ</p>
-</a>
+						<a class="dropdown-item tote-bag_btn" href="/items/tote-bag/" title="バッグ">
+                        <img src="/items/img/item_09.jpg" width="100" height="100" class="img100" alt="バッグ">
+                        <p class="item_txt_min">バッグ</p>
+                    </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item apron_btn" href="/items/apron/" alt="エプロン">
-							<img src="/items/img/item_10.jpg" width="100%" alt="エプロン">
-<p class="item_txt_min">エプロン</p>
-</a>
+						<a class="dropdown-item cap_btn" href="/items/cap/" title="キャップ">
+                        <img src="/items/img/item_14.jpg" width="100" height="100" class="img100" alt="キャップ">
+                        <p class="item_txt_min">キャップ</p>
+                    </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item baby_btn" href="/items/baby/" alt="ベビー">
-							<img src="/items/img/item_11.jpg" width="100%" alt="ベビー">
-<p class="item_txt_min">ベビー</p>
-</a>
+						<a class="dropdown-item apron_btn" href="/items/apron/" title="エプロン">
+                        <img src="/items/img/item_10.jpg" width="100" height="100" class="img100" alt="エプロン">
+                        <p class="item_txt_min">エプロン</p>
+                    </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item overall_btn" href="/items/overall/" alt="つなぎ">
-							<img src="/items/img/item_12.jpg" width="100%" alt="つなぎ">
-<p class="item_txt_min">つなぎ</p>
-</a>
-					</div>
-					<div class="navi_inner_2 btn">
-						<a class="dropdown-item ladys_btn" href="/items/ladys/" alt="レディース">
-							<img src="/items/img/item_07.jpg" width="100%" alt="レディース">
-<p class="item_txt_min">レディース</p>
-</a>
-					</div>
-					<div class="navi_inner_2 btn">
-						<a class="dropdown-item goods_btn" href="/items/workwear/" alt="ワークウェア">
-							<img src="/items/img/item_13.jpg" width="100%" alt="ワークウェア">
-<p class="item_txt_min">ワークウェア</p>
-</a>
+						<a class="dropdown-item baby_btn" href="/items/baby/" title="ベビー">
+                        <img src="/items/img/item_11.jpg" width="100" height="100" class="img100" alt="ベビー">
+                        <p class="item_txt_min">ベビー</p>
+                    </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item goods_btn" href="/items/goods/" alt="記念品">
-							<img src="/items/img/item_15.jpg" width="100%" alt="記念品">
-<p class="item_txt_min">記念品</p>
-</a>
+						<a class="dropdown-item overall_btn" href="/items/overall/" title="つなぎ">
+                        <img src="/items/img/item_12.jpg" width="100" height="100" class="img100" alt="つなぎ">
+                        <p class="item_txt_min">つなぎ</p>
+                    </a>
+					</div>
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item ladys_btn" href="/items/ladys/" title="レディース">
+                        <img src="/items/img/item_07.jpg" width="100" height="100" class="img100" alt="レディース">
+                        <p class="item_txt_min">レディース</p>
+                    </a>
+					</div>
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item goods_btn" href="/items/workwear/" title="ワークウェア">
+                        <img src="/items/img/item_13.jpg" width="100" height="100" class="img100" alt="ワークウェア">
+                        <p class="item_txt_min">ワークウェア</p>
+                    </a>
+					</div>
+
+					<div class="navi_inner_2 btn">
+						<a class="dropdown-item goods_btn" href="/items/goods/" title="記念品">
+                        <img src="/items/img/item_15.jpg" width="100" height="100" class="img100" alt="記念品">
+                        <p class="item_txt_min">記念品</p>
+                    </a>
 					</div>
 
 				</div>
-			</section>
+			</div>
 
-			<section class="hidden-md-up sp_item_wrap">
+			<div class="hidden-md-up sp_item_wrap">
 				<div class="sp_items">
 					<div class="row">
 
 						<div class="navi_inner_2 btn">
-							<a class="dropdown-item t-shirts_btn" href="/items/t-shirts/" alt="Tシャツ">
-								<img src="/items/img/item_01.jpg" width="100%" alt="Tシャツ">
-							<p class="item_txt_min">Tシャツ</p>
-						</a>
+							<a class="dropdown-item t-shirts_btn" href="/items/t-shirts/" title="Tシャツ">
+                            <img src="/items/img/item_01.jpg" width="100" height="100" class="img100" alt="Tシャツ">
+                            <p class="item_txt_min">Tシャツ</p>
+                        </a>
 						</div>
 
 						<div class="navi_inner_2 btn">
-							<a class="dropdown-item polo-shirts_btn" href="/items/polo-shirts/" alt="ポロシャツ">
-								<img src="/items/img/item_03.jpg" width="100%" alt="ポロシャツ">
-							<p class="item_txt_min">ポロシャツ</p>
-						</a>
+							<a class="dropdown-item polo-shirts_btn" href="/items/polo-shirts/" title="ポロシャツ">
+                            <img src="/items/img/item_03.jpg" width="100" height="100" class="img100" alt="ポロシャツ">
+                            <p class="item_txt_min">ポロシャツ</p>
+                        </a>
 						</div>
 
 						<div class="navi_inner_2 btn">
-							<a class="dropdown-item towel_btn" href="/items/towel/" alt="タオル">
-								<img src="/items/img/item_08.jpg" width="100%" alt="タオル">
-							<p class="item_txt_min">タオル</p>
-						</a>
+							<a class="dropdown-item towel_btn" href="/items/towel/" title="タオル">
+                            <img src="/items/img/item_08.jpg" width="100" height="100" class="img100" alt="タオル">
+                            <p class="item_txt_min">タオル</p>
+                        </a>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="navi_inner_2 btn">
-							<a class="dropdown-item sweat_btn" href="/items/sweat/" alt="スウェット">
-								<img src="/items/img/item_02.jpg" width="100%" alt="スウェット">
-							<p class="item_txt_min">スウェット</p>
-						</a>
+							<a class="dropdown-item sweat_btn" href="/items/sweat/" title="スウェット">
+                            <img src="/items/img/item_02.jpg" width="100" height="100" class="img100" alt="スウェット">
+                            <p class="item_txt_min">スウェット</p>
+                        </a>
 						</div>
 
 						<div class="navi_inner_2 btn">
-							<a class="dropdown-item sportswear_btn" href="/items/sportswear/" alt="スポーツ">
-								<img src="/items/img/item_04.jpg" width="100%" alt="スポーツ">
-							<p class="item_txt_min">スポーツ</p>
-						</a>
+							<a class="dropdown-item sportswear_btn" href="/items/sportswear/" title="スポーツ">
+                            <img src="/items/img/item_04.jpg" width="100" height="100" class="img100" alt="スポーツ">
+                            <p class="item_txt_min">スポーツ</p>
+                        </a>
 						</div>
 
 						<div class="navi_inner_2 btn">
-							<a class="dropdown-item long-shirts_btn" href="/items/long-shirts/" alt="長袖Tシャツ">
-								<img src="/items/img/item_05.jpg" width="100%" alt="長袖Tシャツ">
-							<p class="item_txt_min">長袖Tシャツ</p>
-						</a>
+							<a class="dropdown-item long-shirts_btn" href="/items/long-shirts/" title="長袖Tシャツ">
+                            <img src="/items/img/item_05.jpg" width="100" height="100" class="img100" alt="長袖Tシャツ">
+                            <p class="item_txt_min">長袖Tシャツ</p>
+                        </a>
 						</div>
 					</div>
 				</div>
-				<a class="btn_or btn waves-effect waves-light" href="/items/category.php" type="button">アイテム一覧へ</a>
+				<a class="btn_or btn waves-effect waves-light" href="/items/">アイテム一覧へ</a>
 
 
-			</section>
+			</div>
 
 			<!--
 			<section class="hidden-sm-up">
@@ -484,106 +434,106 @@ $tax = json_decode($conn->salesTax(), true);
 				<div class="owl-carousel owl-theme">
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item goods_btn" href="/items/category/workwear/">
-<img src="/items/img/item_15.jpg" width="100%">
+						<a class="dropdown-item goods_btn" href="/items/workwear/">
+<img src="/items/img/item_15.jpg" width="100" height="100" class="img100">
 <p class="item_txt_min">ワークウェア</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item goods_btn" href="/items/category/goods/">
-<img src="/items/img/item_15.jpg" width="100%">
+						<a class="dropdown-item goods_btn" href="/items/goods/">
+<img src="/items/img/item_15.jpg" width="100" height="100" class="img100">
 <p class="item_txt_min">記念品</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item overall_btn" href="/items/category/overall/">
-<img src="/items/img/item_12.jpg" width="100%">
+						<a class="dropdown-item overall_btn" href="/items/overall/">
+<img src="/items/img/item_12.jpg" width="100" height="100" class="img100">
 <p class="item_txt_min">つなぎ</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item ladys_btn" href="/items/category/ladys/">
-<img src="/items/img/item_07.jpg" width="100%">
+						<a class="dropdown-item ladys_btn" href="/items/ladys/">
+<img src="/items/img/item_07.jpg" width="100" height="100" class="img100">
 <p class="item_txt_min">レディース</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item long-shirts_btn" href="/items/category/long-shirts/">
-<img src="/items/img/item_05.jpg" width="100%">
+						<a class="dropdown-item long-shirts_btn" href="/items/long-shirts/">
+<img src="/items/img/item_05.jpg" width="100" height="100" class="img100">
 <p class="item_txt_min">長袖Tシャツ</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item tote-bag_btn" href="/items/category/tote-bag/">
-<img src="/items/img/item_09.jpg" width="100%">
+						<a class="dropdown-item tote-bag_btn" href="/items/tote-bag/">
+<img src="/items/img/item_09.jpg" width="100" height="100" class="img100">
 <p class="item_txt_min">バッグ</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item t-shirts_btn" href="/items/category/t-shirts/">
-<img src="/items/img/item_01.jpg" width="100%">
+						<a class="dropdown-item t-shirts_btn" href="/items/t-shirts/">
+<img src="/items/img/item_01.jpg" width="100" height="100" class="img100">
 <p class="item_txt_min">Tシャツ</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item polo-shirts_btn" href="/items/category/polo-shirts/">
-<img src="/items/img/item_03.jpg" width="100%">
+						<a class="dropdown-item polo-shirts_btn" href="/items/polo-shirts/">
+<img src="/items/img/item_03.jpg" width="100" height="100" class="img100">
 <p class="item_txt_min">ポロシャツ</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item sweat_btn" href="/items/category/sweat/">
-<img src="/items/img/item_02.jpg" width="100%">
+						<a class="dropdown-item sweat_btn" href="/items/sweat/">
+<img src="/items/img/item_02.jpg" width="100" height="100" class="img100">
 <p class="item_txt_min">スウェット</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item towel_btn" href="/items/category/towel/">
-<img src="/items/img/item_08.jpg" width="100%">
+						<a class="dropdown-item towel_btn" href="/items/towel/">
+<img src="/items/img/item_08.jpg" width="100" height="100" class="img100">
 <p class="item_txt_min">タオル</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item sportswear_btn" href="/items/category/sportswear/">
-<img src="/items/img/item_04.jpg" width="100%">
+						<a class="dropdown-item sportswear_btn" href="/items/sportswear/">
+<img src="/items/img/item_04.jpg" width="100" height="100" class="img100">
 <p class="item_txt_min">スポーツ</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item outer_btn" href="/items/category/outer/">
-<img src="/items/img/item_06.jpg" width="100%">
+						<a class="dropdown-item outer_btn" href="/items/outer/">
+<img src="/items/img/item_06.jpg" width="100" height="100" class="img100">
 <p class="item_txt_min">ブルゾン</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item cap_btn" href="/items/category/cap/">
-<img src="/items/img/item_14.jpg" width="100%">
+						<a class="dropdown-item cap_btn" href="/items/cap/">
+<img src="/items/img/item_14.jpg" width="100" height="100" class="img100">
 <p class="item_txt_min">キャップ</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item apron_btn" href="/items/category/apron/">
-<img src="/items/img/item_10.jpg" width="100%">
+						<a class="dropdown-item apron_btn" href="/items/apron/">
+<img src="/items/img/item_10.jpg" width="100" height="100" class="img100">
 <p class="item_txt_min">エプロン</p>
 </a>
 					</div>
 
 					<div class="navi_inner_2 btn">
-						<a class="dropdown-item baby_btn" href="/items/category/baby/">
-<img src="/items/img/item_11.jpg" width="100%">
+						<a class="dropdown-item baby_btn" href="/items/baby/">
+<img src="/items/img/item_11.jpg" width="100" height="100" class="img100">
 <p class="item_txt_min">ベビー</p>
 </a>
 					</div>
@@ -619,7 +569,7 @@ $tax = json_decode($conn->salesTax(), true);
 
 							<div id="tabView1" class="plan">
 								<p>今、注文すると...この日にお届け！</p>
-								<div id="date">
+								<div id="date1" class="date">
 									<p>
 										<?php echo $fin[3]['Month'].'月'.$fin[3]['Day'].'日';?><span class="min_txt">(<?php echo $fin[3]['Weekname'];?>)</span>
 									</p>
@@ -635,7 +585,7 @@ $tax = json_decode($conn->salesTax(), true);
 
 							<div id="tabView2" class="plan">
 								<p>今、注文すると...この日にお届け！</p>
-								<div id="date">
+								<div id="date2" class="date">
 									<p>
 										<?php echo $fin[2]['Month'].'月'.$fin[2]['Day'].'日';?><span class="min_txt">(<?php echo $fin[2]['Weekname'];?>)</span>
 									</p>
@@ -651,7 +601,7 @@ $tax = json_decode($conn->salesTax(), true);
 
 							<div id="tabView3" class="plan">
 								<p>今、注文すると...この日にお届け！</p>
-								<div id="date">
+								<div id="date3" class="date">
 									<p>
 										<?php echo $fin[1]['Month'].'月'.$fin[1]['Day'].'日';?><span class="min_txt">(<?php echo $fin[1]['Weekname'];?>)</span>
 									</p>
@@ -667,7 +617,7 @@ $tax = json_decode($conn->salesTax(), true);
 
 							<div id="tabView4" class="plan">
 								<p>今、注文すると...この日にお届け！</p>
-								<div id="date">
+								<div id="date4" class="date">
 									<p>
 										<?php echo $fin[0]['Month'].'月'.$fin[0]['Day'].'日';?><span class="min_txt">(<?php echo $fin[0]['Weekname'];?>)</span>
 									</p>
@@ -684,9 +634,9 @@ $tax = json_decode($conn->salesTax(), true);
 					</div>
 					<div class="cnt_txt">
 						<p class="clear">業界最速！今日、発送できます！</p>
-						<a href="/order/express/" class="btn_or btn waves-effect waves-light" type="button">
-<span>当日特急プランへ</span>
-</a>
+						<a href="/order/express/" class="btn_or btn waves-effect waves-light">
+                        <span>当日特急プランへ</span>
+                    </a>
 					</div>
 				</div>
 				<div class="content-area right_area">
@@ -704,28 +654,28 @@ $tax = json_decode($conn->salesTax(), true);
 							<div class="est_item" id="items">
 								<div class="est_item_01 btn waves-effect waves-light is-selected" data-category="t-shirts" data-itemid="215" data-color="001">
 									<div class="est_item_img">
-										<img src="/common/img/home/main/top_est_item_01.png" width="100%" alt="Tシャツ">
+										<img src="/common/img/home/main/top_est_item_01.png" width="100" height="100" class="img100" alt="Tシャツ">
 									</div>
 									<p class="est_item_name">Tシャツ</p>
 								</div>
 
 								<div class="est_item_02 btn waves-effect waves-light" data-category="polo-shirts" data-itemid="625" data-color="001">
 									<div class="est_item_img">
-										<img src="/common/img/home/main/top_est_item_02.png" width="100%" alt="ポロシャツ">
+										<img src="/common/img/home/main/top_est_item_02.png" width="100" height="100" class="img100" alt="ポロシャツ">
 									</div>
 									<p class="est_item_name">ポロシャツ</p>
 								</div>
 
 								<div class="est_item_03 btn waves-effect waves-light" data-category="sweat" data-itemid="124" data-color="001">
 									<div class="est_item_img">
-										<img src="/common/img/home/main/top_est_item_03.png" width="100%" alt="スウェット">
+										<img src="/common/img/home/main/top_est_item_03.png" width="100" height="100" class="img100" alt="スウェット">
 									</div>
 									<p class="est_item_name">スウェット</p>
 								</div>
 
 								<div class="est_item_04 btn waves-effect waves-light" data-category="towel" data-itemid="363" data-color="001">
 									<div class="est_item_img">
-										<img src="/common/img/home/main/top_est_item_04.png" width="100%" alt="タオル">
+										<img src="/common/img/home/main/top_est_item_04.png" width="100" height="100" class="img100" alt="タオル">
 									</div>
 									<p class="est_item_name">タオル</p>
 								</div>
@@ -741,28 +691,28 @@ $tax = json_decode($conn->salesTax(), true);
 							<div class="est_item" id="inks">
 								<div class="est_item_01 btn waves-effect waves-light is-selected" data-ink="1">
 									<div class="est_item_img">
-										<img src="/common/img/home/main/top_est_color_01.png" width="100%" alt="Tシャツプリント1色">
+										<img src="/common/img/home/main/top_est_color_01.png" width="100" height="100" class="img100" alt="Tシャツプリント1色">
 									</div>
 									<p class="est_item_name">1色</p>
 								</div>
 
 								<div class="est_item_02 btn waves-effect waves-light" data-ink="2">
 									<div class="est_item_img">
-										<img src="/common/img/home/main/top_est_color_02.png" width="100%" alt="Tシャツプリント2色">
+										<img src="/common/img/home/main/top_est_color_02.png" width="100" height="100" class="img100" alt="Tシャツプリント2色">
 									</div>
 									<p class="est_item_name">2色</p>
 								</div>
 
 								<div class="est_item_03 btn waves-effect waves-light" data-ink="3">
 									<div class="est_item_img">
-										<img src="/common/img/home/main/top_est_color_03.png" width="100%" alt="Tシャツプリント3色">
+										<img src="/common/img/home/main/top_est_color_03.png" width="100" height="100" class="img100" alt="Tシャツプリント3色">
 									</div>
 									<p class="est_item_name">3色</p>
 								</div>
 
 								<div class="est_item_04 btn waves-effect waves-light" data-ink="4">
 									<div class="est_item_img">
-										<img src="/common/img/home/main/top_est_color_04.png" width="100%" alt="Tシャツプリントフルカラー">
+										<img src="/common/img/home/main/top_est_color_04.png" width="100" height="100" class="img100" alt="Tシャツプリントフルカラー">
 									</div>
 									<p class="est_item_name">フルカラー</p>
 								</div>
@@ -805,9 +755,9 @@ $tax = json_decode($conn->salesTax(), true);
 
 					<div class="cnt_txt">
 						<p class="clear">全アイテムを比較した見積もりはこちら！</p>
-						<a href="/price/estimate.php" class="btn_or btn waves-effect waves-light" type="button">
-<span>カンタン比較見積もりへ</span>
-</a>
+						<a href="/price/estimate.php" class="btn_or btn waves-effect waves-light">
+                        <span>カンタン比較見積もりへ</span>
+                    </a>
 					</div>
 				</div>
 			</section>
@@ -830,7 +780,7 @@ $tax = json_decode($conn->salesTax(), true);
 
 					<div class="tabs">
 
-						<input id="tab01" type="radio" name="tab_item" checked>
+						<!--<input id="tab01" type="radio" name="tab_item" checked>
 						<label class="tab_item" for="tab01">Tシャツ</label>
 						<input id="tab02" type="radio" name="tab_item">
 						<label class="tab_item" for="tab02">ポロシャツ</label>
@@ -839,12 +789,42 @@ $tax = json_decode($conn->salesTax(), true);
 						<input id="tab04" type="radio" name="tab_item">
 						<label class="tab_item" for="tab04">タオル</label>
 						<input id="tab05" type="radio" name="tab_item">
-						<label class="tab_item" for="tab05">ブルゾン</label>
+						<label class="tab_item" for="tab05">ブルゾン</label>-->
 
 
 						<?php
 						foreach ($itemRanking as $categoryKey => $val) {
-							$html .= '<div class="tab_content" id="'.$categoryKey.'">';
+
+                          $html .= '<div id="'.$categoryKey.'" class="ranling_cat_menu">';
+                          $html .= '<ul class="ranking_nav">';
+                          $html .= '<li><a href="#t-shirts"';
+                          if ($categoryKey == 't-shirts'){
+                            $html .= ' class="active"';
+                          }
+                          $html .= '>Tシャツ</a></li>';
+                          $html .= '<li><a href="#polo-shirts"';
+                          if ($categoryKey == 'polo-shirts'){
+                            $html .= ' class="active"';
+                          }
+                          $html .= '>ポロシャツ</a></li>';
+                          $html .= '<li><a href="#sweat"';
+                          if ($categoryKey == 'sweat'){
+                            $html .= ' class="active"';
+                          }
+                          $html .= '>スウェット</a></li>';
+                          $html .= '<li><a href="#towel"';
+                          if ($categoryKey == 'towel'){
+                            $html .= ' class="active"';
+                          }
+                          $html .= '>タオル</a></li>';
+                          $html .= '<li><a href="#outer"';
+                          if ($categoryKey == 'outer'){
+                            $html .= ' class="active"';
+                          }
+                          $html .= '>ブルゾン</a></li>';
+                        $html .= '</ul>';
+                            $html .= '</div>';
+                            $html .= '<div class="inner_content">';
 							$html .= '<div class="ranking_four">';
 							for ($i = 0; $i < $contentsLength; $i++) {
 								$html .= '<div class="block_ranking">
@@ -856,12 +836,12 @@ $tax = json_decode($conn->salesTax(), true);
                                         <div class="ranking_con_01">
 											<a href="/items/item.php?code='.$val[$i]['item_code'].'">
 												<div class="logo_ons">
-													<div class="logo"><img src="/img/brand/logo_'.$val[$i]['brand_id'].'.png" alt="'.$val[$i]['brand_name'].'のロゴ" width="100%"></div>';
+													<div class="logo"><img src="/img/brand/logo_'.$val[$i]['brand_id'].'.png" alt="'.$val[$i]['brand_name'].'のロゴ" width="100" height="100" class="img100"></div>';
 								if (intval($val[$i]['oz'], 10) > 0) {
 									$html .= '<div class="ons">'.$val[$i]['oz'].'oz</div>';
 								}
 								$html .= '</div>
-												<div class="ranking_item_img"><img src="'._IMG_PSS.'items/list/'.$categoryKey.'/'.$val[$i]['item_code'].'/'.$val[$i]['item_code'].'_'.$val[$i]['i_color_code'].'.jpg" width="100%" alt="品番：'.$val[$i]['item_code'].'"></div>
+												<div class="ranking_item_img"><img src="'._IMG_PSS.'items/list/'.$categoryKey.'/'.$val[$i]['item_code'].'/'.$val[$i]['item_code'].'_'.$val[$i]['i_color_code'].'.jpg" width="100" height="100" class="img100" alt="品番：'.$val[$i]['item_code'].'"></div>
 												<p class="number">'.strtoupper($val[$i]['item_code']).'</p>
 												<div class="name_wrap">
 													<p class="name">'.$val[$i]['item_name'].'</p>
@@ -884,7 +864,7 @@ $tax = json_decode($conn->salesTax(), true);
 									$vote = '評価' . round($val[$i]['avg_votes'], 1) . '点';
 								}
 
-								$html .= '<img src="/common/img/home/review/sp_review_0'.getStar($val[$i]['avg_votes']).'.png" alt="'.$vote.'" width="100%">
+								$html .= '<img src="/common/img/home/review/sp_review_0'.getStar($val[$i]['avg_votes']).'.png" alt="'.$vote.'" width="100" height="100" class="img100">
 													</div>
 													<div class="review_star_number">'.round($val[$i]['avg_votes'], 1).'</div>
 												</div>
@@ -916,53 +896,52 @@ $tax = json_decode($conn->salesTax(), true);
 						<ul class="grid-list">
 							<li>
 
-								<p class="card-img"><a href="/print/silk-screen.php"><img class="print-hover" src="/common/img/home/print/top-silk.jpg" alt="3色のシルクスクリーンでプリントされたバイクに乗った男三人のオリジナルデザイン" width="100%"></a></p>
+								<p class="card-img"><a href="/print/silk-screen.php"><img class="print-hover img100" src="/common/img/home/print/top-silk.jpg" alt="3色のシルクスクリーンでプリントされたバイクに乗った男三人のオリジナルデザイン" width="100" height="100"></a></p>
 								<div class="grid-content">
 									<h3 class="grid-title">"オリジナルプリントの大定番"</h3>
 
-									<p class="printhow-text">版を作り直接インクを刷る方法で耐久性に優れています。<br>
-										製作枚数が多いと大幅に安くなります。
+									<p class="printhow-text">版を作り直接インクを刷る方法で耐久性に優れています。<br> 製作枚数が多いと大幅に安くなります。
 									</p>
 
 								</div>
 							</li>
 							<li>
-								<p class="card-img"><a href="/print/inkjet.php"><img class="print-hover" src="/common/img/home/print/top-ink.jpg" alt="淡色のフルカラーインクジェットでプリントされた、数々の著名人がグラフィカルに配置されたオリジナルデザイン" width="100%"></a></p>
+								<p class="card-img"><a href="/print/inkjet.php"><img class="print-hover img100" src="/common/img/home/print/top-ink.jpg" alt="淡色のフルカラーインクジェットでプリントされた、数々の著名人がグラフィカルに配置されたオリジナルデザイン" width="100" height="100"></a></p>
 								<div class="grid-content">
 									<h3 class="grid-title">"どんなデザインでも表現可能"</h3>
 
-									<p class="text">色の再現が1番優れており、色味を大切にしているデザインに向いています。<br>
-										1枚からでも低価格で製作できます。</p>
+									<p class="text">色の再現が1番優れており、色味を大切にしているデザインに向いています。<br> 1枚からでも低価格で製作できます。
+									</p>
 
 								</div>
 							</li>
 							<li>
-								<p class="card-img"><a href="/print/dejiten.php"><img class="print-hover" src="/common/img/home/print/top-deji.jpg" alt="デジタル転写でプリントされた細かくてカラフルなオリジナルデザインの拡大図" width="100%"></a></p>
+								<p class="card-img"><a href="/print/dejiten.php"><img class="print-hover img100" src="/common/img/home/print/top-deji.jpg" alt="デジタル転写でプリントされた細かくてカラフルなオリジナルデザインの拡大図" width="100" height="100"></a></p>
 								<div class="grid-content">
 									<h3 class="grid-title">"色の再現性の高いフルカラー表現"</h3>
 
-									<p class="text">色の再現が1番優れており、色味を大切にしているデザインに向いています。<br>
-										製作枚数が多いと大幅に安くなります。</p>
+									<p class="text">色の再現が1番優れており、色味を大切にしているデザインに向いています。<br> 製作枚数が多いと大幅に安くなります。
+									</p>
 
 								</div>
 							</li>
 							<li>
-								<p class="card-img"><a href="/print/cutting-sheet.php"><img class="print-hover" src="/common/img/home/print/top-cut.jpg" alt="黒地にカッティングプリントされた42というオリジナルデザイン" width="100%"></a></p>
+								<p class="card-img"><a href="/print/cutting-sheet.php"><img class="print-hover img100" src="/common/img/home/print/top-cut.jpg" alt="黒地にカッティングプリントされた42というオリジナルデザイン" width="100" height="100"></a></p>
 								<div class="grid-content">
 									<h3 class="grid-title">"1枚1枚違う名前や背番号が可能"</h3>
 
-									<p class="text">シートを専用機械でデザイン通りにカットする方法のため仕上がりがとても綺麗な方法です。<br>
-										版を使用しないため、1枚からでも低価格で製作できます。</p>
+									<p class="text">シートを専用機械でデザイン通りにカットする方法のため仕上がりがとても綺麗な方法です。<br> 版を使用しないため、1枚からでも低価格で製作できます。
+									</p>
 
 								</div>
 							</li>
 							<li>
-								<p class="card-img"><a href="/print/embroidery.php"><img class="print-hover" src="/common/img/home/print/top-emb.jpg" alt="刺繍機と、Tシャツに刺繍された三味線を持った女性のカラフルなオリジナルデザイン" width="100%"></a></p>
+								<p class="card-img"><a href="/print/embroidery.php"><img class="print-hover img100" src="/common/img/home/print/top-emb.jpg" alt="刺繍機と、Tシャツに刺繍された三味線を持った女性のカラフルなオリジナルデザイン" width="100" height="100"></a></p>
 								<div class="grid-content">
 									<h3 class="grid-title">"MAX6色の圧倒的な表現力"</h3>
 
-									<p class="text">プリントとは違った高級感を表現できます。<br>
-										製作枚数が多いと大幅に安くなります。</p>
+									<p class="text">プリントとは違った高級感を表現できます。<br> 製作枚数が多いと大幅に安くなります。
+									</p>
 
 								</div>
 							</li>
@@ -998,7 +977,7 @@ $tax = json_decode($conn->salesTax(), true);
 					<p class="com_ev">総合評価(1,045件)</p>
 					<div class="com_ev_star">
 						<div class="com_ev_star_img">
-							<img src="/common/img/home/review/sp_review_040.png" width="100%" alt="総合評価4.3点">
+							<img src="/common/img/home/review/sp_review_040.png" width="100" height="100" class="img100" alt="総合評価4.3点">
 						</div>
 						<div class="com_ev_star_number"> 4.3</div>
 					</div>
@@ -1009,7 +988,7 @@ $tax = json_decode($conn->salesTax(), true);
 									商品の仕上がり
 								</div>
 								<div class="r_star_img">
-									<img src="/common/img/home/review/sp_review_040.png" width="100%" alt="商品の仕上がり4.2点">
+									<img src="/common/img/home/review/sp_review_040.png" width="100" height="100" class="img100" alt="商品の仕上がり4.2点">
 								</div>
 								<div class="r_star_number">
 									4.2
@@ -1021,7 +1000,7 @@ $tax = json_decode($conn->salesTax(), true);
 									梱包について
 								</div>
 								<div class="r_star_img">
-									<img src="/common/img/home/review/sp_review_040.png" width="100%" alt="梱包について4.1点">
+									<img src="/common/img/home/review/sp_review_040.png" width="100" height="100" class="img100" alt="梱包について4.1点">
 								</div>
 								<div class="r_star_number">
 									4.1
@@ -1034,7 +1013,7 @@ $tax = json_decode($conn->salesTax(), true);
 									スタッフの対応
 								</div>
 								<div class="r_star_img">
-									<img src="/common/img/home/review/sp_review_045.png" width="100%" alt="スタッフの対応4.7点">
+									<img src="/common/img/home/review/sp_review_045.png" width="100" height="100" class="img100" alt="スタッフの対応4.7点">
 								</div>
 								<div class="r_star_number">
 									4.7
@@ -1046,7 +1025,7 @@ $tax = json_decode($conn->salesTax(), true);
 									サイトの使いやすさ
 								</div>
 								<div class="r_star_img">
-									<img src="/common/img/home/review/sp_review_040.png" width="100%" alt="サイトの使いやすさ4.2点">
+									<img src="/common/img/home/review/sp_review_040.png" width="100" height="100" class="img100" alt="サイトの使いやすさ4.2点">
 								</div>
 								<div class="r_star_number">
 									4.2
@@ -1062,7 +1041,7 @@ $tax = json_decode($conn->salesTax(), true);
 					<div id="multi-item-example_01" class="hidden-sm-down carousel slide carousel-multi-item slide_wrap" data-ride="carousel">
 
 						<!--Slides-->
-<!--						<a class="btn-floating_review" href="#multi-item-example_01" data-slide="prev"><i class="fa fa-chevron-left review_arrow"></i></a>-->
+						<!--						<a class="btn-floating_review" href="#multi-item-example_01" data-slide="prev"><i class="fa fa-chevron-left review_arrow"></i></a>-->
 						<div class="carousel-inner" role="listbox">
 
 							<!--First slide-->
@@ -1071,7 +1050,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.7点"><span class="rank_price">4.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100" height="100" class="img100 imgsz" alt="評価4.7点"><span class="rank_price">4.7</span></li>
 											<li>
 												<p>昨年秋に一度お世話になりました。<br>・低価格でいい商品を提供してくれている<br>・応対がよい…
 
@@ -1084,7 +1063,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100" height="100" class="img100 imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
 
 											<li>
 												<p>いつも、丁寧で対応の早さが素晴らしいと思います！<br>私のようにパソコンを使ってのデザイン画を送れない人にとっては、本当に助かります！…
@@ -1097,7 +1076,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.7点"><span class="rank_price">4.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100" height="100" class="img100 imgsz" alt="評価4.7点"><span class="rank_price">4.7</span></li>
 											<li>
 												<p>最初から最後まで、一人の担当者が相談に乗ってくれるので発注までスムーズでした。<br>また宜しくお願い致します。
 												</p>
@@ -1109,7 +1088,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.2点"><span class="rank_price">4.2</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100" height="100" class="img100 imgsz" alt="評価4.2点"><span class="rank_price">4.2</span></li>
 											<li>
 												<p>各商品名の印刷色を決める際に、全ての商品に対して、印刷色を確認できるページが欲しいです。<br>Tシャツだとそんなページがありましたが、ハンドタオル…
 
@@ -1122,7 +1101,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.0点"><span class="rank_price">4.0</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100" height="100" class="img100 imgsz" alt="評価4.0点"><span class="rank_price">4.0</span></li>
 											<li>
 												<p>ネットでこれだけ注文に応じられるのは驚きました。<br>プリントもイメージ通りで大変満足しました。
 												</p>
@@ -1140,7 +1119,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100" height="100" class="img100 imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
 											<li>
 												<p>安く、早く届き非常に助かりました。<br>ありがとうございました。
 												</p>
@@ -1152,7 +1131,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_050.png" width="100%" class="imgsz" alt="評価5.0点"><span class="rank_price">5.0</span></li>
+											<li><img src="/common/img/home/review/sp_review_050.png" width="100" height="100" class="img100 imgsz" alt="評価5.0点"><span class="rank_price">5.0</span></li>
 											<li>
 												<p>わがままばかりで色々とお手数おかけいたしましたが、優しく素早く対応して下さり感謝しております。<br>ありがとうございました。
 												</p>
@@ -1164,7 +1143,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.3点"><span class="rank_price">4.2</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100" height="100" class="img100 imgsz" alt="評価4.3点"><span class="rank_price">4.2</span></li>
 											<li>
 												<p>今回は追加注文だったのですが、電話での対応が良かった。<br>金額の事や、デザインの微調整についてわかりやすかった。
 												</p>
@@ -1176,7 +1155,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_035.png" width="100%" class="imgsz" alt="評価3.7点"><span class="rank_price">3.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_035.png" width="100" height="100" class="img100 imgsz" alt="評価3.7点"><span class="rank_price">3.7</span></li>
 											<li>
 												<p>注文から発送まで本当にスムーズで時間がなかった私たちには嬉しい限りでした。
 												</p>
@@ -1188,7 +1167,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_050.png" width="100%" class="imgsz" alt="評価5.0点"><span class="rank_price">5.0</span></li>
+											<li><img src="/common/img/home/review/sp_review_050.png" width="100" height="100" class="img100 imgsz" alt="評価5.0点"><span class="rank_price">5.0</span></li>
 											<li>
 												<p>窓口のスタッフの対応が大変よく、ありがとうございました。<br>追加なども夏頃出るかと思いますが、また宜しくお願い致します。
 												</p>
@@ -1206,7 +1185,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.2点"><span class="rank_price">4.2</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100" height="100" class="img100 imgsz" alt="評価4.2点"><span class="rank_price">4.2</span></li>
 											<li>
 												<p>欲しかった通りの物が届いて嬉しかったです。<br>また何かオリジナルTシャツを作りたいときはお願いしたいと思います。
 												</p>
@@ -1218,7 +1197,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.0点"><span class="rank_price">4.0</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100" height="100" class="img100 imgsz" alt="評価4.0点"><span class="rank_price">4.0</span></li>
 											<li>
 												<p>・白インクの部分が、少しだけ明度が下がったように感じたましたが、イメージ通りに仕上がり良かったです。<br>・注文の最終確認の段階で、…
 
@@ -1231,7 +1210,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.7点"><span class="rank_price">4.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100" height="100" class="img100 imgsz" alt="評価4.7点"><span class="rank_price">4.7</span></li>
 											<li>
 												<p>電話で確認した時に対応してくださった方が、とても感じがよかったです。<br>気持ちよくお話ができました。
 												</p>
@@ -1243,7 +1222,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100" height="100" class="img100 imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
 											<li>
 												<p>この度は急ぎの注文に親切な、迅速な対応ありがとうございました。<br>お陰様でイベントに間に合わせることができ、楽しい時間…
 
@@ -1256,7 +1235,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_035.png" width="100%" class="imgsz" alt="評価3.7点"><span class="rank_price">3.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_035.png" width="100" height="100" class="img100 imgsz" alt="評価3.7点"><span class="rank_price">3.7</span></li>
 											<li>
 												<p>どのプリントがどの程度費用がかかるというのが分からず、予想以上に低価格で仕上がりました。<br>今回は時間がなかったので、再度変更はできませんでしたが…
 												</p>
@@ -1274,7 +1253,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.0点"><span class="rank_price">4.0</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100" height="100" class="img100 imgsz" alt="評価4.0点"><span class="rank_price">4.0</span></li>
 											<li>
 												<p>Ｔシャツ作りが初めてだったので、とても不安でしたが、わかりやすく説明していただきました。<br>納期が早くて、とても助かりました。ありがとうございました。
 												</p>
@@ -1286,7 +1265,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.2点"><span class="rank_price">4.2</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100" height="100" class="img100 imgsz" alt="評価4.2点"><span class="rank_price">4.2</span></li>
 											<li>
 												<p>電話対応も非常に丁寧でしたし、大変満足のいく仕上がりでした。<br>また利用させていただきたいと思います。<br>ありがとうございました。
 												</p>
@@ -1298,7 +1277,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.7点"><span class="rank_price">4.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100" height="100" class="img100 imgsz" alt="評価4.7点"><span class="rank_price">4.7</span></li>
 											<li>
 												<p>発注～入稿～領収証依頼、と、数回お電話でやりとりさせていただきましたが、どの方もとても気持ちよく対応していただきました。<br>ありがとうございます。
 												</p>
@@ -1310,7 +1289,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100" height="100" class="img100 imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
 											<li>
 												<p>メールや電話での対応がとても丁寧で好感がもてました。<br>必ずしも同じ方がご対応ではないかと思いますが、一定のレベルが堅持されていて、安心感…
 
@@ -1323,7 +1302,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-md-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100" height="100" class="img100 imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
 											<li>
 												<p>急な注文にもかかわらずご丁寧に対応していただけて嬉しかったです。<br>ありがとうございました！
 												</p>
@@ -1337,7 +1316,7 @@ $tax = json_decode($conn->salesTax(), true);
 
 						</div>
 						<!--/.Slides-->
-<!--						<a class="btn-floating_review" href="#multi-item-example_01" data-slide="next"><i class="fa fa-chevron-right review_arrow"></i></a>-->
+						<!--						<a class="btn-floating_review" href="#multi-item-example_01" data-slide="next"><i class="fa fa-chevron-right review_arrow"></i></a>-->
 					</div>
 					<!--/.Carousel Wrapper pc-->
 
@@ -1348,7 +1327,7 @@ $tax = json_decode($conn->salesTax(), true);
 					<div id="multi-item-example" class="hidden-md-up carousel slide carousel-multi-item slide_wrap" data-ride="carousel">
 
 						<!--Slides-->
-<!--						<a class="btn-floating_review" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left review_arrow"></i></a>-->
+						<!--						<a class="btn-floating_review" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left review_arrow"></i></a>-->
 						<div class="carousel-inner" role="listbox">
 
 							<!---->
@@ -1357,7 +1336,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.7点"><span class="rank_price">4.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100" height="100" class="img100 imgsz" alt="評価4.7点"><span class="rank_price">4.7</span></li>
 											<li>
 												<p>昨年秋に一度お世話になりました。<br>・低価格でいい商品を提供してくれている<br>・応対がよい…
 
@@ -1370,7 +1349,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-sm-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100" height="100" class="img100 imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
 
 											<li>
 												<p>いつも、丁寧で対応の早さが素晴らしいと思います！<br>私のようにパソコンを使ってのデザイン画を送れない人にとっては、本当に助かります！…
@@ -1388,7 +1367,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.7点"><span class="rank_price">4.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100" height="100" class="img100 imgsz" alt="評価4.7点"><span class="rank_price">4.7</span></li>
 											<li>
 												<p>最初から最後まで、一人の担当者が相談に乗ってくれるので発注までスムーズでした。<br>また宜しくお願い致します。
 												</p>
@@ -1400,7 +1379,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-sm-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.2点"><span class="rank_price">4.2</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100" height="100" class="img100 imgsz" alt="評価4.2点"><span class="rank_price">4.2</span></li>
 											<li>
 												<p>各商品名の印刷色を決める際に、全ての商品に対して、印刷色を確認できるページが欲しいです。<br>Tシャツだとそんなページがありましたが、ハンドタオル…
 
@@ -1418,7 +1397,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.0点"><span class="rank_price">4.0</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100" height="100" class="img100 imgsz" alt="評価4.0点"><span class="rank_price">4.0</span></li>
 											<li>
 												<p>ネットでこれだけ注文に応じられるのは驚きました。<br>プリントもイメージ通りで大変満足しました。
 												</p>
@@ -1430,7 +1409,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-sm-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100" height="100" class="img100 imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
 											<li>
 												<p>安く、早く届き非常に助かりました。<br>ありがとうございました。
 												</p>
@@ -1446,7 +1425,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_050.png" width="100%" class="imgsz" alt="評価5.0点"><span class="rank_price">5.0</span></li>
+											<li><img src="/common/img/home/review/sp_review_050.png" width="100" height="100" class="img100 imgsz" alt="評価5.0点"><span class="rank_price">5.0</span></li>
 											<li>
 												<p>わがままばかりで色々とお手数おかけいたしましたが、優しく素早く対応して下さり感謝しております。<br>ありがとうございました。
 												</p>
@@ -1458,7 +1437,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-sm-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.2点"><span class="rank_price">4.2</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100" height="100" class="img100 imgsz" alt="評価4.2点"><span class="rank_price">4.2</span></li>
 											<li>
 												<p>今回は追加注文だったのですが、電話での対応が良かった。<br>金額の事や、デザインの微調整についてわかりやすかった。
 												</p>
@@ -1474,7 +1453,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_035.png" width="100%" class="imgsz" alt="評価3.7点"><span class="rank_price">3.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_035.png" width="100" height="100" class="img100 imgsz" alt="評価3.7点"><span class="rank_price">3.7</span></li>
 											<li>
 												<p>注文から発送まで本当にスムーズで時間がなかった私たちには嬉しい限りでした。
 												</p>
@@ -1486,7 +1465,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-sm-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_050.png" width="100%" class="imgsz" alt="評価5.0点"><span class="rank_price">5.0</span></li>
+											<li><img src="/common/img/home/review/sp_review_050.png" width="100" height="100" class="img100 imgsz" alt="評価5.0点"><span class="rank_price">5.0</span></li>
 											<li>
 												<p>窓口のスタッフの対応が大変よく、ありがとうございました。<br>追加なども夏頃出るかと思いますが、また宜しくお願い致します。
 												</p>
@@ -1501,7 +1480,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.2点"><span class="rank_price">4.2</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100" height="100" class="img100 imgsz" alt="評価4.2点"><span class="rank_price">4.2</span></li>
 											<li>
 												<p>欲しかった通りの物が届いて嬉しかったです。<br>また何かオリジナルTシャツを作りたいときはお願いしたいと思います。
 												</p>
@@ -1513,7 +1492,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-sm-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.0点"><span class="rank_price">4.0</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100" height="100" class="img100 imgsz" alt="評価4.0点"><span class="rank_price">4.0</span></li>
 											<li>
 												<p>・白インクの部分が、少しだけ明度が下がったように感じたましたが、イメージ通りに仕上がり良かったです。<br>・注文の最終確認の段階で、…
 
@@ -1529,7 +1508,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.7点"><span class="rank_price">4.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100" height="100" class="img100 imgsz" alt="評価4.7点"><span class="rank_price">4.7</span></li>
 											<li>
 												<p>電話で確認した時に対応してくださった方が、とても感じがよかったです。<br>気持ちよくお話ができました。
 												</p>
@@ -1541,7 +1520,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-sm-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100" height="100" class="img100 imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
 											<li>
 												<p>この度は急ぎの注文に親切な、迅速な対応ありがとうございました。<br>お陰様でイベントに間に合わせることができ、楽しい時間…
 
@@ -1558,7 +1537,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_035.png" width="100%" class="imgsz" alt="評価3.7点"><span class="rank_price">3.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_035.png" width="100" height="100" class="img100 imgsz" alt="評価3.7点"><span class="rank_price">3.7</span></li>
 											<li>
 												<p>どのプリントがどの程度費用がかかるというのが分からず、予想以上に低価格で仕上がりました。<br>今回は時間がなかったので、再度変更はできませんでしたが…
 												</p>
@@ -1571,7 +1550,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-sm-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.0点"><span class="rank_price">4.0</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100" height="100" class="img100 imgsz" alt="評価4.0点"><span class="rank_price">4.0</span></li>
 											<li>
 												<p>Ｔシャツ作りが初めてだったので、とても不安でしたが、わかりやすく説明していただきました。<br>納期が早くて、とても助かりました。ありがとうございました。
 												</p>
@@ -1587,7 +1566,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_040.png" width="100%" class="imgsz" alt="評価4.2点"><span class="rank_price">4.2</span></li>
+											<li><img src="/common/img/home/review/sp_review_040.png" width="100" height="100" class="img100 imgsz" alt="評価4.2点"><span class="rank_price">4.2</span></li>
 											<li>
 												<p>電話対応も非常に丁寧でしたし、大変満足のいく仕上がりでした。<br>また利用させていただきたいと思います。<br>ありがとうございました。
 												</p>
@@ -1599,7 +1578,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-sm-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.7点"><span class="rank_price">4.7</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100" height="100" class="img100 imgsz" alt="評価4.7点"><span class="rank_price">4.7</span></li>
 											<li>
 												<p>発注～入稿～領収証依頼、と、数回お電話でやりとりさせていただきましたが、どの方もとても気持ちよく対応していただきました。<br>ありがとうございます。
 												</p>
@@ -1615,7 +1594,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100" height="100" class="img100 imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
 											<li>
 												<p>メールや電話での対応がとても丁寧で好感がもてました。<br>必ずしも同じ方がご対応ではないかと思いますが、一定のレベルが堅持されていて、安心感…
 
@@ -1628,7 +1607,7 @@ $tax = json_decode($conn->salesTax(), true);
 								<div class="col review_comment clearfix d-none d-sm-block">
 									<div>
 										<ul>
-											<li><img src="/common/img/home/review/sp_review_045.png" width="100%" class="imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
+											<li><img src="/common/img/home/review/sp_review_045.png" width="100" height="100" class="img100 imgsz" alt="評価4.5点"><span class="rank_price">4.5</span></li>
 											<li>
 												<p>急な注文にもかかわらずご丁寧に対応していただけて嬉しかったです。<br>ありがとうございました！
 												</p>
@@ -1642,13 +1621,13 @@ $tax = json_decode($conn->salesTax(), true);
 						</div>
 
 						<!--/.Slides-->
-<!--						<a class="btn-floating_review" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right review_arrow"></i></a>-->
+						<!--						<a class="btn-floating_review" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right review_arrow"></i></a>-->
 					</div>
 					<!--/.Carousel Wrapper-->
 
 
 					<div class="button_01">
-						<a class="btn_or btn waves-effect waves-light" href="/userreviews/" type="button">レビューをもっと見る</a>
+						<a class="btn_or btn waves-effect waves-light" href="/userreviews/">レビューをもっと見る</a>
 					</div>
 
 
@@ -1665,105 +1644,105 @@ $tax = json_decode($conn->salesTax(), true);
 				<div class="slider_p-result">
 					<div class="p-result">
 						<div class="result_block">
-							<a href="/app/WP/thanks-blog/2018/02/12/オリジナルスタッフtシャツでイベントも大盛況！/">
-								<div class="result_image"><img src="/img/ex_01.jpg" width="100%" alt="イベント先でオリジナルTシャツを着る男性たち"></div>
+							<a href="/blog/thanks-blog/2018/02/12/オリジナルスタッフtシャツでイベントも大盛況！/">
+								<div class="result_image"><img src="/img/ex_01.jpg" width="100" height="100" class="img100" alt="イベント先でオリジナルTシャツを着る男性たち"></div>
 							</a>
 							<p class="result_txt"> Tシャツありがとうございました♪ <br>急な依頼にもかかわらずいい感じに仕上げていただきました(^-^)/<br>おかげでイベントも盛り上がりました!!
 							</p>
 						</div>
 						<div class="result_block">
-							<a href="/app/WP/thanks-blog/2017/12/05/親身な対応に安心してお揃いtシャツ作れました♪/">
-								<div class="result_image"><img src="/img/ex_02.jpg" width="100%" alt="緑のオリジナルTシャツを着る女性たち"></div>
+							<a href="/blog/thanks-blog/2017/12/05/親身な対応に安心してお揃いtシャツ作れました♪/">
+								<div class="result_image"><img src="/img/ex_02.jpg" width="100" height="100" class="img100" alt="緑のオリジナルTシャツを着る女性たち"></div>
 							</a>
 							<p class="result_txt"> 昨年タカハマさんで作ったという知人の紹介で、こちらを知りました。<br>他社さんも調べたのですが、タカハマさんのご対応が一番親切・丁寧だったので決めました！…
 							</p>
 						</div>
 						<div class="result_block">
-							<a href="/app/WP/thanks-blog/2017/12/01/オリジナルデザインのクラスtもスピーディ！/">
-								<div class="result_image"><img src="/img/ex_03.jpg" width="100%" alt="オリジナルTシャツを着る後ろ姿の女子学生達"></div>
+							<a href="/blog/thanks-blog/2017/12/01/オリジナルデザインのクラスtもスピーディ！/">
+								<div class="result_image"><img src="/img/ex_03.jpg" width="100" height="100" class="img100" alt="オリジナルTシャツを着る後ろ姿の女子学生達"></div>
 							</a>
 							<p class="result_txt"> 先日は、クラスTオリジナルデザイン作成～仕上がりまで丁寧な対応有難うございました。<br>スピーディな対応が神的でした^_^
 							</p>
 						</div>
 						<div class="result_block">
-							<a href="/app/WP/thanks-blog/2017/05/08/t_218/">
-								<div class="result_image"><img src="/img/ex_04.jpg" width="100%" alt="オリジナルTシャツをお祭りの衣装と着る女性達" の後ろ姿></div>
+							<a href="/blog/thanks-blog/2017/05/08/t_218/">
+								<div class="result_image"><img src="/img/ex_04.jpg" width="100" height="100" class="img100" alt="オリジナルTシャツをお祭りの衣装と着る女性達の後ろ姿"></div>
 							</a>
 							<p class="result_txt"> 先日は、お忙しい中対応して頂き、誠にありがとうございました。<br>Ｔシャツの出来上がりに子どもたちも 大満足で、無事にイベントを過ごす事ができ、いい思い出作りができ…
 							</p>
 						</div>
 						<div class="result_block">
-							<a href="/app/WP/thanks-blog/2017/11/10/着心地もよく、仕上がりも大変満足なオリジナルt/">
-								<div class="result_image"><img src="/img/ex_05.jpg" width="100%" alt="青いオリジナルTシャツを着る会社員達"></div>
+							<a href="/blog/thanks-blog/2017/11/10/着心地もよく、仕上がりも大変満足なオリジナルt/">
+								<div class="result_image"><img src="/img/ex_05.jpg" width="100" height="100" class="img100" alt="青いオリジナルTシャツを着る会社員達"></div>
 							</a>
 							<p class="result_txt"> 初めて利用させていただきましたが、早い仕上がりと、完成度の良さに大変満足しております。<br>またぜひ、お願いいたします。
 							</p>
 						</div>
 						<div class="result_block">
-							<a href="/app/WP/thanks-blog/2017/11/08/大人数イベントの参加者用オリジナルtシャツ！/">
-								<div class="result_image"><img src="/img/ex_06.jpg" width="100%" alt="赤いオリジナルTシャツを着る女性2人"></div>
+							<a href="/blog/thanks-blog/2017/11/08/大人数イベントの参加者用オリジナルtシャツ！/">
+								<div class="result_image"><img src="/img/ex_06.jpg" width="100" height="100" class="img100" alt="赤いオリジナルTシャツを着る女性2人"></div>
 							</a>
 							<p class="result_txt">いつもTシャツの制作、ありがとうございます。<br>今回で何度目でしょう？？6回目くらいですかね？<br>毎回200人近い参加者用にTシャツを作っていただいております。…
 							</p>
 						</div>
 						<div class="result_block">
-							<a href="/app/WP/thanks-blog/2017/11/06/社内イベントにオリジナルのマフラータオル！/">
-								<div class="result_image"><img src="/img/ex_07.jpg" width="100%" alt="イラストが印刷された青いオリジナルタオル数枚"></div>
+							<a href="/blog/thanks-blog/2017/11/06/社内イベントにオリジナルのマフラータオル！/">
+								<div class="result_image"><img src="/img/ex_07.jpg" width="100" height="100" class="img100" alt="イラストが印刷された青いオリジナルタオル数枚"></div>
 							</a>
 							<p class="result_txt"> この度は大変お世話になりました。<br>無事、社内イベントにて製作頂きましたタオルを使用することができました！<br>デザイン・質感とも大変喜んでおりました。
 							</p>
 						</div>
 						<div class="result_block">
-							<a href="/app/WP/thanks-blog/2017/11/08/ディズニーランドにお揃いtシャツで最高の思い出/">
-								<div class="result_image"><img src="/img/ex_08.jpg" width="100%" alt="ディズニーランドでピンク色のオリジナルTシャツを着る女性達"></div>
+							<a href="/blog/thanks-blog/2017/11/08/ディズニーランドにお揃いtシャツで最高の思い出/">
+								<div class="result_image"><img src="/img/ex_08.jpg" width="100" height="100" class="img100" alt="ディズニーランドでピンク色のオリジナルTシャツを着る女性達"></div>
 							</a>
 							<p class="result_txt">みんなでTシャツを着てディズニーランドに！<br>とっても目立てて最高の思い出になりました??<br>先日は急な注文にもかかわらず、丁寧なご対応、また素敵なTシャツ本当…
 							</p>
 						</div>
 						<div class="result_block">
-							<a href="/app/WP/thanks-blog/2017/11/08/ホームステイ記念＆お土産に漢字名前プリントシ/">
-								<div class="result_image"><img src="/img/ex_09.jpg" width="100%" alt="空港でオリジナルTシャツを着る留学生と日本人のホストファミリー"></div>
+							<a href="/blog/thanks-blog/2017/11/08/ホームステイ記念＆お土産に漢字名前プリントシ/">
+								<div class="result_image"><img src="/img/ex_09.jpg" width="100" height="100" class="img100" alt="空港でオリジナルTシャツを着る留学生と日本人のホストファミリー"></div>
 							</a>
 							<p class="result_txt">今回ホームステイでサンディエゴから16歳の男の子が来ました。<br>その記念にお揃いのＴシャツを作りました。<br>デザインは、彼が日本の高校に行った時に 書道で書いた彼の名前…
 							</p>
 						</div>
 						<div class="result_block">
-							<a href="/app/WP/thanks-blog/2017/12/05/想像以上のきれいなデザインtシャツに満足♪/">
-								<div class="result_image"><img src="/img/ex_10.jpg" width="100%" alt="ギターのデザインのオリジナルTシャツを着る男性"></div>
+							<a href="/blog/thanks-blog/2017/12/05/想像以上のきれいなデザインtシャツに満足♪/">
+								<div class="result_image"><img src="/img/ex_10.jpg" width="100" height="100" class="img100" alt="ギターのデザインのオリジナルTシャツを着る男性"></div>
 							</a>
 							<p class="result_txt"> きれいにデザインして頂いて、想像以上に素晴らしいTシャツになりました。<br>良い記念になりました。ありがとうございました！
 							</p>
 						</div>
 						<div class="result_block">
-							<a href="/app/WP/thanks-blog/2017/11/08/オーケストラのメンバーtシャツで練習も頑張れる/">
-								<div class="result_image"><img src="/img/ex_11.jpg" width="100%" alt="赤いオリジナルTシャツを着ながら演奏する男女"></div>
+							<a href="/blog/thanks-blog/2017/11/08/オーケストラのメンバーtシャツで練習も頑張れる/">
+								<div class="result_image"><img src="/img/ex_11.jpg" width="100" height="100" class="img100" alt="赤いオリジナルTシャツを着ながら演奏する男女"></div>
 							</a>
 							<p class="result_txt"> 素敵なTシャツを作って頂きありがとうございました！<br>オーケストラの皆さんも気に入ってくれて演奏会に向けてよりいっそう頑張れます！
 							</p>
 						</div>
 						<div class="result_block">
-							<a href="/app/WP/thanks-blog/2017/11/06/サプライズプレゼントのオリジナルタオルで感涙/">
-								<div class="result_image"><img src="/img/ex_12.jpg" width="100%" alt="黄色と黒のオリジナルタオルを囲む女子高生達"></div>
+							<a href="/blog/thanks-blog/2017/11/06/サプライズプレゼントのオリジナルタオルで感涙/">
+								<div class="result_image"><img src="/img/ex_12.jpg" width="100" height="100" class="img100" alt="黄色と黒のオリジナルタオルを囲む女子高生達"></div>
 							</a>
 							<p class="result_txt"> サークルのみんなにサプライズでタオルをプレゼントすることができました！<br>泣いて喜んでくれたのでほんとに嬉しかったです。<br>最高のチームで最高のバスケしてき…</p>
 						</div>
 						<div class="result_block">
-							<a href="app/WP/thanks-blog/2017/11/02/__trashed-4/">
-								<div class="result_image"><img src="/img/ex_13.jpg" width="100%" alt="青いオリジナルTシャツを着る女性達"></div>
+							<a href="/blog/thanks-blog/2017/11/02/__trashed-4/">
+								<div class="result_image"><img src="/img/ex_13.jpg" width="100" height="100" class="img100" alt="青いオリジナルTシャツを着る女性達"></div>
 							</a>
 							<p class="result_txt"> この度は、ステキなTシャツを作っていただいて本当にありがとうございました！<br>みんなで同じTシャツを着ることで、団結力が強まりイベントを盛り上げ…
 							</p>
 						</div>
 						<div class="result_block">
-							<a href="/app/WP/thanks-blog/2017/05/08/t_217/">
-								<div class="result_image"><img src="/img/ex_14.jpg" width="100%" alt="マラソン用の赤いオリジナルTシャツ"></div>
+							<a href="/blog/thanks-blog/2017/05/08/t_217/">
+								<div class="result_image"><img src="/img/ex_14.jpg" width="100" height="100" class="img100" alt="マラソン用の赤いオリジナルTシャツ"></div>
 							</a>
 							<p class="result_txt"> 今回マラソン大会に出るためにオリジナルＴシャツをタカハマライフアートさんで作成していただきました。<br>皆で一致団結して頑張ります！<br>タカハマライフアートさん、ありが…
 							</p>
 						</div>
 						<div class="result_block">
-							<a href="/app/WP/thanks-blog/2017/05/08/t_215/">
-								<div class="result_image"><img src="/img/ex_15.jpg" width="100%" alt="イラストが印刷されている青いオリジナルTシャツ"></div>
+							<a href="/blog/thanks-blog/2017/05/08/t_215/">
+								<div class="result_image"><img src="/img/ex_15.jpg" width="100" height="100" class="img100" alt="イラストが印刷されている青いオリジナルTシャツ"></div>
 							</a>
 							<p class="result_txt"> イベント開催にともない、スタッフ用のTシャツを作成しました。<br>希望の納期が短かったので、Takahama Life Art様にお願いしました。<br>キレイで目立つ希望通りの鮮やかな…
 							</p>
@@ -1772,7 +1751,7 @@ $tax = json_decode($conn->salesTax(), true);
 				</div>
 
 				<div class="button_01">
-					<a class="btn_or btn waves-effect waves-light" href="/app/WP/thanks-blog" type="button">製作実例をもっと見る</a>
+					<a class="btn_or btn waves-effect waves-light" href="/blog/thanks-blog/">製作実例をもっと見る</a>
 				</div>
 
 			</section>
@@ -1792,9 +1771,9 @@ $tax = json_decode($conn->salesTax(), true);
 					<div class="cont">
 						<!-- flexboxのコンテナ -->
 						<div class="item btn waves-effect waves-light">
-							<a href="/items/brand.php.php?tag=58">
+							<a href="/items/brand.php?tag=58">
 								<div class="bland_a">
-									<img src="img/bland_01.png" width="100%" alt="Printstarのロゴ">
+									<img src="img/bland_01.png" width="100" height="100" class="img100" alt="Printstarのロゴ">
 								</div>
 
 								<div class="sen_dotted"></div>
@@ -1807,7 +1786,7 @@ $tax = json_decode($conn->salesTax(), true);
 						<div class="item btn waves-effect waves-light">
 							<a href="/items/brand.php?tag=59">
 								<div class="bland_a">
-									<img src="img/bland_02.png" width="100%" alt="United Athleのロゴ">
+									<img src="img/bland_02.png" width="100" height="100" class="img100" alt="United Athleのロゴ">
 								</div>
 
 								<div class="sen_dotted"></div>
@@ -1820,7 +1799,7 @@ $tax = json_decode($conn->salesTax(), true);
 						<div class="item btn waves-effect waves-light">
 							<a href="/items/brand.php?tag=108">
 								<div class="bland_a">
-									<img src="img/bland_03.png" width="100%" alt="GILDANのロゴ">
+									<img src="img/bland_03.png" width="100" height="100" class="img100" alt="GILDANのロゴ">
 								</div>
 
 								<div class="sen_dotted"></div>
@@ -1833,7 +1812,7 @@ $tax = json_decode($conn->salesTax(), true);
 						<div class="item btn waves-effect waves-light">
 							<a href="/items/brand.php?tag=60">
 								<div class="bland_a">
-									<img src="img/bland_04.png" width="100%" alt="Glimmerのロゴ">
+									<img src="img/bland_04.png" width="100" height="100" class="img100" alt="Glimmerのロゴ">
 								</div>
 
 								<div class="sen_dotted"></div>
@@ -1846,7 +1825,7 @@ $tax = json_decode($conn->salesTax(), true);
 						<div class="item btn waves-effect waves-light">
 							<a href="/items/brand.php?tag=54">
 								<div class="bland_d">
-									<img src="img/bland_05.png" width="100%" alt="TRUSSのロゴ">
+									<img src="img/bland_05.png" width="100" height="100" class="img100" alt="TRUSSのロゴ">
 								</div>
 								<div class="sen_dotted"></div>
 								<p>
@@ -1858,7 +1837,7 @@ $tax = json_decode($conn->salesTax(), true);
 						<div class="item btn waves-effect waves-light">
 							<a href="/items/brand.php?tag=55">
 								<div class="bland_b">
-									<img src="img/bland_06.png" width="100%" alt="CROSS&STITCHのロゴ">
+									<img src="img/bland_06.png" width="100" height="100" class="img100" alt="CROSS&STITCHのロゴ">
 								</div>
 								<div class="sen_dotted"></div>
 								<p>
@@ -1870,7 +1849,7 @@ $tax = json_decode($conn->salesTax(), true);
 						<div class="item btn waves-effect waves-light">
 							<a href="/items/brand.php?tag=62">
 								<div class="bland_a">
-									<img src="img/bland_07.png" width="100%" alt="CROSSのロゴ">
+									<img src="img/bland_07.png" width="100" height="100" class="img100" alt="CROSSのロゴ">
 								</div>
 								<div class="sen_dotted"></div>
 								<p>
@@ -1882,7 +1861,7 @@ $tax = json_decode($conn->salesTax(), true);
 						<div class="item btn waves-effect waves-light">
 							<a href="/items/brand.php?tag=61">
 								<div class="bland_c">
-									<img src="img/bland_08.png" width="100%" alt="wundouのロゴ">
+									<img src="img/bland_08.png" width="100" height="100" class="img100" alt="wundouのロゴ">
 								</div>
 								<div class="sen_dotted"></div>
 								<p>
@@ -1894,7 +1873,7 @@ $tax = json_decode($conn->salesTax(), true);
 						<div class="item btn waves-effect waves-light">
 							<a href="/items/brand.php?tag=67">
 								<div class="bland_a">
-									<img src="img/bland_09.png" width="100%" alt="ruccaのロゴ">
+									<img src="img/bland_09.png" width="100" height="100" class="img100" alt="ruccaのロゴ">
 								</div>
 
 								<div class="sen_dotted"></div>
@@ -1907,7 +1886,7 @@ $tax = json_decode($conn->salesTax(), true);
 						<div class="item btn waves-effect waves-light">
 							<a href="/items/brand.php?tag=66">
 								<div class="bland_a">
-									<img src="img/bland_10.png" width="100%" alt="AIMYのロゴ">
+									<img src="img/bland_10.png" width="100" height="100" class="img100" alt="AIMYのロゴ">
 								</div>
 
 								<div class="sen_dotted"></div>
@@ -1920,7 +1899,7 @@ $tax = json_decode($conn->salesTax(), true);
 						<div class="item btn waves-effect waves-light">
 							<a href="/items/brand.php?tag=68">
 								<div class="bland_d">
-									<img src="img/bland_11.png" width="100%" alt="DALUCのロゴ">
+									<img src="img/bland_11.png" width="100" height="100" class="img100" alt="DALUCのロゴ">
 								</div>
 								<div class="sen_dotted"></div>
 								<p>
@@ -1932,7 +1911,7 @@ $tax = json_decode($conn->salesTax(), true);
 						<div class="item btn waves-effect waves-light">
 							<a href="/items/brand.php?tag=69">
 								<div class="bland_d">
-									<img src="img/bland_12.png" width="100%" alt="TouchandGoのロゴ">
+									<img src="img/bland_12.png" width="100" height="100" class="img100" alt="TouchandGoのロゴ">
 								</div>
 								<div class="sen_dotted"></div>
 								<p>
@@ -1944,7 +1923,7 @@ $tax = json_decode($conn->salesTax(), true);
 						<div class="item btn waves-effect waves-light">
 							<a href="/items/brand.php?tag=56">
 								<div class="bland_a">
-									<img src="img/bland_13.png" width="100%" alt="BEES&BEAMのロゴ">
+									<img src="img/bland_13.png" width="100" height="100" class="img100" alt="BEES&BEAMのロゴ">
 								</div>
 
 								<div class="sen_dotted"></div>
@@ -1957,7 +1936,7 @@ $tax = json_decode($conn->salesTax(), true);
 						<div class="item btn waves-effect waves-light">
 							<a href="/items/brand.php?tag=124">
 								<div class="bland_b">
-									<img src="img/brand/logo_272.png" width="100%" alt="Fruit of the Loom のロゴ">
+									<img src="img/brand/logo_272.png" width="100" height="100" class="img100" alt="Fruit of the Loom のロゴ">
 								</div>
 
 								<div class="sen_dotted"></div>
@@ -1970,7 +1949,7 @@ $tax = json_decode($conn->salesTax(), true);
 						<div class="item btn waves-effect waves-light">
 							<a href="/items/brand.php?tag=65">
 								<div class="bland_d">
-									<img src="img/bland_14.png" width="100%" alt="SOWAのロゴ">
+									<img src="img/bland_14.png" width="100" height="100" class="img100" alt="SOWAのロゴ">
 								</div>
 								<div class="sen_dotted"></div>
 								<p>
@@ -1982,7 +1961,7 @@ $tax = json_decode($conn->salesTax(), true);
 						<div class="item btn waves-effect waves-light">
 							<a href="/items/brand.php?tag=43">
 								<div class="bland_a">
-									<img src="img/bland_15.png" width="100%" alt="Championのロゴ">
+									<img src="img/bland_15.png" width="100" height="100" class="img100" alt="Championのロゴ">
 								</div>
 
 								<div class="sen_dotted"></div>
@@ -1995,7 +1974,7 @@ $tax = json_decode($conn->salesTax(), true);
 						<div class="item btn waves-effect waves-light">
 							<a href="/items/brand.php?tag=125">
 								<div class="bland_a">
-									<img src="img/brand/logo_273.png" width="100%" alt="LIFEMAXのロゴ">
+									<img src="img/brand/logo_273.png" width="100" height="100" class="img100" alt="LIFEMAXのロゴ">
 								</div>
 
 								<div class="sen_dotted"></div>
@@ -2008,7 +1987,7 @@ $tax = json_decode($conn->salesTax(), true);
 						<div class="item btn waves-effect waves-light">
 							<a href="/items/brand.php?tag=126">
 								<div class="bland_b">
-									<img src="img/brand/logo_274.png" width="100%" alt="NEWHATTANのロゴ">
+									<img src="img/brand/logo_274.png" width="100" height="100" class="img100" alt="NEWHATTANのロゴ">
 								</div>
 
 								<div class="sen_dotted"></div>
@@ -2022,7 +2001,7 @@ $tax = json_decode($conn->salesTax(), true);
 <div class="item btn waves-effect waves-light">
 <a href="/items/?tag=277">
 <div class="bland_d">
-<img src="img/brand/logo_277.png" width="100%">
+<img src="img/brand/logo_277.png" width="100" height="100" class="img100">
 </div>
 <div class="sen_dotted"></div>
 <p>
@@ -2035,7 +2014,7 @@ American&nbsp;Apparel<br>アメリカンアパレル
 						<div class="item btn waves-effect waves-light">
 							<a href="/items/brand.php?tag=109">
 								<div class="bland_d">
-									<img src="img/bland_16.png" width="100%" alt="ANVILのロゴ">
+									<img src="img/bland_16.png" width="100" height="100" class="img100" alt="ANVILのロゴ">
 								</div>
 								<div class="sen_dotted"></div>
 								<p>
@@ -2047,7 +2026,7 @@ American&nbsp;Apparel<br>アメリカンアパレル
 						<div class="item btn waves-effect waves-light">
 							<a href="/items/brand.php?tag=110">
 								<div class="bland_a">
-									<img src="img/bland_17.png" width="100%" alt="COMFORTCOLORSのロゴ">
+									<img src="img/bland_17.png" width="100" height="100" class="img100" alt="COMFORTCOLORSのロゴ">
 								</div>
 
 								<div class="sen_dotted"></div>
@@ -2060,7 +2039,7 @@ American&nbsp;Apparel<br>アメリカンアパレル
 						<div class="item btn waves-effect waves-light">
 							<a href="/items/brand.php?tag=127">
 								<div class="bland_d">
-									<img src="img/brand/logo_275.png" width="100%" alt="OTTOのロゴ">
+									<img src="img/brand/logo_275.png" width="100" height="100" class="img100" alt="OTTOのロゴ">
 								</div>
 								<div class="sen_dotted"></div>
 								<p>
@@ -2072,7 +2051,7 @@ American&nbsp;Apparel<br>アメリカンアパレル
 						<div class="item btn waves-effect waves-light">
 							<a href="/items/brand.php?tag=130">
 								<div class="bland_a">
-									<img src="img/brand/logo_278.png" width="100%" alt="dyenomite apparelのロゴ">
+									<img src="img/brand/logo_278.png" width="100" height="100" class="img100" alt="dyenomite apparelのロゴ">
 								</div>
 
 								<div class="sen_dotted"></div>
@@ -2085,7 +2064,7 @@ American&nbsp;Apparel<br>アメリカンアパレル
 						<div class="item btn waves-effect waves-light">
 							<a href="/items/brand.php?tag=128">
 								<div class="bland_b">
-									<img src="img/brand/logo_276.png" width="100%" alt="RABBIT SKINSのロゴ">
+									<img src="img/brand/logo_276.png" width="100" height="100" class="img100" alt="RABBIT SKINSのロゴ">
 								</div>
 
 								<div class="sen_dotted"></div>
@@ -2113,31 +2092,31 @@ American&nbsp;Apparel<br>アメリカンアパレル
 
 				<div class="loopSlider">
 					<ul>
-						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_01.jpg" width="100%" alt="プリント用のインク"></a></li>
-						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_02.jpg" width="100%" alt="タカハマのオリジナルキャップ"></a></li>
-						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_03.jpg" width="100%" alt="プリント作業を行うプリント職人達"></a></li>
-						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_04.jpg" width="100%" alt="シルクスクリーンプリント"></a></li>
-						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_05.jpg" width="100%" alt="様々な色のプリントインク"></a></li>
-						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_06.jpg" width="100%" alt="グラフィックなTシャツデザイン"></a></li>
-						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_07.jpg" width="100%" alt="雪の中工場に向かう職人達"></a></li>
-						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_08.jpg" width="100%" alt="新小平の夕日"></a></li>
-						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_09.jpg" width="100%" alt="工場で作業をする職人達"></a></li>
-						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_10.jpg" width="100%" alt="機械から顔を出す職人達"></a></li>
-						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_11.jpg" width="100%" alt="シルクスクリーンの型を見る社員"></a></li>
-						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_12.jpg" width="100%" alt="ビンに入ったプリントインク"></a></li>
-						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_13.jpg" width="100%" alt="工場から見えるスカイツリー"></a></li>
-						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_14.jpg" width="100%" alt="Studio Locallyの型"></a></li>
-						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_15.jpg" width="100%" alt="オリジナルプリントの作業台"></a></li>
-						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_16.jpg" width="100%" alt="シルクスクリーンに使う印刷代"></a></li>
-						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_17.jpg" width="100%" alt="印刷に使う機械"></a></li>
-						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_18.jpg" width="100%" alt="工場で写真を撮る社員"></a></li>
-						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_19.jpg" width="100%" alt="インクが付いたスキージ"></a></li>
-						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_20.jpg" width="100%" alt="工場に並ぶカラフルなオリジナルウェア"></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_01.jpg" width="100" height="100" class="img100" alt="プリント用のインク"></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_02.jpg" width="100" height="100" class="img100" alt="タカハマのオリジナルキャップ"></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_03.jpg" width="100" height="100" class="img100" alt="プリント作業を行うプリント職人達"></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_04.jpg" width="100" height="100" class="img100" alt="シルクスクリーンプリント"></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_05.jpg" width="100" height="100" class="img100" alt="様々な色のプリントインク"></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_06.jpg" width="100" height="100" class="img100" alt="グラフィックなTシャツデザイン"></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_07.jpg" width="100" height="100" class="img100" alt="雪の中工場に向かう職人達"></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_08.jpg" width="100" height="100" class="img100" alt="新小平の夕日"></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_09.jpg" width="100" height="100" class="img100" alt="工場で作業をする職人達"></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_10.jpg" width="100" height="100" class="img100" alt="機械から顔を出す職人達"></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_11.jpg" width="100" height="100" class="img100" alt="シルクスクリーンの型を見る社員"></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_12.jpg" width="100" height="100" class="img100" alt="ビンに入ったプリントインク"></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_13.jpg" width="100" height="100" class="img100" alt="工場から見えるスカイツリー"></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_14.jpg" width="100" height="100" class="img100" alt="Studio Locallyの型"></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_15.jpg" width="100" height="100" class="img100" alt="オリジナルプリントの作業台"></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_16.jpg" width="100" height="100" class="img100" alt="シルクスクリーンに使う印刷代"></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_17.jpg" width="100" height="100" class="img100" alt="印刷に使う機械"></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_18.jpg" width="100" height="100" class="img100" alt="工場で写真を撮る社員"></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_19.jpg" width="100" height="100" class="img100" alt="インクが付いたスキージ"></a></li>
+						<li><a href="https://www.instagram.com/takahamalifeart/" target="_blank" rel="nofollow"><img src="/img/insta_20.jpg" width="100" height="100" class="img100" alt="工場に並ぶカラフルなオリジナルウェア"></a></li>
 					</ul>
 				</div>
 
 				<div class="button_01">
-					<a class="btn_or btn waves-effect waves-light" href="https://www.instagram.com/takahamalifeart/" type="button" style="text-transform: none;" target="_blank" rel="nofollow">Instagramを見る</a>
+					<a class="btn_or btn waves-effect waves-light" href="https://www.instagram.com/takahamalifeart/" style="text-transform: none;" target="_blank" rel="nofollow">Instagramを見る</a>
 				</div>
 
 
@@ -2148,17 +2127,18 @@ American&nbsp;Apparel<br>アメリカンアパレル
 			<div class="topvideo_bg">
 				<section class="topvideo">
 					<h2 class="rank_ttl bland_ttl">タカハマライフアートについて</h2>
-					<div class="insertvideo">
-						<iframe width="672" height="378" src="https://www.youtube.com/embed/6pGo6TKJ8_4?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen onPlay="ga(‘send’,‘event’,‘Video’,‘Play’,‘company-movie’);" id=“movie”></iframe>
-						<!--						not youtube code
-				
-				<video class="percentvideo" src="/vid/topvideo.mp4" poster="/img/previewvideo.png" controls controlsList="nodownload" preload="none" onclick="this.play()" onPlay="ga(‘send’,‘event’,‘Video’,‘Play’,‘company-movie’);" id=“movie”></video>-->
-					
-					
+					<div class="video_cont">
+						<div class="insertvideo">
+							<iframe width="672" height="378" src="https://www.youtube.com/embed/6pGo6TKJ8_4?rel=0&amp;showinfo=0" allow="autoplay; encrypted-media" allowfullscreen onPlay="ga(‘send’,‘event’,‘Video’,‘Play’,‘company-movie’);" id=“movie”></iframe>
+							<!--						not youtube code
+
+<video class="percentvideo" src="/vid/topvideo.mp4" poster="/img/previewvideo.png" controls controlsList="nodownload" preload="none" onclick="this.play()" onPlay="ga(‘send’,‘event’,‘Video’,‘Play’,‘company-movie’);" id=“movie”></video>-->
+
+						</div>
 					</div>
-<div class="sound-attention">
-	<p>※音楽が流れます</p>
-</div>
+					<div class="sound-attention">
+						<p>※音楽が流れます</p>
+					</div>
 
 					<div class="wrap_h2_under movie-text">
 						<p class="h2_under">タカハマライフアートは、オリジナルTシャツを年間27万枚、短納期で納品しているプリント製作会社です。 タカハマライフアート最大の強みは、製作からお届けまでのスピードです。
@@ -2168,93 +2148,84 @@ American&nbsp;Apparel<br>アメリカンアパレル
 							<a href="https://www.takahama428.com/contact/line/">LINEでも簡単にお問い合わせができる</a>ので、忙しいお客様も片手間にすぐに疑問を解決することができます。 お見積りは無料です、「Tシャツ30枚で一箇所一色でプリントした場合いくらかかる？」などお気軽にお問い合わせください。すぐに返答させて頂きます。
 						</p>
 
-						<p class="h2_under">タカハマライフアートは、東京下町にある工場でプリント製作しています。職人が一枚一枚、丁寧にプリントしているので、<a href="https://www.takahama428.com/app/WP/thanks-blog/">お客様のデザイン</a>を、完璧に表現します。 イベント用に作成したい、作成したオリジナルTシャツを販売したいなど、どんなニーズにもお答えします。お客様だけの、面白い、可愛いオリジナルデザイン、お待ちしてます。 </p>
+						<p class="h2_under">タカハマライフアートは、東京下町にある工場でプリント製作しています。職人が一枚一枚、丁寧にプリントしているので、<a href="https://www.takahama428.com/blog/thanks-blog/">お客様のデザイン</a>を、完璧に表現します。 イベント用に作成したい、作成したオリジナルTシャツを販売したいなど、どんなニーズにもお答えします。お客様だけの、面白い、可愛いオリジナルデザイン、お待ちしてます。 </p>
 					</div>
 
 					<div class="button_01">
-						<a class="btn_or btn waves-effect waves-light" href="https://www.takahama428.com/corporate/overview.php" type="button" style="text-transform: none;">会社概要を見る</a>
+						<a class="btn_or btn waves-effect waves-light" href="https://www.takahama428.com/corporate/overview.php" style="text-transform: none;">会社概要を見る</a>
 					</div>
 				</section>
 			</div>
 
-<!--よくある質問　安永-->
+			<!--よくある質問　安永-->
 
 			<div class="faq_top_bg">
 				<section class="faq_block">
 					<h2 class="rank_ttl bland_ttl">よくある質問(FAQ)</h2>
 					<p class="h2_under">
 						オリジナルTシャツの製作で特によくいただく質問を下記にまとめました。他にご不明な点がありましたらお気軽にご相談ください。
-						</p>
-					
+					</p>
+
 					<div class="inner">
 						<h3 class="title">
-							<div class="q">Q.</div>
-							発注して最短どのくらいにできますか？
+							<span class="q">Q.</span> 発注して最短どのくらいにできますか？
 						</h3>
 						<p class="sub">
-							<a href="/order/express/">最短即日の当日仕上げがございます。</a>
-							 例えば、月曜の12:00 までにデザインとサイズ、枚数等をお電話でご確認いただければ、その日中にオリジナルTシャツが完成いたします。
-							 東京工場で直接のお引渡しであれば、17：00から18：00の間にお受取が可能です。配送をご希望の場合は、完成後に1日（1部地域は2日）でご指定のご住所に配達されます。
-							特急製作は料金が割増（通常料金の1.3から2.0倍）となります。その他割引の適用条件など制限がございますので。詳しくは<a href="/order/express/">お急ぎの方</a>へをご参照下さい。
+							<a href="/order/express/">最短即日の当日仕上げがございます。</a> 例えば、月曜の12:00 までにデザインとサイズ、枚数等をお電話でご確認いただければ、その日中にオリジナルTシャツが完成いたします。 東京工場で直接のお引渡しであれば、17：00から18：00の間にお受取が可能です。配送をご希望の場合は、完成後に1日（1部地域は2日）でご指定のご住所に配達されます。 特急製作は料金が割増（通常料金の1.3から2.0倍）となります。その他割引の適用条件など制限がございますので。詳しくは
+							<a href="/order/express/">お急ぎの方</a>へをご参照下さい。
 						</p>
-						
+
 					</div>
-					
+
 					<div class="inner">
 						<h3 class="title">
-							<div class="q">Q.</div>
-							全部で○枚なのですが、1枚○円、全体で○円以内で収めたいです。
+							<span class="q">Q.</span> 全部で○枚なのですが、1枚○円、全体で○円以内で収めたいです。
 						</h3>
 						<p class="sub">
 							まずは簡単でいいのでFAX(03-5670-0730)または<a href="/contact/">メール</a>、
-							<a href="/contact/line/">LINE</a>等でプリントのイメージをお伝えください。
-							（例 ： 胸○色、～とフォントを打つ。背中に○色でイラストが入るなど。）
-							その後こちらで予算に合わせたプリント方法を算出いたしますのでご参考ください。
-						
-							また当WEBサイトでは<a href="/price/estimate.php">自動で見積り金額</a>を算出するサービスがありますので、ぜひご活用下さい。
+							<a href="/contact/line/">LINE</a>等でプリントのイメージをお伝えください。 （例 ： 胸○色、～とフォントを打つ。背中に○色でイラストが入るなど。） その後こちらで予算に合わせたプリント方法を算出いたしますのでご参考ください。 また当WEBサイトでは
+
+							<a href="/price/estimate.php">自動で見積り金額</a>を算出するサービスがありますので、ぜひご活用下さい。
 						</p>
 
 					</div>
-					
+
 					<div class="inner">
 						<h3 class="title">
-							<div class="q">Q.</div>
-							インクジェットの濃色と淡色の金額の違いは？
+							<span class="q">Q.</span> インクジェットの濃色と淡色の金額の違いは？
 						</h3>
 						<p class="sub">
-							濃色のほうが淡色より2,000円程高い金額です。<br>
-							淡色は白や薄い色の生地に使用できる加工で、濃色は黒など濃い色の生地に使用できる加工方法です。<br>
-							詳しくは<a href="/print/inkjet.php">インクジェットプリントの説明ページ</a>をご参照下さい。
+							濃色のほうが淡色より2,000円程高い金額です。<br> 淡色は白や薄い色の生地に使用できる加工で、濃色は黒など濃い色の生地に使用できる加工方法です。
+							<br> 詳しくは
+							<a href="/print/inkjet.php">インクジェットプリントの説明ページ</a>をご参照下さい。
 						</p>
 
 					</div>
-					
+
 					<div class="inner">
-					
+
 						<h3 class="title">
-							<div class="q">Q.</div>
-							受付枚数は何枚からですか？
+							<span class="q">Q.</span> 受付枚数は何枚からですか？
 						</h3>
 						<p class="sub">
 							当社は1枚からでも作成可能です。枚数に合わせた<a href="/print/">プリント方法</a>をご提案いたします。
 						</p>
 
 					</div>
-					
+
 					<div class="inner">
 						<h3 class="title">
-							<div class="q">Q.</div>
-							追加発注したい時はどうしたらよいですか？
+							<span class="q">Q.</span> 追加発注したい時はどうしたらよいですか？
 						</h3>
 						<p class="sub">
 							<a href="/user/my_menu.php">マイページ</a>の注文履歴から、追加発注ボタンをクリックすることで発注お手続きが可能です。詳しくは<a href="/order/reorder.php">追加注文説明ページ</a>をご参照ください。
 						</p>
 
 					</div>
-					
-				
+
+
 					<div class="button_01">
-						<a class="btn_or btn waves-effect waves-light" href="/guide/faq.php" type="button" style="text-transform: none; margin-top: 40px;">よくある質問をもっと見る</a>
+						<a class="btn_or btn waves-effect waves-light" href="/guide/faq.php" style="text-transform: none; margin-top: 40px;">よくある質問をもっと見る</a>
 					</div>
 				</section>
 			</div>
@@ -2275,11 +2246,57 @@ American&nbsp;Apparel<br>アメリカンアパレル
 					</div>
 
 					<div class="list-group-wrap news_list">
+
+						<li class="list-group-item">
+							<div class="row news_set">
+								<div class="new_tag">NEW&nbsp;</div>
+								<div class="news_date">
+									2019.03.11
+								</div>
+								<a href="/guide/information.php">
+									<div class="news_ttl">
+										【営業時間変更のお知らせ】
+									</div>
+								</a>
+
+							</div>
+						</li>
+
 						<ul class="list-group">
-                           
+
 							<li class="list-group-item">
 								<div class="row news_set">
-									<div class="new_tag">NEW&nbsp;</div>
+									<div class="new_tag">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+									<div class="news_date">
+										2019.02.19
+									</div>
+									<a href="/guide/information.php">
+										<div class="news_ttl">
+											【価格改定のお知らせ】
+										</div>
+									</a>
+
+								</div>
+							</li>
+
+							<li class="list-group-item">
+								<div class="row news_set">
+									<div class="new_tag">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+									<div class="news_date">
+										2018.12.10
+									</div>
+									<a href="/guide/information.php">
+										<div class="news_ttl">
+											【冬季休業のお知らせ】
+										</div>
+									</a>
+
+								</div>
+							</li>
+
+							<li class="list-group-item">
+								<div class="row news_set">
+									<div class="new_tag">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 									<div class="news_date">
 										2018.09.18
 									</div>
@@ -2291,8 +2308,8 @@ American&nbsp;Apparel<br>アメリカンアパレル
 
 								</div>
 							</li>
-                            
-                            <li class="list-group-item">
+
+							<li class="list-group-item">
 								<div class="row news_set">
 									<div class="new_tag">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 									<div class="news_date">
@@ -2306,50 +2323,9 @@ American&nbsp;Apparel<br>アメリカンアパレル
 
 								</div>
 							</li>
-						
-                            <li class="list-group-item">
-								<div class="row news_set">
-									<div class="new_tag">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-									<div class="news_date">
-										2018.09.04
-									</div>
-									<a href="/guide/information.php">
-										<div class="news_ttl">
-											【価格改定のお知らせ】
-										</div>
-									</a>
 
-								</div>
-							</li>
-						
-							<li class="list-group-item">
-								<div class="row news_set">
-									<div class="new_tag">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-									<div class="news_date">
-										2018.07.31
-									</div>
-									<a href="/guide/information.php">
-										<div class="news_ttl">
-											【夏季休業のお知らせ】
-										</div>
-									</a>
 
-								</div>
-							</li>
-							<li class="list-group-item">
-								<div class="row news_set">
-									<div class="new_tag">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-									<div class="news_date">
-										2018.07.09
-									</div>
-									<a href="/guide/information.php">
-										<div class="news_ttl">
-											【大雨による配送遅延のお知らせ】
-										</div>
-									</a>
 
-								</div>
-							</li>
 
 
 
@@ -2370,21 +2346,30 @@ American&nbsp;Apparel<br>アメリカンアパレル
 		</main>
 
 		<footer class="page-footer">
-			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/footer.php"; ?>
+			<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/top_footer.php"; ?>
 		</footer>
 
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/util.php"; ?>
 
 		<div id="overlay-mask" class="fade"></div>
 
-		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js_2.php"; ?>
+		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js_2_home.php"; ?>
+		<script>
+			$(function($) {
+				setTimeout(function() {
+					$('.container-fluid').addClass('on');
+				}, 500);
+			});
+
+		</script>
 		<script src="/common/js/api.js"></script>
 		<script src="/js/top.min.js"></script>
-		<script type="text/javascript" src="/common/js/dist/js/jquery.sliderPro.min.js"></script>
-		<script type="text/javascript" src="/common/js/dist/js/owl.carousel.min.js"></script>
-		<script type="text/javascript" src="/common/js/TimeCircles.js"></script>
-		<!--		<script type="text/javascript" src="/common/js/libs/fancybox/jquery.fancybox.pack.js"></script>-->
-		<script type="text/javascript">
+		<script src="/common/js/dist/js/jquery.sliderPro.min.js"></script>
+		<script src="/common/js/dist/js/owl.carousel.min.js"></script>
+		<script src="/common/js/TimeCircles.js"></script>
+		<!--		<script  src="/common/js/libs/fancybox/jquery.fancybox.pack.js"></script>-->
+
+		<script>
 			$(function($) {
 				$('#example2').sliderPro({
 					width: 1000,
@@ -2542,9 +2527,9 @@ American&nbsp;Apparel<br>アメリカンアパレル
 		<!--   インスタ  スライダー-->
 
 		<!--      制作実績  スライダー-->
-		<script type="text/javascript" src="slick/slick.min.js"></script>
+		<script src="slick/slick.min.js"></script>
 
-		<script type="text/javascript">
+		<script>
 			$(document).ready(function() {
 
 
