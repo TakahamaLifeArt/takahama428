@@ -22,6 +22,26 @@ $(function(){
 			return false;
 		}
 
+		// アップロードファイル
+		let dlToken = JSON.parse(sessionStorage.getItem('dl_token')),
+			downURL = document.getElementById('deownload_link'),
+			store = $.getSessStorage('attach'),
+			fileName = '';
+
+		if (Object.keys(Object(store)).length > 0) {
+			$.each(store, function(upid, fName){
+				fileName += fName + "\r\n";		// form submission value
+			});
+		}
+		document.getElementById('filename').value = fileName;
+		eMailer.onChanged('#filename');
+
+		downURL.value = '';
+		if (Object.keys(Object(dlToken)).length > 0) {
+			downURL.value = 'https://www.alesteq.com/itemmanager/files/uploader/' + dlToken[0];
+		}
+		eMailer.onChanged('#deownload_link');
+		
 		return isValid;
 	});
 

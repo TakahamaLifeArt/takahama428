@@ -5,6 +5,7 @@
  * log
  * 2019-03-13 アップロード機能を実装
  * 2019-03-15 注文メール本文にアイテム名とカラーを記載
+ * 2019-04-01 HTML5 validation
  */
 
 $(function(){
@@ -140,6 +141,35 @@ $(function(){
 	});
 
 
+	/**
+	 * HTML5 validation の前に必須項目を全て検証
+	 */
+	$('#sendmail').on('click', function(e){
+		let isInvalid = false;
+		$('.e-mailer :input:visible[required="required"]').removeClass('placeholder_error');
+		$('.e-mailer :input:visible[required="required"]').each(function () {
+			if (!this.validity.valid) {
+				$(this).focus();
+				$(this).addClass('placeholder_error');
+				//				$(this).attr("placeholder", this.validationMessage).addClass('placeholder_error');
+				//				$(this).val('');
+				isInvalid = true;
+				//				return false;
+			}
+		});
+		if (isInvalid) {
+			$.msgbox("必須項目の入力を、ご確認ください。");
+			e.preventDefault();
+		}
+	});
+	
+	
+	// Edgeのみ進捗バーの表示を切り替える
+	if (window.navigator.userAgent.toLowerCase().indexOf('edge') !== -1) {
+		$('#file-uploader .progress').css('position', 'relative').append('<div class="edge_progress">アップロード中...</div>')
+	}
+	
+	
 	// カレンダー
 	var d = new Date(),
 		date = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
