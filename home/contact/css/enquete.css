@@ -13,6 +13,9 @@
 	2017-11-16 リニューアル後のレイアウト
 	2018-03-01 項目変更
 	2019-02-26 注釈の表記
+	2019-03-14 ファイルアップロード機能を更新
+	2019-04-02 Edgeのprogress-bar表示の切り替え
+			   Safariのrequire属性のinvalid用スタイルを追加
 
 --------------------------------------------------------------*/
 
@@ -60,6 +63,10 @@ main {
 	text-decoration: none;
 	font-size: 1.6rem;
 }
+.q label {
+	font-size: inherit;
+	box-sizing: border-box;
+}
 .q span {
 	word-break: keep-all;
 }
@@ -89,6 +96,9 @@ div.a {
 }
 
 .note {
+	padding-left: 4rem;
+	text-indent: -1rem;
+	margin-bottom: 1rem;
 	font-size: 90%;
 	color: rgba(0,0,0,.58);
 }
@@ -113,6 +123,40 @@ div.a {
 #fileupload #fileupload-table .btn-danger {
 	background: #C00;
 }
+
+
+
+
+/*		ファイルアップローダー
+===============================================================*/
+#file-uploader {
+	margin-bottom: 4rem;
+	padding-bottom: 1rem;
+	border-bottom: 1px solid #d65600;
+}
+
+.edge_progress {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	line-height: 1.5rem;
+	color: #fff;
+	text-align: center;
+	white-space: nowrap;
+	background-color: #3097d1;
+	box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
+	z-index: 2;
+}
+
+.e-mailer .placeholder_error {
+	border: 1px solid #c33 !important;
+	background-color: rgba(204,51,51,.1) !important;
+}
+
+
+
 
 /* アップロードされたファイル */
 #fileupload #uploaded-files {

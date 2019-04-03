@@ -9,6 +9,8 @@
 	2015-03-31	お問い合わせフォームの背景色を変更
 				お問い合わせフォームの必須項目のクラスを追加
 				送信ボタンの画像変更
+	2019-03-14	アップロード機能実装
+				カレンダーのスタイル調整
 --------------------------------------*/
 
 body,
@@ -264,7 +266,7 @@ textarea {
 
 .e-mailer #zipcode[class*=e-mailer] {
 	margin: 10px 15px;
-	width: calc(90% - 1rem);
+	width: 9rem;
 }
 
 .e-mailer input[class*=e-mailer],
@@ -274,7 +276,28 @@ textarea {
 
 .e-mailer label {
 	margin: 0;
-	padding-top: 10px;
+/*	padding-top: 10px;*/
+}
+
+.edge_progress {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	line-height: 1.5rem;
+	color: #fff;
+	text-align: center;
+	white-space: nowrap;
+	background-color: #3097d1;
+	box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
+	z-index: 2;
+}
+
+/* 必須項目エラー */
+.e-mailer .placeholder_error {
+	border: 1px solid #c33 !important;
+	background-color: rgba(204,51,51,.1) !important;
 }
 
 /*--------------------------------------
@@ -422,7 +445,7 @@ h5 {
 	margin-right: 40px;
 }
 
-table th {
+table:not(.upload_list) th {
 	background-color: #eceae8;
 }
 
@@ -612,7 +635,7 @@ input[name="tab_item"] {
 }
 
 .order_title {
-	display: flex;
+/*	display: flex;*/
 	width: 100%;
 	padding: 10px;
 	background-color: #eceae8;
@@ -754,6 +777,16 @@ input[type="text"] {
 	width: 100%;
 }
 
+/* カレンダーのスタイル調整 */
+#datepick .schedule_calendar button {
+	margin: 0;
+	padding: 0;
+	box-shadow: none;
+	border: 0 solid transparent;
+	background: transparent;
+}
+
+
 /*--------------------------------------
 選択されているタブのスタイルを変える
 --------------------------------------*/
@@ -882,7 +915,7 @@ input[type="text"] {
 	}
 	.e-mailer label {
 		margin: 0;
-		padding-top: 10px;
+/*		padding-top: 10px;*/
 	}
 	.choice p {
 		margin: 10px 5px 10px 0px;
@@ -1023,7 +1056,7 @@ input[type="text"] {
 	}
 	.e-mailer label {
 		margin: 0;
-		padding-top: 20px;
+/*		padding-top: 20px;*/
 	}
 	.choice p {
 		margin: 20px 5px 10px 0px;
@@ -1044,7 +1077,7 @@ input[type="text"] {
 }
 
 @media screen and (min-width: 768px) {
-	.hidden-sm-down {
+	.table .hidden-sm-down {
 		display: table-cell;
 	}
 }

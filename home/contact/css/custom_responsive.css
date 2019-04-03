@@ -12,6 +12,7 @@
 	2012.02.08	 : created
 	2012.08.08	 : お問合せ項目を追加
 				 : よく有るご質問を追加
+	2019-03-14	 : アップロード機能実装
 	
 --------------------------------------------------------------*/
 
@@ -346,7 +347,13 @@ a {
 	font-size: 1rem !important;
 	height: 50px;
 }
-
+.e-mailer input[class*="e-mailer"], .e-mailer textarea[class*="e-mailer"] {
+	width: calc(100% - 1rem);
+	padding: 0.3rem .5rem;
+	border: 1px solid #e0e0e0;
+	background-color: #fff;
+	box-sizing: content-box!important;
+}
 /*----------------------------
 
 	768px以下（携帯）
@@ -399,7 +406,8 @@ a {
 	.table_left {
 		width: 100%;
 	}
-	#enq_table {
+	#enq_table,
+	.form_wrap {
 		width: 100%;
 	}
 	#enq_table input[type=text] {

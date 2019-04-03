@@ -1,4 +1,12 @@
 @charset "utf-8";
+/*--------------------------------------
+大口お問い合わせ
+style.css
+
+log
+2019-03-14	アップロード機能実装
+--------------------------------------*/
+
 #container {
 	width: 100%;
 	margin: 0 auto;
@@ -298,6 +306,7 @@ form.bigorder input[type=checkbox]:checked + .checkbox:after {
 	border: 2px solid #4173ED;
 }
 
+table.upload,
 table.big_table,
 table.big_table02 {
 	width: 92%;
@@ -321,7 +330,8 @@ table.big_table02 th.gray {
 	border-left: none;
 }
 
-table.big_table02 th {
+table.big_table02 th,
+table th.gray {
 	background: #F0F0F0;
 	border-left: 1px solid #383838;
 	border-bottom: 1px solid #383838;
@@ -339,7 +349,8 @@ input[type="email"] {
 }
 
 table.big_table span.free,
-table.big_table02 span.free {
+table.big_table02 span.free,
+table span.free {
 	width: 40px;
 	display: block;
 	float: right;
@@ -484,6 +495,72 @@ table.big_table02 td {
 .e-mailer input[type="file"][class*="e-mailer"] + .attachment ul li {
 	list-style-type: circle;
 }
+
+.exit_a {
+   font-weight: 400;
+   line-height: 0.5;
+}
+
+/*下層調整*//*-------------------------------------*/
+
+.field-item p {
+	font-size: inherit;
+}
+.field_area .linettl {
+	position: relative;
+	top: -72px;
+	left: 106px;
+	font-size: 1.4rem;
+	text-align: left;
+	line-height: 1.5;
+	margin: 7px 0 0;
+}
+/*
+#signout .exit_a {
+	padding: 0rem;
+}
+*/
+.side_log #signout .exit_a {
+	padding: 1rem 0.3rem;
+}
+.side_log #signout .exit_a:hover {
+	padding: 1rem 0.3rem;
+}
+
+.cal_red p{
+	font-size: 12px;
+}
+.header_icon {
+	padding: 12px 0;
+}
+.navbar-nav .nav-item:first-child {
+	padding-top: 17px;
+}
+.icon_wrap {
+	font-size: 2rem;
+	text-align: center;
+	margin-bottom: 0px;
+}
+.e-mailer button[type="submit"] {
+	border: 2px solid #10a6df;
+	background: #10a6df;
+	color: #fff;
+	text-shadow: none;
+	border-radius: 2px;
+}
+.e-mailer button:hover {
+	-webkit-box-shadow: 0 4px 7px 0 rgba(0,0,0,.18), 0 3px 10px 0 rgba(0,0,0,.15);
+	box-shadow: 0 4px 7px 0 rgba(0,0,0,.18), 0 3px 10px 0 rgba(0,0,0,.15);
+	background-color: #fff;
+	color: #10a6df;
+}
+
+#send_button {
+	cursor: pointer;
+}
+/*-------------------------------------*/
+
+
 
 @media screen and (max-width: 768px) {
 	.orange {
@@ -683,5 +760,11 @@ table.big_table02 td {
 	.big_table02 th,
 	.big_table02 td {
 		display: block;
+	}
+}
+/*下層調整*//*-------------------------------------*/
+@media screen and (max-width: 500px){
+	.field_area .linettl {
+		left: 94px;
 	}
 }
