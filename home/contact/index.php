@@ -20,9 +20,6 @@ $_version = time();
 	<title>お問い合わせ ｜ オリジナルTシャツ【タカハマライフアート】</title>
 	<link rel="shortcut icon" href="/icon/favicon.ico">
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
-	<link rel="stylesheet" type="text/css" media="screen" href="/user/js/upload/jquery.fileupload.css">
-	<link rel="stylesheet" type="text/css" media="screen" href="/user/js/upload/jquery.fileupload-ui.css">
-	<link rel="stylesheet" type="text/css" media="screen" href="/user/css/uploader.css">
 	<link rel="stylesheet" type="text/css" href="./css/mailform_responsive.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="./css/custom_responsive.css" media="screen" />
 </head>
@@ -118,67 +115,35 @@ $_version = time();
 										</div>
 									</td>
 								</tr>
-								<tr>
-									<td>
-										<div class="fileupload-buttonbar">
-											<div class="">
-												<!-- The fileinput-button span is used to style the file input field as button -->
-												<span class="btn btn-success fileinput-button fade in">
-													<i class="fa fa-plus" aria-hidden="true"></i>
-													<span>ファイルを選択...</span>
-												<input type="file" name="files[]" class="e-none" multiple>
-												</span>
-<!--
-												<button type="submit" class="btn btn-primary start fade e-none" hidden>
-													<i class="fa fa-cloud-upload" aria-hidden="true"></i>
-													<span>アップロード</span>
-												</button>
--->
-
-												<!-- The global file processing state -->
-												<span class="fileupload-process"></span>
-											</div>
-											<p class="note">ファイルアップロードできない場合は、下記のファイル転送サービスをご利用ください。</p>
-											<div id="upload_link" class="modal_style_line">
-<!--												<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>-->
-												
-												<svg aria-hidden="true" data-prefix="fas" style="width: 13px;" data-icon="question-circle" class="svg-inline--fa fa-question-circle fa-w-16 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zM262.655 90c-54.497 0-89.255 22.957-116.549 63.758-3.536 5.286-2.353 12.415 2.715 16.258l34.699 26.31c5.205 3.947 12.621 3.008 16.665-2.122 17.864-22.658 30.113-35.797 57.303-35.797 20.429 0 45.698 13.148 45.698 32.958 0 14.976-12.363 22.667-32.534 33.976C247.128 238.528 216 254.941 216 296v4c0 6.627 5.373 12 12 12h56c6.627 0 12-5.373 12-12v-1.333c0-28.462 83.186-29.647 83.186-106.667 0-58.002-60.165-102-116.531-102zM256 338c-25.365 0-46 20.635-46 46 0 25.364 20.635 46 46 46s46-20.636 46-46c0-25.365-20.635-46-46-46z"></path></svg>
-												
-												ファイル転送サービス
-											</div>
-											<div class="drop-area hidden-sm-down">
-												<p>ここにファイルをドロップできます</p>
-											</div>
-
-											<!-- The global progress state -->
-											<div class="fileupload-progress fade">
-												<!-- The global progress bar -->
-												<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-													<div class="progress-bar progress-bar-success" style="width:0%;"></div>
-												</div>
-												<!-- The extended global progress state -->
-												<div class="progress-extended">&nbsp;</div>
-											</div>
-										</div>
-										<!-- The table listing the files available for upload/download -->
-										<table role="presentation" class="table table-striped" id="fileupload-table">
-											<tbody class="files"></tbody>
-										</table>
-									</td>
-								</tr>
 							</tbody>
 						</table>
-						<div id="uploaded-files"></div>
+						
+						<label hidden>デザインデータ</label>
+						<textarea id="filename" hidden></textarea>
+						<label hidden>ダウンロードURL</label>
+						<input id="deownload_link" type="hidden" name="deownload_link" value="">
+
 						<input type="hidden" name="sendto" value="<?php echo _INFO_EMAIL;?>">
 						<input type="hidden" name="subject" value="お問い合わせ">
 						<input type="hidden" name="title" value="お問い合わせ">
 						<input type="hidden" name="replyto" value="email">
 						<input type="hidden" name="replyhead" value="このたびは、タカハマライフアートをご利用いただき誠にありがとうございます。">
+						<button type="submit" class="btn btn-primary" id="sendmail" hidden>送信する</button>
+					</form>
+					
+					<div class="form_wrap">
+						<div>
+							デザインデータ入稿
+							<p><span class="point">※</span>アップロード上限サイズ：300MB（アップロード可能なファイル形式：jpeg, png, gif, ai, psd, zip）</p>
+						</div>
+						<div id="file-uploader"></div>
+
 						<div class="button_area">
 							<p class="msg">入力内容をご確認の上、よろしければ[ 送信 ]ボタンを押してください。</p>
-							<button type="submit" class="btn btn-primary" id="sendmail">送信する</button>
+							<button class="btn btn-primary" id="send_button">送信する</button>
 						</div>
-					</form>
+					</div>
+					
 					<div class="QA">
 						<h2>よくあるご質問</h2>
 						<dl class="list">
@@ -229,134 +194,10 @@ $_version = time();
 
 	<div id="overlay-mask" class="fade"></div>
 	
-<!--	ファイル転送サービス説明を見る-->
-	
-	<div class="modal fade sale_txt" id="sampleModal" tabindex="-1">
-		<div class="modal-dialog sale_block">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
-				</div>
-				<div class="sale_block">
-					<h3>ファイル転送サービスについて</h3>
-					<p>ファイルアップロードできない場合は、 下記のファイル転送サービスをご利用ください。</p>
-					<a href="http://up300.net/" target="_blank"><button class="btn btn-success fileinput-button waves-effect waves-light">ファイル転送サービスへ</button></a>
-				</div>
-				<div class="sale_block">
-					<h3>使い方</h3>
-					<p>①「ファイルを選択」をクリックし、ファイルをアップロード</p>
-					<center><p><img width="100%" alt="アップロード1" src="../order/img/design_step_01.jpg"></p></center>
-					<p>②「ファイルの転送開始する」をクリック</p>
-					<center><p><img width="100%" alt="アップロード1" src="../order/img/design_step_02.jpg"></p></center>
-					<p>③ダウンロードURLをコピー</p>
-					<center><p><img width="100%" alt="アップロード1" src="../order/img/design_step_03.jpg"></p></center>
-					<p>④お問い合わせ、もしくはお申し込みフォームの メッセージ欄にリンクをペースト</p>
-					<center><p><img width="100%" alt="アップロード1" src="../order/img/design_step_04_01.jpg"></p></center>
-					<center><p><img width="100%" alt="アップロード1" src="../order/img/design_step_04_02.jpg"></p></center>
-					<p>⑤お問い合わせ・お申し込みを完了させる</p>
-				</div>
-				<div class="modal-footer">
-					<button class="pop_btn_close btn waves-effect waves-light" data-dismiss="modal"><i class="fa fa-times-circle mr-1" aria-hidden="true"></i>閉じる</button>
-
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<script id="template-upload" type="text/x-tmpl">
-		{% for (var i=0, file; file=o.files[i]; i++) { %}
-		<tr class="template-upload fade">
-			<td>
-				<span class="preview"></span>
-			</td>
-			<td>
-				<p class="name">{%=file.name%}</p>
-				<strong class="error text-danger"></strong>
-			</td>
-			<td>
-				<p class="size">Processing...</p>
-				<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-					<div class="progress-bar progress-bar-success" style="width:0%;"></div>
-				</div>
-			</td>
-			<td>
-				{% if (!i && !o.options.autoUpload) { %}
-				<button class="btn btn-primary start" hidden disabled>
-					<i class="fa fa-cloud-upload" aria-hidden="true"></i>
-					<span>アップロード</span>
-				</button> {% } %} {% if (!i) { %}
-				<button class="btn btn-warning cancel">
-					<i class="fa fa-ban" aria-hidden="true"></i>
-					<span>キャンセル</span>
-				</button> {% } %}
-			</td>
-		</tr>
-		{% } %}
-	</script>
-	<!-- The template to display files available for download -->
-	<script id="template-download" type="text/x-tmpl">
-		{% for (var i=0, file; file=o.files[i]; i++) { %}
-		<tr class="template-download fade">
-			<td>
-				<span class="preview">
-				{% if (file.thumbnailUrl) { %}
-					<img src="{%=file.thumbnailUrl%}?auth=admin">
-				{% } %}
-				</span>
-			</td>
-			<td>
-				<p class="name">
-					<span>{%=file.name%}</span>
-				</p>
-				<span class="path" hidden>{%=file.url%}</span> {% if (file.error) { %}
-				<div><span class="label label-danger">Error</span> {%=file.error%}</div>
-				{% } else { %}
-				<div><span class="label" style="font-size:1.2rem;font-weight:bold;color:#0275d8;">完了</span></div>
-				{% } %}
-			</td>
-			<td>
-				<span class="size">{%=o.formatFileSize(file.size)%}</span>
-			</td>
-			<td>
-				{% if (file.deleteUrl) { %}
-				<button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
-					<i class="fa fa-trash" aria-hidden="true"></i>
-					<span>削除</span>
-				</button> {% } else { %}
-				<button class="btn btn-warning cancel">
-					<i class="fa fa-ban" aria-hidden="true"></i>
-					<span>キャンセル</span>
-				</button> {% } %}
-			</td>
-		</tr>
-		{% } %}
-	</script>
-
-
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
-	<script src="//doozor.bitbucket.io/email/e-mailform.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
-	<script src="/user/js/upload/vendor/jquery.ui.widget.js"></script>
-	<script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
-	<script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
-	<script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
-	<script src="/user/js/upload/jquery.iframe-transport.js"></script>
-	<script src="/user/js/upload/jquery.fileupload.js"></script>
-	<script src="/user/js/upload/jquery.fileupload-process.js"></script>
-	<script src="/user/js/upload/jquery.fileupload-image.js"></script>
-	<script src="/user/js/upload/jquery.fileupload-validate.js"></script>
-	<script src="/user/js/upload/jquery.fileupload-ui.js"></script>
+	<script src="https://doozor.bitbucket.io/email/e-mailform.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
+	<script src="https://doozor.bitbucket.io/uploader/file_uploader.min.js?m=drop&ci=phl57jus0l"></script>
 	<script src="./js/contact.js?v=<?php echo $_version;?>"></script>
-	<script src="./js/upload/main.js?v=<?php echo $_version;?>"></script>
-	
-	<script>
-		$( function() {
-			$('#upload_link').click( function () {
-				$('#sampleModal').modal();
-			});
-		});
-	</script>
-	
-	
 </body>
 
 </html>

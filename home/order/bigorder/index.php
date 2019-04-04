@@ -253,31 +253,52 @@ $category_selector .= '</select>';
 								<?php echo $category_selector;?>
 							</td>
 						</tr>
-						<th><span class="free">任意</span>その他<br> 要望コメント
+						<th>
+							<span class="free">任意</span>その他<br>
+							<label>要望コメント</label>
 						</th>
 						<td>
 							<div class="txt"></div>
 							<textarea name="message" id="message" cols="20" rows="7" placeholder="コメントはこちらに記入してください。"></textarea>
 						</td>
-						<tr>
-							<th><label>添付ファイル</label><span class="free">任意</span></th>
-							<td>
-								<input type="file" name="attachfile" multiple>
-<!--								<p class="add_attachfile" onClick="$.add_attach(this);">別の添付ファイルを追加</p>-->
-							</td>
-						</tr>
 					</tbody>
 				</table>
+				
+				<label hidden>デザインデータ</label>
+				<textarea id="filename" hidden></textarea>
+				<label hidden>ダウンロードURL</label>
+				<input id="deownload_link" type="hidden" name="deownload_link" value="">
+				
 				<input type="hidden" name="sendto" value="<?php echo _INFO_EMAIL;?>">
 				<input type="hidden" name="subject" value="大口注文お問い合わせ">
 				<input type="hidden" name="title" value="大口注文お問い合わせ">
 				<input type="hidden" name="replyto" value="email">
 				<input type="hidden" name="replyhead" value="このたびは、タカハマライフアートをご利用いただき誠にありがとうございます。">
+				
 				<div class="ac">
-					<button type="submit" class="order_btn_2" id="sendmail">送信</button>
+					<button type="submit" class="order_btn_2" id="sendmail" hidden>送信</button>
 				</div>
 			</form>
 
+			<table class="upload">
+				<tbody>
+					<tr>
+						<th class="gray">
+							デザインデータ入稿<span class="free">任意</span>
+							<p>アップロード上限サイズ：300MB（アップロード可能なファイル形式：jpeg, png, gif, ai, psd, zip）</p>
+						</th>
+					</tr>
+					<tr>
+						<td>
+							<div id="file-uploader"></div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<div class="ac">
+				<button class="order_btn_2" id="send_button">送信</button>
+			</div>
 		</div>
 
 	</div>
@@ -293,7 +314,8 @@ $category_selector .= '</select>';
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
 	<script src="https://doozor.bitbucket.io/email/e-mailform.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
 	<script src="https://doozor.bitbucket.io/calendar/datepick_calendar.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
-	<script type="text/javascript" src="./js/mailform.js"></script>
+	<script src="https://doozor.bitbucket.io/uploader/file_uploader.min.js?m=drop&ci=phl57jus0l"></script>
+	<script type="text/javascript" src="./js/mailform.js?v=<?php echo time();?>"></script>
 
 </body>
 

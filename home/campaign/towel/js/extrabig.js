@@ -2,6 +2,8 @@
  * Send mail
  * log
  * 2018-01-31 created
+ * 2019-03-14 アップロード機能を実装
+ * 2019-04-01 HTML5 validation
  */
 $(function () {
 	'use strict';
@@ -47,13 +49,32 @@ $(function () {
 		var minimumNumber = 10; // 申し込み最低枚数
 
 		/**
-		 * Check the upload file
-		 * Return true if All uploads are completed. false otherwise.
+		 * 郵便番号からの自動入力を反映
 		 */
-		if ($('#fileupload-table').data('uploaded') != 1) {
-			$.msgbox('アップロードされていないフィルがあります');
-			return false;
+		eMailer.onChanged('#addr0');
+		eMailer.onChanged('#addr1');
+		
+		/**
+		 * アップロードファイル
+		 */
+		let dlToken = JSON.parse(sessionStorage.getItem('dl_token')),
+			downURL = document.getElementById('deownload_link'),
+			store = $.getSessStorage('attach'),
+			fileName = '';
+
+		if (Object.keys(Object(store)).length > 0) {
+			$.each(store, function(upid, fName){
+				fileName += fName + "\r\n";		// form submission value
+			});
 		}
+		document.getElementById('filename').value = fileName;
+		eMailer.onChanged('#filename');
+
+		downURL.value = '';
+		if (Object.keys(Object(dlToken)).length > 0) {
+			downURL.value = 'https://www.alesteq.com/itemmanager/files/uploader/' + dlToken[0];
+		}
+		eMailer.onChanged('#deownload_link');
 
 		/**
 		 * 枚数
@@ -97,9 +118,34 @@ $(function () {
 	});
 
 
-	// 郵便番号
-	$('#zipcode').on('change', function () {
-		eMailer.onChanged('#addr0');
-		eMailer.onChanged('#addr1');
+	/**
+	 * submit
+	 */
+	$('#send_button').on('click', function() {
+		
+		// HTML5 validation の前に必須項目を全て検証
+		let isInvalid = false;
+		$('.e-mailer :input:visible[required="required"]').removeClass('placeholder_error');
+		$('.e-mailer :input:visible[required="required"]').each(function () {
+			if (!this.validity.valid) {
+				$(this).focus();
+				$(this).addClass('placeholder_error');
+				//				$(this).attr("placeholder", this.validationMessage).addClass('placeholder_error');
+				//				$(this).val('');
+				isInvalid = true;
+				//				return false;
+			}
+		});
+		if (isInvalid) {
+			$.msgbox("必須項目の入力を、ご確認ください。");
+			return;
+		}
+		
+		$('#sendmail').click();
 	});
+
+	// Edgeのみ進捗バーの表示を切り替える
+	if (window.navigator.userAgent.toLowerCase().indexOf('edge') !== -1) {
+		$('#file-uploader .progress').css('position', 'relative').append('<div class="edge_progress">アップロード中...</div>')
+	}
 });

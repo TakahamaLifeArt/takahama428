@@ -1,13 +1,17 @@
 /*
-*	Takahama Life Art
-*	bigorder module
-*/
+ *	Takahama Life Art
+ *	bigorder module
+ *
+ * log
+ * 2019-03-14 アップロード機能を実装
+ * 2019-04-01 HTML5 validation
+ */
 	
 $(function(){
 	/**
 	 * 入力項目の検証
 	 */
-	eMailer.onValidate('#sendmail', function () {
+	eMailer.onValidate('#sendmail', function (e) {
 		var isValid = true;
 
 		if($(':checkbox[name^="youto"]:checked').length==0){
@@ -61,4 +65,35 @@ $(function(){
 		holiday: [{'from':'2018-12-27', 'to':'2019-01-04'}]
 
 	});
+	
+	/**
+	 * submit
+	 */
+	$('#send_button').on('click', function(e) {
+		
+		// HTML5 validation の前に必須項目を全て検証
+		let isInvalid = false;
+		$('.e-mailer :input:visible[required="required"]').removeClass('placeholder_error');
+		$('.e-mailer :input:visible[required="required"]').each(function () {
+			if (!this.validity.valid) {
+				$(this).focus();
+				$(this).addClass('placeholder_error');
+//				$(this).attr("placeholder", this.validationMessage).addClass('placeholder_error');
+//				$(this).val('');
+				isInvalid = true;
+//				return false;
+			}
+		});
+		if (isInvalid) {
+			$.msgbox("必須項目の入力を、ご確認ください。");
+			return;
+		}
+
+		$('#sendmail').click();
+	});
+
+	// Edgeのみ進捗バーの表示を切り替える
+	if (window.navigator.userAgent.toLowerCase().indexOf('edge') !== -1) {
+		$('#file-uploader .progress').css('position', 'relative').append('<div class="edge_progress">アップロード中...</div>')
+	}
 });

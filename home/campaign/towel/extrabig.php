@@ -17,9 +17,6 @@
 	<title>【大迫力】オリジナルタオル作成、特大シルクスクリーンプリント | タカハマライフアート</title>
 	<link rel="shortcut icon" href="/icon/favicon.ico">
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
-	<link rel="stylesheet" type="text/css" media="screen" href="/user/js/upload/jquery.fileupload.css">
-	<link rel="stylesheet" type="text/css" media="screen" href="/user/js/upload/jquery.fileupload-ui.css">
-	<link rel="stylesheet" type="text/css" media="screen" href="/user/css/uploader.css">
 	<link rel="stylesheet" type="text/css" href="./css/extrabig.css" media="screen">
 </head>
 <body>
@@ -611,45 +608,6 @@
 								<option value="5">５色</option>
 								<option value="6">６色</option>
 							</select>
-							<div class="line_dotted"></div>
-							
-							<div class="fileupload-buttonbar">
-								<div>
-									<!-- The fileinput-button span is used to style the file input field as button -->
-									<span class="btn btn-success fileinput-button">
-										<i class="fa fa-plus" aria-hidden="true"></i>
-										<span>ファイルを選択...</span>
-										<input type="file" name="files[]" class="e-none" multiple>
-									</span>
-<!--
-									<button type="submit" class="btn btn-primary start fade" hidden>
-										<i class="fa fa-cloud-upload" aria-hidden="true"></i>
-										<span>アップロードする</span>
-									</button>
--->
-									<!-- The global file processing state -->
-									<span class="fileupload-process"></span>
-								</div>
-
-								<p class="ri_txt">最大容量：100MB</p>
-
-								<!-- The global progress state -->
-								<div class="fileupload-progress fade">
-									<!-- The global progress bar -->
-									<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-										<div class="progress-bar progress-bar-success" style="width:0%;"></div>
-									</div>
-									<!-- The extended global progress state -->
-									<div class="progress-extended">&nbsp;</div>
-								</div>
-							</div>
-
-							<!-- The table listing the files available for upload/download -->
-							<table role="presentation" class="table table-striped" id="fileupload-table">
-								<tbody class="files"></tbody>
-							</table>
-							
-							<div id="uploaded-files"></div>
 						</div>
 						<div class="order_title">
 							<p>袋詰め<span class="req">必須</span></p>
@@ -669,47 +627,67 @@
 					<div class="order_detail">
 						<input type="hidden" name="part-user" value="お客様情報">
 						<div class="order_title">
-							<p>お名前<span class="req">必須</span></p>
+							<p><label>お名前</label><span class="req">必須</span></p>
 						</div>
 						<input type="text" name="お名前" value="" placeholder="例:高濱　太郎" required>
 						<div class="order_title">
-							<p>フリガナ<span class="req">必須</span></p>
+							<p><label>フリガナ</label><span class="req">必須</span></p>
 						</div>
 						<input type="text" name="フリガナ" value="" placeholder="例:タカハマ　タロウ" required>
 						<div class="order_title">
-							<p>郵便番号<span class="req">必須</span></p>
+							<p><label>お届け先</label><span class="req">必須</span></p>
 						</div>
 						<li>
-							<p class="post"><span class="ziparea">〒</span><input type="text" name="〒" id="zipcode" value="" onchange="AjaxZip3.zip2addr(this,'','都道府県','市区町村');" placeholder="郵便番号" required></p>
-							<p class="post_01"><input type="text" name="都道府県" id="addr0" value="" placeholder="都道府県" maxlength="4" required></p>
-							<p class="post_01"><input type="text" name="市区町村" id="addr1" value="" placeholder="葛飾区西新小岩1-23-456" maxlength="56" required></p>
-							<p class="post_01"><input type="text" name="建物号室" value="" placeholder="マンション・ビル名" maxlength="32"></p>
+							<p class="post">
+								<input type="text" name="zipcode" id="zipcode" class="p-zip" value="" placeholder="郵便番号" required>
+							</p>
+							<p class="post_01">
+								<input type="text" name="addr0" id="addr0" class="p-region" value="" placeholder="都道府県" required>
+							</p>
+							<p class="post_01">
+								<input type="text" name="addr1" id="addr1" class="p-locality p-street-address" value="" placeholder="葛飾区西新小岩1-23-456" required>
+							</p>
+							<p class="post_01">
+								<input type="text" name="addr2" id="addr2" value="" placeholder="マンション・ビル名">
+							</p>
 						</li>
 						<div class="order_title">
-							<p>メールアドレス<span class="req">必須</span></p>
+							<p><label>メールアドレス</label><span class="req">必須</span></p>
 						</div>
 						<input type="email" name="email" value="" placeholder="例:aaa@gmail.com" required>
 						<div class="order_title">
-							<p>電話番号<span class="req">必須</span></p>
+							<p><label>電話番号</label><span class="req">必須</span></p>
 						</div>
 						<input type="tel" name="tel" value="" placeholder="例:08012345678" required>
 						<div class="order_title">
-							<p>希望納期<span class="req">必須</span></p>
+							<p><label>希望納期</label><span class="req">必須</span></p>
 						</div>
 						<div id="datepick" class="calendar"></div>
 						<input type="text" id="delidate" name="希望納期" value="" required>
 						<div class="order_title">
-							<p>メッセージ</p>
+							<p><label>メッセージ</label></p>
 						</div>
 						<textarea class="demand" name="メッセージ" placeholder="例:デザイン「TAKAHAMA」を極太ゴシックで打ち替え , 後ろのデザインC22ブラックで着色"></textarea>
 					</div>
 					
-					<button type="submit" class="order_btn btn-outline-primary waves-effect" id="sendmail">お申し込み</button>
+					<button type="submit" class="order_btn btn-outline-primary waves-effect" id="sendmail" hidden>お申し込み</button>
+					<label hidden>デザインデータ</label>
+					<textarea id="filename" hidden></textarea>
+					<label hidden>ダウンロードURL</label>
+					<input id="deownload_link" type="hidden" name="deownload_link" value="">
 					<input type="hidden" name="sendto" value="<?php echo _INFO_EMAIL;?>">
 					<input type="hidden" name="subject" value="特大プリントタオルのお申し込み">
 					<input type="hidden" name="title" value="特大プリントタオル">
 				</form>
 
+				<div class="order_title">
+					<p>デザインデータ入稿</p>
+					<span class="text-danger">※</span>アップロード上限サイズ：300MB（アップロード可能なファイル形式：jpeg, png, gif, ai, psd, zip）
+				</div>
+				<div id="file-uploader"></div>
+				
+				<button class="order_btn btn-outline-primary waves-effect" id="send_button">お申し込み</button>
+				
 			</div>
 		</div>
 	</div>
@@ -719,90 +697,11 @@
 	</footer>
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/util.php"; ?>
 	<div id="overlay-mask" class="fade"></div>
-	<script id="template-upload" type="text/x-tmpl">
-		{% for (var i=0, file; file=o.files[i]; i++) { %}
-		<tr class="template-upload fade">
-			<td>
-				<span class="preview"></span>
-			</td>
-			<td>
-				<p class="name">{%=file.name%}</p>
-				<strong class="error text-danger"></strong>
-			</td>
-			<td>
-				<p class="size">Processing...</p>
-				<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-					<div class="progress-bar progress-bar-success" style="width:0%;"></div>
-				</div>
-			</td>
-			<td>
-				{% if (!i && !o.options.autoUpload) { %}
-				<button class="btn btn-primary start" hidden disabled>
-					<i class="fa fa-cloud-upload" aria-hidden="true"></i>
-					<span>アップロード</span>
-				</button> {% } %} {% if (!i) { %}
-				<button class="btn btn-warning cancel">
-					<i class="fa fa-ban" aria-hidden="true"></i>
-					<span>キャンセル</span>
-				</button> {% } %}
-			</td>
-		</tr>
-		{% } %}
-	</script>
-	<!-- The template to display files available for download -->
-	<script id="template-download" type="text/x-tmpl">
-		{% for (var i=0, file; file=o.files[i]; i++) { %}
-		<tr class="template-download fade">
-			<td>
-				<span class="preview">
-				{% if (file.thumbnailUrl) { %}
-					<img src="{%=file.thumbnailUrl%}?auth=admin">
-				{% } %}
-				</span>
-			</td>
-			<td>
-				<p class="name">
-					<span>{%=file.name%}</span>
-				</p>
-				<span class="path" hidden>{%=file.url%}</span> {% if (file.error) { %}
-				<div><span class="label label-danger">Error</span> {%=file.error%}</div>
-				{% } else { %}
-				<div><span class="label" style="font-size:1.2rem;font-weight:bold;color:#0275d8;">完了</span></div>
-				{% } %}
-			</td>
-			<td>
-				<span class="size">{%=o.formatFileSize(file.size)%}</span>
-			</td>
-			<td>
-				{% if (file.deleteUrl) { %}
-				<button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
-					<i class="fa fa-trash" aria-hidden="true"></i>
-					<span>削除</span>
-				</button> {% } else { %}
-				<button class="btn btn-warning cancel">
-					<i class="fa fa-ban" aria-hidden="true"></i>
-					<span>キャンセル</span>
-				</button> {% } %}
-			</td>
-		</tr>
-		{% } %}
-	</script>
 	<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
-	<script src="//ajaxzip3.github.io/ajaxzip3.js" async></script>
-	<script src="//doozor.bitbucket.io/email/e-mailform.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
-	<script src="//doozor.bitbucket.io/calendar/datepick_calendar.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
-	<script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
-	<script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
-	<script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
-	<script src="/user/js/upload/vendor/jquery.ui.widget.js"></script>
-	<script src="/user/js/upload/jquery.iframe-transport.js"></script>
-	<script src="/user/js/upload/jquery.fileupload.js"></script>
-	<script src="/user/js/upload/jquery.fileupload-process.js"></script>
-	<script src="/user/js/upload/jquery.fileupload-image.js"></script>
-	<script src="/user/js/upload/jquery.fileupload-validate.js"></script>
-	<script src="/user/js/upload/jquery.fileupload-ui.js"></script>
-	<script src="./js/upload/main.js"></script>
-	<script src="./js/extrabig.js"></script>
+	<script src="https://doozor.bitbucket.io/email/e-mailform.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
+	<script src="https://doozor.bitbucket.io/calendar/datepick_calendar.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
+	<script src="https://doozor.bitbucket.io/uploader/file_uploader.min.js?m=drop&ci=phl57jus0l"></script>
+	<script src="./js/extrabig.js?v=<?php echo time();?>"></script>
 </body>
 
 </html>

@@ -1,5 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/conndb.php';
+$_version = time();
 $conn = new ConnDB();
 define('_SEND_TO', 'info@takahama428.com');
 $with = 'with';
@@ -86,9 +87,6 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['ticket']) && !empty($
 		<title>アンケート　|　オリジナルTシャツ屋タカハマライフアート</title>
 		<link rel="shortcut icon" href="/icon/favicon.ico">
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/css.php"; ?>
-		<link rel="stylesheet" type="text/css" media="screen" href="/user/js/upload/jquery.fileupload.css">
-		<link rel="stylesheet" type="text/css" media="screen" href="/user/js/upload/jquery.fileupload-ui.css">
-		<link rel="stylesheet" type="text/css" media="screen" href="/user/css/uploader.css">
 		<link rel="stylesheet" type="text/css" href="/contact/css/custom_responsive.css" media="screen">
 		<link rel="stylesheet" type="text/css" href="/contact/css/enquete.css" media="screen">
 	</head>
@@ -166,57 +164,31 @@ DOC;
 
 		$len++;
 		$html = <<<DOC
-					<div>
-						<p class="q">
-							<em>Q{$len}</em>
-							<label>写真掲載割をご利用のお客様は、商品着用写真をお送りください</label>
-						</p>
-
-						<div class="fileupload-buttonbar">
-							<div class="">
-								<!-- The fileinput-button span is used to style the file input field as button -->
-								<span class="btn btn-success fileinput-button fade in">
-									<i class="fa fa-plus" aria-hidden="true"></i>
-									<span>ファイルを選択...</span>
-									<input type="file" name="files[]" class="e-none" multiple>
-								</span>
-
-								<!-- The global file processing state -->
-								<span class="fileupload-process"></span>
-							</div>
-
-							<div class="drop-area">
-								<p>ここにファイルをドロップできます</p>
-							</div>
-							<p class="ri_txt">最大容量：100MB</p>
-
-							<!-- The global progress state -->
-							<div class="fileupload-progress fade">
-								<!-- The global progress bar -->
-								<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-									<div class="progress-bar progress-bar-success" style="width:0%;"></div>
-								</div>
-								<!-- The extended global progress state -->
-								<div class="progress-extended">&nbsp;</div>
-							</div>
-						</div>
-						<!-- The table listing the files available for upload/download -->
-						<table role="presentation" class="table table-striped" id="fileupload-table">
-							<tbody class="files"></tbody>
-						</table>
-					</div>
-
-					<div id="uploaded-files"></div>
-
-					<p class="button_area">
-						<button type="submit" id="sendmail" class="btn">アンケートを送信する</button>
-					</p>
-
+					<button type="submit" id="sendmail" class="btn" hidden>アンケートを送信する</button>
+					
+					<label hidden>写真掲載割をご利用のお客様は、商品着用写真をお送りください</label>
+					<textarea id="filename" hidden></textarea>
+					<label hidden>ダウンロードURL</label>
+					<input id="deownload_link" type="hidden" name="deownload_link" value="">
+				
 					<input type="hidden" name="ticket" class="e-none" value="{$ticket}">
 					<input type="hidden" name="sendto" value="{$with(_SEND_TO)}">
 					<input type="hidden" name="subject" value="お客様アンケート">
 					<input type="hidden" name="title" value="お客様アンケート">
 				</form>
+				
+				<div>
+					<p class="q">
+						<em>Q{$len}</em>
+						<label>写真掲載割をご利用のお客様は、商品着用写真をお送りください</label>
+					</p>
+				</div>
+				<div id="file-uploader"></div>
+				
+				<p class="button_area">
+					<button id="send_button" class="btn">アンケートを送信する</button>
+				</p>
+				
 			</main>
 DOC;
 
@@ -275,87 +247,9 @@ DOC;
 
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
 
-		<!-- The template to display files available for upload -->
-		<script id="template-upload" type="text/x-tmpl">
-		{% for (var i=0, file; file=o.files[i]; i++) { %}
-		<tr class="template-upload fade">
-			<td>
-				<span class="preview"></span>
-			</td>
-			<td>
-				<p class="name">{%=file.name%}</p>
-				<strong class="error text-danger"></strong>
-			</td>
-			<td>
-				<p class="size">Processing...</p>
-				<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-					<div class="progress-bar progress-bar-success" style="width:0%;"></div>
-			</div>
-			</td>
-			<td>
-				{% if (!i && !o.options.autoUpload) { %}
-				<button class="btn btn-primary start" hidden disabled>
-					<i class="fa fa-cloud-upload" aria-hidden="true"></i>
-					<span>アップロード</span>
-			</button> {% } %} {% if (!i) { %}
-				<button class="btn btn-warning cancel">
-					<i class="fa fa-ban" aria-hidden="true"></i>
-					<span>キャンセル</span>
-			</button> {% } %}
-			</td>
-			</tr>
-		{% } %}
-		</script>
-		<!-- The template to display files available for download -->
-		<script id="template-download" type="text/x-tmpl">
-		{% for (var i=0, file; file=o.files[i]; i++) { %}
-		<tr class="template-download fade">
-			<td>
-				<span class="preview">
-				{% if (file.thumbnailUrl) { %}
-					<img src="{%=file.thumbnailUrl%}?auth=admin">
-				{% } %}
-			</span>
-			</td>
-			<td>
-				<p class="name">
-					<span>{%=file.name%}</span>
-			</p>
-				<span class="path" hidden>{%=file.url%}</span> {% if (file.error) { %}
-				<div><span class="label label-danger">Error</span> {%=file.error%}</div>
-				{% } else { %}
-				<div><span class="label" style="font-size:1.2rem;font-weight:bold;color:#0275d8;">完了</span></div>
-				{% } %}
-			</td>
-			<td>
-				<span class="size">{%=o.formatFileSize(file.size)%}</span>
-			</td>
-			<td>
-				{% if (file.deleteUrl) { %}
-				<button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
-					<i class="fa fa-trash" aria-hidden="true"></i>
-					<span>削除</span>
-			</button> {% } else { %}
-				<button class="btn btn-warning cancel">
-					<i class="fa fa-ban" aria-hidden="true"></i>
-					<span>キャンセル</span>
-			</button> {% } %}
-			</td>
-			</tr>
-		{% } %}
-		</script>
-		<script src="//doozor.bitbucket.io/email/e-mailform.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
-		<script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
-		<script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
-		<script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
-		<script src="/user/js/upload/vendor/jquery.ui.widget.js"></script>
-		<script src="/user/js/upload/jquery.iframe-transport.js"></script>
-		<script src="/user/js/upload/jquery.fileupload.js"></script>
-		<script src="/user/js/upload/jquery.fileupload-process.js"></script>
-		<script src="/user/js/upload/jquery.fileupload-image.js"></script>
-		<script src="/user/js/upload/jquery.fileupload-validate.js"></script>
-		<script src="/user/js/upload/jquery.fileupload-ui.js"></script>
-		<script type="text/javascript" src="/contact/js/enquete.js"></script>
+		<script src="https://doozor.bitbucket.io/email/e-mailform.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
+		<script src="https://doozor.bitbucket.io/uploader/file_uploader.min.js?m=drop&ci=phl57jus0l"></script>
+		<script type="text/javascript" src="/contact/js/enquete.js?v=<?php echo $_version;?>"></script>
 
 	</body>
 
