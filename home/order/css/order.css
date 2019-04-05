@@ -1573,14 +1573,6 @@ input[type="password"] {
 	margin-bottom: 3%;
 }
 
-.user_pass_confir .opinion {
-	background-color: #eceae8;
-	font-size: 14px;
-	font-weight: bold;
-	padding: 15px;
-	margin: 5px 0 20px;
-}
-
 
 /*		finall_confir
 ===============================================================*/
@@ -1747,7 +1739,7 @@ input[type="password"] {
 	margin: 7%;
 }
 
-.user_pass_confir .opinion .any {
+h3.option .any {
 	color: #a5a5a5;
 	font-size: 12px;
 	border: 1px solid #a5a5a5;
