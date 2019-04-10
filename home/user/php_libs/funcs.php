@@ -25,7 +25,7 @@ function loginTo($args) {
 				'X-TLA-Access-Token:'._ACCESS_TOKEN,
 				'Origin:'._DOMAIN
 			];
-			$http = new HTTP('https://takahamalifeart.com/v3/users/'.$args['email'].'/'.$args['pass']);
+			$http = new HTTP('https://takahamalifeart.com/v3/users/'.rawurlencode($args['email']).'/'.$args['pass']);
 			$res = $http->request('GET', [], $headers);
 			$data = json_decode($res, true);
 			if (array_key_exists('error', $data)) {
@@ -34,7 +34,7 @@ function loginTo($args) {
 					'Enter your password' => 'パスワードを入力して下さい。',
 					'Not registered yet' => 'メールアドレス（'.$args['email'].'）かパスワードをご確認下さい'
 				);
-				$res = json_encode(array('error' => $mbErrorMessage[$data['error']]));
+				$res = json_encode(array('error' => $mbErrorMessage[$data['error']] . $data['error']));
 			} else {
 				$_SESSION['me'] = $data;
 				$res = '';
