@@ -206,6 +206,7 @@ DOC;
 					アンケートにお答えいただき、ありがとうございました。<br>
 					またのご利用、心よりお待ち申し上げております。
 				</p>
+				<div id="file-uploader" style="display:none;"></div>
 			</main>
 DOC;
 
@@ -223,6 +224,7 @@ DOC;
 					アンケートの送信中にエラーが発生しました。<br>
 					恐れ入りますが、もう一度送信をお願いいたします。
 				</p>
+				<div id="file-uploader" style="display:none;"></div>
 			</main>
 DOC;
 
