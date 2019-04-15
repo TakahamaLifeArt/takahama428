@@ -15,7 +15,7 @@ $(function () {
 			$('#datepicker_deliday').val('');
 			var curDate = $('#datepicker_firmorder').datepickCalendar('getDate');
 			if (!curDate) return;
-			var base = Date.parse(curDate) / 1000,
+			var base = Date.parse(curDate + 'T00:00:00+09:00') / 1000,
 				transport = $('#destination option:selected').data('destination'),
 				param = {
 				'basesec': base,
