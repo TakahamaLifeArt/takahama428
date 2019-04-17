@@ -2,7 +2,8 @@
  * Order form
  * log
  * 2017-10-21	Created
- * 2018-05-16	 イメ画選択、後払い、納期選択の仕様変更
+ * 2018-05-16	イメ画選択、後払い、納期選択の仕様変更
+ * 2019-04-05	お届け先住所を追加
  */
 $(function(){
 	const NO_PRINT_RATE = 1.1;	// プリントなしで商品単価を10％UPし1円単位以下を切り上げる
@@ -1034,8 +1035,8 @@ $(function(){
 					$('#conf_email span').text(me.email);
 					$('#conf_customername span').text(me.customername);
 					$('#conf_customerruby span').text(me.customerruby);
-					$('#conf_tel span').text(me.tel);
-					$('#conf_zipcode span').text(me.zipcode);
+					$('#conf_tel span').text(eMailer.formatPhone(me.tel, 'JP'));
+					$('#conf_zipcode span').text($.zip_mask(me.zipcode));
 					$('#conf_addr0 span').text(me.addr0);
 					$('#conf_addr1 span').text(me.addr1);
 					$('#conf_addr2 span').text(me.addr2);
@@ -1143,6 +1144,9 @@ $(function(){
 							$.setStorage('user', data);
 						});
 						
+						$('#conf_deli_wrap').addClass('hidden');
+						$('#member_shipping').removeClass('hidden');
+						
 						$.next();
 					}
 				}
@@ -1217,8 +1221,10 @@ $(function(){
 				email = $.mbConvert($('#email').val().trim()),
 				pass = $.mbConvert($('#pass').val().trim()),
 				pass_conf = $.mbConvert($('#pass_conf').val().trim()),
-				tel = $.mbConvert($('#tel').val().trim()),
-				zipcode = $('#zipcode').val();
+				tel = $('#tel').val().trim(),
+				zipcode = $('#zipcode').val(),
+				deliZipcode = $('#deli_zipcode').val(),
+				delitel = $('#deli_tel').val().trim();
 
 			if (!$.validEmail(email)) {
 				return d.reject().promise();
@@ -1261,8 +1267,10 @@ $(function(){
 					}
 					if ($('#customername').val().trim() == '') required.push('<li>お名前</li>');
 					if ($('#customerruby').val().trim() == '') required.push('<li>フリガナ</li>');
-					if (!$.isPhone(tel)) required.push('<li>お電話番号</li>');
+					if (!eMailer.isValidPhone(tel, 'JP')) required.push('<li>お電話番号</li>');
 					if ($('#addr1').val().trim() == '') required.push('<li>ご住所</li>');
+//					if ($('#deli_destination').val().trim() == '') required.push('<li>お届け先の宛名</li>');
+//					if ($('#deli_addr1').val().trim() == '') required.push('<li>お届け先住所</li>');
 					required_list = '<ul class="msg">' + required.toString().replace(/,/g, '') + '</ul>';
 					if (required.length > 0) {
 						$.msgbox("必須項目の入力をご確認ください。<hr>" + required_list);
@@ -1270,8 +1278,12 @@ $(function(){
 					} else {
 						$('#email').val(email);
 						$('#pass').val(pass);
-						$('#tel').val(tel.replace(/[−.*━.*‐.*―.*－.*\-.*ー.*\-]/gi,'-'));
+//						$('#tel').val(tel.replace(/[−.*━.*‐.*―.*－.*\-.*ー.*\-]/gi,'-'));
+						$('#tel').val(eMailer.formatPhone(tel, 'JP'));
 						$('#zipcode').val($.zip_mask(zipcode));
+						$('#deli_zipcode').val($.zip_mask(deliZipcode));
+//						$('#deli_tel').val(delitel.replace(/[−.*━.*‐.*―.*－.*\-.*ー.*\-]/gi,'-'));
+						$('#deli_tel').val(eMailer.formatPhone(delitel, 'JP'));
 						d.resolve();
 					}
 				}
@@ -1284,7 +1296,7 @@ $(function(){
 			 * 初めての方の顧客情報の確認ページ
 			 * @param {int} page 現在のページから何ページ先かを指定する
 			 */
-			$('#email, #pass, #customername, #customerruby, #tel, #zipcode, #addr0, #addr1, #addr2').each(function () {
+			$('#email, #pass, #customername, #customerruby, #tel, #zipcode, #addr0, #addr1, #addr2, #deli_zipcode, #deli_addr0, #deli_addr1, #deli_addr2, #deli_tel').each(function () {
 				var self = $(this),
 					val = self.val(),
 					id = self.attr('id');

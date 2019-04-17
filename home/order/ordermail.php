@@ -18,6 +18,7 @@
 				  2018-04-01 アップロードファイル名の変更を廃止
 				  2018-05-15 イメ画選択と後払いを追加
 				  2019-01-08 アップロードの仕様変更
+				  2019-04-05 お届け先住所を追加
 
 -------------------------------------------------------------- */
 require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/config.php';
@@ -252,6 +253,18 @@ class Ordermail extends Conndb{
 			$order_info .= "◇E-Mail：　".$user['email']."\n";
 			$order_info .= "------------------------------------------\n\n";
 			
+			
+			$order_info .= "┏━━━━━━━┓\n";
+			$order_info .= "◆　　お届け先\n";
+			$order_info .= "┗━━━━━━━┛\n";
+			$order_info .= "◇宛名：　".$user['destination']."　様\n";
+			$order_info .= "◇ご住所：　〒".$user['delizipcode']."\n";
+			$order_info .= "　　　　　　　　".$user['deliaddr0']."\n";
+			$order_info .= "　　　　　　　　".$user['deliaddr1']."\n";
+			$order_info .= "　　　　　　　　".$user['deliaddr2']."\n";
+			$order_info .= "◇TEL：　".$user['delitel']."\n";
+			$order_info .= "------------------------------------------\n\n";
+
 			
 			if (empty($opts['publish'])) {
 				$order_info .= "◇デザイン掲載：　掲載不可\n\n";
@@ -800,8 +813,19 @@ class Ordermail extends Conndb{
 			);
 		}
 
-		// お届け先情報は無し
-		$data2 = null;
+		// お届け先情報
+		if (empty($user['delizipcode']) || empty($user['deliaddr0'])) {
+			$data2 = "";
+		} else {
+			$data2 = array(
+				"destination" => $user['destination'],
+				"delizipcode" => $user['delizipcode'],
+				"deliaddr0" => $user['deliaddr0'],
+				"deliaddr1" => $user['deliaddr1'],
+				"deliaddr2" => $user['deliaddr2'],
+				"delitel" => $user['delitel'],
+			);
+		}
 
 		// 写真掲載割（旧ブログ割）
 		if(empty($opts['publish'])){
@@ -1323,7 +1347,7 @@ class WebOrder {
 						}
 					}
 
-					if(isset($data2)){
+					if(!empty($data2)){
 						if(empty($data2['delivery_id'])){
 							$newdata2 = $data2;
 							if(isset($data1)){
@@ -1856,53 +1880,14 @@ class WebOrder {
 					foreach($data as $key=>$val){
 						$info[$key]	= $this->quote_smart($conn, $val);
 					}
-					//受注システムの場合
-					if(!empty($info[delizipcode]) && $info[delizipcode] != "") {
-						$sql = sprintf("INSERT INTO delivery(organization,agent,team,teacher,delizipcode,deliaddr0,deliaddr1,deliaddr2,deliaddr3,deliaddr4,delitel)
-							   VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
-									   $info["organization"],
-									   $info["agent"],
-									   $info["team"],
-									   $info["teacher"],
-									   $info["delizipcode"],
-									   $info["deliaddr0"],
-									   $info["deliaddr1"],
-									   $info["deliaddr2"],
-									   $info["deliaddr3"],
-									   $info["deliaddr4"],
-									   $info["delitel"]);
-					} else {
-						//Web注文からのデータ
-						//既存顧客の場合
-						if(!empty($info["delivery_customer"])) {
-							//お届き先を選んだ場合
-							if($info["delivery_customer"] != "-1") {
-								$sql = sprintf("INSERT INTO delivery(organization,agent,team,teacher,delizipcode,deliaddr0,deliaddr1,deliaddr2,deliaddr3,deliaddr4,delitel)
-								   SELECT organization,agent,team,teacher,delizipcode,deliaddr0,deliaddr1,deliaddr2,deliaddr3,deliaddr4,delitel FROM delivery_customer where id = %d",
-											   $info["delivery_customer"]);
-							} else {
-								//住所を選んだ場合
-								$sql = sprintf("INSERT INTO delivery(organization, delizipcode,deliaddr0,deliaddr1,deliaddr2,deliaddr3,deliaddr4,delitel)
-									   SELECT customername, zipcode,addr0,addr1,addr2,addr3,addr4,tel from customer where id = %d",
-											   $info["customer_id"]);
-							}
-						} else {
-							//新規顧客の場合、画面で入力した情報を登録
-							$sql = sprintf("INSERT INTO delivery(organization,agent,team,teacher,delizipcode,deliaddr0,deliaddr1,deliaddr2,deliaddr3,deliaddr4,delitel)
-							   VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
-										   $info["customername"],
-										   $info["agent"],
-										   $info["team"],
-										   $info["teacher"],
-										   $info["zipcode"],
-										   $info["addr0"],
-										   $info["addr1"],
-										   $info["addr2"],
-										   $info["addr3"],
-										   $info["addr4"],
-										   $info["tel"]);
-						}
-					}
+					$sql = sprintf("INSERT INTO delivery(organization,delizipcode,deliaddr0,deliaddr1,deliaddr2,delitel) VALUES('%s','%s','%s','%s','%s','%s')",
+								   $info["destination"],
+								   $info["delizipcode"],
+								   $info["deliaddr0"],
+								   $info["deliaddr1"],
+								   $info["deliaddr2"],
+								   $info["delitel"]
+								   );
 					break;
 
 				case 'shipfrom':

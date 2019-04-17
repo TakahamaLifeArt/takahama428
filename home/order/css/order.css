@@ -8,6 +8,7 @@ Description : A multi steps order form.
 
 log
 2017-10-21	: created
+2019-04-12	: レイアウト変更
 
 --------------------------------------------------------------*/
 
@@ -40,8 +41,9 @@ log
 }
 
 .red {
-	background: none!important;
+	background: none !important;
 }
+
 del,
 ins {
 	text-decoration: none;
@@ -219,7 +221,7 @@ h4 {
 
 .btn_box {
 	text-align: center;
-/*
+	/*
 	border-bottom: 1px solid #e5e5e5;
 	border-top: 1px solid #e5e5e5;
 */
@@ -235,22 +237,22 @@ h4 {
 
 .add_btn {
 	display: inline-block;
-	background-color: #dedede;
+	background-color: #ffffff;
 	font-weight: bold;
 	cursor: pointer;
-	border: 1px solid #a5a5a5;
-	padding: 9px;
-	border-radius: 6%;
+	border: 1px solid #109dd6;
+	padding: 10px 40px;
+	border-radius: 3px;
 	box-shadow: 1px 1px 1px #a5a5a5;
-	font-size: 12px;
-	color: #555!important;
+	font-size: 14px;
+	color: #109dd6 !important;
 }
 
 .chg_btn {
 	background-color: #fff;
 	font-size: 14px;
 	border: 1px solid #d9710a;
-	color: #d9710a!important;
+	color: #d9710a !important;
 }
 
 .align-items-center {
@@ -431,7 +433,7 @@ em {
 	font-weight: bold;
 	font-size: 14px;
 	cursor: pointer;
-	color: #000!important;
+	color: #000 !important;
 }
 
 .display_res {
@@ -461,7 +463,7 @@ em {
 
 
 .listitems_top3 .listitems .row {
-    margin: 0!important;
+	margin: 0 !important;
 }
 
 .down_cond {
@@ -477,7 +479,7 @@ em {
 }
 
 .note {
-	font-size: 12px;
+	font-size: 11px;
 }
 
 .red_mark {
@@ -498,8 +500,9 @@ em {
 
 .form-group {
 	display: flex;
-	padding: 2% 0%;
-	width: 85%;
+	padding: 0%;
+	width: 100%;
+	margin: 0 20px 0 0;
 }
 
 .emb_only .form-group {
@@ -509,8 +512,8 @@ em {
 }
 
 .form-group_2 {
-	padding: 0% 16%;
-	margin-bottom: 1rem;
+	padding: 0%;
+	margin-bottom: 0rem;
 	display: inline-block;
 }
 
@@ -544,7 +547,7 @@ em {
 
 #printing .area img {
 	width: 100%;
-	max-width: 400px;
+	max-width: 360px;
 	border: 1px solid #dedede;
 	border-radius: 2px;
 	padding: 2px 5px;
@@ -606,7 +609,7 @@ em {
 }
 
 .print_size input {
-	display: block;
+	/*	display: block;*/
 	margin: 0 auto;
 }
 
@@ -617,7 +620,7 @@ em {
 
 .emb {
 	text-align: center;
-	width: 35%;
+	width: 40%;
 	margin: 2%;
 }
 
@@ -632,6 +635,7 @@ em {
 
 .print_size label p {
 	font-size: 14px;
+	display: initial;
 }
 
 
@@ -809,7 +813,7 @@ em {
 .listitems_other {
 	padding: 10px 0 30px;
 	justify-content: start;
-    margin-top: 0;
+	margin-top: 0;
 }
 
 .listitems_top3 .listitems {
@@ -930,15 +934,15 @@ ul.color_sele_thumb li.nowimg:hover {
 .size_table td.stocking {
 	padding-bottom: 2px;
 	border-bottom: none;
-        margin: 0 auto;
-     font-size: 12px;
- color: #888888;
-    /* font-weight: bold; */
-    text-align: center;
+	margin: 0 auto;
+	font-size: 12px;
+	color: #888888;
+	/* font-weight: bold; */
+	text-align: center;
 }
 
-   
-    
+
+
 
 .size_table input[type=number] {
 	width: 5em;
@@ -1125,7 +1129,7 @@ th {
 	padding: 9px;
 	border-radius: 6%;
 	box-shadow: 1px 1px 1px #a5a5a5;
-	color: #d9710a!important;
+	color: #d9710a !important;
 	display: block;
 	font-size: 12px;
 	margin: 20% auto;
@@ -1148,13 +1152,14 @@ th {
 
 .del_btn_2 {
 	border: 1px solid #d30000;
-	padding: 9px;
-	border-radius: 3%;
+	padding: 10px 60px;
+	border-radius: 3px;
 	box-shadow: 1px 1px 1px #a5a5a5;
 	color: #d30000;
-	display: block;
-	font-size: 12px;
+	display: inline-block;
+	font-size: 14px;
 	width: auto;
+	font-weight: bold;
 }
 
 .cart_price_min {
@@ -1275,9 +1280,9 @@ th {
 }
 
 .sonomama_txt {
-    text-align: left;
-    font-size: 14px;
-    margin-bottom: 60px;
+	text-align: left;
+	font-size: 14px;
+	margin-bottom: 60px;
 }
 
 .ri_txt {
@@ -1349,11 +1354,13 @@ th {
 }
 
 /*安永*/
+
 .nouki_option {
 	border: 1px solid #e2710a;
 	padding: 0 0 .85rem;
-/*	margin-bottom: 35px;*/
+	/*	margin-bottom: 35px;*/
 }
+
 .nouki_option_text {
 	background-color: #EF6C00;
 	color: #FFF;
@@ -1362,11 +1369,13 @@ th {
 	text-align: center;
 	padding: 5px;
 }
+
 .nouki_option_inside {
 	padding-top: 40px;
 	padding-left: 40px;
 	padding-right: 40px;
 }
+
 #delivery .cart_inner .price_box {
 	padding: 1%;
 	text-align: center;
@@ -1374,6 +1383,7 @@ th {
 	font-weight: bold;
 	background: #eceae8;
 }
+
 #delivery .cart_inner #goto_customer {
 	background: #33b5e5;
 	width: 300px;
@@ -1385,8 +1395,6 @@ th {
 
 
 /*安永終わり*/
-
-
 
 .req {
 	color: #dc0000;
@@ -1796,6 +1804,7 @@ h3.option .any {
 
 
 
+/*
 .price_box_2 {
 	border: 1px solid #a5a5a5;
 	padding: 2%;
@@ -1803,9 +1812,17 @@ h3.option .any {
 	margin: 0 20%;
 	margin-top: 50px;
 }
+*/
 
+/*
 .print_re {
 	font-size: 18px;
+	font-weight: bold;
+}
+*/
+
+.print_re span {
+	color: #109dd6;
 	font-weight: bold;
 }
 
@@ -1973,7 +1990,7 @@ h3.option .any {
 	border-radius: 30px;
 	padding: 10px 24px;
 	float: right;
-/*	margin-right: 20%;*/
+	/*	margin-right: 20%;*/
 }
 
 .print_type {
@@ -2163,13 +2180,13 @@ h3.option .any {
 	font-weight: bold;
 	font-size: 14px;
 	cursor: pointer;
-	color: #000!important;
+	color: #000 !important;
 	margin: 0 auto;
 	display: block;
 }
 
 .modal-dialog .btn .fa {
-	color: #000!important;
+	color: #000 !important;
 }
 
 .cust_rank_b,
@@ -2353,7 +2370,7 @@ h3.option .any {
 	}
 	.size_table .heading {
 		clear: both;
-		width:  10%;
+		width: 10%;
 		display: block;
 	}
 	.sizeprice .size_table tr.heading th {
@@ -2370,48 +2387,48 @@ h3.option .any {
 		float: left;
 		text-align: right;
 		padding-top: 1rem;
-        position: relative;
-    top: 20px;
+		position: relative;
+		top: 20px;
 	}
-    
-    .size_table tr:nth-child(2) {
-		    width: 30%;
-        float: left;
-        text-align: right;
-        padding-top: 1rem;
-        padding-left: 3%;
-/*        left: 20px;*/
-        font-size: 10px;
-        position: relative;
-    top: 26px;
+
+	.size_table tr:nth-child(2) {
+		width: 30%;
+		float: left;
+		text-align: right;
+		padding-top: 1rem;
+		padding-left: 3%;
+		/*        left: 20px;*/
+		font-size: 10px;
+		position: relative;
+		top: 26px;
 	}
-    
-     .size_table tr:nth-child(5) {
-		    width: 30%;
-        float: left;
-        text-align: right;
-        padding-top: 1rem;
-        padding-left: 3%;
-/*        left: 20px;*/
-        font-size: 10px;
-        position: relative;
-    top: 26px;
+
+	.size_table tr:nth-child(5) {
+		width: 30%;
+		float: left;
+		text-align: right;
+		padding-top: 1rem;
+		padding-left: 3%;
+		/*        left: 20px;*/
+		font-size: 10px;
+		position: relative;
+		top: 26px;
 	}
-    
-     .size_table tr:nth-child(8) {
-		    width: 30%;
-        float: left;
-        text-align: right;
-        padding-top: 1rem;
-        padding-left: 3%;
-/*        left: 20px;*/
-        font-size: 10px;
-        position: relative;
-    top: 26px;
+
+	.size_table tr:nth-child(8) {
+		width: 30%;
+		float: left;
+		text-align: right;
+		padding-top: 1rem;
+		padding-left: 3%;
+		/*        left: 20px;*/
+		font-size: 10px;
+		position: relative;
+		top: 26px;
 	}
-    
-    
-    
+
+
+
 	.sizeprice .size_table th {
 		padding-right: 0px;
 		font-size: .9em;
@@ -2428,8 +2445,8 @@ h3.option .any {
 		margin-bottom: 10px;
 		text-align: right;
 	}
-    
-    .sizeprice .size_table td.stocking {
+
+	.sizeprice .size_table td.stocking {
 		display: block;
 		padding-bottom: 2px;
 		border-bottom: none;
@@ -2439,8 +2456,8 @@ h3.option .any {
 		width: 100%;
 		margin-bottom: 10px;
 	}
-    
-    
+
+
 	.sizeprice .size_table input[type=number] {
 		width: 10em;
 		padding: 2px 0 0 0px;
@@ -2456,7 +2473,7 @@ h3.option .any {
 	.price_box {
 		margin: 10% 0%;
 	}
-	
+
 	#delivery .cart_inner .price_box {
 		margin: 10% 0%;
 	}
@@ -2469,16 +2486,18 @@ h3.option .any {
 		padding-left: 20px;
 		padding-right: 20px;
 	}
-	
-   
-	
+
+
+
 	.price_box_2 {
 		margin: 7% 0%;
 	}
+	/*
 	.print_re {
 		font-size: 16px;
 		font-weight: bold;
 	}
+*/
 	.solo_p {
 		font-size: 12px;
 		margin-bottom: 2%;
@@ -2827,37 +2846,37 @@ h3.option .any {
 
 @media (max-width: 450px) {
 
-.sizeprice .size_table input[type=number] {
+	.sizeprice .size_table input[type=number] {
 		width: 6.2em;
 		padding: 2px 6px 0 0px;
 		text-align: right;
 		font-size: 1.1em;
 	}
-    
-    
-.size_table tr:nth-child(2) {
-    width: 38%;
-    }
-    
-     .size_table tr:nth-child(5) {
-    width: 38%;
-    }
-    
-    
-    .size_table tr:nth-child(8) {
-    width: 38%;
-    }
-    
-    
-    
-    
-    .size_table tr {
-    width: 52%;
-        }
-    
-    }
-    
-    
+
+
+	.size_table tr:nth-child(2) {
+		width: 38%;
+	}
+
+	.size_table tr:nth-child(5) {
+		width: 38%;
+	}
+
+
+	.size_table tr:nth-child(8) {
+		width: 38%;
+	}
+
+
+
+
+	.size_table tr {
+		width: 52%;
+	}
+
+}
+
+
 
 /*		Utilities
 ===============================================================*/
@@ -2896,11 +2915,14 @@ h3.option .any {
 	font-size: 24px;
 }
 
-/*下層調整*//*-------------------------------------*/
+/*下層調整*/
+
+/*-------------------------------------*/
 
 .field-item p {
 	font-size: inherit;
 }
+
 .field_area .linettl {
 	position: relative;
 	top: -72px;
@@ -2910,33 +2932,44 @@ h3.option .any {
 	line-height: 1.5;
 	margin: 7px 0 0;
 }
+
 #signout .exit_a {
 	padding: 0rem;
 }
+
 .side_log #signout .exit_a {
 	padding: .3rem 1rem 0.3rem;
 }
+
 .side_log #signout .exit_a:hover {
 	padding: .3rem 1rem 0.3rem;
 }
 
-.cal_red p{
+.cal_red p {
 	font-size: 12px;
 }
+
 .header_icon {
 	padding: 12px 0;
 }
+
 .navbar-nav .nav-item:first-child {
 	padding-top: 17px;
 }
+
 .icon_wrap {
 	font-size: 2rem;
 	text-align: center;
 	margin-bottom: 0px;
 }
+
 /*-------------------------------------*/
-/*下層調整*//*-------------------------------------*/
-@media screen and (max-width: 500px){
+
+/*下層調整*/
+
+/*-------------------------------------*/
+
+@media screen and (max-width: 500px) {
 	.field_area .linettl {
 		left: 94px;
 	}
@@ -2948,28 +2981,28 @@ h3.option .any {
 /*nikami*/
 
 .o_top_fl {
-    display: flex;
+	display: flex;
 }
 
 .o_top_step {
-    width:79%;
+	width: 79%;
 }
 
 .o_top_fl .step_prev {
-    width:20%;
+	width: 20%;
 }
 
 .o_top_fl .step_prev {
-    padding: 0.5rem;
-    border: 1.5px solid #e2710a;
-    cursor: pointer;
-    font-size: 14px;
-    color: #e2710a;
-    box-shadow: 1px 1px 1px #a4a4a4;
-    width: 151px;
-    text-align: center;
-        height: 40px;
-    margin: 1.5em 0;
+	padding: 0.5rem;
+	border: 1.5px solid #e2710a;
+	cursor: pointer;
+	font-size: 14px;
+	color: #e2710a;
+	box-shadow: 1px 1px 1px #a4a4a4;
+	width: 151px;
+	text-align: center;
+	height: 40px;
+	margin: 1.5em 0;
 }
 
 .cd-multi-steps {
@@ -2980,45 +3013,45 @@ h3.option .any {
 	/*	background-color: #edeff0;*/
 	/*	border-radius: .25em;*/
 	background-color: transparent;
-    position: relative;
-    left: -49px;
+	position: relative;
+	left: -49px;
 }
 
 
 
 .form-group_02 {
-    display: block;
+	display: block;
 }
 
 .p_po {
-    display: flex;
-    margin-bottom: 30px;
+	display: flex;
+	margin-bottom: 30px;
 }
 
 .p_po .print_position input {
-    display: none;
+	display: none;
 }
 
 .print_position {
-    flex: 1 0 20%;
-    margin: 8% 2%;
-    word-break: keep-all;
-    border: 1px solid #dedede;
-    border-radius: 2px;
-    box-shadow: 1px 1px 1px #a5a5a5;
-    padding: 2px 5px;
-    max-width: 180px;
+	flex: 1 0 20%;
+	margin: 0% 2% 8%;
+	word-break: keep-all;
+	border: 1px solid #dedede;
+	border-radius: 2px;
+	box-shadow: 1px 1px 1px #a5a5a5;
+	padding: 2px 5px;
+	max-width: 113px;
 }
 
 
 .p_po .print_position:hover,
 .p_po .print_position:active {
-     -webkit-filter: brightness(0.8);
-    -moz-filter: brightness(0.8);
-    -o-filter: brightness(0.8);
-    -ms-filter: brightness(0.8);
-    filter: brightness(0.8);
-    background: #FFF;
+	-webkit-filter: brightness(0.8);
+	-moz-filter: brightness(0.8);
+	-o-filter: brightness(0.8);
+	-ms-filter: brightness(0.8);
+	filter: brightness(0.8);
+	background: #FFF;
 }
 
 /*
@@ -3034,64 +3067,63 @@ h3.option .any {
 */
 
 .p_po .print_position p {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .p_po .print_position label {
-       margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 
-@media screen and (max-width: 768px){
-    
-    .o_top_fl {
-    display: block;
-}
-    
-    .o_top_step {
-    width:100%;
-}
-    
-    .cd-multi-steps {
-	max-width: 768px;
-	margin: 1em auto;
-	padding: 0;
-	text-align: center;
-	/*	background-color: #edeff0;*/
-	/*	border-radius: .25em;*/
-	background-color: transparent;
-    position: static;
-    left: 0px;
-}
-    
-    
-    
-    
+@media screen and (max-width: 768px) {
+
+	.o_top_fl {
+		display: block;
+	}
+
+	.o_top_step {
+		width: 100%;
+	}
+
+	.cd-multi-steps {
+		max-width: 768px;
+		margin: 1em auto;
+		padding: 0;
+		text-align: center;
+		/*	background-color: #edeff0;*/
+		/*	border-radius: .25em;*/
+		background-color: transparent;
+		position: static;
+		left: 0px;
+	}
+
+
+
+
 	.form-group_02 {
-    display: flex;
-}
-    
-    .p_po {
-    display: block;
-}
-    
-    .cd-multi-steps {
-	max-width: 768px;
-	margin: 1em auto;
-	padding: 0;
-	text-align: center;
-	/*	background-color: #edeff0;*/
-	/*	border-radius: .25em;*/
-	background-color: transparent;
-}
+		display: flex;
+	}
+
+	.p_po {
+		display: block;
+	}
+
+	.cd-multi-steps {
+		max-width: 768px;
+		margin: 1em auto;
+		padding: 0;
+		text-align: center;
+		/*	background-color: #edeff0;*/
+		/*	border-radius: .25em;*/
+		background-color: transparent;
+	}
 
 }
 
-@media screen and (max-width: 655px)
-.print_position {
-    margin: 1% 1%;
-    width: 142px;
-    word-break: keep-all;
+@media screen and (max-width: 655px) .print_position {
+	margin: 1% 1%;
+	width: 142px;
+	word-break: keep-all;
 }
 
 
@@ -3102,11 +3134,13 @@ h3.option .any {
 	margin-bottom: 35px;
 	font-size: 12px;
 }
+
 .de_simu_a {
 	color: #EF6C00;
 	cursor: pointer;
 	font-weight: bold;
 }
+
 .de_simu_a:hover {
 	text-decoration: underline;
 	color: #EF6C00;
@@ -3114,6 +3148,7 @@ h3.option .any {
 
 
 /* 入稿データアップロードのファイル選択要素 */
+
 .input-group .btn-base,
 .input-group .btn-base:hover,
 .input-group .btn-base:focus {
@@ -3134,6 +3169,57 @@ h3.option .any {
 .upload_form .btn-primary:hover,
 .upload_form .btn-primary:active,
 .upload_form .btn-primary:focus {
-	background-color: #00d255!important;
+	background-color: #00d255 !important;
 	border-color: #419641;
+}
+
+/*
+4.12 レイアウト変更追記css
+*/
+
+.print_option {
+	margin-left: 20px;
+}
+
+.flex {
+	display: flex;
+}
+
+.pos_selector_wrap {
+	text-align: center;
+}
+
+.print_cond {
+	width: 460px !important;
+}
+
+@media screen and (max-width: 768px) {
+	.flex {
+		display: block;
+	}
+	.flex_add {
+		display: block;
+	}
+	.print_cond {
+		width: 100% !important;
+	}
+}
+
+.four_t {
+	text-align: left;
+}
+
+
+/*お届け先住所追加*/
+
+.e-mailer input[class*="e-mailer"],
+.e-mailer textarea[class*="e-mailer"],
+.e-mailer select[class*="e-mailer"]{
+	margin: 0;
+}
+
+#mem_shipping_addr h4,#shipping_addr h4 {
+	color: #000 !importat;
+	font-size: 14px;
+	font-weight: bold;
 }

@@ -4,6 +4,7 @@
  * 2017-10-21	Created
  * 2018-05-16	イメ画選択、後払い、納期選択の仕様変更
  * 2019-01-08	アップロード仕様変更
+ * 2019-04-05	お届け先住所を追加
  */
 $(function () {
 	'use strict';
@@ -2416,9 +2417,15 @@ $(function () {
 		$.isLogin().then(
 			function(me) {
 				if (me) {
-					$.next(3);	// ログイン済みは顧客情報の確認へ
+					// ログイン済みは顧客情報の確認へ
+					$('#conf_deli_wrap').addClass('hidden');
+					$('#member_shipping').removeClass('hidden');
+					$.next(3);
 				} else {
-					$.next();	// 始めての方
+					// 始めての方
+					$('#conf_deli_wrap').removeClass('hidden');
+					$('#member_shipping').addClass('hidden');
+					$.next();
 				}
 			},
 			function() {
@@ -2445,6 +2452,37 @@ $(function () {
 	// ログイン
 	$('#login_btn').on("click", function(){
 		$.login();
+	});
+	
+	
+	/**
+	 * お届け先をご住所と同じにする
+	 * 会員の方
+	 */
+	$('#same_as_member').on('click', function(){
+//		if ($(this).is(':checked')) {
+			$('#conf_deli_destination span').text($('#conf_customername span').text());
+			$('#conf_deli_zipcode span').text($('#conf_zipcode span').text());
+			$('#conf_deli_addr0 span').text($('#conf_addr0 span').text());
+			$('#conf_deli_addr1 span').text($('#conf_addr1 span').text());
+			$('#conf_deli_addr2 span').text($('#conf_addr2 span').text());
+			$('#conf_deli_tel span').text($('#conf_tel span').text());
+			
+			$('#mem_deli_destination').val($('#conf_customername span').text());
+			$('#mem_deli_zipcode').val($('#conf_zipcode span').text());
+			$('#mem_deli_addr0').val($('#conf_addr0 span').text());
+			$('#mem_deli_addr1').val($('#conf_addr1 span').text());
+			$('#mem_deli_addr2').val($('#conf_addr2 span').text());
+			$('#mem_deli_deli').val($('#conf_tel span').text());
+//		} else {
+//			$('#conf_deli_destination span').text('');
+//			$('#conf_deli_zipcode span').text('');
+//			$('#conf_deli_addr0 span').text('');
+//			$('#conf_deli_addr1 span').text('');
+//			$('#conf_deli_addr2 span').text('');
+//			
+//			$('#member_shipping input[type="text"]').val('');
+//		}
 	});
 	
 	
@@ -2497,9 +2535,28 @@ $(function () {
 		$('#customer .member').addClass('hidden');
 		$('#customer .first_time').removeClass('hidden');
 		$('#customer .first_time input').val('');
+		
+		$('#conf_deli_wrap').removeClass('hidden');
+		$('#member_shipping').addClass('hidden');
 
 		// ページ遷移
 		$.next();
+	});
+	
+	
+	/**
+	 * お届け先をご住所と同じにする
+	 * 初めての方
+	 */
+	$('#same_as_first').on('click', function(){
+//		if ($(this).is(':checked')) {
+			$('#deli_destination').val($('#customername').val());
+			$('#deli_zipcode').val($('#zipcode').val());
+			$('#deli_addr0').val($('#addr0').val());
+			$('#deli_addr1').val($('#addr1').val());
+			$('#deli_addr2').val($('#addr2').val());
+			$('#deli_tel').val($('#tel').val());
+//		}
 	});
 	
 	
@@ -2512,11 +2569,17 @@ $(function () {
 			data.email = $('#email').val();
 			data.name = $('#customername').val();
 			data.ruby = $('#customerruby').val();
-			data.tel = $('#tel').val();
+			data.tel = $('#tel').val().replace(/[-]/gi,'');
 			data.zipcode = $('#zipcode').val();
 			data.addr0 = $('#addr0').val();
 			data.addr1 = $('#addr1').val();
 			data.addr2 = $('#addr2').val();
+			data.destination = $('#deli_destination').val();
+			data.delizipcode = $('#deli_zipcode').val();
+			data.deliaddr0 = $('#deli_addr0').val();
+			data.deliaddr1 = $('#deli_addr1').val();
+			data.deliaddr2 = $('#deli_addr2').val();
+			data.delitel = $('#deli_tel').val().replace(/[-]/gi,'');
 			$.setStorage('user', data);
 
 			// 顧客情報の入力内容を確認
@@ -2527,6 +2590,41 @@ $(function () {
 	
 	// 注文情報の最終確認へ
 	$('#confirm_order').on("click", function(){
+		// 会員の場合にお届け先の入力チェック
+		if ($('#conf_deli_wrap').is('.hidden')) {
+			let memZipcode = $('#mem_deli_zipcode').val();
+			
+//				required = [],
+//				required_list = '';
+//			if ($('#mem_deli_destination').val().trim() == '') required.push('<li>お届け先の宛名</li>');
+//			if ($('#mem_deli_addr1').val().trim() == '') required.push('<li>お届け先住所</li>');
+//			required_list = '<ul class="msg">' + required.toString().replace(/,/g, '') + '</ul>';
+//			if (required.length > 0) {
+//				$.msgbox("必須項目の入力をご確認ください。<hr>" + required_list);
+//				return;
+//			} else {
+				memZipcode = $.zip_mask(memZipcode);
+				$('#mem_deli_zipcode').val(memZipcode);
+				
+				$('#conf_deli_destination span').text($('#mem_deli_destination').val());
+				$('#conf_deli_zipcode span').text(memZipcode);
+				$('#conf_deli_addr0 span').text($('#mem_deli_addr0').val());
+				$('#conf_deli_addr1 span').text($('#mem_deli_addr1').val());
+				$('#conf_deli_addr2 span').text($('#mem_deli_addr2').val());
+				$('#conf_deli_tel span').text(eMailer.formatPhone($('#mem_deli_tel').val(), 'JP'));
+//			}
+			
+			// 会員のお届け先情報を登録
+			let user = $.getStorage('user');
+			user.destination = $('#mem_deli_destination').val();
+			user.delizipcode = $('#mem_deli_zipcode').val();
+			user.deliaddr0 = $('#mem_deli_addr0').val();
+			user.deliaddr1 = $('#mem_deli_addr1').val();
+			user.deliaddr2 = $('#mem_deli_addr2').val();
+			user.delitel = $('#mem_deli_tel').val().replace(/[-]/gi,'')
+			$.setStorage('user', user);
+		}
+		
 		var i = 0,
 			f = document.forms.orderform,
 			stores = ['design', 'item', 'sum', 'detail', 'option'],
@@ -2560,6 +2658,7 @@ $(function () {
 			faceName = {'front': '前', 'back': '後', 'side': '横'},
 			sampleImage = ['作成しない', '作成する'],
 			address = '',
+			shipping = '',
 			filename = '',	// アップロードファイル名
 			attach = "";	// アップロードファイルのセッション情報
 		
@@ -2727,9 +2826,12 @@ $(function () {
 			$('#final_email').text($('#conf_email').text());
 			$('#final_customername').text($('#conf_customername').text());
 			$('#final_customerruby').text($('#conf_customerruby').text());
-			$('#final_tel').text($('#conf_tel').text());
+			$('#final_tel').text(eMailer.formatPhone($('#conf_tel').text(), 'JP'));
 			address = $('#conf_zipcode').text() + ' ' + $('#conf_addr0').text() + $('#conf_addr1').text() + $('#conf_addr2').text();
 			$('#final_address').text(address);
+			shipping = $('#conf_deli_destination').text() + '<br>' + $('#conf_deli_zipcode').text() + ' ' + $('#conf_deli_addr0').text() + $('#conf_deli_addr1').text() + $('#conf_deli_addr2').text();
+			$('#final_shipping').html(shipping);
+			$('#final_deli_tel').html(eMailer.formatPhone($('#conf_deli_tel span').text(), 'JP'));
 			$('#final_note_design').text($('#note_design').val());
 			$('#final_designkey_text').text($('#designkey_text').val());
 			$('#final_note_user').text($('#note_user').val());
