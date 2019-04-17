@@ -116,11 +116,11 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/package/Calendar.php';
 					<div class="footer_com">
 						<ul>
 							<li><a href="/corporate/overview.php">会社概要</a></li>
-							<li><a href="https://www.takahama428.com/app/WP/reservation/">来社予約</a></li>
+							<li><a href="https://www.takahama428.com/blog/reservation/">来社予約</a></li>
 							<li><a href="/userreviews/">お客様レビュー</a></li>
-							<li><a href="/app/WP">スタッフブログ</a></li>
-							<li><a href="/app/WP/thanks-blog/">製作実例</a></li>
-							<li><a href="/app/WP/topic/">プリント豆知識</a></li>
+							<li><a href="/blog/">スタッフブログ</a></li>
+							<li><a href="/blog/thanks-blog/">製作実例</a></li>
+							<li><a href="/blog/topic/">プリント豆知識</a></li>
 							<li><a href="/reason/speed.php">短納期の理由</a></li>
 							<li><a href="/corporate/transactions.php">特定商取引法</a></li>
 							<li><a href="/corporate/privacy-policy.php">プライバシーポリシー</a></li>
@@ -212,27 +212,18 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/package/Calendar.php';
 			<a href="/"><img alt="タカハマライフアート" src="/common/img/footer/footer_jota.jpg" width="100%"></a>
 			<p>一般社団法人<br>日本オリジナルTシャツ協会会員</p>
 		</div>
-			<div class="koshien"><a href="https://www.jota.or.jp/school_2018.html" target="_blank"><img src="/img/banner_school2018.jpg" alt="親子オリジナルＴシャツ教室2018のバナー"></a></div>
-		</div>
-		
-		
-		<!--甲子園の画像掲載終了したらこっちアップ-->
 <!--
-			<div class="col-10 foot_logo">
-				<a href="/"><img alt="タカハマライフアート" src="/common/img/footer/footer_jota.jpg" width="100%"></a>
-				<p>一般社団法人<br>日本オリジナルTシャツ協会会員</p>
+			<div class="tsuika_img">
+				<a href="/blog/recruitment/" target="_blank" class="icon_wth"><img alt="求人募集" src="/common/img/footer/428_staff.jpg" width="100%"></a>
 			</div>
 -->
-
-
 		<div class="col-10 foot_logo1">
 			<a href="/"><img alt="タカハマライフアート" src="/common/img/footer/428logo.jpg" width="100%"></a>
 			<p class="footer_happy">全スタッフとお客様の幸せを、実現します。</p>
 		</div>
-		
-
+		</div>
 	</nav>
-</div>
+
 
 <div class="call-to-action hidden-md-down">
 	<div class="row">
@@ -241,22 +232,26 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/package/Calendar.php';
 			<a href="http://www.jota.or.jp/" target="_blank" class="icon_wth"><img alt="日本オリジナルTシャツ協会のロゴ" src="/common/img/footer/footer_jota.jpg" width="100%"></a>
 			<p>一般社団法人<br>日本オリジナルTシャツ協会会員</p>
 		</div>
-		<div class="koshien"><a href="https://www.jota.or.jp/school_2018.html" target="_blank"><img src="/img/banner_school2018.jpg" alt="親子オリジナルＴシャツ教室2018のバナー"></a></div>
-	</div>
-	
-		<!--甲子園の画像掲載終了したらこっちアップ-->
 <!--
-			<div class="foot_logo">
-				<a href="http://www.jota.or.jp/" target="_blank" class="icon_wth"><img alt="Brand" src="/common/img/footer/footer_jota.jpg" width="100%"></a>
-				<p>一般社団法人<br>日本オリジナルTシャツ協会会員</p>
-			</div>
+		<div class="tsuika_img">
+			<a href="/blog/recruitment/" target="_blank" class="icon_wth"><img alt="求人募集" src="/common/img/footer/428_staff.jpg" width="100%"></a>
+		</div>
 -->
-	
-	<!--甲子園の画像掲載終了したら削除css-->
+	</div>
+	<!--追加画像掲載終了したら削除css-->
+<!--
 		<style>
+			.tsuika_img {
+				width: 300px;
+				display: block;
+				margin: 0 auto;
+			}
+			.tsuika_img:hover{
+				opacity: .8;
+			}
 			@media screen and (max-width: 769px){
-			.koshien {
-				margin: 30px 0;
+				.tsuika_img {
+				margin: 30px auto;
 				text-align: center;
 			}
 			}
@@ -267,6 +262,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/package/Calendar.php';
 			}
 			}
 		</style>
+-->
 
 		<div class="foot_logo1">
 			<a href="/"><img alt="タカハマライフアート" src="/common/img/footer/428logo.jpg" width="100%"></a>
