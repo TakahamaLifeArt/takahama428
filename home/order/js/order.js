@@ -2475,7 +2475,7 @@ $(function () {
 			$('#mem_deli_addr0').val($('#conf_addr0 span').text());
 			$('#mem_deli_addr1').val($('#conf_addr1 span').text());
 			$('#mem_deli_addr2').val($('#conf_addr2 span').text());
-			$('#mem_deli_deli').val($('#conf_tel span').text());
+			$('#mem_deli_tel').val($('#conf_tel span').text());
 //		} else {
 //			$('#conf_deli_destination span').text('');
 //			$('#conf_deli_zipcode span').text('');
