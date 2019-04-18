@@ -2387,6 +2387,8 @@ $(function () {
 	// ご意見・ご要望
 	$('#note_user').applyChange();
 	
+	// デザイン掲載の承諾
+	$('#published input').applyChange();
 	
 	// 会員と初めての方の表示切り替え
 	$('#goto_customer').on("click", function(){
@@ -2948,9 +2950,14 @@ $(function () {
 		
 		// オプション指定
 		if (!sessionStorage.hasOwnProperty('option')) {
-			$.removeStorage('option', {'publish':0, 'student':0, 'pack':0, 'payment':'bank', 'delidate':'', 'delitime':0, 'express':0, 'transport':1, 'school':'', 'note_design':'', 'designkey_text':'','note_user':'', 'imega':0});
+			$.removeStorage('option', {'publish':0, 'published':0, 'student':0, 'pack':0, 'payment':'bank', 'delidate':'', 'delitime':0, 'express':0, 'transport':1, 'school':'', 'note_design':'', 'designkey_text':'','note_user':'', 'imega':0});
 		} else {
 			opt = $.getStorage('option');
+			
+			// ホームページやSNSでデザインを掲載
+			if (opt.published != 0) {
+				$('#published [name="published"][value="'+opt.published+'"]').prop('checked', true);
+			}
 			
 			// 学割
 			if (opt.student != 0) {

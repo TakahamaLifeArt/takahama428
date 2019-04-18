@@ -19,6 +19,7 @@
 				  2018-05-15 イメ画選択と後払いを追加
 				  2019-01-08 アップロードの仕様変更
 				  2019-04-05 お届け先住所を追加
+				  2019-04-18 デザイン掲載の承諾を追加
 
 -------------------------------------------------------------- */
 require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/config.php';
@@ -264,12 +265,20 @@ class Ordermail extends Conndb{
 			$order_info .= "　　　　　　　　".$user['deliaddr2']."\n";
 			$order_info .= "◇TEL：　".$user['delitel']."\n";
 			$order_info .= "------------------------------------------\n\n";
-
 			
-			if (empty($opts['publish'])) {
-				$order_info .= "◇デザイン掲載：　掲載不可\n\n";
+			
+			// 「ホームページやSNSでお客様のデザインを掲載」チェックの追加に伴い廃止 2019-04-18
+//			if (empty($opts['publish'])) {
+//				$order_info .= "◇デザイン掲載：　掲載不可\n\n";
+//			} else {
+//				$order_info .= "◇デザイン掲載：　掲載可\n\n";
+//			}
+			
+			
+			if (empty($opts['published'])) {
+				$order_info .= "◇ホームページやSNSでお客様のデザインを掲載：　掲載可\n\n";
 			} else {
-				$order_info .= "◇デザイン掲載：　掲載可\n\n";
+				$order_info .= "◇ホームページやSNSでお客様のデザインを掲載：　掲載不可\n\n";
 			}
 			
 			$order_info .= "◇デザインについてのご要望など：\n";

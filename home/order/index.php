@@ -1376,6 +1376,11 @@ $_version = time();
 								<p>迷惑メールの設定により、弊社からのメールが届かない場合があります。<br> ドメイン指定をして<span class="red_txt">「info@takahama428.com」</span>を受信出来るように設定してください。
 								</p>
 							</div>
+							<div id="published" style="margin-bottom: 50px;">
+								<p>ホームページやSNSでお客様のデザインを掲載してもよろしいですか？</p>
+								<label style="margin-right: 30px;"><input type="radio" name="published" value="0" checked>はい</label>
+								<label><input type="radio" name="published" value="1">いいえ</label>
+							</div>
 
 							<div id="user_policy" class="modal_style">
 								<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>ご利用規約・プライバシーポリシー
