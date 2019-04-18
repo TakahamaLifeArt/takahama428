@@ -1296,7 +1296,7 @@ $(function(){
 			 * 初めての方の顧客情報の確認ページ
 			 * @param {int} page 現在のページから何ページ先かを指定する
 			 */
-			$('#email, #pass, #customername, #customerruby, #tel, #zipcode, #addr0, #addr1, #addr2, #deli_zipcode, #deli_addr0, #deli_addr1, #deli_addr2, #deli_tel').each(function () {
+			$('#email, #pass, #customername, #customerruby, #tel, #zipcode, #addr0, #addr1, #addr2, #deli_zipcode, #deli_addr0, #deli_addr1, #deli_addr2, #deli_tel, #deli_destination').each(function () {
 				var self = $(this),
 					val = self.val(),
 					id = self.attr('id');
