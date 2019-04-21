@@ -196,6 +196,14 @@ $tax = json_decode($conn->salesTax(), true);
 
 					<div class="sp-slide">
 						<div class="carousel-item hero-carousel__cell hero-carousel__cell--3 carousel-item_02">
+							<a class="slide-one-order" href="/price/estimate.php">
+								<img class="sp-image slide_link_02" data-src="/common/img/home/main/top_slide_oneorder.jpg" data-small="/common/img/home/main/top_slide_oneorder.jpg" data-medium="/common/img/home/main/top_slide_oneorder.jpg" data-large="/common/img/home/main/top_slide_oneorder.jpg" alt="親切対応で選ばれています。レビュー総数1000件以上、対応満足度94%" src="/common/img/home/main/top_slide_oneorder.jpg" />
+							</a>
+						</div>
+					</div>
+
+					<div class="sp-slide">
+						<div class="carousel-item hero-carousel__cell hero-carousel__cell--3 carousel-item_02">
 							<a class="slide-kindly-20181205" href="/userreviews/">
                             <img class="sp-image slide_link_02" data-src="/common/img/home/main/top_slide_kindly_cs.jpg" data-small="/common/img/home/main/sp_top_slide_kindly_cs.jpg" data-medium="/common/img/home/main/sp_top_slide_kindly_cs.jpg" data-large="/common/img/home/main/top_slide_kindly_cs.jpg" alt="親切対応で選ばれています。レビュー総数1000件以上、対応満足度94%" src="/common/img/home/main/sp_top_slide_kindly_cs.jpg" />
                         </a>
@@ -246,15 +254,14 @@ $tax = json_decode($conn->salesTax(), true);
 		<main class="container">
 			<!--お知らせ表示-->
 
-
-
-<!--
 			<div class="an_box">
-				<p style="font-size:16px; font-weight:bold;">＜システム障害のお知らせ＞</p>
-				<p class="an_min">只今システム障害が発生しており、ご連絡が遅れる可能性があります。</p>
-				<p class="an_min">ご不便、ご迷惑をお掛けいたしますが、復旧まで今しばらくお待ちください。</p>
+				<p style="font-size:16px; font-weight:bold;">【GW休業のお知らせ】</p>
+				<p class="an_min">4月27日(土)〜4月29日(月)、5月1日(水)〜5月6日(月)の間、休業とさせて頂きます。</p>
+				<p class="an_min">お急ぎのお客様はご注意ください。</p>
+				<p class="an_min">なお、4月30日(火)につきましてはメール及び電話でのお問い合わせは可能でございますが、</p>
+				<p class="an_min">工場のGW休業に伴い、製作及び出荷は5/7（火）以降となります。</p>
+				<p class="an_min">何卒ご理解頂けますようお願い申し上げます。</p>
 			</div>
--->
 
 
 			<div class="hidden-md-up" style="padding:0 1rem;">
