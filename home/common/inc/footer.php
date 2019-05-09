@@ -133,7 +133,6 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/package/Calendar.php';
 
 		<?php
 			$calendar = new package\Calendar();
-			$nextCalendar = $calendar->getHTML(1);
 			$nextDate = $calendar->getDate(1);
 		?>
 		<div class="area_c footer_tel_fax">
@@ -173,7 +172,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/package/Calendar.php';
 								<td class="sat">土</td>
 							</tr>
 						</thead>
-						<tbody><?php echo $nextCalendar; ?></tbody>
+						<tbody><?php echo $calendar->getHTML(1); ?></tbody>
 					</table>
 				</div>
 			</div>
