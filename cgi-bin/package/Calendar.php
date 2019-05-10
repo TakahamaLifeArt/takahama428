@@ -67,8 +67,10 @@ class Calendar extends HTTP
 			'Origin:'._DOMAIN
 		];
 		$this->setURL(_API_3.$endPoint);
+		$res = json_decode($this->request('GET', $param, $headers), true);
+		if (empty($res)) $res = [];
 
-		return json_decode($this->request('GET', $param, $headers), true);
+		return $res;
 	}
 	
 	
