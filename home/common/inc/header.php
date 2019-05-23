@@ -69,8 +69,8 @@ if( empty($_SESSION['me']) ){
 		if (time() >= strtotime('2018-04-02')) {
 			echo '<div class="wds_top">
 				<a class="navbar-brand" href="/">
-				<img alt="オリジナルTシャツのプリント作成 | タカハマライフアート" src="/common/img/header/top_logo1.png" class="hidden-xs-down" width="100%">
-				<img alt="オリジナルTシャツのプリント作成 | タカハマライフアート" src="/common/img/header/top_logo1.png" class="hidden-sm-up sp_logo_1 top_logo_sp" width="100%">
+				<img alt="オリジナルTシャツのプリント作成 | タカハマライフアート" src="/common/img/header/top_logo1.png" class="hidden-xs-down header_logo" width="100%">
+				<img alt="オリジナルTシャツのプリント作成 | タカハマライフアート" src="/common/img/header/top_logo1.png" class="hidden-sm-up sp_logo_1 top_logo_sp header_logo" width="100%">
 				</a>
 				</div>';
 		}
@@ -343,7 +343,7 @@ if( empty($_SESSION['me']) ){
 						<div class="list_ttl"><a href="/order/bigorder/" class="list_munu">大口注文について</a></div>
 						<div class="list_ttl"><a href="/guide/bring.php" class="list_munu">持ち込み注文について</a></div>
 						<div class="list_ttl"><a href="/order/express/" class="list_munu">お急ぎの方へ</a></div>
-						<div class="list_ttl"><a href="/contact/request.php/" class="list_munu">無料サンプル請求</a></div>
+						<div class="list_ttl"><a href="/contact/request.php" class="list_munu">無料サンプル請求</a></div>
 
 					</div>
 				</div>
@@ -396,11 +396,11 @@ if( empty($_SESSION['me']) ){
 				<div class="accshow">
 					<div class="list_block">
 						<div class="list_ttl"><a href="/corporate/overview.php" class="list_munu">会社概要</a></div>
-						<div class="list_ttl"><a href="https://www.takahama428.com/app/WP/reservation/" class="list_munu">来社予約</a></div>
+						<div class="list_ttl"><a href="/blog/reservation/" class="list_munu">来社予約</a></div>
 						<div class="list_ttl"><a href="/userreviews/" class="list_munu">お客様レビュー</a></div>
-						<div class="list_ttl"><a href="/app/WP/" class="list_munu">スタッフブログ</a></div>
-						<div class="list_ttl"><a href="/app/WP/thanks-blog/" class="list_munu">製作実例</a></div>
-						<div class="list_ttl"><a href="/app/WP/topic/" class="list_munu">プリント豆知識</a></div>
+						<div class="list_ttl"><a href="/blog/" class="list_munu">スタッフブログ</a></div>
+						<div class="list_ttl"><a href="/blog/thanks-blog/" class="list_munu">製作実例</a></div>
+						<div class="list_ttl"><a href="/blog/topic/" class="list_munu">プリント豆知識</a></div>
 						<div class="list_ttl"><a href="/reason/speed.php" class="list_munu">短納期の理由</a></div>
 						<div class="list_ttl"><a href="/corporate/transactions.php" class="list_munu">特定商取引法</a></div>
 						<div class="list_ttl"><a href="/corporate/privacy-policy.php" class="list_munu">プライバシーポリシー</a></div>
@@ -426,7 +426,7 @@ if( empty($_SESSION['me']) ){
 					<div class="g-nav_item_wrap">
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/t-shirts/" type="button">
+								<a class="click_20190225" href="/items/t-shirts/" type="button">
 									<img src="/items/img/item_01.jpg" width="100%" alt="Tシャツ">
 									<p class="g-nav_item_txt_min">Tシャツ</p>
 								</a>
@@ -434,7 +434,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/polo-shirts/" type="button">
+								<a class="click_20190225" href="/items/polo-shirts/" type="button">
 									<img src="/items/img/item_03.jpg" width="100%" alt="ポロシャツ">
 									<p class="g-nav_item_txt_min">ポロシャツ</p>
 								</a>
@@ -442,7 +442,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/sweat/" type="button">
+								<a class="click_20190225" href="/items/sweat/" type="button">
 									<img src="/items/img/item_02.jpg" width="100%" alt="スウェット">
 									<p class="g-nav_item_txt_min">スウェット</p>
 								</a>
@@ -450,7 +450,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/towel/" type="button">
+								<a class="click_20190225" href="/items/towel/" type="button">
 									<img src="/items/img/item_08.jpg" width="100%" alt="タオル">
 									<p class="g-nav_item_txt_min">タオル</p>
 								</a>
@@ -458,7 +458,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/sportswear/" type="button">
+								<a class="click_20190225" href="/items/sportswear/" type="button">
 									<img src="/items/img/item_04.jpg" width="100%" alt="スポーツ">
 									<p class="g-nav_item_txt_min">スポーツ</p>
 								</a>
@@ -466,7 +466,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/outer/" type="button">
+								<a class="click_20190225" href="/items/outer/" type="button">
 									<img src="/items/img/item_06.jpg" width="100%" alt="ブルゾン">
 									<p class="g-nav_item_txt_min">ブルゾン</p>
 								</a>
@@ -474,7 +474,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/long-shirts/" type="button">
+								<a class="click_20190225" href="/items/long-shirts/" type="button">
 									<img src="/items/img/item_05.jpg" width="100%" alt="長袖Tシャツ">
 									<p class="g-nav_item_txt_min">長袖Tシャツ</p>
 								</a>
@@ -482,7 +482,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/tote-bag/" type="button">
+								<a class="click_20190225" href="/items/tote-bag/" type="button">
 									<img src="/items/img/item_09.jpg" width="100%" alt="バッグ">
 									<p class="g-nav_item_txt_min">バッグ</p>
 								</a>
@@ -490,7 +490,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/cap/" type="button">
+								<a class="click_20190225" href="/items/cap/" type="button">
 									<img src="/items/img/item_14.jpg" width="100%" alt="キャップ">
 									<p class="g-nav_item_txt_min">キャップ</p>
 								</a>
@@ -498,7 +498,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/apron/" type="button">
+								<a class="click_20190225" href="/items/apron/" type="button">
 									<img src="/items/img/item_10.jpg" width="100%" alt="エプロン">
 									<p class="g-nav_item_txt_min">エプロン</p>
 								</a>
@@ -506,7 +506,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/baby/" type="button">
+								<a class="click_20190225" href="/items/baby/" type="button">
 									<img src="/items/img/item_11.jpg" width="100%" alt="ベビー">
 									<p class="g-nav_item_txt_min">ベビー</p>
 								</a>
@@ -514,7 +514,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/overall/" type="button">
+								<a class="click_20190225" href="/items/overall/" type="button">
 									<img src="/items/img/item_12.jpg" width="100%" alt="つなぎ">
 									<p class="g-nav_item_txt_min">つなぎ</p>
 								</a>
@@ -522,7 +522,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/ladys/" type="button">
+								<a class="click_20190225" href="/items/ladys/" type="button">
 									<img src="/items/img/item_07.jpg" width="100%" alt="レディース">
 									<p class="g-nav_item_txt_min">レディース</p>
 								</a>
@@ -530,7 +530,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/workwear/" type="button">
+								<a class="click_20190225" href="/items/workwear/" type="button">
 									<img src="/items/img/item_13.jpg" width="100%" alt="ワークウェア">
 									<p class="g-nav_item_txt_min">ワークウェア</p>
 								</a>
@@ -538,7 +538,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn">
-								<a class="" href="/items/goods/" type="button">
+								<a class="click_20190225" href="/items/goods/" type="button">
 									<img src="/items/img/item_15.jpg" width="100%" alt="記念品">
 									<p class="g-nav_item_txt_min">記念品</p>
 								</a>
@@ -546,7 +546,7 @@ if( empty($_SESSION['me']) ){
 						</li>
 						<li>
 							<div class="item_btn sample">
-								<a class="" href="/contact/request.php" type="button">
+								<a class="click_20190225" href="/contact/request.php" type="button">
 									<p class="sample_txt">無料で<br> アイテムサンプル
 										<br> お届け！
 									</p>
@@ -560,62 +560,62 @@ if( empty($_SESSION['me']) ){
 			<li class="gnavi_title">
 				<div class="gnavi_ttl">申し込み</div>
 				<ul>
-					<li><a class="order_blue" href="/order/order_entrace.php">申し込み</a></li>
-					<li><a class="order_blue" href="/order/reorder.php">追加再注文</a></li>
-					<li><a href="/guide/orderflow.php">注文の流れ</a></li>
-					<li><a href="/order/bigorder/">大口注文について</a></li>
-					<li><a href="/guide/bring.php">持ち込み注文について</a></li>
-					<li><a href="/order/express/">お急ぎの方へ</a></li>
-					<li><a href="/contact/request.php/" class="list_munu">無料サンプル請求</a></li>
+					<li><a class="order_blue click_20190225" href="/order/order_entrace.php">申し込み</a></li>
+					<li><a class="order_blue click_20190225" href="/order/reorder.php">追加再注文</a></li>
+					<li><a class="click_20190225" href="/guide/orderflow.php">注文の流れ</a></li>
+					<li><a class="click_20190225" href="/order/bigorder/">大口注文について</a></li>
+					<li><a class="click_20190225" href="/guide/bring.php">持ち込み注文について</a></li>
+					<li><a class="click_20190225" href="/order/express/">お急ぎの方へ</a></li>
+					<li><a class="click_20190225" href="/contact/request.php" class="list_munu">無料サンプル請求</a></li>
 
 				</ul>
 			</li>
 			<li class="gnavi_title">
 				<div class="gnavi_ttl">料金・納期</div>
 				<ul>
-					<li><a href="/price/estimate.php">カンタン比較見積もり</a></li>
-					<li><a href="/delivery/">お届け日を調べる</a></li>
-					<li><a href="/guide/">お支払い方法</a></li>
-					<li><a href="/price/fee/">プリント価格表</a></li>
-					<li><a href="/guide/discount.php">割引プラン一覧</a></li>
+					<li><a class="click_20190225" href="/price/estimate.php">カンタン比較見積もり</a></li>
+					<li><a class="click_20190225" href="/delivery/">お届け日を調べる</a></li>
+					<li><a class="click_20190225" href="/guide/">お支払い方法</a></li>
+					<li><a class="click_20190225" href="/price/fee/">プリント価格表</a></li>
+					<li><a class="click_20190225" href="/guide/discount.php">割引プラン一覧</a></li>
 				</ul>
 			</li>
 			<li class="gnavi_title">
 				<div class="gnavi_ttl">プリント</div>
 				<ul>
-					<li><a href="/print/">プリント方法一覧</a></li>
-					<li><a href="/design/printsize.php">参考プリントサイズ</a></li>
-					<li><a href="/design/position.php">参考プリント位置</a></li>
-					<li><a href="/campaign/towel/">タオルプリントサイズ</a></li>
-					<li><a href="/design/emb.php">刺繍・名入れサービス</a></li>
-					<li><a href="/campaign/towel/noshi.php">短納期粗品タオル</a></li>
+					<li><a class="click_20190225" href="/print/">プリント方法一覧</a></li>
+					<li><a class="click_20190225" href="/design/printsize.php">参考プリントサイズ</a></li>
+					<li><a class="click_20190225" href="/design/position.php">参考プリント位置</a></li>
+					<li><a class="click_20190225" href="/campaign/towel/">タオルプリントサイズ</a></li>
+					<li><a class="click_20190225" href="/design/emb.php">刺繍・名入れサービス</a></li>
+					<li><a class="click_20190225" href="/campaign/towel/noshi.php">短納期粗品タオル</a></li>
 				</ul>
 			</li>
 			<li class="gnavi_title">
 				<div class="gnavi_ttl">デザイン</div>
 				<ul>
-					<li><a href="/design/designguide.php">デザインの入稿・作り方</a></li>
-					<li><a href="/design/template_illust.php">イラレ入稿テンプレート</a></li>
-                    <li><a href="/design/designsimulator.php">デザインシミュレーター</a></li>
-					<li><a href="/design/designtemp.php">無料デザイン集</a></li>
-					<li><a href="/design/gallery.php">デザインギャラリー</a></li>
-					<li><a href="/design/fontcolor.php">インク・フォント</a></li>
-					<li><a href="/design/support.php">デザインサポート</a></li>
+					<li><a class="click_20190225" href="/design/designguide.php">デザインの入稿・作り方</a></li>
+					<li><a class="click_20190225" href="/design/template_illust.php">イラレ入稿テンプレート</a></li>
+                    <li><a class="click_20190225" href="/design/designsimulator.php">デザインシミュレーター</a></li>
+					<li><a class="click_20190225" href="/design/designtemp.php">無料デザイン集</a></li>
+					<li><a class="click_20190225" href="/design/gallery.php">デザインギャラリー</a></li>
+					<li><a class="click_20190225" href="/design/fontcolor.php">インク・フォント</a></li>
+					<li><a class="click_20190225" href="/design/support.php">デザインサポート</a></li>
 				</ul>
 			</li>
 			<li class="gnavi_title hidden-sm-down">
 				<div class="gnavi_ttl">会社紹介</div>
 				<ul>
-					<li><a href="/corporate/overview.php">会社概要</a></li>
-					<li><a href="https://www.takahama428.com/app/WP/reservation/">来社予約</a></li>
-					<li><a href="/userreviews/">お客様レビュー</a></li>
-					<li><a href="/app/WP/">スタッフブログ</a></li>
-					<li><a href="/app/WP/thanks-blog/">製作実例</a></li>
-					<li><a href="/app/WP/topic/">プリント豆知識</a></li>
-					<li><a href="/reason/speed.php">短納期の理由</a></li>
-					<li><a href="/corporate/transactions.php">特定商法取引</a></li>
-					<li><a href="/corporate/privacy-policy.php">プライバシーポリシー</a></li>
-					<li><a href="/sitemap/">サイトマップ</a></li>
+					<li><a class="click_20190225" href="/corporate/overview.php">会社概要</a></li>
+					<li><a class="click_20190225" href="/blog/reservation/">来社予約</a></li>
+					<li><a class="click_20190225" href="/userreviews/">お客様レビュー</a></li>
+					<li><a class="click_20190225" href="/blog/">スタッフブログ</a></li>
+					<li><a class="click_20190225" href="/blog/thanks-blog/">製作実例</a></li>
+					<li><a class="click_20190225" href="/blog/topic/">プリント豆知識</a></li>
+					<li><a class="click_20190225" href="/reason/speed.php">短納期の理由</a></li>
+					<li><a class="click_20190225" href="/corporate/transactions.php">特定商法取引</a></li>
+					<li><a class="click_20190225" href="/corporate/privacy-policy.php">プライバシーポリシー</a></li>
+					<li><a class="click_20190225" href="/sitemap/">サイトマップ</a></li>
 				</ul>
 			</li>
 		</ul>
@@ -1014,112 +1014,112 @@ if( empty($_SESSION['me']) ){
 						<div class="menu_box">
 							<div>
 								<div class="navi_inner_3">
-									<a class="dropdown-item t-shirts_btn" href="/items/t-shirts/" type="button">
+									<a class="dropdown-item t-shirts_btn click_20190225" href="/items/t-shirts/" type="button">
 										<img src="/items/img/item_01.jpg" width="100%" alt="Tシャツ">
 										<p class="item_txt_min">Tシャツ</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item polo-shirts_btn" href="/items/polo-shirts/" type="button">
+									<a class="dropdown-item polo-shirts_btn click_20190225" href="/items/polo-shirts/" type="button">
 										<img src="/items/img/item_03.jpg" width="100%" alt="ポロシャツ">
 										<p class="item_txt_min">ポロシャツ</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item sweat_btn" href="/items/sweat/" type="button">
+									<a class="dropdown-item sweat_btn click_20190225" href="/items/sweat/" type="button">
 										<img src="/items/img/item_02.jpg" width="100%" alt="スウェット">
 										<p class="item_txt_min">スウェット</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item towel_btn" href="/items/towel/" type="button">
+									<a class="dropdown-item towel_btn click_20190225" href="/items/towel/" type="button">
 										<img src="/items/img/item_08.jpg" width="100%" alt="タオル">
 										<p class="item_txt_min">タオル</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item sportswear_btn" href="/items/sportswear/" type="button">
+									<a class="dropdown-item sportswear_btn click_20190225" href="/items/sportswear/" type="button">
 										<img src="/items/img/item_04.jpg" width="100%" alt="スポーツ">
 										<p class="item_txt_min">スポーツ</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item outer_btn" href="/items/outer/" type="button">
+									<a class="dropdown-item outer_btn click_20190225" href="/items/outer/" type="button">
 										<img src="/items/img/item_06.jpg" width="100%" alt="ブルゾン">
 										<p class="item_txt_min">ブルゾン</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item long-shirts_btn" href="/items/long-shirts/" type="button">
+									<a class="dropdown-item long-shirts_btn click_20190225" href="/items/long-shirts/" type="button">
 										<img src="/items/img/item_05.jpg" width="100%" alt="長袖Tシャツ">
 										<p class="item_txt_min">長袖Tシャツ</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item tote-bag_btn" href="/items/tote-bag/" type="button">
+									<a class="dropdown-item tote-bag_btn click_20190225" href="/items/tote-bag/" type="button">
 										<img src="/items/img/item_09.jpg" width="100%" alt="バッグ">
 										<p class="item_txt_min">バッグ</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item cap_btn" href="/items/cap/" type="button">
+									<a class="dropdown-item cap_btn click_20190225" href="/items/cap/" type="button">
 										<img src="/items/img/item_14.jpg" width="100%" alt="キャップ">
 										<p class="item_txt_min">キャップ</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item apron_btn" href="/items/apron/" type="button">
+									<a class="dropdown-item apron_btn click_20190225" href="/items/apron/" type="button">
 										<img src="/items/img/item_10.jpg" width="100%" alt="エプロン">
 										<p class="item_txt_min">エプロン</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item baby_btn" href="/items/baby/" type="button">
+									<a class="dropdown-item baby_btn click_20190225" href="/items/baby/" type="button">
 										<img src="/items/img/item_11.jpg" width="100%" alt="ベビー">
 										<p class="item_txt_min">ベビー</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item overall_btn" href="/items/overall/" type="button">
+									<a class="dropdown-item overall_btn click_20190225" href="/items/overall/" type="button">
 										<img src="/items/img/item_12.jpg" width="100%" alt="つなぎ">
 										<p class="item_txt_min">つなぎ</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item ladys_btn" href="/items/ladys/" type="button">
+									<a class="dropdown-item ladys_btn click_20190225" href="/items/ladys/" type="button">
 										<img src="/items/img/item_07.jpg" width="100%" alt="レディース">
 										<p class="item_txt_min">レディース</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item work_btn" href="/items/workwear/" type="button">
+									<a class="dropdown-item work_btn click_20190225" href="/items/workwear/" type="button">
 										<img src="/items/img/item_13.jpg" width="100%" alt="ワークウェア">
 										<p class="item_txt_min">ワークウェア</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item goods_btn" href="/items/goods/" type="button">
+									<a class="dropdown-item goods_btn click_20190225" href="/items/goods/" type="button">
 										<img src="/items/img/item_15.jpg" width="100%" alt="記念品">
 										<p class="item_txt_min">記念品</p>
 									</a>
 								</div>
 
 								<div class="navi_inner_3">
-									<a class="dropdown-item sam_btn" href="/contact/request.php" type="button">
+									<a class="dropdown-item sam_btn click_20190225" href="/contact/request.php" type="button">
 										<p class="ttl_item">無料で<br> アイテムサンプル
 											<br> お届け！
 										</p>
@@ -1137,13 +1137,13 @@ if( empty($_SESSION['me']) ){
 				申し込み
 			</button>
 				<div class="dropdown-menu dropdown-list">
-					<a class="dropdown-item list-area odr" href="/order/order_entrace.php">申し込み</a>
-					<a class="dropdown-item list-area odr" href="/order/reorder.php">追加再注文</a>
-					<a class="dropdown-item list-area" href="/guide/orderflow.php">注文の流れ</a>
-					<a class="dropdown-item list-area" href="/order/bigorder/">大口注文について</a>
-					<a class="dropdown-item list-area" href="/guide/bring.php">持ち込み注文について</a>
-					<a class="dropdown-item list-area" href="/order/express/">お急ぎの方へ</a>
-					<a class="dropdown-item list-area" href="/contact/request.php/">無料サンプル請求</a>
+					<a class="dropdown-item list-area odr click_20190225" href="/order/order_entrace.php">申し込み</a>
+					<a class="dropdown-item list-area odr click_20190225" href="/order/reorder.php">追加再注文</a>
+					<a class="dropdown-item list-area click_20190225" href="/guide/orderflow.php">注文の流れ</a>
+					<a class="dropdown-item list-area click_20190225" href="/order/bigorder/">大口注文について</a>
+					<a class="dropdown-item list-area click_20190225" href="/guide/bring.php">持ち込み注文について</a>
+					<a class="dropdown-item list-area click_20190225" href="/order/express/">お急ぎの方へ</a>
+					<a class="dropdown-item list-area click_20190225" href="/contact/request.php">無料サンプル請求</a>
 				</div>
 
 			</div>
@@ -1152,11 +1152,11 @@ if( empty($_SESSION['me']) ){
 				料金・納期
 			</button>
 				<div class="dropdown-menu dropdown-list">
-					<a class="dropdown-item list-area" href="/price/estimate.php">カンタン比較見積もり</a>
-					<a class="dropdown-item list-area" href="/delivery/">お届け日を調べる</a>
-					<a class="dropdown-item list-area" href="/guide/">お支払い方法</a>
-					<a class="dropdown-item list-area" href="/price/fee/">プリント価格表</a>
-					<a class="dropdown-item list-area" href="/guide/discount.php">割引プラン一覧</a>
+					<a class="dropdown-item list-area click_20190225" href="/price/estimate.php">カンタン比較見積もり</a>
+					<a class="dropdown-item list-area click_20190225" href="/delivery/">お届け日を調べる</a>
+					<a class="dropdown-item list-area click_20190225" href="/guide/">お支払い方法</a>
+					<a class="dropdown-item list-area click_20190225" href="/price/fee/">プリント価格表</a>
+					<a class="dropdown-item list-area click_20190225" href="/guide/discount.php">割引プラン一覧</a>
 				</div>
 			</div>
 			<div class="btn-group dropdown global-menu" role="group">
@@ -1164,12 +1164,12 @@ if( empty($_SESSION['me']) ){
 				プリント
 			</button>
 				<div class="dropdown-menu dropdown-list">
-					<a class="dropdown-item list-area" href="/print/">プリント方法一覧</a>
-					<a class="dropdown-item list-area" href="/design/printsize.php">参考プリントサイズ</a>
-					<a class="dropdown-item list-area" href="/design/position.php">参考プリント位置</a>
-					<a class="dropdown-item list-area" href="/campaign/towel/">タオルプリントサイズ</a>
-					<a class="dropdown-item list-area" href="/design/emb.php">刺繍・名入れサービス</a>
-					<a class="dropdown-item list-area" href="/campaign/towel/noshi.php">短納期粗品タオル</a>
+					<a class="dropdown-item list-area click_20190225" href="/print/">プリント方法一覧</a>
+					<a class="dropdown-item list-area click_20190225 click_20190225" href="/design/printsize.php">参考プリントサイズ</a>
+					<a class="dropdown-item list-area click_20190225" href="/design/position.php">参考プリント位置</a>
+					<a class="dropdown-item list-area click_20190225 click_20190225" href="/campaign/towel/">タオルプリントサイズ</a>
+					<a class="dropdown-item list-area click_20190225" href="/design/emb.php">刺繍・名入れサービス</a>
+					<a class="dropdown-item list-area click_20190225" href="/campaign/towel/noshi.php">短納期粗品タオル</a>
 				</div>
 			</div>
 			<div class="btn-group dropdown global-menu" role="group">
@@ -1177,13 +1177,13 @@ if( empty($_SESSION['me']) ){
 				デザイン
 			</button>
 				<div class="dropdown-menu dropdown-list lastlist">
-					<a class="dropdown-item list-area" href="/design/designguide.php">デザインの入稿・作り方</a>
-					<a class="dropdown-item list-area" href="/design/template_illust.php">イラレ入稿テンプレート</a>
-                    <a class="dropdown-item list-area" href="/design/designsimulator.php">デザインシミュレーター</a>
-					<a class="dropdown-item list-area" href="/design/designtemp.php">無料デザイン素材</a>
-					<a class="dropdown-item list-area" href="/design/gallery.php">デザインギャラリー</a>
-					<a class="dropdown-item list-area" href="/design/fontcolor.php">インク・フォント</a>
-					<a class="dropdown-item list-area" href="/design/support.php">デザインサポート</a>
+					<a class="dropdown-item list-area click_20190225" href="/design/designguide.php">デザインの入稿・作り方</a>
+					<a class="dropdown-item list-area click_20190225" href="/design/template_illust.php">イラレ入稿テンプレート</a>
+                    <a class="dropdown-item list-area click_20190225" href="/design/designsimulator.php">デザインシミュレーター</a>
+					<a class="dropdown-item list-area click_20190225" href="/design/designtemp.php">無料デザイン素材</a>
+					<a class="dropdown-item list-area click_20190225" href="/design/gallery.php">デザインギャラリー</a>
+					<a class="dropdown-item list-area click_20190225" href="/design/fontcolor.php">インク・フォント</a>
+					<a class="dropdown-item list-area click_20190225" href="/design/support.php">デザインサポート</a>
 				</div>
 
 			</div>
@@ -1192,16 +1192,16 @@ if( empty($_SESSION['me']) ){
 				会社紹介
 			</button>
 				<div class="dropdown-menu dropdown-list">
-					<a class="dropdown-item list-area" href="/corporate/overview.php">会社概要</a>
-					<a class="dropdown-item list-area" href="https://www.takahama428.com/app/WP/reservation/">来社予約</a>
-					<a class="dropdown-item list-area" href="/userreviews/">お客様レビュー</a>
-					<a class="dropdown-item list-area" href="/app/WP/">スタッフブログ</a>
-					<a class="dropdown-item list-area" href="/app/WP/thanks-blog/">製作実例</a>
-					<a class="dropdown-item list-area" href="/app/WP/topic/">プリント豆知識</a>
-					<a class="dropdown-item list-area" href="/reason/speed.php">短納期の理由</a>
-					<a class="dropdown-item list-area" href="/corporate/transactions.php">特定商取引法</a>
-					<a class="dropdown-item list-area" href="/corporate/privacy-policy.php">プライバシーポリシー</a>
-					<a class="dropdown-item list-area" href="/sitemap/">サイトマップ</a>
+					<a class="dropdown-item list-area click_20190225" href="/corporate/overview.php">会社概要</a>
+					<a class="dropdown-item list-area click_20190225" href="/blog/reservation/">来社予約</a>
+					<a class="dropdown-item list-area click_20190225" href="/userreviews/">お客様レビュー</a>
+					<a class="dropdown-item list-area click_20190225" href="/blog/">スタッフブログ</a>
+					<a class="dropdown-item list-area click_20190225" href="/blog/thanks-blog/">製作実例</a>
+					<a class="dropdown-item list-area click_20190225" href="/blog/topic/">プリント豆知識</a>
+					<a class="dropdown-item list-area click_20190225" href="/reason/speed.php">短納期の理由</a>
+					<a class="dropdown-item list-area click_20190225" href="/corporate/transactions.php">特定商取引法</a>
+					<a class="dropdown-item list-area click_20190225" href="/corporate/privacy-policy.php">プライバシーポリシー</a>
+					<a class="dropdown-item list-area click_20190225" href="/sitemap/">サイトマップ</a>
 				</div>
 
 			</div>
