@@ -730,7 +730,7 @@ $(function () {
 				sum = 0,	// カラー毎の小計
 				tot = 0,	// 合計枚数
 				size_head = '',
-                size_stock = '', // 在庫
+				size_stock = '', // 在庫
 				size_body = '',
 				size_table = '';
 
@@ -755,7 +755,7 @@ $(function () {
 					size_body = '<th>1枚単価<span class="inter">' + val['cost'].toLocaleString('ja-JP') + '</span> 円</th><td class="size_' + val['id'] + '_' + val['name'] + '_' + val['cost'] + '"><input id="size_' + val['id'] + '" type="number" value="' + amount + '" min="0"></td>';
 				} else if (cost != val['cost'] || (val['id'] > (++pre_sizeid) && val['id'] > 10)) { // 単価が違うかまたは、サイズ160以下を除きサイズが連続していない
 					size_table += '<tr class="heading">' + size_head + '</tr>';
-                    size_table += '<tr>' + size_stock + '</tr>';
+					size_table += '<tr>' + size_stock + '</tr>';
 					size_table += '<tr>' + size_body + '<td>枚</td></tr>';
 
 					pre_sizeid = val['id'];
@@ -783,7 +783,7 @@ $(function () {
 		
 			
 			size_table += '<tr class="heading">' + size_head + '</tr>';
-            size_table += '<tr>' + size_stock + '</tr>';
+			size_table += '<tr>' + size_stock + '</tr>';
 			size_table += '<tr>' + size_body + '<td>枚</td></tr>';
 			pane.find('.size_table tbody').html(size_table);
 			
@@ -2856,12 +2856,14 @@ $(function () {
 	// 注文する
 	$('#order').on("click", function(){
 		var u = $.getStorage('user'),
+			o = $.getStorage('option'),
 			f = document.forms.orderform;
 		if (!$('#agree').prop('checked')) {
 			$.msgbox('ご利用規約ご確認の上、【...同意しました】をチェックしてください。');
 		} else {
 			u.pass = $('#pass').val();
 			f.user.value = JSON.stringify(u);
+			f.option.value = JSON.stringify(o);
 			sessionStorage.removeItem('attach');
 			sessionStorage.removeItem('dl_token');
 			f.submit();
