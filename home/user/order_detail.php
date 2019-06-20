@@ -14,11 +14,6 @@ if(isset($_GET['oi'])){
 	jump('./order_history.php');
 }
 
-// 会員情報
-$member = new TlaMember($me['id']);
-$rank = $member->getRankRatio();
-$rankName = $member->getRankName();
-
 // 製作状況
 $idx = 0;
 $params = array($me['id'], 0);
@@ -105,6 +100,13 @@ for($i=0; $i<count($d); $i++){
 		}
 	}
 }
+
+// 会員情報
+$dt = new DateTime($orderDate);
+$end = $dt->modify('-1 days')->format('Y-m-d'); // 当該注文の前日時点の会員ランクを取得
+$member = new TlaMember($me['id'], '', $end);
+$rank = $member->getRankRatio();
+$rankName = $member->getRankName();
 
 $printFee = $d[$idx]['printfee'] + $d[$idx]['exchinkfee'];
 $subTotal = $printFee + $itemPrice;
@@ -225,14 +227,8 @@ foreach($p as $category_name=>$val){
 						<h2><i class="fa fa-exclamation-triangle red_txt_b" aria-hidden="true"></i>クレジットカードの種類にご注意ください</h2>
 						<h3 class="syousai">ご利用可能なクレジットカード一覧</h3>
 						<div class="sq_bdr">
-							<p class="min_space"><img src="./img/sp_pay_credit_01.png" width="100%"></p>
-							<p class="min_space"><img src="./img/sp_pay_credit_02.png" width="100%"></p>
-							<p class="min_space"><img src="./img/sp_pay_credit_03.png" width="100%"></p>
-						</div>
-						<div class="sq_bdr">
-							<p class="min_space"><img src="./img/sp_pay_credit_04.png" width="100%"></p>
-							<p class="min_space"><img src="./img/sp_pay_credit_05.png" width="100%"></p>
-							<p class="min_space"><img src="./img/sp_pay_credit_06.png" width="100%"></p>
+							<img src="img/card.png" width="100%" height="100%">
+						
 						</div>
 						<p><span class="fontred">※</span>決済完了後、システム反映までに時間がかかる場合がございます。予めご了承ください。</p>
 						<?php

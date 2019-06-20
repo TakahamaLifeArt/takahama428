@@ -22,8 +22,10 @@ class TlaMember extends HTTP {
 	/**
 	 * Constructor
 	 * @param {int} uid customerテーブルのID
+     * @param {string} start 検索開始日（y-m-d）
+     * @param {string} start 検索終了日（y-m-d）
 	 */
-	public function __construct($uid) {
+    public function __construct(int $uid, string $start='', string $end='') {
 		// ゴールド会員
 		$this->_Gold = new stdClass();
 		$this->_Gold->name = 'ゴールド';
@@ -58,18 +60,21 @@ class TlaMember extends HTTP {
 		
 		// 会員情報を設定
 		$this->_userId = $uid;
-		$this->_sales = $this->_salesVolume($uid);
+        $this->_sales = $this->_salesVolume($uid, $start, $end);
 		$this->_ranking($this->_sales);
 	}
 	
 	/**
 	 * 売上高の総合計金額
 	 * @param {int} userId customerテーブルのID
+     * @param {string} start 検索開始日（y-m-d）
+     * @param {string} start 検索終了日（y-m-d）
 	 * @return {int} 売り上げ金額合計
 	 */
-	private function _salesVolume(int $userId): int {
+    private function _salesVolume(int $userId, string $start='', string $end=''): int {
 		$this->setURL('https://takahamalifeart.com/v3/users/'.$userId.'/sales');
-		$r = $this->request('GET', [], $this->_headers);
+        $param = array('args' => json_encode(array('start' => $start, 'end' => $end)) );
+		$r = $this->request('GET', $param, $this->_headers);
 		$data = json_decode($r, true);
 		return (int)$data[0]['total_price'] ?? 0;
 	}
