@@ -709,6 +709,18 @@ class Conndb extends HTTP {
 	
 	
 	/*
+	*	領収書の発行回数を設定（member）
+	*	@args			受注No.
+	*	@return			[発行回数]
+	*/
+	public function setReceiptCount($args){
+		$res = parent::request('POST', array('act'=>'setreceiptcount', 'args'=>$args));
+		$data = unserialize($res);
+		return $data;
+	}
+	
+	
+	/*
 	*	お知らせメールの配信停止処理
 	*	@args			{'customer_id', 'cancel'(停止:1)'
 	*	@return			成功:true  失敗:false

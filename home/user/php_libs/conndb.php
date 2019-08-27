@@ -5,24 +5,22 @@
 *
 */
 require_once $_SERVER['DOCUMENT_ROOT'].'/php_libs/http.php';
-//require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/JSON.php';
 
 class Conndb extends HTTP {
 	
 	public function __construct($args=_API){
 		parent::__construct($args);
 	}
-	
-public function takahama_log($logContext) {
-//	$now = date('Y/m/d H:i:s');
-//	error_log($now.": ".$logContext."\n\r", 3, $_SERVER['DOCUMENT_ROOT'].'/debug.log.txt');
-}
 
 	/*
 	*	商品名とカラーごとのコード一覧データ
 	*	@itemid			アイテムID　default: 1
 	*
-	*	@return			['name':[アイテムコード:アイテム名], 'category':[カテゴリーキー:カテゴリー名], code:[code:カラー名, ...], size[...], ppid:プリントポジションID]
+	*	@return			['name':[アイテムコード:アイテム名],
+						 'category':[カテゴリーキー:カテゴリー名],
+						 'code':[code:カラー名, ...],
+						 'size':[...],
+						 'ppid':[プリントポジションID]
 	*					codeのフォーマットは、「アイテムコード＿カラーコード」　ex) 085-cvt_001
 	*/
 	public function itemAttr($itemid=1){
@@ -33,25 +31,8 @@ public function takahama_log($logContext) {
 	}
 	
 	
-	/*
-	*	プリント代計算
-	*	@orders_id		受注No.
-	*	@curdate		注文確定日、または ''
-	*
-	*	@return			{'tot':プリント代合計, {プリント方法:金額}, {'item':{アイテムID:{'fee':1枚あたり, 'volume':枚数}}}}
-	*
-	public function getEstimation($orders_id, $curdate){
-		$res = parent::request('POST', array('act'=>'getestimation', 'orders_id'=>$orders_id, 'curdate'=>$curdate));
-		$data = unserialize($res);
-		
-		return $data;
-	}
-	*/
-	
-	
 	/**
 	*	注文履歴を取得（member）
-	*
 	*	@args		customer ID
 	*
 	*	return		[注文情報]
@@ -66,7 +47,6 @@ public function takahama_log($logContext) {
 	
 	/**
 	*	製作進行状況の取得（member）
-	*
 	*	@args		[customer ID, order ID]
 	*
 	*	return		[進行状況]
@@ -74,7 +54,6 @@ public function takahama_log($logContext) {
 	public function getProgress($args){
 		$res = parent::request('POST', array('act'=>'getprogress', 'args'=>$args));
 		$data = unserialize($res);
-//$this->takahama_log("getProgress ".$data);
 		
 		return $data;
 	}
@@ -89,6 +68,7 @@ public function takahama_log($logContext) {
 	public function getDetailsPrint($args){
 		$res = parent::request('POST', array('act'=>'getdetailsprint', 'args'=>$args));
 		$data = unserialize($res);
+		
 		return $data;
 	}
 	
@@ -102,13 +82,27 @@ public function takahama_log($logContext) {
 	public function getPrintform($args){
 		$res = parent::request('POST', array('act'=>'getprintform', 'args'=>$args));
 		$data = unserialize($res);
+		
+		return $data;
+	}
+	
+	
+	/*
+	*	領収書の発行回数を設定（member）
+	*	@args			受注No.
+	*
+	*	@return			[発行回数]
+	*/
+	public function setReceiptCount($args){
+		$res = parent::request('POST', array('act'=>'setreceiptcount', 'args'=>$args));
+		$data = unserialize($res);
+
 		return $data;
 	}
 	
 	
 	/*
 	*	フォローメールの配信停止処理
-	*	
 	*	@args			{'customer_id', 'cancel'(停止:1)'
 	*
 	*	@return			成功:true  失敗:false
@@ -138,10 +132,8 @@ public function takahama_log($logContext) {
 	*	reutrn	true:OK　false:NG
 	*/
 	public function setUser($args) {
-//$this->takahama_log("conndb setUser");
 		$res = parent::request('POST', array('act'=>'setuser', 'args'=>$args));
 		$data = unserialize($res);
-//$this->takahama_log("conndb setUser");
 
 		return $data;
 	}
@@ -180,9 +172,7 @@ public function takahama_log($logContext) {
 	*	reutrn	[お届け先情報]
 	*/
 	public function getDeli($args) {
-//$this->takahama_log("conndb getDeli  333333 ".serialize($args));
 		$res = parent::request('POST', array('act'=>'getdeli', 'args'=>$args));
-//$this->takahama_log("conndb getDeli   ".$res);
 		$data = unserialize($res);
 
 		return $data;
