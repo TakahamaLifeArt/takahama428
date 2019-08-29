@@ -73,9 +73,14 @@ if(isset($_REQUEST['orderid'])){
 	$html .= '
 		<div class="heading-receipt" style="font-size:14pt;">領　収　書</div>
 		<div class="toright" style="margin:0;">No. '.sprintf('%09d',$orders_id).'-'.$output_count.'</div>
-		<div class="toright" style="margin:0;">発行日 '.date('Y-m-d').'</div>
+		<div class="toright" style="margin:0;">発行日 '.date('Y-m-d').'</div>';
 
-		<p style="margin:0; font-size:13pt;border-bottom:1px solid #000;width:290px;">';
+	if ($output_count > 1) {
+		$html .= '<div class="toright" style="float:right;width:6rem;font-weight:bold;color:#c33;">[ 再発行 ]</div>';
+	}
+
+	$html .= '
+		<p style="margin:0;font-size:13pt;border-bottom:1px solid #000;width:290px;">';
 	if($ordertype=="general"){
 		$html .= $customer_name;
 		if(!empty($company) && empty($orders['receipt_address'])){
@@ -89,7 +94,7 @@ if(isset($_REQUEST['orderid'])){
 	}
 
 	$html .= '
-		<div style="width:600px; margin:0 auto 0;">
+		<div style="width:600px; margin:0 auto 0;clear:both;">
 			<p style="font-size:16pt;font-weight:bold;padding:.5rem 0;text-align:center;background-color:#eee;">
 				<span style="font-size:100%;font-weight:bold;color:#000;">&yen;'.number_format($grandTotal).' －</span>
 			</p>

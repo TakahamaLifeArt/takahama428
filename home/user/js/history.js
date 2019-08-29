@@ -5,6 +5,7 @@
 			2018-01-15 マイページ改修に伴い請求書の印刷のみ実装
 			2018-03-16 納品書のダウンロード機能を追加
 			2018-05-31 請求書の振込期日の算出を更新
+			2019-08-29 領収書の発行を実装
 */
 
 $(function(){
@@ -34,6 +35,14 @@ $(function(){
 	$('#btn_invoice').on('click', function(){
 		var ordersId = $(this).data('orderId');
 		url = './documents/invoice.php?orderid='+ordersId;
+		window.open(url,'printform');
+		$('#printform').on('load', function(){window.frames['printform'].print();});
+	});
+	
+	// 領収書
+	$('#btn_receipt').on('click', function(){
+		var ordersId = $(this).data('orderId');
+		url = './documents/receipt.php?orderid='+ordersId;
 		window.open(url,'printform');
 		$('#printform').on('load', function(){window.frames['printform'].print();});
 	});

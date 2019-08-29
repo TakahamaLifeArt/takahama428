@@ -80,7 +80,7 @@ $subTotal = $printFee + $itemPrice;
 $rankFee = ceil(($subTotal * $rank)/100);
 $discountFee = $d[$idx]['discountfee'] + $d[$idx]['reductionfee'];
 $carriage = $d[$idx]['carriagefee'];
-
+$hideReceipt = $d[$idx]['deposit']==2 ? "" : "hidden";
 
 // プリント情報
 $printMethod = array(
@@ -268,8 +268,18 @@ foreach($p as $category_name=>$val){
 						<div class="hidden-md-up" style="margin-top: 15px;"><img src="img/mypage_download.jpg" width="85%" height="auto"></div>
 					</div>
 					<div class="btnfld_download hidden-sm-down">
-						<button class="btn_gr btn btn_hidden" id="btn_bill" data-order-id="<?php echo $orderId; ?>" data-shipment="<?php echo $shipDate; ?>"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><span class="txtbld"><span style="font-size: 1.2rem;margin-right: .2rem;">請求書</span>ダウンロード(PDF)</span></button>
-						<button class="btn_gr btn" id="btn_invoice" data-order-id="<?php echo $orderId; ?>"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><span class="txtbld"><span style="font-size: 1.2rem;margin-right: .2rem;">納品書</span>ダウンロード(PDF)</span></button>
+						<button class="btn_gr btn btn_hidden" id="btn_bill" data-order-id="<?php echo $orderId; ?>" data-shipment="<?php echo $shipDate; ?>">
+							<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+							<span class="txtbld"><span style="font-size: 1.2rem;margin-right: .2rem;">請求書</span>ダウンロード(PDF)</span>
+						</button>
+						<button class="btn_gr btn" id="btn_invoice" data-order-id="<?php echo $orderId; ?>">
+							<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+							<span class="txtbld"><span style="font-size: 1.2rem;margin-right: .2rem;">納品書</span>ダウンロード(PDF)</span>
+						</button>
+						<button class="btn_gr btn" id="btn_receipt" data-order-id="<?php echo $orderId; ?>" <?php echo $hideReceipt;?>>
+							<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+							<span class="txtbld"><span style="font-size: 1.2rem;margin-right: .2rem;">領収書</span>ダウンロード(PDF)</span>
+						</button>
 					</div>
 
 					<div class="caution">

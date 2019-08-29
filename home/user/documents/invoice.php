@@ -2,6 +2,9 @@
 /*
 	納品書のPDF変換と印刷処理
 	charset UTF-8
+
+	log
+	2019-08-29: 角印を印字
 */
 	if(isset($_REQUEST['orderid'])){
 		$orders_id = htmlspecialchars($_REQUEST['orderid'], ENT_QUOTES);
@@ -49,7 +52,7 @@
 		$sender_staff = $orders['staffname'];;
 		
 		/* PDF変換 */
-		require_once dirname(__FILE__).'/MPDF_6_0/mpdf.php';
+		require_once dirname(__FILE__).'/mpdf/mpdf.php';
 		$pdf = new mPDF('ja','A4', '','',15, 15, 16, 6, 9, 0);
 		$pdf->mirrorMargins = 0;
 		
@@ -414,7 +417,7 @@
 
 		// 出力フォーム
 		$html_title1 = '<div style="height:450px;">
-		<div class="heading1" style="margin:0 auto 20;letter-spacing:5mm;font-size:12pt;">'.$title.'<span class="copy" style="font-size:12pt;">（控）</span></div>';
+		<div class="heading1" style="letter-spacing:5mm;font-size:12pt;">'.$title.'<span class="copy" style="font-size:12pt;">（控）</span></div>';
 		
 		$html_title2 = '<div style="clear:both; height:450px;">
 		<div class="heading1" style="margin:0 auto 20;letter-spacing:5mm;font-size:12pt;">'.$title.'</div>';
@@ -437,7 +440,7 @@
 		$html .= '<p style="clear:both;margin:0;">〒'.$zipcode.'<br />'.$deli1.'<br />'.$deli2.'</div>';
 
 		$html .= '
-		<div style="float:right; width:280px; margin:5px 0px 0px 0px;">
+		<div id="issuer">
 			<p style="font-size:12pt;margin:0;">'.$sender.'</p>
 			<p style="margin:0;">〒'.$sender_zipcode.'<br />'.$sender_addr.'<br />TEL： '.$sender_tel.'　　FAX： '.$sender_fax.'<br />E-mail： '.$sender_email.'</p>
 			<p class="toright" style="margin:0;">担当： '.$sender_staff.'</p>
