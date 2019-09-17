@@ -52,7 +52,7 @@ if(isset($_REQUEST['orderid'])){
 	$pdf->defaultfooterline = 1;
 	$footer = array(
 		'C' => array(
-			'content' => 'Takahama Life Art',
+//			'content' => 'Takahama Life Art',
 			'font-style' => 'BI',
 			'font-size' => '9',
 			'color' => '#aaaaaa'
@@ -103,7 +103,7 @@ if(isset($_REQUEST['orderid'])){
 		</div>
 		
 		<div class="company_logo">
-			<div id="issuer" style="margin-top:-1rem;">
+			<div id="issuer" class="stamp_right_top" style="margin-top:-1rem;">
 				<p style="font-size:12pt;margin:0;">'.$sender.'</p>
 				<p style="margin:0;">〒'.$sender_zipcode.'<br />'.$sender_addr.'<br />TEL： '.$sender_tel.'　　FAX： '.$sender_fax.'<br />E-mail： '.$sender_email.'</p>
 				<p class="toright" style="margin:0;">担当： '.$sender_staff.'</p>

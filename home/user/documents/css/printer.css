@@ -171,15 +171,25 @@ table td {
 	float: right;
 	width: 280px;
 	margin: 5px 0px 10px 0px;
-	padding-bottom: 1rem;
-	background-image: url(/common/img/square-mark.png);
-	background-position: right bottom;
-	background-size: 200px 200px;
-	background-repeat: no-repeat;
+}
+.stamp_right_top {
+    padding-top: 1rem;
+    background-image: url(/common/img/square-mark.png);
+    background-position: right top;
+    background-size: 200px 200px;
+    background-repeat: no-repeat;
+}
+.stamp_right_bottom {
+    padding-bottom: 1rem;
+    background-image: url(/common/img/square-mark.png);
+    background-position: right bottom;
+    background-size: 200px 200px;
+    background-repeat: no-repeat;
 }
 .company_logo {
+    padding-bottom: 2rem;
 	background-image: url(/common/img/footer/428logo.png);
-	background-position: center 24px;
+	background-position: center bottom;
 	background-size: 200px 112px;
 	background-repeat: no-repeat;
 }

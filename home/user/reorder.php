@@ -116,6 +116,7 @@ foreach($p as $category_name=>$val){
 		$printing .= '</tr>';
 	}
 }
+$_version = time();
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -311,7 +312,7 @@ foreach($p as $category_name=>$val){
 
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
 		<script type="text/javascript" src="/common/js/api.js"></script>
-		<script type="text/javascript" src="./js/history.js"></script>
+		<script type="text/javascript" src="./js/history.js?v=<?php echo $_version;?>"></script>
 	</div>
 </body>
 

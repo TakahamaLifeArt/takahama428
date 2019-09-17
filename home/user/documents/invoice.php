@@ -440,7 +440,7 @@
 		$html .= '<p style="clear:both;margin:0;">〒'.$zipcode.'<br />'.$deli1.'<br />'.$deli2.'</div>';
 
 		$html .= '
-		<div id="issuer">
+		<div id="issuer" class="stamp_right_bottom">
 			<p style="font-size:12pt;margin:0;">'.$sender.'</p>
 			<p style="margin:0;">〒'.$sender_zipcode.'<br />'.$sender_addr.'<br />TEL： '.$sender_tel.'　　FAX： '.$sender_fax.'<br />E-mail： '.$sender_email.'</p>
 			<p class="toright" style="margin:0;">担当： '.$sender_staff.'</p>
