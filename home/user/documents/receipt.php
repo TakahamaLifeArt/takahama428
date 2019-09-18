@@ -66,7 +66,6 @@ if(isset($_REQUEST['orderid'])){
 	$stylesheet = file_get_contents("./css/printer.css");
 	$pdf->WriteHTML($stylesheet,1);
 
-
 	$html = '<div style="height:240mm;">';
 	
 	// 出力フォーム
@@ -101,13 +100,15 @@ if(isset($_REQUEST['orderid'])){
 			<p class="ml-3">但　<span class="pl-3">' . $proviso . '</span></p>
 			<p class="ml-3">上記正に領収いたしました</p>
 		</div>
-		
-		<div class="company_logo">
-			<div id="issuer" class="stamp_right_top" style="margin-top:-1rem;">
-				<p style="font-size:12pt;margin:0;">'.$sender.'</p>
-				<p style="margin:0;">〒'.$sender_zipcode.'<br />'.$sender_addr.'<br />TEL： '.$sender_tel.'　　FAX： '.$sender_fax.'<br />E-mail： '.$sender_email.'</p>
-				<p class="toright" style="margin:0;">担当： '.$sender_staff.'</p>
-			</div>
+
+		<div id="issuer" style="margin-top:-1rem;">
+			<img src="square-mark.png" width="65" style="float:right; margin:0 0 -65px -65px;"/>
+			<p style="font-size:12pt;margin:0;clear:both;">'.$sender.'</p>
+			<p style="margin:0;">〒'.$sender_zipcode.'<br />'.$sender_addr.'<br />TEL： '.$sender_tel.'　　FAX： '.$sender_fax.'<br />E-mail： '.$sender_email.'</p>
+			<p class="toright" style="margin:0;">担当： '.$sender_staff.'</p>
+		</div>
+		<div style="width:75px; float:right; margin:2rem;">
+			<img src="428logo.png" width="75" height="42" />
 		</div>
 	</div>';
 
