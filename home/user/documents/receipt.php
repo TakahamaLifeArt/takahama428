@@ -107,7 +107,7 @@ if(isset($_REQUEST['orderid'])){
 			<p style="margin:0;">〒'.$sender_zipcode.'<br />'.$sender_addr.'<br />TEL： '.$sender_tel.'　　FAX： '.$sender_fax.'<br />E-mail： '.$sender_email.'</p>
 			<p class="toright" style="margin:0;">担当： '.$sender_staff.'</p>
 		</div>
-		<div style="width:75px; float:right; margin:2rem;">
+		<div style="width:75px; margin:-1rem auto 0; clear:both;">
 			<img src="428logo.png" width="75" height="42" />
 		</div>
 	</div>';
