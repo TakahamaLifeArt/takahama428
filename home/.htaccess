@@ -27,7 +27,7 @@ deny from all
 RewriteEngine on
 
 # Normalization
-#RewriteCond %{HTTP_HOST} ^takahama428.com
+RewriteCond %{HTTP_HOST} ^takahama428.com [OR]
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://www.takahama428.com/$1 [R=301,L]
 RewriteCond %{REQUEST_URI} ^.*/index.(html|php)

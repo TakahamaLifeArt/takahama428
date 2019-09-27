@@ -30,7 +30,7 @@ class HTTP {
 	 
 		curl_setopt($ch, CURLOPT_HEADER,false); //header情報も一緒に欲しい場合はtrue
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-//		curl_setopt($ch, CURLOPT_TIMEOUT_MS, 500);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 		curl_setopt($ch, CURLOPT_TIMEOUT_MS, 60000);
 		
 		if (!empty($headers)) {
