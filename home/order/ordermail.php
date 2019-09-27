@@ -20,7 +20,7 @@
 				  2019-01-08 アップロードの仕様変更
 				  2019-04-05 お届け先住所を追加
 				  2019-04-18 デザイン掲載の承諾を追加
-                  2019-06-13 受注システム登録の例外処理を更新
+				  2019-06-13 受注システム登録の例外処理を更新
 
 -------------------------------------------------------------- */
 require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/config.php';
@@ -62,13 +62,13 @@ class Ordermail extends Conndb{
 			$systemData = $registered[0];
 			$order_id = $systemData['orderid'];
 			
-            // 受注システムの登録が完了しなかった場合
-            if (empty($order_id)) {
-                throw new Exception();
-            }
-            
+			// 受注システムの登録が完了しなかった場合
+			if (empty($order_id)) {
+				throw new Exception();
+			}
+			
 			// 入稿データがある場合、受注番号を登録
-            $isSetUpload = true;
+			$isSetUpload = true;
 			if (!empty($uploadfilename)) {
 				$isSetUpload = $this->setOrderId($uploadfilename, $order_id);
 			}
@@ -387,7 +387,7 @@ class Ordermail extends Conndb{
 	 * 入稿ファイルのデータテーブルに受注番号を登録する
 	 * @param {array} $uploadfilename  アップロードしたデザインファイルのIDをキーにしたファイル名の配列
 	 * @param {int}   $orderId  受注番号
-     * @return {bool} Return TRUE if successful. Otherwise it return FALSE.
+	 * @return {bool} Return TRUE if successful. Otherwise it return FALSE.
 	 */
 	private function setOrderId($uploadfilename, $orderId)
 	{
@@ -402,8 +402,8 @@ class Ordermail extends Conndb{
 		
 		$orders = new WebOrder();
 		$res = $orders->db('update', 'uploads', $data);
-        
-        return $res;
+
+		return $res;
 	}
 
 
@@ -685,10 +685,10 @@ class Ordermail extends Conndb{
 		mb_internal_encoding("UTF-8");
 		$sendto = _ORDER_EMAIL;
 		
-        // ---- DEBUG
-//        $sendto = _TEST_EMAIL;
-        // ----
-        
+		// ---- DEBUG
+//		$sendto = _TEST_EMAIL;
+		// ----
+		
 		$suffix = "【takahama428】";
 		$subject = "お申し込み - No.".$addition[2].$suffix;		// 件名
 		$msg = "";
@@ -1269,8 +1269,8 @@ class WebOrder {
 
 	/**
 	 * SQLの発行
-     *
-     * @return {bool} Returns FALSE on failure. For successful SELECT, SHOW, DESCRIBE or EXPLAIN queries mysqli_query() will return a mysqli_result object. For other successful queries mysqli_query() will return TRUE.
+	 *
+	 * @return {bool} Returns FALSE on failure. For successful SELECT, SHOW, DESCRIBE or EXPLAIN queries mysqli_query() will return a mysqli_result object. For other successful queries mysqli_query() will return TRUE.
 	 */
 	private function exe_sql($conn, $sql){
 		$result = mysqli_query($conn, $sql);
@@ -1867,7 +1867,7 @@ class WebOrder {
 					$sql = "INSERT INTO discount(discount_name,discount_state,orders_id) VALUES";
 					for($t=0; $t<count($tmp); $t++){
 						$discount_name = substr($tmp[$t], 0, -1);
-						$state         = substr($tmp[$t],-1);
+						$state		 = substr($tmp[$t],-1);
 
 						if($state==1){
 							$sql2 .= "('".$discount_name."',1,".$info["orders_id"]."),";
@@ -2217,7 +2217,7 @@ class WebOrder {
 						foreach($data['id'] as $id){
 							$sql = sprintf("UPDATE uploads SET order_id=%d WHERE id=%d", $data["order_id"],$id);
 							$rs = $this->exe_sql($conn, $sql);
-                            if ($rs === false) break;
+							if ($rs === false) break;
 						}
 					}
 					$flg = false;
