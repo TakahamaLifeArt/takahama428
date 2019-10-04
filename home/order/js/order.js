@@ -648,15 +648,16 @@ $(function () {
 		}
 
 		// サムネイルと商品写真のタグ生成
-		for (var i in colors) {
+		for (i=0; i<colorCount; i++) {
 			p = p.then(function(idx){
 				var def = $.Deferred(),
 					cartData = '',
-					target = pane;
+					target = pane,
+					index = Object.keys(colors).length > 0 ? Object.keys(colors)[idx]: idx;
 				
-				if (colors.hasOwnProperty(idx)) {
-					cartData = colors[idx];
-					target = $(pane[idx]);
+				if (colors.hasOwnProperty(index)) {
+					cartData = colors[index];
+					target = $(pane[index]);
 				}
 				$.api(['items', $.curr.itemId, 'colors'], 'GET', function (r) {
 					var thumb = '',
@@ -1956,6 +1957,7 @@ $(function () {
 					itemInfo = $(itemWrap[itemIndex]).children('.color_diff').children('.item_info_order');
 
 					// アイテムカラー別に集計
+					let itemInfoNumber = 0;
 					for (let i in this[itemId]['color']) {
 						var colorName = this[itemId]['color'][i]['name'],
 							colorCode = this[itemId]['color'][i]['code'],
@@ -1970,11 +1972,13 @@ $(function () {
 						}, this[itemId]['color'][i]['vol']);
 
 						// サイズと枚数
-						$(itemInfo[i]).children('.size_count').children('tbody').append(sizeCount);
+						$(itemInfo[itemInfoNumber]).children('.size_count').children('tbody').append(sizeCount);
 						// アイテムカラー名
-						$(itemInfo[i]).children('.item_color_cart').children('.color_name').text(colorName);
+						$(itemInfo[itemInfoNumber]).children('.item_color_cart').children('.color_name').text(colorName);
 						// サムネイル
-						$(itemInfo[i]).children('.item_color_cart').children('.thumb').attr('src', IMG_PATH + 'items/list/' + categoryCode + '/' + itemCode + '/' + itemCode + '_' + colorCode + '.jpg');
+						$(itemInfo[itemInfoNumber]).children('.item_color_cart').children('.thumb').attr('src', IMG_PATH + 'items/list/' + categoryCode + '/' + itemCode + '/' + itemCode + '_' + colorCode + '.jpg');
+						
+						itemInfoNumber++;
 					}
 
 					itemIndex++;
