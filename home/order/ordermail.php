@@ -160,10 +160,10 @@ class Ordermail extends Conndb{
 				// 当該デザインに対応するアイテム
 				foreach ($items[$designId] as $itemId=>$itemInfo) {
 					$order_info .= "◆アイテム：　".$itemInfo['name']."\n";
-					for ($i=0; $i<count($itemInfo['color']); $i++) {
-						$order_info .= "◇カラー：　".$itemInfo['color'][$i]['code']." ".$itemInfo['color'][$i]['name']."\n";
+					foreach ($itemInfo['color'] as $colors) {
+						$order_info .= "◇カラー：　".$colors['code']." ".$colors['name']."\n";
 						$order_info .= "◇サイズと枚数\n";
-						foreach ($itemInfo['color'][$i]['vol'] as $sizeName=>$v2) {
+						foreach ($colors['vol'] as $sizeName=>$v2) {
 							$order_info .= $sizeName."　：　".$v2['amount']."枚\n";
 							$orderAmount += $v2['amount'];
 						}
@@ -686,7 +686,7 @@ class Ordermail extends Conndb{
 		$sendto = _ORDER_EMAIL;
 		
 		// ---- DEBUG
-//		$sendto = _TEST_EMAIL;
+		// $sendto = _TEST_EMAIL;
 		// ----
 		
 		$suffix = "【takahama428】";
@@ -1021,7 +1021,7 @@ class Ordermail extends Conndb{
 			*/
 
 			/*
-			*	data4	業者の時の注文商品（orderitem）
+			*	data4	注文商品（orderitem）
 			*	data5	業者の時の見積追加行（orderitemext）
 			*	data6	プリント情報（orderprint）
 			*	data7	プリント位置（orderarea）
@@ -1129,8 +1129,7 @@ class Ordermail extends Conndb{
 				}
 				
 				// orderitem
-				for ($i=0; $i<count($itemInfo['color']); $i++) {
-					$colors = $itemInfo['color'][$i];
+				foreach ($itemInfo['color'] as $colors) {
 					foreach ($colors['vol'] as $sizeName=>$val) {
 						$data4[] = $colors['master']."|1|1|".$val['id']."|".$val['amount']."|".$val['cost']."|0|0|".$itemId."||||||" ;
 					}
@@ -1179,8 +1178,8 @@ class Ordermail extends Conndb{
 		foreach ($items as $designId=>$v1) {
 			$orderAmount[$designId] = 0;
 			foreach ($v1 as $itemId=>$itemInfo) {
-				for ($i=0; $i<count($itemInfo['color']); $i++) {
-					foreach ($itemInfo['color'][$i]['vol'] as $sizeName=>$v2) {
+				foreach ($itemInfo['color'] as $colors) {
+					foreach ($colors['vol'] as $sizeName=>$v2) {
 						$orderAmount[$designId] += $v2['amount'];
 					}
 				}

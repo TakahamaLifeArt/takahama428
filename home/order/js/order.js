@@ -648,7 +648,7 @@ $(function () {
 		}
 
 		// サムネイルと商品写真のタグ生成
-		for (i=0; i<colorCount; i++) {
+		for (var i in colors) {
 			p = p.then(function(idx){
 				var def = $.Deferred(),
 					cartData = '',
