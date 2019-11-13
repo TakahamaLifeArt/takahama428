@@ -321,14 +321,16 @@ if(isset($_REQUEST['orderid'])){
 	$html .= '</div></div>';
 
 	$pdf->WriteHTML($html);
-	if($ordertype=="general"){
-		$doc = '<div style="margin-top:1em;"><table><tbody><tr><td>振込先　三菱東京UFJ銀行　新小岩支店<br />普通預金 3716333　有限会社タカハマライフアート</td>';
-		$doc .= '<td>※ご入金確認後の発送となりますので、'.$month.'月'.$day.'日（'.$weekname.'）午前中までに<br />';
-		$doc .= '弊社指定口座にお振込みをお願いいたします。<br />';
-		$doc .= '依頼名の前にコードナンバー<span style="font-size:14pt;font-weight:bold;">'.$customer_id.'</span>を必ずご記入ください。</td></tr>';
-		$doc .= '</tbody></table></div>';
-		$pdf->WriteHTML($doc);
-	}
+
+	// 2019-11-13 廃止
+//	if($ordertype=="general"){
+//		$doc = '<div style="margin-top:1em;"><table><tbody><tr><td>振込先　三菱東京UFJ銀行　新小岩支店<br />普通預金 3716333　有限会社タカハマライフアート</td>';
+//		$doc .= '<td>※ご入金確認後の発送となりますので、'.$month.'月'.$day.'日（'.$weekname.'）午前中までに<br />';
+//		$doc .= '弊社指定口座にお振込みをお願いいたします。<br />';
+//		$doc .= '依頼名の前にコードナンバー<span style="font-size:14pt;font-weight:bold;">'.$customer_id.'</span>を必ずご記入ください。</td></tr>';
+//		$doc .= '</tbody></table></div>';
+//		$pdf->WriteHTML($doc);
+//	}
 
 	$pdf->Output('bill-'.$orders_id.'.pdf', 'D');
 
