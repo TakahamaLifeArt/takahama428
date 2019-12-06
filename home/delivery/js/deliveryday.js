@@ -34,9 +34,9 @@ $(function () {
 	$('#datepicker_firmorder').datepickCalendar({
 		onSelect: function(dateText){
 			$.calc_delivery();
-		}
+		},
+		holiday: [{'from':'2019-12-27', 'to':'2020-01-05'}]
 	});
-
 
 	$('#destination').change(function () {
 		if ($('#datepicker_firmorder').datepickCalendar('getDate') != "") {

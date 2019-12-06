@@ -46,7 +46,7 @@ for ($i=0, $len=count($fin); $i<$len; $i++) {
 
 			<div id="delivery_date_search" class="delivery_date_wrapper">
 				<div class="heading2_s">
-					<h2><img src="/delivery/img/deli/day_title.png" width="100%;"></h2>
+					<h2><img src="/delivery/img/deli/day_title.png" width="100%;" alt="オリジナルTシャツのお届け日検索"></h2>
 				</div>
 
 				<div class="search_day_wrapper">
@@ -135,7 +135,7 @@ for ($i=0, $len=count($fin); $i<$len; $i++) {
 						<div class="result_img">
 							<img src="/delivery/img/deli/day_choose_03.jpg" width="100%;">
 						</div>
-						<p class="result_ttl"><img src="/delivery/img/deli/day_choose_04.jpg" width="10%" ;>お届け日結果</p>
+						<p class="result_ttl"><img alt="矢印" src="/delivery/img/deli/day_choose_04.jpg" width="10%" ;>お届け日結果</p>
 						<input id="datepicker_deliday" type="text" size="10" class="forDate" value="" readonly>
 					</div>
 				</div>
@@ -152,14 +152,14 @@ for ($i=0, $len=count($fin); $i<$len; $i++) {
 					<div class="order_img"><img src="/delivery/img/deli/go_pattern.jpg"></div>
 				</div>
 				<div class="order_bubble">
-					<a href="/order/" class="order_btn"><img src="/delivery/img/deli/sp_go_icon.png">お申し込み</a>
+					<a href="/order/order_entrace.php" class="order_btn"><img src="/delivery/img/deli/sp_go_icon.png">お申し込み</a>
 					<img class="bubble_img" src="/delivery/img/deli/sp_go_min.png">
 				</div>
 			</div>
 
 			<div id="delivery_date_now" class="delivery_date_wrapper"><span id="deri" class="anchorlink"></span>
 				<div class="heading2_s">
-					<h2><img src="/delivery/img/deli/day_plan_title.png"></h2>
+					<h2><img src="/delivery/img/deli/day_plan_title.png" alt="4つのプランからオリジナルTシャツのお届け日が分かる"></h2>
 				</div>
 				<div class="plan_txt">
 					<p>「いつまでに注文したら希望の日に届く？」商品のお届け日に関して調べることができます。</p>
@@ -175,7 +175,7 @@ for ($i=0, $len=count($fin); $i<$len; $i++) {
 								<p>今なら<br><span class="mm"><?php echo $main_month[0]; ?>/</span><span class="dd"><?php echo $main_day[0]; ?></span><br>に届きます</p>
 							</div>
 							<p class="red_new">注文確定　当日12:00まで</p>
-							<p class="orange_new">通常料金 : <img src="/delivery/img/deli/sp_hurry_yen_orange.png"> ×2</p>
+							<p class="orange_new">通常料金 : <img src="/delivery/img/deli/sp_hurry_yen_orange.png" alt="通常料金"> ×2</p>
 						</div>
 					</li>
 					<li>
@@ -187,7 +187,7 @@ for ($i=0, $len=count($fin); $i<$len; $i++) {
 								<p>今なら<br><span class="mm"><?php echo $main_month[1]; ?>/</span><span class="dd"><?php echo $main_day[1]; ?></span><br>に届きます</p>
 							</div>
 							<p class="blue_new">注文確定　当日13:00まで</p>
-							<p class="orange_new">通常料金 : <img src="/delivery/img/deli/sp_hurry_yen_orange.png"> ×1.5</p>
+							<p class="orange_new">通常料金 : <img src="/delivery/img/deli/sp_hurry_yen_orange.png" alt="通常料金"> ×1.5</p>
 						</div>
 					</li>
 					<li>
@@ -199,7 +199,7 @@ for ($i=0, $len=count($fin); $i<$len; $i++) {
 								<p>今なら<br><span class="mm"><?php echo $main_month[2]; ?>/</span><span class="dd"><?php echo $main_day[2]; ?></span><br>に届きます</p>
 							</div>
 							<p class="blue_new">注文確定　当日13:00まで</p>
-							<p class="orange_new">通常料金 : <img src="/delivery/img/deli/sp_hurry_yen_orange.png"> ×1.3</p>
+							<p class="orange_new">通常料金 : <img src="/delivery/img/deli/sp_hurry_yen_orange.png" alt="通常料金"> ×1.3</p>
 						</div>
 					</li>
 					<li class="popular_list">
@@ -212,7 +212,7 @@ for ($i=0, $len=count($fin); $i<$len; $i++) {
 								<p>今なら<br><span class="mm"><?php echo $main_month[3]; ?>/</span><span class="dd"><?php echo $main_day[3]; ?></span><br>に届きます</p>
 							</div>
 							<p class="blue_new">注文確定　当日13:00まで</p>
-							<p class="orange_new">通常料金 : <img src="/delivery/img/deli/sp_hurry_yen_orange.png"></p>
+							<p class="orange_new">通常料金 : <img src="/delivery/img/deli/sp_hurry_yen_orange.png" alt="通常料金"></p>
 						</div>
 					</li>
 				</ul>
@@ -224,11 +224,11 @@ for ($i=0, $len=count($fin); $i<$len; $i++) {
 			<div id="other_info">
 				<div id="condition" class="plan_wrapper">
 					<div class="heading2">
-						<h2>当日特急プラン</h2>
+						<h2>当日特急プランでTシャツを即日にお届け！</h2>
 					</div>
-					<p>業界最速NO.1の速さ！どこよりも早い当日発送で東京都内・近県なら頼んだその日に届きます。</p>
+					<p>業界最速NO.1の速さ！どこよりも早い<a href="https://www.takahama428.com/order/express/">当日発送</a>で東京都内・近県なら頼んだその日に届きます。</p>
 					<a href="/order/express/" class="banner">
-						<img src="/delivery/img/deli/speed_banner.jpg">
+						<img src="/delivery/img/deli/speed_banner.jpg" alt="最短即日で届きます！まだ間に合います！お急ぎの方はこちら">
 					</a>
 					<div class="conditions_list_wrap">
 						<p class="bold_b">【3つの条件】</p>
@@ -240,8 +240,8 @@ for ($i=0, $len=count($fin); $i<$len; $i++) {
 							</div>
 							<div class="con_list_2"><span class="bold">2.1番人気のTシャツとタオルのみ対応可</span>
 								<div class="list_inner">
-									<p>Tシャツ：085-CVT の白と黒(Sサイズ・XLサイズ)</p>
-									<p>タオル　：522-FT　の白色(フリーサイズ)</p>
+									<p>Tシャツ：<a href="https://www.takahama428.com/items/item.php?code=085-cvt">085-CVT</a> の白と黒(Sサイズ・XLサイズ)</p>
+									<p>タオル　：<a href="https://www.takahama428.com/items/item.php?code=522-ft">522-FT</a>　の白色(フリーサイズ)</p>
 								</div>
 							</div>
 							<div class="con_list_3"><span class="bold">3.注文確定後、すぐ入金！</span>
@@ -259,14 +259,14 @@ for ($i=0, $len=count($fin); $i<$len; $i++) {
 
 				<div id="extracharge" class="plan_wrapper">
 					<div class="heading2">
-						<h3>発注からお届けまでの最短目安</h3>
+						<h2>発送からお届けまでの最短目安</h2>
 					</div>
 					<div class="map_list">
-						<div class="areamap_img"><img src="/delivery/img/deli/sp_day_japan.jpg" width="100%;"></div>
+						<div class="areamap_img"><img alt="都道府県とお届け目安の図" src="/delivery/img/deli/sp_day_japan.jpg" width="100%;"></div>
 						<table class="area_list_table">
 							<tbody>
 								<tr>
-									<th>発注からお届けまでの目安</th>
+									<th>発送からお届けまでの目安</th>
 									<th>配送地域</th>
 								</tr>
 								<tr>
@@ -297,8 +297,8 @@ for ($i=0, $len=count($fin); $i<$len; $i++) {
 					<div class="order_img"><img src="/delivery/img/deli/go_pattern.jpg"></div>
 				</div>
 				<div class="order_bubble">
-					<a href="/order/" class="order_btn"><img src="/delivery/img/deli/sp_go_icon.png">お申し込み</a>
-					<img class="bubble_img" src="/delivery/img/deli/sp_go_min.png">
+					<a href="/order/order_entrace.php" class="order_btn"><img src="/delivery/img/deli/sp_go_icon.png">お申し込み</a>
+					<img class="bubble_img" src="/delivery/img/deli/sp_go_min.png" alt="らくらく5分">
 				</div>
 			</div>
 

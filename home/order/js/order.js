@@ -3054,7 +3054,7 @@ $(function () {
 				$.setStorage('option', data);
 				$.estimate();
 			},
-			holiday: [{'from':'2018-12-27', 'to':'2019-01-04'}]
+			holiday: [{'from':'2019-12-27', 'to':'2020-01-05'}]
 		});
 		
 		// 見積もり詳細
