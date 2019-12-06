@@ -804,7 +804,8 @@ $(function(){
 				paymentFee = 0,
 				packName = {0:'まとめて包装', 10:'袋を同封', 50:'個別包装'},
 				deliTime = ['', '午前中', '12:00-14:00', '14:00-16:00', '16:00-18:00', '18:00-20:00', '19:00-21:00'],
-				timestamp = 0;
+				timestamp = 0,
+                transport = 1;
 
 			// 特急の注釈を初期化
 			$('#express_info').addClass('hidden').children('em').text('');
@@ -856,7 +857,12 @@ $(function(){
 			if(opt.delidate){
 				// ISO-8601書式でtimestamp
 				timestamp = Date.parse(opt.delidate+"T00:00:00+09:00") / 1000;	// 日付のみの場合UTCタイムゾーンとなるため(ES5)
-				$.api(['deliveries', timestamp], 'GET', function(workday) {
+                
+                // 配達日数
+                if (opt.transport > 1) {
+                    transport = opt.transport;
+                }
+                $.api(['deliveries', timestamp, transport], 'GET', function(workday) {
 					// 袋詰め作業で1日必要かどうか
 					if (opt.pack==50 && orderAmount>9) {
 						workday--;
@@ -866,9 +872,6 @@ $(function(){
 					if (opt.imega==1) {
 						workday -= 3;
 					}
-
-					// 配達日数
-					workday -= (opt.transport-1);
 
 					if (workday<1) {
 						expressError = '製作日数が足りません！';
