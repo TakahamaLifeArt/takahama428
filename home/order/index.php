@@ -948,8 +948,8 @@ $_version = time();
 										<li>
 											<p><input type="text" name="zipcode" id="zipcode" class="p-zip" value="<?php echo $user['zipcode']; ?>" placeholder="郵便番号" /></p>
 											<p><input type="text" name="addr0" id="addr0" class="p-region" value="<?php echo $user['addr0']; ?>" placeholder="例)東京都" maxlength="4" /></p>
-											<p><input type="text" name="addr1" id="addr1" class="p-locality p-street-address restrict" value="<?php echo $user['addr1']; ?>" placeholder="例)葛飾区新小岩" maxlength="24" data-element-type="市区町村" /></p>
-											<p><input type="text" name="addr2" id="addr2" value="<?php echo $user['addr2']; ?>" placeholder="例)1-2-3 マンション・ビル名" maxlength="32" class="restrict" data-element-type="番地・アパート" /></p>
+                                            <p><input type="text" name="addr1" id="addr1" class="p-locality p-street-address restrict" value="<?php echo $user['addr1']; ?>" placeholder="例：葛飾区新小岩(入力可能な文字数：全角12文字、半角24文字)" maxlength="24" data-element-type="市区町村" /></p>
+                                            <p><input type="text" name="addr2" id="addr2" value="<?php echo $user['addr2']; ?>" placeholder="例：1-2-3 マンション・ビル名(入力可能な文字数：全角16文字、半角32文字)" maxlength="32" class="restrict" data-element-type="番地・アパート" /></p>
 										</li>
 									</ul>
 								</form>
@@ -977,10 +977,10 @@ $_version = time();
 												<input type="text" id="deli_addr0" class="p-region" value="<?php echo $user['deli_addr0']; ?>" placeholder="例)東京都" maxlength="4" />
 											</p>
 											<p>
-												<input type="text" id="deli_addr1" class="p-locality p-street-address restrict" value="<?php echo $user['deli_addr1']; ?>" placeholder="例)葛飾区新小岩" maxlength="24" data-element-type="市区町村" />
+                                                <input type="text" id="deli_addr1" class="p-locality p-street-address restrict" value="<?php echo $user['deli_addr1']; ?>" placeholder="例：葛飾区新小岩(入力可能な文字数：全角12文字、半角24文字)" maxlength="24" data-element-type="市区町村" />
 											</p>
 											<p>
-												<input type="text" id="deli_addr2" value="<?php echo $user['deli_addr2']; ?>" placeholder="例)1-2-3 マンション・ビル名" maxlength="32" class="restrict" data-element-type="番地・アパート" />
+                                                <input type="text" id="deli_addr2" value="<?php echo $user['deli_addr2']; ?>" placeholder="例：1-2-3 マンション・ビル名(入力可能な文字数：全角16文字、半角32文字)" maxlength="32" class="restrict" data-element-type="番地・アパート" />
 											</p>
 										</li>
 									</ul>
@@ -1090,10 +1090,10 @@ $_version = time();
 													<input type="text" id="mem_deli_addr0" class="p-region" value="<?php echo $user['mem_deli_addr0']; ?>" placeholder="例)東京都" maxlength="4" />
 												</p>
 												<p>
-													<input type="text" id="mem_deli_addr1" class="p-locality p-street-address restrict" value="<?php echo $user['mem_deli_addr1']; ?>" placeholder="例)葛飾区新小岩" maxlength="24" data-element-type="市区町村" />
+                                                    <input type="text" id="mem_deli_addr1" class="p-locality p-street-address restrict" value="<?php echo $user['mem_deli_addr1']; ?>" placeholder="例：葛飾区新小岩(入力可能な文字数：全角12文字、半角24文字)" maxlength="24" data-element-type="市区町村" />
 												</p>
 												<p>
-													<input type="text" id="mem_deli_addr2" value="<?php echo $user['mem_deli_addr2']; ?>" placeholder="例)1-2-3 マンション・ビル名" maxlength="32" class="restrict" data-element-type="番地・アパート" />
+                                                    <input type="text" id="mem_deli_addr2" value="<?php echo $user['mem_deli_addr2']; ?>" placeholder="例：1-2-3 マンション・ビル名(入力可能な文字数：全角16文字、半角32文字)" maxlength="32" class="restrict" data-element-type="番地・アパート" />
 												</p>
 											</li>
 										</ul>
