@@ -1449,4 +1449,30 @@ $(function(){
 			}
 		}
 	});
+
+
+	/**
+	 * 文字数の入力制限値を超えた場合にアラート
+	 * showLength
+	 */
+	$.extend({
+		showLength(target, len) {
+			const message = "「" + target + "」の箇所で入力可能な文字数「全角" + Math.floor(len/2) + "文字、半角" + len + "文字」を越えています。";
+			$.msgbox(message);
+		},
+		numberOfMbString(obj) {
+			let mbRegex = /[^\x00-\x7E]+/g,	// 非ASCII
+				target = $(obj),
+				len = 0,
+				matched = null;
+			
+			if (matched = target.val().match(mbRegex)) {
+				for (let i = 0, l = matched.length; i < l; i++) {
+					len += matched[i].length;
+				}
+			}
+			
+			return len;
+		}
+	})
 })

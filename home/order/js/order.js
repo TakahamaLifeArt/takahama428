@@ -3170,6 +3170,24 @@ $(function () {
 			document.querySelector('.upload_form .input-group .filenames').value = '';
 		}
 
+		// 入力文字数の制限
+		$('form').on('keypress keyup', '.restrict', function (e) {
+			let maxLength = $(this).prop('maxlength');
+			const _this = e.target,
+				  target = $(_this).data('elementType'),
+				  restrict = e.type === 'keypress' ? maxLength - 1 : maxLength,
+				  mbLen = $.numberOfMbString(_this),	// 全角文字数
+				  len = _this.value.length - mbLen;		// 半角文字数
+			
+			if (mbLen * 2 + len > restrict) {
+				e.preventDefault();
+				$.showLength(target, maxLength);
+				
+				if (e.type !== 'keypress') {
+					_this.value = _this.value.slice(0, -1);
+				}
+			}
+		});
 	})();
 
 });
