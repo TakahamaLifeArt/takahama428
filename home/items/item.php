@@ -40,8 +40,8 @@ $_version = time();
 		<div class="contents">
 			<div id="topicpath">
 				<a href="/">オリジナルＴシャツ屋ＴＯＰ</a> >
-				<a href="/items/category/<?php echo $categorykey;?>/">
-					<?php echo $categoryname;?>
+				<a href="/items/<?php echo $categorykey;?>/">
+					オリジナル<?php echo $categoryname;?>
 				</a> >
 				<?php echo $itemname; ?>
 			</div>
@@ -297,7 +297,7 @@ $_version = time();
 							</form>
 						</div>
 
-						<h3 class="print_cond_note hidden"><ins>5.</ins>プリントサイズの選択</h3>
+						<h3 class="print_cond_note hidden"><ins>4.</ins>プリントサイズの選択</h3>
 						<!--シルク-->
 						<form method="post" action="" class="form-group silk print_cond">
 							<div class="print_size">

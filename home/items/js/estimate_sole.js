@@ -948,12 +948,6 @@ $(function(){
 					designs = $.getStorage("design");
 					if ($('#noprint').prop('checked')) {
 						$.curr.designId = 'id_0';	// プリントなし
-					} else if (designs !== null) {
-						Object.keys(designs).forEach(function(designId){
-							ids.push(designId.split('_')[1]);
-						});
-						newId = Math.max.apply(null, ids) + 1;
-						$.curr.designId = 'id_' + newId;
 					} else {
 						$.curr.designId = 'id_1';	// 新規デザインパターン
 					}

@@ -573,9 +573,6 @@ $(function(){
 
 				// プリントなしの場合
 				if (designId=='id_0' || (designId==0 && $('#noprint').prop('checked'))) {
-//					d.resolve({'price':price, 'recommend':[]});
-//					return d.promise();
-					
 					return;
 				}
 
@@ -881,10 +878,6 @@ $(function(){
 					} else if (opt.pack==50 && orderAmount>9 && workday<=3) {
 						// 袋詰めありの場合は特急不可のため
 						expressError = '製作日数が足りません！';
-					} else if (opt.imega==1 && workday<=3) {
-						// イメ画作成ありの場合は特急不可のため
-						// 2018-07-03 特急可に仕様変更
-//						expressError = '製作日数が足りません！';
 					}
 
 					if (expressError==='') {
@@ -905,12 +898,6 @@ $(function(){
 
 						// 特急料金適用
 						if (expressRatio>0) {
-
-							// 特急の場合は学割不可のため割引を再計算（2018-01-31 併用可）
-	//						if (discountStudentRatio>0) {
-	//							discount = -1 * Math.ceil((subTotal * (discountRatio-discountStudentRatio))/100) + (rankFee);
-	//						}
-
 							// 特急料金の計算対象項目はアイテム代、プリント代、割引、袋詰め代、インク色替え代（Web未使用）
 							tmpFee = (subTotal + discount + packFee + noPrintItem.price);
 							expressFee = Math.ceil((tmpFee * expressRatio) / 10);
@@ -948,7 +935,6 @@ $(function(){
 				
 				// 2019-03-12 後払い手数料を廃止
 //				var paymentFee = opt.payment=='later_payment' ? 300 : 0;
-
 				
 				// 割引、袋詰め、プリントなしアイテム代を合算
 				subTotal += (discount + packFee + noPrintItem.price);
@@ -966,7 +952,6 @@ $(function(){
 				detail.paymentFee = paymentFee;
 				detail.expressfee = expressFee;
 				detail.expressname = expressInfo;
-//				detail.rankfee = rankFee;
 				detail.rankname = rankName[user.rank];
 				detail.delitimename = deliTime[opt.delitime]
 				detail = $.setStorage('detail', detail);

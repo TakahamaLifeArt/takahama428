@@ -73,54 +73,6 @@ class Ordermail extends Conndb{
 				$isSetUpload = $this->setOrderId($uploadfilename, $order_id);
 			}
 			
-			/*
-			* design: {
-			*			デザインID(id_インデックス): {絵型ID: {
-			*												front|back|side 絵型面: {
-			*																		表示要素のインデックス: {
-			*																			area:箇所名, 
-			*																			size:0|1|2 大中小, 
-			*																			option:0|1 インクジェット(淡|濃)と刺繍(origin|name)のオプション, 
-			*																			method:プリント方法, 
-			*																			printable:対応しているプリント方法
-			*																			ink:色数
-			*																		},
-			*																		表示要素のインデックス: {}
-			*											},
-			*												front|back|side 絵型面: {}
-			*										},
-			*										絵型ID: {}
-			*			},
-			*			デザインID(id_インデックス): {}
-			*	}
-			*/
-			/*
-			* item: {デザインID: {アイテムID: {
-			*								code:アイテムコード,
-			*								name:アイテム名,
-			*								posId:絵型ID,
-			*								cateId:カテゴリID,
-			*								rangeId:枚数レンジID
-			*								screenId:同版分類ID
-			* 								color: [{
-			*										vol: {サイズ名: {amount:枚数, cost:単価}, ...},
-			*										code: カラーコード,
-			*										name: カラー名
-			*										}, {}]
-			* 								},
-			*					  アイテムID: {}
-			*					 },
-			*		  デザインID: {}
-			*		 }
-			*/
-			/*
-			* attach: [ファイル名, ...]
-			* option: {publish:割引率, student:割引率, pack:単価, payment:bank|cod|credit|cash|later_payment, delidate:希望納期, delitime:配達時間指定, express:0|1|2, transport:1|2}
-			* sum: {item:商品代, print:プリント代, volume:注文枚数, tax:消費税額, total:見積合計, mass:0 通常単価 | 1 量販単価}
-			* detail: {discountfee, discountname, packfee, packname, carriage, codfee, paymentfee, expressfee, expressname, rankname}
-			* user: {id:, email:, name:, ruby:, zipcode:, addr0:, addr1:, addr2:, tel:, rank:}
-			*/
-			
 			// 本文生成
 			$order_info = "☆━━━━━━━━【　お申し込み内容　】━━━━━━━━☆\n\n";
 			
@@ -472,69 +424,6 @@ class Ordermail extends Conndb{
 			}else{
 				$order_info .= "\n".$args['message']."\n\n";
 			}
-			
-			
-			
-			
-// 2018-06-05 本文フォーマット変更
-//			$order_info .= "┏━━━━━━━━┓\n";
-//			$order_info .= "◆　　ご希望納期\n";
-//			$order_info .= "┗━━━━━━━━┛\n";
-//			if (empty($args['delidate'])) {
-//				$order_info .= "◇　納期指定なし\n\n";
-//			} else {
-//				$order_info .= "◇　納期　：　".$args['delidate']."\n\n";
-//			}
-//
-//			$order_info .= "◇　配達時間指定　：　".$args['delitime']."\n\n";
-//			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n";
-//
-//			$order_info .= "┏━━━━━━━┓\n";
-//			$order_info .= "◆　　商品情報\n";
-//			$order_info .= "┗━━━━━━━┛\n\n";
-//			for($i=0, $len=count($args['item']); $i<$len; $i++){
-//				$order_info .= "◆アイテム：　".$args['item'][$i]['name']."\n";
-//				$order_info .= "◇カラー：　".$args['item'][$i]['color']."\n";
-//				$order_info .= "◇サイズ：　".$args['item'][$i]['size']."\n";
-//				$order_info .= "◇枚数：　".$args['item'][$i]['amount']." 枚\n";
-//				$order_info .= "--------------------\n\n";
-//			}
-//			$order_info .= "\n\n";
-//
-//			$order_info .= "◆枚数合計：　".number_format($args['order_amount'])." 枚\n";
-//			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
-//
-//			$order_info .= "┏━━━━━┓\n";
-//			$order_info .= "◆　　包装\n";
-//			$order_info .= "┗━━━━━┛\n";
-//			if (empty($args['pack'])) {
-//				$order_info .= "◇たたみ・袋詰め：　まとめて包装\n";
-//			} else if ($args['pack']==50){
-//				$order_info .= "◇たたみ・袋詰め：　個別包装\n";
-//			} else {
-//				$order_info .= "◇たたみ・袋詰め：　袋を同封\n";
-//			}
-//			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
-//
-//			$order_info .= "┏━━━━━━━━┓\n";
-//			$order_info .= "◆　　お客様情報\n";
-//			$order_info .= "┗━━━━━━━━┛\n";
-//			$order_info .= "◇顧客ID：　".$args['number']."\n";
-//			$order_info .= "◇お名前：　".$args['name']."　様\n";
-//			$order_info .= "◇ご住所：　〒".$args['zipcode']."\n";
-//			$order_info .= "　　　　　　　　".$args['addr']."\n";
-//			$order_info .= "◇TEL：　".$args['tel']."\n";
-//			$order_info .= "◇E-Mail：　".$args['email']."\n";
-//			$order_info .= "------------------------------------------\n\n";
-//
-//			$order_info .= "◇メッセージ：\n";
-//			if(empty($args['message'])){
-//				$order_info .= "なし\n\n";
-//			}else{
-//				$order_info .= $args['message']."\n\n";
-//			}
-//			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n";
-
 
 			// send mail
 			$res = $this->send_reorder_mail($order_info, $args['name'], $args['email']);
@@ -874,48 +763,6 @@ class Ordermail extends Conndb{
 
 		// 受注システム登録クラス
 		$orders = new WebOrder();
-		
-		/*
-		* design: {
-		*			デザインID(id_インデックス): {絵型ID: {
-		*												front|back|side 絵型面: {
-		*																		表示要素のインデックス: {
-		*																			area:箇所名, 
-		*																			size:0|1|2 大中小, 
-		*																			option:0|1 インクジェット(淡|濃)と刺繍(origin|name)のオプション, 
-		*																			method:プリント方法, 
-		*																			printable:対応しているプリント方法
-		*																			ink:色数
-		*																		},
-		*																		表示要素のインデックス: {}
-		*											},
-		*												front|back|side 絵型面: {}
-		*										},
-		*										絵型ID: {}
-		*			},
-		*			デザインID(id_インデックス): {}
-		*	}
-		*/
-		/*
-		* item: {デザインID: {アイテムID: {
-		*								master:マスターID,
-		*								code:アイテムコード,
-		*								name:アイテム名,
-		*								posId:絵型ID,
-		*								cateId:カテゴリID,
-		*								rangeId:枚数レンジID
-		*								screenId:同版分類ID
-		* 								color: [{
-		*										vol: {サイズ名: {amount:枚数, cost:単価, id:サイズID}, ...},
-		*										code: カラーコード,
-		*										name: カラー名
-		*										}, {}]
-		* 								},
-		*					  アイテムID: {}
-		*					 },
-		*		  デザインID: {}
-		*		 }
-		*/
 		
 		/**
 		 * デザインパターン毎にデータを登録

@@ -260,9 +260,10 @@ $_version = time();
 					<section id="printing">
 						<h2>プリント</h2>
 						<div class="form-group_top">
-							<p class="print_none" style="margin-bottom:  0;"><label><input type="checkbox" id="noprint" value="1" name="noprint">プリントなしで購入する</label></p>
-
-							<p class="note"><span class="red_mark">※</span>プリントなしの場合1割増の料金です。</p>
+							<div id="print_available">
+								<p class="print_none" style="margin-bottom:  0;"><label><input type="checkbox" id="noprint" value="1" name="noprint">プリントなしで購入する</label></p>
+								<p class="note"><span class="red_mark">※</span>プリントなしの場合1割増の料金です。</p>
+							</div>
 						</div>
 						<div class="pane">
 							<h3><ins>1.</ins>プリント情報を入力</h3>
@@ -453,16 +454,16 @@ $_version = time();
 
 									<!--プリント方法をおまかせで選択した場合に表示-->
 									<!--
-							<div class="price_box_2">
-								<p class="print_re">合計金額は<span></span>で計算されました</p>
-								<p class="solo_p">お客様のプリント条件に最適な最安価のプリント方法を適用しています。</p>
-								<div class="print_link modal_style">
-									<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>プリント方法の説明を見る
-								</div>
-								<p class="note mb-1 inkjet_notice" hidden="hidden"><span class="red_mark">※</span>プリント色が生地より薄い色の場合、記載金額より高くなりますのでご了承ください</p>
-								<p class="note"><span class="red_mark">※</span>お見積もりは概算です。デザインの内容によって変更になる場合がございます。</p>
-							</div>
--->
+									<div class="price_box_2">
+										<p class="print_re">合計金額は<span></span>で計算されました</p>
+										<p class="solo_p">お客様のプリント条件に最適な最安価のプリント方法を適用しています。</p>
+										<div class="print_link modal_style">
+											<i class="fa fa-question-circle mr-1" aria-hidden="true"></i>プリント方法の説明を見る
+										</div>
+										<p class="note mb-1 inkjet_notice" hidden="hidden"><span class="red_mark">※</span>プリント色が生地より薄い色の場合、記載金額より高くなりますのでご了承ください</p>
+										<p class="note"><span class="red_mark">※</span>お見積もりは概算です。デザインの内容によって変更になる場合がございます。</p>
+									</div>
+									-->
 								</div>
 
 							</div>
@@ -495,24 +496,13 @@ $_version = time();
 				</div>
 
 				<div class="step">
-					<div class="o_top_fl">
-						<div class="step_prev hoverable waves-effect hidden-sm-down">
-							<i class="fa fa-chevron-left"></i>戻る
-						</div>
-						<div class="o_top_step">
-							<nav>
-								<ol class="cd-multi-steps text-bottom count">
-									<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
-									<li class="done"><em class="fa fa-check" aria-hidden="true">プリント</em></li>
-									<li class="current"><em>カート</em></li>
-								</ol>
-							</nav>
-						</div>
-
-						<div class="step_prev hoverable waves-effect hidden-md-up">
-							<i class="fa fa-chevron-left"></i>戻る
-						</div>
-					</div>
+					<nav>
+						<ol class="cd-multi-steps text-bottom count">
+							<li class="done"><em class="fa fa-check" aria-hidden="true">アイテム</em></li>
+							<li class="done"><em class="fa fa-check" aria-hidden="true">プリント</em></li>
+							<li class="current"><em>カート</em></li>
+						</ol>
+					</nav>
 
 					<section id="cart">
 						<h2>カート</h2>
@@ -574,7 +564,6 @@ $_version = time();
 
 							<div class="cart_price_min">
 								<p class="txt_ps">小計枚数:<span>0</span>枚</p>
-								<!--							<p class="txt_ps">小計金額:<span>0</span>円(税抜)</p>-->
 							</div>
 							<button class="add_btn_or btn add_item">同じデザインで<br>別のアイテムを追加</button>
 						</div>
@@ -585,8 +574,6 @@ $_version = time();
 							<p class="note mb-1 inkjet_notice" hidden="hidden"><span class="red_mark">※</span>プリント色が生地より薄い色の場合、記載金額より高くなりますのでご了承ください</p>
 							<p class="note"><span class="red_mark">※</span>お見積もりは概算です。デザインの内容によって変更になる場合がございます。</p>
 						</div>
-
-						<!--						<button class="add_btn_gr btn" id="add_design">別のデザインで<br>アイテムを選ぶ</button>-->
 
 						<section id="manuscript">
 							<h3>デザインデータ入稿</h3>
@@ -612,7 +599,6 @@ $_version = time();
 										<p class="note" style="margin-bottom: 30px;"><span class="bold_txt">使用方法：注文確定のお電話にて、デザインのお打ち合わせを致します。</span>(割引ご希望のお客様は、お打ち合わせ時にお伝えください。)</p>
 									</div>
 								</div>
-
 
 								<div class="de_si_none">
 									<div class="nouki_option">
@@ -837,7 +823,6 @@ $_version = time();
 								</ol>
 							</nav>
 						</div>
-
 						<div class="step_prev hoverable waves-effect hidden-md-up">
 							<i class="fa fa-chevron-left"></i>戻る
 						</div>
@@ -850,7 +835,7 @@ $_version = time();
 					</section>
 
 					<div class="transition_wrap d-flex justify-content-between align-items-center">
-						<div class="step_prev hoverable waves-effect">
+						<div class="back_to_cart hoverable waves-effect">
 							<i class="fa fa-chevron-left"></i>戻る
 						</div>
 					</div>
@@ -858,7 +843,7 @@ $_version = time();
 
 				<div class="step">
 					<div class="o_top_fl">
-						<div class="step_prev hoverable waves-effect hidden-sm-down">
+						<div class="step_prev customer hoverable waves-effect hidden-sm-down">
 							<i class="fa fa-chevron-left"></i>戻る
 						</div>
 						<div class="o_top_step">
@@ -870,8 +855,7 @@ $_version = time();
 								</ol>
 							</nav>
 						</div>
-
-						<div class="step_prev hoverable waves-effect hidden-md-up">
+						<div class="step_prev customer hoverable waves-effect hidden-md-up">
 							<i class="fa fa-chevron-left"></i>戻る
 						</div>
 					</div>
@@ -997,13 +981,12 @@ $_version = time();
 						<div class="step_prev customer hoverable waves-effect">
 							<i class="fa fa-chevron-left"></i>戻る
 						</div>
-
 					</div>
 				</div>
 
 				<div class="step">
 					<div class="o_top_fl">
-						<div class="step_prev hoverable waves-effect hidden-sm-down">
+						<div class="step_prev conf_user hoverable waves-effect hidden-sm-down">
 							<i class="fa fa-chevron-left"></i>戻る
 						</div>
 						<div class="o_top_step">
@@ -1016,7 +999,7 @@ $_version = time();
 							</nav>
 						</div>
 
-						<div class="step_prev hoverable waves-effect hidden-md-up">
+						<div class="step_prev conf_user hoverable waves-effect hidden-md-up">
 							<i class="fa fa-chevron-left"></i>戻る
 						</div>
 					</div>
@@ -1439,7 +1422,8 @@ $_version = time();
 		<script src="./js/pagetransition.js"></script>
 		<script src="./js/dialog.js"></script>
 		<script src="./js/orderlib.js"></script>
-		<script src="./js/order.js?v=<?php echo $_version;?>"></script>
+		<script src="./js/order.js"></script>
+
 	</body>
 
 	</html>

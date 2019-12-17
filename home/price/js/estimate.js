@@ -372,7 +372,7 @@ $(function(){
 		*/
 			var category_key = $('#category_selector option:selected').attr('rel');
 			var path = 'items/'+category_key+'/'+$(my).attr('rel')+'.html';
-			location.href = 'http://www.takahama428.com/'+path;
+			location.href = 'https://www.takahama428.com/'+path;
 
 		}
 	});
