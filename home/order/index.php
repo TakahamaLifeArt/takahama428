@@ -947,7 +947,7 @@ $_version = time();
 										<li id="shipping_addr">
 											<h4 class="ml-2">宛名</h4>
 											<p>
-												<input type="text" id="deli_destination" value="<?php echo $user['deli_destination']; ?>" placeholder="お届け先の宛名" />
+                                                <input type="text" id="deli_destination" class="restrict" value="<?php echo $user['deli_destination']; ?>" maxlength="32" placeholder="お届け先の宛名(入力可能な文字数：全角16文字、半角32文字)" />
 											</p>
 											<h4 class="ml-2">お電話番号</h4>
 											<p>
