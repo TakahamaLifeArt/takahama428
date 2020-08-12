@@ -3228,6 +3228,11 @@ h3.option .any {
 	margin: 0;
 }
 
+#shipping_addr,
+#mem_shipping_addr {
+	display: none;
+}
+
 #mem_shipping_addr h4,#shipping_addr h4 {
 	color: #000 !importat;
 	font-size: 14px;

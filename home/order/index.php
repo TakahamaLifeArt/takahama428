@@ -940,9 +940,10 @@ $_version = time();
 								<form name="form2" class="e-mailer" onsubmit="return false">
 									<ul>
 										<li>
-											<h3 class="option">お届け先<span class="any">任意</span></h3>
-											<!--										<label><input type="checkbox" id="same_as_first" value="1">ご住所と同じ</label>-->
-											<button id="same_as_first" class="e-none mb-2">ご住所と同じ</button>
+											<h3 class="option" id="deli">お届け先<span class="any">任意</span></h3>
+											<label><input type="radio" name="destination" value="1" checked>ご住所と同じ</label>
+											<label><input type="radio" name="destination" value="2">別の住所</label>
+											<label><input type="radio" name="destination" value="3">未定</label>
 										</li>
 										<li id="shipping_addr">
 											<h4 class="ml-2">宛名</h4>
@@ -1052,9 +1053,10 @@ $_version = time();
 									<form name="form3" class="e-mailer" onsubmit="return false;">
 										<ul>
 											<li>
-												<h3 class="option">お届け先<span class="any">任意</span></h3>
-												<!--											<label><input type="checkbox" id="same_as_member" value="1">ご住所と同じ</label>-->
-												<button id="same_as_member" class="e-none mb-2">ご住所と同じ</button>
+												<h3 class="option" id="mem_deli">お届け先<span class="any">任意</span></h3>
+                                                <label><input type="radio" name="mem_destination" value="1" checked>ご住所と同じ</label>
+                                                <label><input type="radio" name="mem_destination" value="2">別の住所</label>
+                                                <label><input type="radio" name="mem_destination" value="3">未定</label>
 											</li>
 											<li id="mem_shipping_addr">
 												<h4 class=" ml-4">宛名</h4>
@@ -1421,8 +1423,8 @@ $_version = time();
 		<script src="/common/js/api.js"></script>
 		<script src="./js/pagetransition.js"></script>
 		<script src="./js/dialog.js"></script>
-		<script src="./js/orderlib.js"></script>
-		<script src="./js/order.js"></script>
+		<script src="./js/orderlib.js?v=<?php echo $_version;?>"></script>
+		<script src="./js/order.js?v=<?php echo $_version;?>"></script>
 
 	</body>
 
