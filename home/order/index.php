@@ -1048,6 +1048,8 @@ $_version = time();
 									<p id="conf_deli_addr0"><span></span></p>
 									<p id="conf_deli_addr1"><span></span></p>
 									<p id="conf_deli_addr2"><span></span></p>
+
+									<p id="conf_deli_undecided" class="hidden">お届け先未定</p>
 								</li>
 								<li id="member_shipping" class="hidden">
 									<form name="form3" class="e-mailer" onsubmit="return false;">

@@ -1206,7 +1206,7 @@ $(function(){
 			 * @return promise object
 			 */
 
-             // お届け先がご住所と同じ場合
+            // お届け先がご住所と同じ場合
             if ($('input:radio[name="destination"]:checked').val() === '1') {
                 $.setDestination(true);
             }
@@ -1300,10 +1300,24 @@ $(function(){
 				var self = $(this),
 					id = self.attr('id');
 				$('#conf_'+id+' span').text(self.val());
-			});
+            });
+
+            // お届け先が未定の場合の表示切り替え
+            let destination = $('input:radio[name="destination"]:checked').val();
+            $.switchDisplayOfDestination(destination);
 
 			// ページ遷移
 			$.next(page);
+		},
+		switchDisplayOfDestination: function(destination) {
+			// お届け先が未定の場合
+            if (destination === '3') {
+				$('#conf_deli_wrap p:not(#conf_deli_undecided)').addClass('hidden');
+				$('#conf_deli_undecided').removeClass('hidden');
+            } else {
+				$('#conf_deli_wrap p:not(#conf_deli_undecided)').removeClass('hidden');
+				$('#conf_deli_undecided').addClass('hidden');
+			}
 		},
 		mbConvert: function (args){
 			/**

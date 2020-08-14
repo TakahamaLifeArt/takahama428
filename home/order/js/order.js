@@ -2439,16 +2439,20 @@ $(function () {
 		// 会員の場合にお届け先の入力チェック
 		if ($('#conf_deli_wrap').is('.hidden')) {
             // お届け先がご住所と同じ場合
-            if ($('input:radio[name="mem_destination"]:checked').val() === '1') {
+            let destination = $('input:radio[name="mem_destination"]:checked').val();
+            if (destination === '1') {
                 $.setMemDestination(true);
             }
+
+			// お届け先が未定の場合の表示切り替え
+			$.switchDisplayOfDestination(destination);
 
             let memZipcode = $.zip_mask($('#mem_deli_zipcode').val()),
                 memTel = $('#mem_deli_tel').val().trim(),
 				required = [],
 				required_list = '';
 
-            if ($('input:radio[name="mem_destination"]:checked').val() !== '3') {
+            if (destination !== '3') {
                 if ($('#mem_deli_destination').val().trim() == '') required.push('<li>お届け先の宛名</li>');
                 if ($('#mem_deli_addr1').val().trim() == '') required.push('<li>お届け先住所</li>');
                 if (!eMailer.isValidPhone(memTel, 'JP')) required.push('<li>お届け先の電話番号</li>');
@@ -2667,8 +2671,13 @@ $(function () {
 			$('#final_customerruby').text($('#conf_customerruby').text());
 			$('#final_tel').text(eMailer.formatPhone($('#conf_tel').text(), 'JP'));
 			address = $('#conf_zipcode').text() + ' ' + $('#conf_addr0').text() + $('#conf_addr1').text() + $('#conf_addr2').text();
-			$('#final_address').text(address);
-			shipping = $('#conf_deli_destination').text() + '<br>' + $('#conf_deli_zipcode').text() + ' ' + $('#conf_deli_addr0').text() + $('#conf_deli_addr1').text() + $('#conf_deli_addr2').text();
+            $('#final_address').text(address);
+            
+            if ($('#conf_deli_undecided').is('.hidden')) {
+                shipping = $('#conf_deli_destination').text() + '<br>' + $('#conf_deli_zipcode').text() + ' ' + $('#conf_deli_addr0').text() + $('#conf_deli_addr1').text() + $('#conf_deli_addr2').text();
+            } else {
+                shipping = 'お届け先未定';
+            }
 			$('#final_shipping').html(shipping);
 			$('#final_deli_tel').html(eMailer.formatPhone($('#conf_deli_tel span').text(), 'JP'));
 			$('#final_note_design').text($('#note_design').val());
