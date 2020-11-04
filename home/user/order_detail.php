@@ -50,8 +50,12 @@ $progress .= '<li class="'.$prog[2].'"><em><span class="sp_area">発送完了</s
 
 // アイテム情報
 $d = $conndb->getOroderHistory($me['id'], $orderId);
+$orderCount = count($d);
+if ($orderCount === 0) {
+	jump('./order_history.php');
+}
 for($i=0; $i<count($d); $i++){
-//	if($d[$i]['orderid']!=$orderId) continue;
+	//	if($d[$i]['orderid']!=$orderId) continue;
 	$idx = $i;
 	$itemPrice = 0;
 	$payment = $d[$i]['payment'];
