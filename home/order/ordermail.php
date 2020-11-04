@@ -217,12 +217,18 @@ class Ordermail extends Conndb{
 			$order_info .= "┏━━━━━━━┓\n";
 			$order_info .= "◆　　お届け先\n";
 			$order_info .= "┗━━━━━━━┛\n";
-			$order_info .= "◇宛名：　".$user['destination']."　様\n";
-			$order_info .= "◇ご住所：　〒".$user['delizipcode']."\n";
-			$order_info .= "　　　　　　　　".$user['deliaddr0']."\n";
-			$order_info .= "　　　　　　　　".$user['deliaddr1']."\n";
-			$order_info .= "　　　　　　　　".$user['deliaddr2']."\n";
-			$order_info .= "◇TEL：　".$user['delitel']."\n";
+
+            if (empty($user['delizipcode']) || empty($user['deliaddr0'])) {
+				$order_info .= "◇お届け先未定\n";
+            } else {
+                $order_info .= "◇宛名：　".$user['destination']."　様\n";
+                $order_info .= "◇ご住所：　〒".$user['delizipcode']."\n";
+                $order_info .= "　　　　　　　　".$user['deliaddr0']."\n";
+                $order_info .= "　　　　　　　　".$user['deliaddr1']."\n";
+                $order_info .= "　　　　　　　　".$user['deliaddr2']."\n";
+                $order_info .= "◇TEL：　".$user['delitel']."\n";
+			}
+
 			$order_info .= "------------------------------------------\n\n";
 			
 			

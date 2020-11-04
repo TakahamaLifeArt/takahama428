@@ -1205,6 +1205,12 @@ $(function(){
 			 * メールアドレスの登録状況と必須項目の入力確認
 			 * @return promise object
 			 */
+
+            // お届け先がご住所と同じ場合
+            if ($('input:radio[name="destination"]:checked').val() === '1') {
+                $.setDestination(true);
+            }
+
 			var d = $.Deferred(),
 				email = $.mbConvert($('#email').val().trim()),
 				pass = $.mbConvert($('#pass').val().trim()),
@@ -1256,9 +1262,15 @@ $(function(){
 					if ($('#customername').val().trim() == '') required.push('<li>お名前</li>');
 					if ($('#customerruby').val().trim() == '') required.push('<li>フリガナ</li>');
 					if (!eMailer.isValidPhone(tel, 'JP')) required.push('<li>お電話番号</li>');
-					if ($('#addr1').val().trim() == '') required.push('<li>ご住所</li>');
-//					if ($('#deli_destination').val().trim() == '') required.push('<li>お届け先の宛名</li>');
-//					if ($('#deli_addr1').val().trim() == '') required.push('<li>お届け先住所</li>');
+                    if ($('#addr1').val().trim() == '') required.push('<li>ご住所</li>');
+
+                    // 別のお届け先を指定している場合
+                    if ($('input:radio[name="destination"]:checked').val() !== '3') {
+                        if ($('#deli_destination').val().trim() == '') required.push('<li>お届け先の宛名</li>');
+                        if ($('#deli_addr1').val().trim() == '') required.push('<li>お届け先住所</li>');
+                        if (!eMailer.isValidPhone(delitel, 'JP')) required.push('<li>お届け先の電話番号</li>');
+                    }
+
 					required_list = '<ul class="msg">' + required.toString().replace(/,/g, '') + '</ul>';
 					if (required.length > 0) {
 						$.msgbox("必須項目の入力をご確認ください。<hr>" + required_list);
@@ -1286,13 +1298,26 @@ $(function(){
 			 */
 			$('#email, #pass, #customername, #customerruby, #tel, #zipcode, #addr0, #addr1, #addr2, #deli_zipcode, #deli_addr0, #deli_addr1, #deli_addr2, #deli_tel, #deli_destination').each(function () {
 				var self = $(this),
-					val = self.val(),
 					id = self.attr('id');
 				$('#conf_'+id+' span').text(self.val());
-			});
+            });
+
+            // お届け先が未定の場合の表示切り替え
+            let destination = $('input:radio[name="destination"]:checked').val();
+            $.switchDisplayOfDestination(destination);
 
 			// ページ遷移
 			$.next(page);
+		},
+		switchDisplayOfDestination: function(destination) {
+			// お届け先が未定の場合
+            if (destination === '3') {
+				$('#conf_deli_wrap p:not(#conf_deli_undecided)').addClass('hidden');
+				$('#conf_deli_undecided').removeClass('hidden');
+            } else {
+				$('#conf_deli_wrap p:not(#conf_deli_undecided)').removeClass('hidden');
+				$('#conf_deli_undecided').addClass('hidden');
+			}
 		},
 		mbConvert: function (args){
 			/**
@@ -1326,6 +1351,62 @@ $(function(){
 			} else {
 				return true;
 			}
+		},
+		setDestination: function(isCopy){
+			/**
+			 * 初めての方のお届け先の設定
+             * @param {bool} isCopy ご住所と同じ場合true
+			 */
+            if (isCopy) {
+                $('#deli_destination').val($('#customername').val());
+                $('#deli_zipcode').val($('#zipcode').val());
+                $('#deli_addr0').val($('#addr0').val());
+                $('#deli_addr1').val($('#addr1').val());
+                $('#deli_addr2').val($('#addr2').val());
+                $('#deli_tel').val($('#tel').val());
+            } else {
+                $('#deli_destination').val('');
+                $('#deli_zipcode').val('');
+                $('#deli_addr0').val('');
+                $('#deli_addr1').val('');
+                $('#deli_addr2').val('');
+                $('#deli_tel').val('');
+            }
+        },
+        setMemDestination: function(isCopy){
+			/**
+			 * 会員のお届け先の設定
+             * @param {bool} isCopy ご住所と同じ場合true
+			 */
+            if (isCopy) {
+                $('#conf_deli_destination span').text($('#conf_customername span').text());
+                $('#conf_deli_zipcode span').text($('#conf_zipcode span').text());
+                $('#conf_deli_addr0 span').text($('#conf_addr0 span').text());
+                $('#conf_deli_addr1 span').text($('#conf_addr1 span').text());
+                $('#conf_deli_addr2 span').text($('#conf_addr2 span').text());
+                $('#conf_deli_tel span').text($('#conf_tel span').text());
+
+                $('#mem_deli_destination').val($('#conf_customername span').text());
+                $('#mem_deli_zipcode').val($('#conf_zipcode span').text());
+                $('#mem_deli_addr0').val($('#conf_addr0 span').text());
+                $('#mem_deli_addr1').val($('#conf_addr1 span').text());
+                $('#mem_deli_addr2').val($('#conf_addr2 span').text());
+                $('#mem_deli_tel').val($('#conf_tel span').text());
+            } else {
+                $('#conf_deli_destination span').text('');
+                $('#conf_deli_zipcode span').text('');
+                $('#conf_deli_addr0 span').text('');
+                $('#conf_deli_addr1 span').text('');
+                $('#conf_deli_addr2 span').text('');
+                $('#conf_deli_tel span').text('');
+
+                $('#mem_deli_destination').val('');
+                $('#mem_deli_zipcode').val('');
+                $('#mem_deli_addr0').val('');
+                $('#mem_deli_addr1').val('');
+                $('#mem_deli_addr2').val('');
+                $('#mem_deli_tel').val('');
+            }
 		}
 	});
 

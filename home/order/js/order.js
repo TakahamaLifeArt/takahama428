@@ -2285,7 +2285,7 @@ $(function () {
 	$('#goto_member').on("click", function(){
 		$('#customer .member').removeClass('hidden');
 		$('#customer .first_time').addClass('hidden');
-		$('#customer .member input[type!="hidden"]').val('');
+		$('#customer .member input[type!="hidden"]:not(:radio)').val('');
 		
 		// ページ遷移
 		$.next();
@@ -2299,25 +2299,28 @@ $(function () {
 	
 	
 	/**
-	 * お届け先をご住所と同じにする
+	 * お届け先住所の指定方法を選択
 	 * 会員の方
 	 */
-	$('#same_as_member').on('click', function(){
-		$('#conf_deli_destination span').text($('#conf_customername span').text());
-		$('#conf_deli_zipcode span').text($('#conf_zipcode span').text());
-		$('#conf_deli_addr0 span').text($('#conf_addr0 span').text());
-		$('#conf_deli_addr1 span').text($('#conf_addr1 span').text());
-		$('#conf_deli_addr2 span').text($('#conf_addr2 span').text());
-		$('#conf_deli_tel span').text($('#conf_tel span').text());
-		
-		$('#mem_deli_destination').val($('#conf_customername span').text());
-		$('#mem_deli_zipcode').val($('#conf_zipcode span').text());
-		$('#mem_deli_addr0').val($('#conf_addr0 span').text());
-		$('#mem_deli_addr1').val($('#conf_addr1 span').text());
-		$('#mem_deli_addr2').val($('#conf_addr2 span').text());
-		$('#mem_deli_tel').val($('#conf_tel span').text());
+    $('input:radio[name="mem_destination"]').on('change', function() {
+		let val = $('input:radio[name="mem_destination"]:checked').val();
+        let $span = $('#mem_deli').find('span');
+
+        $span.removeClass('req').addClass('any');
+
+		if (val === '2') {
+            $span.removeClass('any').addClass('req');
+            $.setMemDestination(false);
+			$('#mem_shipping_addr').show();
+		} else if(val === '3') {
+            $.setMemDestination(false);
+			$('#mem_shipping_addr').hide();
+		} else {
+            $.setMemDestination(true);
+			$('#mem_shipping_addr').hide();
+        }
 	});
-	
+
 
 	// パスワード再発行
 	$('#resend_pass').on("click", function(){
@@ -2369,7 +2372,7 @@ $(function () {
 	$('#goto_firsttime').on("click", function(){
 		$('#customer .member').addClass('hidden');
 		$('#customer .first_time').removeClass('hidden');
-		$('#customer .first_time input').val('');
+		$('#customer .first_time input:not(:radio)').val('');
 		
 		$('#conf_deli_wrap').removeClass('hidden');
 		$('#member_shipping').addClass('hidden');
@@ -2380,16 +2383,26 @@ $(function () {
 	
 	
 	/**
-	 * お届け先をご住所と同じにする
+	 * お届け先住所の指定方法を選択
 	 * 初めての方
 	 */
-	$('#same_as_first').on('click', function(){
-		$('#deli_destination').val($('#customername').val());
-		$('#deli_zipcode').val($('#zipcode').val());
-		$('#deli_addr0').val($('#addr0').val());
-		$('#deli_addr1').val($('#addr1').val());
-		$('#deli_addr2').val($('#addr2').val());
-		$('#deli_tel').val($('#tel').val());
+	$('input:radio[name="destination"]').on('change', function() {
+		let val = $('input:radio[name="destination"]:checked').val();
+        let $span = $('#deli').find('span');
+
+        $span.removeClass('req').addClass('any');
+
+		if (val === '2') {
+            $span.removeClass('any').addClass('req');
+            $.setDestination(false);
+			$('#shipping_addr').show();
+		} else if(val === '3') {
+            $.setDestination(false);
+			$('#shipping_addr').hide();
+		} else {
+            $.setDestination(true);
+			$('#shipping_addr').hide();
+        }
 	});
 	
 	
@@ -2425,9 +2438,33 @@ $(function () {
 	$('#confirm_order').on("click", function(){
 		// 会員の場合にお届け先の入力チェック
 		if ($('#conf_deli_wrap').is('.hidden')) {
-			let memZipcode = $.zip_mask($('#mem_deli_zipcode').val());
+            // お届け先がご住所と同じ場合
+            let destination = $('input:radio[name="mem_destination"]:checked').val();
+            if (destination === '1') {
+                $.setMemDestination(true);
+            }
 
-			$('#mem_deli_zipcode').val(memZipcode);			
+			// お届け先が未定の場合の表示切り替え
+			$.switchDisplayOfDestination(destination);
+
+            let memZipcode = $.zip_mask($('#mem_deli_zipcode').val()),
+                memTel = $('#mem_deli_tel').val().trim(),
+				required = [],
+				required_list = '';
+
+            if (destination !== '3') {
+                if ($('#mem_deli_destination').val().trim() == '') required.push('<li>お届け先の宛名</li>');
+                if ($('#mem_deli_addr1').val().trim() == '') required.push('<li>お届け先住所</li>');
+                if (!eMailer.isValidPhone(memTel, 'JP')) required.push('<li>お届け先の電話番号</li>');
+
+                required_list = '<ul class="msg">' + required.toString().replace(/,/g, '') + '</ul>';
+                if (required.length > 0) {
+                    $.msgbox("必須項目の入力をご確認ください。<hr>" + required_list);
+                    return;
+                }
+            }
+
+			$('#mem_deli_zipcode').val(memZipcode);
 			$('#conf_deli_destination span').text($('#mem_deli_destination').val());
 			$('#conf_deli_zipcode span').text(memZipcode);
 			$('#conf_deli_addr0 span').text($('#mem_deli_addr0').val());
@@ -2634,8 +2671,13 @@ $(function () {
 			$('#final_customerruby').text($('#conf_customerruby').text());
 			$('#final_tel').text(eMailer.formatPhone($('#conf_tel').text(), 'JP'));
 			address = $('#conf_zipcode').text() + ' ' + $('#conf_addr0').text() + $('#conf_addr1').text() + $('#conf_addr2').text();
-			$('#final_address').text(address);
-			shipping = $('#conf_deli_destination').text() + '<br>' + $('#conf_deli_zipcode').text() + ' ' + $('#conf_deli_addr0').text() + $('#conf_deli_addr1').text() + $('#conf_deli_addr2').text();
+            $('#final_address').text(address);
+            
+            if ($('#conf_deli_undecided').is('.hidden')) {
+                shipping = $('#conf_deli_destination').text() + '<br>' + $('#conf_deli_zipcode').text() + ' ' + $('#conf_deli_addr0').text() + $('#conf_deli_addr1').text() + $('#conf_deli_addr2').text();
+            } else {
+                shipping = 'お届け先未定';
+            }
 			$('#final_shipping').html(shipping);
 			$('#final_deli_tel').html(eMailer.formatPhone($('#conf_deli_tel span').text(), 'JP'));
 			$('#final_note_design').text($('#note_design').val());
@@ -2728,7 +2770,11 @@ $(function () {
 		
 		// 利用規約の同意チェック
 		$('#agree').prop('checked', false);
-		
+        
+        //お届け先
+        $('input[name="destination"]').val(['1']);
+        $('input[name="mem_destination"]').val(['1']);
+
 		// デザインとアイテム
 		$.curr.designId = 0;
 		designs = $.getStorage('design');
