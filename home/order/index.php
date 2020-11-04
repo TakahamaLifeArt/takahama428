@@ -790,8 +790,40 @@ $_version = time();
 									</label>
 										<p class="note"><span class="red_mark">※</span>本支払方法は法人および個人事業主の方対象です。学生の方はご利用頂けません</p>
 									</div>
-
 								</div>
+
+								<form id="later_payment_form" name="later_payment_form" class="e-mailer" onsubmit="return false">
+									<h3>後払い情報</h3>
+									<h4>企業名<span class="req">必須</span></h4>
+									<p>
+										<input type="text" id="payment_organization" class="restrict" value="" maxlength="32" data-element-type="宛名" placeholder="企業名(入力可能な文字数：全角16文字、半角32文字)" />
+									</p>
+									<h4>ご住所<span class="req">必須</span></h4>
+									<p>
+										<input type="text" id="payment_zipcode" class="p-zip" value="" placeholder="郵便番号" />
+									</p>
+									<p>
+										<input type="text" id="payment_addr0" class="p-region" value="" placeholder="例)東京都" maxlength="4" />
+									</p>
+									<p>
+										<input type="text" id="payment_addr1" class="p-locality p-street-address restrict" value="" placeholder="例：葛飾区新小岩(入力可能な文字数：全角12文字、半角24文字)" maxlength="24" data-element-type="市区町村" />
+									</p>
+									<p>
+										<input type="text" id="payment_addr2" value="" placeholder="例：1-2-3 マンション・ビル名(入力可能な文字数：全角16文字、半角32文字)" maxlength="32" class="restrict" data-element-type="番地・アパート" />
+									</p>
+									<h4>お電話番号<span class="req">必須</span></h4>
+									<p>
+										<input type="text" id="payment_tel" value="" placeholder="例)08012345678" />
+									</p>
+									<h4>ご担当者名<span class="req">必須</span></h4>
+									<p>
+										<input type="text" id="payment_staff" value="" />
+									</p>
+									<h4>メールアドレス<span class="req">必須</span></h4>
+									<p>
+										<input type="text" id="payment_email" value="" />
+									</p>
+								</form>
 							</div>
 						</section>
 
@@ -1218,11 +1250,7 @@ $_version = time();
 										<tr>
 											<td>イメージ画像について</td>
 											<td id="sample_image">作成しない</td>
-
-
-
 										</tr>
-
 										<tr>
 											<td>デザインキー</td>
 											<td id="final_designkey_text"></td>
@@ -1271,6 +1299,16 @@ $_version = time();
 										</tr>
 										<tr>
 											<td id="payment_name"></td>
+										</tr>
+									</tbody>
+								</table>
+								<table class="design_t" id="later_payment_wrapper">
+									<tbody>
+										<tr class="tabl_ttl">
+											<td>後払い情報</td>
+										</tr>
+										<tr>
+											<td id="later_payment_info"></td>
 										</tr>
 									</tbody>
 								</table>

@@ -21,6 +21,7 @@
 				  2019-04-05 お届け先住所を追加
 				  2019-04-18 デザイン掲載の承諾を追加
 				  2019-06-13 受注システム登録の例外処理を更新
+				  2020-11-05 後払い情報の追加
 
 -------------------------------------------------------------- */
 require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/config.php';
@@ -276,7 +277,21 @@ class Ordermail extends Conndb{
 			}
 			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n";
 
-			
+            if ($opts['payment'] === 'later_payment') {
+                $order_info .= "┏━━━━━━━━━━━┓\n";
+                $order_info .= "◆　　後払いに関する情報\n";
+                $order_info .= "┗━━━━━━━━━━━┛\n";
+                $order_info .= "企業名：" . $opts['payment_organization'] . "\n";
+                $order_info .= "郵便番号：" . $opts['payment_zipcode'] . "\n";
+                $order_info .= "住所：" . $opts['payment_addr0'] . "\n";
+                $order_info .= $opts['payment_addr1'] . "\n";
+                $order_info .= $opts['payment_addr2'] . "\n";
+                $order_info .= "電話番号：" . $opts['payment_tel'] . "\n";
+                $order_info .= "担当者：" . $opts['payment_staff'] . "\n";
+                $order_info .= "メールアドレス：" . $opts['payment_email'] . "\n";
+                $order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n";
+            }
+
 			$order_info .= "┏━━━━━━━━━━━┓\n";
 			$order_info .= "◆　　デザインファイル\n";
 			$order_info .= "┗━━━━━━━━━━━┛\n";
@@ -803,6 +818,18 @@ class Ordermail extends Conndb{
 			$perone = 0;
 
 			// コメント欄
+			$comment = [];
+			if ($opts['payment'] === "later_payment") {
+				$comment[] = "企業名：" . $opts['payment_organization'];
+				$comment[] = "郵便番号：" . $opts['payment_zipcode'];
+				$comment[] = "住所：" . $opts['payment_addr0'] . $opts['payment_addr1'];
+				if ($opts['payment_addr2']) {
+					$comment[] = $opts['payment_addr2'];
+				}
+				$comment[] = "電話番号：" . $opts['payment_tel'];
+				$comment[] = "担当者：" . $opts['payment_staff'];
+				$comment[] = "メールアドレス：" . $opts['payment_email'];
+			}
 			$comment[] = $opts['note_design'];
 			$comment[] = $opts['note_user'];
 			$comment[] = $opts['school'];

@@ -6,6 +6,7 @@
  * 2019-01-08	アップロード仕様変更
  * 2019-04-05	お届け先住所を追加
  * 2019-12-18	戻るボタンの機能を元に戻し、複数デザインの注文を廃止
+ * 2020-11-05	後払い情報の追加
  */
 $(function () {
 	'use strict';
@@ -2201,10 +2202,16 @@ $(function () {
 			minDate: date
 		});
 	});
-	
-	
+
 	// 支払い方法
-	$('#payment input').applyChange();
+	$('#payment input').applyChange(function () {
+		// 後払い情報
+		if ($('#payment input[name="payment"]:checked').val() == 'later_payment') {
+			$('#later_payment_form').show();
+		} else {
+			$('#later_payment_form').hide();
+		}
+	});
 	
 	
 	// お届け先
@@ -2253,10 +2260,55 @@ $(function () {
 		// 	$.msgbox('納期をご指定ください');
 		// 	return;
 		// }
-		
-		$('#customer > div').addClass('hidden');
-		
+
+		// 後払い情報の更新
+		var data = {};
+		if ($('#later_payment_form').is(':visible')) {
+			data = {
+				payment_organization: $('#payment_organization').val(),
+				payment_zipcode: $('#payment_zipcode').val(),
+				payment_addr0: $('#payment_addr0').val(),
+				payment_addr1: $('#payment_addr1').val(),
+				payment_addr2: $('#payment_addr2').val(),
+				payment_tel: $('#payment_tel').val(),
+				payment_staff: $('#payment_staff').val(),
+				payment_email: $('#payment_email').val()
+			}
+
+			var isValid = true;
+			for (var property in data) {
+				if (property === "payment_addr2") {
+					continue;
+				}
+
+				if (data[property] == '') {
+					isValid = false;
+					break;
+				}
+			}
+
+			if (!isValid) {
+				$.msgbox('後払い情報の必須項目を入力してください');
+				return;
+			}
+			
+		} else {
+			data = {
+				payment_organization: '',
+				payment_zipcode: '',
+				payment_addr0: '',
+				payment_addr1: '',
+				payment_addr2: '',
+				payment_tel: '',
+				payment_staff: '',
+				payment_email: ''
+			};
+		}
+
+		$.setStorage('option', data);
+
 		// ログイン状態を確認してページ遷移
+		$('#customer > div').addClass('hidden');
 		$.isLogin().then(
 			function(me) {
 				if (me) {
@@ -2483,10 +2535,11 @@ $(function () {
 			$.setStorage('user', user);
 		}
 		
-		var f = document.forms.orderform,
-			stores = ['design', 'item', 'sum', 'detail', 'option'],
-			keys = ['designs', 'items', 'sum', 'details', 'opts'],
-			z = {'designs':{}, 'items':{}, 'sum':{}, 'details':{}, 'opts':{}},
+        var f = document.forms.orderform,
+            stores = ['design', 'item', 'sum', 'detail', 'option'],
+            keys = ['designs', 'items', 'sum', 'details', 'opts'],
+            z = { 'designs': {}, 'items': {}, 'sum': {}, 'details': {}, 'opts': {} },
+            tmpComment = [],
 			tbl = $('#confirm_order .final_detail'),
 			tmpTr = '<tr class="border_t"><td rowspan="1"><div class="item_name_color"><p class="code"></p><p class="name"></p><img src="" width="30%"><p class="color"></p></div></td>' + 
 			'<td class="size"></td><td class="cost"></td><td><span class="amount"></span>枚</td><td><span class="price"></span>円</td></tr>',
@@ -2538,6 +2591,21 @@ $(function () {
 			$('#orderfom input:not(.ticket)').remove();
 			stores.forEach(function(key, index){
 				z[keys[index]] = $.getStorage(key);
+				
+				if (key == 'option') {
+					if (z.opts.payment == 'later_payment') {
+						tmpComment.push("企業名 : " + z.opts.payment_organization);
+						tmpComment.push("郵便番号 : " + z.opts.payment_zipcode);
+						tmpComment.push("ご住所 : " + z.opts.payment_addr0 + z.opts.payment_addr1);
+						if (z.opts.payment_addr2) {
+							tmpComment.push(z.opts.payment_addr2);
+						}
+						tmpComment.push("お電話番号 : " + z.opts.payment_tel);
+						tmpComment.push("ご担当者名 : " + z.opts.payment_staff);
+						tmpComment.push("メールアドレス : " + z.opts.payment_email);
+					}
+				}
+
 				f[key].value = JSON.stringify(z[keys[index]]);
 			});
 
@@ -2662,7 +2730,14 @@ $(function () {
 			$('#perone').text(perone.toLocaleString('ja-JP'));
 			$('#discount_name').text(z.details.discountname);
 			$('#pack_name').text(z.details.packname);
-			$('#payment_name').text(paymentName[z.opts.payment]);
+            $('#payment_name').text(paymentName[z.opts.payment]);
+            if (z.opts.payment == 'later_payment') {
+                $('#later_payment_info').html(tmpComment.join('<br />'));
+                $('#later_payment_wrapper').show();
+            } else {
+                $('#later_payment_info').text('');
+                $('#later_payment_wrapper').hide();
+            }
 			$('#delivery_date').text(z.opts.delidate);
 			$('#delivery_time').text(z.details.delitimename);
 			$('#sample_image').text(sampleImage[z.opts.imega]);
@@ -2806,7 +2881,17 @@ $(function () {
 		
 		// オプション指定
 		if (!sessionStorage.hasOwnProperty('option')) {
-			$.removeStorage('option', {'publish':0, 'published':0, 'student':0, 'pack':0, 'payment':'bank', 'delidate':'', 'delitime':0, 'express':0, 'transport':1, 'school':'', 'note_design':'', 'designkey_text':'','note_user':'', 'imega':0});
+            $.removeStorage('option', {
+                'publish': 0, 'published': 0, 'student': 0, 'pack': 0, 'payment': 'bank', 'delidate': '', 'delitime': 0, 'express': 0, 'transport': 1, 'school': '', 'note_design': '', 'designkey_text': '', 'note_user': '', 'imega': 0,
+                'payment_organization': '',
+                'payment_zipcode': '',
+                'payment_addr0': '',
+                'payment_addr1': '',
+                'payment_addr2': '',
+                'payment_tel': '',
+                'payment_staff': '',
+                'payment_email': ''
+            });
 		} else {
 			opt = $.getStorage('option');
 			
@@ -2837,8 +2922,23 @@ $(function () {
 			$('#pack [name="pack"][value="'+opt.pack+'"]').prop('checked', true);
 			
 			// 支払い方法
-			$('#payment [name="payment"][value="'+opt.payment+'"]').prop('checked', true);
-			
+            $('#payment [name="payment"][value="' + opt.payment + '"]').prop('checked', true);
+            
+            // 後払い情報
+            $('#payment_organization').val(opt.payment_organization);
+            $('#payment_zipcode').val(opt.payment_zipcode);
+            $('#payment_addr0').val(opt.payment_addr0);
+            $('#payment_addr1').val(opt.payment_addr1);
+            $('#payment_addr2').val(opt.payment_addr2);
+            $('#payment_tel').val(opt.payment_tel);
+            $('#payment_staff').val(opt.payment_staff);
+            $('#payment_email').val(opt.payment_email);
+            if (opt.payment == 'later_payment') {
+                $('#later_payment_form').show();
+            } else {
+                $('#later_payment_form').hide();
+            }
+
 			// お届け希望日
 			if (opt.delidate != '') {
 				d = opt.delidate.split('-');
