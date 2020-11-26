@@ -7,6 +7,7 @@
  * 2019-04-05	お届け先住所を追加
  * 2019-12-18	戻るボタンの機能を元に戻し、複数デザインの注文を廃止
  * 2020-11-05	後払い情報の追加
+ * 2020-11-26	配達指定時間の指定を廃止（受注システム側には有り）
  */
 $(function () {
 	'use strict';
@@ -2219,7 +2220,7 @@ $(function () {
 	
 	
 	// お届け時間
-	$('#deliverytime').applyChange();
+	// $('#deliverytime').applyChange();
 	
 	
 	// デザインについての要望
@@ -2739,7 +2740,7 @@ $(function () {
                 $('#later_payment_wrapper').hide();
             }
 			$('#delivery_date').text(z.opts.delidate);
-			$('#delivery_time').text(z.details.delitimename);
+			// $('#delivery_time').text(z.details.delitimename);
 			$('#sample_image').text(sampleImage[z.opts.imega]);
 			$('#final_email').text($('#conf_email').text());
 			$('#final_customername').text($('#conf_customername').text());
@@ -2838,7 +2839,7 @@ $(function () {
 		$('#payment input[name="payment"]').val(['bank']);
 		
 		// お届け時間
-		$('#deliverytime').val(0);
+		// $('#deliverytime').val(0);
 		
 		// ご要望
 		$('textarea').val('');
@@ -2953,7 +2954,7 @@ $(function () {
 			}
 			
 			// 配達時間指定
-			$('#deliverytime').val(opt.delitime);
+			// $('#deliverytime').val(opt.delitime);
 			
 			// デザインに関するご要望
 			if (opt.note_design != '') {
