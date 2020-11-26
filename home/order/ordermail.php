@@ -22,6 +22,7 @@
 				  2019-04-18 デザイン掲載の承諾を追加
 				  2019-06-13 受注システム登録の例外処理を更新
 				  2020-11-05 後払い情報の追加
+				  2020-11-26 配達指定時間の指定を廃止（受注システム側には有り）
 
 -------------------------------------------------------------- */
 require_once $_SERVER['DOCUMENT_ROOT'].'/../cgi-bin/config.php';
@@ -91,7 +92,7 @@ class Ordermail extends Conndb{
 				$order_info .= "◇　".$detail['expressname']."：　特急料金あり\n\n";
 			}
 			
-			$order_info .= "◇　配達時間指定　：　".$detail['delitimename']."\n\n";
+			// $order_info .= "◇　配達時間指定　：　".$detail['delitimename']."\n\n";
 			$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n";
 
 			// デザインパターン別

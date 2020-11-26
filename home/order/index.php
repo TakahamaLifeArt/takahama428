@@ -693,6 +693,8 @@ $_version = time();
 										</div>
 										<div class="date_sel">
 											<h4>カレンダーから選択してください。</h4>
+											<p style="color: #001adc;font-size: 14px;">刺繍のみ工場拡大による機械移転のため、通常よりも多く納期をいただいております。<br>何卒ご了承くださいませ。
+											</p>
 											<div id="datepick" class="cale_box"></div>
 
 											<!-- 特急料金が計上される場合に表示 -->
@@ -707,7 +709,7 @@ $_version = time();
 											<label for="transport"><input type="checkbox" value="2" name="transport" id="transport">お届け先が、北海道、九州、沖縄、東京離島、島根隠岐郡のいずれかとなる場合はチェックして下さい。</label>
 										</div>
 
-										<h4>お届時間帯の指定</h4>
+										<!-- <h4>お届時間帯の指定</h4>
 										<div class="pull_down">
 											<div class="btn-group">
 												<select id="deliverytime" name="delitime" class="down_cond">
@@ -719,7 +721,7 @@ $_version = time();
 												<option value="6">19:00-21:00</option>
 											</select>
 											</div>
-										</div>
+										</div> -->
 									</div>
 
 									<div class="deli_date">
@@ -1326,10 +1328,10 @@ $_version = time();
 											<td>ご希望納期</td>
 											<td id="delivery_date"></td>
 										</tr>
-										<tr>
+										<!-- <tr>
 											<td>お届け時間帯</td>
 											<td id="delivery_time"></td>
-										</tr>
+										</tr> -->
 									</tbody>
 								</table>
 							</div>
