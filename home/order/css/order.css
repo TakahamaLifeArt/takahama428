@@ -9,6 +9,7 @@ Description : A multi steps order form.
 log
 2017-10-21	: created
 2019-04-12	: レイアウト変更
+2020-11-05	: 後払い情報の追加
 
 --------------------------------------------------------------*/
 
@@ -1444,6 +1445,31 @@ th {
 #express_info {
 	font-size: 16px;
 	font-weight: bold;
+}
+
+
+/*		後払い情報
+===============================================================*/
+#later_payment_form {
+	display: none;
+	margin-top: 5rem;
+}
+
+#later_payment_form h4 {
+	background-color: #eceae8;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 1.2%;
+	margin-top: 1.5em;
+}
+
+#later_payment_form span {
+	margin-left: 4%;
+}
+
+#later_payment_form p {
+	margin: 4px 0 16px;
+	padding-left: 20px;
 }
 
 
@@ -3130,10 +3156,12 @@ h3.option .any {
 
 }
 
-@media screen and (max-width: 655px) .print_position {
-	margin: 1% 1%;
-	width: 142px;
-	word-break: keep-all;
+@media screen and (max-width: 655px) {
+	.print_position {
+		margin: 1% 1%;
+		width: 142px;
+		word-break: keep-all;
+	}
 }
 
 
@@ -3234,7 +3262,7 @@ h3.option .any {
 }
 
 #mem_shipping_addr h4,#shipping_addr h4 {
-	color: #000 !importat;
+	color: #000 !important;
 	font-size: 14px;
 	font-weight: bold;
 }
