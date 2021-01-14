@@ -695,6 +695,8 @@ $_version = time();
 											<h4>カレンダーから選択してください。</h4>
 											<p style="color: #001adc;font-size: 14px;">刺繍のみ工場拡大による機械移転のため、通常よりも多く納期をいただいております。<br>何卒ご了承くださいませ。
 											</p>
+											<p>
+												<span class="red_mark">※</span> 後払い決済に関しまして審査通過後に注文確定となるためご希望納期が変わる場合があります。何卒ご了承くださいませ。</p>
 											<div id="datepick" class="cale_box"></div>
 
 											<!-- 特急料金が計上される場合に表示 -->
@@ -791,6 +793,8 @@ $_version = time();
 										後払い
 									</label>
 										<p class="note"><span class="red_mark">※</span>本支払方法は法人および個人事業主の方対象です。学生の方はご利用頂けません</p>
+										<p class="note"><span class="red_mark">※</span>※審査が否決の場合は、お支払方法の変更をお願いしております。</p>
+										<p class="note"><span class="red_mark">※</span>※審査通過後にご注文確定となるため、納期は変動いたします。</p>
 									</div>
 								</div>
 
