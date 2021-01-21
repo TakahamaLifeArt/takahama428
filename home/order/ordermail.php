@@ -296,11 +296,13 @@ class Ordermail extends Conndb{
 			$order_info .= "┏━━━━━━━━━━━┓\n";
 			$order_info .= "◆　　デザインファイル\n";
 			$order_info .= "┗━━━━━━━━━━━┛\n";
+
+			$order_info_user = "";
+			$order_info_admin = "";
+
 			if (empty($uploadfilename)) {
 				$order_info .= "なし\n";
 				$order_info .= "━━━━━━━━━━━━━━━━━━━━━\n\n\n";
-				$order_info_admin = "";
-				$order_info_user = "";
 			} else {
 				foreach ($uploadfilename as $id => $fileName) {
 					$order_info_user .= "◇ファイル名：　".$fileName."\n";
@@ -344,6 +346,7 @@ class Ordermail extends Conndb{
 			$addition = array($order_info_admin, $order_info_user, $order_id);
 			
 			// send mail
+			$attach = null;
 			$res = $this->send_mail($order_info, $user['name'], $user['email'], $attach, $addition);
 			if (!$res) {
 				throw new Exception();
@@ -775,6 +778,8 @@ class Ordermail extends Conndb{
 			$discount1 = "student";
 		}
 
+		$discount2 = "";
+
 		// 支払方法
 		$payment = $opts['payment'];
 		if ($payment=='bank') $payment = 'wiretransfer';
@@ -1129,7 +1134,7 @@ class WebOrder {
 	 */
 	private function db_connect(){
 		$conn = mysqli_connect(_DB_HOST, _DB_USER, _DB_PASS, _DB_NAME, true) 
-			or die("MESSAGE : cannot connect!". mysqli_error());
+			or die("MESSAGE : cannot connect!". mysqli_connect_error());
 		
 		$conn->set_charset('utf8');
 		return $conn;
@@ -1745,6 +1750,7 @@ class WebOrder {
 					$tmp = explode(',', $info['discount']);
 
 					$sql = "INSERT INTO discount(discount_name,discount_state,orders_id) VALUES";
+					$sql2 = "";
 					for($t=0; $t<count($tmp); $t++){
 						$discount_name = substr($tmp[$t], 0, -1);
 						$state		 = substr($tmp[$t],-1);
@@ -1769,6 +1775,7 @@ class WebOrder {
 					$tmp = explode(',', $list1);
 
 					$sql = 'INSERT INTO media(media_type, media_value, orders_id) VALUES';
+					$sql2 = "";
 					for($i=0; $i<count($tmp); $i++){
 						$media = explode('|', $tmp[$i]);
 						$sql2 .= '("'.$media[0].'","'.$media[1].'",'.$orders_id.'),';
