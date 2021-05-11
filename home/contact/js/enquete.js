@@ -5,6 +5,7 @@
  * 2018-03-06 項目変更に伴いファイルアップロード機能を追加
  * 2019-03-14 ファイルアップロード機能を更新
  * 2019-04-02 Edgeのみ進捗バーの表示を切り替える
+ * 2021-05-11 項目「q9 写真掲載割をご利用のお客様は、商品着用写真をお送りください」の廃止に伴い、ファイルアップロード処理を削除
  */
 	
 $(function(){
@@ -14,6 +15,9 @@ $(function(){
 	 * 入力項目の検証
 	 */
 	eMailer.onValidate('#sendmail', function () {
+		return true;
+		// 以降の処理をスキップ
+
 		// アップロードファイル
 		let dlToken = JSON.parse(sessionStorage.getItem('dl_token')),
 			downURL = document.getElementById('deownload_link'),

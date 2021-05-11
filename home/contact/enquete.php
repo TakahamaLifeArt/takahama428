@@ -21,7 +21,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['ticket']) && !empty($
 			$dat['a17'][] = $val==31? 0: $val-20;
 		}
 		$dat['a9'] = $_POST['sentence'][7];
-		$dat['a18'] = $_POST['sentence'][8];
+		$dat['a18'] = '';	// $_POST['sentence'][8]; 2021-05-11 廃止
 		$dat['number'] = $_POST['number'];
 		$dat['customername'] = '';
 		$dat['zipcode'] = '';
@@ -128,6 +128,12 @@ DOC;
 		$val = $data['question'];
 		for ($i=0, $len=count($val); $i<$len; $i++) {
 			$qId = $val[$i]['id'];
+
+			// 2021-05-11 廃止項目「q8 写真掲載割をご利用のお客様は、商品到着後の感想やコメントをご入力ください」
+			if ($qId === 8) {
+				continue;
+			}
+			
 			$html .= '<div>';
 				$html .= '<p class="q">';
 					$html .= '<em>Q'.($i+1).'</em>';
@@ -165,25 +171,12 @@ DOC;
 		$len++;
 		$html = <<<DOC
 					<button type="submit" id="sendmail" class="btn" hidden>アンケートを送信する</button>
-					
-					<label hidden>写真掲載割をご利用のお客様は、商品着用写真をお送りください</label>
-					<textarea id="filename" hidden></textarea>
-					<label hidden>ダウンロードURL</label>
-					<input id="deownload_link" type="hidden" name="deownload_link" value="">
 				
 					<input type="hidden" name="ticket" class="e-none" value="{$ticket}">
 					<input type="hidden" name="sendto" value="{$with(_SEND_TO)}">
 					<input type="hidden" name="subject" value="お客様アンケート">
 					<input type="hidden" name="title" value="お客様アンケート">
 				</form>
-				
-				<div>
-					<p class="q">
-						<em>Q{$len}</em>
-						<label>写真掲載割をご利用のお客様は、商品着用写真をお送りください</label>
-					</p>
-				</div>
-				<div id="file-uploader"></div>
 				
 				<p class="button_area">
 					<button id="send_button" class="btn">アンケートを送信する</button>
@@ -250,7 +243,7 @@ DOC;
 		<?php include $_SERVER['DOCUMENT_ROOT']."/common/inc/js.php"; ?>
 
 		<script src="https://doozor.bitbucket.io/email/e-mailform.min.js?dat=<?php echo _DZ_ACCESS_TOKEN;?>"></script>
-		<script src="https://doozor.bitbucket.io/uploader/file_uploader.min.js?m=drop&ci=phl57jus0l"></script>
+		<!-- <script src="https://doozor.bitbucket.io/uploader/file_uploader.min.js?m=drop&ci=phl57jus0l"></script> -->
 		<script type="text/javascript" src="/contact/js/enquete.js?v=<?php echo $_version;?>"></script>
 
 	</body>
